@@ -13,9 +13,10 @@ from orchestrator.audit import DEFAULT_RULES_PATH, AuditRules, find_opportunitie
 from orchestrator.brief_io import load_brief
 from orchestrator.cannibalization import find_consolidations
 from orchestrator.gsc_io import SnapshotTooOld, check_freshness, load_snapshot
-from orchestrator.producer import build_messages
+from orchestrator.producer import DraftParseError, build_messages, parse_draft, requires_body
 from orchestrator.rotation import plan_for_date
 from orchestrator.state import RefreshJournal, StateError
+from orchestrator.validator import ValidationRules, validate
 
 SKILLS_DIR = DEFAULT_RULES_PATH.parent.parent / "skills" / "leandro"
 DEFAULT_SKILL = SKILLS_DIR / "SKILL.md"
@@ -58,6 +59,42 @@ def _serialize_brief(brief: Brief) -> dict[str, Any]:
 def _blocked(reason: str, **extra: Any) -> int:
     _emit({"status": "BLOCKED", "side_effects": False, "block_reason": reason, **extra})
     return 2
+
+
+def _validate(args: argparse.Namespace) -> int:
+    try:
+        brief = load_brief(args.brief)
+        raw = Path(args.draft).read_text(encoding="utf-8")
+    except (OSError, ValueError) as error:
+        return _blocked(f"no se pudo leer el brief o el borrador: {error}")
+
+    if brief.opportunity is None:
+        return _blocked(f"sin oportunidad asignada: {brief.skipped_reason}")
+
+    try:
+        draft = parse_draft(raw, require_body=requires_body(brief.opportunity.action))
+    except DraftParseError as error:
+        return _blocked(str(error))
+
+    verdict = validate(
+        draft,
+        brief,
+        ValidationRules(),
+        evidence_of_testing=args.evidence_of_testing,
+    )
+
+    _emit(
+        {
+            "status": verdict.status,
+            "side_effects": False,
+            "task_id": brief.task_id,
+            "controls": [
+                {"code": c.code, "status": c.status, "detail": c.detail}
+                for c in verdict.controls
+            ],
+        }
+    )
+    return 0 if verdict.status == "PASS" else 2
 
 
 def _produce(args: argparse.Namespace) -> int:
@@ -205,7 +242,21 @@ def main(argv: Sequence[str] | None = None) -> int:
     produce_parser.add_argument(
         "--legal", type=Path, default=DEFAULT_LEGAL, help="path to the legal context"
     )
+
+    validate_parser = subparsers.add_parser(
+        "validate", help="run the deterministic controls on a draft"
+    )
+    validate_parser.add_argument("--brief", type=Path, required=True, help="brief JSON")
+    validate_parser.add_argument("--draft", type=Path, required=True, help="draft JSON")
+    validate_parser.add_argument(
+        "--evidence-of-testing",
+        action="store_true",
+        help="the data registry has documented evidence of a human test",
+    )
     args = parser.parse_args(argv)
+
+    if args.command == "validate":
+        return _validate(args)
 
     if args.command == "produce":
         return _produce(args)

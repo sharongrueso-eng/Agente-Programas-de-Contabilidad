@@ -22,6 +22,9 @@ python -m orchestrator.cli plan --date 2026-11-06 --data datos/muestra/gsc-2026-
 
 # Prompt exacto que verá el productor, sin llamar al modelo
 python -m orchestrator.cli produce --brief datos/muestra/brief-2026-11-06-A.json --dry-run
+
+# Controles deterministas sobre un borrador
+python -m orchestrator.cli validate --brief datos/muestra/brief-2026-11-06-A.json --draft datos/muestra/borrador-2026-11-06-A.json
 ```
 
 El comando emite JSON con `side_effects: false`. El modo de producción queda deshabilitado hasta implementar y probar los conectores, persistencia, controles editoriales/técnicos, publicación idempotente y reversión.
@@ -40,8 +43,33 @@ El comando emite JSON con `side_effects: false`. El modo de producción queda de
 | `orchestrator/producer.py` | Listo | Arma el prompt, valida la salida del modelo y crea el borrador |
 | `orchestrator/brief_io.py` | Listo | Lee el brief de la carpeta de la corrida |
 | `orchestrator/adapters.py` | Escrito, sin probar contra las APIs | Clientes HTTP de LiteLLM y WordPress, con transporte inyectable |
+| `orchestrator/validator.py` | Listo | Trece controles deterministas sobre el borrador |
 | Conector GSC en vivo | Pendiente | Requiere cuenta de servicio de IT |
 | Juez, corrector y publicador | Pendiente | Requieren LiteLLM y el token de WordPress |
+
+### Controles deterministas
+
+`validate` corre antes del juez y no publica nada por sí solo. Devuelve un estado por
+control y el peor de ellos como veredicto.
+
+| Control | Severidad | Qué verifica |
+|---|---|---|
+| `slug_keyword` | BLOQUEADO | Todas las palabras de la keyword foco están en el slug |
+| `slug_year` | CORREGIR | Una URL nueva no lleva año en el slug |
+| `title_keyword` | CORREGIR | Keyword foco completa en el título SEO |
+| `meta_keyword` / `meta_length` | CORREGIR | Keyword en la meta y entre 100 y 165 caracteres |
+| `h1_keyword` | CORREGIR | Keyword foco en el H1 |
+| `intro_keyword` | CORREGIR | Keyword foco en el primer párrafo |
+| `alegra_links` | CORREGIR | Tres enlaces a Alegra con UTM completa |
+| `internal_links` | CORREGIR | Cinco enlaces internos |
+| `sources` | CORREGIR | Dos fuentes externas (los enlaces a Alegra no cuentan) |
+| `country_norms` | BLOQUEADO | Ninguna autoridad de otro mercado; en RD, nunca la sigla «RD» |
+| `testing_claims` | CORREGIR | «Probé» sin evidencia registrada |
+| `internal_jargon` | CORREGIR | GSC, run_id, compuerta y demás jerga visible |
+| `snippet_body` | BLOQUEADO | Un reencauche de snippet no reescribe el cuerpo |
+
+La UTM «completa» se comprueba con `utm_source`, `utm_medium` y `utm_campaign`; si el
+equipo usa otra convención, se cambia en un solo lugar (`validator._has_full_utm`).
 
 ### Cómo decide la auditoría
 
