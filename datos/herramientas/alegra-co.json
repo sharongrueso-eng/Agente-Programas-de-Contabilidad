@@ -1,0 +1,59 @@
+{
+  "brand": "Alegra",
+  "country": "CO",
+  "product": "Alegra Contabilidad",
+  "plans": [
+    {
+      "name": "Emprendedor",
+      "price": "17.900",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "note": "Precio de lista sin descuento"
+    },
+    {
+      "name": "Emprendedor",
+      "price": "13.425",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "anual",
+      "note": "Equivale a 161.100 COP al año"
+    },
+    {
+      "name": "Pyme",
+      "price": "49.900",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "note": "Precio de lista sin descuento"
+    },
+    {
+      "name": "Pyme",
+      "price": "37.425",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "anual",
+      "note": "Equivale a 449.100 COP al año"
+    }
+  ],
+  "source_url": "https://www.alegra.com/colombia/precios/",
+  "captured_at": "2026-11-06",
+  "evidence_level": "documentacion_oficial",
+  "electronic_invoicing": "Facturación electrónica con la DIAN incluida en los planes",
+  "features": [
+    "Facturación electrónica",
+    "Contabilidad",
+    "POS",
+    "Nómina electrónica",
+    "Alegra IA",
+    "Soporte 24/7 sin costo"
+  ],
+  "integrations": [],
+  "support": "Soporte 24/7 incluido según la página de precios",
+  "advantages": [
+    "Planes separados para emprendedor y pyme",
+    "Descuento del 25 % pagando anual para usuarios nuevos"
+  ],
+  "known_limits": [],
+  "notes": "Solo se registraron los dos planes que muestran precio en la página el día de la consulta. La página también lista planes para contadores y empresas sin precio público: no se registran hasta verlos."
+}

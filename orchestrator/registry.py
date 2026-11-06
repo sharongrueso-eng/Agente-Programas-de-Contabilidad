@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import re
+from datetime import date
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -27,6 +28,36 @@ _AMOUNT = re.compile(
 )
 
 _SYMBOL_CURRENCY = {"₡": "CRC", "RD$": "DOP"}
+
+_THOUSANDS_DOT = re.compile(r"^\d{1,3}(?:\.\d{3})+$")
+_THOUSANDS_COMMA = re.compile(r"^\d{1,3}(?:,\d{3})+$")
+_DECIMAL_COMMA = re.compile(r"^\d+,\d{1,2}$")
+
+
+def _canonical(amount: str) -> str:
+    """Deja el monto comparable: 17.900 y 17,900 y 17900 son el mismo número.
+
+    En los cuatro mercados el punto separa miles y la coma decimales, pero una fuente
+    puede escribir 17,900 con la convención inglesa. Se resuelve por la forma del número,
+    no por el país.
+    """
+    limpio = amount.strip().replace(" ", "")
+
+    if "." in limpio and "," in limpio:
+        if limpio.rfind(",") > limpio.rfind("."):
+            return limpio.replace(".", "").replace(",", ".")
+        return limpio.replace(",", "")
+
+    if _THOUSANDS_DOT.match(limpio):
+        return limpio.replace(".", "")
+
+    if _THOUSANDS_COMMA.match(limpio):
+        return limpio.replace(",", "")
+
+    if _DECIMAL_COMMA.match(limpio):
+        return limpio.replace(",", ".")
+
+    return limpio.rstrip(".,")
 
 
 def load_fichas(folder: str | Path) -> list[dict[str, Any]]:
@@ -52,13 +83,13 @@ def load_fichas(folder: str | Path) -> list[dict[str, Any]]:
 
 
 def money_amounts(text: str) -> set[str]:
-    """Importes con moneda explícita, normalizados como «monto MONEDA»."""
+    """Importes con moneda explícita, normalizados como «monto MONEDA» en forma canónica."""
     found: set[str] = set()
 
     for match in _AMOUNT.finditer(text or ""):
-        amount = match.group("amount").rstrip(".,")
+        amount = _canonical(match.group("amount"))
         currency = match.group("currency") or _SYMBOL_CURRENCY.get(match.group("symbol") or "")
-        if not currency:
+        if not currency or not amount:
             continue
         found.add(f"{amount} {currency.upper()}")
 
@@ -83,3 +114,37 @@ def fichas_text(fichas: Iterable[dict[str, Any]]) -> str:
         lines.append(f"  fuente: {ficha['source_url']} (consultada {ficha['captured_at']})")
         lines.append(f"  nivel de evidencia: {ficha['evidence_level']}")
     return "\n".join(lines)
+
+
+def fichas_for_country(fichas: Iterable[dict[str, Any]], country: str) -> list[dict[str, Any]]:
+    """Solo las fichas del mercado de la pieza."""
+    return [ficha for ficha in fichas if ficha.get("country") == country]
+
+
+def check_freshness(
+    fichas: Iterable[dict[str, Any]],
+    *,
+    max_age_days: int = 30,
+    today: date | None = None,
+) -> list[tuple[str, int]]:
+    """Fichas vencidas: nombre del archivo lógico y días transcurridos.
+
+    Una ficha vieja no se borra ni se ignora en silencio: se devuelve para que quien
+    publique decida si bloquea la pieza o marca el dato como desactualizado.
+    """
+    hoy = today or date.today()
+    vencidas: list[tuple[str, int]] = []
+
+    for ficha in fichas:
+        capturada = str(ficha.get("captured_at", "")).strip()
+        try:
+            fecha = date.fromisoformat(capturada)
+        except ValueError:
+            vencidas.append((f"{ficha.get('brand')}-{ficha.get('country')}", 10_000))
+            continue
+
+        edad = (hoy - fecha).days
+        if edad > max_age_days:
+            vencidas.append((f"{ficha.get('brand')}-{ficha.get('country')}", edad))
+
+    return vencidas

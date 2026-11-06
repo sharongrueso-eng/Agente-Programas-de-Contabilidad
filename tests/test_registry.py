@@ -9,7 +9,14 @@ from tempfile import TemporaryDirectory
 from orchestrator.assigner import Brief
 from orchestrator.audit import Opportunity
 from orchestrator.producer import Draft
-from orchestrator.registry import load_fichas, money_amounts, unregistered_amounts
+from orchestrator.registry import (
+    check_freshness,
+    fichas_for_country,
+    fichas_text,
+    load_fichas,
+    money_amounts,
+    unregistered_amounts,
+)
 from orchestrator.validator import ValidationRules, validate
 
 FICHA = {
@@ -77,8 +84,16 @@ class FichaTests(unittest.TestCase):
 
 class AmountTests(unittest.TestCase):
     def test_amounts_are_normalised_with_their_currency(self) -> None:
-        self.assertEqual(money_amounts("cuesta $59.900 COP al mes"), {"59.900 COP"})
-        self.assertEqual(money_amounts("el plan de 119.900 COP"), {"119.900 COP"})
+        self.assertEqual(money_amounts("cuesta $59.900 COP al mes"), {"59900 COP"})
+        self.assertEqual(money_amounts("el plan de 119.900 COP"), {"119900 COP"})
+
+    def test_the_same_number_written_three_ways_is_one_amount(self) -> None:
+        uno = money_amounts("$59.900 COP")
+        dos = money_amounts("59,900 COP")
+        tres = money_amounts("59900 COP")
+
+        self.assertEqual(uno, dos)
+        self.assertEqual(uno, tres)
 
     def test_plain_numbers_are_not_amounts(self) -> None:
         self.assertEqual(money_amounts("en 2026 hubo 12 actualizaciones"), set())
@@ -91,7 +106,7 @@ class AmountTests(unittest.TestCase):
     def test_unknown_amount_is_reported(self) -> None:
         found = unregistered_amounts("cuesta $49.900 COP", "59.900 COP")
 
-        self.assertEqual(found, {"49.900 COP"})
+        self.assertEqual(found, {"49900 COP"})
 
 
 class ValidatorIntegrationTests(unittest.TestCase):
@@ -123,6 +138,62 @@ class ValidatorIntegrationTests(unittest.TestCase):
 
         statuses = {c.code: c.status for c in verdict.controls}
         self.assertEqual(statuses.get("registry_amounts"), "PASS")
+
+
+class FreshnessTests(unittest.TestCase):
+    def test_a_recent_ficha_is_not_stale(self) -> None:
+        ficha = dict(FICHA, captured_at="2026-11-01")
+
+        vencidas = check_freshness([ficha], today=date(2026, 11, 6))
+
+        self.assertEqual(vencidas, [])
+
+    def test_an_old_ficha_is_reported_with_its_age(self) -> None:
+        ficha = dict(FICHA, captured_at="2026-09-01")
+
+        vencidas = check_freshness([ficha], today=date(2026, 11, 6), max_age_days=30)
+
+        self.assertEqual(vencidas, [("Siigo-CO", 66)])
+
+    def test_a_broken_date_counts_as_stale(self) -> None:
+        ficha = dict(FICHA, captured_at="no-es-fecha")
+
+        vencidas = check_freshness([ficha], today=date(2026, 11, 6))
+
+        self.assertEqual(len(vencidas), 1)
+
+    def test_only_the_country_of_the_piece_is_used(self) -> None:
+        mexico = dict(FICHA, country="MX", brand="Contalink")
+
+        self.assertEqual([f["brand"] for f in fichas_for_country([FICHA, mexico], "MX")], ["Contalink"])
+
+
+class RealFichaTests(unittest.TestCase):
+    def test_the_shipped_fichas_load_and_are_citable(self) -> None:
+        from pathlib import Path
+
+        carpeta = Path(__file__).resolve().parent.parent / "datos" / "herramientas"
+        fichas = load_fichas(carpeta)
+
+        self.assertGreaterEqual(len(fichas), 1)
+        texto = fichas_text(fichas)
+        self.assertIn("17.900 COP", texto)
+
+    def test_a_published_price_is_accepted_by_the_validator(self) -> None:
+        from pathlib import Path
+
+        carpeta = Path(__file__).resolve().parent.parent / "datos" / "herramientas"
+        texto = fichas_text(load_fichas(carpeta))
+
+        verdict = validate(
+            draft(html="<p>El plan Emprendedor cuesta $17.900 COP al mes.</p>"),
+            brief(),
+            ValidationRules(),
+            registry_text=texto,
+        )
+
+        codigos = {c.code: c.status for c in verdict.controls}
+        self.assertEqual(codigos.get("registry_amounts"), "PASS")
 
 
 if __name__ == "__main__":

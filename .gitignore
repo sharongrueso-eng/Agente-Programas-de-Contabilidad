@@ -10,3 +10,6 @@ htmlcov/
 state/
 runs/
 *.log
+
+# Portadas generadas: se producen, no se versionan
+datos/imagenes/
