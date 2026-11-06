@@ -12,6 +12,10 @@ RUN apt-get update \
 RUN curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash \
     && ln -sf /root/.local/bin/hermes /usr/local/bin/hermes
 
+# Pillow solo para recomprimir la portada: el gateway entrega WebP de ~1,3 MB y la web
+# necesita menos de 300 KB. Es la única dependencia externa del proyecto.
+RUN pip install --no-cache-dir pillow
+
 WORKDIR /app
 COPY . /app
 

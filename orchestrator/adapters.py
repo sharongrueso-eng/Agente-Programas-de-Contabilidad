@@ -20,6 +20,7 @@ import re
 import urllib.error
 import urllib.parse
 import urllib.request
+from dataclasses import dataclass
 from typing import Any, Mapping, Protocol, Sequence
 from urllib.parse import urlparse
 
@@ -233,3 +234,67 @@ class WordPressClient:
             return json.loads(text)
         except json.JSONDecodeError as error:
             raise RuntimeError(f"respuesta ilegible de WordPress: {error}") from error
+
+
+@dataclass
+class AlegraImageClient:
+    """Genera la portada con `alegra-image` del gateway, por el endpoint de imágenes.
+
+    No es un modelo de chat: se llama con `/images/generations` y devuelve la imagen en
+    base64. Si el gateway devolviera una URL en lugar del contenido, se descarga.
+    """
+
+    base_url: str
+    api_key: str
+    model: str = "alegra-image"
+    size: str = "1536x1024"
+    output_format: str = "webp"
+    quality: str = "high"
+    timeout: float = 240.0
+    transport: HttpTransport | None = None
+
+    def __post_init__(self) -> None:
+        self.transport = self.transport or UrllibTransport(timeout=self.timeout)
+
+    def generate(self, prompt: str) -> bytes:
+        payload = {"model": self.model, "prompt": prompt, "size": self.size, "n": 1}
+        if self.output_format:
+            payload["output_format"] = self.output_format
+        if self.quality:
+            payload["quality"] = self.quality
+        status, raw = self.transport.request(
+            "POST",
+            f"{self.base_url.rstrip('/')}/images/generations",
+            headers={
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json",
+            },
+            body=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+        )
+
+        text = raw.decode("utf-8", "replace")
+        if status >= 400:
+            raise RuntimeError(f"el generador de imágenes respondió {status}: {text[:300]}")
+
+        try:
+            data = json.loads(text).get("data") or []
+        except json.JSONDecodeError as error:
+            raise RuntimeError(f"respuesta ilegible del generador: {error}") from error
+
+        if not data:
+            raise RuntimeError("el generador no devolvió ninguna imagen")
+
+        primero = data[0]
+        if primero.get("b64_json"):
+            return base64.b64decode(primero["b64_json"])
+
+        if primero.get("url"):
+            return self._descargar(primero["url"])
+
+        raise RuntimeError("la respuesta no trae b64_json ni url")
+
+    def _descargar(self, url: str) -> bytes:
+        status, raw = self.transport.request("GET", url, headers={}, body=None)
+        if status >= 400:
+            raise RuntimeError(f"no se pudo descargar la imagen: {status}")
+        return raw
