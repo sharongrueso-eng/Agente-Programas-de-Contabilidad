@@ -311,7 +311,7 @@ def validate(
     return Verdict(status=worst, controls=tuple(controls))
 
 
-FRASE_SIN_DATO = "El proveedor no publica esta información en su sitio web."
+FRASE_SIN_DATO = "Esta cifra no se cita porque no está verificada en el registro de datos."
 
 
 def sanear_cifras(html: str, registry_text: str) -> tuple[str, list[str]]:

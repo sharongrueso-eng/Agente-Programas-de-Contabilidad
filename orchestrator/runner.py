@@ -119,6 +119,7 @@ class Deps:
     avisar: Any = None
     solo_borrador: bool = False
     urls_internas: Any = None
+    post_existente: int | None = None
     publicar_con_observaciones: bool = False
     dominio: str = "programascontabilidad.com"
 
@@ -422,6 +423,7 @@ def run(
             if (state.dir / "portada.webp").exists()
             else None,
             solo_borrador=deps.solo_borrador,
+            post_id=deps.post_existente,
         )
         steps.append({"step": "publication", "status": result["status"], "via": "mcp"})
         state.save("publicacion.json", result)

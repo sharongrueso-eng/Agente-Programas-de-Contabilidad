@@ -108,9 +108,10 @@ def main() -> int:
     parser.add_argument("--secciones", action="store_true", help="producir bloque a bloque en vez de una sola llamada")
     parser.add_argument("--reusar", action="store_true", help="usar el borrador ya guardado y seguir desde la validación")
     parser.add_argument("--sin-avisos", action="store_true", help="no enviar nada al espacio de Chat")
+    parser.add_argument("--entorno", choices=["stg", "prod"], default="stg", help="destino de la publicación")
     args = parser.parse_args()
 
-    for archivo in ("llm.env", "mcp.env", "wp-stg.env"):
+    for archivo in ("llm.env", "mcp.env", "wp-stg.env", "wp-prod.env"):
         ruta = Path.home() / ".pdc" / archivo
         if not ruta.exists():
             continue
@@ -134,7 +135,7 @@ def main() -> int:
             return 2
         elegida = elegidas[0]
         brief = Brief(
-            f"stg-{date.today().isoformat()}-{args.pais}",
+            f"{args.entorno}-{date.today().isoformat()}-{args.pais}",
             date.today(),
             "A",
             "resena",
@@ -155,8 +156,45 @@ def main() -> int:
         return 2
     print(f"registro: {len(registro.fichas)} ficha(s) de {brief.country}")
 
-    cliente_mcp = cliente_desde_entorno()
+    if args.entorno == "prod":
+        from orchestrator.mcp_client import ClienteMcp
+
+        cliente_mcp = ClienteMcp(
+            url="https://programascontabilidad.com/wp-json/mcp/mcp-adapter-default-server",
+            headers={
+                "Authorization": "Basic "
+                + __import__("base64").b64encode(
+                    f"{os.environ['PDC_PROD_USER']}:{os.environ['PDC_PROD_TOKEN']}".encode()
+                ).decode()
+            },
+        )
+        cliente_mcp.inicializar()
+    else:
+        cliente_mcp = cliente_desde_entorno()
     print(f"mcp     : conectado ({cliente_mcp.sesion[:8]}…)")
+
+    post_existente = None
+    if brief.opportunity.action != "create" and brief.opportunity.url:
+        from orchestrator.adapters import WordPressClient as _Wp
+
+        if args.entorno == "prod":
+            _wp = _Wp(
+                os.environ["PDC_PROD_URL"],
+                os.environ["PDC_PROD_TOKEN"],
+                username=os.environ["PDC_PROD_USER"],
+            )
+        else:
+            _wp = _Wp(
+                os.environ["PDC_STG_URL"],
+                os.environ["PDC_STG_TOKEN"],
+                username=os.environ["PDC_STG_USER"],
+            )
+        try:
+            hallado = _wp.find_by_url(brief.opportunity.url)
+            post_existente = hallado.get("id") if hallado else None
+        except Exception:  # noqa: BLE001
+            post_existente = None
+        print(f"reencauche: {'actualiza el post ' + str(post_existente) if post_existente else 'la URL no existe, se crea'}")
 
     deps = Deps(
         producer=LiteLlmClient(
@@ -206,6 +244,7 @@ def main() -> int:
             ) or [])
         ][:12],
         publicar_con_observaciones=True,
+        post_existente=post_existente,
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
         solo_borrador=args.borrador,

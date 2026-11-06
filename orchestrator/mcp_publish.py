@@ -160,6 +160,7 @@ def publicar(
     portada: bytes | None = None,
     portada_nombre: str = "portada.webp",
     solo_borrador: bool = False,
+    post_id: int | None = None,
 ) -> dict[str, Any]:
     """Publica una pieza por MCP. Nunca deja un post publicado sin `pdc_run_id`."""
     run_id = brief.task_id
@@ -178,7 +179,8 @@ def publicar(
         # Corrida anterior murió antes de guardar el id: puede haber un borrador suelto.
         pass
 
-    post_id = _buscar_borrador(ejecutar, draft.slug)
+    # Un reencauche actualiza la pieza que ya existe; no crea una URL nueva.
+    post_id = post_id or _buscar_borrador(ejecutar, draft.slug)
     mapa.reservar(run_id, draft.slug, brief.country)
 
     if post_id is None:

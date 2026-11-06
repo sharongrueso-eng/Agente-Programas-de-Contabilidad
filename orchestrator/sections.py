@@ -104,7 +104,7 @@ def producir_por_secciones(
     skill: str,
     legal: str,
     registro: str = "",
-    max_reintentos: int = 2,
+    max_reintentos: int = 3,
 ) -> SalidaSecciones:
     """Escribe la cabecera y cada bloque con llamadas separadas, y ensambla la pieza."""
     if brief.opportunity is None:
