@@ -119,6 +119,7 @@ class Deps:
     avisar: Any = None
     solo_borrador: bool = False
     urls_internas: Any = None
+    publicar_con_observaciones: bool = False
     dominio: str = "programascontabilidad.com"
 
 
@@ -323,6 +324,27 @@ def run(
                     "BLOCKED", brief, state, steps, block_reason=outcome.detail
                 )
             if outcome.status == CORREGIR:
+                if deps.publicar_con_observaciones:
+                    observaciones = [
+                        {"code": c.code, "detail": c.detail}
+                        for c in getattr(outcome, "controls", ())
+                        if c.status != PASS
+                    ]
+                    state.save(
+                        "observaciones.json",
+                        {"advisory": True, "items": observaciones},
+                    )
+                    steps.append(
+                        {
+                            "step": "judge",
+                            "status": "CORREGIR_ANOTADO",
+                            "items": len(observaciones),
+                        }
+                    )
+                    state.checkpoint("judge")
+                    converged = True
+                    break
+
                 fixed, reason = _fix(draft, outcome.controls, deps, state)
                 if fixed is None:
                     return _contract("BLOCKED", brief, state, steps, block_reason=reason)

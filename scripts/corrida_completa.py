@@ -205,6 +205,7 @@ def main() -> int:
                 AuditRules.from_file(),
             ) or [])
         ][:12],
+        publicar_con_observaciones=True,
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
         solo_borrador=args.borrador,
