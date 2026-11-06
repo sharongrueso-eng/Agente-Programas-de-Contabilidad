@@ -55,6 +55,8 @@ def main() -> int:
     parser.add_argument("--pais", default="CO")
     parser.add_argument("--brief", default="", help="usar un brief existente en vez de planear")
     parser.add_argument("--borrador", action="store_true", help="dejar la pieza en borrador y avisar")
+    parser.add_argument("--secciones", action="store_true", help="producir bloque a bloque en vez de una sola llamada")
+    parser.add_argument("--reusar", action="store_true", help="usar el borrador ya guardado y seguir desde la validación")
     args = parser.parse_args()
 
     for archivo in ("llm.env", "mcp.env", "wp-stg.env"):
@@ -123,8 +125,8 @@ def main() -> int:
         corrector=LiteLlmClient(
             base_url=os.environ["OPENAI_BASE_URL"],
             api_key=os.environ["PDC_LLM_KEY"],
-            model=os.environ["PDC_MODEL_PRODUCER"],
-            max_tokens=8000,
+            model=os.environ.get("PDC_MODEL_CORRECTOR", "zai/glm-5.3"),
+            max_tokens=20000,
             timeout=300,
         ),
         wp=WpNulo(),
@@ -142,7 +144,6 @@ def main() -> int:
         solo_borrador=args.borrador,
     )
 
-    estado = RunState(RAIZ / "state" / "corridas", brief.task_id)
     condiciones = PublishConditions(
         approved_fingerprint="",
         current_fingerprint="",
@@ -153,6 +154,27 @@ def main() -> int:
         daily_cap=2,
         health_check_ok=True,
     )
+
+    estado = RunState(RAIZ / "state" / "corridas", brief.task_id)
+
+    if args.reusar and (estado.dir / "borrador.json").exists():
+        print()
+        print("reusando el borrador guardado; sigo desde la validación")
+        estado.checkpoint("production", resume_from="judge")
+    elif args.secciones:
+        from dataclasses import asdict
+
+        from orchestrator.sections import producir_por_secciones
+
+        print()
+        print("produciendo por secciones...")
+        salida = producir_por_secciones(
+            brief, llm=deps.producer, skill=deps.skill, legal=registro.texto
+        )
+        estado.save("borrador.json", asdict(salida.draft))
+        estado.checkpoint("production", resume_from="judge")
+        print(f"   llamadas: {salida.llamadas} | bloques: {len(salida.bloques)} | fallidos: {salida.fallidos or 'ninguno'}")
+        print(f"   pieza: {len(salida.draft.html):,} caracteres")
 
     inicio = time.time()
     resultado = run(
