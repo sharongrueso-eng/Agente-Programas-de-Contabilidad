@@ -153,5 +153,49 @@ class PublishWithCoverTests(unittest.TestCase):
         self.assertNotIn("featured_media", wp.creado["payload"])
 
 
+class FirmaTests(unittest.TestCase):
+    """La pieza siempre sale firmada por Leandro (ID 17), aunque el token sea de otra cuenta."""
+
+    def conditions(self) -> PublishConditions:
+        huella = fingerprint(DRAFT)
+        return PublishConditions(
+            approved_fingerprint=huella,
+            current_fingerprint=huella,
+            now=datetime(2026, 11, 6, 9, 0),
+            window_start=time(6, 0),
+            window_end=time(17, 30),
+            publications_today=0,
+            daily_cap=2,
+            health_check_ok=True,
+        )
+
+    def test_el_post_se_crea_con_autor_17(self) -> None:
+        wp = FakeWp()
+
+        publish(DRAFT, brief(), client=wp, conditions=self.conditions(), author_id=17)
+
+        self.assertEqual(wp.creado["payload"]["author"], 17)
+
+    def test_si_wordpress_firma_con_otra_cuenta_se_revierte(self) -> None:
+        class WpConOtroAutor(FakeWp):
+            def create_post(self, payload):
+                self.creado["payload"] = payload
+                return {"id": 501, "link": "https://programascontabilidad.com/x/", "author": 26}
+
+        wp = WpConOtroAutor()
+
+        resultado = publish(DRAFT, brief(), client=wp, conditions=self.conditions())
+
+        self.assertEqual(resultado["status"], "FAILED")
+        self.assertIn("firma", resultado["block_reason"])
+
+    def test_autor_por_defecto_es_leandro(self) -> None:
+        wp = FakeWp()
+
+        publish(DRAFT, brief(), client=wp, conditions=self.conditions())
+
+        self.assertEqual(wp.creado["payload"]["author"], 17)
+
+
 if __name__ == "__main__":
     unittest.main()

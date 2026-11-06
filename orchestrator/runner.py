@@ -98,6 +98,7 @@ class Deps:
     evidence_of_testing: bool = False
     image: Any = None
     fallback_image: bytes = b""
+    author_id: int = 17
 
 
 def _draft_to_dict(draft: Draft) -> dict[str, str]:
@@ -313,6 +314,7 @@ def run(
         conditions=effective,
         evidence_dir=str(state.dir),
         cover=cover,
+        author_id=deps.author_id,
     )
     steps.append({"step": "publication", "status": result["status"]})
     state.save("publicacion.json", result)

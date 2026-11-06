@@ -82,6 +82,7 @@ def verify_readback(
     live: dict[str, Any],
     *,
     expect_featured_image: bool = False,
+    expect_author: int | None = None,
 ) -> list[str]:
     """Compara lo publicado con lo aprobado. Cualquier diferencia es un fallo."""
     problems: list[str] = []
@@ -89,6 +90,11 @@ def verify_readback(
     status = live.get("status_code")
     if status != 200:
         problems.append(f"la URL respondió {status}")
+
+    if expect_author is not None and live.get("author") not in (None, expect_author):
+        problems.append(
+            f"la firma no es la de Leandro: el post quedó con el autor {live.get('author')}"
+        )
 
     if _normalize(live.get("title", "")) != _normalize(draft.title):
         problems.append("el título publicado no coincide con el aprobado")
@@ -125,13 +131,16 @@ def _result(status: str, brief: Brief, evidence_dir: str, **extra: Any) -> dict[
     return payload
 
 
-def _payload(draft: Draft, brief: Brief, *, status: str) -> dict[str, Any]:
+def _payload(
+    draft: Draft, brief: Brief, *, status: str, author_id: int = 17
+) -> dict[str, Any]:
     opportunity = brief.opportunity
     payload: dict[str, Any] = {
         "title": draft.title,
         "slug": draft.slug,
         "excerpt": draft.meta_description,
         "status": status,
+        "author": author_id,
         "meta": {
             "pdc_run_id": brief.task_id,
             "pdc_target_country": brief.country,
@@ -156,6 +165,7 @@ def publish(
     expect_featured_image: bool = False,
     cover: bytes | None = None,
     cover_filename: str = "portada.webp",
+    author_id: int = 17,
 ) -> dict[str, Any]:
     """Publica la pieza aprobada, la relee y revierte si algo no coincide."""
     allowed, reason = can_publish(conditions)
@@ -178,7 +188,7 @@ def publish(
     if target is None and opportunity and opportunity.action != "create" and opportunity.url:
         target = client.find_by_url(opportunity.url)
 
-    payload = _payload(draft, brief, status="publish")
+    payload = _payload(draft, brief, status="publish", author_id=author_id)
 
     if cover:
         try:
@@ -196,9 +206,11 @@ def publish(
                 block_reason=f"no se pudo subir la portada: {error}",
             )
 
+    written: dict[str, Any] = {}
     try:
         if target is None:
             created = client.create_post(payload)
+            written = created
             post_id = created.get("id")
             link = str(created.get("link", ""))
             restore_payload: dict[str, Any] = {"status": "draft"}
@@ -213,6 +225,7 @@ def publish(
             else:
                 restore_payload = {"status": "draft"}
             updated = client.update_post(post_id, payload)
+            written = updated
             link = str(updated.get("link", target.get("link", "")))
     except Exception as error:  # noqa: BLE001 - red o WordPress: se reintenta el paso
         return _result(
@@ -228,7 +241,15 @@ def publish(
     except Exception as error:  # noqa: BLE001
         live = {"status_code": 0, "error": str(error)}
 
-    problems = verify_readback(draft, live, expect_featured_image=expect_featured_image)
+    if live.get("author") is None and isinstance(written, dict):
+        live["author"] = written.get("author")
+
+    problems = verify_readback(
+        draft,
+        live,
+        expect_featured_image=expect_featured_image,
+        expect_author=author_id,
+    )
     if problems:
         try:
             client.restore(post_id, restore_payload)
