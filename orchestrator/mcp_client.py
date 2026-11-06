@@ -187,3 +187,34 @@ def _desenvolver(resultado: Any) -> Any:
         return resultado["structuredContent"]
 
     return resultado
+
+
+def cliente_desde_entorno(prefijo: str = "PDC_MCP") -> ClienteMcp:
+    """Arma y saluda un cliente con `PDC_MCP_URL` y `PDC_MCP_TOKEN` del entorno.
+
+    El token es la contraseña de aplicación ya codificada en base64; el cliente no la
+    registra ni la devuelve en ningún mensaje.
+    """
+    import base64
+    import os
+
+    url = os.environ.get(f"{prefijo}_URL", "").strip()
+    token = os.environ.get(f"{prefijo}_TOKEN", "").strip()
+    usuario = os.environ.get(f"{prefijo}_USER", "").strip()
+
+    if not url or not token:
+        raise McpError(
+            f"faltan {prefijo}_URL y {prefijo}_TOKEN en el entorno; no se intenta conectar"
+        )
+
+    if usuario and " " in token:
+        # Contraseña de aplicación en claro: se codifica aquí, nunca se imprime.
+        credencial = base64.b64encode(f"{usuario}:{token}".encode()).decode()
+    elif usuario and not token.startswith("Basic "):
+        credencial = base64.b64encode(f"{usuario}:{token}".encode()).decode()
+    else:
+        credencial = token[len("Basic "):] if token.startswith("Basic ") else token
+
+    cliente = ClienteMcp(url=url, headers={"Authorization": f"Basic {credencial}"})
+    cliente.inicializar()
+    return cliente

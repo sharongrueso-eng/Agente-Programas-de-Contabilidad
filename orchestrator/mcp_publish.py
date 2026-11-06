@@ -83,6 +83,27 @@ class MapaPublicaciones:
         self._escribir(datos)
 
 
+def _desempaquetar(respuesta: Any) -> Any:
+    """El MCP envuelve el resultado en `data`: {"success": true, "data": {...}}."""
+    if isinstance(respuesta, dict):
+        interior = respuesta.get("data")
+        if isinstance(interior, (dict, list)):
+            return interior
+    return respuesta
+
+
+def _post_id(respuesta: Any) -> int | None:
+    datos = _desempaquetar(respuesta)
+    for clave in ("post_id", "id", "ID"):
+        valor = datos.get(clave)
+        if valor:
+            try:
+                return int(valor)
+            except (TypeError, ValueError):
+                continue
+    return None
+
+
 def _resultado(status: str, brief: Brief, **extra: Any) -> dict[str, Any]:
     base: dict[str, Any] = {
         "status": status,
@@ -102,23 +123,32 @@ def _buscar_borrador(ejecutar: Ejecutor, slug: str) -> int | None:
     except Exception:  # noqa: BLE001 - si la consulta falla, se crea igual
         return None
 
+    encontrados = _desempaquetar(encontrados)
     if isinstance(encontrados, dict):
         encontrados = encontrados.get("posts") or encontrados.get("items") or []
     for post in encontrados or []:
         if not isinstance(post, dict):
             continue
         if str(post.get("slug", "")).strip() == slug:
-            post_id = post.get("id") or post.get("post_id")
-            if post_id:
-                return int(post_id)
+            identificador = _post_id(post)
+            if identificador:
+                return identificador
     return None
 
 
-def _metas(ejecutar: Ejecutor, post_id: int) -> dict[str, Any]:
-    respuesta = ejecutar(ABILITIES["meta_leer"], {"post_id": post_id})
+def _leer_meta(ejecutar: Ejecutor, post_id: int, clave: str) -> Any:
+    """`get-post-meta` lee una clave por llamada: pide `meta_key` obligatoriamente."""
+    respuesta = _desempaquetar(
+        ejecutar(ABILITIES["meta_leer"], {"post_id": post_id, "meta_key": clave})
+    )
     if isinstance(respuesta, dict):
-        return respuesta.get("meta") or respuesta
-    return {}
+        meta = respuesta.get("meta")
+        if isinstance(meta, dict) and clave in meta:
+            return meta[clave]
+        for candidata in (clave, "meta_value", "value"):
+            if candidata in respuesta:
+                return respuesta[candidata]
+    return respuesta
 
 
 def publicar(
@@ -175,13 +205,13 @@ def publicar(
             argumentos["featured_image_id"] = imagen_id
 
         creado = ejecutar(ABILITIES["crear"], argumentos)
-        if not isinstance(creado, dict) or not creado.get("id"):
+        post_id = _post_id(creado)
+        if post_id is None:
             return _resultado(
                 "FAILED",
                 brief,
                 block_reason=f"el MCP no devolvió el id del post creado: {creado}",
             )
-        post_id = int(creado["id"])
 
     mapa.confirmar(run_id, post_id, "borrador_creado")
 
@@ -208,8 +238,8 @@ def publicar(
                 block_reason=f"no se pudo escribir {clave}: {error}. El post quedó en borrador.",
             )
 
-    leidas = _metas(ejecutar, post_id)
-    if str(leidas.get("pdc_run_id", "")).strip() != run_id:
+    leido = _leer_meta(ejecutar, post_id, "pdc_run_id")
+    if str(leido or "").strip() != run_id:
         return _resultado(
             "FAILED",
             brief,
@@ -235,10 +265,14 @@ def publicar(
 
     mapa.confirmar(run_id, post_id, "borrador_verificado")
 
-    publicado = ejecutar(ABILITIES["actualizar"], {"post_id": post_id, "status": "publish"})
+    publicado = _desempaquetar(
+        ejecutar(ABILITIES["actualizar"], {"post_id": post_id, "status": "publish"})
+    )
     enlace = ""
     if isinstance(publicado, dict):
-        enlace = str(publicado.get("link") or publicado.get("url") or "")
+        enlace = str(
+            publicado.get("link") or publicado.get("permalink") or publicado.get("url") or ""
+        )
 
     mapa.confirmar(run_id, post_id, "publicado")
 

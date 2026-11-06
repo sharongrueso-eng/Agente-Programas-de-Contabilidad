@@ -80,3 +80,22 @@ Un borrador real (`post_id` 4518) creado solo con el MCP:
   metadatos de Hermes. Hasta que se resuelva, producción usa Application Password o queda
   bloqueada.
 - Habilitar OAuth también en staging, para que la prueba reproduzca el camino real.
+
+## Lo que el servidor real hizo distinto de lo documentado
+
+Tres cosas que solo aparecieron al publicar de verdad:
+
+1. **Las respuestas vienen envueltas**: `{"success": true, "data": {...}}`. El `id` del post
+   está en `data.post_id`, no en la raíz.
+2. **`get-post-meta` exige `meta_key`**: lee una clave por llamada, no todas.
+3. **`get-posts` no tiene búsqueda**: sus parámetros son `numberposts`, `status`,
+   `category_name`, `tag`, `orderby` y `order`. No hay `search`, así que **no se puede
+   adoptar un borrador huérfano buscándolo por slug**.
+
+Consecuencia de (3): si el proceso muere entre crear el post y guardar su id, queda un
+borrador huérfano que el agente no puede volver a encontrar. No es grave —ese borrador
+nunca se publica, así que no hay duplicado vivo— pero hay que limpiarlo a mano. El mapa
+queda en estado `creando` justamente para que alguien lo vea.
+
+Por eso el filtro por meta que ofrece Fabio deja de ser un lujo: sin él no hay forma de
+recuperar una reserva huérfana.
