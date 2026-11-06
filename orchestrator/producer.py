@@ -334,4 +334,11 @@ def produce(
         wp_post_id=created.get("id"),
         slug=draft.slug,
         alt_text=draft.alt_text,
+        draft={
+            "title": draft.title,
+            "meta_description": draft.meta_description,
+            "html": draft.html,
+            "alt_text": draft.alt_text,
+            "slug": draft.slug,
+        },
     )

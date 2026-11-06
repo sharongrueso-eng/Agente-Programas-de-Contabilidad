@@ -50,8 +50,28 @@ El comando emite JSON con `side_effects: false`. El modo de producción queda de
 | `orchestrator/judge.py` | Listo | Juez de otro modelo: intención/profundidad y QA final, con sugerencias aparte |
 | `orchestrator/corrector.py` | Listo | Arreglos acotados con guarda automática de enlaces, cifras, marcas y largo |
 | `orchestrator/publisher.py` | Listo | Compuertas, huella, publicación idempotente, relectura y reversión |
+| `orchestrator/runner.py` | Listo | Encadena la corrida, escribe la carpeta de estado y retoma desde el punto de fallo |
 | Conector GSC en vivo | Pendiente | Requiere cuenta de servicio de IT |
-| Runner (carpeta, checkpoint, resume) | Pendiente | Es el pegamento de la corrida completa |
+| Preparación e imagen, avisos y vigías | Pendiente | Dependen de LiteLLM y del webhook de Chat |
+
+### Prueba de punta a punta
+
+`python scripts/smoke_pipeline.py` recorre la cadena completa sin salir a internet: usa el
+borrador de muestra como si lo hubiera escrito el modelo y un veredicto PASS como si lo
+hubiera dado el juez. Prueba la plomería, no el criterio editorial.
+
+```
+production   DONE
+validation   PASS
+judge        PASS
+publication  DONE
+
+carpeta de la corrida: borrador.json · veredictos.json · publicacion.json · checkpoint.json
+checkpoint: {'last_step': 'publication', 'resume_from': ''}
+```
+
+Si un paso falla, el checkpoint guarda `resume_from` y la siguiente corrida arranca ahí sin
+repetir lo anterior. La carpeta vive fuera del repositorio, en el volumen persistente.
 
 ### Compuertas del publicador
 
