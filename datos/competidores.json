@@ -5,8 +5,13 @@
     "url": "https://www.siigo.com/precios-siigo/"
   },
   {
-    "brand": "World Office",
+    "brand": "World Office Cloud",
     "country": "CO",
-    "url": "https://www.worldoffice.com.co/precios/"
+    "url": "https://www.worldoffice.com.co/planesCloud.html"
+  },
+  {
+    "brand": "World Office Escritorio",
+    "country": "CO",
+    "url": "https://www.worldoffice.com.co/planesEscritorio.html"
   }
 ]

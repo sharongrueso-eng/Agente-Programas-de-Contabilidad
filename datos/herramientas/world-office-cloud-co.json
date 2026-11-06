@@ -1,0 +1,86 @@
+{
+  "brand": "World Office Cloud",
+  "country": "CO",
+  "product": "World Office Cloud",
+  "plans": [
+    {
+      "name": "Cloud POS",
+      "price": "680.000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    },
+    {
+      "name": "Enterprise",
+      "price": "2.193.000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    },
+    {
+      "name": "Pyme Plus",
+      "price": "2.040.000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    }
+  ],
+  "source_url": "https://www.worldoffice.com.co/planesCloud.html",
+  "captured_at": "2026-11-06",
+  "evidence_level": "documentacion_oficial",
+  "extraction": "modelo+verificacion_literal",
+  "features": [
+    "Facturación electrónica con validación DIAN",
+    "Contabilidad e inventarios en un solo sistema",
+    "Actualizaciones normativas automáticas",
+    "Usuarios simultáneos y trabajo remoto",
+    "Inteligencia artificial incluida en Enterprise",
+    "Facturación electrónica ilimitada",
+    "Punto de venta POS y ventas offline (sin internet)",
+    "Turnos, apertura y cierre de caja",
+    "Múltiples puntos de venta y terminales",
+    "Listas de precios y múltiples terminales",
+    "Inventarios, compras y terceros",
+    "Informes e indicadores de negocio",
+    "Nómina sin límite de empleados y nómina electrónica ilimitada",
+    "Conector con IA (Claude, ChatGPT y otras)",
+    "Facturación por WhatsApp",
+    "Facturación por WhatsApp en lenguaje natural",
+    "Conciliación bancaria automática",
+    "Conciliación bancaria automática con IA",
+    "Causación automática DIAN",
+    "Causación automática de documentos DIAN",
+    "Soporte e implementación personalizados",
+    "Ciclo comercial completo e inventario avanzado",
+    "Contabilidad, impuestos, cartera y cuentas por pagar",
+    "Activos fijos y bancos con conciliación manual",
+    "Eventos de recepción de factura electrónica",
+    "App móvil",
+    "Inventario avanzado y ciclo comercial completo",
+    "Contabilidad, impuestos y cartera",
+    "Cuentas por pagar y bancos",
+    "Activos fijos",
+    "Informes financieros e indicadores",
+    "Nómina de empleados",
+    "Nómina electrónica",
+    "Acuse automático de facturas a crédito",
+    "API de integración",
+    "Capacitaciones online y webinars",
+    "Implementación y soporte personalizados",
+    "Sin tope de facturación"
+  ],
+  "descartado": [],
+  "notes": "Precios en pesos colombianos para suscripción anual; los planes no generan IVA. Los precios mostrados son los precios con descuento: Cloud POS aparece con precio anterior $1.000.000 y descuento −32%; Enterprise con $3.225.000 y −32%; Pyme Plus con $3.000.000 y −32%. Los valores mensuales indicados en la página son equivalentes referenciales de pago anual, no planes de facturación mensual. La renovación tiene tarifa preferencial cotizada.",
+  "historial": [
+    {
+      "fecha": "2026-11-06",
+      "planes": 3,
+      "cambios": [
+        "primera lectura"
+      ]
+    }
+  ]
+}

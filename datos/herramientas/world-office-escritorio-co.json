@@ -1,0 +1,78 @@
+{
+  "brand": "World Office Escritorio",
+  "country": "CO",
+  "product": "World Office Escritorio",
+  "plans": [
+    {
+      "name": "Pyme",
+      "price": "2.751.280",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    },
+    {
+      "name": "Empresarial",
+      "price": "2.913.120",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    },
+    {
+      "name": "Contador",
+      "price": "809.200",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    },
+    {
+      "name": "Propiedad Horizontal",
+      "price": "1.618.400",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    }
+  ],
+  "source_url": "https://www.worldoffice.com.co/planesEscritorio.html",
+  "captured_at": "2026-11-06",
+  "evidence_level": "documentacion_oficial",
+  "extraction": "modelo+verificacion_literal",
+  "features": [
+    "Facturación electrónica con validación DIAN",
+    "Contabilidad e inventarios en un solo sistema",
+    "Multiempresa: varios NIT con una licencia",
+    "Actualizaciones normativas incluidas",
+    "Soporte por línea, WhatsApp, chat y mesa de ayuda",
+    "Ciclo comercial completo e inventario avanzado",
+    "Contabilidad, impuestos y cartera",
+    "Cuentas por pagar y bancos",
+    "Activos fijos",
+    "Conciliación bancaria manual",
+    "Facturación electrónica ilimitada",
+    "Procesos de producción",
+    "Nómina sin límite de empleados",
+    "Nómina electrónica",
+    "WO Excel",
+    "Conciliación bancaria automática",
+    "Soporte e implementación personalizados",
+    "Administración de múltiples empresas o NIT",
+    "Informes por cada empresa administrada",
+    "Creación automática de inmuebles",
+    "Gestión de asambleas",
+    "Cuotas de administración y cartera de copropietarios"
+  ],
+  "descartado": [],
+  "notes": "Precios en COP con IVA incluido. El precio de cada plan corresponde al total a pagar por el pago inicial de la licencia; la renovación anual es opcional. La página también muestra precio de lista: Contador $1.000.000, Propiedad Horizontal $2.000.000, Pyme $3.400.000 y Empresarial $3.600.000. Renovación anual sin aplicativos: Contador $102.000, Propiedad Horizontal $204.000, Pyme $346.800, Empresarial $367.200; cada aplicativo incrementa la renovación en $45.000. Aplicativos: facturación electrónica $300.000, nómina electrónica $300.000 y eventos Radian $300.000 por 6 meses; paquete anual $300.000 por 12 meses. Valores de renovación y aplicativos antes de IVA. Vigentes desde el 1 de agosto de 2026.",
+  "historial": [
+    {
+      "fecha": "2026-11-06",
+      "planes": 4,
+      "cambios": [
+        "primera lectura"
+      ]
+    }
+  ]
+}
