@@ -39,6 +39,12 @@ BLOQUES: tuple[tuple[str, str], ...] = (
         "Cómo se hace, paso a paso, si el tema tiene un procedimiento.",
     ),
     (
+        "analisis",
+        "Análisis software por software. Un H3 por cada marca que esté en el registro de datos, "
+        "con: qué es, los planes y precios reales que publica, para quién sirve y un límite honesto. "
+        "No compares marcas que no estén en el registro.",
+    ),
+    (
         "tabla",
         "Tabla comparativa o cálculo diferencial con los precios y planes del registro de datos. "
         "Usa una tabla HTML. Si un competidor no publica precios, la celda dice que no los publica. "
@@ -57,6 +63,12 @@ BLOQUES: tuple[tuple[str, str], ...] = (
         "fuentes",
         "Fuentes oficiales del país, enlazadas y nombradas. Incluye el tercer enlace a Alegra con UTM "
         "solo si el CTA no lo lleva.",
+    ),
+    (
+        "veredicto",
+        "Cierre recomendatorio: para cada perfil de negocio (emprendedor, pyme que crece, empresa "
+        "con varias sedes) di qué opción conviene y por qué, en dos o tres frases. Sin promesas "
+        "que el registro no respalde.",
     ),
     (
         "cta",

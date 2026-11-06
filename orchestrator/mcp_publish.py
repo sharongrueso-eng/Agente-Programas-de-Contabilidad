@@ -161,6 +161,7 @@ def publicar(
     portada_nombre: str = "portada.webp",
     solo_borrador: bool = False,
     post_id: int | None = None,
+    subir_media: Any = None,
 ) -> dict[str, Any]:
     """Publica una pieza por MCP. Nunca deja un post publicado sin `pdc_run_id`."""
     run_id = brief.task_id
@@ -185,7 +186,12 @@ def publicar(
 
     if post_id is None:
         imagen_id = None
-        if portada:
+        if portada and subir_media is not None:
+            try:
+                imagen_id = subir_media(portada, portada_nombre, draft.alt_text)
+            except Exception:  # noqa: BLE001 - sin portada se publica igual
+                imagen_id = None
+        elif portada:
             try:
                 subida = ejecutar(
                     ABILITIES["subir_imagen"],

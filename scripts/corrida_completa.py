@@ -173,28 +173,63 @@ def main() -> int:
         cliente_mcp = cliente_desde_entorno()
     print(f"mcp     : conectado ({cliente_mcp.sesion[:8]}…)")
 
+    from orchestrator.adapters import WordPressClient as _Wp
+
+    if args.entorno == "prod":
+        _wp = _Wp(
+            os.environ["PDC_PROD_URL"],
+            os.environ["PDC_PROD_TOKEN"],
+            username=os.environ["PDC_PROD_USER"],
+        )
+    else:
+        _wp = _Wp(
+            os.environ["PDC_STG_URL"],
+            os.environ["PDC_STG_TOKEN"],
+            username=os.environ["PDC_STG_USER"],
+        )
+
+    def subir_media(imagen, nombre, alt):
+        medio = _wp.upload_media(
+            imagen, nombre, alt_text=alt, caption="Imagen ilustrativa generada con IA"
+        )
+        return medio.get("id")
+
     post_existente = None
     if brief.opportunity.action != "create" and brief.opportunity.url:
-        from orchestrator.adapters import WordPressClient as _Wp
+        try:
+            hallado = _wp.find_by_url(brief.opportunity.url)
+            post_existente = hallado.get("id") if hallado else None
+        except Exception:  # noqa: BLE001
+            from orchestrator.adapters import WordPressClient as _Wp
 
-        if args.entorno == "prod":
-            _wp = _Wp(
-                os.environ["PDC_PROD_URL"],
-                os.environ["PDC_PROD_TOKEN"],
-                username=os.environ["PDC_PROD_USER"],
-            )
-        else:
-            _wp = _Wp(
-                os.environ["PDC_STG_URL"],
-                os.environ["PDC_STG_TOKEN"],
-                username=os.environ["PDC_STG_USER"],
-            )
+    if args.entorno == "prod":
+        _wp = _Wp(
+            os.environ["PDC_PROD_URL"],
+            os.environ["PDC_PROD_TOKEN"],
+            username=os.environ["PDC_PROD_USER"],
+        )
+    else:
+        _wp = _Wp(
+            os.environ["PDC_STG_URL"],
+            os.environ["PDC_STG_TOKEN"],
+            username=os.environ["PDC_STG_USER"],
+        )
+
+    def subir_media(imagen, nombre, alt):
+        medio = _wp.upload_media(
+            imagen, nombre, alt_text=alt, caption="Imagen ilustrativa generada con IA"
+        )
+        return medio.get("id")
+
+    post_existente = None
+    if brief.opportunity.action != "create" and brief.opportunity.url:
         try:
             hallado = _wp.find_by_url(brief.opportunity.url)
             post_existente = hallado.get("id") if hallado else None
         except Exception:  # noqa: BLE001
             post_existente = None
-        print(f"reencauche: {'actualiza el post ' + str(post_existente) if post_existente else 'la URL no existe, se crea'}")
+        destino = f"actualiza el post {post_existente}" if post_existente else "la URL no existe, se crea"
+        print(f"reencauche: {destino}")
 
     deps = Deps(
         producer=LiteLlmClient(
@@ -245,6 +280,7 @@ def main() -> int:
         ][:12],
         publicar_con_observaciones=True,
         post_existente=post_existente,
+        subir_media=subir_media,
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
         solo_borrador=args.borrador,
