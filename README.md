@@ -11,11 +11,41 @@ Repositorio inicial para el agente editorial de programascontabilidad.com.
 Desde la raíz del repositorio:
 
 ```bash
-python -m orchestrator.cli run --dry-run
+# Pruebas
 python -m unittest discover -s tests -v
+
+# Guardas de ejecución
+python -m orchestrator.cli run --dry-run
+
+# Plan del día a partir de una instantánea de Search Console
+python -m orchestrator.cli plan --date 2026-11-06 --data datos/muestra/gsc-2026-11-05.json
 ```
 
 El comando emite JSON con `side_effects: false`. El modo de producción queda deshabilitado hasta implementar y probar los conectores, persistencia, controles editoriales/técnicos, publicación idempotente y reversión.
+
+## Módulos
+
+| Módulo | Estado | Qué hace |
+|---|---|---|
+| `orchestrator/rotation.py` | Listo | Rotación formato/país por fecha; 6 días hábiles cubren las 12 combinaciones |
+| `orchestrator/audit.py` | Listo | Convierte métricas de GSC en oportunidades: declive, snippet, estructura |
+| `orchestrator/assigner.py` | Listo | Asigna la mejor oportunidad compatible con cada slot y registra desvíos |
+| `orchestrator/gsc_io.py` | Listo | Lee instantáneas de GSC y aplica la regla de frescura (máximo 7 días) |
+| `orchestrator/cli.py` | Listo | `run` (guardas) y `plan` (briefs del día) |
+| Conector GSC en vivo | Pendiente | Requiere cuenta de servicio de IT |
+| Productor, juez, corrector, publicador | Pendiente | Requieren LiteLLM y token de WordPress |
+
+### Cómo decide la auditoría
+
+Solo las reglas deterministas viven en código; el criterio editorial queda para el juez.
+
+1. **Umbral de señal** — menos impresiones que el mínimo del país (100 en CO/MX, 30 en DO/CR): no hay oportunidad.
+2. **Declive** — clics a 70 % o menos de los 28 días previos (con al menos 20 clics antes), o posición que empeora 3 o más puestos.
+3. **Estructura** — la intención dominante pide un formato distinto al publicado (por ejemplo, la gente compara y la pieza es una reseña).
+4. **Snippet** — posición entre 4 y 20 con CTR por debajo del 70 % del esperado para esa posición.
+
+El puntaje se expresa en clics: los que la página deja de ganar o los que ya perdió.
+
 
 ## Diseño tomado como base
 
