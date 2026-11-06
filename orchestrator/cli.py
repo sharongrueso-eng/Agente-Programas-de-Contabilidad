@@ -13,10 +13,11 @@ from orchestrator.audit import DEFAULT_RULES_PATH, AuditRules, find_opportunitie
 from orchestrator.brief_io import load_brief
 from orchestrator.cannibalization import find_consolidations
 from orchestrator.gsc_io import SnapshotTooOld, check_freshness, load_snapshot
+from orchestrator.judge import build_messages as build_judge_messages
 from orchestrator.producer import DraftParseError, build_messages, parse_draft, requires_body
 from orchestrator.rotation import plan_for_date
 from orchestrator.state import RefreshJournal, StateError
-from orchestrator.validator import ValidationRules, validate
+from orchestrator.validator import ControlResult, ValidationRules, Verdict, validate
 
 SKILLS_DIR = DEFAULT_RULES_PATH.parent.parent / "skills" / "leandro"
 DEFAULT_SKILL = SKILLS_DIR / "SKILL.md"
@@ -59,6 +60,57 @@ def _serialize_brief(brief: Brief) -> dict[str, Any]:
 def _blocked(reason: str, **extra: Any) -> int:
     _emit({"status": "BLOCKED", "side_effects": False, "block_reason": reason, **extra})
     return 2
+
+
+def _load_verdict(path: Path | None) -> Verdict:
+    if path is None:
+        return Verdict(status="PASS", controls=())
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    controls = tuple(
+        ControlResult(
+            code=item["code"],
+            status=item["status"],
+            detail=item.get("detail", ""),
+        )
+        for item in data.get("controls", [])
+    )
+    return Verdict(status=data.get("status", "PASS"), controls=controls)
+
+
+def _judge(args: argparse.Namespace) -> int:
+    try:
+        brief = load_brief(args.brief)
+        raw = Path(args.draft).read_text(encoding="utf-8")
+        registry = Path(args.registro).read_text(encoding="utf-8") if args.registro else ""
+        verdict = _load_verdict(args.verdict)
+    except (OSError, ValueError, KeyError) as error:
+        return _blocked(f"no se pudo leer el material del juez: {error}")
+
+    if brief.opportunity is None:
+        return _blocked(f"sin oportunidad asignada: {brief.skipped_reason}")
+
+    try:
+        draft = parse_draft(raw, require_body=requires_body(brief.opportunity.action))
+        messages = build_judge_messages(draft, brief, verdict, registry)
+    except (DraftParseError, ValueError) as error:
+        return _blocked(str(error))
+
+    if not args.dry_run:
+        return _blocked(
+            "el juez real necesita la credencial de LiteLLM; usa --dry-run para "
+            "revisar el prompt",
+            task_id=brief.task_id,
+        )
+
+    _emit(
+        {
+            "status": "DRY_RUN",
+            "side_effects": False,
+            "task_id": brief.task_id,
+            "messages": messages,
+        }
+    )
+    return 0
 
 
 def _validate(args: argparse.Namespace) -> int:
@@ -253,7 +305,25 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="the data registry has documented evidence of a human test",
     )
+
+    judge_parser = subparsers.add_parser(
+        "judge", help="assemble the judge prompt (or run it with credentials)"
+    )
+    judge_parser.add_argument("--brief", type=Path, required=True, help="brief JSON")
+    judge_parser.add_argument("--draft", type=Path, required=True, help="draft JSON")
+    judge_parser.add_argument(
+        "--verdict", type=Path, default=None, help="output of the validate command"
+    )
+    judge_parser.add_argument(
+        "--registro", type=Path, default=None, help="data registry excerpt for this piece"
+    )
+    judge_parser.add_argument(
+        "--dry-run", action="store_true", help="print the prompt instead of calling the model"
+    )
     args = parser.parse_args(argv)
+
+    if args.command == "judge":
+        return _judge(args)
 
     if args.command == "validate":
         return _validate(args)

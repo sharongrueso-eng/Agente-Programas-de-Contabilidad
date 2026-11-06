@@ -25,6 +25,9 @@ python -m orchestrator.cli produce --brief datos/muestra/brief-2026-11-06-A.json
 
 # Controles deterministas sobre un borrador
 python -m orchestrator.cli validate --brief datos/muestra/brief-2026-11-06-A.json --draft datos/muestra/borrador-2026-11-06-A.json
+
+# Prompt del juez, con el veredicto del validador y el registro de datos
+python -m orchestrator.cli judge --brief datos/muestra/brief-2026-11-06-A.json --draft datos/muestra/borrador-2026-11-06-A.json --registro datos/muestra/registro-siigo-co.md --dry-run
 ```
 
 El comando emite JSON con `side_effects: false`. El modo de producción queda deshabilitado hasta implementar y probar los conectores, persistencia, controles editoriales/técnicos, publicación idempotente y reversión.
@@ -44,8 +47,9 @@ El comando emite JSON con `side_effects: false`. El modo de producción queda de
 | `orchestrator/brief_io.py` | Listo | Lee el brief de la carpeta de la corrida |
 | `orchestrator/adapters.py` | Escrito, sin probar contra las APIs | Clientes HTTP de LiteLLM y WordPress, con transporte inyectable |
 | `orchestrator/validator.py` | Listo | Trece controles deterministas sobre el borrador |
+| `orchestrator/judge.py` | Listo | Juez de otro modelo: intención/profundidad y QA final, con sugerencias aparte |
 | Conector GSC en vivo | Pendiente | Requiere cuenta de servicio de IT |
-| Juez, corrector y publicador | Pendiente | Requieren LiteLLM y el token de WordPress |
+| Corrector, publicador y runner | Pendiente | Requieren LiteLLM y el token de WordPress |
 
 ### Controles deterministas
 
