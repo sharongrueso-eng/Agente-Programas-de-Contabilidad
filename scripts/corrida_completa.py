@@ -118,8 +118,8 @@ def main() -> int:
         judge=LiteLlmClient(
             base_url=os.environ["OPENAI_BASE_URL"],
             api_key=os.environ["PDC_LLM_KEY"],
-            model=os.environ["PDC_MODEL_JUDGE"],
-            max_tokens=3000,
+            model=os.environ.get("PDC_MODEL_JUEZ_RAPIDO", "zai/glm-5.3"),
+            max_tokens=8000,
             timeout=300,
         ),
         corrector=LiteLlmClient(

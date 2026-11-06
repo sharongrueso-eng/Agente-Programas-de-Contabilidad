@@ -289,6 +289,15 @@ def run(
                 deps.registry,
                 llm=deps.judge,
             )
+            if outcome.status == "FAILED" and "JSON" in (outcome.detail or ""):
+                # Una respuesta vacía del juez es del gateway, no del contenido: un reintento.
+                outcome = judge(
+                    draft,
+                    brief,
+                    verdict,
+                    deps.registry,
+                    llm=deps.judge,
+                )
             steps.append({"step": "judge", "status": outcome.status, "cycle": cycle})
             state.save(
                 "veredictos.json",
