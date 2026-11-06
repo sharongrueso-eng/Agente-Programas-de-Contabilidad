@@ -16,6 +16,8 @@
 
 - La configuración inicial debe permanecer pausada y en modo dry-run.
 - Ningún secreto se almacena en el repositorio, documentos, logs o prompts.
+- Las credenciales se leen del entorno: `LITELLM_API_KEY` en la máquina local y las variables de Coolify en producción. El agente **nunca le pide una llave a una persona**: si falta, detiene la corrida y nombra la variable ausente.
+- Ningún valor de credencial se imprime, se escribe en un prompt ni se compara en un mensaje de error; solo se reporta su longitud.
 - No activar operaciones reales hasta completar las dependencias de IT y validar la prueba de punta a punta descrita en la arquitectura v2.
 - Los cambios de reglas y código se gestionan mediante PR en el repositorio privado.
 
