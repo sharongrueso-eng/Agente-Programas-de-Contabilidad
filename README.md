@@ -48,8 +48,9 @@ El comando emite JSON con `side_effects: false`. El modo de producción queda de
 | `orchestrator/adapters.py` | Escrito, sin probar contra las APIs | Clientes HTTP de LiteLLM y WordPress, con transporte inyectable |
 | `orchestrator/validator.py` | Listo | Trece controles deterministas sobre el borrador |
 | `orchestrator/judge.py` | Listo | Juez de otro modelo: intención/profundidad y QA final, con sugerencias aparte |
+| `orchestrator/corrector.py` | Listo | Arreglos acotados con guarda automática de enlaces, cifras, marcas y largo |
 | Conector GSC en vivo | Pendiente | Requiere cuenta de servicio de IT |
-| Corrector, publicador y runner | Pendiente | Requieren LiteLLM y el token de WordPress |
+| Publicador y runner | Pendiente | Requieren el token de WordPress |
 
 ### Controles deterministas
 
