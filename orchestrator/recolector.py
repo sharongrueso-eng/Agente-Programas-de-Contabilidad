@@ -58,6 +58,7 @@ def verificar(extraido: dict[str, Any], texto: str) -> Verificacion:
     resultado = Verificacion()
     plano = normalizar(texto)
     importes_reales = money_amounts(texto)
+    vistos: set[tuple[str, str]] = set()
     # Muchas landings escriben «$ 76.931» sin la moneda: también cuentan como respaldo.
     numeros_reales = {
         _canonical(n) for n in re.findall(r"\d[\d.,]{2,}", texto)
@@ -78,9 +79,11 @@ def verificar(extraido: dict[str, Any], texto: str) -> Verificacion:
 
         if not precio:
             # Plan sin precio publicado: es un dato, no un error.
+            periodo = str(plan.get("period", "")).strip().lower()
+            cobro = normalizar(str(plan.get("billing", ""))) or ("anual" if periodo.startswith("a") else "mensual")
             resultado.planes.append(
-                {"name": str(plan.get("name", "")).strip(), "price": "", "currency": moneda,
-                 "period": str(plan.get("period", "")).strip(), "publicado": False}
+                {"name": nombre, "price": "", "currency": moneda,
+                 "period": periodo or "mes", "billing": cobro, "publicado": False}
             )
             continue
 
@@ -92,12 +95,21 @@ def verificar(extraido: dict[str, Any], texto: str) -> Verificacion:
             resultado.descartado.append(f"precio {precio} {moneda}")
             continue
 
+        periodo = str(plan.get("period", "")).strip().lower()
+        cobro = normalizar(str(plan.get("billing", ""))) or ("anual" if periodo.startswith("a") else "mensual" if periodo in {"mes", "mensual"} else "")
+        clave = (normalizar(nombre), cobro)
+        if clave in vistos:
+            resultado.descartado.append(f"plan duplicado: {nombre} ({cobro or 'sin periodicidad'})")
+            continue
+        vistos.add(clave)
+
         resultado.planes.append(
             {
-                "name": str(plan.get("name", "")).strip(),
+                "name": nombre,
                 "price": precio,
                 "currency": moneda,
-                "period": str(plan.get("period", "")).strip(),
+                "period": periodo or ("año" if cobro == "anual" else "mes"),
+                "billing": cobro,
                 "publicado": True,
             }
         )
@@ -125,19 +137,20 @@ def detectar_cambios(previo: dict[str, Any] | None, nuevo: dict[str, Any]) -> li
 
     def indice(planes: Iterable[dict[str, Any]]) -> dict[str, str]:
         return {
-            f"{p.get('name', '')}|{p.get('period', '')}": f"{p.get('price', '')} {p.get('currency', '')}".strip()
+            f"{p.get('name', '')} ({p.get('billing') or p.get('period') or 'sin periodicidad'})":
+                f"{p.get('price', '')} {p.get('currency', '')}".strip()
             for p in planes or []
         }
 
     antes, ahora = indice(previo.get("plans")), indice(nuevo.get("plans"))
     for clave, precio in ahora.items():
         if clave in antes and antes[clave] != precio:
-            cambios.append(f"{clave.split('|')[0]}: {antes[clave] or 'sin precio'} → {precio or 'sin precio'}")
+            cambios.append(f"{clave}: {antes[clave] or 'sin precio'} → {precio or 'sin precio'}")
         elif clave not in antes:
-            cambios.append(f"plan nuevo: {clave.split('|')[0]} ({precio or 'sin precio'})")
+            cambios.append(f"plan nuevo: {clave} ({precio or 'sin precio'})")
     for clave in antes:
         if clave not in ahora:
-            cambios.append(f"plan retirado: {clave.split('|')[0]}")
+            cambios.append(f"plan retirado: {clave}")
 
     antes_f = set(previo.get("features") or [])
     ahora_f = set(nuevo.get("features") or [])

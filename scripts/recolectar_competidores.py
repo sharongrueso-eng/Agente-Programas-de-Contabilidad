@@ -28,14 +28,16 @@ DESTINO = RAIZ / "datos" / "herramientas"
 ESQUEMA = """Devuelve SOLO este JSON, sin texto antes ni después:
 {
   "product": "nombre del producto o suite",
-  "plans": [{"name": "...", "price": "solo el número tal como aparece", "currency": "COP|MXN|USD|CRC|DOP", "period": "mes|año"}],
+  "plans": [{"name": "...", "price": "solo el número tal como aparece", "currency": "COP|MXN|USD|CRC|DOP", "period": "mes|año", "billing": "mensual|anual"}],
   "features": ["funcionalidad tal como la nombra la página"],
   "notes": "aclaraciones, por ejemplo si un plan se cotiza"
 }
 Reglas: copia los precios y los NOMBRES DE PLAN exactamente como aparecen en el texto, sin
 redondear, sin convertir y sin parafrasear el nombre. El nombre debe ser el que el competidor
 usa, no una descripción tuya.
-Si un plan no muestra precio, deja "price" vacío en vez de inventarlo."""
+Si un plan no muestra precio, deja "price" vacío en vez de inventarlo.
+Si la misma fila tiene precio mensual y anual, devuélvelos como DOS planes, uno con
+"billing": "mensual" y otro con "billing": "anual", conservando el nombre exacto en ambos."""
 
 
 def descargar(url: str) -> str:
