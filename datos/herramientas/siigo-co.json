@@ -18,10 +18,24 @@
       "publicado": true
     },
     {
+      "name": "Facturación electrónica 24",
+      "price": "119.900",
+      "currency": "COP",
+      "period": "año",
+      "publicado": true
+    },
+    {
       "name": "Facturación electrónica WhatsApp 24",
       "price": "11.550",
       "currency": "COP",
       "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Facturación electrónica WhatsApp 24",
+      "price": "138.600",
+      "currency": "COP",
+      "period": "año",
       "publicado": true
     },
     {
@@ -32,10 +46,24 @@
       "publicado": true
     },
     {
+      "name": "Facturación electrónica 120",
+      "price": "224.925",
+      "currency": "COP",
+      "period": "año",
+      "publicado": true
+    },
+    {
       "name": "Facturación electrónica WhatsApp 120",
       "price": "20.368",
       "currency": "COP",
       "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Facturación electrónica WhatsApp 120",
+      "price": "244.416",
+      "currency": "COP",
+      "period": "año",
       "publicado": true
     },
     {
@@ -46,10 +74,24 @@
       "publicado": true
     },
     {
+      "name": "Facturación electrónica 1500",
+      "price": "923.175",
+      "currency": "COP",
+      "period": "año",
+      "publicado": true
+    },
+    {
       "name": "Facturación electrónica PRO",
       "price": "47.556",
       "currency": "COP",
       "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Facturación electrónica PRO",
+      "price": "570.675",
+      "currency": "COP",
+      "period": "año",
       "publicado": true
     },
     {
@@ -60,6 +102,13 @@
       "publicado": true
     },
     {
+      "name": "Facturación electrónica 24 + Nómina Electrónica 24",
+      "price": "191.840",
+      "currency": "COP",
+      "period": "año",
+      "publicado": true
+    },
+    {
       "name": "Facturación electrónica 120 + Nómina Electrónica 120",
       "price": "34.988",
       "currency": "COP",
@@ -67,10 +116,24 @@
       "publicado": true
     },
     {
+      "name": "Facturación electrónica 120 + Nómina Electrónica 120",
+      "price": "419.860",
+      "currency": "COP",
+      "period": "año",
+      "publicado": true
+    },
+    {
       "name": "Sistema POS Esencial",
       "price": "28.750",
       "currency": "COP",
       "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Sistema POS Esencial",
+      "price": "345.000",
+      "currency": "COP",
+      "period": "año",
       "publicado": true
     }
   ],
@@ -81,28 +144,30 @@
   "features": [
     "Facturación electrónica",
     "5 Documentos electrónicos anuales",
+    "24 Documentos electrónicos anuales",
+    "120 Documentos electrónicos anuales",
+    "1500 Documentos electrónicos anuales",
+    "500 Documentos electrónicos anuales",
+    "240 Facturas electrónicas anuales desde POS",
     "Cobra con Siigo Pay",
     "Notificación de cobranza por WhatsApp",
     "1 Usuario",
     "Siigo App",
     "Agentes IA",
     "Agente IA Actualícese",
-    "24 Documentos electrónicos anuales",
     "Facturación por voz con IA*",
-    "120 Documentos electrónicos anuales",
-    "1500 Documentos electrónicos anuales",
+    "Cotizaciones/CRM",
+    "Cartera seguimiento de cobranza",
+    "Gastos/cuentas por pagar",
     "Causación DIAN",
-    "500 Documentos electrónicos anuales",
-    "Nómina Electrónica",
     "Nómina hasta para 2 empleados",
     "Liquidación manual de contratos y de cesantías",
     "Automatización de pagos y comprobantes",
     "Nómina hasta para 10 empleados",
-    "Sistema POS",
-    "240 Facturas electrónicas anuales desde POS"
+    "Recibe el doble de documentos"
   ],
   "descartado": [],
-  "notes": "Los precios mostrados son en COP y se toma el valor mensual; la página también muestra valores anuales y indica que el pago es anual y que el descuento aplica para cliente nuevo. El plan Facturación electrónica GRATIS no muestra precio. El texto se corta en Sistema POS + Facturación; no se incluyen precios de POS Gastrobar, Nómina Electrónica, Software Administrativo ni Software Contable. El uso de Agentes IA está sujeto a los Términos y Condiciones de Siigo Nube.",
+  "notes": "Precios en COP. Los precios mensuales marcados con * corresponden a pago anual. Varios planes muestran precio anual con descuento para cliente nuevo y además un precio anual original tachado: WhatsApp 24 $184.800/año, Facturación electrónica 120 $299.900/año, WhatsApp 120 $364.800/año, Facturación electrónica 1500 $1.230.900/año, Facturación electrónica PRO $760.900/año, Facturación electrónica 24 + Nómina Electrónica 24 $239.800/año y Facturación electrónica 120 + Nómina Electrónica 120 $599.800/año. El plan Facturación electrónica GRATIS no muestra precio. La página también menciona pestañas de Sistema POS Gastrobar, Nómina Electrónica, Software Administrativo y Software Contable, pero el texto no incluye precios de esos planes.",
   "historial": [
     {
       "fecha": "2026-11-06",
@@ -124,6 +189,27 @@
         "plan nuevo: Facturación electrónica 24 + Nómina Electrónica 24 (15.987 COP)",
         "plan nuevo: Facturación electrónica 120 + Nómina Electrónica 120 (34.988 COP)",
         "plan nuevo: Sistema POS Esencial (28.750 COP)"
+      ]
+    },
+    {
+      "fecha": "2026-11-06",
+      "planes": 19,
+      "cambios": [
+        "plan nuevo: Facturación electrónica 24 (119.900 COP)",
+        "plan nuevo: Facturación electrónica WhatsApp 24 (138.600 COP)",
+        "plan nuevo: Facturación electrónica 120 (224.925 COP)",
+        "plan nuevo: Facturación electrónica WhatsApp 120 (244.416 COP)",
+        "plan nuevo: Facturación electrónica 1500 (923.175 COP)",
+        "plan nuevo: Facturación electrónica PRO (570.675 COP)",
+        "plan nuevo: Facturación electrónica 24 + Nómina Electrónica 24 (191.840 COP)",
+        "plan nuevo: Facturación electrónica 120 + Nómina Electrónica 120 (419.860 COP)",
+        "plan nuevo: Sistema POS Esencial (345.000 COP)",
+        "funcionalidad nueva: Cartera seguimiento de cobranza",
+        "funcionalidad nueva: Cotizaciones/CRM",
+        "funcionalidad nueva: Gastos/cuentas por pagar",
+        "funcionalidad nueva: Recibe el doble de documentos",
+        "funcionalidad retirada: Nómina Electrónica",
+        "funcionalidad retirada: Sistema POS"
       ]
     }
   ]

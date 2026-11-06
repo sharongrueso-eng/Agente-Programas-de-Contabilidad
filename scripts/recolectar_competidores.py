@@ -32,7 +32,9 @@ ESQUEMA = """Devuelve SOLO este JSON, sin texto antes ni después:
   "features": ["funcionalidad tal como la nombra la página"],
   "notes": "aclaraciones, por ejemplo si un plan se cotiza"
 }
-Reglas: copia los precios exactamente como aparecen en el texto, sin redondear ni convertir.
+Reglas: copia los precios y los NOMBRES DE PLAN exactamente como aparecen en el texto, sin
+redondear, sin convertir y sin parafrasear el nombre. El nombre debe ser el que el competidor
+usa, no una descripción tuya.
 Si un plan no muestra precio, deja "price" vacío en vez de inventarlo."""
 
 

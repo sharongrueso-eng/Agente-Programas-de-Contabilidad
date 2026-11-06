@@ -66,6 +66,13 @@ def verificar(extraido: dict[str, Any], texto: str) -> Verificacion:
     for plan in extraido.get("plans") or []:
         if not isinstance(plan, dict):
             continue
+
+        nombre = str(plan.get("name", "")).strip()
+        if len(nombre) >= 3 and normalizar(nombre) not in plano:
+            # El nombre tiene que estar tal cual en la página: nada de paráfrasis.
+            resultado.descartado.append(f"nombre de plan no literal: {nombre}")
+            continue
+
         precio = str(plan.get("price", "")).strip()
         moneda = str(plan.get("currency", "")).strip().upper()
 
