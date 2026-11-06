@@ -131,7 +131,28 @@ class RecoleccionTests(unittest.TestCase):
                 )
             self.assertEqual(list(Path(carpeta).iterdir()), [])
 
-    def test_la_segunda_lectura_conserva_el_historial(self) -> None:
+    def test_la_misma_pagina_no_gasta_una_llamada_al_modelo(self) -> None:
+        with TemporaryDirectory() as carpeta:
+            llamadas = {"n": 0}
+
+            def extraer(texto, marca, pais):
+                llamadas["n"] += 1
+                return {"plans": [{"name": "Pyme", "price": "89.900", "currency": "COP", "period": "mes"}]}
+
+            argumentos = dict(
+                brand="Siigo",
+                country="CO",
+                url="https://www.siigo.com/precios-siigo/",
+                descargar=lambda url: PAGINA,
+                carpeta=carpeta,
+            )
+            recolectar(extraer=extraer, hoy=date(2026, 11, 6), **argumentos)
+            segunda = recolectar(extraer=extraer, hoy=date(2026, 11, 13), **argumentos)
+
+        self.assertEqual(llamadas["n"], 1)
+        self.assertTrue(segunda.get("reusado"))
+
+    def test_la_segunda_lectura_con_la_misma_pagina_no_duplica_historial(self) -> None:
         with TemporaryDirectory() as carpeta:
             argumentos = dict(
                 brand="Siigo",
@@ -146,7 +167,7 @@ class RecoleccionTests(unittest.TestCase):
             recolectar(extraer=extraer, hoy=date(2026, 11, 6), **argumentos)
             segunda = recolectar(extraer=extraer, hoy=date(2026, 11, 13), **argumentos)
 
-        self.assertEqual(len(segunda["registro"]["historial"]), 2)
+        self.assertEqual(len(segunda["registro"]["historial"]), 1)
         self.assertEqual(segunda["cambios"], [])
 
 

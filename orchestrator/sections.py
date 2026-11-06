@@ -103,6 +103,7 @@ def producir_por_secciones(
     llm: Any,
     skill: str,
     legal: str,
+    registro: str = "",
     max_reintentos: int = 2,
 ) -> SalidaSecciones:
     """Escribe la cabecera y cada bloque con llamadas separadas, y ensambla la pieza."""
@@ -120,9 +121,13 @@ def producir_por_secciones(
 - Si un competidor no publica un dato, dilo y sigue. La ausencia declarada es información.
 - Escribe «revisé» por defecto; «probé» solo con evidencia documentada.
 
-## Registro de datos del mercado
+## Contexto legal del mercado
 
 {legal}
+
+## Registro de datos del mercado (única fuente de cifras)
+
+{registro or "sin fichas de este mercado"}
 """
 
     salida = SalidaSecciones(draft=None)  # type: ignore[arg-type]

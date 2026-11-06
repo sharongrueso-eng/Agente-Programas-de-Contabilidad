@@ -169,7 +169,7 @@ def main() -> int:
         print()
         print("produciendo por secciones...")
         salida = producir_por_secciones(
-            brief, llm=deps.producer, skill=deps.skill, legal=registro.texto
+            brief, llm=deps.producer, skill=deps.skill, legal=deps.legal, registro=registro.texto
         )
         estado.save("borrador.json", asdict(salida.draft))
         estado.checkpoint("production", resume_from="judge")

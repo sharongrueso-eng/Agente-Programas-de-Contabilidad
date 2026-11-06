@@ -11,6 +11,7 @@ al registro.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import unicodedata
@@ -179,12 +180,21 @@ def recolectar(
     if len(texto) < MINIMO_TEXTO:
         raise ValueError(f"{brand}: la página devolvió casi nada de texto ({len(texto)} caracteres)")
 
+    huella = hashlib.sha256(texto.encode("utf-8")).hexdigest()
+    ruta = Path(carpeta) / f"{normalizar(brand).replace(' ', '-')}-{country.lower()}.json"
+    previo = json.loads(ruta.read_text(encoding="utf-8")) if ruta.exists() else None
+
+    if previo and previo.get("page_hash") == huella:
+        # Misma página: no se gasta una llamada al modelo, se reusa lo ya extraído.
+        return {
+            "registro": previo,
+            "cambios": [],
+            "ruta": str(ruta),
+            "reusado": True,
+        }
+
     propuesta = extraer(texto, brand, country)
     verificado = verificar(propuesta, texto)
-
-    slug = normalizar(brand).replace(" ", "-")
-    ruta = Path(carpeta) / f"{slug}-{country.lower()}.json"
-    previo = json.loads(ruta.read_text(encoding="utf-8")) if ruta.exists() else None
 
     registro: dict[str, Any] = {
         "brand": brand,
@@ -195,6 +205,7 @@ def recolectar(
         "captured_at": fecha,
         "evidence_level": "documentacion_oficial",
         "extraction": "modelo+verificacion_literal",
+        "page_hash": huella,
         "features": verificado.funcionalidades,
         "descartado": verificado.descartado,
         "notes": propuesta.get("notes", ""),
@@ -203,6 +214,7 @@ def recolectar(
     cambios = detectar_cambios(previo, registro)
     historial = list((previo or {}).get("historial") or [])
     historial.append({"fecha": fecha, "planes": len(verificado.planes), "cambios": cambios})
+    del historial[:-24]
     registro["historial"] = historial[-24:]
 
     ruta.parent.mkdir(parents=True, exist_ok=True)
