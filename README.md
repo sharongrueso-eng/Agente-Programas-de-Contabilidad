@@ -49,8 +49,25 @@ El comando emite JSON con `side_effects: false`. El modo de producción queda de
 | `orchestrator/validator.py` | Listo | Trece controles deterministas sobre el borrador |
 | `orchestrator/judge.py` | Listo | Juez de otro modelo: intención/profundidad y QA final, con sugerencias aparte |
 | `orchestrator/corrector.py` | Listo | Arreglos acotados con guarda automática de enlaces, cifras, marcas y largo |
+| `orchestrator/publisher.py` | Listo | Compuertas, huella, publicación idempotente, relectura y reversión |
 | Conector GSC en vivo | Pendiente | Requiere cuenta de servicio de IT |
-| Publicador y runner | Pendiente | Requieren el token de WordPress |
+| Runner (carpeta, checkpoint, resume) | Pendiente | Es el pegamento de la corrida completa |
+
+### Compuertas del publicador
+
+Publica solo si pasan las cinco. Cualquier fallo deja la pieza sin tocar el sitio.
+
+| Compuerta | Motivo del bloqueo |
+|---|---|
+| Pausa global | `pausa global activa` |
+| Chequeo del día | `el chequeo del día no pasó` |
+| Tope diario | `tope diario alcanzado (2/2)` |
+| Ventana horaria | `fuera de la ventana de publicación (06:00–17:30)` |
+| Huella del contenido | `la huella del contenido no coincide con la aprobada` |
+
+Después de escribir, relee la URL pública y compara título, H1, meta, robots e imagen
+destacada. Si algo no coincide, revierte —a borrador si la pieza era nueva, al contenido
+anterior si era un reencauche— y reporta el motivo.
 
 ### Controles deterministas
 

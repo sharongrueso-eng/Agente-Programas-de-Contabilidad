@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import re
 import unicodedata
+import hashlib
 from dataclasses import dataclass
 from typing import Any, Protocol, Sequence
 
@@ -88,6 +89,17 @@ def slugify(title: str) -> str:
     ascii_title = _strip_accents(title).lower()
     slug = re.sub(r"[^a-z0-9]+", "-", ascii_title).strip("-")
     return re.sub(r"-{2,}", "-", slug)
+
+
+def fingerprint(draft: "Draft") -> str:
+    """Content identity: the publisher only ships what the judge approved.
+
+    Whitespace is normalised so cosmetic reformatting does not invalidate an approval,
+    but any change of words, numbers or markup does.
+    """
+    parts = [draft.title, draft.meta_description, draft.html, draft.alt_text]
+    normalized = " ".join(re.sub(r"\s+", " ", part).strip() for part in parts)
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
 
 
 def legal_section(legal: str, country: str) -> str:

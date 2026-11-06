@@ -16,10 +16,12 @@ from __future__ import annotations
 
 import base64
 import json
+import re
 import urllib.error
 import urllib.parse
 import urllib.request
 from typing import Any, Mapping, Protocol, Sequence
+from urllib.parse import urlparse
 
 
 class HttpTransport(Protocol):
@@ -155,9 +157,69 @@ class WordPressClient:
         return None
 
     def create_draft(self, payload: Mapping[str, Any]) -> dict[str, Any]:
+        return self._write("POST", "/wp-json/wp/v2/posts", payload)
+
+    # --- superficie del publicador -------------------------------------------------
+
+    def create_post(self, payload: Mapping[str, Any]) -> dict[str, Any]:
+        return self._write("POST", "/wp-json/wp/v2/posts", payload)
+
+    def update_post(self, post_id: int, payload: Mapping[str, Any]) -> dict[str, Any]:
+        return self._write("POST", f"/wp-json/wp/v2/posts/{post_id}", payload)
+
+    def restore(self, post_id: int, payload: Mapping[str, Any]) -> dict[str, Any]:
+        return self._write("POST", f"/wp-json/wp/v2/posts/{post_id}", payload)
+
+    def find_by_url(self, url: str) -> dict[str, Any] | None:
+        slug = urlparse(url).path.strip("/").split("/")[-1]
+        if not slug:
+            return None
+        query = urllib.parse.urlencode({"slug": slug, "status": "any", "per_page": 1})
         status, raw = self.transport.request(
-            "POST",
-            f"{self.base_url}/wp-json/wp/v2/posts",
+            "GET",
+            f"{self.base_url}/wp-json/wp/v2/posts?{query}",
+            headers={"Authorization": self._auth_header(), "Accept": "application/json"},
+            body=None,
+        )
+        text = raw.decode("utf-8", "replace")
+        if status >= 400:
+            raise RuntimeError(f"WordPress respondió {status} al buscar por URL: {text[:300]}")
+        try:
+            found = json.loads(text)
+        except json.JSONDecodeError as error:
+            raise RuntimeError(f"respuesta ilegible de WordPress: {error}") from error
+        if isinstance(found, list) and found:
+            post = found[0]
+            rendered = post.get("content")
+            if isinstance(rendered, dict):
+                post = {**post, "content": rendered.get("rendered", "")}
+            return post
+        return None
+
+    def read_live(self, url: str) -> dict[str, Any]:
+        """Lee la página pública y extrae lo que el readback necesita comparar."""
+        status, raw = self.transport.request(
+            "GET", url, headers={"Accept": "text/html"}, body=None
+        )
+        html = raw.decode("utf-8", "replace")
+
+        def grab(pattern: str) -> str:
+            match = re.search(pattern, html, re.IGNORECASE | re.DOTALL)
+            return re.sub(r"\s+", " ", match.group(1)).strip() if match else ""
+
+        return {
+            "status_code": status,
+            "title": grab(r"<title[^>]*>(.*?)</title>"),
+            "h1": grab(r"<h1[^>]*>(.*?)</h1>"),
+            "meta_description": grab(r'<meta[^>]+name=["\']description["\'][^>]+content=["\']([^"\']*)'),
+            "robots": grab(r'<meta[^>]+name=["\']robots["\'][^>]+content=["\']([^"\']*)'),
+            "featured_image": grab(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']*)'),
+        }
+
+    def _write(self, method: str, path: str, payload: Mapping[str, Any]) -> dict[str, Any]:
+        status, raw = self.transport.request(
+            method,
+            f"{self.base_url}{path}",
             headers={
                 "Authorization": self._auth_header(),
                 "Content-Type": "application/json",
@@ -166,8 +228,7 @@ class WordPressClient:
         )
         text = raw.decode("utf-8", "replace")
         if status >= 400:
-            raise RuntimeError(f"WordPress respondió {status} al crear el borrador: {text[:300]}")
-
+            raise RuntimeError(f"WordPress respondió {status} al escribir: {text[:300]}")
         try:
             return json.loads(text)
         except json.JSONDecodeError as error:
