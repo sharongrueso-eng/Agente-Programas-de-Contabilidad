@@ -18,6 +18,7 @@ from typing import Any
 from orchestrator.assigner import Brief
 from orchestrator.corrector import correct
 from orchestrator.judge import judge
+from orchestrator.link_pass import corregir_enlaces
 from orchestrator.mcp_publish import publicar as publicar_mcp
 from orchestrator.preparacion import (
     IMAGE_CAPTION,
@@ -117,6 +118,8 @@ class Deps:
     mapa: Any = None
     avisar: Any = None
     solo_borrador: bool = False
+    urls_internas: Any = None
+    dominio: str = "programascontabilidad.com"
 
 
 def _avisar_publicacion(deps: Deps, brief: Brief, resultado: dict[str, Any]) -> None:
@@ -255,6 +258,24 @@ def run(
                 )
 
             if verdict.status == CORREGIR:
+                codigos = {control.code for control in verdict.to_fix}
+                if codigos == {"internal_links"} and deps.urls_internas:
+                    enlaces = corregir_enlaces(
+                        draft, list(deps.urls_internas), llm=deps.corrector, dominio=deps.dominio
+                    )
+                    steps.append(
+                        {
+                            "step": "link_pass",
+                            "status": "DONE" if enlaces.secciones_corregidas else "SIN_CAMBIOS",
+                            "secciones": enlaces.secciones_corregidas,
+                            "rechazadas": enlaces.rechazadas,
+                        }
+                    )
+                    if enlaces.secciones_corregidas:
+                        draft = enlaces.draft
+                        state.save("borrador.json", _draft_to_dict(draft))
+                        continue
+
                 fixed, reason = _fix(draft, verdict.to_fix, deps, state)
                 if fixed is None:
                     return _contract("BLOCKED", brief, state, steps, block_reason=reason)

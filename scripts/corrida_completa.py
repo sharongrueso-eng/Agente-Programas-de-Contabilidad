@@ -139,6 +139,12 @@ def main() -> int:
         image=AlegraImageClient(
             base_url=os.environ["OPENAI_BASE_URL"], api_key=os.environ["PDC_LLM_KEY"]
         ),
+        urls_internas=[
+            o.url for o in (find_opportunities(
+                load_snapshot(RAIZ / "datos" / "muestra" / "gsc-2026-11-05.json").pages,
+                AuditRules.from_file(),
+            ) or [])
+        ][:12],
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
         solo_borrador=args.borrador,
