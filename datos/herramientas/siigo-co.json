@@ -1,0 +1,130 @@
+{
+  "brand": "Siigo",
+  "country": "CO",
+  "product": "Siigo",
+  "plans": [
+    {
+      "name": "Facturación electrónica GRATIS",
+      "price": "",
+      "currency": "COP",
+      "period": "año",
+      "publicado": false
+    },
+    {
+      "name": "Facturación electrónica 24",
+      "price": "9.992",
+      "currency": "COP",
+      "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Facturación electrónica WhatsApp 24",
+      "price": "11.550",
+      "currency": "COP",
+      "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Facturación electrónica 120",
+      "price": "18.744",
+      "currency": "COP",
+      "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Facturación electrónica WhatsApp 120",
+      "price": "20.368",
+      "currency": "COP",
+      "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Facturación electrónica 1500",
+      "price": "76.931",
+      "currency": "COP",
+      "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Facturación electrónica PRO",
+      "price": "47.556",
+      "currency": "COP",
+      "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Facturación electrónica 24 + Nómina Electrónica 24",
+      "price": "15.987",
+      "currency": "COP",
+      "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Facturación electrónica 120 + Nómina Electrónica 120",
+      "price": "34.988",
+      "currency": "COP",
+      "period": "mes",
+      "publicado": true
+    },
+    {
+      "name": "Sistema POS Esencial",
+      "price": "28.750",
+      "currency": "COP",
+      "period": "mes",
+      "publicado": true
+    }
+  ],
+  "source_url": "https://www.siigo.com/precios-siigo/",
+  "captured_at": "2026-11-06",
+  "evidence_level": "documentacion_oficial",
+  "extraction": "modelo+verificacion_literal",
+  "features": [
+    "Facturación electrónica",
+    "5 Documentos electrónicos anuales",
+    "Cobra con Siigo Pay",
+    "Notificación de cobranza por WhatsApp",
+    "1 Usuario",
+    "Siigo App",
+    "Agentes IA",
+    "Agente IA Actualícese",
+    "24 Documentos electrónicos anuales",
+    "Facturación por voz con IA*",
+    "120 Documentos electrónicos anuales",
+    "1500 Documentos electrónicos anuales",
+    "Causación DIAN",
+    "500 Documentos electrónicos anuales",
+    "Nómina Electrónica",
+    "Nómina hasta para 2 empleados",
+    "Liquidación manual de contratos y de cesantías",
+    "Automatización de pagos y comprobantes",
+    "Nómina hasta para 10 empleados",
+    "Sistema POS",
+    "240 Facturas electrónicas anuales desde POS"
+  ],
+  "descartado": [],
+  "notes": "Los precios mostrados son en COP y se toma el valor mensual; la página también muestra valores anuales y indica que el pago es anual y que el descuento aplica para cliente nuevo. El plan Facturación electrónica GRATIS no muestra precio. El texto se corta en Sistema POS + Facturación; no se incluyen precios de POS Gastrobar, Nómina Electrónica, Software Administrativo ni Software Contable. El uso de Agentes IA está sujeto a los Términos y Condiciones de Siigo Nube.",
+  "historial": [
+    {
+      "fecha": "2026-11-06",
+      "planes": 1,
+      "cambios": [
+        "primera lectura"
+      ]
+    },
+    {
+      "fecha": "2026-11-06",
+      "planes": 10,
+      "cambios": [
+        "plan nuevo: Facturación electrónica 24 (9.992 COP)",
+        "plan nuevo: Facturación electrónica WhatsApp 24 (11.550 COP)",
+        "plan nuevo: Facturación electrónica 120 (18.744 COP)",
+        "plan nuevo: Facturación electrónica WhatsApp 120 (20.368 COP)",
+        "plan nuevo: Facturación electrónica 1500 (76.931 COP)",
+        "plan nuevo: Facturación electrónica PRO (47.556 COP)",
+        "plan nuevo: Facturación electrónica 24 + Nómina Electrónica 24 (15.987 COP)",
+        "plan nuevo: Facturación electrónica 120 + Nómina Electrónica 120 (34.988 COP)",
+        "plan nuevo: Sistema POS Esencial (28.750 COP)"
+      ]
+    }
+  ]
+}
