@@ -12,6 +12,7 @@ from typing import Sequence
 
 from orchestrator.audit import INTENT_FORMATS, Opportunity
 from orchestrator.rotation import SlotAssignment
+from orchestrator.state import RefreshJournal
 
 
 @dataclass(frozen=True)
@@ -38,13 +39,24 @@ def assign_briefs(
     day: date,
     plan: Sequence[SlotAssignment],
     opportunities: Sequence[Opportunity],
+    journal: RefreshJournal | None = None,
 ) -> tuple[Brief, ...]:
     """Assign one brief per slot, without giving the same piece to two slots."""
+
+    def blocked(item: Opportunity) -> bool:
+        if journal is None or item.url is None:
+            return False
+        return not journal.can_refresh(item.url, day)
+
     remaining = list(opportunities)
     briefs: list[Brief] = []
 
     for assignment in plan:
-        compatible = [item for item in remaining if is_compatible(item, assignment.format)]
+        compatible_all = [
+            item for item in remaining if is_compatible(item, assignment.format)
+        ]
+        held = [item for item in compatible_all if blocked(item)]
+        compatible = [item for item in compatible_all if not blocked(item)]
         local = [item for item in compatible if item.country == assignment.country]
 
         if local:
@@ -55,6 +67,12 @@ def assign_briefs(
             reason = (
                 f"sin oportunidad en {assignment.country} para {assignment.format}; "
                 f"se toma la mejor de {chosen.country}"
+            )
+        elif held:
+            chosen = None
+            reason = (
+                f"{len(held)} oportunidad(es) compatible(s) en periodo de 30 días; "
+                f"no se reencauza dos veces la misma URL"
             )
         else:
             chosen = None

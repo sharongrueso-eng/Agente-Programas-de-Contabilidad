@@ -10,8 +10,10 @@ from typing import Any, Sequence
 
 from orchestrator.assigner import Brief, assign_briefs
 from orchestrator.audit import DEFAULT_RULES_PATH, AuditRules, find_opportunities
+from orchestrator.cannibalization import find_consolidations
 from orchestrator.gsc_io import SnapshotTooOld, check_freshness, load_snapshot
 from orchestrator.rotation import plan_for_date
+from orchestrator.state import RefreshJournal, StateError
 
 
 def _load_config(path: Path) -> dict[str, Any]:
@@ -61,6 +63,9 @@ def _plan(args: argparse.Namespace) -> int:
     try:
         rules = AuditRules.from_file(args.config)
         snapshot = load_snapshot(args.data)
+        journal = RefreshJournal.load(args.state)
+    except StateError as error:
+        return _blocked(str(error))
     except (OSError, ValueError, KeyError) as error:
         return _blocked(f"no se pudo leer la evidencia: {error}")
 
@@ -75,7 +80,8 @@ def _plan(args: argparse.Namespace) -> int:
         return _blocked(str(error))
 
     opportunities = find_opportunities(snapshot.pages, rules)
-    briefs = assign_briefs(day, plan, opportunities)
+    briefs = assign_briefs(day, plan, opportunities, journal=journal)
+    consolidations = find_consolidations(snapshot.pages, rules)
 
     _emit(
         {
@@ -86,8 +92,20 @@ def _plan(args: argparse.Namespace) -> int:
                 "snapshot_captured_at": snapshot.captured_at.isoformat(),
                 "pages_assessed": len(snapshot.pages),
                 "opportunities": len(opportunities),
+                "consolidations": len(consolidations),
             },
             "briefs": [_serialize_brief(brief) for brief in briefs],
+            "consolidations": [
+                {
+                    "country": item.country,
+                    "owner_url": item.owner_url,
+                    "redirect_urls": list(item.redirect_urls),
+                    "shared_queries": list(item.shared_queries),
+                    "score": round(item.score, 2),
+                    "evidence": dict(item.evidence),
+                }
+                for item in consolidations
+            ],
         }
     )
     return 0
@@ -121,6 +139,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         type=Path,
         default=DEFAULT_RULES_PATH,
         help="audit thresholds JSON",
+    )
+    plan_parser.add_argument(
+        "--state",
+        type=Path,
+        default=Path("state/refreshes.json"),
+        help="refresh journal that enforces the 30-day rule",
     )
     args = parser.parse_args(argv)
 

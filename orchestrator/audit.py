@@ -87,6 +87,8 @@ class AuditRules:
     decline_min_previous_clicks: int = 20
     decline_position_delta: float = 3.0
     max_data_age_days: int = 7
+    overlap_threshold: float = 0.3
+    min_shared_queries: int = 1
 
     def with_overrides(self, **overrides: Any) -> "AuditRules":
         return replace(self, **overrides)
@@ -103,6 +105,8 @@ class AuditRules:
             decline_min_previous_clicks=int(data.get("decline_min_previous_clicks", 20)),
             decline_position_delta=float(data.get("decline_position_delta", 3.0)),
             max_data_age_days=int(data.get("max_data_age_days", 7)),
+            overlap_threshold=float(data.get("overlap_threshold", 0.3)),
+            min_shared_queries=int(data.get("min_shared_queries", 1)),
         )
 
 

@@ -31,7 +31,9 @@ El comando emite JSON con `side_effects: false`. El modo de producción queda de
 | `orchestrator/audit.py` | Listo | Convierte métricas de GSC en oportunidades: declive, snippet, estructura |
 | `orchestrator/assigner.py` | Listo | Asigna la mejor oportunidad compatible con cada slot y registra desvíos |
 | `orchestrator/gsc_io.py` | Listo | Lee instantáneas de GSC y aplica la regla de frescura (máximo 7 días) |
-| `orchestrator/cli.py` | Listo | `run` (guardas) y `plan` (briefs del día) |
+| `orchestrator/cannibalization.py` | Listo | Detecta URLs que compiten por las mismas consultas y propone dueña y 301 |
+| `orchestrator/state.py` | Listo | Diario de reencauches: una URL no se reencauza dos veces en 30 días |
+| `orchestrator/cli.py` | Listo | `run` (guardas) y `plan` (briefs, consolidaciones y bloqueos del día) |
 | Conector GSC en vivo | Pendiente | Requiere cuenta de servicio de IT |
 | Productor, juez, corrector, publicador | Pendiente | Requieren LiteLLM y token de WordPress |
 
@@ -45,6 +47,14 @@ Solo las reglas deterministas viven en código; el criterio editorial queda para
 4. **Snippet** — posición entre 4 y 20 con CTR por debajo del 70 % del esperado para esa posición.
 
 El puntaje se expresa en clics: los que la página deja de ganar o los que ya perdió.
+
+### Canibalización y reencauches
+
+Dos URLs del mismo país se consideran competidoras cuando comparten al menos dos consultas y su solapamiento (Jaccard sobre el conjunto de consultas) llega a 0,3. El agente nombra la dueña y deja las 301 sugeridas en el reporte; **no aplica redirecciones**.
+
+La dueña se elige por clics, después por impresiones y después por URL. Es un criterio provisional: la arquitectura pide validar también backlinks, enlaces internos y canonical antes de consolidar, y esos datos todavía no están conectados.
+
+El diario de reencauches (`state/refreshes.json`) impide trabajar la misma URL dos veces en 30 días. Vive fuera del repositorio clonado, se escribe de forma atómica y falla cerrado: si el archivo está corrupto, el plan se bloquea en lugar de asumir que la URL está libre.
 
 
 ## Diseño tomado como base
