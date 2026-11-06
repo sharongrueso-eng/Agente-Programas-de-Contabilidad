@@ -20,3 +20,20 @@
 1. Importar y fijar la versión de `leandro`, `pdc-locale-signals` y referencias antes de producción; el DOCX disponible es un inventario, no los contenidos fuente.
 2. Accesos: confirmar ruta de IT para GSC de solo lectura, Ahrefs, LiteLLM, WordPress API y webhook de Chat.
 3. Riesgos documentados: publicación autónoma sin aprobación previa; reglas de marca blanca frente a divulgación de vínculos; decisiones de orden de Alegra en listados/tablas; hechos legales por país.
+
+## Límite del gateway en piezas largas
+
+Medido el 2026-11-06 contra el LiteLLM de Alegra, con el mismo prompt de 46.700 caracteres:
+
+| Modelo | max_tokens | Resultado |
+|---|---|---|
+| deepseek/deepseek-v4-pro | 8.000 | contenido vacío (los tokens de razonamiento consumen el presupuesto) |
+| deepseek/deepseek-v4-pro | 16.000 | 504 del gateway |
+| deepseek/deepseek-v4-flash | 12.000 | JSON truncado |
+| deepseek/deepseek-v4-flash | 20.000 | pieza completa, pero sin enlaces a Alegra, internos ni fuentes |
+| zai/glm-5.3 | 20.000 | 504 del gateway |
+
+Conclusión: una pieza de ~13.000 caracteres no se puede generar de una sola llamada por este
+gateway. El siguiente paso es producir **por secciones**: la estructura de nueve bloques ya
+está definida, así que cada bloque es una llamada corta que cabe en el tiempo del gateway y
+cuyo reintento cuesta poco.
