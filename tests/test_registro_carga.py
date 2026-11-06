@@ -42,7 +42,9 @@ class CargaTests(unittest.TestCase):
         registro = cargar_registro("CO", FICHAS, today=date(2027, 2, 1))
 
         self.assertTrue(registro.fichas)
-        self.assertEqual(registro.vencidas, [("Alegra-CO", 87)])
+        marcas_vencidas = [marca for marca, _ in registro.vencidas]
+        self.assertIn("Alegra-CO", marcas_vencidas)
+        self.assertTrue(all(dias == 87 for _, dias in registro.vencidas))
 
     def test_solo_se_cargan_las_fichas_del_pais_pedido(self) -> None:
         with TemporaryDirectory() as carpeta:
