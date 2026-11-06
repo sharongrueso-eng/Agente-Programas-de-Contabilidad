@@ -4,6 +4,10 @@ Both take an injectable transport so the payloads can be asserted without networ
 credentials. The default transport is stdlib urllib: no extra dependency to install on
 the Coolify image.
 
+**Verification status:** unit tested against a fake transport only. Neither adapter has
+been run against the live services. Run `scripts/smoke_adapters.py` once IT provides the
+credentials, before the first real production run.
+
 Credentials are read by the caller from the environment; nothing here logs or stores a
 token.
 """

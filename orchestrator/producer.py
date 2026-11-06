@@ -22,6 +22,38 @@ AUTHOR_ID = 17
 
 REQUIRED_FIELDS = ("title", "meta_description", "html", "alt_text")
 
+# Actions that only rewrite the title and the meta description. The body of the live
+# piece must not be regenerated for these: that is a different, riskier operation.
+SNIPPET_ACTIONS = frozenset({"refresh_snippet"})
+
+MAX_PROMPT_CHARS = 120_000
+
+
+class PromptBudgetExceeded(ValueError):
+    """The assembled prompt is larger than the configured ceiling."""
+
+
+def requires_body(action: str) -> bool:
+    """True when the action needs a full article body."""
+    return action not in SNIPPET_ACTIONS
+
+
+def estimate_tokens(text: str) -> int:
+    """Rough token count at four characters per token, for cost reporting."""
+    return (len(text) + 3) // 4
+
+
+def check_prompt_budget(
+    messages: Sequence[dict[str, str]], max_chars: int = MAX_PROMPT_CHARS
+) -> int:
+    """Return the prompt size, or raise when it exceeds the ceiling."""
+    size = sum(len(message["content"]) for message in messages)
+    if size > max_chars:
+        raise PromptBudgetExceeded(
+            f"{size} caracteres frente a un máximo de {max_chars}"
+        )
+    return size
+
 
 class DraftParseError(ValueError):
     """The model returned something the pipeline cannot use."""
@@ -31,9 +63,9 @@ class DraftParseError(ValueError):
 class Draft:
     title: str
     meta_description: str
-    html: str
-    alt_text: str
-    slug: str
+    html: str = ""
+    alt_text: str = ""
+    slug: str = ""
 
 
 class LlmClient(Protocol):
@@ -78,6 +110,19 @@ def build_messages(brief: Brief, skill: str, legal: str) -> list[dict[str, str]]
         raise ValueError("un brief sin oportunidad no se puede producir")
 
     opportunity = brief.opportunity
+    needs_body = requires_body(opportunity.action)
+    if needs_body:
+        contract = """- "title": título SEO, con la keyword foco completa.
+- "meta_description": 140 a 160 caracteres, con la keyword foco.
+- "html": cuerpo del artículo en HTML, empezando por un H1 que contenga la keyword foco.
+- "alt_text": texto alternativo descriptivo de la imagen destacada."""
+    else:
+        contract = """- "title": título SEO nuevo, con la keyword foco completa.
+- "meta_description": 140 a 160 caracteres, con la keyword foco.
+
+Este encargo solo reescribe el título y la meta descripción. **No devuelvas el cuerpo del
+artículo**: la pieza vive en `url_objetivo` y su contenido no se toca."""
+
     system = f"""{skill.strip()}
 
 ## Reglas no negociables de este encargo
@@ -96,10 +141,7 @@ def build_messages(brief: Brief, skill: str, legal: str) -> list[dict[str, str]]
 ## Contrato de salida
 
 Responde **solo** con un objeto JSON válido, sin texto antes ni después, con estas claves:
-- "title": título SEO, con la keyword foco completa.
-- "meta_description": 140 a 160 caracteres, con la keyword foco.
-- "html": cuerpo del artículo en HTML, empezando por un H1 que contenga la keyword foco.
-- "alt_text": texto alternativo descriptivo de la imagen destacada.
+{contract}
 """
 
     user_payload = {
@@ -135,7 +177,7 @@ def _extract_json(raw: str) -> str:
     return text
 
 
-def parse_draft(raw: str) -> Draft:
+def parse_draft(raw: str, require_body: bool = True) -> Draft:
     """Validate the model output and normalise it into a Draft."""
     try:
         data = json.loads(_extract_json(raw))
@@ -145,7 +187,8 @@ def parse_draft(raw: str) -> Draft:
     if not isinstance(data, dict):
         raise DraftParseError("la respuesta del modelo no es un objeto JSON")
 
-    missing = [field for field in REQUIRED_FIELDS if not str(data.get(field, "")).strip()]
+    required = REQUIRED_FIELDS if require_body else ("title", "meta_description")
+    missing = [field for field in required if not str(data.get(field, "")).strip()]
     if missing:
         raise DraftParseError(f"faltan campos obligatorios: {', '.join(missing)}")
 
@@ -157,8 +200,8 @@ def parse_draft(raw: str) -> Draft:
     return Draft(
         title=title,
         meta_description=str(data["meta_description"]).strip(),
-        html=str(data["html"]).strip(),
-        alt_text=str(data["alt_text"]).strip(),
+        html=str(data.get("html") or "").strip(),
+        alt_text=str(data.get("alt_text") or "").strip(),
         slug=slug,
     )
 
@@ -185,6 +228,7 @@ def produce(
     legal: str,
     evidence_dir: str = "",
     author_id: int = AUTHOR_ID,
+    max_prompt_chars: int = MAX_PROMPT_CHARS,
 ) -> dict[str, Any]:
     """Run the producer step and return the run contract."""
     if brief.opportunity is None:
@@ -195,8 +239,22 @@ def produce(
             block_reason=f"sin oportunidad asignada: {brief.skipped_reason}",
         )
 
+    needs_body = requires_body(brief.opportunity.action)
+
     try:
         messages = build_messages(brief, skill, legal)
+        prompt_size = check_prompt_budget(messages, max_prompt_chars)
+    except PromptBudgetExceeded as error:
+        return _result(
+            "BLOCKED",
+            brief,
+            evidence_dir,
+            block_reason=f"presupuesto de prompt excedido: {error}",
+        )
+    except ValueError as error:
+        return _result("BLOCKED", brief, evidence_dir, block_reason=str(error))
+
+    try:
         raw = llm.complete(messages)
     except Exception as error:  # noqa: BLE001 - any transport failure is retryable
         return _result(
@@ -208,7 +266,7 @@ def produce(
         )
 
     try:
-        draft = parse_draft(raw)
+        draft = parse_draft(raw, require_body=needs_body)
     except DraftParseError as error:
         return _result(
             "FAILED",
@@ -228,10 +286,9 @@ def produce(
             wp_post_id=existing.get("id"),
         )
 
-    payload = {
+    payload: dict[str, Any] = {
         "title": draft.title,
         "slug": draft.slug,
-        "content": draft.html,
         "excerpt": draft.meta_description,
         "status": "draft",
         "author": author_id,
@@ -239,9 +296,12 @@ def produce(
             "pdc_run_id": brief.task_id,
             "pdc_target_country": brief.country,
             "pdc_estado": "borrador",
+            "pdc_accion": brief.opportunity.action,
             "pdc_focus_keyword": brief.opportunity.focus_keyword,
         },
     }
+    if needs_body:
+        payload["content"] = draft.html
 
     try:
         created = wp.create_draft(payload)
