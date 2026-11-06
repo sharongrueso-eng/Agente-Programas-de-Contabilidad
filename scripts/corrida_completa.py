@@ -31,6 +31,56 @@ from orchestrator.registry import cargar_registro  # noqa: E402
 from orchestrator.runner import Deps, RunState, run  # noqa: E402
 
 
+
+class JuezConReintentos:
+    """El gateway falla de forma intermitente con el juez: vacío, 504 o JSON raro.
+
+    Se intenta hasta tres veces alternando modelos, siempre con el texto recortado. Si una
+    respuesta vuelve con llaves duplicadas ({{ en vez de {) se corrige antes de devolverla.
+    """
+
+    def __init__(self, clientes, max_caracteres: int = 12000) -> None:
+        self.clientes = list(clientes)
+        self.max_caracteres = max_caracteres
+        self.intentos = 0
+
+    def _recortar(self, mensajes):
+        ajustados = []
+        for mensaje in mensajes:
+            contenido = mensaje["content"]
+            if len(contenido) > self.max_caracteres:
+                corte = contenido[: self.max_caracteres]
+                for marca in ("</p>", "</h2>", "</li>"):
+                    posicion = corte.rfind(marca)
+                    if posicion > self.max_caracteres * 0.6:
+                        corte = corte[: posicion + len(marca)]
+                        break
+                contenido = corte + chr(10) + chr(10) + "[FIN DEL TEXTO EVALUADO]"
+            ajustados.append({"role": mensaje["role"], "content": contenido})
+        return ajustados
+
+    def complete(self, mensajes):
+        ajustados = self._recortar(mensajes)
+        ultimo = "sin respuesta"
+        for cliente in self.clientes:
+            for _ in range(2):
+                self.intentos += 1
+                try:
+                    crudo = cliente.complete(ajustados).strip()
+                except Exception as error:  # noqa: BLE001
+                    ultimo = str(error)[:120]
+                    continue
+                if not crudo:
+                    ultimo = "respuesta vacía"
+                    continue
+                crudo = crudo.replace("{{", "{").replace("}}", "}")
+                if crudo.startswith("```"):
+                    crudo = crudo.split("```")[1]
+                    crudo = crudo.split(chr(10), 1)[1] if chr(10) in crudo else crudo
+                return crudo
+        raise RuntimeError(f"el juez no respondió tras varios intentos: {ultimo}")
+
+
 class WpNulo:
     """El borrador lo crea el MCP, no la API: el productor no escribe en el sitio."""
 
@@ -57,6 +107,7 @@ def main() -> int:
     parser.add_argument("--borrador", action="store_true", help="dejar la pieza en borrador y avisar")
     parser.add_argument("--secciones", action="store_true", help="producir bloque a bloque en vez de una sola llamada")
     parser.add_argument("--reusar", action="store_true", help="usar el borrador ya guardado y seguir desde la validación")
+    parser.add_argument("--sin-avisos", action="store_true", help="no enviar nada al espacio de Chat")
     args = parser.parse_args()
 
     for archivo in ("llm.env", "mcp.env", "wp-stg.env"):
@@ -115,13 +166,22 @@ def main() -> int:
             max_tokens=8000,
             timeout=300,
         ),
-        judge=LiteLlmClient(
-            base_url=os.environ["OPENAI_BASE_URL"],
-            api_key=os.environ["PDC_LLM_KEY"],
-            model=os.environ.get("PDC_MODEL_JUEZ_RAPIDO", "zai/glm-5.3"),
-            max_tokens=8000,
-            timeout=300,
-        ),
+        judge=JuezConReintentos([
+            LiteLlmClient(
+                base_url=os.environ["OPENAI_BASE_URL"],
+                api_key=os.environ["PDC_LLM_KEY"],
+                model=os.environ.get("PDC_MODEL_JUEZ_RAPIDO", "zai/glm-5.3"),
+                max_tokens=8000,
+                timeout=240,
+            ),
+            LiteLlmClient(
+                base_url=os.environ["OPENAI_BASE_URL"],
+                api_key=os.environ["PDC_LLM_KEY"],
+                model="deepseek/deepseek-v4-flash",
+                max_tokens=6000,
+                timeout=240,
+            ),
+        ]),
         corrector=LiteLlmClient(
             base_url=os.environ["OPENAI_BASE_URL"],
             api_key=os.environ["PDC_LLM_KEY"],
@@ -190,7 +250,7 @@ def main() -> int:
     print(f"duración: {time.time() - inicio:.1f}s")
     print(json.dumps(resultado, ensure_ascii=False, indent=1))
 
-    webhook = env(Path.home() / ".pdc" / "chat.env").get("PDC_CHAT_WEBHOOK_URL", "")
+    webhook = "" if args.sin_avisos else env(Path.home() / ".pdc" / "chat.env").get("PDC_CHAT_WEBHOOK_URL", "")
     if webhook and resultado["status"] != "DONE":
         from orchestrator.notices import render, send
 
@@ -212,7 +272,7 @@ def main() -> int:
 
         from orchestrator.notices import render, send
 
-        webhook = env(Path.home() / ".pdc" / "chat.env").get("PDC_CHAT_WEBHOOK_URL", "")
+        webhook = "" if args.sin_avisos else env(Path.home() / ".pdc" / "chat.env").get("PDC_CHAT_WEBHOOK_URL", "")
         if webhook:
             texto = render(
                 "borrador_listo",
