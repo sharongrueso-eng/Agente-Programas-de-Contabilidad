@@ -26,7 +26,7 @@ y diagnostica sus debilidades editoriales. El contenido de Leandro debe ganar en
 
 **URL de referencia:** https://xepelin.com/blog/educacion-financiera/  
 **País de mayor presencia:** México (expansión Chile, Colombia)  
-**Audiencia declarada:** PyMEs y empresas medianas, foco en financiamiento y capital de trabajo
+**Audiencia declarada:** Empresas y negocios medianos, foco en financiamiento y capital de trabajo
 
 ### Fortaleza editorial
 - Dominio de autoridad alto (fintech con funding significativo = backlinks y distribución)
@@ -126,7 +126,7 @@ Eso traslada la autoridad del video al artículo y vice-versa.
 **3. Tipología de contenido claramente etiquetada**
 
 Usan tres etiquetas: Reportajes / Comparativas / Soluciones.
-Sus reportajes son genuinamente profundos: "Process Mining para pymes", "N8N vs Zapier vs Make",
+Sus reportajes son genuinamente profundos: análisis de Process Mining aplicado a empresas, "N8N vs Zapier vs Make",
 "Planificador IA vs APS tradicional" — no son listas, son análisis con criterios de decisión.
 
 Para Leandro: adoptar la misma taxonomía aplicada a contabilidad LATAM:

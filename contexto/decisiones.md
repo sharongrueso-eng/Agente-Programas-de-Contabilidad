@@ -11,6 +11,9 @@
 ## Decisiones confirmadas
 
 - El scheduler autoritativo será Hermes cron dentro de la instancia alojada en Coolify.
+- **Skills y marca (6 nov 2026):** la skill nombra a Alegra por su nombre y cada pieza lleva tres enlaces con UTM. Se mantiene la autoría y la biografía de Leandro. La publicación es autónoma, con revisión posterior. Mercados: Colombia, México, Costa Rica y República Dominicana; Panamá queda fuera.
+- **Normativa (6 nov 2026):** `legal-context.md` se reescribió con fuente oficial por país. Colombia cita la Resolución DIAN 000165 de 2023 y la 000227 de 2025; Costa Rica usa TRIBU-CR, Ley 9416 y MH-DGT-RES-0027-2024; República Dominicana cita la Ley 32-23 y el Decreto 587-24.
+- **Honestidad (6 nov 2026):** «probé» solo con evidencia documentada en el registro; en el resto, «revisé».
 
 ## Resolver antes de producción
 

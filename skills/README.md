@@ -1,45 +1,55 @@
-# Skills importadas
+# Skills del blog PdC
 
-Copia sin modificar de las skills que usa la cuenta de Claude, extraídas de
-`leandro.skill` y `pdc-locale-signals.skill` (paquetes ZIP) el 5 de noviembre de 2026.
+Skills editoriales del agente, importadas desde los paquetes `.skill` de la cuenta de
+Claude el 5 de noviembre de 2026 y **actualizadas el 6 de noviembre de 2026** para
+alinearlas con la arquitectura v2 y las decisiones del equipo.
 
-| Skill | Archivos | SKILL.md | Notas |
-|---|---|---|---|
-| `leandro` | `SKILL.md` + `references/{competitors,content-competitors,legal-context}.md` | 41.808 bytes | Persona editorial y reglas de redacción |
-| `pdc-locale-signals` | `SKILL.md` | 4.405 bytes | `pdc_target_country` y señales de localidad |
-
-No se editó ningún archivo: son la fuente de verdad del equipo y varias correcciones
-necesitan verificación legal, no criterio del agente.
-
-## Ambigüedad de versión
-
-`leandro/SKILL.md` pesa 41.808 bytes, que corresponde a la versión instalada en Claude
-el 7 de mayo. El inventario del 3 de noviembre registra una versión posterior, del 6 de
-agosto, de 57–58 KB, y señala que la Wiki referencia la variante de `Sub-agents`.
-**Falta confirmar si esta copia es la vigente.** Si no lo es, el texto que se produzca
-seguirá reglas que el flujo Codex ya cambió.
-
-## Defectos conocidos, confirmados en estos archivos
-
-| Hallazgo | Evidencia | Consecuencia |
+| Skill | Contenido | Estado |
 |---|---|---|
-| Costa Rica contradice su propia skill | `references/legal-context.md` líneas 97–103: «Administración Tributaria Virtual», «Resolución DGT-R-48-2016» | La skill exige TRIBU-CR y D-150. Un artículo de CR puede publicar la norma equivocada |
-| República Dominicana sin normativa vigente | No aparecen la Ley 32-23 ni el Decreto 587-24 | El e-CF se describe como «en transición» |
-| Terminología | 9 apariciones de «pyme/pymes» en 3 archivos | El estándar de Leandro es «negocios y empresas» |
-| Panamá ausente | `pdc-locale-signals` cubre DO, CO, MX y CR | Un post de PA hereda `es` / `es_419` |
+| `leandro` | `SKILL.md` + `references/{competitors,content-competitors,legal-context}.md` | Actualizado |
+| `pdc-locale-signals` | `SKILL.md` | Sin cambios |
 
-## Conflictos con la arquitectura v2, que necesitan decisión
+## Decisiones aplicadas
 
-1. **CTA contra enlaces a Alegra.** La skill tiene una regla dura: «el CTA nunca menciona
-   Alegra por su nombre» (líneas 38, 50 y 111). La arquitectura v2 exige tres enlaces a
-   Alegra con UTM en toda pieza nueva o actualizada. Son incompatibles tal como están.
-2. **Biografía obligatoria.** La skill ordena insertar un bloque HTML de biografía con
-   afirmaciones de independencia editorial (líneas 117–127 y 615). La v2 dejó abierta la
-   decisión sobre divulgación de vínculos comerciales.
-3. **Publicación desde la skill.** La skill asume publicación directa por MCP con autor
-   `user ID 17`. En v2 el productor solo crea borradores con el token de API; publicar es
-   del publicador.
-4. **Honestidad de la prueba.** La skill no distingue «probé» de «revisé». Esa regla vive
-   hoy solo en `SYSTEM.md` y debe entrar al brief del productor.
+1. **Alegra se nombra por su nombre.** Se retiró la regla de marca blanca que prohibía
+   mencionarla en el CTA. El CTA la nombra y toda pieza lleva tres enlaces a Alegra —país,
+   producto y término— con UTM completa.
+2. **Cuatro mercados, sin Panamá.** Colombia, México, Costa Rica y República Dominicana.
+   Se eliminó la ficha de Panamá del contexto legal.
+3. **Autoría y firma de Leandro.** Se mantiene el autor `user ID 17` y el bloque de
+   biografía al final de cada artículo.
+4. **Publicación autónoma.** El módulo publicador sube la pieza tras los controles; la
+   revisión del equipo es posterior. El texto de la skill ya no habla de MCP como
+   requisito, sino del token de API de WordPress.
+5. **Honestidad de la prueba.** Regla nueva: «probé» solo con evidencia documentada en el
+   registro de datos; en el resto de los casos, «revisé».
 
-Ninguno de estos puntos se resolvió por cuenta del agente.
+## Correcciones legales
+
+`references/legal-context.md` se reescribió con normativa verificada el 6 de noviembre
+de 2026 y fuente oficial por mercado:
+
+| Mercado | Norma vigente que faltaba o estaba mal |
+|---|---|
+| Colombia | Resolución DIAN 000165 de 2023 (reemplaza la 000042 de 2020), Resolución 000202 de 2025 y Resolución 000227 de 2025 |
+| México | CFDI 4.0 en vigor desde el 1 de enero de 2022 y única versión válida desde el 1 de abril de 2023 |
+| Costa Rica | TRIBU-CR; Ley 9416; Decreto Ejecutivo 44739-H; MH-DGT-RES-0027-2024 y MH-DGT-RES-0001-2025; versión 4.4 operativa desde el 1 de septiembre de 2025; D-150 |
+| República Dominicana | Ley 32-23 y Decreto 587-24; cinco estados del e-CF; exclusividad del e-CF tipo «E» desde el 1 de noviembre de 2026 |
+
+Se corrigieron además la terminología (el estándar es «negocios y empresas»), una
+resolución mal citada en el ejemplo de intro (000227 de 2024 → de 2025) y la mención de
+MCP como vía de publicación.
+
+## Controles automáticos
+
+`tests/test_skills_contract.py` verifica estas decisiones sobre el texto de las skills:
+ausencia del término retirado, mención de Alegra en el CTA, los tres enlaces, la regla de
+«probé», los cuatro mercados y las normas vigentes por país. Si alguien vuelve a meter una
+regla retirada, la suite falla.
+
+## Advertencia de versión
+
+El `SKILL.md` base es la copia de 41.808 bytes (7 de mayo de 2026). El inventario del
+equipo registra una versión posterior del 6 de agosto (57–58 KB) que no está en este
+repositorio. Las correcciones de este commit se aplicaron sobre la versión disponible:
+cuando llegue la de agosto, hay que fusionarla y volver a correr los controles.

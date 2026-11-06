@@ -23,7 +23,7 @@
 ### Aspel (México)
 - **Fortaleza real:** Suite modular muy conocida en México (COI, SAE, NOI, BANCO). Comunidad enorme de contadores certificados. Buena para manufactura ligera.
 - **Gap crítico:** Arquitectura legacy. Módulos no siempre se comunican fluidamente entre sí. App móvil limitada. Cloud tardío.
-- **Perfil de cliente ideal:** PyME mexicana con contador externo familiarizado con Aspel, operación estable sin necesidad de escalar rápido.
+- **Perfil de cliente ideal:** empresa mexicana con contador externo familiarizado con Aspel, operación estable sin necesidad de escalar rápido.
 - **Precio referencial:** NOI (nómina) ~$3,200 MXN/año. COI (contabilidad) ~$3,500 MXN/año.
 
 ### Defontana (Chile / LATAM)
@@ -72,7 +72,7 @@
 - **Cuándo mencionarlo:** Comparativas de nómina específicamente en Colombia.
 
 ### Anfix (España / LATAM)
-- **Fortaleza:** Contabilidad y facturación para autónomos y pymes. Popular en España, con expansión LATAM.
+- **Fortaleza:** Contabilidad y facturación para autónomos y negocios pequeños. Popular en España, con expansión LATAM.
 - **Gap:** Localización fiscal LATAM incompleta en varios países. Fuerte en contexto IVA europeo.
 
 ### Bold (Colombia)
@@ -90,12 +90,12 @@
 - **Cuándo mencionarlo:** Comparativas de nómina y RRHH, no contabilidad general.
 
 ### Colppy (Argentina)
-- **Segmento:** Contabilidad para pymes Argentina.
+- **Segmento:** Contabilidad para empresas argentinas.
 - **Fortaleza:** Buena integración con AFIP (Argentina). Cloud-native.
 - **Limitación:** Muy centrado en Argentina; localización en otros países limitada.
 
 ### Contabilium (España / LATAM)
-- **Fortaleza:** Facturación y contabilidad simplificada para autónomos/pymes. UI limpia.
+- **Fortaleza:** Facturación y contabilidad simplificada para autónomos y negocios pequeños. UI limpia.
 - **Contexto:** Más fuerte en España. LATAM localización limitada.
 
 ### Contalink (México)
@@ -103,7 +103,7 @@
 - **Perfil:** Despacho contable que lleva múltiples clientes. No tan enfocado en el empresario directo.
 
 ### ContaPyme (Colombia)
-- **Segmento:** ERP contable para pymes colombianas.
+- **Segmento:** ERP contable para empresas colombianas.
 - **Fortaleza:** Larga trayectoria en Colombia. Módulos completos.
 - **Gap:** Arquitectura más legacy vs alternativas cloud-native.
 
