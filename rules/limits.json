@@ -1,0 +1,12 @@
+{
+  "paused": true,
+  "dry_run_only": true,
+  "timezone": "America/Bogota",
+  "max_operations_per_day": 2,
+  "max_retries_per_topic": 3,
+  "max_simultaneously_stalled_slots": 2,
+  "publish_window": {
+    "start": "06:00",
+    "end": "17:30"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "max_data_age_days": 7,
+  "comparison_window_days": 28,
+  "historical_window_months": 16,
+  "top_queries_per_page": 25,
+  "min_impressions_28d": {
+    "CO": 100,
+    "MX": 100,
+    "DO": 30,
+    "CR": 30
+  }
+}

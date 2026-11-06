@@ -1,0 +1,9 @@
+[project]
+name = "programascontabilidad-studio"
+version = "0.1.0"
+description = "Safe initial scaffold for the PdC autonomous editorial agent"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+pdc-agent = "orchestrator.cli:main"
