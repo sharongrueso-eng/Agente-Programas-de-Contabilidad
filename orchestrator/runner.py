@@ -27,7 +27,14 @@ from orchestrator.preparacion import (
 )
 from orchestrator.producer import Draft, fingerprint, produce, requires_body
 from orchestrator.publisher import PublishConditions, publish
-from orchestrator.validator import BLOQUEADO, CORREGIR, PASS, ValidationRules, validate
+from orchestrator.validator import (
+    BLOQUEADO,
+    CORREGIR,
+    PASS,
+    ValidationRules,
+    sanear_cifras,
+    validate,
+)
 
 ORDER = ("production", "validation", "judge", "publication")
 MAX_CYCLES = 3
@@ -108,6 +115,26 @@ class Deps:
     image_max_kb: int = 300
     mcp: Any = None
     mapa: Any = None
+    avisar: Any = None
+
+
+def _avisar_publicacion(deps: Deps, brief: Brief, resultado: dict[str, Any]) -> None:
+    """El aviso sale en cuanto la pieza queda publicada, no al cierre del día."""
+    if deps.avisar is None:
+        return
+    try:
+        deps.avisar(
+            "slot_publicado",
+            {
+                "slot": brief.slot,
+                "pais": brief.country,
+                "formato": brief.format.capitalize(),
+                "keyword": brief.opportunity.focus_keyword if brief.opportunity else "",
+                "url": resultado.get("output_url", ""),
+            },
+        )
+    except Exception:  # noqa: BLE001 - un aviso caído no invalida la publicación
+        pass
 
 
 def _draft_to_dict(draft: Draft) -> dict[str, str]:
@@ -189,6 +216,19 @@ def run(
             steps,
             block_reason="la corrida no tiene borrador en la carpeta de estado",
         )
+
+    if deps.registry and draft.html:
+        saneado, retiradas = sanear_cifras(draft.html, deps.registry)
+        if retiradas:
+            draft = replace(draft, html=saneado)
+            state.save("borrador.json", asdict(draft))
+            steps.append(
+                {
+                    "step": "sanitize",
+                    "status": "DONE",
+                    "cifras_retiradas": retiradas,
+                }
+            )
 
     verdict = None
     if start <= ORDER.index("judge"):
@@ -343,6 +383,7 @@ def run(
             )
 
         state.checkpoint("publication")
+        _avisar_publicacion(deps, brief, result)
         return _contract(
             "DONE", brief, state, steps, output_url=result.get("output_url", "")
         )
@@ -371,6 +412,7 @@ def run(
         )
 
     state.checkpoint("publication")
+    _avisar_publicacion(deps, brief, result)
     return _contract(
         "DONE",
         brief,

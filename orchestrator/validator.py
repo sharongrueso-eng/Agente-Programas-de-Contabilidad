@@ -18,7 +18,7 @@ from urllib.parse import parse_qs, urlparse
 
 from orchestrator.assigner import Brief
 from orchestrator.producer import Draft, requires_body
-from orchestrator.registry import unregistered_amounts
+from orchestrator.registry import money_amounts, unregistered_amounts
 
 PASS = "PASS"
 CORREGIR = "CORREGIR"
@@ -295,10 +295,46 @@ def validate(
             "registry_amounts",
             not unknown_amounts,
             "cifras que no están en el registro de datos: "
-            + ", ".join(sorted(unknown_amounts)),
-            BLOQUEADO,
+            + ", ".join(sorted(unknown_amounts))
+            + " — se reemplazan por la frase de ausencia de dato público",
         )
     )
 
     worst = max((control.status for control in controls), key=lambda s: _SEVERITY[s])
     return Verdict(status=worst, controls=tuple(controls))
+
+
+FRASE_SIN_DATO = "El proveedor no publica esta información en su sitio web."
+
+
+def sanear_cifras(html: str, registry_text: str) -> tuple[str, list[str]]:
+    """Quita del texto las cifras que no están en el registro, sin inventar otras.
+
+    Trabaja solo sobre los nodos de texto, nunca sobre las etiquetas, así que la estructura
+    del HTML se conserva. Reemplaza la oración que contenía la cifra por una frase de
+    ausencia declarada. Es determinista: no pasa por un modelo, de modo que en el proceso no
+    puede aparecer una cifra nueva.
+    """
+    if not html or not registry_text:
+        return html, []
+
+    permitidas = money_amounts(registry_text)
+    retiradas: list[str] = []
+
+    def limpiar_texto(texto: str) -> str:
+        oraciones = re.split(r"(?<=[.!?])\s+", texto)
+        limpias: list[str] = []
+        for oracion in oraciones:
+            encontradas = money_amounts(oracion) - permitidas
+            if encontradas:
+                retiradas.extend(sorted(encontradas))
+                limpias.append(FRASE_SIN_DATO)
+            elif oracion.strip():
+                limpias.append(oracion)
+        return " ".join(limpias)
+
+    piezas = re.split(r"(<[^>]+>)", html)
+    saneado = "".join(
+        pieza if pieza.startswith("<") else limpiar_texto(pieza) for pieza in piezas
+    )
+    return saneado, retiradas

@@ -17,7 +17,7 @@ from orchestrator.registry import (
     money_amounts,
     unregistered_amounts,
 )
-from orchestrator.validator import ValidationRules, validate
+from orchestrator.validator import FRASE_SIN_DATO, ValidationRules, sanear_cifras, validate
 
 FICHA = {
     "brand": "Siigo",
@@ -110,7 +110,7 @@ class AmountTests(unittest.TestCase):
 
 
 class ValidatorIntegrationTests(unittest.TestCase):
-    def test_figure_outside_the_registry_blocks_the_piece(self) -> None:
+    def test_figure_outside_the_registry_is_flagged_for_correction(self) -> None:
         verdict = validate(
             draft(html="<p>Siigo cobra $49.900 COP al mes.</p>"),
             brief(),
@@ -119,8 +119,8 @@ class ValidatorIntegrationTests(unittest.TestCase):
         )
 
         statuses = {c.code: c.status for c in verdict.controls}
-        self.assertEqual(statuses.get("registry_amounts"), "BLOQUEADO")
-        self.assertEqual(verdict.status, "BLOQUEADO")
+        self.assertEqual(statuses.get("registry_amounts"), "CORREGIR")
+        self.assertEqual(verdict.status, "CORREGIR")
 
     def test_figure_inside_the_registry_passes(self) -> None:
         verdict = validate(
@@ -190,6 +190,44 @@ class RealFichaTests(unittest.TestCase):
             brief(),
             ValidationRules(),
             registry_text=texto,
+        )
+
+        codigos = {c.code: c.status for c in verdict.controls}
+        self.assertEqual(codigos.get("registry_amounts"), "PASS")
+
+
+class SaneoTests(unittest.TestCase):
+    def test_una_cifra_fuera_de_registro_se_reemplaza_por_la_ausencia(self) -> None:
+        html = "<p>Siigo cobra $45.000 COP al mes. Alegra cobra $49.900 COP al mes.</p>"
+
+        saneado, retiradas = sanear_cifras(html, "Alegra: 49.900 COP")
+
+        self.assertEqual(retiradas, ["45000 COP"])
+        self.assertIn(FRASE_SIN_DATO, saneado)
+        self.assertIn("$49.900 COP", saneado)
+
+    def test_la_estructura_del_html_se_conserva(self) -> None:
+        html = "<h2>Tabla</h2><p>Siigo cobra $45.000 COP.</p><ul><li>otro</li></ul>"
+
+        saneado, _ = sanear_cifras(html, "Alegra: 49.900 COP")
+
+        self.assertIn("<h2>Tabla</h2>", saneado)
+        self.assertIn("<ul><li>otro</li></ul>", saneado)
+
+    def test_sin_cifras_fuera_de_registro_no_cambia_nada(self) -> None:
+        html = "<p>Alegra cobra $49.900 COP al mes.</p>"
+
+        saneado, retiradas = sanear_cifras(html, "Alegra: 49.900 COP")
+
+        self.assertEqual(saneado, html)
+        self.assertEqual(retiradas, [])
+
+    def test_el_texto_saneado_pasa_el_control(self) -> None:
+        html = "<p>Siigo cobra $45.000 COP al mes.</p>"
+        saneado, _ = sanear_cifras(html, "Alegra: 49.900 COP")
+
+        verdict = validate(
+            draft(html=saneado), brief(), ValidationRules(), registry_text="Alegra: 49.900 COP"
         )
 
         codigos = {c.code: c.status for c in verdict.controls}

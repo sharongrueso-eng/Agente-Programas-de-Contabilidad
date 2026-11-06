@@ -144,6 +144,9 @@ artículo**: la pieza vive en `url_objetivo` y su contenido no se toca."""
 - Menciona a Alegra por su nombre y deja espacio para tres enlaces a Alegra con UTM.
 - Honestidad: escribe «revisé» cuando solo consultaste documentación oficial. Escribe «probé» únicamente si el registro de datos trae evidencia de una prueba hecha por una persona.
 - No inventes precios, funciones, testimonios ni cifras que no estén en la evidencia del brief.
+- Si un dato de un competidor no está publicado en su sitio, no lo estimes ni lo deduzcas: escribe
+  que no publica esa información («no publica precios», «no se encuentra público», «no está publicado»)
+  y sigue con el artículo. La ausencia declarada es información válida; una cifra inventada no.
 - No incluyas diagnóstico interno, métricas del pipeline ni jerga operativa en el texto visible.
 
 ## Contexto legal del mercado

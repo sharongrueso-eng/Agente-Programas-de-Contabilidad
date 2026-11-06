@@ -5,6 +5,9 @@ Hermes, no en el repositorio.
 
 ## El día hábil
 
+> Cada pieza avisa al espacio de Chat **en el momento en que queda publicada**, no al cierre.
+> La tarea de las 17:30 es solo el resumen del día.
+
 ```bash
 hermes cron add "pdc-chequeo"   --cron "40 5 * * 1-5" --prompt "Corre el chequeo del día: conectores, frescura de Search Console y salud de WordPress. Si algo falla, avisa con la plantilla chequeo_fallido y detén la producción de hoy."
 hermes cron add "pdc-auditoria" --cron "45 5 * * 1-5" --prompt "Descarga la instantánea de Search Console de los cuatro mercados, calcula las oportunidades del día y deja el diagnóstico en la carpeta de la corrida."
@@ -12,7 +15,7 @@ hermes cron add "pdc-plan-a"    --cron "0 6 * * 1-5"  --prompt "Arma el brief de
 hermes cron add "pdc-plan-b"    --cron "0 7 * * 1-5"  --prompt "Arma el brief del slot B con la rotación de hoy, la mejor oportunidad compatible y el registro de datos."
 hermes cron add "pdc-slot-a"    --cron "10 6 * * 1-5" --prompt "Produce, valida, juzga, corrige y publica el slot A siguiendo el runner."
 hermes cron add "pdc-slot-b"    --cron "10 7 * * 1-5" --prompt "Produce, valida, juzga, corrige y publica el slot B siguiendo el runner."
-hermes cron add "pdc-reporte"   --cron "30 17 * * 1-5" --prompt "Envía el reporte del día al espacio de Chat con las plantillas fijas."
+hermes cron add "pdc-reporte"   --cron "30 17 * * 1-5" --prompt "Envía el resumen de cierre del día al espacio de Chat. El aviso de cada pieza sale en el momento de publicarse, no aquí."
 ```
 
 ## Vigías
