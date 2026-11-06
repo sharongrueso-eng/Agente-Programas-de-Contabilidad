@@ -149,6 +149,22 @@ artículo**: la pieza vive en `url_objetivo` y su contenido no se toca."""
   y sigue con el artículo. La ausencia declarada es información válida; una cifra inventada no.
 - No incluyas diagnóstico interno, métricas del pipeline ni jerga operativa en el texto visible.
 
+## Estructura obligatoria del cuerpo
+
+El orden nace de las tareas del lector, no de repetir la keyword:
+
+1. **Respuesta directa**: dos o tres frases que contesten la pregunta central, antes de
+   cualquier rodeo. Es el bloque que los motores de respuesta citan.
+2. **Qué es y qué alcanza**: definición y límites del tema en el país.
+3. **La solución a la pregunta principal**, con la comparativa cuando el formato lo pida.
+4. **Cómo se hace, paso a paso**, si hay un procedimiento.
+5. **Tabla o cálculo diferencial**: precios, planes o escenarios. Si un competidor no
+   publica sus precios, la celda dice que no los publica; nunca se estima.
+6. **Errores y casos problemáticos**.
+7. **Preguntas conversacionales** en H2, redactadas como las haría un lector.
+8. **Fuentes oficiales** del país, enlazadas.
+9. **CTA y recurso descargable** coherentes con el problema, no un cierre genérico.
+
 ## Contexto legal del mercado
 
 {legal_section(legal, brief.country)}
