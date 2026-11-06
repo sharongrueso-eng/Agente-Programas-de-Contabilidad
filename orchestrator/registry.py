@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 import re
 from datetime import date
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -148,3 +149,46 @@ def check_freshness(
             vencidas.append((f"{ficha.get('brand')}-{ficha.get('country')}", edad))
 
     return vencidas
+
+
+@dataclass
+class Registro:
+    """Lo que el agente puede citar de un mercado, ya filtrado y auditado."""
+
+    country: str
+    fichas: list[dict[str, Any]]
+    texto: str
+    vencidas: list[tuple[str, int]]
+    error: str = ""
+
+    @property
+    def utilizable(self) -> bool:
+        return bool(self.fichas) and not self.error
+
+
+def cargar_registro(
+    country: str,
+    folder: str | Path = "datos/herramientas",
+    *,
+    max_age_days: int = 30,
+    today: date | None = None,
+) -> Registro:
+    """Carga las fichas del mercado de la pieza y comprueba que sirvan.
+
+    Sin fichas del país no hay nada que citar, y eso se trata como bloqueo: publicar
+    cifras sin registro es justo lo que este módulo existe para impedir.
+    """
+    try:
+        todas = load_fichas(folder)
+    except ValueError as error:
+        return Registro(country, [], "", [], error=str(error))
+
+    del_pais = fichas_for_country(todas, country)
+    vencidas = check_freshness(del_pais, max_age_days=max_age_days, today=today)
+
+    return Registro(
+        country=country,
+        fichas=del_pais,
+        texto=fichas_text(del_pais),
+        vencidas=vencidas,
+    )

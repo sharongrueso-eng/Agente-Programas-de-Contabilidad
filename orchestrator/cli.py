@@ -17,6 +17,7 @@ from orchestrator.judge import build_messages as build_judge_messages
 from orchestrator.producer import DraftParseError, build_messages, parse_draft, requires_body
 from orchestrator.rotation import plan_for_date
 from orchestrator.state import RefreshJournal, StateError
+from orchestrator.registry import cargar_registro
 from orchestrator.validator import ControlResult, ValidationRules, Verdict, validate
 
 SKILLS_DIR = DEFAULT_RULES_PATH.parent.parent / "skills" / "leandro"
@@ -128,11 +129,24 @@ def _validate(args: argparse.Namespace) -> int:
     except DraftParseError as error:
         return _blocked(str(error))
 
+    registro = cargar_registro(brief.country, getattr(args, "registro_dir", "datos/herramientas"))
+    if registro.error:
+        return _blocked(f"el registro de datos no se pudo leer: {registro.error}")
+    if not registro.fichas:
+        return _blocked(
+            f"no hay fichas del mercado {brief.country} en el registro de datos: "
+            "sin ellas no se puede citar ninguna cifra"
+        )
+    if registro.vencidas:
+        detalle = ", ".join(f"{marca} ({dias} días)" for marca, dias in registro.vencidas)
+        return _blocked(f"fichas vencidas en el registro: {detalle}")
+
     verdict = validate(
         draft,
         brief,
         ValidationRules(),
         evidence_of_testing=args.evidence_of_testing,
+        registry_text=registro.texto,
     )
 
     _emit(
@@ -305,6 +319,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="the data registry has documented evidence of a human test",
     )
+    validate_parser.add_argument(
+        "--registro-dir",
+        type=Path,
+        default=Path("datos/herramientas"),
+        help="carpeta con las fichas del registro de datos",
+    )
 
     judge_parser = subparsers.add_parser(
         "judge", help="assemble the judge prompt (or run it with credentials)"
@@ -316,6 +336,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     judge_parser.add_argument(
         "--registro", type=Path, default=None, help="data registry excerpt for this piece"
+    )
+    judge_parser.add_argument(
+        "--registro-dir",
+        type=Path,
+        default=Path("datos/herramientas"),
+        help="carpeta con las fichas del registro de datos",
     )
     judge_parser.add_argument(
         "--dry-run", action="store_true", help="print the prompt instead of calling the model"
