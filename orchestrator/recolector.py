@@ -182,7 +182,8 @@ def recolectar(
     propuesta = extraer(texto, brand, country)
     verificado = verificar(propuesta, texto)
 
-    ruta = Path(carpeta) / f"{brand.lower().replace(' ', '-')}-{country.lower()}.json"
+    slug = normalizar(brand).replace(" ", "-")
+    ruta = Path(carpeta) / f"{slug}-{country.lower()}.json"
     previo = json.loads(ruta.read_text(encoding="utf-8")) if ruta.exists() else None
 
     registro: dict[str, Any] = {

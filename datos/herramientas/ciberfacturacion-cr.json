@@ -1,0 +1,84 @@
+{
+  "brand": "CiberFacturación",
+  "country": "CR",
+  "product": "CiberFacturación",
+  "plans": [
+    {
+      "name": "Servicio Básico",
+      "price": "15.000",
+      "currency": "CRC",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    },
+    {
+      "name": "Servicio Profesional",
+      "price": "25.000",
+      "currency": "CRC",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    },
+    {
+      "name": "Servicio Avanzado",
+      "price": "40.000",
+      "currency": "CRC",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    }
+  ],
+  "source_url": "https://ciberfacturacion.com/",
+  "captured_at": "2026-11-06",
+  "evidence_level": "documentacion_oficial",
+  "extraction": "modelo+verificacion_literal",
+  "features": [
+    "Facturación electrónica",
+    "FE 4.4 y seis tipos de comprobante",
+    "CABYS, IVA y exoneraciones",
+    "PDF, XML y envío al cliente",
+    "Punto de venta e inventario",
+    "POS para ventas de mostrador",
+    "Bodegas, movimientos y ajustes",
+    "Alertas de existencias bajas",
+    "Control del negocio",
+    "Registro y recepción de gastos",
+    "Reportes de ventas e impuestos",
+    "Equipo con roles y acceso por API",
+    "Contabilidad",
+    "Catálogo de cuentas, asientos y cierre de período",
+    "Balanza, resultados y balance de situación",
+    "D-101, D-125, Régimen Simplificado y conciliación bancaria",
+    "Cobranza y recurrencia",
+    "Facturación recurrente para suscripciones y servicios fijos",
+    "Facturas vencidas, promesas de pago y arreglos en cuotas",
+    "Portal para que tu cliente consulte sus propios comprobantes",
+    "API REST para conectar tu sistema",
+    "Recepción ilimitada de comprobantes electrónicos",
+    "Clientes ilimitados",
+    "Productos y servicios ilimitados",
+    "Facturación recurrente (suscripciones y cobros periódicos)",
+    "Cobranza: facturas vencidas, promesas de pago y arreglos en cuotas",
+    "Reportes de ventas y gastos",
+    "Historial de documentos electrónicos",
+    "Respaldo de comprobantes electrónicos",
+    "Soporte técnico",
+    "Factura electrónica",
+    "Nota de débito",
+    "Nota de crédito",
+    "Tiquete electrónico",
+    "Factura de compra",
+    "Factura de exportación"
+  ],
+  "descartado": [],
+  "notes": "Solo se muestran precios anuales; incluyen IVA. Los planes indican 24, 60 y 150 documentos por año respectivamente. No se muestran precios mensuales para estos planes.",
+  "historial": [
+    {
+      "fecha": "2026-11-06",
+      "planes": 3,
+      "cambios": [
+        "primera lectura"
+      ]
+    }
+  ]
+}

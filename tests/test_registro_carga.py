@@ -33,7 +33,11 @@ class CargaTests(unittest.TestCase):
         self.assertEqual(registro.vencidas, [])
 
     def test_un_mercado_sin_fichas_no_es_utilizable(self) -> None:
-        registro = cargar_registro("DO", FICHAS, today=date(2026, 11, 6))
+        with TemporaryDirectory() as carpeta:
+            (Path(carpeta) / "alegra-co.json").write_text(
+                json.dumps(ficha("CO")), encoding="utf-8"
+            )
+            registro = cargar_registro("DO", carpeta, today=date(2026, 11, 6))
 
         self.assertFalse(registro.utilizable)
         self.assertEqual(registro.texto, "")

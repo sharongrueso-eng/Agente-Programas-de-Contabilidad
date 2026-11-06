@@ -13,5 +13,25 @@
     "brand": "World Office Escritorio",
     "country": "CO",
     "url": "https://www.worldoffice.com.co/planesEscritorio.html"
+  },
+  {
+    "brand": "Contalink",
+    "country": "MX",
+    "url": "https://www.contalink.com/precios"
+  },
+  {
+    "brand": "Aspel",
+    "country": "MX",
+    "url": "https://www.aspel.com.mx/precios"
+  },
+  {
+    "brand": "Contapp Digital",
+    "country": "DO",
+    "url": "https://contappdigital.com/pricing"
+  },
+  {
+    "brand": "CiberFacturación",
+    "country": "CR",
+    "url": "https://ciberfacturacion.com/"
   }
 ]

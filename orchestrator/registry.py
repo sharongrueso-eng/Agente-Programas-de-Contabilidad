@@ -25,10 +25,10 @@ REQUIRED_FIELDS = (
 )
 
 _AMOUNT = re.compile(
-    r"(?:(?P<symbol>RD\$|\$|₡)\s?)?(?P<amount>\d[\d.,]*)\s?(?P<currency>COP|MXN|USD|CRC|DOP)\b"
+    r"(?:(?P<symbol>US\$|RD\$|MX\$|COL\$|\$|₡)\s?)?(?P<amount>\d[\d.,]*)\s?(?P<currency>COP|MXN|USD|CRC|DOP)\b"
 )
 
-_SYMBOL_CURRENCY = {"₡": "CRC", "RD$": "DOP"}
+_SYMBOL_CURRENCY = {"₡": "CRC", "RD$": "DOP", "US$": "USD", "MX$": "MXN", "COL$": "COP"}
 
 _THOUSANDS_DOT = re.compile(r"^\d{1,3}(?:\.\d{3})+$")
 _THOUSANDS_COMMA = re.compile(r"^\d{1,3}(?:,\d{3})+$")

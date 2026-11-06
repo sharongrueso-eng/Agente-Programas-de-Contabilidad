@@ -1,0 +1,55 @@
+{
+  "brand": "Contapp Digital",
+  "country": "DO",
+  "product": "Contapp Digital",
+  "plans": [
+    {
+      "name": "Starter",
+      "price": "",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": false
+    }
+  ],
+  "source_url": "https://contappdigital.com/pricing",
+  "captured_at": "2026-11-06",
+  "evidence_level": "documentacion_oficial",
+  "extraction": "modelo+verificacion_literal",
+  "features": [
+    "Facturación Electrónica DGII",
+    "200 Facturas al mes",
+    "2 Usuarios",
+    "Soporte 24/7",
+    "Informes previos de impuestos",
+    "Digitalización con IA",
+    "700 Facturas al mes",
+    "4 Usuarios",
+    "Integraciones avanzadas",
+    "Soporte prioritario 24/7",
+    "Facturas ilimitadas",
+    "Usuarios ilimitados",
+    "Onboarding 1-a-1",
+    "hasta 15 facturas al mes"
+  ],
+  "descartado": [
+    "precio 15 USD",
+    "precio 29 USD",
+    "precio 59 USD"
+  ],
+  "notes": "La página muestra los precios con '$' y no indica código de moneda; se asume USD. El selector Mensual/Anual y 'Ahorra 20%' aparece, pero no se muestran precios anuales. Starter se menciona como plan gratis con hasta 15 facturas al mes y no muestra precio numérico.",
+  "historial": [
+    {
+      "fecha": "2026-11-06",
+      "planes": 1,
+      "cambios": [
+        "primera lectura"
+      ]
+    },
+    {
+      "fecha": "2026-11-06",
+      "planes": 1,
+      "cambios": []
+    }
+  ]
+}
