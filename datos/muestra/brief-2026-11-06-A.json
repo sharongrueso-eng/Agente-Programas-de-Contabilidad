@@ -1,0 +1,23 @@
+{
+  "task_id": "2026-11-06-A",
+  "date": "2026-11-06",
+  "slot": "A",
+  "format": "resena",
+  "country": "CO",
+  "opportunity": {
+    "url": "https://programascontabilidad.com/opiniones-siigo-colombia/",
+    "country": "CO",
+    "action": "refresh_snippet",
+    "focus_keyword": "opiniones de siigo",
+    "intent": "review",
+    "score": 50.0,
+    "evidence": {
+      "ctr": 0.0143,
+      "expected_ctr": 0.05,
+      "impressions": 1400,
+      "position": 6.2,
+      "reason": "CTR bajo para su posición"
+    }
+  },
+  "skipped_reason": ""
+}

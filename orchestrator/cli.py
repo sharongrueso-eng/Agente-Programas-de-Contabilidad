@@ -10,10 +10,16 @@ from typing import Any, Sequence
 
 from orchestrator.assigner import Brief, assign_briefs
 from orchestrator.audit import DEFAULT_RULES_PATH, AuditRules, find_opportunities
+from orchestrator.brief_io import load_brief
 from orchestrator.cannibalization import find_consolidations
 from orchestrator.gsc_io import SnapshotTooOld, check_freshness, load_snapshot
+from orchestrator.producer import build_messages
 from orchestrator.rotation import plan_for_date
 from orchestrator.state import RefreshJournal, StateError
+
+SKILLS_DIR = DEFAULT_RULES_PATH.parent.parent / "skills" / "leandro"
+DEFAULT_SKILL = SKILLS_DIR / "SKILL.md"
+DEFAULT_LEGAL = SKILLS_DIR / "references" / "legal-context.md"
 
 
 def _load_config(path: Path) -> dict[str, Any]:
@@ -52,6 +58,45 @@ def _serialize_brief(brief: Brief) -> dict[str, Any]:
 def _blocked(reason: str, **extra: Any) -> int:
     _emit({"status": "BLOCKED", "side_effects": False, "block_reason": reason, **extra})
     return 2
+
+
+def _produce(args: argparse.Namespace) -> int:
+    try:
+        brief = load_brief(args.brief)
+        skill = Path(args.skill).read_text(encoding="utf-8")
+        legal = Path(args.legal).read_text(encoding="utf-8")
+    except (OSError, ValueError, KeyError) as error:
+        return _blocked(f"no se pudo leer el brief o las skills: {error}")
+
+    if brief.opportunity is None:
+        return _blocked(
+            f"sin oportunidad asignada: {brief.skipped_reason}", task_id=brief.task_id
+        )
+
+    try:
+        messages = build_messages(brief, skill, legal)
+    except ValueError as error:
+        return _blocked(str(error), task_id=brief.task_id)
+
+    if not args.dry_run:
+        return _blocked(
+            "la producción real necesita las credenciales de LiteLLM y WordPress; "
+            "usa --dry-run para revisar el prompt",
+            task_id=brief.task_id,
+        )
+
+    _emit(
+        {
+            "status": "DRY_RUN",
+            "side_effects": False,
+            "task_id": brief.task_id,
+            "country": brief.country,
+            "format": brief.format,
+            "focus_keyword": brief.opportunity.focus_keyword,
+            "messages": messages,
+        }
+    )
+    return 0
 
 
 def _plan(args: argparse.Namespace) -> int:
@@ -146,7 +191,24 @@ def main(argv: Sequence[str] | None = None) -> int:
         default=Path("state/refreshes.json"),
         help="refresh journal that enforces the 30-day rule",
     )
+
+    produce_parser = subparsers.add_parser(
+        "produce", help="assemble the producer prompt for a brief (no network in dry-run)"
+    )
+    produce_parser.add_argument("--brief", type=Path, required=True, help="brief JSON")
+    produce_parser.add_argument(
+        "--dry-run", action="store_true", help="print the prompt instead of calling the model"
+    )
+    produce_parser.add_argument(
+        "--skill", type=Path, default=DEFAULT_SKILL, help="path to the leandro skill"
+    )
+    produce_parser.add_argument(
+        "--legal", type=Path, default=DEFAULT_LEGAL, help="path to the legal context"
+    )
     args = parser.parse_args(argv)
+
+    if args.command == "produce":
+        return _produce(args)
 
     if args.command == "plan":
         return _plan(args)

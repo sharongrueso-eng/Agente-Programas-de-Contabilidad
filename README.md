@@ -19,6 +19,9 @@ python -m orchestrator.cli run --dry-run
 
 # Plan del día a partir de una instantánea de Search Console
 python -m orchestrator.cli plan --date 2026-11-06 --data datos/muestra/gsc-2026-11-05.json
+
+# Prompt exacto que verá el productor, sin llamar al modelo
+python -m orchestrator.cli produce --brief datos/muestra/brief-2026-11-06-A.json --dry-run
 ```
 
 El comando emite JSON con `side_effects: false`. El modo de producción queda deshabilitado hasta implementar y probar los conectores, persistencia, controles editoriales/técnicos, publicación idempotente y reversión.
@@ -33,9 +36,12 @@ El comando emite JSON con `side_effects: false`. El modo de producción queda de
 | `orchestrator/gsc_io.py` | Listo | Lee instantáneas de GSC y aplica la regla de frescura (máximo 7 días) |
 | `orchestrator/cannibalization.py` | Listo | Detecta URLs que compiten por las mismas consultas y propone dueña y 301 |
 | `orchestrator/state.py` | Listo | Diario de reencauches: una URL no se reencauza dos veces en 30 días |
-| `orchestrator/cli.py` | Listo | `run` (guardas) y `plan` (briefs, consolidaciones y bloqueos del día) |
+| `orchestrator/cli.py` | Listo | `run` (guardas), `plan` (briefs y consolidaciones) y `produce` (prompt en seco) |
+| `orchestrator/producer.py` | Listo | Arma el prompt, valida la salida del modelo y crea el borrador |
+| `orchestrator/brief_io.py` | Listo | Lee el brief de la carpeta de la corrida |
+| `orchestrator/adapters.py` | Escrito, sin probar contra las APIs | Clientes HTTP de LiteLLM y WordPress, con transporte inyectable |
 | Conector GSC en vivo | Pendiente | Requiere cuenta de servicio de IT |
-| Productor, juez, corrector, publicador | Pendiente | Requieren LiteLLM y token de WordPress |
+| Juez, corrector y publicador | Pendiente | Requieren LiteLLM y el token de WordPress |
 
 ### Cómo decide la auditoría
 
