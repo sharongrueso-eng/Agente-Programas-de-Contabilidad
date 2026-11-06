@@ -18,7 +18,8 @@ from typing import Any
 from orchestrator.assigner import Brief
 from orchestrator.corrector import correct
 from orchestrator.judge import judge
-from orchestrator.producer import Draft, fingerprint, produce
+from orchestrator.preparacion import IMAGE_CAPTION, build_image_prompt, generate_image
+from orchestrator.producer import Draft, fingerprint, produce, requires_body
 from orchestrator.publisher import PublishConditions, publish
 from orchestrator.validator import BLOQUEADO, CORREGIR, PASS, ValidationRules, validate
 
@@ -95,6 +96,8 @@ class Deps:
     manual: str = ""
     registry: str = ""
     evidence_of_testing: bool = False
+    image: Any = None
+    fallback_image: bytes = b""
 
 
 def _draft_to_dict(draft: Draft) -> dict[str, str]:
@@ -272,6 +275,32 @@ def run(
         current_fingerprint=fingerprint(draft),
     )
 
+    cover: bytes | None = None
+    portada = state.load("portada.json", {}) or {}
+    if not dry_run and deps.image is not None and requires_body(brief.opportunity.action):
+        try:
+            prompt = build_image_prompt(draft, brief)
+            cover, respaldo = generate_image(
+                deps.image, prompt, fallback=deps.fallback_image
+            )
+            (state.dir / "portada.webp").write_bytes(cover)
+            portada = {
+                "caption": IMAGE_CAPTION,
+                "alt": draft.alt_text,
+                "bytes": len(cover),
+                "used_fallback": respaldo,
+                "prompt": prompt,
+            }
+            state.save("portada.json", portada)
+            steps.append(
+                {"step": "preparation", "status": "FALLBACK" if respaldo else "DONE"}
+            )
+        except Exception as error:  # noqa: BLE001 - la portada no detiene la publicación
+            steps.append(
+                {"step": "preparation", "status": "SKIPPED", "detail": str(error)}
+            )
+            portada = {"caption": IMAGE_CAPTION, "error": str(error)}
+
     if dry_run:
         steps.append({"step": "publication", "status": "SIMULATED"})
         state.checkpoint("publication")
@@ -283,6 +312,7 @@ def run(
         client=deps.publisher,
         conditions=effective,
         evidence_dir=str(state.dir),
+        cover=cover,
     )
     steps.append({"step": "publication", "status": result["status"]})
     state.save("publicacion.json", result)

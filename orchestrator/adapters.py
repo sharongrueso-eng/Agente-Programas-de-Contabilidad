@@ -171,6 +171,54 @@ class WordPressClient:
     def restore(self, post_id: int, payload: Mapping[str, Any]) -> dict[str, Any]:
         return self._write("POST", f"/wp-json/wp/v2/posts/{post_id}", payload)
 
+    def upload_media(
+        self,
+        content: bytes,
+        filename: str,
+        *,
+        alt_text: str = "",
+        caption: str = "",
+        mime: str = "image/webp",
+    ) -> dict[str, Any]:
+        """Sube la portada a la biblioteca de medios y devuelve el objeto creado."""
+        status, raw = self.transport.request(
+            "POST",
+            f"{self.base_url}/wp-json/wp/v2/media",
+            headers={
+                "Authorization": self._auth_header(),
+                "Content-Type": mime,
+                "Content-Disposition": f'attachment; filename="{filename}"',
+            },
+            body=content,
+        )
+
+        text = raw.decode("utf-8", "replace")
+        if status >= 400:
+            raise RuntimeError(f"WordPress respondió {status} al subir la portada: {text[:300]}")
+
+        try:
+            media = json.loads(text)
+        except json.JSONDecodeError as error:
+            raise RuntimeError(f"respuesta ilegible al subir la portada: {error}") from error
+
+        media_id = media.get("id")
+        if media_id and (alt_text or caption):
+            media = self.update_media(media_id, alt_text=alt_text, caption=caption)
+
+        return media
+
+    def update_media(
+        self, media_id: int, *, alt_text: str = "", caption: str = ""
+    ) -> dict[str, Any]:
+        payload: dict[str, Any] = {}
+        if alt_text:
+            payload["alt_text"] = alt_text
+        if caption:
+            payload["caption"] = caption
+        if not payload:
+            return {}
+        return self._write("POST", f"/wp-json/wp/v2/media/{media_id}", payload)
+
     def find_by_url(self, url: str) -> dict[str, Any] | None:
         slug = urlparse(url).path.strip("/").split("/")[-1]
         if not slug:

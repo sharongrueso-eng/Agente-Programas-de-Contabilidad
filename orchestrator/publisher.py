@@ -13,6 +13,7 @@ from datetime import datetime, time
 from typing import Any, Protocol
 
 from orchestrator.assigner import Brief
+from orchestrator.preparacion import IMAGE_CAPTION
 from orchestrator.producer import Draft
 
 
@@ -153,6 +154,8 @@ def publish(
     conditions: PublishConditions,
     evidence_dir: str = "",
     expect_featured_image: bool = False,
+    cover: bytes | None = None,
+    cover_filename: str = "portada.webp",
 ) -> dict[str, Any]:
     """Publica la pieza aprobada, la relee y revierte si algo no coincide."""
     allowed, reason = can_publish(conditions)
@@ -176,6 +179,22 @@ def publish(
         target = client.find_by_url(opportunity.url)
 
     payload = _payload(draft, brief, status="publish")
+
+    if cover:
+        try:
+            media = client.upload_media(
+                cover, cover_filename, alt_text=draft.alt_text, caption=IMAGE_CAPTION
+            )
+            if media.get("id"):
+                payload["featured_media"] = media["id"]
+        except Exception as error:  # noqa: BLE001
+            return _result(
+                "FAILED",
+                brief,
+                evidence_dir,
+                resume_from="publication",
+                block_reason=f"no se pudo subir la portada: {error}",
+            )
 
     try:
         if target is None:
