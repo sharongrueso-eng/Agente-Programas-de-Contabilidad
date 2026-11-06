@@ -18,6 +18,7 @@ from typing import Any
 from orchestrator.assigner import Brief
 from orchestrator.corrector import correct
 from orchestrator.judge import judge
+from orchestrator.mcp_publish import publicar as publicar_mcp
 from orchestrator.preparacion import (
     IMAGE_CAPTION,
     build_image_prompt,
@@ -105,6 +106,8 @@ class Deps:
     fallback_image: bytes = b""
     author_id: int = 17
     image_max_kb: int = 300
+    mcp: Any = None
+    mapa: Any = None
 
 
 def _draft_to_dict(draft: Draft) -> dict[str, str]:
@@ -315,6 +318,34 @@ def run(
         steps.append({"step": "publication", "status": "SIMULATED"})
         state.checkpoint("publication")
         return _contract("DONE", brief, state, steps)
+
+    if deps.mcp is not None and deps.mapa is not None:
+        result = publicar_mcp(
+            draft,
+            brief,
+            ejecutar=deps.mcp.ejecutar,
+            mapa=deps.mapa,
+            portada=cover or (state.dir / "portada.webp").read_bytes()
+            if (state.dir / "portada.webp").exists()
+            else None,
+        )
+        steps.append({"step": "publication", "status": result["status"], "via": "mcp"})
+        state.save("publicacion.json", result)
+
+        if result["status"] != "DONE":
+            return _contract(
+                result["status"],
+                brief,
+                state,
+                steps,
+                output_url=result.get("output_url", ""),
+                block_reason=result.get("block_reason", ""),
+            )
+
+        state.checkpoint("publication")
+        return _contract(
+            "DONE", brief, state, steps, output_url=result.get("output_url", "")
+        )
 
     result = publish(
         draft,
