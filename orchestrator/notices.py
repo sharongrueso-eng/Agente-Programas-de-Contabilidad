@@ -16,6 +16,12 @@ TEMPLATES: dict[str, str] = {
         "⚠️ El chequeo de las 5:40 no pasó: {detalle}.\n"
         "El día no arranca y ningún slot se produce."
     ),
+    "corrida_fallida": (
+        "⚠️ Corrida {task_id} · {estado}\n"
+        "Motivo: {motivo}\n"
+        "Paso donde se detuvo: {paso}\n"
+        "No se publicó nada. La evidencia queda en {carpeta}"
+    ),
     "borrador_listo": (
         "📝 Borrador listo · {pais} · {formato}\n"
         "Keyword: {keyword}\n"

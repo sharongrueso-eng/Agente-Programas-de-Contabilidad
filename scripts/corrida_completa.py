@@ -162,6 +162,23 @@ def main() -> int:
     print(f"duración: {time.time() - inicio:.1f}s")
     print(json.dumps(resultado, ensure_ascii=False, indent=1))
 
+    webhook = env(Path.home() / ".pdc" / "chat.env").get("PDC_CHAT_WEBHOOK_URL", "")
+    if webhook and resultado["status"] != "DONE":
+        from orchestrator.notices import render, send
+
+        pasos = resultado.get("steps") or []
+        ultimo = pasos[-1] if pasos else {}
+        texto = render(
+            "corrida_fallida",
+            task_id=brief.task_id,
+            estado=resultado["status"],
+            motivo=resultado.get("block_reason", "sin motivo declarado")[:300],
+            paso=ultimo.get("step", "desconocido"),
+            carpeta=resultado.get("evidence_url", ""),
+        )
+        print()
+        print("aviso de fallo en Chat:", send(webhook, texto))
+
     if resultado["status"] == "DONE" and args.borrador:
         import os as _os
 
