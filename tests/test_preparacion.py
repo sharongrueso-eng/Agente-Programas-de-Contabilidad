@@ -8,6 +8,7 @@ from orchestrator.audit import Opportunity
 from orchestrator.preparacion import (
     IMAGE_CAPTION,
     build_image_prompt,
+    comprimir_portada,
     generate_image,
 )
 from orchestrator.producer import Draft
@@ -109,6 +110,59 @@ class ImageTests(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             build_image_prompt(blank, brief())
+
+
+def _webp_plano(ancho: int, alto: int) -> bytes:
+    import io
+
+    from PIL import Image
+
+    imagen = Image.new("RGB", (ancho, alto), (30, 90, 160))
+    buffer = io.BytesIO()
+    imagen.save(buffer, format="WEBP", quality=95)
+    return buffer.getvalue()
+
+
+def _portada_real() -> bytes | None:
+    from pathlib import Path as _Path
+
+    ruta = _Path(__file__).resolve().parent.parent / "datos" / "imagenes" / "2026-11-06-A.webp"
+    return ruta.read_bytes() if ruta.exists() else None
+
+
+class CompressionTests(unittest.TestCase):
+    def test_una_imagen_que_ya_cabe_no_se_toca(self) -> None:
+        datos = _webp_plano(64, 64)
+
+        salida, calidad = comprimir_portada(datos, max_kb=300)
+
+        self.assertEqual(salida, datos)
+        self.assertEqual(calidad, 0)
+
+    def test_la_portada_real_baja_del_tope_sin_perder_tamano(self) -> None:
+        datos = _portada_real()
+        if datos is None:
+            self.skipTest("no está la portada de muestra")
+
+        import io
+
+        from PIL import Image
+
+        salida, calidad = comprimir_portada(datos, max_kb=300)
+
+        self.assertLessEqual(len(salida), 300 * 1024)
+        self.assertGreater(calidad, 0)
+        with Image.open(io.BytesIO(salida)) as imagen:
+            self.assertEqual(imagen.format, "WEBP")
+            self.assertEqual(imagen.size, (1536, 1024))
+
+    def test_sin_pillow_devuelve_lo_que_recibio(self) -> None:
+        datos = b"x" * (400 * 1024)
+
+        salida, calidad = comprimir_portada(datos, max_kb=1)
+
+        self.assertEqual(salida, datos)
+        self.assertEqual(calidad, 0)
 
 
 if __name__ == "__main__":

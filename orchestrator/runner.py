@@ -18,7 +18,12 @@ from typing import Any
 from orchestrator.assigner import Brief
 from orchestrator.corrector import correct
 from orchestrator.judge import judge
-from orchestrator.preparacion import IMAGE_CAPTION, build_image_prompt, generate_image
+from orchestrator.preparacion import (
+    IMAGE_CAPTION,
+    build_image_prompt,
+    comprimir_portada,
+    generate_image,
+)
 from orchestrator.producer import Draft, fingerprint, produce, requires_body
 from orchestrator.publisher import PublishConditions, publish
 from orchestrator.validator import BLOQUEADO, CORREGIR, PASS, ValidationRules, validate
@@ -99,6 +104,7 @@ class Deps:
     image: Any = None
     fallback_image: bytes = b""
     author_id: int = 17
+    image_max_kb: int = 300
 
 
 def _draft_to_dict(draft: Draft) -> dict[str, str]:
@@ -281,14 +287,17 @@ def run(
     if not dry_run and deps.image is not None and requires_body(brief.opportunity.action):
         try:
             prompt = build_image_prompt(draft, brief)
-            cover, respaldo = generate_image(
+            original, respaldo = generate_image(
                 deps.image, prompt, fallback=deps.fallback_image
             )
+            cover, calidad = comprimir_portada(original, max_kb=deps.image_max_kb)
             (state.dir / "portada.webp").write_bytes(cover)
             portada = {
                 "caption": IMAGE_CAPTION,
                 "alt": draft.alt_text,
                 "bytes": len(cover),
+                "bytes_original": len(original),
+                "calidad_webp": calidad,
                 "used_fallback": respaldo,
                 "prompt": prompt,
             }

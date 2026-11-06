@@ -5,5 +5,10 @@ description = "Safe initial scaffold for the PdC autonomous editorial agent"
 requires-python = ">=3.11"
 dependencies = []
 
+[project.optional-dependencies]
+# Solo para recomprimir la portada bajo PDC_IMAGE_MAX_KB. Sin Pillow, la imagen se sube
+# tal como llega del gateway y el paso lo anota.
+image = ["pillow>=11"]
+
 [project.scripts]
 pdc-agent = "orchestrator.cli:main"

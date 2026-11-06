@@ -77,3 +77,43 @@ def generate_image(
             continue
 
     return fallback, True
+
+
+def comprimir_portada(datos: bytes, *, max_kb: int = 300) -> tuple[bytes, int]:
+    """Recomprime el WebP del gateway hasta que entre en `max_kb`.
+
+    Devuelve los bytes y la calidad usada (0 si no hubo que tocar nada o si Pillow no
+    está instalado). Nunca engorda el archivo: si ya cabe, se devuelve tal cual.
+    """
+    if not datos or len(datos) <= max_kb * 1024:
+        return datos, 0
+
+    try:
+        import io
+
+        from PIL import Image
+    except ModuleNotFoundError:
+        return datos, 0
+
+    try:
+        with Image.open(io.BytesIO(datos)) as original:
+            imagen = original.convert("RGB")
+    except Exception:  # noqa: BLE001 - si no es una imagen válida, se sube como venga
+        return datos, 0
+
+    for calidad in (88, 82, 74, 66, 58, 50, 42, 34):
+        buffer = io.BytesIO()
+        imagen.save(buffer, format="WEBP", quality=calidad, method=6)
+        if buffer.tell() <= max_kb * 1024:
+            return buffer.getvalue(), calidad
+
+    # Último recurso: reducir el lado mayor y volver a intentar.
+    for lado in (1280, 1100, 900):
+        copia = imagen.copy()
+        copia.thumbnail((lado, lado))
+        buffer = io.BytesIO()
+        copia.save(buffer, format="WEBP", quality=70, method=6)
+        if buffer.tell() <= max_kb * 1024:
+            return buffer.getvalue(), 70
+
+    return datos, 0
