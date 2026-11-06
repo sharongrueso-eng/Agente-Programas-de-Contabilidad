@@ -120,6 +120,13 @@ def _is_alegra(url: str) -> bool:
 
 
 def _is_internal(url: str, rules: ValidationRules) -> bool:
+    """Cuenta como interno lo que apunta al propio sitio, con o sin dominio.
+
+    Un `href="/precios/"` es una URL interna válida y es la forma que usan las piezas:
+    compararla contra el dominio la descartaba y el control nunca pasaba.
+    """
+    if url.startswith("/") and not url.startswith("//"):
+        return True
     host = _host(url)
     site = rules.site_domain
     return host == site or host.endswith(f".{site}")
