@@ -186,6 +186,7 @@ def run(
                 brief,
                 ValidationRules(),
                 evidence_of_testing=deps.evidence_of_testing,
+                registry_text=deps.registry,
             )
             state.save("veredictos.json", {"validator": [asdict(c) for c in verdict.controls]})
             steps.append({"step": "validation", "status": verdict.status, "cycle": cycle})

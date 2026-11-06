@@ -1,0 +1,18 @@
+services:
+  pdc-agent:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Estado de las corridas: brief, borrador, veredictos, checkpoint y diario de reencauches.
+      - pdc-state:/data/state
+      # Perfil, memoria y tareas de Hermes. Sin esto, un redeploy olvida todo.
+      - pdc-hermes:/data/hermes
+    # Sin puertos publicados: la instancia no tiene dirección pública.
+
+volumes:
+  pdc-state:
+  pdc-hermes:

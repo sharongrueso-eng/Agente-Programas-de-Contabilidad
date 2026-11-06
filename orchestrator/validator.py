@@ -18,6 +18,7 @@ from urllib.parse import parse_qs, urlparse
 
 from orchestrator.assigner import Brief
 from orchestrator.producer import Draft, requires_body
+from orchestrator.registry import unregistered_amounts
 
 PASS = "PASS"
 CORREGIR = "CORREGIR"
@@ -139,6 +140,7 @@ def validate(
     rules: ValidationRules,
     *,
     evidence_of_testing: bool = False,
+    registry_text: str = "",
 ) -> Verdict:
     """Run every deterministic control and return the combined verdict."""
     keyword = brief.opportunity.focus_keyword if brief.opportunity else ""
@@ -284,6 +286,17 @@ def validate(
             "internal_jargon",
             not found_jargon,
             f"jerga interna visible: {', '.join(found_jargon)}",
+        )
+    )
+
+    unknown_amounts = unregistered_amounts(text, registry_text) if registry_text else set()
+    controls.append(
+        _control(
+            "registry_amounts",
+            not unknown_amounts,
+            "cifras que no están en el registro de datos: "
+            + ", ".join(sorted(unknown_amounts)),
+            BLOQUEADO,
         )
     )
 

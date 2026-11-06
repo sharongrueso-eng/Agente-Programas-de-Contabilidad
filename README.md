@@ -53,8 +53,14 @@ El comando emite JSON con `side_effects: false`. El modo de producción queda de
 | `orchestrator/runner.py` | Listo | Encadena la corrida, escribe la carpeta de estado y retoma desde el punto de fallo |
 | `orchestrator/watchers.py` | Listo | Cadencia de vigías, diff de precios todo-o-nada y caídas de GSC |
 | `orchestrator/notices.py` | Listo | Plantillas fijas de aviso y envío al webhook de Chat |
-| Conector GSC en vivo | Pendiente | Requiere cuenta de servicio de IT |
-| Preparación e imagen | Pendiente | Depende del modelo de imágenes de LiteLLM |
+| `orchestrator/gsc_api.py` | Escrito, sin probar contra la API | Ventanas de 28 días, consulta y armado de la instantánea |
+| `orchestrator/preparacion.py` | Listo | Prompt de portada por país, reintentos y respaldo |
+| `orchestrator/registry.py` | Listo | Fichas por marca y país; bloquea cifras fuera del registro |
+| `deploy/` | Escrito, sin probar en Coolify | Dockerfile, compose, variables, respaldo y tareas |
+
+La cifra fuera de registro es el control más fuerte contra datos inventados: si el
+borrador menciona un importe con moneda que no está en las fichas del mercado, la pieza
+se bloquea antes de llegar al juez.
 
 ### Prueba de punta a punta
 
