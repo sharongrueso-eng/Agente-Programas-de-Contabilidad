@@ -51,8 +51,10 @@ El comando emite JSON con `side_effects: false`. El modo de producción queda de
 | `orchestrator/corrector.py` | Listo | Arreglos acotados con guarda automática de enlaces, cifras, marcas y largo |
 | `orchestrator/publisher.py` | Listo | Compuertas, huella, publicación idempotente, relectura y reversión |
 | `orchestrator/runner.py` | Listo | Encadena la corrida, escribe la carpeta de estado y retoma desde el punto de fallo |
+| `orchestrator/watchers.py` | Listo | Cadencia de vigías, diff de precios todo-o-nada y caídas de GSC |
+| `orchestrator/notices.py` | Listo | Plantillas fijas de aviso y envío al webhook de Chat |
 | Conector GSC en vivo | Pendiente | Requiere cuenta de servicio de IT |
-| Preparación e imagen, avisos y vigías | Pendiente | Dependen de LiteLLM y del webhook de Chat |
+| Preparación e imagen | Pendiente | Depende del modelo de imágenes de LiteLLM |
 
 ### Prueba de punta a punta
 
