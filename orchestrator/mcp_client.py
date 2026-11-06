@@ -35,8 +35,16 @@ class Transporte(Protocol):
 
 
 class TransporteUrllib:
+    # El sitio de producción está detrás de un WAF que bloquea el User-Agent por defecto
+    # de urllib (devuelve 403 con una página HTML). Con uno de navegador pasa.
+    AGENTE = (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+    )
+
     def request(self, method, url, *, headers, body):
-        peticion = urllib.request.Request(url, data=body, headers=headers, method=method)
+        cabeceras = {"User-Agent": self.AGENTE, **dict(headers)}
+        peticion = urllib.request.Request(url, data=body, headers=cabeceras, method=method)
         try:
             with urllib.request.urlopen(peticion, timeout=self.timeout) as respuesta:
                 cabeceras = {k.lower(): v for k, v in respuesta.headers.items()}
