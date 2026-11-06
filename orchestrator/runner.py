@@ -116,6 +116,7 @@ class Deps:
     mcp: Any = None
     mapa: Any = None
     avisar: Any = None
+    solo_borrador: bool = False
 
 
 def _avisar_publicacion(deps: Deps, brief: Brief, resultado: dict[str, Any]) -> None:
@@ -368,6 +369,7 @@ def run(
             portada=cover or (state.dir / "portada.webp").read_bytes()
             if (state.dir / "portada.webp").exists()
             else None,
+            solo_borrador=deps.solo_borrador,
         )
         steps.append({"step": "publication", "status": result["status"], "via": "mcp"})
         state.save("publicacion.json", result)

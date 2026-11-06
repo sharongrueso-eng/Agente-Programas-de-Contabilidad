@@ -16,6 +16,12 @@ TEMPLATES: dict[str, str] = {
         "⚠️ El chequeo de las 5:40 no pasó: {detalle}.\n"
         "El día no arranca y ningún slot se produce."
     ),
+    "borrador_listo": (
+        "📝 Borrador listo · {pais} · {formato}\n"
+        "Keyword: {keyword}\n"
+        "Post ID: {post_id}\n"
+        "Firma: Leandro · pendiente de revisión antes de publicar"
+    ),
     "slot_publicado": (
         "✅ Slot {slot} · {pais} · {formato} · PUBLICADA\n"
         "Keyword: {keyword}\n"

@@ -54,6 +54,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--pais", default="CO")
     parser.add_argument("--brief", default="", help="usar un brief existente en vez de planear")
+    parser.add_argument("--borrador", action="store_true", help="dejar la pieza en borrador y avisar")
     args = parser.parse_args()
 
     for archivo in ("llm.env", "mcp.env", "wp-stg.env"):
@@ -138,6 +139,7 @@ def main() -> int:
         ),
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
+        solo_borrador=args.borrador,
     )
 
     estado = RunState(RAIZ / "state" / "corridas", brief.task_id)
@@ -159,6 +161,24 @@ def main() -> int:
     print()
     print(f"duración: {time.time() - inicio:.1f}s")
     print(json.dumps(resultado, ensure_ascii=False, indent=1))
+
+    if resultado["status"] == "DONE" and args.borrador:
+        import os as _os
+
+        from orchestrator.notices import render, send
+
+        webhook = env(Path.home() / ".pdc" / "chat.env").get("PDC_CHAT_WEBHOOK_URL", "")
+        if webhook:
+            texto = render(
+                "borrador_listo",
+                pais=brief.country,
+                formato=brief.format.capitalize(),
+                keyword=brief.opportunity.focus_keyword,
+                post_id=str(resultado.get("post_id", "")),
+            )
+            codigo = send(webhook, texto)
+            print()
+            print("aviso Chat:", codigo)
 
     portada = estado.load("portada.json", {}) or {}
     if portada:

@@ -159,6 +159,7 @@ def publicar(
     mapa: MapaPublicaciones,
     portada: bytes | None = None,
     portada_nombre: str = "portada.webp",
+    solo_borrador: bool = False,
 ) -> dict[str, Any]:
     """Publica una pieza por MCP. Nunca deja un post publicado sin `pdc_run_id`."""
     run_id = brief.task_id
@@ -264,6 +265,15 @@ def publicar(
         )
 
     mapa.confirmar(run_id, post_id, "borrador_verificado")
+
+    if solo_borrador:
+        return _resultado(
+            "DONE",
+            brief,
+            post_id=post_id,
+            output_url=f"post:{post_id}",
+            borrador=True,
+        )
 
     publicado = _desempaquetar(
         ejecutar(ABILITIES["actualizar"], {"post_id": post_id, "status": "publish"})
