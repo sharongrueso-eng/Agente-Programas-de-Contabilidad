@@ -116,6 +116,12 @@ def legal_section(legal: str, country: str) -> str:
     raise ValueError(f"el contexto legal no tiene sección para {country}")
 
 
+def _normas() -> str:
+    from .linea_visual import NORMAS
+
+    return NORMAS.strip()
+
+
 def build_messages(brief: Brief, skill: str, legal: str) -> list[dict[str, str]]:
     """Assemble the system and user messages for the producer call."""
     if brief.opportunity is None:
@@ -136,6 +142,10 @@ Este encargo solo reescribe el título y la meta descripción. **No devuelvas el
 artículo**: la pieza vive en `url_objetivo` y su contenido no se toca."""
 
     system = f"""{skill.strip()}
+
+## Línea visual del blog
+
+{_normas()}
 
 ## Reglas no negociables de este encargo
 

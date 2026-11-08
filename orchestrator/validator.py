@@ -153,6 +153,41 @@ def _texto_visible(html: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
 
 
+def problemas_linea_visual(html: str) -> list[str]:
+    """Fallos objetivos contra la línea visual del blog (v1)."""
+    fallos: list[str] = []
+
+    # Los controles de la línea visual solo aplican a una pieza que ya la usa: una pieza
+    # heredada, sin componentes, se juzga por contenido y no por presentación.
+    if not re.search(r'style="[^"]*#[0-9A-Fa-f]{6}', html):
+        return fallos
+
+    # Las tablas son table reales con caption que cita fuente y fecha.
+    for tabla in re.findall(r"<table.*?</table>", html, re.S | re.I):
+        if "<caption" not in tabla.lower():
+            fallos.append("una tabla no lleva caption con fuente y fecha")
+            break
+
+    # La FAQ funciona sin JavaScript.
+    if re.search(r"preguntas\s+frecuentes", html, re.I) and "<details" not in html.lower():
+        fallos.append("la sección de preguntas frecuentes no usa <details>")
+
+    # Un solo CTA final, con botón y microcopy; nunca en la primera pantalla.
+    cta = re.search(r'background:\s*#002B5B[^>]*>.*?background:\s*#00AEEF', html, re.S | re.I)
+    if not cta:
+        fallos.append("falta el CTA final (bloque navy con botón celeste)")
+    elif 'rel="nofollow noopener"' not in html.lower():
+        fallos.append("el CTA final no lleva rel=\"nofollow noopener\"")
+
+    # Nada de CTA antes del primer H2: arriba va la respuesta, no la venta.
+    primer_h2 = html.lower().find("<h2")
+    primer_cta = html.find("background:#00AEEF")
+    if primer_cta != -1 and primer_h2 != -1 and primer_cta < primer_h2:
+        fallos.append("hay un CTA antes del primer H2")
+
+    return fallos
+
+
 def _control(code: str, ok: bool, detail: str, failure: str = CORREGIR) -> ControlResult:
     return ControlResult(code=code, status=PASS if ok else failure, detail="" if ok else detail)
 
@@ -210,6 +245,15 @@ def validate(
                 if frases_mejora
                 else "sin promesas de ahorro cuantificadas"
             ),
+        )
+    )
+
+    fallos_visuales = problemas_linea_visual(draft.html) if has_body else []
+    controls.append(
+        _control(
+            "linea_visual",
+            not fallos_visuales,
+            "; ".join(fallos_visuales) if fallos_visuales else "cumple la línea visual v1",
         )
     )
 
