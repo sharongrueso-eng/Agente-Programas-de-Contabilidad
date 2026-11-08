@@ -34,13 +34,21 @@ class HttpTransport(Protocol):
 class UrllibTransport:
     """Minimal JSON-over-HTTP transport with a hard timeout."""
 
+    # El sitio de producción está detrás de un WAF que bloquea el User-Agent por defecto de
+    # urllib con un 403 "error code: 1010". Con uno de navegador la petición pasa.
+    AGENTE = (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+    )
+
     def __init__(self, timeout: float = 180.0) -> None:
         self.timeout = timeout
 
     def request(
         self, method: str, url: str, *, headers: Mapping[str, str], body: bytes | None
     ) -> tuple[int, bytes]:
-        request = urllib.request.Request(url, data=body, method=method, headers=dict(headers))
+        cabeceras = {"User-Agent": self.AGENTE, **dict(headers)}
+        request = urllib.request.Request(url, data=body, method=method, headers=cabeceras)
         try:
             with urllib.request.urlopen(request, timeout=self.timeout) as response:
                 return response.status, response.read()
