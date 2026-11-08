@@ -137,6 +137,22 @@ def _has_full_utm(url: str) -> bool:
     return all(params.get(key) for key in ("utm_source", "utm_medium", "utm_campaign"))
 
 
+PLATAFORMAS = re.compile(
+    r"(\d+)\s+(?:plataformas|softwares|herramientas|programas|sistemas)", re.IGNORECASE
+)
+MEJORA = re.compile(
+    r"(?:ahorr\w+|reduc\w+|baj\w+|disminuy\w+|gan\w+)[^.]{0,60}?\d+\s*"
+    r"(?:horas?|hrs?|minutos?|min\.?|%|por\s+ciento)"
+    r"|en\s+la\s+mayor[ií]a\s+de\s+los\s+casos"
+    r"|a\s+menos\s+de\s+\d+\s*(?:horas?|minutos?)",
+    re.IGNORECASE,
+)
+
+
+def _texto_visible(html: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
+
+
 def _control(code: str, ok: bool, detail: str, failure: str = CORREGIR) -> ControlResult:
     return ControlResult(code=code, status=PASS if ok else failure, detail="" if ok else detail)
 
@@ -148,6 +164,7 @@ def validate(
     *,
     evidence_of_testing: bool = False,
     registry_text: str = "",
+    brands_available: int | None = None,
 ) -> Verdict:
     """Run every deterministic control and return the combined verdict."""
     keyword = brief.opportunity.focus_keyword if brief.opportunity else ""
@@ -157,6 +174,44 @@ def validate(
 
     text = " ".join([draft.title, draft.meta_description, draft.html])
     controls: list[ControlResult] = []
+
+    if brands_available is not None:
+        visible = _texto_visible(draft.html)[:1200]
+        prometidas = [int(m.group(1)) for m in PLATAFORMAS.finditer(draft.title + " " + visible)]
+        excesivas = sorted({n for n in prometidas if n > brands_available})
+        controls.append(
+            _control(
+                "brand_count",
+                not excesivas,
+                (
+                    f"la pieza promete {excesivas[0]} plataformas y el registro documenta "
+                    f"{brands_available}; el número debe coincidir"
+                    if excesivas
+                    else f"el recuento declarado ({brands_available}) coincide con el registro"
+                ),
+            )
+        )
+
+    registro_norm = _normalize(registry_text)
+    # Se compara la afirmación misma contra el registro, no la oración entera: el HTML
+    # pega el texto de los enlaces y la oración acaba arrastrando palabras ajenas.
+    frases_mejora = [
+        m.group(0).strip()
+        for m in MEJORA.finditer(_texto_visible(draft.html))
+        if _normalize(m.group(0)) and _normalize(m.group(0)) not in registro_norm
+    ]
+    controls.append(
+        _control(
+            "improvement_claims",
+            not frases_mejora,
+            (
+                "afirmaciones de mejora sin respaldo en el registro: "
+                + " | ".join(f[:110] for f in frases_mejora[:2])
+                if frases_mejora
+                else "sin promesas de ahorro cuantificadas"
+            ),
+        )
+    )
 
     controls.append(
         _control(

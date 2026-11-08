@@ -281,6 +281,7 @@ def main() -> int:
         publicar_con_observaciones=True,
         post_existente=post_existente,
         subir_media=subir_media,
+        brands_available=len(registro.fichas),
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
         solo_borrador=args.borrador,

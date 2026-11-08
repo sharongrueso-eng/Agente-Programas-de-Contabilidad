@@ -147,6 +147,11 @@ artículo**: la pieza vive en `url_objetivo` y su contenido no se toca."""
 - Si un dato de un competidor no está publicado en su sitio, no lo estimes ni lo deduzcas: escribe
   que no publica esa información («no publica precios», «no se encuentra público», «no está publicado»)
   y sigue con el artículo. La ausencia declarada es información válida; una cifra inventada no.
+- No afirmes mejoras cuantificadas sin respaldo del registro: nada de «ahorra 8 horas»,
+  «reduce un 40 %», «en la mayoría de los casos revisados» ni «baja a menos de X». Ese tipo de
+  cifra solo se escribe si está en el registro de datos; si no, no se escribe.
+- Si mencionas cuántas plataformas analizas, el número debe coincidir exactamente con las
+  fichas del registro de ese mercado. Nunca prometas más de las que puedes desarrollar.
 - No incluyas diagnóstico interno, métricas del pipeline ni jerga operativa en el texto visible.
 
 ## Estructura obligatoria del cuerpo

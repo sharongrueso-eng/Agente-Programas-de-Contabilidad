@@ -40,9 +40,11 @@ BLOQUES: tuple[tuple[str, str], ...] = (
     ),
     (
         "analisis",
-        "Análisis software por software. Un H3 por cada marca que esté en el registro de datos, "
-        "con: qué es, los planes y precios reales que publica, para quién sirve y un límite honesto. "
-        "No compares marcas que no estén en el registro.",
+        "Análisis software por software. Un H3 por CADA marca del registro de datos, sin excepción "
+        "y sin agregar marcas que no estén. Cada H3 lleva, como mínimo: qué es (dos frases), los "
+        "planes y precios reales que publica (con su periodicidad), dos ventajas concretas, dos "
+        "límites concretos y una frase de veredicto sobre para quién sirve. No resumas una marca "
+        "en una línea: si está en el registro, se desarrolla.",
     ),
     (
         "tabla",

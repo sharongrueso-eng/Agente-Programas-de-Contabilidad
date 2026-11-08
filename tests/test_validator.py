@@ -255,3 +255,32 @@ class SnippetModeTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ClaimTests(unittest.TestCase):
+    """Lo que la pieza promete tiene que poder demostrarse."""
+
+    def test_the_platform_count_cannot_exceed_the_registry(self) -> None:
+        pieza = draft(title="Análisis de 8 plataformas de software contable")
+        verdict = validate(pieza, brief(), ValidationRules(), brands_available=4)
+
+        self.assertEqual(status_of(verdict, "brand_count"), "CORREGIR")
+
+    def test_the_platform_count_passes_when_it_matches(self) -> None:
+        pieza = draft(title="Análisis de 4 plataformas de software contable")
+        verdict = validate(pieza, brief(), ValidationRules(), brands_available=4)
+
+        self.assertEqual(status_of(verdict, "brand_count"), "PASS")
+
+    def test_a_savings_claim_without_evidence_is_flagged(self) -> None:
+        pieza = draft(html=html_body() + "<p>Ahorra 8 horas al mes en la facturación.</p>")
+        verdict = validate(pieza, brief(), ValidationRules(), registry_text="Siigo cobra 49.900 COP")
+
+        self.assertEqual(status_of(verdict, "improvement_claims"), "CORREGIR")
+
+    def test_a_savings_claim_is_allowed_when_the_registry_holds_it(self) -> None:
+        frase = "Ahorra 8 horas al mes en la facturación."
+        pieza = draft(html=html_body() + f"<p>{frase}</p>")
+        verdict = validate(pieza, brief(), ValidationRules(), registry_text=frase)
+
+        self.assertEqual(status_of(verdict, "improvement_claims"), "PASS")
