@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import json
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Any, Protocol, Sequence
 
 from orchestrator.producer import (
@@ -24,6 +24,11 @@ from orchestrator.producer import (
 )
 
 MAX_ATTEMPTS = 3
+# Por encima de este tamaño la pieza no se manda entera: el gateway corta a los ~180 s con un
+# 504 y el corrector no llega a responder. Se corrige sección por sección y se reensambla.
+MAX_CARACTERES_ENTEROS = 18000
+_SECCION_HTML = re.compile(r"(<h2[^>]*>.*?</h2>.*?)(?=<h2|$)", re.IGNORECASE | re.DOTALL)
+_CERCA = re.compile(r"^```(?:html)?\s*|\s*```$", re.MULTILINE)
 MAX_LENGTH_DELTA = 0.25
 
 _NUMBER = re.compile(r"\d[\d.,]*")
@@ -147,6 +152,49 @@ def _user_prompt(draft: Draft, issues: Sequence[Any], previous: Sequence[str] = 
     )
 
 
+def _partir(html: str) -> list[str]:
+    partes = [m.group(1) for m in _SECCION_HTML.finditer(html)]
+    return partes or [html]
+
+
+def _limpiar_seccion(raw: str) -> str:
+    limpio = _CERCA.sub("", raw.strip()).strip()
+    inicio = limpio.find("<")
+    return limpio[inicio:] if inicio > 0 else limpio
+
+
+def corregir_por_secciones(
+    draft: Draft,
+    issues: Sequence[Any],
+    *,
+    llm: LlmClient,
+    manual: str,
+    max_prompt_chars: int = MAX_PROMPT_CHARS,
+) -> Draft:
+    """Pide cada sección por separado y reensambla. El conjunto se valida después."""
+    detalle = "; ".join(str(i)[:160] for i in issues)
+    nuevas: list[str] = []
+    for parte in _partir(draft.html):
+        if len(parte) < 400:
+            nuevas.append(parte)
+            continue
+        instrucciones = (
+            "Corrige SOLO esta sección de la pieza, atendiendo estos hallazgos:"
+            + chr(10) + detalle + chr(10) + chr(10)
+            + "Devuelve el HTML de la sección, sin explicaciones y sin bloques de código. "
+            + "No agregues ni quites enlaces, no introduzcas cifras nuevas y no cambies "
+            + "el tamaño de forma desproporcionada."
+            + chr(10) + chr(10) + "SECCIÓN:" + chr(10) + parte
+        )
+        messages = [
+            {"role": "system", "content": _system_prompt(manual)},
+            {"role": "user", "content": instrucciones},
+        ]
+        check_prompt_budget(messages, max_prompt_chars)
+        nuevas.append(_limpiar_seccion(llm.complete(messages)))
+    return replace(draft, html="".join(nuevas))
+
+
 def correct(
     draft: Draft,
     issues: Sequence[Any],
@@ -161,6 +209,29 @@ def correct(
     require_body = bool(draft.html.strip())
     previous: tuple[str, ...] = ()
     last_detail = ""
+
+    # Pieza larga: se corrige por secciones y se acepta con la misma guarda determinista.
+    if len(draft.html) > MAX_CARACTERES_ENTEROS:
+        for attempt in range(1, max_attempts + 1):
+            try:
+                candidato = corregir_por_secciones(
+                    draft, issues, llm=llm, manual=manual, max_prompt_chars=max_prompt_chars
+                )
+            except Exception as error:  # noqa: BLE001 - transporte o presupuesto
+                return CorrectionOutcome(
+                    status="FAILED",
+                    attempts=attempt,
+                    detail=f"falló el corrector por secciones: {error}",
+                )
+            check = check_fix(draft, candidato, known_brands=known_brands)
+            if check.accepted:
+                return CorrectionOutcome(status="DONE", draft=candidato, attempts=attempt)
+            draft = candidato
+        return CorrectionOutcome(
+            status="BLOCKED",
+            attempts=max_attempts,
+            detail="el corrector por secciones no dejó la pieza dentro de la guarda",
+        )
 
     for attempt in range(1, max_attempts + 1):
         messages = [
