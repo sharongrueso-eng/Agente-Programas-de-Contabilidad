@@ -170,10 +170,11 @@ def corregir_por_secciones(
     llm: LlmClient,
     manual: str,
     max_prompt_chars: int = MAX_PROMPT_CHARS,
-) -> Draft:
+) -> tuple[Draft, int]:
     """Pide cada sección por separado y reensambla. El conjunto se valida después."""
     detalle = "; ".join(str(i)[:160] for i in issues)
     nuevas: list[str] = []
+    fallidas = 0
     for parte in _partir(draft.html):
         if len(parte) < 400:
             nuevas.append(parte)
@@ -191,8 +192,12 @@ def corregir_por_secciones(
             {"role": "user", "content": instrucciones},
         ]
         check_prompt_budget(messages, max_prompt_chars)
-        nuevas.append(_limpiar_seccion(llm.complete(messages)))
-    return replace(draft, html="".join(nuevas))
+        try:
+            nuevas.append(_limpiar_seccion(llm.complete(messages)))
+        except Exception:  # noqa: BLE001 - una sección que falla se deja como estaba
+            fallidas += 1
+            nuevas.append(parte)
+    return replace(draft, html="".join(nuevas)), fallidas
 
 
 def correct(
@@ -214,7 +219,7 @@ def correct(
     if len(draft.html) > MAX_CARACTERES_ENTEROS:
         for attempt in range(1, max_attempts + 1):
             try:
-                candidato = corregir_por_secciones(
+                candidato, fallidas = corregir_por_secciones(
                     draft, issues, llm=llm, manual=manual, max_prompt_chars=max_prompt_chars
                 )
             except Exception as error:  # noqa: BLE001 - transporte o presupuesto
@@ -222,6 +227,12 @@ def correct(
                     status="FAILED",
                     attempts=attempt,
                     detail=f"falló el corrector por secciones: {error}",
+                )
+            if fallidas and candidato.html == draft.html:
+                return CorrectionOutcome(
+                    status="FAILED",
+                    attempts=attempt,
+                    detail="ninguna sección se pudo corregir: el gateway cortó todas",
                 )
             check = check_fix(draft, candidato, known_brands=known_brands)
             if check.accepted:

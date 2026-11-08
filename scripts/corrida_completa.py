@@ -259,8 +259,10 @@ def main() -> int:
             base_url=os.environ["OPENAI_BASE_URL"],
             api_key=os.environ["PDC_LLM_KEY"],
             model=os.environ.get("PDC_MODEL_CORRECTOR", "zai/glm-5.3"),
-            max_tokens=20000,
-            timeout=300,
+            # Una sección no necesita 20.000 tokens; con ese presupuesto el modelo razona de
+            # más y el gateway corta a los ~180 s con un 504.
+            max_tokens=6000,
+            timeout=240,
         ),
         wp=WpNulo(),
         publisher=None,
