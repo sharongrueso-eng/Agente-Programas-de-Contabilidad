@@ -1,0 +1,25 @@
+{
+  "brand": "Citrus",
+  "country": "DO",
+  "product": "Citrus ERP / e-CF",
+  "plans": [],
+  "source_url": "https://www.citrus.com.do/",
+  "captured_at": "2026-11-09",
+  "evidence_level": "sitio oficial, sin precios publicados",
+  "extraction": {
+    "metodo": "lectura del sitio oficial en navegador",
+    "hallazgo": "La ruta /precios responde 404 («Te has encontrado con una rareza»). El sitio publica los productos y un teléfono de contacto, pero no una tabla de precios ni planes con tarifa."
+  },
+  "features": [
+    "Citrus ERP",
+    "Citrus CRM",
+    "Citrus e-CF (comprobante fiscal electrónico)",
+    "PT Comercios",
+    "PT Camareros"
+  ],
+  "pricing_note": "No publicado. Citrus no publica precios en su sitio: la conversión pasa por teléfono (809) 548-8274. Un artículo puede decir que no publica tarifas y recomendar pedir cotización, pero no puede estimarlas ni deducirlas.",
+  "notes": "Producto de República Dominicana. Si una pieza de otro mercado lo menciona, la ficha que aplica es esta y el país de la pieza debe ser DO.",
+  "historial": [
+    {"fecha": "2026-11-09", "cambio": "primera ficha; sin precios porque el sitio no los publica"}
+  ]
+}
