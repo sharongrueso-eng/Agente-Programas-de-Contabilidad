@@ -200,7 +200,7 @@ def producir_por_secciones(
                         )
                     except Exception:  # noqa: BLE001 - una marca caída no tumba el bloque
                         continue
-                    if len(trozo) >= 150:
+                    if "<h3" in trozo.lower() and len(trozo) >= 400:
                         break
                     trozo = ""
                 if trozo:
