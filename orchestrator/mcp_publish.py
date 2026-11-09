@@ -116,6 +116,14 @@ def _resultado(status: str, brief: Brief, **extra: Any) -> dict[str, Any]:
     return base
 
 
+def _estado_post(ejecutar: Ejecutor, post_id: int) -> dict[str, Any]:
+    """Lee el post tal como está en WordPress. Se usa antes y después de escribir."""
+    leido = _desempaquetar(ejecutar(ABILITIES["obtener"], {"post_id": post_id}))
+    if isinstance(leido, dict) and isinstance(leido.get("post"), dict):
+        return leido["post"]
+    return leido if isinstance(leido, dict) else {}
+
+
 def _buscar_borrador(ejecutar: Ejecutor, slug: str) -> int | None:
     """Busca un borrador con ese slug, para adoptar una reserva huérfana."""
     try:
@@ -224,6 +232,21 @@ def publicar(
 
     mapa.confirmar(run_id, post_id, "borrador_creado")
 
+    # Un artículo vivo no se toca en modo borrador: la verificación de antes, no la de después.
+    if post_id is not None:
+        previo = _estado_post(ejecutar, post_id)
+        estado_previo = str(previo.get("status") or previo.get("post_status") or "").lower()
+        if estado_previo and estado_previo != "draft":
+            return _resultado(
+                "FAILED",
+                brief,
+                post_id=post_id,
+                block_reason=(
+                    f"el post {post_id} está «{estado_previo}», no en borrador: "
+                    "no se modifica un artículo vivo en una corrida de prueba"
+                ),
+            )
+
     metas = {
         "pdc_run_id": run_id,
         "pdc_target_country": brief.country,
@@ -273,6 +296,23 @@ def publicar(
         )
 
     mapa.confirmar(run_id, post_id, "borrador_verificado")
+
+    # Verificación final: el título que quedó en WordPress tiene que ser el que escribimos.
+    # Sin esto, una escritura que el MCP acepta y no aplica se reporta como éxito.
+    final = _estado_post(ejecutar, post_id)
+    titulo_final = str(
+        final.get("title") or final.get("post_title") or ""
+    ).strip()
+    if titulo_final and titulo_final != draft.title.strip():
+        return _resultado(
+            "FAILED",
+            brief,
+            post_id=post_id,
+            block_reason=(
+                "WordPress no guardó el título: quedó "
+                f"«{titulo_final[:70]}» y se escribió «{draft.title[:70]}»"
+            ),
+        )
 
     if solo_borrador:
         return _resultado(
