@@ -110,6 +110,7 @@ def main() -> int:
     parser.add_argument("--reusar", action="store_true", help="usar el borrador ya guardado y seguir desde la validación")
     parser.add_argument("--sin-avisos", action="store_true", help="no enviar nada al espacio de Chat")
     parser.add_argument("--entorno", choices=["stg", "prod"], default="stg", help="destino de la publicación")
+    parser.add_argument("--gsc", action="store_true", help="elegir el tema con Search Console en vivo")
     args = parser.parse_args()
 
     for archivo in ("llm.env", "mcp.env", "wp-stg.env", "wp-prod.env"):
@@ -124,7 +125,15 @@ def main() -> int:
     if args.brief:
         brief = load_brief(RAIZ / args.brief)
     else:
-        instantanea = load_snapshot(RAIZ / "datos" / "muestra" / "gsc-2026-11-05.json")
+        if args.gsc:
+            from orchestrator.gsc_mcp import snapshot_desde_mcp
+            from orchestrator.gsc_io import check_freshness
+
+            instantanea = snapshot_desde_mcp(args.pais)
+            check_freshness(instantanea, __import__("datetime").date.today(), 7)
+            print(f"gsc     : {len(instantanea.pages)} páginas hasta {instantanea.captured_at}")
+        else:
+            instantanea = load_snapshot(RAIZ / "datos" / "muestra" / "gsc-2026-11-05.json")
         oportunidades = find_opportunities(instantanea.pages, AuditRules.from_file())
         elegidas = [
             o
@@ -289,10 +298,7 @@ def main() -> int:
             base_url=os.environ["OPENAI_BASE_URL"], api_key=os.environ["PDC_LLM_KEY"]
         ),
         urls_internas=[
-            o.url for o in (find_opportunities(
-                load_snapshot(RAIZ / "datos" / "muestra" / "gsc-2026-11-05.json").pages,
-                AuditRules.from_file(),
-            ) or [])
+            o.url for o in (find_opportunities(instantanea.pages, AuditRules.from_file()) or [])
         ][:12],
         publicar_con_observaciones=True,
         post_existente=post_existente,
