@@ -79,6 +79,30 @@ Contrato de salida: responde **solo** con un objeto JSON, sin texto alrededor:
 """
 
 
+_ADDENDUM_SNIPPET = """
+
+ATENCIÓN: esta pieza es un **reencauche de snippet**. Solo cambia el título y la meta
+descripción de una página que ya existe, y el HTML viene vacío a propósito: no es un
+artículo y no debe tener cuerpo.
+
+Qué evalúas en este caso:
+
+- "intent_depth": ¿el título responde la intención de la keyword y describe lo que la página
+  ya contiene? La falta de tabla, de secciones o de veredicto **no es un defecto aquí**.
+- "final_qa": ¿el título o la meta prometen algo que el registro de datos no sostiene? ¿el
+  país y su normativa son los correctos? ¿se insinúa una prueba o comparación que no consta?
+
+Sigue bloqueando por errores de hecho o promesas sin respaldo, nunca por ausencia de cuerpo.
+"""
+
+
+def _solo_snippet(action: str) -> bool:
+    """Un reencauche de título y meta no se juzga como artículo."""
+    from orchestrator.producer import requires_body
+
+    return not requires_body(action)
+
+
 def build_messages(
     draft: Draft,
     brief: Brief,
@@ -106,6 +130,11 @@ def build_messages(
             for control in verdict.controls
         ],
         "registro_de_datos": registry.strip(),
+        "tipo_de_pieza": (
+            "snippet (solo título y meta)"
+            if _solo_snippet(opportunity.action)
+            else "artículo completo"
+        ),
         "borrador": {
             "title": draft.title,
             "meta_description": draft.meta_description,
@@ -117,8 +146,9 @@ def build_messages(
         "Juzga este encargo y devuelve el JSON del contrato:\n\n"
         + json.dumps(user_payload, ensure_ascii=False, indent=2)
     )
+    system = _SYSTEM + (_ADDENDUM_SNIPPET if _solo_snippet(opportunity.action) else "")
     return [
-        {"role": "system", "content": _SYSTEM},
+        {"role": "system", "content": system},
         {"role": "user", "content": user},
     ]
 

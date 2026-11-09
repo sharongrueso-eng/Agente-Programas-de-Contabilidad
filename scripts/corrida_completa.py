@@ -146,6 +146,8 @@ def main() -> int:
         elegida = elegidas[0]
         if not requires_body(elegida.action):
             print(f"oportunidad: {elegida.action} (título y meta, sin cuerpo)")
+            # Un reencauche de snippet no reescribe el cuerpo: se produce solo la cabecera.
+            args.secciones = False
         brief = Brief(
             f"{args.entorno}-{date.today().isoformat()}-{args.pais}",
             date.today(),
