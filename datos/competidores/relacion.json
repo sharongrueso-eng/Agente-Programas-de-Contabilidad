@@ -1,9 +1,68 @@
 {
+  "_fuente": {
+    "pagina": "wiki: referentes-competidores-Y82BWV7x3G",
+    "titulo": "Referentes & Competidores",
+    "mantiene": "Equipo de Producto (Producto asigna la relevancia)",
+    "actualizado": "2026-10-26",
+    "leido": "2026-11-09",
+    "regla": "Solo se enlaza a las empresas de esta tabla. La lista cambia: se relee la página antes de escribir y nunca se amplía por criterio del modelo."
+  },
   "CO": {
     "actualizado": "2026-11-09",
-    "fuente": "wiki: colombia-seoaeo-2026-luxzhM4svS",
-    "nota": "El documento de estrategia de Colombia no trae una relación de competidores: nombra a Siigo como el rival principal (brecha de visibilidad 1,11 pp, Share of Voice en AI Overviews 97,2 % frente a 62,1 % de Alegra). El resto de la relación está pendiente de que Growth la confirme.",
-    "competidores": ["Siigo"],
-    "dominios": ["siigo.com"]
+    "fuente": "wiki: referentes-competidores-Y82BWV7x3G",
+    "competidores": [
+      "Siigo", "Loggro", "Aleluya", "World Office", "Contapyme", "Helisa",
+      "Claus ERP", "Holded", "Bsale", "Bold", "Komercia", "Vendty",
+      "Treinta", "AX1", "Cuenti", "Q-enta", "Numera", "OFISCOL", "Payana"
+    ],
+    "dominios": [
+      "siigo.com", "loggro.com", "aleluya.com", "worldoffice.com.co",
+      "contapyme.com", "helisa.com", "clauserp.com", "holded.com", "bsale.com.pe",
+      "bold.co", "komercia.co", "vendty.com", "treinta.co", "ax1.co", "cuenti.com",
+      "qenta.app", "esnumera.com", "ofiscol.com", "payana.la"
+    ]
+  },
+  "MX": {
+    "actualizado": "2026-11-09",
+    "fuente": "wiki: referentes-competidores-Y82BWV7x3G",
+    "competidores": [
+      "Aspel", "Contpaqi", "Contalink", "Bind", "Facturama", "Factura.com",
+      "Doc Digitales", "Gestionix", "Konta", "ContaDigital", "Freshbooks",
+      "QuipuPOS", "Runa", "Odoo", "Pulpos", "Xubio", "Treinta", "Toteat",
+      "Buk", "Zettle", "Lightspeed (Vend)"
+    ],
+    "dominios": [
+      "aspel.com.mx", "contpaqi.com", "contalink.com", "bind.com.mx",
+      "facturama.mx", "factura.com", "docdigitales.com", "gestionix.com",
+      "konta.com", "contadigital.mx", "freshbooks.com", "quipupos.com",
+      "runahr.com", "odoo.com", "pulpos.com", "xubio.com", "treinta.co",
+      "toteat.com", "buk.co", "zettle.com", "lightspeedhq.com"
+    ]
+  },
+  "CR": {
+    "actualizado": "2026-11-09",
+    "fuente": "wiki: referentes-competidores-Y82BWV7x3G",
+    "competidores": [
+      "GTI", "Factura Profesional", "Finanzapro", "Softland", "Switch",
+      "BAC Credomatic", "Quickbooks", "Nidux", "Odoo"
+    ],
+    "dominios": [
+      "facturaelectronica.cr", "facturaprofesional.com", "finanzapro.com",
+      "softland.cr", "switch-soft.com", "baccredomatic.com",
+      "quickbooks.intuit.com", "nidux.com", "odoo.com"
+    ]
+  },
+  "DO": {
+    "actualizado": "2026-11-09",
+    "fuente": "wiki: referentes-competidores-Y82BWV7x3G",
+    "competidores": [
+      "CashFlow", "Citrus", "ADM Cloud", "Monica", "FacturaSimple",
+      "Claro Gestión Negocios", "Quickbooks", "Odoo", "QuipuPOS"
+    ],
+    "dominios": [
+      "cashflow.do", "citrus.com.do", "admcloud.net", "sistemamonica.com",
+      "facturasimple.com", "claro.com.do", "quickbooks.intuit.com",
+      "odoo.com", "quipupos.com"
+    ]
   }
 }
