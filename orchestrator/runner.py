@@ -27,6 +27,7 @@ from orchestrator.preparacion import (
     generate_image,
 )
 from orchestrator.producer import Draft, fingerprint, produce, requires_body
+from orchestrator.reparacion import completar_cta
 from orchestrator.publisher import PublishConditions, publish
 from orchestrator.validator import (
     BLOQUEADO,
@@ -237,6 +238,15 @@ def run(
                     "cifras_retiradas": retiradas,
                 }
             )
+
+    # El CTA final es obligatorio y se construye en código: pedírselo al modelo costaba una
+    # llamada larga que el gateway devolvía vacía.
+    if draft.html:
+        con_cta = completar_cta(draft, country=brief.country)
+        if con_cta.html != draft.html:
+            draft = con_cta
+            state.save("borrador.json", asdict(draft))
+            steps.append({"step": "estructura", "status": "DONE", "accion": "cta_final"})
 
     verdict = None
     if start <= ORDER.index("judge"):
