@@ -16,6 +16,7 @@ from dataclasses import dataclass, field
 from typing import Any, Sequence
 
 from orchestrator.assigner import Brief
+from orchestrator import linea_visual as lv
 from orchestrator.producer import Draft, DraftParseError
 
 # (clave, instrucción, quiere_enlaces)
@@ -119,6 +120,7 @@ def producir_por_secciones(
     legal: str,
     registro: str = "",
     marcas: Sequence[str] = (),
+    fichas: Sequence[Any] = (),
     max_reintentos: int = 3,
 ) -> SalidaSecciones:
     """Escribe la cabecera y cada bloque con llamadas separadas, y ensambla la pieza."""
@@ -170,6 +172,15 @@ def producir_por_secciones(
     partes: list[str] = [f"<h1>{cabecera['title']}</h1>", str(cabecera["intro"]).strip()]
 
     for clave, instruccion in BLOQUES:
+        # La tabla sale del registro, no del modelo: pedirle cifras dentro de celdas es
+        # justo donde inventa precios que el registro sí tiene.
+        if clave == "tabla" and fichas:
+            construida = _tabla_del_registro(fichas)
+            if construida:
+                salida.bloques[clave] = construida
+                partes.append(construida)
+                continue
+
         # El análisis por marca va marca por marca: una sola llamada con las cuatro no cabe
         # en la ventana del gateway y el bloque se pierde entero.
         if clave == "analisis" and marcas:
@@ -232,6 +243,48 @@ def producir_por_secciones(
         slug=_slug(str(cabecera["title"])),
     )
     return salida
+
+
+def _tabla_del_registro(fichas: Sequence[Any]) -> str:
+    """Tabla de precios por marca, con las cifras tal como las publica cada proveedor."""
+    filas: list[list[str]] = []
+    for ficha in fichas:
+        brand = ficha.get("brand", "") if isinstance(ficha, dict) else getattr(ficha, "brand", "")
+        planes = ficha.get("plans", []) if isinstance(ficha, dict) else getattr(ficha, "plans", [])
+        for plan in planes or []:
+            if not isinstance(plan, dict):
+                continue
+            precio = str(plan.get("price", "")).strip()
+            moneda = str(plan.get("currency", "")).strip()
+            periodo = str(plan.get("period", "")).strip()
+            if not precio:
+                celda = "No publicado"
+            else:
+                celda = (
+                    f'<strong style="font-size:17px;color:#002B5B;white-space:nowrap;">'
+                    f"{precio} {moneda}</strong>"
+                    f'<span style="display:block;font-size:12px;line-height:1.4;color:#4B5563;">'
+                    f"{periodo}</span>"
+                )
+            filas.append([str(plan.get("name", "")), str(brand), celda])
+    if not filas:
+        return ""
+    caption = (
+        "Precios tal como los publica cada proveedor en su sitio, consultados el "
+        f"{datos_fecha()}; pueden cambiar sin aviso."
+    )
+    return lv.tabla(caption, ["Plan", "Proveedor", "Precio publicado"], filas)
+
+
+def datos_fecha() -> str:
+    from datetime import date
+
+    meses = (
+        "enero", "febrero", "marzo", "abril", "mayo", "junio",
+        "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+    )
+    hoy = date.today()
+    return f"{hoy.day} de {meses[hoy.month - 1]} de {hoy.year}"
 
 
 def _slug(titulo: str) -> str:
