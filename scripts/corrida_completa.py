@@ -319,7 +319,10 @@ def main() -> int:
             skill=deps.skill,
             legal=deps.legal,
             registro=registro.texto,
-            marcas=[f.brand for f in registro.fichas],
+            marcas=[
+                f["brand"] if isinstance(f, dict) else getattr(f, "brand", "")
+                for f in registro.fichas
+            ],
         )
         estado.save("borrador.json", asdict(salida.draft))
         estado.checkpoint("production", resume_from="judge")
