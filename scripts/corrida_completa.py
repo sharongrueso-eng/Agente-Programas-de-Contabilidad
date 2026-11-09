@@ -135,15 +135,17 @@ def main() -> int:
         else:
             instantanea = load_snapshot(RAIZ / "datos" / "muestra" / "gsc-2026-11-05.json")
         oportunidades = find_opportunities(instantanea.pages, AuditRules.from_file())
-        elegidas = [
-            o
-            for o in oportunidades
-            if o.country == args.pais and requires_body(o.action)
-        ]
+        propias = [o for o in oportunidades if o.country == args.pais]
+        # Primero lo que necesita cuerpo; si no hay, los títulos y metas con demanda real:
+        # con 176.295 impresiones y 544 clics, un título mejor rinde más que otra pieza.
+        con_cuerpo = [o for o in propias if requires_body(o.action)]
+        elegidas = con_cuerpo or propias
         if not elegidas:
-            print("sin oportunidades que necesiten cuerpo para", args.pais)
+            print("sin oportunidades para", args.pais)
             return 2
         elegida = elegidas[0]
+        if not requires_body(elegida.action):
+            print(f"oportunidad: {elegida.action} (título y meta, sin cuerpo)")
         brief = Brief(
             f"{args.entorno}-{date.today().isoformat()}-{args.pais}",
             date.today(),
