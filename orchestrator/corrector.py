@@ -219,7 +219,7 @@ def correct(
     if len(draft.html) > MAX_CARACTERES_ENTEROS:
         for attempt in range(1, max_attempts + 1):
             try:
-                candidato, fallidas = corregir_por_secciones(
+                candidato, fallidas = corregir_por_reemplazos(
                     draft, issues, llm=llm, manual=manual, max_prompt_chars=max_prompt_chars
                 )
             except Exception as error:  # noqa: BLE001 - transporte o presupuesto
@@ -283,3 +283,67 @@ def correct(
         attempts=max_attempts,
         detail=f"el corrector agotó los intentos: {last_detail}",
     )
+
+
+def corregir_por_reemplazos(
+    draft: Draft,
+    issues: Sequence[Any],
+    *,
+    llm: LlmClient,
+    manual: str,
+    max_prompt_chars: int = MAX_PROMPT_CHARS,
+) -> tuple[Draft, int]:
+    """Pide arreglos puntuales y los aplica en código.
+
+    Reescribir una sección entera pedía miles de caracteres de salida y el gateway cortaba.
+    Aquí el modelo devuelve un puñado de pares «buscar / reemplazar» y el cambio lo aplica
+    Python, solo cuando el texto aparece una vez: un reemplazo ambiguo se descarta.
+    """
+    detalle = "; ".join(str(i)[:160] for i in issues)
+    instruccion = "\n".join(
+        [
+            "Corrige la pieza con arreglos puntuales. Devuelve SOLO un JSON, sin explicación:",
+            '[{"buscar": "texto exacto que ya está en la pieza", "reemplazar": "texto nuevo"}]',
+            "",
+            "Reglas: el campo buscar debe ser un fragmento literal y único, de una o dos frases;",
+            "no toques enlaces, no introduzcas cifras nuevas ni marcas nuevas; máximo 8 arreglos.",
+            "",
+            "Hallazgos a corregir:",
+            detalle,
+        ]
+    )
+    messages = [
+        {"role": "system", "content": _system_prompt(manual)},
+        {"role": "user", "content": instruccion + "\n\nPIEZA:\n" + draft.html},
+    ]
+    check_prompt_budget(messages, max_prompt_chars)
+
+    crudo = llm.complete(messages)
+    try:
+        arreglos = json.loads(crudo.strip())
+    except Exception:  # noqa: BLE001
+        try:
+            arreglos = json.loads(_extract_json(crudo))
+        except Exception:  # noqa: BLE001 - sin JSON no hay arreglo, pero la pieza sigue viva
+            return draft, 1
+    if not isinstance(arreglos, list):
+        return draft, 1
+
+    html = draft.html
+    fallidos = 0
+    aplicados = 0
+    for arreglo in arreglos:
+        if not isinstance(arreglo, dict):
+            fallidos += 1
+            continue
+        buscar = str(arreglo.get("buscar", ""))
+        reemplazar = str(arreglo.get("reemplazar", ""))
+        if not buscar or html.count(buscar) != 1:
+            fallidos += 1
+            continue
+        html = html.replace(buscar, reemplazar)
+        aplicados += 1
+
+    if not aplicados:
+        return draft, max(fallidos, 1)
+    return replace(draft, html=html), fallidos

@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, Sequence
 
 from orchestrator.assigner import Brief
 from orchestrator.producer import Draft, DraftParseError
@@ -118,6 +118,7 @@ def producir_por_secciones(
     skill: str,
     legal: str,
     registro: str = "",
+    marcas: Sequence[str] = (),
     max_reintentos: int = 3,
 ) -> SalidaSecciones:
     """Escribe la cabecera y cada bloque con llamadas separadas, y ensambla la pieza."""
@@ -169,6 +170,38 @@ def producir_por_secciones(
     partes: list[str] = [f"<h1>{cabecera['title']}</h1>", str(cabecera["intro"]).strip()]
 
     for clave, instruccion in BLOQUES:
+        # El análisis por marca va marca por marca: una sola llamada con las cuatro no cabe
+        # en la ventana del gateway y el bloque se pierde entero.
+        if clave == "analisis" and marcas:
+            fragmentos: list[str] = []
+            for marca in marcas:
+                trozo = ""
+                for _ in range(max_reintentos):
+                    try:
+                        trozo = _limpiar(
+                            llamar(
+                                "Bloque «analisis»: " + instruccion
+                                + "\n\nDesarrolla SOLO «" + marca + "»: un H3 con su nombre y "
+                                "debajo los planes y precios que el registro publica para esa "
+                                "marca, dos ventajas, dos límites y una frase de veredicto. "
+                                "Nada más."
+                            )
+                        )
+                    except Exception:  # noqa: BLE001 - una marca caída no tumba el bloque
+                        continue
+                    if len(trozo) >= 150:
+                        break
+                    trozo = ""
+                if trozo:
+                    fragmentos.append(trozo)
+            if fragmentos:
+                unido = "\n".join(fragmentos)
+                salida.bloques[clave] = unido
+                partes.append(unido)
+            else:
+                salida.fallidos.append(clave)
+            continue
+
         fragmento = ""
         for _ in range(max_reintentos):
             try:

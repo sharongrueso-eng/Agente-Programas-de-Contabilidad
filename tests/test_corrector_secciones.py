@@ -1,5 +1,6 @@
-"""El corrector de una pieza larga trabaja por secciones, no de una sola llamada."""
+"""El corrector de una pieza larga pide arreglos puntuales, no reescrituras completas."""
 
+import json
 import unittest
 
 from orchestrator.corrector import correct
@@ -8,7 +9,9 @@ from orchestrator.producer import Draft
 
 def pieza(secciones: int = 6, relleno: int = 4000) -> Draft:
     cuerpo = "".join(
-        f"<h2>Sección {i}</h2><p>" + ("Texto de la sección. " * (relleno // 20)) + "</p>"
+        f"<h2>Sección {i}</h2><p>Frase distinguible {i}. "
+        + ("Texto de la sección. " * (relleno // 20))
+        + "</p>"
         for i in range(secciones)
     )
     return Draft(
@@ -21,43 +24,50 @@ def pieza(secciones: int = 6, relleno: int = 4000) -> Draft:
 
 
 class FakeLlm:
-    def __init__(self) -> None:
+    def __init__(self, respuesta: str | None = None) -> None:
         self.llamadas = 0
         self.tamanos: list[int] = []
+        self.respuesta = respuesta
 
     def complete(self, messages):
         self.llamadas += 1
-        contenido = messages[-1]["content"]
-        self.tamanos.append(len(contenido))
-        return contenido.split("SECCIÓN:", 1)[1].strip()
+        self.tamanos.append(len(messages[-1]["content"]))
+        if self.respuesta is not None:
+            return self.respuesta
+        return json.dumps(
+            [{"buscar": "Frase distinguible 0.", "reemplazar": "Frase distinguible cero."}],
+            ensure_ascii=False,
+        )
 
 
-class SectionCorrectionTests(unittest.TestCase):
-    def test_a_long_piece_is_corrected_section_by_section(self) -> None:
+class ReplacementCorrectionTests(unittest.TestCase):
+    def test_a_long_piece_is_fixed_with_one_short_answer(self) -> None:
         borrador = pieza()
         llm = FakeLlm()
 
-        resultado = correct(borrador, [{"code": "respuesta_rapida", "detail": "falta"}], llm=llm, manual="manual")
+        resultado = correct(
+            borrador, [{"code": "respuesta_rapida", "detail": "falta"}], llm=llm, manual="manual"
+        )
 
         self.assertEqual(resultado.status, "DONE")
-        self.assertGreater(llm.llamadas, 1)
-        self.assertEqual(len(resultado.draft.html), len(borrador.html))
-
-    def test_no_single_call_carries_the_whole_piece(self) -> None:
-        borrador = pieza()
-        llm = FakeLlm()
-
-        correct(borrador, [{"code": "x", "detail": "y"}], llm=llm, manual="manual")
-
-        self.assertTrue(all(t < len(borrador.html) for t in llm.tamanos))
-
-    def test_a_short_piece_still_goes_in_one_call(self) -> None:
-        borrador = pieza(secciones=1, relleno=400)
-        llm = FakeLlm()
-
-        correct(borrador, [{"code": "x", "detail": "y"}], llm=llm, manual="manual")
-
         self.assertEqual(llm.llamadas, 1)
+        self.assertIn("Frase distinguible cero", resultado.draft.html)
+
+    def test_an_ambiguous_fragment_is_discarded(self) -> None:
+        borrador = pieza()
+        llm = FakeLlm(json.dumps([{"buscar": "<p>", "reemplazar": "<p class=\"x\">"}]))
+
+        resultado = correct(borrador, [{"code": "x", "detail": "y"}], llm=llm, manual="manual")
+
+        self.assertEqual(resultado.status, "FAILED")
+
+    def test_an_answer_without_json_leaves_the_piece_untouched(self) -> None:
+        borrador = pieza()
+        llm = FakeLlm("no pienso devolver JSON")
+
+        resultado = correct(borrador, [{"code": "x", "detail": "y"}], llm=llm, manual="manual")
+
+        self.assertEqual(resultado.status, "FAILED")
 
 
 if __name__ == "__main__":
