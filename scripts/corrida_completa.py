@@ -23,6 +23,7 @@ from orchestrator.assigner import Brief  # noqa: E402
 from orchestrator.audit import AuditRules, Opportunity, find_opportunities  # noqa: E402
 from orchestrator.brief_io import load_brief  # noqa: E402
 from orchestrator.gsc_io import load_snapshot  # noqa: E402
+from orchestrator.resiliencia import ModeloConReintentos  # noqa: E402
 from orchestrator.mcp_client import cliente_desde_entorno  # noqa: E402
 from orchestrator.mcp_publish import MapaPublicaciones  # noqa: E402
 from orchestrator.producer import requires_body  # noqa: E402
