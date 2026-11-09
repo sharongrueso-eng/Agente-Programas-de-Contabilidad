@@ -8,6 +8,7 @@ auditoría. Nada de archivos de muestra: si no hay datos, la corrida no inventa 
 from __future__ import annotations
 
 import importlib.util
+from dataclasses import replace
 from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Sequence
@@ -79,6 +80,32 @@ def filas(
     return acumulado
 
 
+MARCAS_PAIS = (
+    ("mexico", "MX"),
+    ("mexicano", "MX"),
+    ("cfdi", "MX"),
+    ("colombia", "CO"),
+    ("dian", "CO"),
+    ("costa-rica", "CR"),
+    ("costarica", "CR"),
+    ("republica-dominicana", "DO"),
+    ("dominicana", "DO"),
+)
+
+
+def pais_de_url(url: str, por_defecto: str) -> str:
+    """El mercado de una página se lee en su propia URL, no en el argumento de la corrida.
+
+    Sin esto, una pieza sobre Facturama y el SAT se etiquetaba como Colombia y el control de
+    normativa la bloqueaba con razón.
+    """
+    ruta = url.lower()
+    for marca, pais in MARCAS_PAIS:
+        if marca in ruta:
+            return pais
+    return por_defecto
+
+
 def snapshot_desde_mcp(
     pais: str,
     *,
@@ -96,4 +123,7 @@ def snapshot_desde_mcp(
             f"Search Console no devolvió filas para {pais} entre {start} y {end}; "
             "sin datos no se elige tema"
         )
-    return Snapshot(captured_at=end, pages=tuple(paginas))
+    etiquetadas = tuple(
+        replace(pagina, country=pais_de_url(pagina.url, pais)) for pagina in paginas
+    )
+    return Snapshot(captured_at=end, pages=etiquetadas)
