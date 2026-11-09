@@ -255,14 +255,27 @@ def main() -> int:
                 timeout=240,
             ),
         ]),
-        corrector=LiteLlmClient(
-            base_url=os.environ["OPENAI_BASE_URL"],
-            api_key=os.environ["PDC_LLM_KEY"],
-            model=os.environ.get("PDC_MODEL_CORRECTOR", "zai/glm-5.3"),
-            # Una sección no necesita 20.000 tokens; con ese presupuesto el modelo razona de
-            # más y el gateway corta a los ~180 s con un 504.
-            max_tokens=6000,
-            timeout=240,
+        corrector=ModeloConReintentos(
+            [
+                LiteLlmClient(
+                    base_url=os.environ["OPENAI_BASE_URL"],
+                    api_key=os.environ["PDC_LLM_KEY"],
+                    model=os.environ.get("PDC_MODEL_CORRECTOR", "zai/glm-5.3"),
+                    max_tokens=6000,
+                    timeout=240,
+                ),
+                LiteLlmClient(
+                    base_url=os.environ["OPENAI_BASE_URL"],
+                    api_key=os.environ["PDC_LLM_KEY"],
+                    model="deepseek/deepseek-v4-flash",
+                    max_tokens=6000,
+                    timeout=240,
+                ),
+            ],
+            # El corrector lee la pieza entera a propósito: recortarla rompería los fragmentos
+            # que tiene que localizar. Se reintenta con otro modelo si la respuesta viene vacía.
+            max_caracteres=120_000,
+            intentos_por_modelo=2,
         ),
         wp=WpNulo(),
         publisher=None,
