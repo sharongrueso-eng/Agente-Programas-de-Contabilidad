@@ -154,6 +154,7 @@ artículo**: la pieza vive en `url_objetivo` y su contenido no se toca."""
 - Menciona a Alegra por su nombre y deja espacio para tres enlaces a Alegra con UTM.
 - Honestidad: escribe «revisé» cuando solo consultaste documentación oficial. Escribe «probé» únicamente si el registro de datos trae evidencia de una prueba hecha por una persona.
 - No inventes precios, funciones, testimonios ni cifras que no estén en la evidencia del brief.
+- Si la marca que nombra la keyword no tiene ficha en el registro de datos, el título y la meta no prometen precios, funciones ni análisis de esa marca: describen el tema y comparan solo con lo que el registro contiene.
 - Si un dato de un competidor no está publicado en su sitio, no lo estimes ni lo deduzcas: escribe
   que no publica esa información («no publica precios», «no se encuentra público», «no está publicado»)
   y sigue con el artículo. La ausencia declarada es información válida; una cifra inventada no.
