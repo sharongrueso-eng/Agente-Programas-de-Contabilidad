@@ -122,6 +122,7 @@ class Deps:
     urls_internas: Any = None
     post_existente: int | None = None
     subir_media: Any = None
+    permitir_vivo: bool = False
     brands_available: int | None = None
     publicar_con_observaciones: bool = False
     dominio: str = "programascontabilidad.com"
@@ -438,6 +439,7 @@ def run(
             solo_borrador=deps.solo_borrador,
             post_id=deps.post_existente,
             subir_media=deps.subir_media,
+            permitir_vivo=deps.permitir_vivo,
         )
         steps.append({"step": "publication", "status": result["status"], "via": "mcp"})
         state.save("publicacion.json", result)

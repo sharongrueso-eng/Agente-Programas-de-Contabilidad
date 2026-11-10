@@ -170,6 +170,7 @@ def publicar(
     solo_borrador: bool = False,
     post_id: int | None = None,
     subir_media: Any = None,
+    permitir_vivo: bool = False,
 ) -> dict[str, Any]:
     """Publica una pieza por MCP. Nunca deja un post publicado sin `pdc_run_id`."""
     run_id = brief.task_id
@@ -232,20 +233,27 @@ def publicar(
 
     mapa.confirmar(run_id, post_id, "borrador_creado")
 
-    # Un artículo vivo no se toca en modo borrador: la verificación de antes, no la de después.
+    # Un artículo vivo solo se toca si la corrida lo autoriza, y entonces se guarda lo
+    # anterior para poder devolverlo tal cual si la escritura no se confirma.
+    anterior: dict[str, Any] = {}
     if post_id is not None:
         previo = _estado_post(ejecutar, post_id)
         estado_previo = str(previo.get("status") or previo.get("post_status") or "").lower()
         if estado_previo and estado_previo != "draft":
-            return _resultado(
-                "FAILED",
-                brief,
-                post_id=post_id,
-                block_reason=(
-                    f"el post {post_id} está «{estado_previo}», no en borrador: "
-                    "no se modifica un artículo vivo en una corrida de prueba"
-                ),
-            )
+            if not permitir_vivo:
+                return _resultado(
+                    "FAILED",
+                    brief,
+                    post_id=post_id,
+                    block_reason=(
+                        f"el post {post_id} está «{estado_previo}», no en borrador: "
+                        "no se modifica un artículo vivo sin autorizarlo"
+                    ),
+                )
+            anterior = {
+                "title": previo.get("title") or previo.get("post_title") or "",
+                "excerpt": previo.get("excerpt") or previo.get("post_excerpt") or "",
+            }
 
     metas = {
         "pdc_run_id": run_id,
@@ -295,6 +303,17 @@ def publicar(
             block_reason=f"la firma no es la de Leandro: el post tiene el autor {autor}",
         )
 
+    if post_id is not None:
+        cambios: dict[str, Any] = {"post_id": post_id}
+        if draft.title.strip():
+            cambios["title"] = draft.title.strip()
+        if draft.meta_description.strip():
+            cambios["excerpt"] = draft.meta_description.strip()
+        if draft.html.strip():
+            cambios["content"] = draft.html
+        if len(cambios) > 1:
+            ejecutar(ABILITIES["actualizar"], cambios)
+
     mapa.confirmar(run_id, post_id, "borrador_verificado")
 
     # Verificación final: el título que quedó en WordPress tiene que ser el que escribimos.
@@ -304,13 +323,28 @@ def publicar(
         final.get("title") or final.get("post_title") or ""
     ).strip()
     if titulo_final and titulo_final != draft.title.strip():
+        if anterior.get("title"):
+            try:
+                ejecutar(
+                    ABILITIES["actualizar"],
+                    {
+                        "post_id": post_id,
+                        "title": anterior["title"],
+                        "excerpt": anterior.get("excerpt", ""),
+                    },
+                )
+            except Exception:  # noqa: BLE001 - la reversa se intenta y se informa igual
+                pass
+            reversa = " Se intentó devolver el título anterior."
+        else:
+            reversa = ""
         return _resultado(
             "FAILED",
             brief,
             post_id=post_id,
             block_reason=(
                 "WordPress no guardó el título: quedó "
-                f"«{titulo_final[:70]}» y se escribió «{draft.title[:70]}»"
+                f"«{titulo_final[:70]}» y se escribió «{draft.title[:70]}»." + reversa
             ),
         )
 

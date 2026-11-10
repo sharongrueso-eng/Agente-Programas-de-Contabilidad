@@ -307,6 +307,8 @@ def main() -> int:
         publicar_con_observaciones=True,
         post_existente=post_existente,
         subir_media=subir_media,
+        # Un reencauche de snippet sí escribe sobre el artículo vivo: es su trabajo.
+        permitir_vivo=not requires_body(brief.opportunity.action),
         brands_available=len(registro.fichas),
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
