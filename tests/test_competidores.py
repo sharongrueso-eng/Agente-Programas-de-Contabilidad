@@ -48,7 +48,7 @@ class AutorizacionTests(unittest.TestCase):
         relacion = cargar("CO", self.ruta)
         html = '<a href="https://www.contalink.com/precios/">Contalink</a>'
 
-        self.assertEqual(enlaces_no_autorizados(html, relacion), ["www.worldoffice.com.co"])
+        self.assertEqual(enlaces_no_autorizados(html, relacion), ["www.contalink.com"])
 
     def test_an_empty_relation_blocks_every_competitor(self) -> None:
         relacion = Relacion(pais="MX")
@@ -111,5 +111,5 @@ class AmbitoTests(unittest.TestCase):
         viejo = [c for c in veredicto("refresh_structure").controls if c.code == "competidor_autorizado"]
 
         self.assertEqual(len(nuevo), 1)
-        self.assertNotEqual(nuevo[0].status, "PASS")
+        self.assertIn(nuevo[0].status, {"CORREGIR", "BLOQUEADO"})
         self.assertEqual(viejo, [])
