@@ -248,6 +248,24 @@ def validate(
         )
     )
 
+    # La relación de competidores solo restringe artículos nuevos: un post ya publicado puede
+    # nombrar a quien siempre nombró, y reescribirle los enlaces no es el trabajo del agente.
+    if action == "create" and has_body:
+        from orchestrator.competidores import cargar as cargar_relacion, enlaces_no_autorizados
+
+        fuera = enlaces_no_autorizados(draft.html, cargar_relacion(brief.country))
+        controls.append(
+            _control(
+                "competidor_autorizado",
+                not fuera,
+                (
+                    "enlaces a competidores fuera de la relación: " + ", ".join(fuera[:3])
+                    if fuera
+                    else "solo enlaza competidores de la relación"
+                ),
+            )
+        )
+
     fallos_visuales = problemas_linea_visual(draft.html) if has_body else []
     controls.append(
         _control(

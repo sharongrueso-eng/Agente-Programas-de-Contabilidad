@@ -46,7 +46,7 @@ class AutorizacionTests(unittest.TestCase):
 
     def test_a_competitor_outside_the_list_is_not_linked(self) -> None:
         relacion = cargar("CO", self.ruta)
-        html = '<a href="https://www.worldoffice.com.co/precios/">World Office</a>'
+        html = '<a href="https://www.contalink.com/precios/">Contalink</a>'
 
         self.assertEqual(enlaces_no_autorizados(html, relacion), ["www.worldoffice.com.co"])
 
@@ -66,3 +66,50 @@ class AutorizacionTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AmbitoTests(unittest.TestCase):
+    """La restricción aplica al artículo nuevo; el ya publicado conserva sus menciones."""
+
+    def test_the_control_only_runs_for_a_new_article(self) -> None:
+        from datetime import date
+
+        from orchestrator.assigner import Brief
+        from orchestrator.audit import Opportunity
+        from orchestrator.producer import Draft
+        from orchestrator.validator import ValidationRules, validate
+
+        html = (
+            '<h2>Precios de Contalink</h2><p>Texto suficientemente largo para la pieza.</p>'
+            '<a href="https://www.contalink.com/precios/">Contalink</a>'
+        )
+
+        def veredicto(accion: str):
+            pieza = Draft(
+                title="Mejores software contable Colombia",
+                meta_description="Comparativa con precios publicados y criterios de elección.",
+                html=html,
+                alt_text="Portada",
+                slug="mejores-software-contable-colombia",
+            )
+            oportunidad = Opportunity(
+                url="https://programascontabilidad.com/x/",
+                country="CO",
+                action=accion,
+                focus_keyword="software contable colombia",
+                intent="best",
+                score=10.0,
+                evidence={},
+            )
+            brief = Brief(
+                task_id="t", date=date(2026, 11, 10), slot="A", format="resena",
+                country="CO", opportunity=oportunidad,
+            )
+            return validate(pieza, brief, ValidationRules())
+
+        nuevo = [c for c in veredicto("create").controls if c.code == "competidor_autorizado"]
+        viejo = [c for c in veredicto("refresh_structure").controls if c.code == "competidor_autorizado"]
+
+        self.assertEqual(len(nuevo), 1)
+        self.assertNotEqual(nuevo[0].status, "PASS")
+        self.assertEqual(viejo, [])
