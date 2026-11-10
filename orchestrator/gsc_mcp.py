@@ -15,6 +15,7 @@ from typing import Any, Sequence
 
 from orchestrator.gsc_api import snapshot_from_rows
 from orchestrator.gsc_io import Snapshot
+from orchestrator.mercado import pais_de_pagina
 
 SITIO_PDC = "sc-domain:programascontabilidad.com"
 # Google publica con dos o tres días de retraso: la última fecha cerrada es hoy menos tres.
@@ -124,6 +125,14 @@ def snapshot_desde_mcp(
             "sin datos no se elige tema"
         )
     etiquetadas = tuple(
-        replace(pagina, country=pais_de_url(pagina.url, pais)) for pagina in paginas
+        replace(
+            pagina,
+            country=pais_de_pagina(
+                pagina.url,
+                [q.query for q in getattr(pagina, "top_queries", ())],
+                pais,
+            ).pais,
+        )
+        for pagina in paginas
     )
     return Snapshot(captured_at=end, pages=etiquetadas)

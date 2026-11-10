@@ -74,7 +74,14 @@ def load_fichas(folder: str | Path) -> list[dict[str, Any]]:
         except json.JSONDecodeError as error:
             raise ValueError(f"{path.name}: JSON inválido ({error})") from error
 
-        missing = [field for field in REQUIRED_FIELDS if not data.get(field)]
+        # `plans` vacío es legítimo cuando el proveedor no publica precios y la ficha lo
+        # declara: la ausencia declarada es un dato, no un hueco.
+        sin_precios = not data.get("plans") and bool(data.get("pricing_note"))
+        missing = [
+            field
+            for field in REQUIRED_FIELDS
+            if not data.get(field) and not (field == "plans" and sin_precios)
+        ]
         if missing:
             raise ValueError(f"{path.name}: falta {', '.join(missing)}")
 
