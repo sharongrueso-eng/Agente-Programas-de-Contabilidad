@@ -40,4 +40,8 @@ RUN mkdir -p /data/state /data/sitio /data/gsc \
 
 USER pdc
 
-ENTRYPOINT ["python", "scripts/corrida_diaria.py"]
+# El contenedor queda encendido y en espera. Coolify no crea cron dentro de la imagen: entra
+# al contenedor y lanza el comando de la tarea programada, así que necesita encontrarlo vivo.
+# Si el contenedor terminara al arrancar -como hacía antes-, la tarea no tendría dónde correr.
+# La cadena se ejecuta con: docker exec <contenedor> python scripts/corrida_diaria.py
+ENTRYPOINT ["sleep", "infinity"]
