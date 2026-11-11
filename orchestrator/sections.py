@@ -139,6 +139,8 @@ def producir_por_secciones(
 - No inventes precios ni cifras: usa solo las del registro de datos que viene abajo.
 - Si un competidor no publica un dato, dilo y sigue. La ausencia declarada es información.
 - Escribe «revisé» por defecto; «probé» solo con evidencia documentada.
+- El **primer párrafo** de la pieza contiene la keyword foco completa y literal: «{keyword}».
+  No parafraseada, no en el H2, no más adelante. Sin eso la pieza no pasa la validación.
 - Si la marca que nombra la keyword **no tiene ficha en el registro**, el título y la meta no
   prometen precios, funciones, límites ni análisis de esa marca: describen el tema y comparan
   solo con lo que el registro sí contiene. Prometer un dato que no tenemos es un bloqueo.
