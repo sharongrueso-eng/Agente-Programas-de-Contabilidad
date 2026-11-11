@@ -11,6 +11,7 @@ pieza entera.
 from __future__ import annotations
 
 import json
+from pathlib import Path
 import re
 from dataclasses import dataclass, field
 from typing import Any, Sequence
@@ -121,6 +122,7 @@ def producir_por_secciones(
     registro: str = "",
     marcas: Sequence[str] = (),
     fichas: Sequence[Any] = (),
+    carpeta: Path | None = None,
     max_reintentos: int = 3,
 ) -> SalidaSecciones:
     """Escribe la cabecera y cada bloque con llamadas separadas, y ensambla la pieza."""
@@ -218,6 +220,14 @@ def producir_por_secciones(
                 salida.fallidos.append(clave)
             continue
 
+        guardado = (carpeta / f"{clave}.html") if carpeta else None
+        if guardado and guardado.exists():
+            previo = guardado.read_text(encoding="utf-8").strip()
+            if len(previo) >= 80:
+                salida.bloques[clave] = previo
+                partes.append(previo)
+                continue
+
         fragmento = ""
         for _ in range(max_reintentos):
             try:
@@ -238,6 +248,9 @@ def producir_por_secciones(
 
         salida.bloques[clave] = fragmento
         partes.append(fragmento)
+        if guardado:
+            guardado.parent.mkdir(parents=True, exist_ok=True)
+            guardado.write_text(fragmento, encoding="utf-8")
 
     html = "\n\n".join(partes)
     salida.draft = Draft(

@@ -8,6 +8,8 @@ auditoría. Nada de archivos de muestra: si no hay datos, la corrida no inventa 
 from __future__ import annotations
 
 import importlib.util
+import json
+import re
 from dataclasses import replace
 from datetime import date, timedelta
 from pathlib import Path
@@ -17,6 +19,7 @@ from orchestrator.gsc_api import snapshot_from_rows
 from orchestrator.gsc_io import Snapshot
 from orchestrator.mercado import pais_de_pagina
 
+RAIZ_CACHE = Path(__file__).resolve().parent.parent / "state" / "gsc"
 SITIO_PDC = "sc-domain:programascontabilidad.com"
 # Google publica con dos o tres días de retraso: la última fecha cerrada es hoy menos tres.
 RETRASO_DIAS = 3
@@ -40,14 +43,30 @@ def _servidor(ruta: Path | None = None) -> Any:
     return modulo
 
 
+def _cache_filas(site_url: str, start: date, end: date) -> Path:
+    limpio = re.sub(r"[^a-zA-Z0-9]+", "_", site_url).strip("_")
+    return RAIZ_CACHE / f"{limpio}-{start.isoformat()}-{end.isoformat()}.json"
+
+
 def filas(
     site_url: str,
     start: date,
     end: date,
     dimensiones: Sequence[str] = ("page", "query"),
     servidor: Any = None,
+    cache: bool = True,
 ) -> list[dict[str, Any]]:
-    """Pide todas las filas del periodo, paginando hasta que la API diga que no hay más."""
+    """Pide todas las filas del periodo, paginando hasta que la API diga que no hay más.
+
+    La ventana está cerrada, así que los datos no cambian: se guardan por día y se reutilizan.
+    """
+    archivo = _cache_filas(site_url, start, end)
+    if cache and archivo.exists():
+        try:
+            return json.loads(archivo.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            pass
+
     modulo = servidor or _servidor()
     acumulado: list[dict[str, Any]] = []
     inicio = 0

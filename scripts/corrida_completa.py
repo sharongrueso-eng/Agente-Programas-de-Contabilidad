@@ -380,6 +380,7 @@ def main() -> int:
                 for f in registro.fichas
             ],
             fichas=list(registro.fichas),
+            carpeta=RAIZ / "state" / "corridas" / brief.task_id / "bloques",
         )
         estado.save("borrador.json", asdict(salida.draft))
         estado.checkpoint("production", resume_from="judge")
