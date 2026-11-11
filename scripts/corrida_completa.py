@@ -276,7 +276,7 @@ def main() -> int:
         print(f"reencauche: {destino}")
 
     urls_para_enlaces: list[str] = []
-    if args.brief and args.gsc:
+    if args.brief:
         try:
             from orchestrator.gsc_mcp import snapshot_desde_mcp
 

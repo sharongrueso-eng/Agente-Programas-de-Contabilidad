@@ -217,7 +217,9 @@ def correct(
 
     # Pieza larga: se corrige por secciones y se acepta con la misma guarda determinista.
     if len(draft.html) > MAX_CARACTERES_ENTEROS:
-        for attempt in range(1, max_attempts + 1):
+        # Una pieza de este tamaño casi nunca vuelve con contenido: se intenta una vez y se
+        # informa, en lugar de repetir siete llamadas largas que el gateway corta.
+        for attempt in range(1, 2):
             try:
                 candidato, fallidas = corregir_por_reemplazos(
                     draft, issues, llm=llm, manual=manual, max_prompt_chars=max_prompt_chars
