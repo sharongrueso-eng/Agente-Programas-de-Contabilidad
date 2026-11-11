@@ -1,0 +1,23 @@
+{
+  "task_id": "prod-nuevo-comparativa-alegra-siigo",
+  "date": "2026-11-11",
+  "slot": "A",
+  "format": "comparativa",
+  "country": "CO",
+  "opportunity": {
+    "url": "https://programascontabilidad.com/comparativas-de-software/alegra-vs-siigo/",
+    "country": "CO",
+    "action": "create",
+    "focus_keyword": "alegra vs siigo",
+    "intent": "comparison",
+    "score": 70.0,
+    "evidence": {
+      "reason": "artículo nuevo de comparación; Alegra y Siigo tienen ficha en el registro de Colombia",
+      "impressions": 0,
+      "clicks": 0,
+      "ctr": 0.0,
+      "position": 0.0
+    }
+  },
+  "skipped_reason": ""
+}
