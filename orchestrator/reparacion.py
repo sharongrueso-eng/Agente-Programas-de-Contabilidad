@@ -62,3 +62,26 @@ _MESES = (
     "enero", "febrero", "marzo", "abril", "mayo", "junio",
     "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
 )
+
+
+def completar_captions(draft: Draft, *, fecha: date | None = None) -> Draft:
+    """Pone pie de fuente y fecha a las tablas que no lo llevan.
+
+    La línea visual lo exige y es un defecto de forma: pedirle al modelo que lo arregle en
+    una pieza de 46.000 caracteres cuesta una llamada larga que vuelve vacía.
+    """
+    dia = fecha or date.today()
+    texto = f"Precios y datos consultados el {dia.day} de {_MESES[dia.month - 1]} de {dia.year}."
+    pie = (
+        f'<caption style="caption-side:bottom;text-align:left;padding:10px 16px;font-size:13px;'
+        f'line-height:1.5;font-weight:400;color:#4B5563;">{texto}</caption>'
+    )
+
+    def con_pie(match: re.Match[str]) -> str:
+        tabla = match.group(0)
+        if "<caption" in tabla.lower():
+            return tabla
+        return re.sub(r"(<table[^>]*>)", r"\1" + pie, tabla, count=1, flags=re.IGNORECASE)
+
+    html = re.sub(r"<table.*?</table>", con_pie, draft.html, flags=re.IGNORECASE | re.DOTALL)
+    return draft if html == draft.html else replace(draft, html=html)

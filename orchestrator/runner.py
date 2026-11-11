@@ -27,7 +27,7 @@ from orchestrator.preparacion import (
     generate_image,
 )
 from orchestrator.producer import Draft, fingerprint, produce, requires_body
-from orchestrator.reparacion import completar_cta
+from orchestrator.reparacion import completar_captions, completar_cta
 from orchestrator.publisher import PublishConditions, publish
 from orchestrator.validator import (
     BLOQUEADO,
@@ -248,6 +248,12 @@ def run(
             draft = con_cta
             state.save("borrador.json", asdict(draft))
             steps.append({"step": "estructura", "status": "DONE", "accion": "cta_final"})
+
+        con_pie = completar_captions(draft)
+        if con_pie.html != draft.html:
+            draft = con_pie
+            state.save("borrador.json", asdict(draft))
+            steps.append({"step": "estructura", "status": "DONE", "accion": "caption"})
 
     verdict = None
     if start <= ORDER.index("judge"):
