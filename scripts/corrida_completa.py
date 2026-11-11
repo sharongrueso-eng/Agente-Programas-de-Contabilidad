@@ -119,8 +119,6 @@ def main() -> int:
         if not ruta.exists():
             continue
         for clave, valor in env(ruta).items():
-            import os
-
             os.environ.setdefault(clave, valor)
 
     if args.revertir:
