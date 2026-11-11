@@ -45,7 +45,7 @@ def main() -> int:
             ficha = {
                 "brand": marca,
                 "country": pais,
-                "product": "",
+                "product": "por confirmar en su landing",
                 "plans": [],
                 "source_url": info["urls"][0] if info.get("urls") else "",
                 "captured_at": hoy,

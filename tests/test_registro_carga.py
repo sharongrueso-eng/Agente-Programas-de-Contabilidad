@@ -65,7 +65,7 @@ class CargaTests(unittest.TestCase):
         with TemporaryDirectory() as carpeta:
             rota = ficha()
             del rota["source_url"]
-            (Path(carpeta) / "rota.json").write_text(json.dumps(rota), encoding="utf-8")
+            (Path(carpeta) / "rota-co.json").write_text(json.dumps(rota), encoding="utf-8")
 
             registro = cargar_registro("CO", carpeta, today=date(2026, 11, 6))
 

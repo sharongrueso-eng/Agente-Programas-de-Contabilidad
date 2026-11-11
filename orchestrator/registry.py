@@ -61,14 +61,21 @@ def _canonical(amount: str) -> str:
     return limpio.rstrip(".,")
 
 
-def load_fichas(folder: str | Path) -> list[dict[str, Any]]:
-    """Lee las fichas JSON de una carpeta. Una ficha sin fuente es un error, no un aviso."""
+def load_fichas(folder: str | Path, solo_pais: str | None = None) -> list[dict[str, Any]]:
+    """Lee las fichas JSON de una carpeta. Una ficha sin fuente es un error, no un aviso.
+
+    Con `solo_pais` se revisan únicamente las de ese mercado: una ficha rota de México no
+    puede impedir publicar sobre Colombia.
+    """
     root = Path(folder)
     if not root.exists():
         return []
 
     fichas: list[dict[str, Any]] = []
+    sufijo = f"-{solo_pais.lower()}.json" if solo_pais else ""
     for path in sorted(root.glob("*.json")):
+        if sufijo and not path.name.lower().endswith(sufijo):
+            continue
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
         except json.JSONDecodeError as error:
@@ -188,8 +195,13 @@ def cargar_registro(
     Sin fichas del país no hay nada que citar, y eso se trata como bloqueo: publicar
     cifras sin registro es justo lo que este módulo existe para impedir.
     """
+    # Una ficha rota de México no puede impedir publicar sobre Colombia: se revisan primero
+    # las del mercado pedido -el nombre del archivo lleva su país- y solo esas deciden.
+    carpeta = Path(folder)
+    if not carpeta.is_absolute() and not carpeta.exists():
+        carpeta = Path(__file__).resolve().parent.parent / carpeta
     try:
-        todas = load_fichas(folder)
+        todas = load_fichas(carpeta, solo_pais=country)
     except ValueError as error:
         return Registro(country, [], "", [], error=str(error))
 
