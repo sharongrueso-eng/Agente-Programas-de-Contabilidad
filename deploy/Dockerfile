@@ -29,8 +29,7 @@ COPY mcp-gsc ./mcp-gsc
 # Pillow solo para recomprimir la portada: el gateway entrega ~1,3 MB y la web necesita
 # menos de 300 KB. Es la única dependencia externa del proyecto.
 RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir "pillow>=11" "google-api-python-client>=2" "google-auth>=2" \
-    && pip install --no-cache-dir -e .
+    && pip install --no-cache-dir "pillow>=11" "google-api-python-client>=2" "google-auth>=2"
 
 # El estado vive fuera de la imagen y se monta como volumen: corridas, mapas de publicación
 # y cachés sobreviven al contenedor.

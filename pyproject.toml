@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "programascontabilidad-studio"
 version = "0.1.0"
@@ -12,3 +16,8 @@ image = ["pillow>=11"]
 
 [project.scripts]
 pdc-agent = "orchestrator.cli:main"
+
+# Varias carpetas de primer nivel (datos, rules, skills) no son paquetes. Sin esta línea
+# setuptools se niega a instalar: «Multiple top-level packages discovered in a flat-layout».
+[tool.setuptools]
+packages = ["orchestrator"]
