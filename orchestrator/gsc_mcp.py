@@ -40,9 +40,22 @@ def _preparar_llave() -> None:
     """
     if os.environ.get("GSC_SA_KEY"):
         return
-    contenido = os.environ.get("GSC_SERVICE_ACCOUNT_JSON", "").strip()
-    if not contenido:
+    if "GSC_SERVICE_ACCOUNT_JSON" not in os.environ:
         return
+    contenido = os.environ["GSC_SERVICE_ACCOUNT_JSON"].strip()
+    if not contenido:
+        raise RuntimeError(
+            "GSC_SERVICE_ACCOUNT_JSON está definida pero vacía: vuelve a pegar el JSON de la "
+            "cuenta de servicio, en una sola línea"
+        )
+    try:
+        json.loads(contenido)
+    except json.JSONDecodeError as error:
+        raise RuntimeError(
+            f"GSC_SERVICE_ACCOUNT_JSON no es un JSON válido ({error}); tiene "
+            f"{len(contenido)} caracteres y empieza por {contenido[:1]!r}. Debe empezar por "
+            "'{' y terminar en '}' en una sola línea"
+        ) from error
     raiz = Path(os.environ.get("PDC_STATE_DIR") or (Path.home() / ".pdc"))
     destino = raiz / "gsc-service-account.json"
     destino.parent.mkdir(parents=True, exist_ok=True)
