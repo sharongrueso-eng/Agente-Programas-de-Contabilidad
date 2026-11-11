@@ -29,6 +29,7 @@ from orchestrator.preparacion import (
 from orchestrator.producer import Draft, fingerprint, produce, requires_body
 from orchestrator.reparacion import (
     agregar_enlaces_internos,
+    ajustar_meta,
     completar_captions,
     completar_cta,
     normalizar_slug,
@@ -259,6 +260,12 @@ def run(
             draft = con_pie
             state.save("borrador.json", asdict(draft))
             steps.append({"step": "estructura", "status": "DONE", "accion": "caption"})
+
+        con_meta = ajustar_meta(draft)
+        if con_meta.meta_description != draft.meta_description:
+            draft = con_meta
+            state.save("borrador.json", asdict(draft))
+            steps.append({"step": "estructura", "status": "DONE", "accion": "meta"})
 
         sin_anio = normalizar_slug(draft)
         if sin_anio.slug != draft.slug:

@@ -101,3 +101,14 @@ def agregar_enlaces_internos(draft: Draft, urls: list[str], minimo: int = 5) -> 
 def _titulo_de(url: str) -> str:
     ultimo = url.rstrip("/").split("/")[-1].replace("-", " ")
     return ultimo[:1].upper() + ultimo[1:] if ultimo else url
+
+
+def ajustar_meta(draft: Draft, maximo: int = 165) -> Draft:
+    """Recorta la meta al límite sin cortar una palabra por la mitad."""
+    meta = draft.meta_description.strip()
+    if len(meta) <= maximo:
+        return draft
+    recorte = meta[: maximo - 1].rsplit(" ", 1)[0].rstrip(" ,;:")
+    if not recorte.endswith("."):
+        recorte += "."
+    return replace(draft, meta_description=recorte)

@@ -275,6 +275,15 @@ def main() -> int:
         destino = f"actualiza el post {post_existente}" if post_existente else "la URL no existe, se crea"
         print(f"reencauche: {destino}")
 
+    urls_para_enlaces: list[str] = []
+    if args.brief and args.gsc:
+        try:
+            from orchestrator.gsc_mcp import snapshot_desde_mcp
+
+            urls_para_enlaces = [p.url for p in snapshot_desde_mcp(args.pais).pages][:12]
+        except Exception:  # noqa: BLE001 - sin enlaces internos se sigue
+            urls_para_enlaces = []
+
     deps = Deps(
         producer=LiteLlmClient(
             base_url=os.environ["OPENAI_BASE_URL"],
