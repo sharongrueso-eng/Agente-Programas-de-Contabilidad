@@ -45,6 +45,15 @@ def _hora(texto: str, por_defecto: time) -> time:
 
 
 def dentro_de_ventana(ahora: datetime | None = None) -> tuple[bool, str]:
+    """Comprueba que se puede trabajar ahora.
+
+    `PDC_FORZAR=1` salta la comprobación de ventana y de fin de semana: es para las pruebas
+    manuales desde «Execute now», no para el calendario, que ya dispara dentro de la ventana.
+    """
+    forzado = os.environ.get("PDC_FORZAR", "").strip().lower() in {"1", "true", "sí", "si"}
+    if forzado:
+        return True, ""
+
     momento = (ahora or datetime.now(ZONA)).astimezone(ZONA)
     inicio = _hora(os.environ.get("PDC_VENTANA_INICIO", "06:00"), time(6, 0))
     fin = _hora(os.environ.get("PDC_VENTANA_FIN", "17:30"), time(17, 30))
