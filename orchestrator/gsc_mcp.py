@@ -8,6 +8,7 @@ auditoría. Nada de archivos de muestra: si no hay datos, la corrida no inventa 
 from __future__ import annotations
 
 import importlib.util
+import os
 import json
 import re
 from dataclasses import replace
@@ -31,8 +32,33 @@ def ventana_cerrada(dias: int = 28, hoy: date | None = None) -> tuple[date, date
     return fin - timedelta(days=dias - 1), fin
 
 
+def _preparar_llave() -> None:
+    """Deja la cuenta de servicio donde el servidor la busca.
+
+    En Coolify el JSON llega como variable de entorno, no como archivo: se escribe una vez en
+    el volumen, con permisos de solo lectura para el usuario que corre el proceso.
+    """
+    if os.environ.get("GSC_SA_KEY"):
+        return
+    contenido = os.environ.get("GSC_SERVICE_ACCOUNT_JSON", "").strip()
+    if not contenido:
+        return
+    raiz = Path(os.environ.get("PDC_STATE_DIR") or (Path.home() / ".pdc"))
+    destino = raiz / "gsc-service-account.json"
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    destino.write_text(contenido, encoding="utf-8")
+    try:
+        destino.chmod(0o600)
+    except OSError:
+        pass
+    os.environ["GSC_SA_KEY"] = str(destino)
+
+
 def _servidor(ruta: Path | None = None) -> Any:
-    archivo = ruta or Path.home() / ".pdc" / "mcp-gsc" / "server.py"
+    _preparar_llave()
+    archivo = ruta or (Path(__file__).resolve().parent.parent / "mcp-gsc" / "server.py")
+    if not archivo.exists():
+        archivo = ruta or Path.home() / ".pdc" / "mcp-gsc" / "server.py"
     if not archivo.exists():
         raise RuntimeError(f"no está el servidor de Search Console en {archivo}")
     spec = importlib.util.spec_from_file_location("mcp_gsc_server", archivo)
