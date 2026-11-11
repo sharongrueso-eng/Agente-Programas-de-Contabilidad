@@ -27,7 +27,12 @@ from orchestrator.preparacion import (
     generate_image,
 )
 from orchestrator.producer import Draft, fingerprint, produce, requires_body
-from orchestrator.reparacion import completar_captions, completar_cta
+from orchestrator.reparacion import (
+    agregar_enlaces_internos,
+    completar_captions,
+    completar_cta,
+    normalizar_slug,
+)
 from orchestrator.publisher import PublishConditions, publish
 from orchestrator.validator import (
     BLOQUEADO,
@@ -254,6 +259,18 @@ def run(
             draft = con_pie
             state.save("borrador.json", asdict(draft))
             steps.append({"step": "estructura", "status": "DONE", "accion": "caption"})
+
+        sin_anio = normalizar_slug(draft)
+        if sin_anio.slug != draft.slug:
+            draft = sin_anio
+            state.save("borrador.json", asdict(draft))
+            steps.append({"step": "estructura", "status": "DONE", "accion": "slug"})
+
+        con_enlaces = agregar_enlaces_internos(draft, list(deps.urls_internas or []))
+        if con_enlaces.html != draft.html:
+            draft = con_enlaces
+            state.save("borrador.json", asdict(draft))
+            steps.append({"step": "estructura", "status": "DONE", "accion": "enlaces_internos"})
 
     verdict = None
     if start <= ORDER.index("judge"):
