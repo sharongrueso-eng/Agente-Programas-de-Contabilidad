@@ -111,6 +111,7 @@ def main() -> int:
     parser.add_argument("--sin-avisos", action="store_true", help="no enviar nada al espacio de Chat")
     parser.add_argument("--entorno", choices=["stg", "prod"], default="stg", help="destino de la publicación")
     parser.add_argument("--gsc", action="store_true", help="elegir el tema con Search Console en vivo")
+    parser.add_argument("--revertir", type=int, default=0, help="devuelve un post a su título anterior")
     args = parser.parse_args()
 
     for archivo in ("llm.env", "mcp.env", "wp-stg.env", "wp-prod.env"):
@@ -121,6 +122,35 @@ def main() -> int:
             import os
 
             os.environ.setdefault(clave, valor)
+
+    if args.revertir:
+        from orchestrator.adapters import WordPressClient as _WpRevertir
+
+        objetivo = args.revertir
+        respaldo = None
+        for carpeta in sorted((RAIZ / "state" / "corridas").glob("*"), reverse=True):
+            archivo = carpeta / "publicacion.json"
+            if not archivo.exists():
+                continue
+            datos = json.loads(archivo.read_text(encoding="utf-8"))
+            if datos.get("post_id") == objetivo and datos.get("respaldo"):
+                respaldo = datos["respaldo"]
+                print(f"respaldo de {carpeta.name}")
+                break
+        if not respaldo:
+            print(f"no hay respaldo guardado para el post {objetivo}")
+            return 2
+        wp = _WpRevertir(
+            os.environ["PDC_PROD_URL"],
+            os.environ["PDC_PROD_TOKEN"],
+            username=os.environ["PDC_PROD_USER"],
+        )
+        wp.update_post(
+            objetivo, {"title": respaldo.get("title", ""), "excerpt": respaldo.get("excerpt", "")}
+        )
+        vivo = wp._write("GET", f"/wp-json/wp/v2/posts/{objetivo}?context=edit", {})
+        print("revertido a:", str((vivo.get("title") or {}).get("raw", ""))[:80])
+        return 0
 
     if args.brief:
         brief = load_brief(RAIZ / args.brief)
@@ -362,6 +392,19 @@ def main() -> int:
     )
     print()
     print(f"duración: {time.time() - inicio:.1f}s")
+    from orchestrator.adapters import consumo_total
+
+    consumo = consumo_total()
+    try:
+        destino = RAIZ / "state" / "corridas" / brief.task_id / "consumo.json"
+        destino.write_text(json.dumps(consumo, ensure_ascii=False), encoding="utf-8")
+    except OSError:
+        pass
+    print(
+        "tokens : "
+        + f"{consumo['llamadas']} llamadas · entrada {consumo['entrada']:,} · "
+        + f"salida {consumo['salida']:,} · razonamiento {consumo['razonamiento']:,}"
+    )
     print(json.dumps(resultado, ensure_ascii=False, indent=1))
 
     webhook = "" if args.sin_avisos else env(Path.home() / ".pdc" / "chat.env").get("PDC_CHAT_WEBHOOK_URL", "")

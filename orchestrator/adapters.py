@@ -56,6 +56,22 @@ class UrllibTransport:
             return error.code, error.read()
 
 
+CONSUMO: list[dict[str, Any]] = []
+
+
+def consumo_total() -> dict[str, int]:
+    """Tokens acumulados en esta corrida, por modelo. Se imprime al cerrar."""
+    total = {"llamadas": 0, "entrada": 0, "salida": 0, "razonamiento": 0}
+    for fila in CONSUMO:
+        total["llamadas"] += 1
+        total["entrada"] += int(fila.get("prompt_tokens") or 0)
+        total["salida"] += int(fila.get("completion_tokens") or 0)
+        total["razonamiento"] += int(
+            (fila.get("completion_tokens_details") or {}).get("reasoning_tokens") or 0
+        )
+    return total
+
+
 class LiteLlmClient:
     """OpenAI-compatible chat completions, as exposed by the Alegra LiteLLM gateway."""
 
@@ -108,6 +124,10 @@ class LiteLlmClient:
         choices = data.get("choices") or []
         if not choices:
             raise RuntimeError("el modelo devolvió una respuesta sin contenido")
+
+        uso = data.get("usage") or {}
+        if uso:
+            CONSUMO.append({"modelo": self.model, **uso})
 
         content = (choices[0].get("message") or {}).get("content")
         if not content or not str(content).strip():

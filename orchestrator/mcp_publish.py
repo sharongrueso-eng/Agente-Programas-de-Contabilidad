@@ -355,6 +355,7 @@ def publicar(
             post_id=post_id,
             output_url=f"post:{post_id}",
             borrador=True,
+            respaldo=anterior or None,
         )
 
     publicado = _desempaquetar(
