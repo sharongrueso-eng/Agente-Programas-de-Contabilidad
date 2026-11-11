@@ -136,6 +136,7 @@ def filas(
     La ventana está cerrada, así que los datos no cambian: se guardan por día y se reutilizan.
     """
     archivo = _cache_filas(site_url, start, end)
+    _preparar_llave()
     if cache and archivo.exists():
         try:
             return json.loads(archivo.read_text(encoding="utf-8"))
