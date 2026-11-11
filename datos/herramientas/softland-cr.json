@@ -1,0 +1,24 @@
+{
+  "brand": "Softland",
+  "country": "CR",
+  "product": "",
+  "plans": [],
+  "source_url": "https://programascontabilidad.com/comparativas-de-software/softland-o-alegra-cual-software-contable-elegir/",
+  "captured_at": "2026-11-11",
+  "evidence_level": "secundaria: artículos publicados del blog",
+  "extraction": {
+    "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
+    "posts": [
+      "https://programascontabilidad.com/comparativas-de-software/softland-o-alegra-cual-software-contable-elegir/"
+    ],
+    "precios_observados": []
+  },
+  "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
+  "notes": "Ficha provisional. Sirve para saber que el competidor está cubierto y qué cifras se han publicado; no para citar precios como vigentes.",
+  "historial": [
+    {
+      "fecha": "2026-11-11",
+      "cambio": "creada desde artículos del blog"
+    }
+  ]
+}

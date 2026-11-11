@@ -1,211 +1,30 @@
 {
   "brand": "Aspel",
   "country": "MX",
-  "product": "Siigo Aspel",
-  "plans": [
-    {
-      "name": "Siigo Fiscal Pyme",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "Siigo Fiscal Empresarial",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "Siigo Fiscal Corporativo",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "Siigo Fiscal Despachos",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "Siigo Fiscal Descargas",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "Aspel FACTURE",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "Siigo Nube Facturación",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "ADM 20, 50 o 100 timbres",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "ADM Básica",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "ADM Premium",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "Aspel SAE",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "Siigo Nube Gestión Inicio",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "Siigo Nube Gestión Premium",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "Aspel COI",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    },
-    {
-      "name": "SIIGO NUBE COI Remoto",
-      "price": "",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": false
-    }
-  ],
-  "source_url": "https://www.aspel.com.mx/precios",
-  "captured_at": "2026-11-06",
-  "evidence_level": "documentacion_oficial",
-  "extraction": "modelo+verificacion_literal",
-  "features": [
-    "Sincronización diaria con el SAT",
-    "Conciliación con los visores de ingresos y nómina del SAT",
-    "Portal Contador",
-    "Exportación a Excel",
-    "Identificación de CFDIs cancelados",
-    "Consulta de EFOS",
-    "Cálculo de IVA",
-    "Conocimiento de CFDIS de pago pendientes por recibir o emitir",
-    "Identificación de errores en CFDIs",
-    "Respalda la materialidad de tus operaciones",
-    "Dashboard de indicadores",
-    "Sincronización con COI",
-    "Timbrado ilimitado",
-    "Comprobantes fiscales 4.0",
-    "Administración clientes y productos",
-    "Manejo de impuestos",
-    "Cancelación de comprobantes",
-    "Reportes",
-    "Notas de crédito",
-    "Múltiples comprobantes y complementos",
-    "Complemento Carta Porte 3.1",
-    "Sistema instalado en computadora",
-    "Personalización de facturas",
-    "Comprobantes de gastos",
-    "Multiusuario",
-    "Complemento carta porte",
-    "Cotizaciones",
-    "Seguimiento comercial",
-    "Sistema en la nube",
-    "Prefacturas",
-    "Paquetes de timbrado (20, 50, 100)",
-    "Comprobantes fiscales CFDI",
-    "Catálogos de clientes/productos o servicios",
-    "APP ADM",
-    "APP ADM Tienda",
-    "Control de existencias",
-    "Cuentas por cobrar/Seguimiento cobranza",
-    "Recibos de nómina electrónicos",
-    "Cuentas por pagar/Gastos",
-    "Estadísticas de ventas",
-    "Manejo de proveedores",
-    "Documentos administrativos",
-    "Cuentas por cobrar/Seguimiento de cobranza",
-    "SAE Móvil",
-    "Conecta tiendas en línea",
-    "Alarmas de control y gestión",
-    "Manejo de addendas",
-    "Tesorería [Nuevo]",
-    "Conteo físico",
-    "Remisiones y kardex",
-    "Integración con sistema contable COI",
-    "Costeo",
-    "Centro de costos",
-    "Notas de ensamble",
-    "Órdenes de Compra",
-    "Comprobantes fiscales CFDI 4.0",
-    "Generación automática de reportes para DIOT.",
-    "Administración de cuentas",
-    "Contabilidad electrónica",
-    "Centros de costos y proyectos",
-    "Cálculo de impuestos",
-    "Automatiza el registro de pólizas",
-    "Seguimiento activos y depreciación",
-    "Emisión reportes y hojas de cálculo",
-    "Validación EFOS en RFC de terceros",
-    "Integración con sistema administrativo",
-    "Cumplimiento con la Ley de Infonavit 2025"
-  ],
-  "descartado": [],
-  "notes": "La página no muestra cifras de precio en el texto; solo aparecen placeholders como '/mes' y 'Antes'. No se inventaron precios. La página indica periodicidades Mensual, Semestral y Anual, pero sin precios visibles no se separaron planes mensuales/anuales. Los planes ADM 20, 50 o 100 timbres, ADM Básica y ADM Premium aparecen repetidos en Facturación y Administración; se listan una vez. La sección Nómina está cortada en el texto y no se incluyeron planes de esa sección.",
+  "product": "",
+  "plans": [],
+  "source_url": "https://programascontabilidad.com/comparativas-de-software/contabilidad/pos-sin-integracion-contable-en-mexico/",
+  "captured_at": "2026-11-11",
+  "evidence_level": "secundaria: artículos publicados del blog",
+  "extraction": {
+    "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
+    "posts": [
+      "https://programascontabilidad.com/comparativas-de-software/contabilidad/pos-sin-integracion-contable-en-mexico/",
+      "https://programascontabilidad.com/comparativas-de-software/alegra-vs-eleventa-mexico/",
+      "https://programascontabilidad.com/comparativas-de-software/alegra-contpaqi/"
+    ],
+    "precios_observados": [
+      "$149,25",
+      "$299",
+      "$0"
+    ]
+  },
+  "pricing_note": "Los precios aparecen en artículos del blog, no en la landing del proveedor: hay que confirmarlos en su sitio antes de publicar una comparativa con tarifas.",
+  "notes": "Ficha provisional. Sirve para saber que el competidor está cubierto y qué cifras se han publicado; no para citar precios como vigentes.",
   "historial": [
     {
-      "fecha": "2026-11-06",
-      "planes": 15,
-      "cambios": [
-        "primera lectura"
-      ]
+      "fecha": "2026-11-11",
+      "cambio": "creada desde artículos del blog"
     }
   ]
 }
