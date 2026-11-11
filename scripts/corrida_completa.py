@@ -276,13 +276,21 @@ def main() -> int:
         print(f"reencauche: {destino}")
 
     urls_para_enlaces: list[str] = []
-    if args.brief:
+    try:
+        from orchestrator.sitemap import urls_del_sitio
+
+        urls_para_enlaces = urls_del_sitio(maximo=20)
+        print(f"sitemap : {len(urls_para_enlaces)} urls internas")
+    except Exception as error:  # noqa: BLE001 - se informa, no se silencia
+        print(f"sitemap : no se pudo leer ({error})")
+    if not urls_para_enlaces:
         try:
             from orchestrator.gsc_mcp import snapshot_desde_mcp
 
-            urls_para_enlaces = [p.url for p in snapshot_desde_mcp(args.pais).pages][:12]
-        except Exception:  # noqa: BLE001 - sin enlaces internos se sigue
-            urls_para_enlaces = []
+            urls_para_enlaces = [p.url for p in snapshot_desde_mcp(args.pais).pages][:20]
+            print(f"gsc     : {len(urls_para_enlaces)} urls internas de reserva")
+        except Exception as error:  # noqa: BLE001 - se informa, no se silencia
+            print(f"gsc     : sin urls internas ({error})")
 
     deps = Deps(
         producer=LiteLlmClient(
