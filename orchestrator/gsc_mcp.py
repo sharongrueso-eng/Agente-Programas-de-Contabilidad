@@ -54,6 +54,55 @@ def _preparar_llave() -> None:
     os.environ["GSC_SA_KEY"] = str(destino)
 
 
+class _ClienteApi:
+    """Search Console directo, sin el envoltorio MCP.
+
+    El servidor de `mcp-gsc` importa el paquete `mcp`, que aquí no hace falta: solo se leen
+    filas de la Search Analytics API. Con las librerías de Google basta.
+    """
+
+    def gsc_search_analytics(self, **kwargs: Any) -> dict[str, Any]:
+        from google.oauth2 import service_account
+        from googleapiclient.discovery import build
+
+        ruta = os.environ.get("GSC_SA_KEY") or str(
+            Path.home() / ".pdc" / "gsc-service-account.json"
+        )
+        if not Path(ruta).exists():
+            raise RuntimeError(f"no está la llave de la cuenta de servicio en {ruta}")
+        credenciales = service_account.Credentials.from_service_account_file(
+            ruta, scopes=["https://www.googleapis.com/auth/webmasters.readonly"]
+        )
+        servicio = build("searchconsole", "v1", credentials=credenciales, cache_discovery=False)
+        cuerpo = {
+            "startDate": kwargs["start_date"],
+            "endDate": kwargs["end_date"],
+            "dimensions": list(kwargs.get("dimensions") or []),
+            "rowLimit": int(kwargs.get("row_limit") or 1000),
+            "startRow": int(kwargs.get("start_row") or 0),
+            "dataState": kwargs.get("data_state") or "final",
+        }
+        respuesta = (
+            servicio.searchanalytics()
+            .query(siteUrl=kwargs["site_url"], body=cuerpo)
+            .execute()
+        )
+        filas_api = respuesta.get("rows", [])
+        devueltas = []
+        for fila in filas_api:
+            valores = fila.get("keys") or []
+            devueltas.append(
+                {
+                    **{dim: valores[i] for i, dim in enumerate(cuerpo["dimensions"]) if i < len(valores)},
+                    "clicks": fila.get("clicks", 0),
+                    "impressions": fila.get("impressions", 0),
+                    "ctr": fila.get("ctr", 0.0),
+                    "position": fila.get("position", 0.0),
+                }
+            )
+        return {"rows": devueltas, "has_more": len(filas_api) >= cuerpo["rowLimit"]}
+
+
 def _servidor(ruta: Path | None = None) -> Any:
     _preparar_llave()
     archivo = ruta or (Path(__file__).resolve().parent.parent / "mcp-gsc" / "server.py")
@@ -93,7 +142,7 @@ def filas(
         except json.JSONDecodeError:
             pass
 
-    modulo = servidor or _servidor()
+    modulo = servidor or _ClienteApi()
     acumulado: list[dict[str, Any]] = []
     inicio = 0
     while True:

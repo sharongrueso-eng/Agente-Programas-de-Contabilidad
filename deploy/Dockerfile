@@ -24,7 +24,6 @@ COPY skills ./skills
 COPY rules ./rules
 COPY datos ./datos
 COPY scripts ./scripts
-COPY mcp-gsc ./mcp-gsc
 
 # Pillow solo para recomprimir la portada: el gateway entrega ~1,3 MB y la web necesita
 # menos de 300 KB. Es la única dependencia externa del proyecto.
