@@ -244,7 +244,10 @@ def validate(
         controls.append(
             ControlResult(
                 code="feature_claims",
-                status=BLOQUEADO if inventadas else PASS,
+                # El registro de estos mercados trae precios pero no lista de funciones: no
+                # se puede probar la ausencia, así que se pide corregir la atribución en vez de
+                # bloquear la pieza entera.
+                status=CORREGIR if inventadas else PASS,
                 detail=""
                 if not inventadas
                 else "se atribuyen funciones que el registro no respalda: "
