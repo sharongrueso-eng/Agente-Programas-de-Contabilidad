@@ -51,7 +51,9 @@ def categorias(formato: str, texto: str, marcas: list[str] | None = None) -> lis
 def etiquetas(titulo: str, keyword: str, pais: str, marcas: list[str] | None = None) -> list[str]:
     """Marcas tratadas, tema y país: lo que un lector usaría para encontrar la pieza."""
     juntas = f"{titulo} {keyword}".lower()
-    encontradas = [m for m in (marcas or MARCAS) if m.lower() in juntas]
+    # Las marcas del registro son las que la pieza trata, aparezcan o no en el título.
+    candidatas = list(dict.fromkeys([m for m in (marcas or []) if m] + list(MARCAS)))
+    encontradas = [m for m in candidatas if m.lower() in juntas or (marcas and m in marcas)]
     tema = re.sub(r"\s+", " ", (keyword or titulo or "")).strip().lower()
     pais_nombre = {"CO": "Colombia", "MX": "México", "CR": "Costa Rica", "DO": "República Dominicana"}
     salida = list(dict.fromkeys(encontradas))
