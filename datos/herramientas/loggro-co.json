@@ -126,6 +126,60 @@
    "period": "mes",
    "billing": "mensual",
    "publicado": true
+  },
+  {
+   "name": "Usuario adicional",
+   "price": "18.990",
+   "currency": "COP",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "complemento publicado en la página de planes"
+  },
+  {
+   "name": "Caja adicional",
+   "price": "18.990",
+   "currency": "COP",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "complemento publicado en la página de planes"
+  },
+  {
+   "name": "Establecimiento adicional",
+   "price": "54.990",
+   "currency": "COP",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "complemento publicado en la página de planes"
+  },
+  {
+   "name": "Soporte/implantación por hora",
+   "price": "115.000",
+   "currency": "COP",
+   "period": "hora",
+   "billing": "unico",
+   "publicado": true,
+   "note": "complemento publicado en la página de planes"
+  },
+  {
+   "name": "Soporte Premium",
+   "price": "218.000",
+   "currency": "COP",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "complemento publicado en la página de planes"
+  },
+  {
+   "name": "Bolsa de 50 documentos electrónicos",
+   "price": "92.400",
+   "currency": "COP",
+   "period": "unico",
+   "billing": "unico",
+   "publicado": true,
+   "note": "complemento publicado en la página de planes"
   }
  ],
  "features": [

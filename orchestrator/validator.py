@@ -533,6 +533,11 @@ def validate(
 FRASE_SIN_DATO = "Esta cifra no se cita porque no está verificada en el registro de datos."
 
 
+def _solo_digitos(texto: str) -> str:
+    """Deja la cifra comparable: 18.990 y 18990 son el mismo número."""
+    return re.sub(r"[^\d]", "", texto or "")
+
+
 def sanear_cifras(html: str, registry_text: str) -> tuple[str, list[str]]:
     """Quita del texto las cifras que no están en el registro, sin inventar otras.
 

@@ -86,16 +86,22 @@ def extranas(texto: str, pais: str) -> list[str]:
     plano = re.sub(r"<[^>]+>", " ", texto)
     sospechosas: list[str] = []
     # Sin distinguir mayúsculas: la marca inventada apareció escrita «susii» cincuenta veces.
+    # Solo una comparación explícita: «X vs Y» o «X frente a Y». Un nombre suelto después de
+    # «software» es casi siempre una palabra común y no un competidor.
     patrones = (
-        r"([\w\.\-]{3,})\s+vs\.?\s+([\w\.\-]{3,})",
-        r"(?:planes|software|programa|sistema)\s+([\w\.\-]{3,})",
+        r"([\w\.\-]+)\s+vs\.?\s+([\w\.\-]+)",
+        r"([\w\.\-]+)\s+frente\s+a\s+([\w\.\-]+)",
     )
-    for patron in patrones:
+    for indice, patron in enumerate(patrones):
         for encontrado in re.finditer(patron, plano):
             for grupo in encontrado.groups():
                 if not grupo:
                     continue
                 if grupo.lower() in validas or len(grupo) < 4:
+                    continue
+                # «X vs Y» ya es una comparación explícita. En el resto, un nombre suelto
+                # solo cuenta si se repite: una palabra cualquiera aparece una vez.
+                if indice > 0 and plano.lower().count(grupo.lower()) < 2:
                     continue
                 if grupo.lower() in {
                     "alegra", "colombia", "méxico", "mexico", "costa", "rica", "este", "esta",
