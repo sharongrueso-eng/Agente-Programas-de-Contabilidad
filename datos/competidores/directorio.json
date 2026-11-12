@@ -1,0 +1,502 @@
+[
+ {
+  "pais": "MX",
+  "categoria": "Contabilidad",
+  "marca": "CONTPAQi",
+  "busquedas": "39,000",
+  "prompts": "38",
+  "nivel": "A (ficha)",
+  "evidencia": "Heredada del wiki",
+  "notas": "Líder histórico; escritorio y nube"
+ },
+ {
+  "pais": "MX",
+  "categoria": "Contabilidad",
+  "marca": "Contalink",
+  "busquedas": "38,000",
+  "prompts": "14",
+  "nivel": "A (ficha)",
+  "evidencia": "Heredada del wiki",
+  "notas": "Nube, descarga automática del SAT"
+ },
+ {
+  "pais": "MX",
+  "categoria": "Contabilidad",
+  "marca": "Siigo Aspel",
+  "busquedas": "6,600 (Aspel solo: 28,000; Aspel COI: 3,100)",
+  "prompts": "24",
+  "nivel": "A (ficha)",
+  "evidencia": "Verificada: siigo.com/mx publica precios en pesos sin IVA (Aspel COI, Siigo Fiscal)",
+  "notas": "Una sola marca; en contabilidad, Aspel COI"
+ },
+ {
+  "pais": "MX",
+  "categoria": "Contabilidad",
+  "marca": "misKuentas",
+  "busquedas": "8,200",
+  "prompts": "3",
+  "nivel": "A por búsquedas",
+  "evidencia": "Heredada del wiki",
+  "notas": "El wiki la deja en «B con ficha» aunque supera el umbral de 5 mil (decisión abierta 2)"
+ },
+ {
+  "pais": "MX",
+  "categoria": "Contabilidad",
+  "marca": "Sinube",
+  "busquedas": "7,200",
+  "prompts": "0",
+  "nivel": "A por búsquedas; falta ficha",
+  "evidencia": "Verificada: su sitio de soporte (soporte.sinube.mx) documenta CFDI 4.0 y claves de producto del SAT",
+  "notas": "No se nombra hasta tener ficha"
+ },
+ {
+  "pais": "MX",
+  "categoria": "Contabilidad",
+  "marca": "Contadigital",
+  "busquedas": "2,700",
+  "prompts": "1",
+  "nivel": "B con ficha (excepción)",
+  "evidencia": "Verificada: contadigital.mx publica paquetes por RFC con timbres y precios más IVA",
+  "notas": "Entra en comparativas de categoría y en «Alegra vs Contadigital» si se hereda la excepción"
+ },
+ {
+  "pais": "MX",
+  "categoria": "Contabilidad",
+  "marca": "Zoho Books",
+  "busquedas": "2,900",
+  "prompts": "1",
+  "nivel": "B",
+  "evidencia": "Verificada: edición México con precios en MXN y emisión de CFDI con un PAC",
+  "notas": "Mención breve"
+ },
+ {
+  "pais": "MX",
+  "categoria": "Contabilidad",
+  "marca": "Konta",
+  "busquedas": "2,700",
+  "prompts": "0",
+  "nivel": "B",
+  "evidencia": "Heredada del wiki",
+  "notas": "Mención breve"
+ },
+ {
+  "pais": "MX",
+  "categoria": "Contabilidad",
+  "marca": "ClickBalance",
+  "busquedas": "2,100",
+  "prompts": "0",
+  "nivel": "B",
+  "evidencia": "Heredada del wiki",
+  "notas": "Mención breve"
+ },
+ {
+  "pais": "MX",
+  "categoria": "Contabilidad",
+  "marca": "Microsip",
+  "busquedas": "1,300",
+  "prompts": "5",
+  "nivel": "B",
+  "evidencia": "Heredada del wiki",
+  "notas": "B por búsquedas y por prompts"
+ },
+ {
+  "pais": "MX",
+  "categoria": "Contabilidad",
+  "marca": "Heru",
+  "busquedas": "2,800",
+  "prompts": "0",
+  "nivel": "Pendiente",
+  "evidencia": "Pendiente",
+  "notas": "Candidata nueva, no está en el wiki. Validar si es contabilidad o app de declaraciones para personas físicas"
+ },
+ {
+  "pais": "MX",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Bind ERP",
+  "busquedas": "12,000",
+  "prompts": "32",
+  "nivel": "A en ERP (ficha)",
+  "evidencia": "Heredada del wiki",
+  "notas": "Principal en ERP por excepción y por umbral"
+ },
+ {
+  "pais": "MX",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Odoo",
+  "busquedas": "2,100 («odoo mexico»)",
+  "prompts": "11",
+  "nivel": "A en ERP (ficha)",
+  "evidencia": "Heredada: la página muestra la moneda según el país del visitante",
+  "notas": "Ahora también es A por prompts (11 ≥ 10)"
+ },
+ {
+  "pais": "MX",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Siigo Nube Gestión",
+  "busquedas": "3,300 (wiki)",
+  "prompts": "Se cuenta con Siigo Aspel",
+  "nivel": "A en ERP (ficha)",
+  "evidencia": "Heredada del wiki",
+  "notas": "Solo en piezas de ERP. Ahrefs devuelve hoy unas 20 búsquedas para el término exacto (decisión abierta 3)"
+ },
+ {
+  "pais": "MX",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Aspel SAE",
+  "busquedas": "2,800",
+  "prompts": "Se cuenta con Siigo Aspel",
+  "nivel": "A en ERP (ficha)",
+  "evidencia": "Heredada del wiki",
+  "notas": "Sistema administrativo instalado"
+ },
+ {
+  "pais": "MX",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "CONTPAQi Comercial",
+  "busquedas": "1,400",
+  "prompts": "Se cuenta con CONTPAQi",
+  "nivel": "A en ERP (ficha)",
+  "evidencia": "Heredada del wiki",
+  "notas": "Sistema administrativo instalado"
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "Siigo",
+  "busquedas": "426,000",
+  "prompts": "70",
+  "nivel": "A (ficha)",
+  "evidencia": "Verificada en su sitio oficial de Colombia",
+  "notas": "Líder del mercado; aparece en tantos prompts como Alegra"
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "Loggro",
+  "busquedas": "34,000",
+  "prompts": "53",
+  "nivel": "A (ficha)",
+  "evidencia": "Verificada en su sitio oficial de Colombia",
+  "notas": ""
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "World Office",
+  "busquedas": "5,000",
+  "prompts": "35",
+  "nivel": "A (ficha)",
+  "evidencia": "Verificada en su sitio oficial de Colombia",
+  "notas": "Justo en el umbral de búsquedas; A también por prompts"
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "Helisa",
+  "busquedas": "700",
+  "prompts": "13 / 15",
+  "nivel": "B por prompts",
+  "evidencia": "Verificada en su sitio oficial",
+  "notas": "No llega a A (16 prompts)"
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "ContaPyme",
+  "busquedas": "1,600",
+  "prompts": "10 / 11",
+  "nivel": "B",
+  "evidencia": "Verificada en su sitio oficial",
+  "notas": ""
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "Aliaddo",
+  "busquedas": "1,700",
+  "prompts": "4",
+  "nivel": "B por búsquedas",
+  "evidencia": "Verificada: se presenta como proveedor autorizado por la DIAN; plan desde COP 99,000",
+  "notas": ""
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "Cuenti",
+  "busquedas": "1,300",
+  "prompts": "0",
+  "nivel": "B por búsquedas",
+  "evidencia": "Verificada: «proveedor autorizado por la DIAN»",
+  "notas": ""
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "Contoda",
+  "busquedas": "1,700",
+  "prompts": "No medido",
+  "nivel": "Pendiente",
+  "evidencia": "Pendiente",
+  "notas": "Apareció en el barrido de volúmenes; medir prompts y verificar"
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "Softpymes",
+  "busquedas": "100",
+  "prompts": "1",
+  "nivel": "C",
+  "evidencia": "No se verificó",
+  "notas": "Se omite"
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "Digitalware",
+  "busquedas": "150",
+  "prompts": "0",
+  "nivel": "C",
+  "evidencia": "No se verificó",
+  "notas": "Se omite"
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "Contai",
+  "busquedas": "Sin dato",
+  "prompts": "0",
+  "nivel": "C",
+  "evidencia": "No se verificó",
+  "notas": "Se omite"
+ },
+ {
+  "pais": "CO",
+  "categoria": "Contabilidad",
+  "marca": "Zoho Books",
+  "busquedas": "700",
+  "prompts": "2",
+  "nivel": "Excluida",
+  "evidencia": "No opera: Zoho no tiene edición Colombia; la facturación DIAN solo existe como extensión de un partner en su marketplace",
+  "notas": "Sería C de todos modos"
+ },
+ {
+  "pais": "CO",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "SIESA",
+  "busquedas": "11,000",
+  "prompts": "5",
+  "nivel": "A en ERP (ficha)",
+  "evidencia": "Verificada: SIESA Enterprise con ecosistema de documentos DIAN",
+  "notas": ""
+ },
+ {
+  "pais": "CO",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Novasoft",
+  "busquedas": "2,600",
+  "prompts": "5",
+  "nivel": "B",
+  "evidencia": "Verificada: manuales de nómina electrónica DIAN de Novasoft en el portal de documentación de Senior Sistemas",
+  "notas": "ERP con fuerte componente de nómina"
+ },
+ {
+  "pais": "CO",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Odoo",
+  "busquedas": "100 («odoo colombia»)",
+  "prompts": "6 / 9",
+  "nivel": "B por prompts",
+  "evidencia": "Verificada: localización DIAN en la documentación oficial de Odoo",
+  "notas": "«odoo» a secas da 12,000, pero es búsqueda global; se usa el término con país, como en el wiki"
+ },
+ {
+  "pais": "CO",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Ofima",
+  "busquedas": "Sin dato propio («ofimatica»: 5,600, genérico)",
+  "prompts": "No medido",
+  "nivel": "Pendiente",
+  "evidencia": "Verificada: ofima.com, ERP para Colombia con factura, nómina y documento soporte integrados a la DIAN",
+  "notas": "Medir «ofima» y sus prompts antes de asignar nivel"
+ },
+ {
+  "pais": "CO",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Softland",
+  "busquedas": "No medido",
+  "prompts": "No medido",
+  "nivel": "Pendiente",
+  "evidencia": "Verificada: softland.com/co publica su ERP contable con DIAN y NIIF",
+  "notas": "Es A en Costa Rica; vale la pena medirla en Colombia"
+ },
+ {
+  "pais": "CR",
+  "categoria": "ERP y contabilidad",
+  "marca": "Softland (Exactus)",
+  "busquedas": "700 (Exactus: 30)",
+  "prompts": "19",
+  "nivel": "A (ficha)",
+  "evidencia": "Verificada: softland.com/cr, comprobantes 4.4, TRIBU-CR y soporte en Costa Rica",
+  "notas": "ERP para medianas y grandes; publica también páginas de «sistema contable», así que puede entrar en comparativas de contabilidad para empresa mediana"
+ },
+ {
+  "pais": "CR",
+  "categoria": "ERP y contabilidad",
+  "marca": "Odoo",
+  "busquedas": "1,200",
+  "prompts": "12",
+  "nivel": "A (ficha)",
+  "evidencia": "Verificada: Costa Rica está en la lista oficial de localizaciones fiscales de Odoo; el módulo de factura 4.4 en Odoo Apps es de un tercero",
+  "notas": "Indicar en la ficha que la factura 4.4 depende de un módulo de terceros"
+ },
+ {
+  "pais": "CR",
+  "categoria": "ERP y contabilidad",
+  "marca": "Logosoft",
+  "busquedas": "150",
+  "prompts": "0 (3 con otras 4 marcas pequeñas)",
+  "nivel": "Pendiente",
+  "evidencia": "Sin evidencia oficial: solo una ficha en un directorio de terceros",
+  "notas": "B por búsquedas, justo en el umbral. No se nombra hasta verificar en su sitio"
+ },
+ {
+  "pais": "CR",
+  "categoria": "ERP y contabilidad",
+  "marca": "Zoho Books",
+  "busquedas": "600",
+  "prompts": "2 / 10",
+  "nivel": "Excluida",
+  "evidencia": "No opera: Zoho no tiene edición Costa Rica en su lista oficial de ediciones",
+  "notas": "Sería B por prompts de todos los motores"
+ },
+ {
+  "pais": "CR",
+  "categoria": "ERP y contabilidad",
+  "marca": "Mónica",
+  "busquedas": "Sin dato (nombre genérico)",
+  "prompts": "0",
+  "nivel": "C",
+  "evidencia": "No se verificó",
+  "notas": "Se omite"
+ },
+ {
+  "pais": "CR",
+  "categoria": "ERP y contabilidad",
+  "marca": "Procom",
+  "busquedas": "60",
+  "prompts": "0",
+  "nivel": "C",
+  "evidencia": "No se verificó",
+  "notas": "Se omite"
+ },
+ {
+  "pais": "CR",
+  "categoria": "ERP y contabilidad",
+  "marca": "Novitec",
+  "busquedas": "10",
+  "prompts": "0",
+  "nivel": "C",
+  "evidencia": "No se verificó",
+  "notas": "Se omite"
+ },
+ {
+  "pais": "CR",
+  "categoria": "ERP y contabilidad",
+  "marca": "Nubox",
+  "busquedas": "10",
+  "prompts": "0",
+  "nivel": "C",
+  "evidencia": "No se verificó",
+  "notas": "Se omite"
+ },
+ {
+  "pais": "DO",
+  "categoria": "Contabilidad",
+  "marca": "ADM Cloud",
+  "busquedas": "4,500",
+  "prompts": "16",
+  "nivel": "A (ficha)",
+  "evidencia": "Verificada: se presenta como suplidor autorizado de facturación electrónica de la DGII; su operador FORTECH SRL está en el listado DGII",
+  "notas": "Ofrece también Polaris para emitir e-CF desde otros sistemas"
+ },
+ {
+  "pais": "DO",
+  "categoria": "Contabilidad",
+  "marca": "Pacioli",
+  "busquedas": "20",
+  "prompts": "17",
+  "nivel": "A por prompts (ficha)",
+  "evidencia": "Verificada: proveedor autorizado DGII \\#0093 (CECA Software SRL); precios en US\\$ + ITBIS",
+  "notas": ""
+ },
+ {
+  "pais": "DO",
+  "categoria": "Contabilidad",
+  "marca": "Galileo",
+  "busquedas": "10",
+  "prompts": "14",
+  "nivel": "A por prompts (ficha)",
+  "evidencia": "Verificada: Fiscosoft SRL, RNC 133342758, autorizado por la DGII; plan Premium US\\$60",
+  "notas": "Publica comparativas propias que citan a otras marcas: competidor editorial (decisión abierta 5)"
+ },
+ {
+  "pais": "DO",
+  "categoria": "Contabilidad",
+  "marca": "CashFlow",
+  "busquedas": "350",
+  "prompts": "4 / 11",
+  "nivel": "A provisional por prompts",
+  "evidencia": "Parcial: sitio dominicano (cashflow.do) con guías de e-CF; no vimos que se declare proveedor autorizado",
+  "notas": "Nombre genérico: revisar a mano las 11 respuestas antes de confirmar el nivel"
+ },
+ {
+  "pais": "DO",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Odoo",
+  "busquedas": "1,900",
+  "prompts": "13",
+  "nivel": "A (ficha)",
+  "evidencia": "Verificada: la documentación oficial de Odoo para República Dominicana describe la conexión con Infile para validar e-CF ante la DGII",
+  "notas": ""
+ },
+ {
+  "pais": "DO",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "SJ ERP",
+  "busquedas": "10",
+  "prompts": "0 / 11",
+  "nivel": "A por prompts (ficha)",
+  "evidencia": "Verificada: «software dominicano homologado con la DGII»",
+  "notas": "ChatGPT no la menciona; Gemini y Perplexity sí"
+ },
+ {
+  "pais": "DO",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Citrus",
+  "busquedas": "600",
+  "prompts": "3 / 5",
+  "nivel": "B",
+  "evidencia": "Verificada: citrus.com.do ofrece Citrus ERP y Citrus e-CF «lista para República Dominicana»; teléfono local 809",
+  "notas": ""
+ },
+ {
+  "pais": "DO",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Softland",
+  "busquedas": "60",
+  "prompts": "0 / 8",
+  "nivel": "B por prompts",
+  "evidencia": "Verificada: softland.com/do, ERP con módulos de e-CF para la DGII",
+  "notas": "ERP para medianas y grandes"
+ },
+ {
+  "pais": "DO",
+  "categoria": "ERP y sistemas administrativos",
+  "marca": "Mónica, Symasoft, StarSoft",
+  "busquedas": "Sin dato / sin dato / 0",
+  "prompts": "2 / 1 / 3",
+  "nivel": "C",
+  "evidencia": "No se verificó",
+  "notas": "Se omiten"
+ }
+]
