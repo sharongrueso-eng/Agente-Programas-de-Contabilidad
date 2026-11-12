@@ -633,7 +633,12 @@ def _juzgar(draft, brief, verdict, deps, state=None):
             ),
         )
         if parcial.status == "FAILED":
-            return parcial
+            # Un trozo que el gateway deja en blanco no invalida el juicio de los demás:
+            # se anota y se sigue. Si no queda ningún trozo juzgado, la corrida se detiene.
+            state_advertencias.append(
+                {"code": "juez_incompleto", "detail": f"parte {indice}: {parcial.detail}"[:200]}
+            )
+            continue
         # La cobertura ("falta la tabla de precios") es un juicio del artículo entero: dentro de
         # una parte siempre parece faltar algo. Se registra como advertencia, no como bloqueo.
         for control in getattr(parcial, "controls", ()):
@@ -649,6 +654,9 @@ def _juzgar(draft, brief, verdict, deps, state=None):
             state.save("advertencias.json", {"items": state_advertencias})
         except Exception:  # noqa: BLE001
             pass
+
+    if not controles and state_advertencias:
+        return type(parcial)(status="FAILED", detail="ninguna parte se pudo juzgar")
 
     graves = [c for c in controles if str(getattr(c, "status", "")) == "BLOQUEADO"]
     suaves = [c for c in controles if str(getattr(c, "status", "")) == "CORREGIR"]
