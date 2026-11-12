@@ -280,6 +280,18 @@ deforma y no se abrevia. Escribir «Susii» donde va «Siigo» invalida el artí
         guardado = (carpeta / f"{clave}.html") if carpeta else None
         if guardado and guardado.exists():
             previo = guardado.read_text(encoding="utf-8").strip()
+            # Un bloque en caché que nombra una plataforma inventada no se reutiliza:
+            # arrastraría el error a todas las corridas siguientes.
+            try:
+                from orchestrator.directorio import extranas
+
+                ajenas = extranas(previo, brief.country)
+            except Exception:  # noqa: BLE001
+                ajenas = []
+            if ajenas:
+                print(f"   bloque «{clave}» descartado: nombra {', '.join(ajenas[:3])}")
+                guardado.unlink(missing_ok=True)
+                previo = ""
             if len(previo) >= 80:
                 salida.bloques[clave] = previo
                 partes.append(previo)
