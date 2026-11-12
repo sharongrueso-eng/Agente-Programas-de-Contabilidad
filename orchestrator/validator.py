@@ -194,11 +194,12 @@ def _control(code: str, ok: bool, detail: str, failure: str = CORREGIR) -> Contr
 
 
 
+# Solo funciones de producto: "documento equivalente" o "facturación electrónica" son
+# normativa y se nombran sin atribuir nada a nadie.
 FUNCIONES = (
-    "nómina", "nomina", "inventario", "punto de venta", "pos", "facturación electrónica",
-    "documento equivalente", "cartera", "tesorería", "activos fijos", "presupuesto",
-    "inteligencia artificial", "multiempresa", "sucursales", "conciliación bancaria",
-    "importación de datos", "exportación", "kardex", "recetas",
+    "nómina", "nomina", "inventario", "punto de venta", "pos", "cartera", "tesorería",
+    "activos fijos", "presupuesto", "inteligencia artificial", "multiempresa", "kardex",
+    "recetas", "costos por receta",
 )
 ATRIBUYE = ("incluye", "integra", "ofrece", "trae", "permite", "cuenta con")
 
@@ -211,9 +212,17 @@ def feature_claims(html: str, registry_text: str) -> list[str]:
     """
     plano = _texto_visible(html).lower()
     registro = registry_text.lower()
+    marcas = [
+        linea.split("·")[0].strip().lower()
+        for linea in registry_text.splitlines()
+        if "·" in linea
+    ]
     faltan = []
     for frase in re.split(r"(?<=[.!?;])\s+", plano):
         if not any(verbo in frase for verbo in ATRIBUYE):
+            continue
+        # Solo cuenta si la frase atribuye la función a una plataforma del registro.
+        if not any(marca and marca in frase for marca in marcas):
             continue
         for funcion in FUNCIONES:
             if funcion in frase and funcion not in registro:
@@ -280,6 +289,17 @@ def validate(
         for m in MEJORA.finditer(_texto_visible(draft.html))
         if _normalize(m.group(0)) and _normalize(m.group(0)) not in registro_norm
     ]
+    # Un descuento que el proveedor publica respalda la cifra: no es una promesa inventada.
+    sin_espacios = registro_norm.replace(" ", "")
+    frases_mejora = [
+        frase
+        for frase in frases_mejora
+        if not (
+            (porcentajes := re.findall(r"\d+(?:[.,]\d+)?\s*%", frase))
+            and all(p.replace(" ", "") in sin_espacios for p in porcentajes)
+        )
+    ]
+
     controls.append(
         _control(
             "improvement_claims",
