@@ -728,6 +728,22 @@ def main() -> int:
                     etiquetas_ids.append(int(datos["id"]))
             wp.update_post(int(resultado["post_id"]), {"categories": ids, "tags": etiquetas_ids})
             print(f"metadatos: categorías {ids} · etiquetas {len(etiquetas_ids)}")
+            from base64 import b64encode
+
+            from orchestrator.metadatos import escribir_rank_math
+
+            autorizacion = b64encode(
+                f'{os.environ.get("PDC_PROD_USER", "")}:{os.environ.get("PDC_PROD_TOKEN", "")}'.encode()
+            ).decode()
+            estado_rm = escribir_rank_math(
+                os.environ.get("PDC_PROD_URL", ""),
+                autorizacion,
+                int(resultado["post_id"]),
+                titulo=titulo_meta,
+                descripcion=borrador_meta.get("meta_description", ""),
+                keyword=(getattr(elegida, "focus_keyword", "") if "elegida" in dir() else ""),
+            )
+            print(f"rank math: {estado_rm}")
         except Exception as error:  # noqa: BLE001 - un fallo de taxonomía no oculta la publicación
             print("metadatos: no se pudieron asignar —", str(error)[:120])
 

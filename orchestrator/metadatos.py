@@ -62,3 +62,43 @@ def etiquetas(titulo: str, keyword: str, pais: str, marcas: list[str] | None = N
     if pais in pais_nombre:
         salida.append(pais_nombre[pais])
     return salida[:8]
+
+
+def escribir_rank_math(
+    base: str, auth: str, post_id: int, *, titulo: str, descripcion: str, keyword: str
+) -> int:
+    """Escribe título SEO, meta descripción y palabra clave en Rank Math.
+
+    Su API de WordPress no expone estas claves, pero el plugin sí tiene un endpoint propio que
+    acepta la misma autenticación básica. Devuelve el estado HTTP.
+    """
+    import json
+    import urllib.error
+    import urllib.request
+
+    cuerpo = json.dumps(
+        {
+            "objectID": post_id,
+            "objectType": "post",
+            "meta": {
+                "rank_math_title": titulo[:60],
+                "rank_math_description": descripcion[:160],
+                "rank_math_focus_keyword": keyword,
+            },
+        }
+    ).encode()
+    peticion = urllib.request.Request(
+        base.rstrip("/") + "/wp-json/rankmath/v1/updateMeta",
+        method="POST",
+        data=cuerpo,
+        headers={
+            "Authorization": "Basic " + auth,
+            "Content-Type": "application/json",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0",
+        },
+    )
+    try:
+        with urllib.request.urlopen(peticion, timeout=45) as respuesta:
+            return respuesta.status
+    except urllib.error.HTTPError as error:
+        return error.code
