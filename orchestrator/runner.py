@@ -40,6 +40,7 @@ from orchestrator.validator import (
     CORREGIR,
     PASS,
     ValidationRules,
+    bloqueantes,
     sanear_cifras,
     validate,
 )
@@ -324,9 +325,24 @@ def run(
 
                 fixed, reason = _fix(draft, verdict.to_fix, deps, state)
                 if fixed is None:
-                    return _contract("BLOCKED", brief, state, steps, block_reason=reason)
-                draft = fixed
-                continue
+                    # Si lo que queda son advertencias, no se detiene la publicación: se
+                    # publica y se avisa. Solo un fallo bloqueante justifica parar.
+                    if bloqueantes(verdict.to_fix):
+                        return _contract("BLOCKED", brief, state, steps, block_reason=reason)
+                    advertencias = [
+                        {"code": c.code, "detail": c.detail} for c in verdict.to_fix
+                    ]
+                    state.save("advertencias.json", {"items": advertencias})
+                    steps.append(
+                        {
+                            "step": "validation",
+                            "status": "ADVERTENCIA",
+                            "items": len(advertencias),
+                        }
+                    )
+                else:
+                    draft = fixed
+                    continue
 
             outcome = judge(
                 draft,
@@ -405,9 +421,24 @@ def run(
 
                 fixed, reason = _fix(draft, outcome.controls, deps, state)
                 if fixed is None:
-                    return _contract("BLOCKED", brief, state, steps, block_reason=reason)
-                draft = fixed
-                continue
+                    if bloqueantes(outcome.controls):
+                        return _contract("BLOCKED", brief, state, steps, block_reason=reason)
+                    advertencias = [
+                        {"code": c.code, "detail": c.detail}
+                        for c in outcome.controls
+                        if c.status != "PASS"
+                    ]
+                    state.save("advertencias.json", {"items": advertencias})
+                    steps.append(
+                        {
+                            "step": "judge",
+                            "status": "ADVERTENCIA",
+                            "items": len(advertencias),
+                        }
+                    )
+                else:
+                    draft = fixed
+                    continue
 
             state.checkpoint("judge")
             converged = True

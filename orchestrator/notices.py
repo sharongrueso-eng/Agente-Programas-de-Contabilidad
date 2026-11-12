@@ -118,6 +118,7 @@ def aviso_de_pieza(
     keyword: str = "",
     schema: str = "BlogPosting",
     motivo: str = "",
+    advertencias: tuple[str, ...] = (),
 ) -> str:
     """El aviso que se quiere leer: qué se tocó, por qué y dónde se revisa.
 
@@ -170,6 +171,10 @@ def aviso_de_pieza(
         "",
         f"Editar: {url_edicion}",
     ]
+    if advertencias:
+        lineas += ["", "Advertencias (no impiden publicar):"]
+        lineas += [f"· {aviso[:120]}" for aviso in advertencias[:5]]
+
     if titulo_seo or meta:
         lineas += [
             "",

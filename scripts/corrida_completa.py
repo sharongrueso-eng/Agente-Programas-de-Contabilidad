@@ -731,6 +731,14 @@ def main() -> int:
             criticos_total=total,
             importantes_ok=aprobados,
             importantes_total=total,
+            advertencias=tuple(
+                str(item.get("detail") or item.get("code", ""))[:120]
+                for item in (
+                    json.loads((estado.dir / "advertencias.json").read_text(encoding="utf-8")).get("items", [])
+                    if (estado.dir / "advertencias.json").exists()
+                    else []
+                )
+            ),
             estado=semaforo(
                 criticos_fallidos=total - aprobados, importantes_fallidos=0, observaciones=observaciones
             ),

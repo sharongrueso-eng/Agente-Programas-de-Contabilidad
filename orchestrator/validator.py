@@ -196,6 +196,18 @@ def _control(code: str, ok: bool, detail: str, failure: str = CORREGIR) -> Contr
 
 # Solo funciones de producto: "documento equivalente" o "facturación electrónica" son
 # normativa y se nombran sin atribuir nada a nadie.
+# Los únicos controles que pueden detener una publicación: los que evitan publicar algo falso
+# o roto. El resto son advertencias: se corrigen si se puede y, si no, se publica y se avisa.
+BLOQUEANTES = frozenset(
+    {"country_norms", "registry_amounts", "feature_claims", "linea_visual", "snippet_body"}
+)
+
+
+def bloqueantes(controls) -> list:
+    """Los fallos que sí impiden publicar."""
+    return [c for c in controls if getattr(c, "status", "PASS") != PASS and c.code in BLOQUEANTES]
+
+
 FUNCIONES = (
     "nómina", "nomina", "inventario", "punto de venta", "pos", "cartera", "tesorería",
     "activos fijos", "presupuesto", "inteligencia artificial", "multiempresa", "kardex",
