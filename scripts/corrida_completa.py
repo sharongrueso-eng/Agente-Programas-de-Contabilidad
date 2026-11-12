@@ -102,6 +102,48 @@ def env(ruta: Path) -> dict[str, str]:
     return valores
 
 
+
+OBLIGATORIAS = (
+    "OPENAI_BASE_URL",
+    "PDC_LLM_KEY",
+    "PDC_PROD_URL",
+    "PDC_PROD_USER",
+    "PDC_PROD_TOKEN",
+    "PDC_MCP_USER",
+    "PDC_MCP_TOKEN",
+)
+
+
+def verificar_entorno() -> None:
+    """Comprueba las variables antes de gastar una sola llamada.
+
+    Sin esto, una variable ausente aparece a mitad de la corrida -después de la auditoría, con
+    tokens gastados- y como un KeyError que no dice qué falta.
+    """
+    faltan = [clave for clave in OBLIGATORIAS if not os.environ.get(clave, "").strip()]
+    if faltan:
+        raise SystemExit(
+            "faltan variables de entorno: " + ", ".join(faltan) + ". "
+            "Se definen en Coolify y se aplican al redesplegar."
+        )
+    cortas = [
+        clave
+        for clave in ("PDC_PROD_TOKEN", "PDC_MCP_TOKEN")
+        if len(os.environ.get(clave, "").strip()) < 20
+    ]
+    if cortas:
+        raise SystemExit(
+            "estas credenciales parecen truncadas: "
+            + ", ".join(cortas)
+            + ". Una contraseña de aplicación de WordPress tiene 24 caracteres, espacios incluidos."
+        )
+
+
+def modelo(nombre: str, por_defecto: str) -> str:
+    """Un modelo sin configurar cae en el elegido por el proyecto, no revienta."""
+    return (os.environ.get(nombre) or por_defecto).strip()
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--pais", default="CO")
@@ -121,6 +163,8 @@ def main() -> int:
             continue
         for clave, valor in env(ruta).items():
             os.environ.setdefault(clave, valor)
+
+    verificar_entorno()
 
     if args.revertir:
         from orchestrator.adapters import WordPressClient as _WpRevertir
@@ -311,7 +355,7 @@ def main() -> int:
         producer=LiteLlmClient(
             base_url=os.environ["OPENAI_BASE_URL"],
             api_key=os.environ["PDC_LLM_KEY"],
-            model=os.environ["PDC_MODEL_PRODUCER"],
+            model=modelo("PDC_MODEL_PRODUCER", "deepseek/deepseek-v4-pro"),
             max_tokens=8000,
             timeout=300,
         ),
