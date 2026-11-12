@@ -112,7 +112,24 @@ OBLIGATORIAS = (
     "PDC_PROD_TOKEN",
     "PDC_MCP_USER",
     "PDC_MCP_TOKEN",
+    "PDC_CHAT_WEBHOOK_URL",
 )
+
+
+
+def _de_los_archivos() -> dict[str, str]:
+    """Los valores de ~/.pdc/*.env, para que una corrida local no exija exportarlos a mano."""
+    valores: dict[str, str] = {}
+    for nombre in ("llm.env", "chat.env", "mcp.env", "wp-prod.env"):
+        ruta = Path.home() / ".pdc" / nombre
+        try:
+            for linea in ruta.read_text(encoding="utf-8").splitlines():
+                if "=" in linea and not linea.strip().startswith("#"):
+                    clave, _, valor = linea.partition("=")
+                    valores.setdefault(clave.strip(), valor.strip())
+        except OSError:
+            continue
+    return valores
 
 
 def verificar_entorno() -> None:
@@ -121,7 +138,12 @@ def verificar_entorno() -> None:
     Sin esto, una variable ausente aparece a mitad de la corrida -después de la auditoría, con
     tokens gastados- y como un KeyError que no dice qué falta.
     """
-    faltan = [clave for clave in OBLIGATORIAS if not os.environ.get(clave, "").strip()]
+    locales = _de_los_archivos()
+    faltan = [
+        clave
+        for clave in OBLIGATORIAS
+        if not (os.environ.get(clave, "").strip() or locales.get(clave, "").strip())
+    ]
     if faltan:
         raise SystemExit(
             "faltan variables de entorno: " + ", ".join(faltan) + ". "
@@ -215,6 +237,11 @@ def main() -> int:
     parser.add_argument("--pais", default="CO")
     parser.add_argument("--brief", default="", help="usar un brief existente en vez de planear")
     parser.add_argument("--borrador", action="store_true", help="dejar la pieza en borrador y avisar")
+    parser.add_argument(
+        "--probar-aviso",
+        action="store_true",
+        help="envía un aviso de prueba al Chat y termina, para comprobar el webhook en el contenedor",
+    )
     parser.add_argument("--secciones", action="store_true", help="producir bloque a bloque en vez de una sola llamada")
     parser.add_argument("--reusar", action="store_true", help="usar el borrador ya guardado y seguir desde la validación")
     parser.add_argument("--sin-avisos", action="store_true", help="no enviar nada al espacio de Chat")
@@ -231,6 +258,21 @@ def main() -> int:
             os.environ.setdefault(clave, valor)
 
     verificar_entorno()
+
+    if args.probar_aviso:
+        from orchestrator.notices import send
+
+        webhook = _webhook(args)
+        if not webhook:
+            print("no hay webhook configurado: revisa PDC_CHAT_WEBHOOK_URL")
+            return 2
+        estado_http = send(
+            webhook,
+            "🔧 Prueba de aviso del agente PdC. "
+            "Si lees esto, la próxima corrida también avisará aquí.",
+        )
+        print("aviso de prueba:", estado_http)
+        return 0 if estado_http == 200 else 1
 
     if args.revertir:
         from orchestrator.adapters import WordPressClient as _WpRevertir

@@ -60,6 +60,9 @@ Los seis últimos publicados marcan el estándar. Nuestro agente debe caber en �
 | Imágenes | 0 – 4 | portada + 1 a 3 capturas con pie fechado |
 | Enlaces internos | 5 – 31 | mínimo 5 |
 
+**Decisión tomada:** solo se usan capturas de la interfaz de Alegra, y van sin ficha al pie.
+No se guardan imágenes de sitios de competidores.
+
 **Sobre las capturas:** las de la interfaz de Alegra y de los competidores son lo que más
 diferencia un artículo de una lista. Se toman del sitio oficial, con alt descriptivo y pie
 «consultada el {fecha}». Si no hay captura posible, se dice; no se simula.

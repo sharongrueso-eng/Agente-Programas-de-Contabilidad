@@ -19,6 +19,8 @@ def _cargar():
 class PreflightTests(unittest.TestCase):
     def setUp(self) -> None:
         self.modulo = _cargar()
+        # Sin los archivos de ~/.pdc, que en el contenedor no existen.
+        self.modulo._de_los_archivos = lambda: {}
         self.previas = dict(os.environ)
 
     def tearDown(self) -> None:
