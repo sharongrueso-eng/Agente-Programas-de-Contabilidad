@@ -369,6 +369,19 @@ def run(
                     "BLOCKED", brief, state, steps, block_reason=outcome.detail
                 )
             if outcome.status == CORREGIR:
+                graves = [
+                    c for c in getattr(outcome, "controls", ())
+                    if c.status != PASS and c.code == "intent_depth"
+                ]
+                if graves:
+                    return _contract(
+                        "BLOCKED",
+                        brief,
+                        state,
+                        steps,
+                        block_reason="el juez encontró la pieza incompleta: "
+                        + graves[0].detail[:300],
+                    )
                 if deps.publicar_con_observaciones:
                     observaciones = [
                         {"code": c.code, "detail": c.detail}

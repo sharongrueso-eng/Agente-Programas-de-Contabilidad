@@ -417,11 +417,20 @@ def main() -> int:
                 "faltan credenciales del MCP: define PDC_MCP_USER y PDC_MCP_TOKEN "
                 f"(usuario {len(usuario)} caracteres, token {len(token)})"
             )
-        cliente_mcp = ClienteMcp(
-            url=os.environ.get(
+        if args.entorno == "prod":
+            destino_mcp = (
+                os.environ.get("PDC_PROD_URL", "https://programascontabilidad.com").rstrip("/")
+                + "/wp-json/mcp/mcp-adapter-default-server"
+            )
+        else:
+            destino_mcp = os.environ.get(
                 "PDC_MCP_URL",
-                "https://programascontabilidad.com/wp-json/mcp/mcp-adapter-default-server",
-            ),
+                "https://wordpress-1477557-6320318.cloudwaysapps.com"
+                "/wp-json/mcp/mcp-adapter-default-server",
+            )
+        print(f"mcp     : {destino_mcp.split('/wp-json')[0]}")
+        cliente_mcp = ClienteMcp(
+            url=destino_mcp,
             headers={
                 "Authorization": "Basic "
                 + __import__("base64").b64encode(f"{usuario}:{token}".encode()).decode()
@@ -620,7 +629,7 @@ def main() -> int:
             llm=deps.producer,
             skill=deps.skill,
             legal=deps.legal,
-            registro=registro.texto,
+            registro=registro.texto[:3500],  # el gateway devuelve vacío con prompts largos
             marcas=[
                 f["brand"] if isinstance(f, dict) else getattr(f, "brand", "")
                 for f in registro.fichas
@@ -632,6 +641,12 @@ def main() -> int:
         estado.checkpoint("production", resume_from="judge")
         print(f"   llamadas: {salida.llamadas} | bloques: {len(salida.bloques)} | fallidos: {salida.fallidos or 'ninguno'}")
         print(f"   pieza: {len(salida.draft.html):,} caracteres")
+        if salida.fallidos:
+            raise SystemExit(
+                "la pieza quedó incompleta: faltan los bloques "
+                + ", ".join(salida.fallidos)
+                + ". No se valida ni se publica una pieza a la que le falta la comparativa."
+            )
 
     inicio = time.time()
     resultado = run(
