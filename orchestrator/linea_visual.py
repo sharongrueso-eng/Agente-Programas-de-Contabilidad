@@ -52,6 +52,38 @@ LÍNEA VISUAL DEL BLOG (obligatoria, no la interpretes: estos componentes ya exi
 """
 
 
+def resumen(texto: str, etiqueta: str = "En resumen") -> str:
+    """Caja de resumen: una idea, en el color de énfasis de la línea visual."""
+    return (
+        f'<div role="note" style="background:{CELESTE_SUAVE};border:1px solid {LINEA};'
+        f'border-left:4px solid {AZUL};border-radius:0 12px 12px 0;padding:18px 22px;'
+        f'margin:24px 0;">'
+        f'<p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.08em;'
+        f'text-transform:uppercase;color:{NAVY};">{etiqueta}</p>'
+        f'<p style="margin:0;font-size:16px;line-height:1.65;font-weight:400;'
+        f'color:{TINTA};max-width:68ch;">{texto}</p></div>'
+    )
+
+
+def puntos_clave(items: list[str], titulo: str = "Puntos clave") -> str:
+    """Tarjeta de puntos clave: lo que decide la compra, en viñetas legibles.
+
+    Va en tarjeta y no en caja de nota porque son varias líneas y el lector las escanea.
+    """
+    filas = "".join(
+        f'<li style="margin:0 0 8px;font-size:16px;line-height:1.6;font-weight:400;'
+        f'color:{TINTA};">{item}</li>'
+        for item in items
+        if str(item).strip()
+    )
+    return (
+        f'<div style="background:#FFFFFF;border:1px solid {LINEA};border-radius:12px;'
+        f'padding:0 0 18px;margin:28px 0;overflow:hidden;">'
+        f'<div style="background:{NAVY};padding:12px 22px;">'
+        f'<p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.1em;'
+        f'text-transform:uppercase;color:#FFFFFF;">{titulo}</p></div>'
+        f'<ul style="margin:16px 0 0;padding-left:38px;">{filas}</ul></div>'
+    )
 def caja(etiqueta: str, texto: str, tipo: str) -> str:
     """Caja de énfasis de la línea visual. tipo: dato, atencion, limite."""
     estilos = {

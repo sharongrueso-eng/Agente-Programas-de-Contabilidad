@@ -28,6 +28,11 @@ BLOQUES: tuple[tuple[str, str], ...] = (
         "sin rodeos y sin repetir el título. Es el bloque que citan los motores de respuesta.",
     ),
     (
+        "puntos_clave",
+        "Cuatro viñetas con lo que decide la compra o la duda del lector, una por línea, cada "
+        "una empezando por «- » y de 12 a 20 palabras. Sin introducción ni cierre: solo la lista.",
+    ),
+    (
         "definicion",
         "Qué es y qué alcanza: define el tema y sus límites en el país del brief.",
     ),
@@ -67,6 +72,11 @@ BLOQUES: tuple[tuple[str, str], ...] = (
         "fuentes",
         "Fuentes oficiales del país, enlazadas y nombradas. Incluye el tercer enlace a Alegra con UTM "
         "solo si el CTA no lo lleva.",
+    ),
+    (
+        "resumen",
+        "Una sola frase de cierre, de 25 a 40 palabras, que resuma la respuesta para quien "
+        "solo va a leer el final. Sin listas y sin repetir el veredicto.",
     ),
     (
         "veredicto",
@@ -181,6 +191,36 @@ def producir_por_secciones(
     partes: list[str] = [f"<h1>{cabecera['title']}</h1>", str(cabecera["intro"]).strip()]
 
     for clave, instruccion in BLOQUES:
+        if clave in {"puntos_clave", "resumen"}:
+            crudo = ""
+            for _ in range(max_reintentos):
+                try:
+                    crudo = llamar(
+                        "Bloque «" + clave + "»: " + instruccion
+                        + chr(10) + "Devuelve solo el texto, sin HTML y sin explicaciones."
+                    )
+                except Exception:  # noqa: BLE001
+                    continue
+                if len(crudo.strip()) >= 40:
+                    break
+                crudo = ""
+            if clave == "puntos_clave":
+                items = [
+                    _limpiar(linea).lstrip("-•* ").strip()
+                    for linea in crudo.splitlines()
+                    if linea.strip().startswith(("-", "•", "*"))
+                ]
+                construido = lv.puntos_clave(items[:5]) if len(items) >= 2 else ""
+            else:
+                frase = " ".join(crudo.split())[:400]
+                construido = lv.resumen(frase) if len(frase) >= 40 else ""
+            if construido:
+                salida.bloques[clave] = construido
+                partes.append(construido)
+            else:
+                salida.fallidos.append(clave)
+            continue
+
         # La tabla sale del registro, no del modelo: pedirle cifras dentro de celdas es
         # justo donde inventa precios que el registro sí tiene.
         if clave == "tabla" and fichas:

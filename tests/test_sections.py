@@ -39,6 +39,17 @@ class LlmFalso:
         self.sistemas = getattr(self, "sistemas", [])
         self.sistemas.append(mensajes[0]["content"])
         self.llamadas.append(usuario)
+        if "puntos_clave" in usuario:
+            return chr(10).join([
+                "- Primera idea que decide la compra del lector.",
+                "- Segunda idea con su dato.",
+                "- Tercera idea de cierre.",
+            ])
+        if "resumen" in usuario:
+            return (
+                "En conjunto, la decisión depende del tipo de negocio y del volumen de "
+                "facturación mensual que maneje cada empresa."
+            )
         if "Escribe la cabecera" in usuario:
             return (
                 '{"title": "Mejores software contable Colombia 2026",'
@@ -67,8 +78,13 @@ class SeccionesTests(unittest.TestCase):
         salida = producir_por_secciones(brief(), llm=LlmFalso(), skill="S", legal="L")
 
         self.assertTrue(salida.draft.html.startswith("<h1>Mejores software contable Colombia 2026</h1>"))
-        posiciones = [salida.draft.html.index(f) for f in salida.bloques.values()]
-        self.assertEqual(posiciones, sorted(posiciones))
+        # Los bloques pueden repetir contenido en el doble de prueba: se busca cada uno
+        # a partir de donde terminó el anterior, que es lo que prueba el orden real.
+        cursor = 0
+        for clave, contenido in salida.bloques.items():
+            encontrado = salida.draft.html.find(contenido, cursor)
+            self.assertNotEqual(encontrado, -1, f"el bloque {clave} no está en su sitio")
+            cursor = encontrado
 
     def test_el_slug_sale_del_titulo_sin_tildes(self) -> None:
         salida = producir_por_secciones(brief(), llm=LlmFalso(), skill="S", legal="L")
