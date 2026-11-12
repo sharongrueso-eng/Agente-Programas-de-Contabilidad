@@ -259,10 +259,13 @@ def judge(
     *,
     llm: LlmClient,
     max_prompt_chars: int = MAX_PROMPT_CHARS,
+    contexto_parte: str = "",
 ) -> JudgeOutcome:
     """Corre el juez y devuelve su veredicto, o un fallo explicitado."""
     try:
         messages = build_messages(draft, brief, verdict, registry)
+        if contexto_parte:
+            messages[-1]["content"] += chr(10) * 2 + contexto_parte
         check_prompt_budget(messages, max_prompt_chars)
     except PromptBudgetExceeded as error:
         return JudgeOutcome(status="BLOCKED", detail=f"presupuesto de prompt excedido: {error}")

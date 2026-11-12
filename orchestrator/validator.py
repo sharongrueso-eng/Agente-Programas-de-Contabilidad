@@ -530,7 +530,7 @@ def validate(
     return Verdict(status=worst, controls=tuple(controls))
 
 
-FRASE_SIN_DATO = "Esta cifra no se cita porque no está verificada en el registro de datos."
+FRASE_SIN_DATO = "El proveedor no publica esta información en su sitio web."
 
 
 def _solo_digitos(texto: str) -> str:

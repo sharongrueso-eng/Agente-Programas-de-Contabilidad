@@ -615,7 +615,18 @@ def _juzgar(draft, brief, verdict, deps):
     controles: list = []
     for indice, parte in enumerate(partes, start=1):
         trozo = replace(draft, html=parte)
-        parcial = judge(trozo, brief, verdict, deps.registry, llm=deps.judge)
+        parcial = judge(
+            trozo,
+            brief,
+            verdict,
+            deps.registry,
+            llm=deps.judge,
+            contexto_parte=(
+                f"Estás leyendo la PARTE {indice} de {len(partes)} del artículo. Juzga solo lo "
+                'que aparece en esta parte: hechos, cifras, atribuciones y tono. No informes '
+                'como defecto que falte una sección que podría estar en otra parte.'
+            ),
+        )
         if parcial.status == "FAILED":
             return parcial
         controles.extend(getattr(parcial, "controls", ()))
