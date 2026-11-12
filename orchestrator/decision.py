@@ -10,6 +10,10 @@ Las tres reglas, en orden:
 2. Si le falta lo que su intención exige -tabla comparativa, una sección por herramienta,
    veredicto-, el trabajo es de cuerpo.
 3. Si el artículo está completo y su problema es que nadie lo abre, el trabajo es el título.
+
+La extensión no se juzga: un artículo citado por un modelo de lenguaje no gana por tener más
+palabras, y alargar por alargar solo añade ruido. Lo que se mide es lo que falta para
+responder la intención.
 """
 
 from __future__ import annotations
@@ -18,7 +22,6 @@ import re
 from dataclasses import dataclass, field
 
 INTENCIONES_DE_COMPARACION = ("best", "comparison", "comparativa")
-MIN_PALABRAS = 900
 MIN_ENLACES_INTERNOS = 5
 
 
@@ -80,8 +83,6 @@ def decidir(
             faltantes.append("una sección por herramienta")
         if not re.search(r"veredicto|recomendaci", html, re.IGNORECASE):
             faltantes.append("veredicto por perfil")
-    if medidas["palabras"] < MIN_PALABRAS:
-        faltantes.append(f"contenido ({medidas['palabras']} palabras)")
     if medidas["enlaces_internos"] < MIN_ENLACES_INTERNOS:
         faltantes.append(f"enlazado interno ({medidas['enlaces_internos']})")
     if meses is not None and meses > 4 and tema_normativo:

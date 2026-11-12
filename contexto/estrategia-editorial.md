@@ -53,7 +53,7 @@ Los seis últimos publicados marcan el estándar. Nuestro agente debe caber en �
 
 | Medida | Rango del blog | Regla para el agente |
 |---|---|---|
-| Palabras | 1.300 – 2.950 | **1.400 – 2.200** |
+| Palabras | 1.300 – 2.950 | **sin objetivo**: manda la calidad, no la extensión |
 | H2 | 6 – 15 | 7 – 10 |
 | H3 | 4 – 20 | al menos uno por herramienta comparada |
 | Tablas | 1 – 3 | la comparativa y, si hay planes, la de precios |
@@ -85,7 +85,8 @@ calidad, el enlace directo a wp-admin y los campos SEO escritos.
 
 ## Aprendizajes de los seis últimos posts
 
-- El blog publica **1.300–2.000 palabras**: el agente escribía 7.000. Se recorta el objetivo.
+- El blog publica **1.300–2.950 palabras**. No se impone un largo: un texto citado por un
+  modelo de lenguaje no gana por tener más, y alargar por alargar añade ruido.
 - Las comparativas llevan **tres tablas y tres imágenes**; los artículos de un solo tema, una.
 - El blog mezcla dos paletas antiguas (`#CCE4F7`, `#129CD8`). La línea visual nueva las sustituye
   por los componentes de `linea_visual.py`, sin romper el historial.

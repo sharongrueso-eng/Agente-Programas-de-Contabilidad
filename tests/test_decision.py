@@ -47,13 +47,13 @@ class DecisionTests(unittest.TestCase):
         self.assertEqual(decision.accion, "refresh_structure")
         self.assertTrue(any("normativo" in f for f in decision.faltantes))
 
-    def test_a_short_article_is_flagged_even_if_it_has_a_table(self) -> None:
+    def test_a_comparison_without_a_section_per_tool_is_flagged(self) -> None:
         corto = "<h2>A</h2><table><tr><td>x</td></tr></table><h3>B</h3><p>corto</p>"
 
         decision = decidir(existe=True, html=corto, intencion="best")
 
         self.assertEqual(decision.accion, "refresh_structure")
-        self.assertTrue(any("palabras" in f for f in decision.faltantes))
+        self.assertTrue(any("herramienta" in f for f in decision.faltantes))
 
 
 if __name__ == "__main__":
