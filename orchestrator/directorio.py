@@ -97,6 +97,9 @@ def extranas(texto: str, pais: str) -> list[str]:
             for grupo in encontrado.groups():
                 if not grupo:
                     continue
+                # Un precio no es una marca: «17.900 vs 49.900» se compara todos los días.
+                if not re.search(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]", grupo):
+                    continue
                 if grupo.lower() in validas or len(grupo) < 4:
                     continue
                 # «X vs Y» ya es una comparación explícita. En el resto, un nombre suelto
