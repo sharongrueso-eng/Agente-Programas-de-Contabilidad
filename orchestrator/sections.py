@@ -249,7 +249,12 @@ def producir_por_secciones(
                         )
                     except Exception:  # noqa: BLE001 - una marca caída no tumba el bloque
                         continue
-                    if "<h3" in trozo.lower() and len(trozo) >= 400:
+                    if "<h3" in trozo.lower() and len(trozo) >= 300:
+                        break
+                    # El modelo a veces devuelve markdown o texto sin encabezado: el H3 lo
+                    # pone el código, porque la estructura es nuestra y el texto es suyo.
+                    if len(trozo) >= 300:
+                        trozo = f"<h3>{marca}</h3>" + trozo
                         break
                     trozo = ""
                 if trozo:
