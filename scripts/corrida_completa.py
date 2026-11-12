@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 import time
 from datetime import date, datetime
@@ -145,6 +146,43 @@ def modelo(nombre: str, por_defecto: str) -> str:
     return (os.environ.get(nombre) or por_defecto).strip()
 
 
+
+def _mercado_del_articulo(url: str) -> tuple[str | None, str]:
+    """Lee el mercado en el artículo publicado, no en su URL.
+
+    Es la comprobación que faltaba: una pieza mexicana se estaba reescribiendo como colombiana
+    porque la ruta no llevaba país. Si el artículo no da señales, devuelve None y quien llama
+    decide abstenerse.
+    """
+    from orchestrator.adapters import WordPressClient
+    from orchestrator.mercado import pais_de_contenido
+
+    if not url:
+        return None, "sin url"
+    wp = WordPressClient(
+        os.environ.get("PDC_PROD_URL", ""),
+        os.environ.get("PDC_PROD_TOKEN", ""),
+        username=os.environ.get("PDC_PROD_USER", ""),
+    )
+    try:
+        hallado = wp.find_by_url(url)
+        if not hallado:
+            return None, "la url no está en el blog"
+        identificador = hallado.get("id")
+        datos = wp._write("GET", f"/wp-json/wp/v2/posts/{identificador}?context=edit", {})
+    except Exception as error:  # noqa: BLE001
+        return None, f"no se pudo leer el post ({error})"
+    texto = " ".join(
+        [
+            str((datos.get("title") or {}).get("raw", "")),
+            str((datos.get("excerpt") or {}).get("raw", "")),
+            re.sub(r"<[^>]+>", " ", str((datos.get("content") or {}).get("raw", "")))[:6000],
+        ]
+    )
+    mercado = pais_de_contenido(texto)
+    return (mercado.pais if mercado else None), ("contenido del artículo" if mercado else "sin señales")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--pais", default="CO")
@@ -217,6 +255,24 @@ def main() -> int:
         if not elegidas:
             print("sin oportunidades para", args.pais)
             return 2
+        # El mercado del artículo manda: si dice otro país, no se toca.
+        confirmadas = []
+        for candidata in elegidas[:4]:
+            pais_real, motivo = _mercado_del_articulo(candidata.url)
+            if pais_real and pais_real != args.pais:
+                print(f"descartada {candidata.url[-45:]}: es de {pais_real} ({motivo})")
+                continue
+            if pais_real is None and requires_body(candidata.action):
+                print(f"descartada {candidata.url[-45:]}: sin señales de mercado ({motivo})")
+                continue
+            confirmadas.append(candidata)
+        if not confirmadas:
+            print(
+                "sin oportunidades confirmadas para", args.pais,
+                "— el mercado se lee en el contenido del artículo",
+            )
+            return 2
+        elegidas = confirmadas
         elegida = elegidas[0]
         if not requires_body(elegida.action):
             print(f"oportunidad: {elegida.action} (título y meta, sin cuerpo)")

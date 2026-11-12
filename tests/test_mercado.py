@@ -44,3 +44,30 @@ class MercadoTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ContenidoTests(unittest.TestCase):
+    """El mercado se lee en el artículo: es lo que falló con la pieza mexicana."""
+
+    def test_a_post_about_sat_is_mexican_even_without_a_country_in_the_url(self) -> None:
+        from orchestrator.mercado import pais_de_contenido
+
+        texto = (
+            "Retención de ISR en intereses bancarios. El CFDI 4.0 del SAT y el IMSS obligan a "
+            "declarar ante el SAT cada mes."
+        )
+
+        mercado = pais_de_contenido(texto)
+
+        self.assertIsNotNone(mercado)
+        self.assertEqual(mercado.pais, "MX")
+
+    def test_dian_is_colombian(self) -> None:
+        from orchestrator.mercado import pais_de_contenido
+
+        self.assertEqual(pais_de_contenido("Facturación electrónica con CUFE ante la DIAN").pais, "CO")
+
+    def test_a_generic_post_says_nothing(self) -> None:
+        from orchestrator.mercado import pais_de_contenido
+
+        self.assertIsNone(pais_de_contenido("Software contable para pymes: qué mirar antes de comprar."))

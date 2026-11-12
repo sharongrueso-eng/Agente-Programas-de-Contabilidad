@@ -65,6 +65,31 @@ def _marcas_por_mercado(ruta: Path | None = None) -> dict[str, set[str]]:
     return mapa
 
 
+NOMBRES_PAIS = (
+    ("mexico", "MX"), ("mexicana", "MX"), ("mexicanos", "MX"),
+    ("colombia", "CO"), ("colombiana", "CO"), ("colombianos", "CO"),
+    ("costa rica", "CR"), ("costarricense", "CR"),
+    ("republica dominicana", "DO"), ("dominicana", "DO"),
+)
+
+
+def pais_de_contenido(texto: str) -> Mercado | None:
+    """El mercado de un artículo, leído en lo que el artículo dice.
+
+    Es la señal más fiable y por eso va primero: un post sobre el SAT es mexicano aunque su
+    URL no lo diga y su keyword sea genérica. Devuelve None cuando no hay evidencia, para que
+    quien llame se abstenga en lugar de suponer.
+    """
+    plano = _normalizar(texto)
+    for patron, pais in SENALES_NORMA:
+        if re.search(patron, plano):
+            return Mercado(pais, "contenido")
+    for nombre, pais in NOMBRES_PAIS:
+        if _normalizar(nombre) in plano:
+            return Mercado(pais, "contenido")
+    return None
+
+
 def pais_de_pagina(
     url: str,
     consultas: tuple[str, ...] | list[str] = (),
