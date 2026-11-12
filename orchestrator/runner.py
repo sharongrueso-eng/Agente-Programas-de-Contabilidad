@@ -34,6 +34,7 @@ from orchestrator.reparacion import (
     completar_cta,
     normalizar_slug,
 )
+from orchestrator.presentacion import presentar
 from orchestrator.publisher import PublishConditions, publish
 from orchestrator.validator import (
     BLOQUEADO,
@@ -192,6 +193,7 @@ def run(
     conditions: PublishConditions,
     dry_run: bool = True,
     max_cycles: int = MAX_CYCLES,
+    presentar_pieza: bool = False,
 ) -> dict[str, Any]:
     """Ejecuta la corrida y devuelve el contrato con los pasos recorridos."""
     steps: list[dict[str, Any]] = []
@@ -220,7 +222,10 @@ def run(
                 resume_from=result.get("resume_from", ""),
                 block_reason=result.get("block_reason", ""),
             )
-        draft_data = result.get("draft") or {}
+        draft_data = dict(result.get("draft") or {})
+        # La pieza se presenta aquí: tarjetas, tabla de criterios, panel de perfiles y firma.
+        if presentar_pieza:
+            draft_data["html"] = presentar(draft_data.get("html", ""), pais=brief.country)
         state.save("borrador.json", draft_data)
         draft = Draft(**draft_data)
         state.checkpoint("production")

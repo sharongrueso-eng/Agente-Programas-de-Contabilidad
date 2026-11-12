@@ -637,6 +637,13 @@ def main() -> int:
             fichas=list(registro.fichas),
             carpeta=RAIZ / "state" / "corridas" / brief.task_id / "bloques",
         )
+        from dataclasses import replace as _reemplazar
+
+        from orchestrator.presentacion import presentar
+
+        salida.draft = _reemplazar(
+            salida.draft, html=presentar(salida.draft.html, pais=brief.country)
+        )
         estado.save("borrador.json", asdict(salida.draft))
         estado.checkpoint("production", resume_from="judge")
         print(f"   llamadas: {salida.llamadas} | bloques: {len(salida.bloques)} | fallidos: {salida.fallidos or 'ninguno'}")
@@ -650,7 +657,12 @@ def main() -> int:
 
     inicio = time.time()
     resultado = run(
-        brief, deps=deps, state=estado, conditions=condiciones, dry_run=False
+        brief,
+        deps=deps,
+        state=estado,
+        conditions=condiciones,
+        dry_run=False,
+        presentar_pieza=not args.secciones,  # por secciones ya se presentó al ensamblar
     )
     print()
     print(f"duración: {time.time() - inicio:.1f}s")
@@ -686,6 +698,38 @@ def main() -> int:
         print()
         print("aviso de fallo en Chat:", send(webhook, texto))
 
+
+
+    # Categoría, subcategoría y etiquetas: el post nace archivado, no en "sin categoría".
+    if resultado["status"] == "DONE" and resultado.get("post_id"):
+        try:
+            from orchestrator.adapters import WordPressClient
+            from orchestrator.metadatos import categorias, etiquetas
+
+            wp = WordPressClient(
+                os.environ.get("PDC_PROD_URL", ""),
+                os.environ.get("PDC_PROD_TOKEN", ""),
+                username=os.environ.get("PDC_PROD_USER", ""),
+            )
+            borrador_meta = json.loads((estado.dir / "borrador.json").read_text(encoding="utf-8"))
+            titulo_meta = borrador_meta.get("title", "")
+            texto_meta = titulo_meta + " " + borrador_meta.get("meta_description", "")
+            ids = categorias(brief.format, texto_meta)
+            nombres = etiquetas(
+                titulo_meta,
+                getattr(elegida, "focus_keyword", "") if "elegida" in dir() else "",
+                brief.country,
+                [f["brand"] if isinstance(f, dict) else getattr(f, "brand", "") for f in registro.fichas],
+            )
+            etiquetas_ids = []
+            for nombre in nombres:
+                codigo, datos = wp._write("POST", "/wp-json/wp/v2/tags", {"name": nombre})
+                if codigo in (200, 201) and isinstance(datos, dict) and datos.get("id"):
+                    etiquetas_ids.append(int(datos["id"]))
+            wp.update_post(int(resultado["post_id"]), {"categories": ids, "tags": etiquetas_ids})
+            print(f"metadatos: categorías {ids} · etiquetas {len(etiquetas_ids)}")
+        except Exception as error:  # noqa: BLE001 - un fallo de taxonomía no oculta la publicación
+            print("metadatos: no se pudieron asignar —", str(error)[:120])
 
     if resultado["status"] == "DONE" and not args.borrador:
         from orchestrator.notices import aviso_de_pieza, semaforo, send
