@@ -46,8 +46,15 @@ def marcas(pais: str, *, solo_nivel: str | None = None) -> list[str]:
 
 
 def conocidas(pais: str) -> set[str]:
-    """Todo nombre propio aceptable en una pieza de ese mercado, en minúsculas."""
+    """Todo nombre propio aceptable en una pieza de ese mercado, en minúsculas.
+
+    Las marcas de varias palabras cuentan también por sus partes: «World Office Escritorio»
+    aparece junto a un «vs» como «Escritorio», y eso no es una marca desconocida.
+    """
     nombres = {m.lower() for m in marcas(pais)}
+    for marca in list(nombres):
+        if " " in marca:
+            nombres.update(parte for parte in marca.split() if len(parte) > 3)
     for archivo in FICHAS.glob(f"*-{pais.lower()}.json"):
         ficha = json.loads(archivo.read_text(encoding="utf-8"))
         nombres.add(ficha["brand"].lower())
