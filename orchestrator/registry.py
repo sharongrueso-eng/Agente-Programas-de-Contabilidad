@@ -129,6 +129,19 @@ def fichas_text(fichas: Iterable[dict[str, Any]]) -> str:
             sufijo = f" / {period}" + (f" ({cobro})" if cobro else "")
             estado = "" if price else " (no publica precio)"
             lines.append(f"  {plan.get('name', 'plan')}: {price} {currency}{sufijo}{estado}")
+        for clave_extra, etiqueta in (
+            ("features", "funciones que publica"),
+            ("electronic_invoicing", "facturación electrónica"),
+            ("integrations", "integraciones"),
+            ("advantages", "ventajas"),
+            ("known_limits", "límites"),
+            ("support", "soporte"),
+        ):
+            valor = ficha.get(clave_extra)
+            if isinstance(valor, list) and valor:
+                lines.append(f"  {etiqueta}: " + "; ".join(str(v) for v in valor))
+            elif isinstance(valor, str) and valor.strip():
+                lines.append(f"  {etiqueta}: {valor.strip()}")
         lines.append(f"  fuente: {ficha['source_url']} (consultada {ficha['captured_at']})")
         lines.append(f"  nivel de evidencia: {ficha['evidence_level']}")
     return "\n".join(lines)

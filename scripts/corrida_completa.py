@@ -629,7 +629,7 @@ def main() -> int:
             llm=deps.producer,
             skill=deps.skill,
             legal=deps.legal,
-            registro=registro.texto[:3500],  # el gateway devuelve vacío con prompts largos
+            registro=registro.texto[:6000],  # el gateway devuelve vacío con prompts largos
             marcas=[
                 f["brand"] if isinstance(f, dict) else getattr(f, "brand", "")
                 for f in registro.fichas
