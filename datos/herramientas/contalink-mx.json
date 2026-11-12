@@ -1,58 +1,60 @@
 {
-  "brand": "Contalink",
-  "country": "MX",
-  "product": "Contalink",
-  "plans": [
-    {
-      "name": "Start",
-      "price": "590",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Pro",
-      "price": "790",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Flex",
-      "price": "990",
-      "currency": "MXN",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    }
-  ],
-  "source_url": "https://www.contalink.com/precios",
-  "captured_at": "2026-11-06",
-  "evidence_level": "documentacion_oficial",
-  "extraction": "modelo+verificacion_literal",
-  "features": [
-    "Contabilidad e impuestos",
-    "Facturación",
-    "Tablero de obligaciones, constancia y opiniones",
-    "Nómina",
-    "Bancos, auditoría y reportes",
-    "App Móvil",
-    "Acompañamiento y servicio",
-    "Facturación y timbres ilimitados",
-    "Capacitación y soporte en línea",
-    "Contalink Plus"
-  ],
-  "descartado": [],
-  "notes": "Precios mensuales en MXN + IVA. Start incluye hasta 5 RFCs; Pro incluye 10 RFCs y permite RFC adicional a $50 + IVA/mes y usuario adicional a $290 + IVA/mes; Flex incluye 100 RFCs por cada usuario contratado, con usuario adicional a $990 + IVA/mes o $9,900 + IVA/año y acceso para clientes a $100 + IVA/mes. Start y Pro incluyen 1 usuario Plus gratis por RFC; en Flex cada acceso para clientes se contrata por separado. Los precios anuales de los planes base no aparecen en el texto; solo se indica un descuento de al menos 16% al cambiar a pago anual.",
-  "historial": [
-    {
-      "fecha": "2026-11-06",
-      "planes": 3,
-      "cambios": [
-        "primera lectura"
-      ]
-    }
-  ]
+ "brand": "Contalink",
+ "country": "MX",
+ "product": "Contalink (contabilidad para despachos)",
+ "plans": [
+  {
+   "name": "Start",
+   "price": "590",
+   "currency": "MXN",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true
+  },
+  {
+   "name": "Pro",
+   "price": "790",
+   "currency": "MXN",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "10 RFC incluidos"
+  },
+  {
+   "name": "Flex",
+   "price": "990",
+   "currency": "MXN",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "por cada contador"
+  }
+ ],
+ "source_url": "https://www.contalink.com/precios",
+ "captured_at": "2026-11-12",
+ "evidence_level": "documentacion_oficial",
+ "extraction": "modelo+verificacion_literal",
+ "features": [
+  "Contabilidad",
+  "Descarga automática del SAT",
+  "Acceso para clientes",
+  "RFC múltiples"
+ ],
+ "descartado": [],
+ "notes": "Leído el 12-nov-2026.",
+ "historial": [
+  {
+   "fecha": "2026-11-06",
+   "planes": 3,
+   "cambios": [
+    "primera lectura"
+   ]
+  }
+ ],
+ "advantages": [
+  "Publica el costo por RFC adicional (50 + IVA al mes)"
+ ],
+ "known_limits": [
+  "El precio depende del número de RFC y de contadores"
+ ]
 }

@@ -1,0 +1,62 @@
+{
+ "brand": "Sinube",
+ "country": "MX",
+ "product": "Sinube (facturación y contabilidad)",
+ "source_url": "https://www.sinube.mx/precios-sinube",
+ "captured_at": "2026-11-12",
+ "evidence_level": "documentacion_oficial",
+ "plans": [
+  {
+   "name": "Facturación 1 usuario",
+   "price": "4.275",
+   "currency": "MXN",
+   "period": "año",
+   "billing": "anual",
+   "publicado": true,
+   "note": "equivale a 356,25 al mes"
+  },
+  {
+   "name": "Facturación 3 usuarios",
+   "price": "11.375",
+   "currency": "MXN",
+   "period": "año",
+   "billing": "anual",
+   "publicado": true,
+   "note": "315,97 por usuario al mes"
+  },
+  {
+   "name": "Facturación 5 usuarios",
+   "price": "17.175",
+   "currency": "MXN",
+   "period": "año",
+   "billing": "anual",
+   "publicado": true,
+   "note": "286,25 por usuario al mes"
+  },
+  {
+   "name": "Contabilidad, compras, bancos, almacén y producción (1 usuario)",
+   "price": "6.600",
+   "currency": "MXN",
+   "period": "año",
+   "billing": "anual",
+   "publicado": true,
+   "note": "550,00 al mes"
+  }
+ ],
+ "features": [
+  "Facturación electrónica CFDI 4.0",
+  "Contabilidad",
+  "Compras",
+  "Bancos",
+  "Almacén",
+  "Contratos",
+  "Producción"
+ ],
+ "advantages": [
+  "Publica el equivalente mensual por usuario, lo que permite comparar de verdad"
+ ],
+ "known_limits": [
+  "La renta es anual: no ofrece pago mensual"
+ ],
+ "notes": "Leído el 12-nov-2026."
+}

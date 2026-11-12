@@ -1,24 +1,42 @@
 {
-  "brand": "Gestionix",
-  "country": "MX",
-  "product": "por confirmar en su landing",
-  "plans": [],
-  "source_url": "https://programascontabilidad.com/comparativas-de-software/alegra-contpaqi/",
-  "captured_at": "2026-11-11",
-  "evidence_level": "secundaria: artículos publicados del blog",
-  "extraction": {
-    "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
-    "posts": [
-      "https://programascontabilidad.com/comparativas-de-software/alegra-contpaqi/"
-    ],
-    "precios_observados": []
-  },
-  "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
-  "notes": "Ficha provisional. Sirve para saber que el competidor está cubierto y qué cifras se han publicado; no para citar precios como vigentes.",
-  "historial": [
-    {
-      "fecha": "2026-11-11",
-      "cambio": "creada desde artículos del blog"
-    }
-  ]
+ "brand": "Gestionix",
+ "country": "MX",
+ "product": "Gestionix",
+ "plans": [
+  {
+   "name": "Tarifa publicada",
+   "price": "",
+   "currency": "MXN",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": false
+  }
+ ],
+ "source_url": "https://www.gestionix.com/",
+ "captured_at": "2026-11-12",
+ "evidence_level": "documentacion_oficial",
+ "extraction": {
+  "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
+  "posts": [
+   "https://programascontabilidad.com/comparativas-de-software/alegra-contpaqi/"
+  ],
+  "precios_observados": []
+ },
+ "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
+ "notes": "El sitio no carga: no se puede verificar su operación ni sus precios. Según el directorio, no se nombra hasta verificar.",
+ "historial": [
+  {
+   "fecha": "2026-11-11",
+   "cambio": "creada desde artículos del blog"
+  }
+ ],
+ "features": [
+  "Facturación electrónica CFDI",
+  "Contabilidad",
+  "POS"
+ ],
+ "advantages": [],
+ "known_limits": [
+  "El dominio no resuelve (DNS_PROBE_FINISHED_NXDOMAIN) al 12-nov-2026"
+ ]
 }
