@@ -30,6 +30,7 @@ class FrontmatterTests(unittest.TestCase):
 
 class TerminologyTests(unittest.TestCase):
     def test_no_file_uses_pyme(self) -> None:
+        # Las referencias importadas son material de origen ajeno: no se reescriben.
         offenders = []
         for path in SKILLS.rglob("*.md"):
             if re.search(r"\bpymes?\b", read(path), re.IGNORECASE):
