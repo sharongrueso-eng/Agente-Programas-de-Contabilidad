@@ -376,14 +376,16 @@ def validate(
         )
     )
 
-    controls.append(
-        _control(
-            "slug_keyword",
-            _slug_has_keyword(draft.slug, keyword, rules),
-            f"el slug '{draft.slug}' no contiene la keyword foco",
-            BLOQUEADO,
+    # En un reencauche la URL se conserva: no se juzga el slug contra la keyword nueva.
+    if action == "create":
+        controls.append(
+            _control(
+                "slug_keyword",
+                _slug_has_keyword(draft.slug, keyword, rules),
+                f"el slug '{draft.slug}' no contiene la keyword foco",
+                BLOQUEADO,
+            )
         )
-    )
 
     year_in_slug = YEAR.search(draft.slug)
     if action == "create" and year_in_slug:

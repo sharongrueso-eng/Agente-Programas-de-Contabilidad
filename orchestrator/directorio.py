@@ -83,6 +83,7 @@ GENERICAS = {
     "mejor", "mejores", "para", "como", "este", "esta", "todo", "toda", "cuando", "donde",
     "control", "gestión", "gestion", "ción", "cada", "otro", "otra", "esos", "esas",
     "análisis", "analisis", "guía", "guia", "comparativa", "comparativas", "precios",
+    "comparación", "comparacion", "cuadro", "tabla", "diferencia", "diferencias",
 }
 
 
