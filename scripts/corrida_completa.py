@@ -127,15 +127,16 @@ def verificar_entorno() -> None:
             "Se definen en Coolify y se aplican al redesplegar."
         )
     cortas = [
-        clave
+        f"{clave} ({len(os.environ.get(clave, '').strip())})"
         for clave in ("PDC_PROD_TOKEN", "PDC_MCP_TOKEN")
-        if len(os.environ.get(clave, "").strip()) < 20
+        if not 20 <= len(os.environ.get(clave, "").strip()) <= 40
     ]
     if cortas:
         raise SystemExit(
-            "estas credenciales parecen truncadas: "
+            "estas credenciales no tienen pinta de contraseña de aplicación: "
             + ", ".join(cortas)
-            + ". Una contraseña de aplicación de WordPress tiene 24 caracteres, espacios incluidos."
+            + ". Debe ser 24 caracteres en seis grupos de cuatro, con sus espacios: "
+            "29 en total. Ni menos, ni una frase, ni un comando."
         )
 
 

@@ -38,11 +38,12 @@ class PreflightTests(unittest.TestCase):
         for clave in self.modulo.OBLIGATORIAS:
             os.environ[clave] = "x" * 30
         os.environ["PDC_PROD_TOKEN"] = "corta"
+        os.environ["PDC_MCP_TOKEN"] = "x" * 30
 
         with self.assertRaises(SystemExit) as error:
             self.modulo.verificar_entorno()
 
-        self.assertIn("truncadas", str(error.exception))
+        self.assertIn("no tienen pinta", str(error.exception))
 
     def test_a_complete_set_passes(self) -> None:
         for clave in self.modulo.OBLIGATORIAS:
