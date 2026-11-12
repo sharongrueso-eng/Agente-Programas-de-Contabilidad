@@ -199,7 +199,14 @@ def _control(code: str, ok: bool, detail: str, failure: str = CORREGIR) -> Contr
 # Los únicos controles que pueden detener una publicación: los que evitan publicar algo falso
 # o roto. El resto son advertencias: se corrigen si se puede y, si no, se publica y se avisa.
 BLOQUEANTES = frozenset(
-    {"country_norms", "registry_amounts", "feature_claims", "linea_visual", "snippet_body"}
+    {
+        "country_norms",
+        "registry_amounts",
+        "feature_claims",
+        "linea_visual",
+        "snippet_body",
+        "marca_desconocida",
+    }
 )
 
 
@@ -259,6 +266,24 @@ def validate(
 
     text = " ".join([draft.title, draft.meta_description, draft.html])
     controls: list[ControlResult] = []
+
+    # Una marca que el directorio del país no reconoce no se nombra: es el hueco de «susii».
+    if has_body and not is_snippet and brief.country:
+        from .directorio import extranas
+
+        ajenas = extranas(draft.html + " " + draft.title, brief.country)
+        controls.append(
+            ControlResult(
+                code="marca_desconocida",
+                status=CORREGIR if ajenas else PASS,
+                detail=""
+                if not ajenas
+                else "se nombran marcas que el directorio de "
+                + brief.country
+                + " no reconoce: "
+                + ", ".join(ajenas[:5]),
+            )
+        )
 
     if registry_text and has_body and not is_snippet:
         inventadas = feature_claims(draft.html, registry_text)

@@ -14,7 +14,14 @@ class SeveridadTests(unittest.TestCase):
     def test_the_blocking_set_is_the_one_that_prevents_a_lie(self) -> None:
         self.assertEqual(
             set(BLOQUEANTES),
-            {"country_norms", "registry_amounts", "feature_claims", "linea_visual", "snippet_body"},
+            {
+                "country_norms",
+                "registry_amounts",
+                "feature_claims",
+                "linea_visual",
+                "snippet_body",
+                "marca_desconocida",
+            },
         )
 
     def test_a_style_problem_is_not_blocking(self) -> None:
