@@ -66,6 +66,8 @@ def decidir(
     posicion: float | None = None,
     meses: float | None = None,
     tema_normativo: bool = False,
+    sesiones: int | None = None,
+    participacion: float | None = None,
 ) -> Decision:
     """Devuelve qué trabajo merece la página y en qué se basó."""
     if not existe:
@@ -93,6 +95,17 @@ def decidir(
         if ctr is not None and ctr_esperado:
             motivos.append(f"CTR {ctr:.2%} frente a {ctr_esperado:.2%} esperado")
         return Decision("refresh_structure", tuple(motivos), tuple(faltantes), medidas)
+
+    # Mucho tráfico y nadie se queda: la promesa del artículo no se cumple. No es un
+    # problema de título, es de enfoque.
+    if sesiones is not None and sesiones >= 50 and (participacion or 0) < 0.15:
+        motivos.append(
+            f"entra tráfico y no se queda: {sesiones} sesiones con {participacion:.0%} de "
+            "participación; el artículo promete algo que no entrega"
+        )
+        return Decision(
+            "refresh_structure", tuple(motivos), ("enfoque del contenido",), medidas
+        )
 
     # Estar en la página tres no se arregla con un título: el artículo no compite.
     if posicion is not None and posicion > 20 and (ctr or 0) < 0.005:

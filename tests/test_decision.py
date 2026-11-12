@@ -55,6 +55,24 @@ class DecisionTests(unittest.TestCase):
         self.assertEqual(decision.accion, "refresh_structure")
         self.assertTrue(any("herramienta" in f for f in decision.faltantes))
 
+    def test_traffic_that_does_not_stay_needs_a_new_approach(self) -> None:
+        """2.789 sesiones y 5 % de participación no se arreglan con un título."""
+        decision = decidir(
+            existe=True, html=COMPLETO, intencion="guide", ctr=0.05, ctr_esperado=0.05,
+            posicion=3.0, sesiones=2789, participacion=0.05,
+        )
+
+        self.assertEqual(decision.accion, "refresh_structure")
+        self.assertIn("no se queda", decision.motivos[0])
+
+    def test_pages_people_actually_read_are_left_alone(self) -> None:
+        decision = decidir(
+            existe=True, html=COMPLETO, intencion="guide", ctr=0.06, ctr_esperado=0.05,
+            posicion=3.0, sesiones=242, participacion=0.67,
+        )
+
+        self.assertEqual(decision.accion, "refresh_snippet")
+
 
 if __name__ == "__main__":
     unittest.main()

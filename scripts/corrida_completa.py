@@ -361,6 +361,20 @@ def main() -> int:
 
         from orchestrator.decision import decidir
 
+        sesiones = participacion = None
+        try:
+            from orchestrator.ga4 import de_la_pagina, resumen as resumen_ga4
+
+            visita = de_la_pagina(elegida.url, resumen_ga4(dias=28))
+            if visita:
+                sesiones, participacion = visita.sesiones, visita.participacion
+                print(
+                    f"ga4     : {visita.sesiones} sesiones · "
+                    f"participación {visita.participacion:.0%}"
+                )
+        except Exception as error:  # noqa: BLE001 - sin GA4 se decide con GSC, y se dice
+            print("ga4     : no disponible —", str(error)[:90])
+
         articulo = getattr(_mercado_del_articulo, "ultimo", {}) or {}
         evidencia = dict(elegida.evidence or {})
         decision = decidir(
@@ -372,6 +386,8 @@ def main() -> int:
             ctr_esperado=evidencia.get("expected_ctr"),
             posicion=evidencia.get("position"),
             meses=articulo.get("meses"),
+            sesiones=sesiones,
+            participacion=participacion,
             tema_normativo=any(
                 palabra in (elegida.focus_keyword or "").lower()
                 for palabra in ("isr", "iva", "reforma", "normativ", "dian", "sat", "dgii", "tribu")
