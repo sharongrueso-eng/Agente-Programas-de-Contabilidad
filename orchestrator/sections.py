@@ -161,10 +161,20 @@ def producir_por_secciones(
 
 {legal}
 
+## Plataformas que puedes nombrar
+
+{{marcas_texto}}
+
+Ninguna otra. Si un nombre no está en esa lista, no existe para esta pieza: no se inventa, no se
+deforma y no se abrevia. Escribir «Susii» donde va «Siigo» invalida el artículo entero.
+
 ## Registro de datos del mercado (única fuente de cifras)
 
 {registro or "sin fichas de este mercado"}
 """
+
+    marcas_texto = ", ".join(marcas) if marcas else "las que aparezcan en el registro"
+    sistema = sistema.replace("{marcas_texto}", marcas_texto)
 
     salida = SalidaSecciones(draft=None)  # type: ignore[arg-type]
 
