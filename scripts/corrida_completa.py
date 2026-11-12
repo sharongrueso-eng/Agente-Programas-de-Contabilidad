@@ -180,6 +180,22 @@ def _mercado_del_articulo(url: str) -> tuple[str | None, str]:
         ]
     )
     mercado = pais_de_contenido(texto)
+    crudo = str((datos.get("content") or {}).get("raw", ""))
+    meses = None
+    fecha_post = str(datos.get("date") or datos.get("modified") or "")[:10]
+    if fecha_post:
+        try:
+            from datetime import date as _date
+
+            anio, mes, dia = (int(x) for x in fecha_post.split("-"))
+            meses = (_date.today() - _date(anio, mes, dia)).days / 30.4
+        except ValueError:
+            meses = None
+    _mercado_del_articulo.ultimo = {  # type: ignore[attr-defined]
+        "html": crudo,
+        "titulo": str((datos.get("title") or {}).get("raw", "")),
+        "meses": meses,
+    }
     return (mercado.pais if mercado else None), ("contenido del artículo" if mercado else "sin señales")
 
 
@@ -274,6 +290,30 @@ def main() -> int:
             return 2
         elegidas = confirmadas
         elegida = elegidas[0]
+
+        from dataclasses import replace as _replace
+
+        from orchestrator.decision import decidir
+
+        articulo = getattr(_mercado_del_articulo, "ultimo", {}) or {}
+        evidencia = dict(elegida.evidence or {})
+        decision = decidir(
+            existe=bool(articulo.get("html")),
+            html=articulo.get("html", ""),
+            titulo=articulo.get("titulo", ""),
+            intencion=elegida.intent,
+            ctr=evidencia.get("ctr"),
+            ctr_esperado=evidencia.get("expected_ctr"),
+            posicion=evidencia.get("position"),
+            meses=articulo.get("meses"),
+            tema_normativo=any(
+                palabra in (elegida.focus_keyword or "").lower()
+                for palabra in ("isr", "iva", "reforma", "normativ", "dian", "sat", "dgii", "tribu")
+            ),
+        )
+        print(f"decisión: {decision.accion} — {'; '.join(decision.motivos)}")
+        if decision.accion != elegida.action:
+            elegida = _replace(elegida, action=decision.accion)
         if not requires_body(elegida.action):
             print(f"oportunidad: {elegida.action} (título y meta, sin cuerpo)")
             # Un reencauche de snippet no reescribe el cuerpo: se produce solo la cabecera.
