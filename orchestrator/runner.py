@@ -349,22 +349,10 @@ def run(
                     draft = fixed
                     continue
 
-            outcome = judge(
-                draft,
-                brief,
-                verdict,
-                deps.registry,
-                llm=deps.judge,
-            )
+            outcome = _juzgar(draft, brief, verdict, deps)
             if outcome.status == "FAILED" and "JSON" in (outcome.detail or ""):
                 # Una respuesta vacía del juez es del gateway, no del contenido: un reintento.
-                outcome = judge(
-                    draft,
-                    brief,
-                    verdict,
-                    deps.registry,
-                    llm=deps.judge,
-                )
+                outcome = _juzgar(draft, brief, verdict, deps)
             steps.append({"step": "judge", "status": outcome.status, "cycle": cycle})
             state.save(
                 "veredictos.json",
@@ -591,3 +579,53 @@ def _fix(
     state.save("borrador.json", _draft_to_dict(outcome.draft))
     state.checkpoint("correction")
     return outcome.draft, ""
+
+
+def _trozos(html: str, maximo: int = 20_000) -> list[str]:
+    """Parte el artículo por sus h2, sin cortar una sección por la mitad."""
+    if len(html) <= maximo:
+        return [html]
+    cortes = [i for i in range(len(html)) if html.startswith("<h2", i)]
+    if not cortes:
+        return [html[i : i + maximo] for i in range(0, len(html), maximo)]
+    limites = [0] + cortes[1:] + [len(html)]
+    trozos, actual = [], ""
+    for inicio, fin in zip(limites, limites[1:]):
+        segmento = html[inicio:fin]
+        if actual and len(actual) + len(segmento) > maximo:
+            trozos.append(actual)
+            actual = segmento
+        else:
+            actual += segmento
+    if actual:
+        trozos.append(actual)
+    return trozos
+
+
+def _juzgar(draft, brief, verdict, deps):
+    """Juzga la pieza completa, por partes si es larga, y combina los veredictos.
+
+    Una pieza de 80 000 caracteres no cabe en una llamada: el juez recibía un texto cortado y
+    acusaba secciones ausentes que sí existían.
+    """
+    partes = _trozos(draft.html)
+    if len(partes) == 1:
+        return judge(draft, brief, verdict, deps.registry, llm=deps.judge)
+
+    controles: list = []
+    for indice, parte in enumerate(partes, start=1):
+        trozo = replace(draft, html=parte)
+        parcial = judge(trozo, brief, verdict, deps.registry, llm=deps.judge)
+        if parcial.status == "FAILED":
+            return parcial
+        controles.extend(getattr(parcial, "controls", ()))
+
+    graves = [c for c in controles if str(getattr(c, "status", "")) == "BLOQUEADO"]
+    suaves = [c for c in controles if str(getattr(c, "status", "")) == "CORREGIR"]
+    if graves:
+        return type(  # mismo contrato que el juez de una llamada
+            parcial
+        )(status="BLOQUEADO", detail=graves[0].detail, controls=controles)
+    if suaves:
+        return type(parcial)(status="CORREGIR", detail=suaves[0].detail, controls=controles)
+    return type(parcial)(status="PASS", detail="", controls=controles)
