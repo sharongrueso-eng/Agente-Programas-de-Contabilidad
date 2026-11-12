@@ -94,6 +94,14 @@ def decidir(
             motivos.append(f"CTR {ctr:.2%} frente a {ctr_esperado:.2%} esperado")
         return Decision("refresh_structure", tuple(motivos), tuple(faltantes), medidas)
 
+    # Estar en la página tres no se arregla con un título: el artículo no compite.
+    if posicion is not None and posicion > 20 and (ctr or 0) < 0.005:
+        motivos.append(
+            f"aparece en posición {posicion:.0f} sin clics: el problema no es el título sino que "
+            "el contenido no compite para esa búsqueda"
+        )
+        return Decision("refresh_structure", tuple(motivos), ("competitividad del contenido",), medidas)
+
     if ctr is not None and ctr_esperado and ctr < ctr_esperado * 0.7 and (posicion or 0) <= 15:
         motivos.append(f"aparece en posición {posicion} con CTR {ctr:.2%}: no lo abren")
         return Decision("refresh_snippet", tuple(motivos), (), medidas)

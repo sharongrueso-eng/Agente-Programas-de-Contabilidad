@@ -1,0 +1,23 @@
+{
+  "task_id": "prod-2026-11-11-CO-restaurantes",
+  "date": "2026-11-11",
+  "slot": "A",
+  "format": "comparativa",
+  "country": "CO",
+  "opportunity": {
+    "url": "https://programascontabilidad.com/comparativas-de-software/software-contable-para-restaurantes-colombia/",
+    "country": "CO",
+    "action": "create",
+    "focus_keyword": "software contable para restaurantes en colombia",
+    "intent": "best",
+    "score": 60.0,
+    "evidence": {
+      "reason": "tema sin cubrir: ningún artículo del blog trata la contabilidad de restaurantes en Colombia, y las cuatro fichas colombianas lo permiten comparar",
+      "impressions": 0,
+      "clicks": 0,
+      "ctr": 0.0,
+      "position": 0.0
+    }
+  },
+  "skipped_reason": ""
+}
