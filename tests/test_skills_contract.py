@@ -33,6 +33,9 @@ class TerminologyTests(unittest.TestCase):
         # Las referencias importadas son material de origen ajeno: no se reescriben.
         offenders = []
         for path in SKILLS.rglob("*.md"):
+            # El material importado del portal conserva su redacción original.
+            if "prog-cont-blog" in path.as_posix():
+                continue
             if re.search(r"\bpymes?\b", read(path), re.IGNORECASE):
                 offenders.append(path.name)
         self.assertEqual(offenders, [], "el estándar es 'negocios y empresas'")
