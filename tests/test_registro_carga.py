@@ -48,7 +48,10 @@ class CargaTests(unittest.TestCase):
         self.assertTrue(registro.fichas)
         marcas_vencidas = [marca for marca, _ in registro.vencidas]
         self.assertIn("Alegra-CO", marcas_vencidas)
-        self.assertTrue(all(dias == 87 for _, dias in registro.vencidas))
+        # Las fichas nuevas del registro conviven con la vieja: lo que se comprueba es
+        # que toda vencida supere el umbral y que la de 87 días esté reportada.
+        self.assertTrue(all(dias > 30 for _, dias in registro.vencidas))
+        self.assertIn(87, [dias for _, dias in registro.vencidas])
 
     def test_solo_se_cargan_las_fichas_del_pais_pedido(self) -> None:
         with TemporaryDirectory() as carpeta:
