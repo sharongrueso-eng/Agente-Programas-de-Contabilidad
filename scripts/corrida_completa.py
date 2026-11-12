@@ -202,16 +202,32 @@ def main() -> int:
     if args.entorno == "prod":
         from orchestrator.mcp_client import ClienteMcp
 
+        # El MCP tiene sus propias credenciales; si no están, se usan las de WordPress.
+        usuario = (os.environ.get("PDC_MCP_USER") or os.environ.get("PDC_PROD_USER") or "").strip()
+        token = (os.environ.get("PDC_MCP_TOKEN") or os.environ.get("PDC_PROD_TOKEN") or "").strip()
+        if not usuario or not token:
+            raise SystemExit(
+                "faltan credenciales del MCP: define PDC_MCP_USER y PDC_MCP_TOKEN "
+                f"(usuario {len(usuario)} caracteres, token {len(token)})"
+            )
         cliente_mcp = ClienteMcp(
-            url="https://programascontabilidad.com/wp-json/mcp/mcp-adapter-default-server",
+            url=os.environ.get(
+                "PDC_MCP_URL",
+                "https://programascontabilidad.com/wp-json/mcp/mcp-adapter-default-server",
+            ),
             headers={
                 "Authorization": "Basic "
-                + __import__("base64").b64encode(
-                    f"{os.environ['PDC_PROD_USER']}:{os.environ['PDC_PROD_TOKEN']}".encode()
-                ).decode()
+                + __import__("base64").b64encode(f"{usuario}:{token}".encode()).decode()
             },
         )
-        cliente_mcp.inicializar()
+        try:
+            cliente_mcp.inicializar()
+        except Exception as error:  # noqa: BLE001 - se explica, no se adivina
+            raise SystemExit(
+                f"el MCP rechazó la credencial ({error}). Usuario de {len(usuario)} caracteres "
+                f"y token de {len(token)}: la contraseña de aplicación debe tener 24, con sus "
+                "espacios, y ser de una cuenta con permisos de edición"
+            ) from error
     else:
         cliente_mcp = cliente_desde_entorno()
     print(f"mcp     : conectado ({cliente_mcp.sesion[:8]}…)")
