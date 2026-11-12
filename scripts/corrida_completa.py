@@ -238,6 +238,11 @@ def main() -> int:
     parser.add_argument("--brief", default="", help="usar un brief existente en vez de planear")
     parser.add_argument("--borrador", action="store_true", help="dejar la pieza en borrador y avisar")
     parser.add_argument(
+        "--en-vivo",
+        action="store_true",
+        help="autoriza actualizar un artículo publicado, conservando su URL",
+    )
+    parser.add_argument(
         "--probar-aviso",
         action="store_true",
         help="envía un aviso de prueba al Chat y termina, para comprobar el webhook en el contenedor",
@@ -609,7 +614,7 @@ def main() -> int:
         post_existente=post_existente,
         subir_media=subir_media,
         # Un reencauche de snippet sí escribe sobre el artículo vivo: es su trabajo.
-        permitir_vivo=not requires_body(brief.opportunity.action),
+        permitir_vivo=args.en_vivo or not requires_body(brief.opportunity.action),
         brands_available=len(registro.fichas),
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
@@ -660,6 +665,22 @@ def main() -> int:
         salida.draft = _reemplazar(
             salida.draft, html=presentar(salida.draft.html, pais=brief.country)
         )
+        if brief.opportunity.action != "create" and brief.opportunity.url:
+            try:
+                from orchestrator.adapters import WordPressClient as _WP
+
+                _wp = _WP(
+                    os.environ.get("PDC_PROD_URL", ""),
+                    os.environ.get("PDC_PROD_TOKEN", ""),
+                    username=os.environ.get("PDC_PROD_USER", ""),
+                )
+                _actual = _wp.find_by_url(brief.opportunity.url)
+                if _actual and _actual.get("slug"):
+                    salida.draft = _reemplazar(salida.draft, slug=_actual["slug"])
+                    print(f"slug    : {_actual['slug']} (el del post vivo: la URL no cambia)")
+            except Exception as error:  # noqa: BLE001
+                print("slug    : no se pudo leer el original —", str(error)[:80])
+
         estado.save("borrador.json", asdict(salida.draft))
         estado.checkpoint("production", resume_from="judge")
         print(f"   llamadas: {salida.llamadas} | bloques: {len(salida.bloques)} | fallidos: {salida.fallidos or 'ninguno'}")
