@@ -409,9 +409,9 @@ def main() -> int:
     if args.entorno == "prod":
         from orchestrator.mcp_client import ClienteMcp
 
-        # El MCP tiene sus propias credenciales; si no están, se usan las de WordPress.
-        usuario = (os.environ.get("PDC_MCP_USER") or os.environ.get("PDC_PROD_USER") or "").strip()
-        token = (os.environ.get("PDC_MCP_TOKEN") or os.environ.get("PDC_PROD_TOKEN") or "").strip()
+        # En producción mandan las credenciales de producción: PDC_MCP_* puede ser de staging.
+        usuario = (os.environ.get("PDC_PROD_USER") or os.environ.get("PDC_MCP_USER") or "").strip()
+        token = (os.environ.get("PDC_PROD_TOKEN") or os.environ.get("PDC_MCP_TOKEN") or "").strip()
         if not usuario or not token:
             raise SystemExit(
                 "faltan credenciales del MCP: define PDC_MCP_USER y PDC_MCP_TOKEN "
