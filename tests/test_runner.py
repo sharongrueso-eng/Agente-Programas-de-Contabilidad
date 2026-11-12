@@ -216,7 +216,12 @@ class HappyPathTests(unittest.TestCase):
 
 class BlockingTests(unittest.TestCase):
     def test_validation_block_stops_before_the_judge(self) -> None:
-        bad = dict(good_draft(), slug="siigo-analisis")
+        # Un precio que nadie publica es un bloqueo; el slug ya no bloquea en un reencauche.
+        bad = dict(
+            good_draft(),
+            html=good_draft()["html"]
+            + "<p>Recuerda validar el CFDI 4.0 ante el SAT antes de facturar.</p>",
+        )
         judge_llm = Scripted(JUDGE_PASS)
 
         with TemporaryDirectory() as temp_dir:
@@ -229,7 +234,7 @@ class BlockingTests(unittest.TestCase):
 
         self.assertEqual(result["status"], "BLOCKED")
         self.assertEqual(judge_llm.calls, 0)
-        self.assertIn("slug_keyword", result["block_reason"])
+        self.assertIn("country_norms", result["block_reason"])
 
     def test_judge_block_stops_before_publication(self) -> None:
         blocked = {

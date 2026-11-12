@@ -349,10 +349,10 @@ def run(
                     draft = fixed
                     continue
 
-            outcome = _juzgar(draft, brief, verdict, deps)
+            outcome = _juzgar(draft, brief, verdict, deps, state)
             if outcome.status == "FAILED" and "JSON" in (outcome.detail or ""):
                 # Una respuesta vacía del juez es del gateway, no del contenido: un reintento.
-                outcome = _juzgar(draft, brief, verdict, deps)
+                outcome = _juzgar(draft, brief, verdict, deps, state)
             steps.append({"step": "judge", "status": outcome.status, "cycle": cycle})
             state.save(
                 "veredictos.json",
@@ -606,7 +606,7 @@ def _trozos(html: str, maximo: int = 9_000) -> list[str]:
     return trozos
 
 
-def _juzgar(draft, brief, verdict, deps):
+def _juzgar(draft, brief, verdict, deps, state=None):
     """Juzga la pieza completa, por partes si es larga, y combina los veredictos.
 
     Una pieza de 80 000 caracteres no cabe en una llamada: el juez recibía un texto cortado y
@@ -617,6 +617,7 @@ def _juzgar(draft, brief, verdict, deps):
         return judge(draft, brief, verdict, deps.registry, llm=deps.judge)
 
     controles: list = []
+    state_advertencias: list = []
     for indice, parte in enumerate(partes, start=1):
         trozo = replace(draft, html=parte)
         parcial = judge(
@@ -633,7 +634,21 @@ def _juzgar(draft, brief, verdict, deps):
         )
         if parcial.status == "FAILED":
             return parcial
-        controles.extend(getattr(parcial, "controls", ()))
+        # La cobertura ("falta la tabla de precios") es un juicio del artículo entero: dentro de
+        # una parte siempre parece faltar algo. Se registra como advertencia, no como bloqueo.
+        for control in getattr(parcial, "controls", ()):
+            if getattr(control, "code", "") == "intent_depth":
+                state_advertencias.append(
+                    {"code": "intent_depth", "detail": control.detail}
+                )
+                continue
+            controles.append(control)
+
+    if state_advertencias:
+        try:
+            state.save("advertencias.json", {"items": state_advertencias})
+        except Exception:  # noqa: BLE001
+            pass
 
     graves = [c for c in controles if str(getattr(c, "status", "")) == "BLOQUEADO"]
     suaves = [c for c in controles if str(getattr(c, "status", "")) == "CORREGIR"]

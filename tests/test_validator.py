@@ -86,12 +86,12 @@ class BaselineTests(unittest.TestCase):
 
 class SlugAndMetadataTests(unittest.TestCase):
     def test_slug_must_contain_the_keyword(self) -> None:
-        verdict = validate(draft(slug="siigo-opiniones-2024"), brief(), ValidationRules())
+        verdict = validate(draft(slug="siigo-opiniones-2024"), brief(action="create"), ValidationRules())
 
         self.assertEqual(status_of(verdict, "slug_keyword"), "PASS")
 
     def test_slug_without_keyword_blocks(self) -> None:
-        verdict = validate(draft(slug="siigo-analisis"), brief(), ValidationRules())
+        verdict = validate(draft(slug="siigo-analisis"), brief(action="create"), ValidationRules())
 
         self.assertEqual(status_of(verdict, "slug_keyword"), "BLOQUEADO")
         self.assertEqual(verdict.status, "BLOQUEADO")
