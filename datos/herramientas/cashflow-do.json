@@ -1,0 +1,52 @@
+{
+ "brand": "CashFlow",
+ "country": "DO",
+ "product": "CashFlow (contabilidad y facturación en la nube)",
+ "source_url": "https://cashflow.do/es/precios",
+ "captured_at": "2026-11-12",
+ "evidence_level": "documentacion_oficial",
+ "plans": [
+  {
+   "name": "Emprendedor",
+   "price": "25.00",
+   "currency": "USD",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "22.50 pagando anual, 270 al año"
+  },
+  {
+   "name": "Estándar",
+   "price": "45.00",
+   "currency": "USD",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "40.50 pagando anual, 486 al año; incluye 3 usuarios, +15 por usuario adicional"
+  },
+  {
+   "name": "Profesional",
+   "price": "75.00",
+   "currency": "USD",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "67.50 pagando anual"
+  }
+ ],
+ "features": [
+  "Facturación electrónica e-CF (DGII)",
+  "Contabilidad",
+  "Inventario",
+  "Reportes",
+  "Usuarios por plan"
+ ],
+ "advantages": [
+  "Precio publicado y descuento anual del 10 %",
+  "Usuarios adicionales con tarifa publicada"
+ ],
+ "known_limits": [
+  "El plan de entrada es para personas que recién comienzan"
+ ],
+ "notes": "Precios en USD. Leídos el 12-nov-2026."
+}

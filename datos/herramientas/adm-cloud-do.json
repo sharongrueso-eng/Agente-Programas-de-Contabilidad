@@ -1,0 +1,55 @@
+{
+ "brand": "ADM Cloud",
+ "country": "DO",
+ "product": "ADM Cloud (ERP en la nube)",
+ "source_url": "https://www.admcloud.net/planes",
+ "captured_at": "2026-11-12",
+ "evidence_level": "documentacion_oficial",
+ "plans": [
+  {
+   "name": "Billing",
+   "price": "18.00",
+   "currency": "USD",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "15.00 pagando anual"
+  },
+  {
+   "name": "Start",
+   "price": "24.00",
+   "currency": "USD",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "20.00 pagando anual; facturación electrónica incluida"
+  },
+  {
+   "name": "Basic",
+   "price": "36.00",
+   "currency": "USD",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "30.00 pagando anual; facturación electrónica incluida"
+  }
+ ],
+ "features": [
+  "Facturación electrónica e-CF (DGII)",
+  "Contabilidad",
+  "Inventario",
+  "POS",
+  "Compras y ventas",
+  "Nómina",
+  "API",
+  "GenAI"
+ ],
+ "advantages": [
+  "Publica precio en dólares con facturación electrónica incluida",
+  "Prueba gratuita de 15 días"
+ ],
+ "known_limits": [
+  "Los módulos incluidos cambian por plan: el de entrada no trae todo"
+ ],
+ "notes": "Precios en USD, leídos el 12-nov-2026. Verificar conversión e impuestos al citar."
+}

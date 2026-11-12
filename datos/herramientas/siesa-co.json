@@ -1,0 +1,34 @@
+{
+ "brand": "SIESA",
+ "country": "CO",
+ "product": "SIESA ERP",
+ "source_url": "https://www.siesa.com/",
+ "captured_at": "2026-11-12",
+ "evidence_level": "documentacion_oficial",
+ "plans": [
+  {
+   "name": "Plan empresarial",
+   "price": "",
+   "currency": "COP",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": false
+  }
+ ],
+ "features": [
+  "ERP",
+  "Contabilidad",
+  "Nómina",
+  "Facturación electrónica",
+  "Producción",
+  "CRM"
+ ],
+ "advantages": [
+  "Cobertura funcional amplia para empresas medianas y grandes"
+ ],
+ "known_limits": [
+  "No publica precios en su sitio: la venta es por asesor",
+  "Implantación con costo aparte, tampoco publicado"
+ ],
+ "notes": "Al no publicar tarifas, en una comparativa se escribe «no está publicado» y se compara por funciones."
+}
