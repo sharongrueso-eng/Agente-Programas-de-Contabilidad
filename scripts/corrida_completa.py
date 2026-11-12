@@ -248,6 +248,11 @@ def main() -> int:
     parser.add_argument("--entorno", choices=["stg", "prod"], default="stg", help="destino de la publicación")
     parser.add_argument("--gsc", action="store_true", help="elegir el tema con Search Console en vivo")
     parser.add_argument("--revertir", type=int, default=0, help="devuelve un post a su título anterior")
+    parser.add_argument(
+        "--url",
+        default="",
+        help="trabaja esta página concreta en vez de elegir por puntaje (para pruebas guiadas)",
+    )
     args = parser.parse_args()
 
     for archivo in ("llm.env", "mcp.env", "wp-stg.env", "wp-prod.env"):
@@ -324,6 +329,14 @@ def main() -> int:
         if not elegidas:
             print("sin oportunidades para", args.pais)
             return 2
+        if args.url:
+            objetivo = [c for c in elegidas if args.url.rstrip("/") in c.url.rstrip("/")]
+            if not objetivo:
+                print(f"la url {args.url} no está entre las oportunidades de {args.pais}")
+                return 2
+            elegidas = objetivo + [c for c in elegidas if c not in objetivo]
+            print(f"url forzada: {elegidas[0].url}")
+
         # El mercado del artículo manda: si dice otro país, no se toca.
         confirmadas = []
         for candidata in elegidas[:4]:
