@@ -581,11 +581,15 @@ def _fix(
     return outcome.draft, ""
 
 
-def _trozos(html: str, maximo: int = 20_000) -> list[str]:
+def _trozos(html: str, maximo: int = 9_000) -> list[str]:
     """Parte el artículo por sus h2, sin cortar una sección por la mitad."""
     if len(html) <= maximo:
         return [html]
-    cortes = [i for i in range(len(html)) if html.startswith("<h2", i)]
+    cortes = [
+        i
+        for i in range(len(html))
+        if html.startswith("<h2", i) or html.startswith("<h3", i)
+    ]
     if not cortes:
         return [html[i : i + maximo] for i in range(0, len(html), maximo)]
     limites = [0] + cortes[1:] + [len(html)]

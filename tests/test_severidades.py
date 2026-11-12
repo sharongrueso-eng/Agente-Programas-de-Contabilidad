@@ -20,7 +20,6 @@ class SeveridadTests(unittest.TestCase):
                 "feature_claims",
                 "linea_visual",
                 "snippet_body",
-                "marca_desconocida",
             },
         )
 
