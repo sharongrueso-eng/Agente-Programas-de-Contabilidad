@@ -1,0 +1,55 @@
+{
+ "brand": "Odoo",
+ "country": "DO",
+ "product": "Odoo (ERP modular en la nube)",
+ "source_url": "https://www.odoo.com/es/pricing",
+ "captured_at": "2026-11-12",
+ "evidence_level": "documentacion_oficial",
+ "plans": [
+  {
+   "name": "Estándar",
+   "price": "8.95",
+   "currency": "USD",
+   "period": "mes",
+   "billing": "anual",
+   "publicado": true,
+   "note": "por usuario; 11.20 si se paga mensual"
+  },
+  {
+   "name": "Personalizado",
+   "price": "16.40",
+   "currency": "USD",
+   "period": "mes",
+   "billing": "anual",
+   "publicado": true,
+   "note": "por usuario; 20.40 mensual"
+  },
+  {
+   "name": "Usuario light",
+   "price": "2.90",
+   "currency": "USD",
+   "period": "mes",
+   "billing": "anual",
+   "publicado": true,
+   "note": "por usuario"
+  }
+ ],
+ "features": [
+  "Facturación electrónica local",
+  "Contabilidad",
+  "Inventario",
+  "CRM",
+  "Fabricación",
+  "POS",
+  "Multiempresa",
+  "API externa"
+ ],
+ "advantages": [
+  "Se paga por usuario y por aplicación: sirve igual a 3 personas que a 300"
+ ],
+ "known_limits": [
+  "La facturación electrónica local depende de la localización del país",
+  "El costo real incluye implantación por un socio"
+ ],
+ "notes": "Precio en USD por usuario y mes; Odoo no publica tarifas en moneda local."
+}

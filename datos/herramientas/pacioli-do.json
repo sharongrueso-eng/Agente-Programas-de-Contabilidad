@@ -1,0 +1,29 @@
+{
+ "brand": "Pacioli",
+ "country": "DO",
+ "product": "Pacioli (contabilidad y nómina)",
+ "source_url": "https://pacioli.com.do/",
+ "captured_at": "2026-11-12",
+ "evidence_level": "documentacion_oficial",
+ "plans": [
+  {
+   "name": "Tarifa publicada",
+   "price": "",
+   "currency": "DOP",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": false
+  }
+ ],
+ "features": [
+  "Contabilidad",
+  "Nómina",
+  "Facturación electrónica e-CF"
+ ],
+ "advantages": [],
+ "known_limits": [
+  "No publica precios en su sitio: la venta es por asesor",
+  "Sin tarifa publicada no se puede comparar por precio"
+ ],
+ "notes": "Página revisada el 12-nov-2026: no muestra tarifas. En la comparativa se escribe «no está publicado» y se compara por funciones."
+}

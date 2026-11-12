@@ -1,24 +1,30 @@
 {
-  "brand": "Softland",
-  "country": "CR",
-  "product": "por confirmar en su landing",
-  "plans": [],
-  "source_url": "https://programascontabilidad.com/comparativas-de-software/softland-o-alegra-cual-software-contable-elegir/",
-  "captured_at": "2026-11-11",
-  "evidence_level": "secundaria: artículos publicados del blog",
-  "extraction": {
-    "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
-    "posts": [
-      "https://programascontabilidad.com/comparativas-de-software/softland-o-alegra-cual-software-contable-elegir/"
-    ],
-    "precios_observados": []
-  },
-  "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
-  "notes": "Ficha provisional. Sirve para saber que el competidor está cubierto y qué cifras se han publicado; no para citar precios como vigentes.",
-  "historial": [
-    {
-      "fecha": "2026-11-11",
-      "cambio": "creada desde artículos del blog"
-    }
-  ]
+ "brand": "Softland",
+ "country": "CR",
+ "product": "Softland ERP (Exactus)",
+ "source_url": "https://softland.com/cr/productos/softland-erp/",
+ "captured_at": "2026-11-12",
+ "evidence_level": "documentacion_oficial",
+ "plans": [
+  {
+   "name": "Tarifa publicada",
+   "price": "",
+   "currency": "CRC",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": false
+  }
+ ],
+ "features": [
+  "ERP",
+  "Contabilidad",
+  "Nómina",
+  "Facturación electrónica 4.4"
+ ],
+ "advantages": [],
+ "known_limits": [
+  "No publica precios en su sitio: la venta es por asesor",
+  "Sin tarifa publicada no se puede comparar por precio"
+ ],
+ "notes": "Página revisada el 12-nov-2026: no muestra tarifas. En la comparativa se escribe «no está publicado» y se compara por funciones."
 }

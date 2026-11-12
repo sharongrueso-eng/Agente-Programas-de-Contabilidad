@@ -1,24 +1,67 @@
 {
-  "brand": "GTI",
-  "country": "CR",
-  "product": "por confirmar en su landing",
-  "plans": [],
-  "source_url": "https://programascontabilidad.com/comparativas-de-software/softland-o-alegra-cual-software-contable-elegir/",
-  "captured_at": "2026-11-11",
-  "evidence_level": "secundaria: artículos publicados del blog",
-  "extraction": {
-    "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
-    "posts": [
-      "https://programascontabilidad.com/comparativas-de-software/softland-o-alegra-cual-software-contable-elegir/"
-    ],
-    "precios_observados": []
+ "brand": "GTI",
+ "country": "CR",
+ "product": "GTI (facturación electrónica y contabilidad)",
+ "source_url": "https://programascontabilidad.com/analisis-de-herramientas/gti-costa-rica/",
+ "captured_at": "2026-11-12",
+ "evidence_level": "fuente_secundaria_propia",
+ "plans": [
+  {
+   "name": "Prepago anual 24 documentos",
+   "price": "13.920",
+   "currency": "CRC",
+   "period": "año",
+   "billing": "anual",
+   "publicado": true,
+   "note": "+ IVA"
   },
-  "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
-  "notes": "Ficha provisional. Sirve para saber que el competidor está cubierto y qué cifras se han publicado; no para citar precios como vigentes.",
-  "historial": [
-    {
-      "fecha": "2026-11-11",
-      "cambio": "creada desde artículos del blog"
-    }
-  ]
+  {
+   "name": "Prepago anual 60 documentos",
+   "price": "20.880",
+   "currency": "CRC",
+   "period": "año",
+   "billing": "anual",
+   "publicado": true,
+   "note": "+ IVA"
+  },
+  {
+   "name": "Prepago anual 150 documentos",
+   "price": "29.250",
+   "currency": "CRC",
+   "period": "año",
+   "billing": "anual",
+   "publicado": true,
+   "note": "+ IVA"
+  },
+  {
+   "name": "Pospago persona física",
+   "price": "7.650",
+   "currency": "CRC",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "desde; documentos ilimitados"
+  },
+  {
+   "name": "Pospago empresas",
+   "price": "12.750",
+   "currency": "CRC",
+   "period": "mes",
+   "billing": "mensual",
+   "publicado": true,
+   "note": "desde 250 documentos"
+  }
+ ],
+ "features": [
+  "Facturación electrónica 4.4",
+  "Contabilidad",
+  "Documentos ilimitados en pospago"
+ ],
+ "advantages": [
+  "Publica tarifas por volumen de documentos en colones"
+ ],
+ "known_limits": [
+  "El prepago obliga a estimar el volumen anual por adelantado"
+ ],
+ "notes": "Cifras tomadas del análisis publicado en el blog, que cita la lista de GTI. Conviene confirmarlas en la página del proveedor antes de una comparativa."
 }
