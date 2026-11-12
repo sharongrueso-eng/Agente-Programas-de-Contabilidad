@@ -199,6 +199,17 @@ def _mercado_del_articulo(url: str) -> tuple[str | None, str]:
     return (mercado.pais if mercado else None), ("contenido del artículo" if mercado else "sin señales")
 
 
+
+def _webhook(args) -> str:
+    """La URL del Chat, del entorno primero: en Coolify no hay ~/.pdc/chat.env."""
+    if getattr(args, "sin_avisos", False):
+        return ""
+    del_entorno = os.environ.get("PDC_CHAT_WEBHOOK_URL", "").strip()
+    if del_entorno:
+        return del_entorno
+    return env(Path.home() / ".pdc" / "chat.env").get("PDC_CHAT_WEBHOOK_URL", "")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--pais", default="CO")
@@ -588,7 +599,7 @@ def main() -> int:
     )
     print(json.dumps(resultado, ensure_ascii=False, indent=1))
 
-    webhook = "" if args.sin_avisos else env(Path.home() / ".pdc" / "chat.env").get("PDC_CHAT_WEBHOOK_URL", "")
+    webhook = _webhook(args)
     if webhook and resultado["status"] != "DONE":
         from orchestrator.notices import render, send
 
@@ -605,12 +616,73 @@ def main() -> int:
         print()
         print("aviso de fallo en Chat:", send(webhook, texto))
 
+
+    if resultado["status"] == "DONE" and not args.borrador:
+        from orchestrator.notices import aviso_de_pieza, semaforo, send
+
+        try:
+            borrador = json.loads((estado.dir / "borrador.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            borrador = {}
+        evidencia = dict(getattr(elegida, "evidence", {}) or {})
+        impresiones = int(evidencia.get("impressions") or 0)
+        ctr = float(evidencia.get("ctr") or 0.0)
+        posicion = float(evidencia.get("position") or 0.0)
+        esperado = float(evidencia.get("expected_ctr") or evidencia.get("ctr_esperado") or 0.0)
+        clics_potenciales = int(impresiones * esperado) if esperado else 0
+
+        aprobados = total = 0
+        observaciones = 0
+        try:
+            veredictos = json.loads((estado.dir / "veredictos.json").read_text(encoding="utf-8"))
+            del_validador = veredictos.get("validator") or []
+            total = len(del_validador)
+            aprobados = sum(1 for c in del_validador if str(c.get("status")) == "PASS")
+            observaciones = sum(
+                1 for c in (veredictos.get("judge") or []) if str(c.get("status")) != "PASS"
+            )
+        except (OSError, ValueError):
+            pass
+
+        es_nuevo = str(getattr(elegida, "action", "")) == "create"
+        post_id = str(resultado.get("post_id") or "")
+        base = os.environ.get("PDC_PROD_URL", "https://programascontabilidad.com").rstrip("/")
+        texto = aviso_de_pieza(
+            titulo=borrador.get("title", ""),
+            slug=borrador.get("slug", ""),
+            pais=brief.country,
+            nuevo=es_nuevo,
+            url_edicion=f"{base}/wp-admin/post.php?post={post_id}&action=edit",
+            impresiones=impresiones,
+            ctr=ctr,
+            posicion=posicion,
+            clics_potenciales=clics_potenciales,
+            criticos_ok=aprobados,
+            criticos_total=total,
+            importantes_ok=aprobados,
+            importantes_total=total,
+            estado=semaforo(
+                criticos_fallidos=total - aprobados, importantes_fallidos=0, observaciones=observaciones
+            ),
+            observaciones=observaciones,
+            titulo_seo=borrador.get("title", ""),
+            meta=borrador.get("meta_description", ""),
+            keyword=getattr(elegida, "focus_keyword", ""),
+            motivo="",
+        )
+        print()
+        print(texto)
+        webhook = _webhook(args)
+        if webhook:
+            print()
+            print("aviso en Chat:", send(webhook, texto))
+
     if resultado["status"] == "DONE" and args.borrador:
         import os as _os
 
         from orchestrator.notices import render, send
 
-        webhook = "" if args.sin_avisos else env(Path.home() / ".pdc" / "chat.env").get("PDC_CHAT_WEBHOOK_URL", "")
+        webhook = _webhook(args)
         if webhook:
             texto = render(
                 "borrador_listo",
