@@ -288,6 +288,7 @@ def run(
     verdict = None
     if start <= ORDER.index("judge"):
         converged = False
+        judge_blocks = 0
         for cycle in range(1, max_cycles + 1):
             verdict = validate(
                 draft,
@@ -374,6 +375,14 @@ def run(
                     block_reason=outcome.detail,
                 )
             if outcome.status == BLOQUEADO:
+                # Un bloqueo del juez también se intenta corregir una vez: casi siempre es una
+                # frase concreta que el corrector puede reescribir o retirar.
+                if judge_blocks < 1 and getattr(outcome, "controls", ()):
+                    judge_blocks += 1
+                    fixed, reason = _fix(draft, outcome.controls, deps, state)
+                    if fixed is not None:
+                        draft = fixed
+                        continue
                 return _contract(
                     "BLOCKED", brief, state, steps, block_reason=outcome.detail
                 )
