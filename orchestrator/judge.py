@@ -103,6 +103,34 @@ def _solo_snippet(action: str) -> bool:
     return not requires_body(action)
 
 
+def _indice(html: str) -> dict:
+    """Qué contiene la pieza, medido del propio HTML.
+
+    El juez recibe el texto recortado cuando el artículo es largo, y entonces acusa secciones
+    ausentes que sí existen. El índice le dice qué hay, sin depender de cuánto quepa.
+    """
+    import re as _re
+
+    secciones = [
+        _re.sub(r"<[^>]+>", "", m.group(2)).strip()[:90]
+        for m in _re.finditer(r"<h([23])[^>]*>(.*?)</h>", html, _re.DOTALL)
+    ]
+    tablas = []
+    for tabla in _re.finditer(r"<table.*?</table>", html, _re.DOTALL):
+        cabeceras = [
+            _re.sub(r"<[^>]+>", "", c).strip()[:40]
+            for c in _re.findall(r"<th[^>]*>(.*?)</th>", tabla.group(0), _re.DOTALL)
+        ]
+        tablas.append(cabeceras[:6])
+    texto = _re.sub(r"\s+", " ", _re.sub(r"<[^>]+>", " ", html)).strip()
+    return {
+        "secciones_y_subtitulos": secciones,
+        "tablas": tablas,
+        "palabras": len(texto.split()),
+        "caracteres": len(html),
+    }
+
+
 def build_messages(
     draft: Draft,
     brief: Brief,
@@ -135,6 +163,7 @@ def build_messages(
             if _solo_snippet(opportunity.action)
             else "artículo completo"
         ),
+        "estructura_de_la_pieza": _indice(draft.html),
         "borrador": {
             "title": draft.title,
             "meta_description": draft.meta_description,

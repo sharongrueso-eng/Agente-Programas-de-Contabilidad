@@ -192,6 +192,35 @@ def _control(code: str, ok: bool, detail: str, failure: str = CORREGIR) -> Contr
     return ControlResult(code=code, status=PASS if ok else failure, detail="" if ok else detail)
 
 
+
+
+FUNCIONES = (
+    "nómina", "nomina", "inventario", "punto de venta", "pos", "facturación electrónica",
+    "documento equivalente", "cartera", "tesorería", "activos fijos", "presupuesto",
+    "inteligencia artificial", "multiempresa", "sucursales", "conciliación bancaria",
+    "importación de datos", "exportación", "kardex", "recetas",
+)
+ATRIBUYE = ("incluye", "integra", "ofrece", "trae", "permite", "cuenta con")
+
+
+def feature_claims(html: str, registry_text: str) -> list[str]:
+    """Funciones atribuidas a una plataforma que el registro no respalda.
+
+    El modelo escribió que Alegra integraba «facturación, inventario y nómina por 17.900 COP»:
+    el precio existía, las funciones no. El registro solo prueba lo que dice.
+    """
+    plano = _texto_visible(html).lower()
+    registro = registry_text.lower()
+    faltan = []
+    for frase in re.split(r"(?<=[.!?;])\s+", plano):
+        if not any(verbo in frase for verbo in ATRIBUYE):
+            continue
+        for funcion in FUNCIONES:
+            if funcion in frase and funcion not in registro:
+                faltan.append(funcion)
+    return sorted(set(faltan))
+
+
 def validate(
     draft: Draft,
     brief: Brief,
@@ -209,6 +238,19 @@ def validate(
 
     text = " ".join([draft.title, draft.meta_description, draft.html])
     controls: list[ControlResult] = []
+
+    if registry_text and has_body and not is_snippet:
+        inventadas = feature_claims(draft.html, registry_text)
+        controls.append(
+            ControlResult(
+                code="feature_claims",
+                status=BLOQUEADO if inventadas else PASS,
+                detail=""
+                if not inventadas
+                else "se atribuyen funciones que el registro no respalda: "
+                + ", ".join(inventadas[:6]),
+            )
+        )
 
     if brands_available is not None:
         visible = _texto_visible(draft.html)[:1200]

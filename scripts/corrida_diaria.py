@@ -24,6 +24,15 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 
+if __name__ == "__main__" and any(a in ("-h", "--help") for a in sys.argv[1:]):
+    print(chr(10).join([
+        "corrida_diaria.py - la corrida de cada dia, tal como la lanza Coolify.",
+        "",
+        "No toma argumentos: todo viene de variables de entorno",
+        "(PDC_MODO, PDC_PAUSA, PDC_PAISES, PDC_VENTANA_INICIO, PDC_VENTANA_FIN, PDC_STATE_DIR).",
+    ]))
+    raise SystemExit(0)
+
 # Bogotá es UTC-5 todo el año (no tiene horario de verano), así que si el sistema no trae la
 # base de zonas horarias el huso fijo es exacto, no una aproximación.
 try:
