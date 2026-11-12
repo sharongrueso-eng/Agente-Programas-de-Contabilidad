@@ -62,13 +62,27 @@ def con_ficha(pais: str) -> set[str]:
     return nombres
 
 
+# Palabras que aparecen junto a «software» o «planes» y no son marcas.
+GENERICAS = {
+    "pos", "punto", "venta", "con", "contra", "contable", "contabilidad", "conjuntos",
+    "facturación", "facturacion", "electrónica", "electronica", "nómina", "nomina",
+    "software", "planes", "plan", "sistema", "sistemas", "programa", "programas",
+    "restaurante", "restaurantes", "precio", "precios", "servicio", "servicios",
+    "empresa", "empresas", "negocio", "negocios", "pyme", "pymes", "erp", "crm", "api",
+    "dian", "sat", "dgii", "hacienda", "tribu", "facturacion", "inventario", "cartera",
+    "mejor", "mejores", "para", "como", "este", "esta", "todo", "toda", "cuando", "donde",
+    "control", "gestión", "gestion", "ción", "cada", "otro", "otra", "esos", "esas",
+    "análisis", "analisis", "guía", "guia", "comparativa", "comparativas", "precios",
+}
+
+
 def extranas(texto: str, pais: str) -> list[str]:
     """Marcas nombradas en la pieza que el directorio de ese país no reconoce.
 
     Solo mira los lugares donde una marca aparece como marca: «X vs Y», «planes X» o
     «software X». Así «Recetas» o «Nómina» no se confunden con competidores.
     """
-    validas = conocidas(pais)
+    validas = conocidas(pais) | GENERICAS
     plano = re.sub(r"<[^>]+>", " ", texto)
     sospechosas: list[str] = []
     # Sin distinguir mayúsculas: la marca inventada apareció escrita «susii» cincuenta veces.
@@ -81,7 +95,7 @@ def extranas(texto: str, pais: str) -> list[str]:
             for grupo in encontrado.groups():
                 if not grupo:
                     continue
-                if grupo.lower() in validas:
+                if grupo.lower() in validas or len(grupo) < 4:
                     continue
                 if grupo.lower() in {
                     "alegra", "colombia", "méxico", "mexico", "costa", "rica", "este", "esta",
