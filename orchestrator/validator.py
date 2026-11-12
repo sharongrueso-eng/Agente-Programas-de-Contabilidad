@@ -205,7 +205,6 @@ BLOQUEANTES = frozenset(
         "feature_claims",
         "linea_visual",
         "snippet_body",
-        "marca_desconocida",
     }
 )
 

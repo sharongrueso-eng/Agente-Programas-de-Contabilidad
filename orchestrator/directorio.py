@@ -57,7 +57,10 @@ def conocidas(pais: str) -> set[str]:
             nombres.update(parte for parte in marca.split() if len(parte) > 3)
     for archivo in FICHAS.glob(f"*-{pais.lower()}.json"):
         ficha = json.loads(archivo.read_text(encoding="utf-8"))
-        nombres.add(ficha["brand"].lower())
+        marca = ficha["brand"].lower()
+        nombres.add(marca)
+        if " " in marca:
+            nombres.update(parte for parte in marca.split() if len(parte) > 3)
     return nombres
 
 
