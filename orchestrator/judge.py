@@ -103,6 +103,21 @@ def _solo_snippet(action: str) -> bool:
     return not requires_body(action)
 
 
+def _texto_legible(html: str) -> str:
+    """El artículo sin etiquetas ni estilos, con una marca por sección y por fila de tabla."""
+    import re as _re
+
+    plano = _re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", html, flags=_re.DOTALL | _re.IGNORECASE)
+    plano = _re.sub(r"<h2[^>]*>", "\n## ", plano, flags=_re.IGNORECASE)
+    plano = _re.sub(r"<h3[^>]*>", "\n### ", plano, flags=_re.IGNORECASE)
+    plano = _re.sub(r"</t[dh]>", " | ", plano, flags=_re.IGNORECASE)
+    plano = _re.sub(r"</tr>|<br\s*/?>|</p>|</li>|</div>", "\n", plano, flags=_re.IGNORECASE)
+    plano = _re.sub(r"<[^>]+>", "", plano)
+    plano = _re.sub(r"[ \t]+", " ", plano)
+    plano = _re.sub(r"\n{3,}", "\n\n", plano)
+    return plano.strip()
+
+
 def _indice(html: str) -> dict:
     """Qué contiene la pieza, medido del propio HTML.
 
@@ -167,7 +182,9 @@ def build_messages(
         "borrador": {
             "title": draft.title,
             "meta_description": draft.meta_description,
-            "html": draft.html,
+            # Texto visible, no HTML con estilos: 60 000 caracteres de CSS en línea hacen que
+            # el juez reciba la pieza cortada y acuse secciones que sí existen.
+            "texto": _texto_legible(draft.html),
         },
     }
 
