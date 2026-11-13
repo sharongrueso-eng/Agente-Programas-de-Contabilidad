@@ -285,6 +285,28 @@ def referencias_de_redaccion(pais: str) -> str:
     return MANDATO_DE_USO + "".join(piezas)
 
 
+def buscar_respaldo(objetivo: int, raiz: Path) -> dict | None:
+    """El respaldo más reciente de un post, dando prioridad al que tiene el HTML completo.
+
+    `respaldo.json` lo escribe la corrida antes de tocar el post vivo; `publicacion.json` solo trae
+    título y extracto del camino de borrador. Se prefiere el primero porque permite restaurar de
+    verdad, sin depender de las revisiones de WordPress ni de un archivo externo.
+    """
+    for carpeta in sorted((raiz / "state" / "corridas").glob("*"), reverse=True):
+        archivo = carpeta / "respaldo.json"
+        if archivo.exists():
+            datos = json.loads(archivo.read_text(encoding="utf-8"))
+            if datos.get("post_id") == objetivo and datos.get("content"):
+                return datos
+        archivo = carpeta / "publicacion.json"
+        if not archivo.exists():
+            continue
+        datos = json.loads(archivo.read_text(encoding="utf-8"))
+        if datos.get("post_id") == objetivo and datos.get("respaldo"):
+            return datos["respaldo"]
+    return None
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--pais", default="CO")
@@ -341,29 +363,27 @@ def main() -> int:
         from orchestrator.adapters import WordPressClient as _WpRevertir
 
         objetivo = args.revertir
-        respaldo = None
-        for carpeta in sorted((RAIZ / "state" / "corridas").glob("*"), reverse=True):
-            archivo = carpeta / "publicacion.json"
-            if not archivo.exists():
-                continue
-            datos = json.loads(archivo.read_text(encoding="utf-8"))
-            if datos.get("post_id") == objetivo and datos.get("respaldo"):
-                respaldo = datos["respaldo"]
-                print(f"respaldo de {carpeta.name}")
-                break
+        respaldo = buscar_respaldo(objetivo, RAIZ)
         if not respaldo:
             print(f"no hay respaldo guardado para el post {objetivo}")
             return 2
+        print("respaldo con HTML completo" if respaldo.get("content") else "respaldo parcial")
         wp = _WpRevertir(
             os.environ["PDC_PROD_URL"],
             os.environ["PDC_PROD_TOKEN"],
             username=os.environ["PDC_PROD_USER"],
         )
-        wp.update_post(
-            objetivo, {"title": respaldo.get("title", ""), "excerpt": respaldo.get("excerpt", "")}
-        )
+        cambios = {
+            "title": respaldo.get("title", ""),
+            "excerpt": respaldo.get("excerpt", ""),
+        }
+        if respaldo.get("content"):
+            cambios["content"] = respaldo["content"]
+        wp.update_post(objetivo, cambios)
         vivo = wp._write("GET", f"/wp-json/wp/v2/posts/{objetivo}?context=edit", {})
+        restaurado = (vivo.get("content") or {}).get("raw", "")
         print("revertido a:", str((vivo.get("title") or {}).get("raw", ""))[:80])
+        print(f"contenido restaurado: {len(restaurado):,} caracteres")
         return 0
 
     if args.brief:
@@ -689,6 +709,34 @@ def main() -> int:
 
     estado = RunState(RAIZ / "state" / "corridas", brief.task_id)
 
+    # Guardar la versión viva antes de escribir es la única red que no depende de WordPress ni de
+    # un archivo externo. Si no se puede leer, no se escribe: sin red no hay salto.
+    respaldo = None
+    if post_existente and not args.borrador:
+        try:
+            vivo = wp._write("GET", f"/wp-json/wp/v2/posts/{post_existente}?context=edit", {}) or {}
+            contenido_previo = (vivo.get("content") or {}).get("raw", "")
+            if not contenido_previo:
+                raise RuntimeError("WordPress devolvió el contenido vacío")
+            respaldo = {
+                "post_id": post_existente,
+                "title": (vivo.get("title") or {}).get("raw", ""),
+                "excerpt": (vivo.get("excerpt") or {}).get("raw", ""),
+                "content": contenido_previo,
+                "fecha": datetime.now().isoformat(timespec="seconds"),
+            }
+            estado.dir.mkdir(parents=True, exist_ok=True)
+            (estado.dir / "respaldo.json").write_text(
+                json.dumps(respaldo, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+            print(
+                f"respaldo del post {post_existente}: {len(contenido_previo):,} caracteres "
+                f"en {estado.dir / 'respaldo.json'}"
+            )
+        except Exception as error:  # noqa: BLE001 - sin respaldo no se sobrescribe
+            print(f"NO se publica: no se pudo respaldar el post {post_existente}: {error}")
+            return 1
+
     if args.reusar and (estado.dir / "borrador.json").exists():
         print()
         print("reusando el borrador guardado; sigo desde la validación")
@@ -704,6 +752,7 @@ def main() -> int:
             brief,
             llm=deps.producer,
             skill=deps.skill,
+            skill_bloques=deps.skill_bloques,
             legal=deps.legal,
             registro=registro.texto[:6000],  # el gateway devuelve vacío con prompts largos
             marcas=[

@@ -117,6 +117,7 @@ class Deps:
     wp: Any
     publisher: Any
     skill: str = ""
+    skill_bloques: str = ""
     legal: str = ""
     manual: str = ""
     registry: str = ""
