@@ -1,4 +1,4 @@
-"""Solo cinco controles detienen una publicación; el resto se corrige o se avisa."""
+"""Ningún control detiene una publicación: el agente corrige y avisa."""
 
 import unittest
 
