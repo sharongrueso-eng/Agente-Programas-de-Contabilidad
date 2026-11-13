@@ -1,4 +1,4 @@
-"""Producer: turn a brief into a WordPress draft written in Leandro's voice.
+"""Producer: turn a brief into a WordPress draft in the portal's editorial voice.
 
 The model call and the WordPress call are injected, so the module is testable without
 credentials and the same code runs against LiteLLM and the real site later. What lives
@@ -149,7 +149,7 @@ artículo**: la pieza vive en `url_objetivo` y su contenido no se toca."""
 
 ## Reglas no negociables de este encargo
 
-- Escribes como Leandro, para programascontabilidad.com, en español neutro del país indicado.
+- Escribes para programascontabilidad.com con voz editorial propia, en español neutro del país indicado. No firmas como una persona: el artículo va a nombre del autor del portal.
 - Nombra la norma exacta del mercado y no cruces normativa entre países.
 - Menciona a Alegra por su nombre y deja espacio para tres enlaces a Alegra con UTM.
 - Honestidad: escribe «revisé» cuando solo consultaste documentación oficial. Escribe «probé» únicamente si el registro de datos trae evidencia de una prueba hecha por una persona.

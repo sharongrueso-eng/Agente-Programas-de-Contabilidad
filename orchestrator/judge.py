@@ -59,7 +59,7 @@ Evalúas exactamente dos controles:
    para responder la intención, es CORREGIR. Si la pieza responde otra intención, es BLOQUEADO.
 
 2. "final_qa" — ¿las cifras, planes y funciones coinciden con el registro de datos del
-   encargo? ¿el país y su normativa son los correctos? ¿el tono es el de Leandro? ¿hay
+   encargo? ¿el país y su normativa son los correctos? ¿el tono es el editorial del portal? ¿hay
    afirmaciones sin respaldo o pruebas que nadie hizo? Un error de hecho, de cifra, de país
    o una prueba inventada es BLOQUEADO.
 

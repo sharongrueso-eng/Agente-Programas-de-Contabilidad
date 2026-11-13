@@ -136,14 +136,14 @@ class LiteLlmClient:
 
 
 class WordPressClient:
-    """WordPress REST API with an application token bound to Leandro's user."""
+    """WordPress REST API with an application token bound to the editing account."""
 
     def __init__(
         self,
         base_url: str,
         token: str,
         *,
-        username: str = "leandro",
+        username: str = "",
         scheme: str = "basic",
         transport: HttpTransport | None = None,
         timeout: float = 60.0,

@@ -89,7 +89,12 @@ class WordPressTests(unittest.TestCase):
 
     def test_create_posts_json_with_auth_header(self) -> None:
         transport = FakeTransport(body=json.dumps({"id": 12, "link": "https://x/?p=12"}).encode())
-        client = WordPressClient("https://programascontabilidad.com", "token-secreto", transport=transport)
+        client = WordPressClient(
+            "https://programascontabilidad.com",
+            "token-secreto",
+            username="pdc",
+            transport=transport,
+        )
 
         created = client.create_draft({"title": "T", "status": "draft"})
 
@@ -99,7 +104,7 @@ class WordPressTests(unittest.TestCase):
 
         scheme, _, encoded = call["headers"]["Authorization"].partition(" ")
         self.assertEqual(scheme, "Basic")
-        self.assertEqual(base64.b64decode(encoded).decode(), "leandro:token-secreto")
+        self.assertEqual(base64.b64decode(encoded).decode(), "pdc:token-secreto")
 
         self.assertEqual(json.loads(call["body"])["status"], "draft")
         self.assertEqual(created["id"], 12)

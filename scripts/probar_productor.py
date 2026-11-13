@@ -42,9 +42,9 @@ def main() -> int:
             print(f"Falta {nombre}. Cárgalo desde ~/.pdc/llm.env.")
             return 2
 
-    skill = Path(args.skill or ROOT / "skills" / "leandro" / "SKILL.md").read_text(encoding="utf-8")
+    skill = Path(args.skill or ROOT / "skills" / "prog-cont-blog" / "SKILL.md").read_text(encoding="utf-8")
     legal = Path(
-        args.legal or ROOT / "skills" / "leandro" / "references" / "legal-context.md"
+        args.legal or ROOT / "skills" / "marco-legal" / "legal-context.md"
     ).read_text(encoding="utf-8")
 
     brief = load_brief(ROOT / args.brief)

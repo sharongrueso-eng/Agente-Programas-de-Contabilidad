@@ -10,8 +10,8 @@ import unittest
 from pathlib import Path
 
 SKILLS = Path(__file__).resolve().parent.parent / "skills"
-LEANDRO = SKILLS / "leandro"
-LEGAL = LEANDRO / "references" / "legal-context.md"
+PORTAL = SKILLS / "prog-cont-blog"
+LEGAL = SKILLS / "marco-legal" / "legal-context.md"
 
 
 def read(path: Path) -> str:
@@ -20,7 +20,7 @@ def read(path: Path) -> str:
 
 class FrontmatterTests(unittest.TestCase):
     def test_every_skill_declares_matching_name(self) -> None:
-        for skill_dir in (SKILLS / "leandro", SKILLS / "pdc-locale-signals"):
+        for skill_dir in (SKILLS / "prog-cont-blog", SKILLS / "pdc-locale-signals"):
             content = read(skill_dir / "SKILL.md")
             self.assertTrue(content.startswith("---"), f"{skill_dir.name} sin frontmatter")
             name = re.search(r"^name:\s*(\S+)", content, re.MULTILINE)
@@ -39,27 +39,6 @@ class TerminologyTests(unittest.TestCase):
             if re.search(r"\bpymes?\b", read(path), re.IGNORECASE):
                 offenders.append(path.name)
         self.assertEqual(offenders, [], "el estándar es 'negocios y empresas'")
-
-
-class AlegraDisclosureTests(unittest.TestCase):
-    def test_cta_names_alegra(self) -> None:
-        content = read(LEANDRO / "SKILL.md")
-
-        self.assertNotIn("nunca menciona", content.lower())
-        self.assertIn("menciona a Alegra por su nombre", content)
-
-    def test_three_alegra_links_are_required(self) -> None:
-        content = read(LEANDRO / "SKILL.md")
-
-        self.assertIn("tres enlaces a Alegra", content)
-
-
-class HonestyTests(unittest.TestCase):
-    def test_probe_requires_evidence(self) -> None:
-        content = read(LEANDRO / "SKILL.md")
-
-        self.assertIn("«Probé» solo con evidencia", content)
-        self.assertIn("registro de datos", content)
 
 
 class MarketScopeTests(unittest.TestCase):

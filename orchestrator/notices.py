@@ -26,7 +26,7 @@ TEMPLATES: dict[str, str] = {
         "📝 Borrador listo · {pais} · {formato}\n"
         "Keyword: {keyword}\n"
         "Post ID: {post_id}\n"
-        "Firma: Leandro · pendiente de revisión antes de publicar"
+        "Firma: autor del portal · pendiente de revisión antes de publicar"
     ),
     "slot_publicado": (
         "✅ Slot {slot} · {pais} · {formato} · PUBLICADA\n"

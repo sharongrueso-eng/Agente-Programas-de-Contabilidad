@@ -98,7 +98,7 @@ def main() -> int:
         wp = WordPressClient(
             base_url=os.environ["PDC_WP_URL"],
             token=os.environ["PDC_WP_TOKEN"],
-            username=os.environ.get("PDC_WP_USER", "leandro"),
+            username=os.environ.get("PDC_WP_USER", ""),
         )
         probe = f"smoke-{int(time.time())}"
         found = wp.find_by_run_id(probe)

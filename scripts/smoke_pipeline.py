@@ -125,8 +125,8 @@ def main() -> int:
         corrector=Guionizado(draft_file),
         wp=WordPressFalso(),
         publisher=PublicadorFalso(draft_file),
-        skill=(ROOT / "skills" / "leandro" / "SKILL.md").read_text(encoding="utf-8"),
-        legal=(ROOT / "skills" / "leandro" / "references" / "legal-context.md").read_text(
+        skill=(ROOT / "skills" / "prog-cont-blog" / "SKILL.md").read_text(encoding="utf-8"),
+        legal=(ROOT / "skills" / "marco-legal" / "legal-context.md").read_text(
             encoding="utf-8"
         ),
         manual=(ROOT / "rules" / "reglas-del-corrector.md").read_text(encoding="utf-8"),

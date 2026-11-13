@@ -189,7 +189,7 @@ class FirmaTests(unittest.TestCase):
         self.assertEqual(resultado["status"], "FAILED")
         self.assertIn("firma", resultado["block_reason"])
 
-    def test_autor_por_defecto_es_leandro(self) -> None:
+    def test_autor_por_defecto_es_el_del_portal(self) -> None:
         wp = FakeWp()
 
         publish(DRAFT, brief(), client=wp, conditions=self.conditions())

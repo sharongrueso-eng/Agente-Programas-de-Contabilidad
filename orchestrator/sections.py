@@ -144,7 +144,7 @@ def producir_por_secciones(
 
 ## Reglas no negociables
 
-- Escribes como Leandro, para programascontabilidad.com, en español neutro de {brief.country}.
+- Escribes para programascontabilidad.com con voz editorial propia, en español neutro de {brief.country}. No firmas como una persona.
 - Keyword foco: «{keyword}». No la repitas de forma artificial.
 - No inventes precios ni cifras: usa solo las del registro de datos que viene abajo.
 - Si un competidor no publica un dato, dilo y sigue. La ausencia declarada es información.

@@ -20,9 +20,9 @@ from orchestrator.state import RefreshJournal, StateError
 from orchestrator.registry import cargar_registro
 from orchestrator.validator import ControlResult, ValidationRules, Verdict, validate
 
-SKILLS_DIR = DEFAULT_RULES_PATH.parent.parent / "skills" / "leandro"
+SKILLS_DIR = DEFAULT_RULES_PATH.parent.parent / "skills" / "prog-cont-blog"
 DEFAULT_SKILL = SKILLS_DIR / "SKILL.md"
-DEFAULT_LEGAL = SKILLS_DIR / "references" / "legal-context.md"
+DEFAULT_LEGAL = SKILLS_DIR.parent / "marco-legal" / "legal-context.md"
 
 
 def _load_config(path: Path) -> dict[str, Any]:
@@ -303,7 +303,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "--dry-run", action="store_true", help="print the prompt instead of calling the model"
     )
     produce_parser.add_argument(
-        "--skill", type=Path, default=DEFAULT_SKILL, help="path to the leandro skill"
+        "--skill", type=Path, default=DEFAULT_SKILL, help="path to the portal writing skill"
     )
     produce_parser.add_argument(
         "--legal", type=Path, default=DEFAULT_LEGAL, help="path to the legal context"

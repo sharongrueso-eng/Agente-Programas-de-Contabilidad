@@ -592,8 +592,8 @@ def main() -> int:
         ),
         wp=WpNulo(),
         publisher=None,
-        skill=(RAIZ / "skills" / "leandro" / "SKILL.md").read_text(encoding="utf-8"),
-        legal=(RAIZ / "skills" / "leandro" / "references" / "legal-context.md").read_text(
+        skill=(RAIZ / "skills" / "prog-cont-blog" / "SKILL.md").read_text(encoding="utf-8"),
+        legal=(RAIZ / "skills" / "marco-legal" / "legal-context.md").read_text(
             encoding="utf-8"
         ),
         registry=registro.texto,
