@@ -232,6 +232,32 @@ def _webhook(args) -> str:
     return env(Path.home() / ".pdc" / "chat.env").get("PDC_CHAT_WEBHOOK_URL", "")
 
 
+
+REFERENCIAS_DE_REDACCION = (
+    "formatos.md",
+    "portada-y-medios.md",
+)
+
+
+def referencias_de_redaccion(pais: str) -> str:
+    """Las referencias de la skill del portal que el redactor necesita de verdad.
+
+    formatos y portada son iguales para todos los mercados; los precios de Alegra son por país.
+    Se cargan solo estas tres: el resto del paquete son procedimientos operativos, no escritura.
+    """
+    base = RAIZ / "skills" / "prog-cont-blog" / "references"
+    piezas = []
+    for nombre in REFERENCIAS_DE_REDACCION + (f"precios-alegra-{pais.lower()}.md",):
+        ruta = base / nombre
+        if ruta.exists():
+            piezas.append(
+                "## Referencia: " + nombre + chr(10) + chr(10)
+                + ruta.read_text(encoding="utf-8")
+                + chr(10) + chr(10)
+            )
+    return "".join(piezas)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--pais", default="CO")
@@ -592,7 +618,8 @@ def main() -> int:
         ),
         wp=WpNulo(),
         publisher=None,
-        skill=(RAIZ / "skills" / "prog-cont-blog" / "SKILL.md").read_text(encoding="utf-8"),
+        skill=(RAIZ / "skills" / "prog-cont-blog" / "SKILL.md").read_text(encoding="utf-8")
+        + referencias_de_redaccion(brief.country),
         legal=(RAIZ / "skills" / "marco-legal" / "legal-context.md").read_text(
             encoding="utf-8"
         ),
