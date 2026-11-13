@@ -647,6 +647,7 @@ def main() -> int:
         publisher=None,
         skill=(RAIZ / "skills" / "prog-cont-blog" / "SKILL.md").read_text(encoding="utf-8")
         + referencias_de_redaccion(brief.country),
+        skill_bloques=(RAIZ / "skills" / "prog-cont-blog" / "SKILL.md").read_text(encoding="utf-8"),
         legal=(RAIZ / "skills" / "marco-legal" / "legal-context.md").read_text(
             encoding="utf-8"
         ),

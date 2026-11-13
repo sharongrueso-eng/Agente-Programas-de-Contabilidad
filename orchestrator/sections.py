@@ -128,7 +128,8 @@ def producir_por_secciones(
     *,
     llm: Any,
     skill: str,
-    legal: str,
+    skill_bloques: str = "",
+    legal: str = "",
     registro: str = "",
     marcas: Sequence[str] = (),
     fichas: Sequence[Any] = (),
@@ -185,11 +186,18 @@ precio de ese módulo»—, nunca de la plataforma entera.
 
     salida = SalidaSecciones(draft=None)  # type: ignore[arg-type]
 
-    def llamar(instruccion: str) -> str:
+    # Las referencias completas se pagan una vez, en la cabecera. Los bloques reciben la skill
+    # sola: reenviar cuarenta mil caracteres de referencias en cada bloque multiplica el costo
+    # sin mejorar el texto, porque las reglas que importan ya están en la skill.
+    sistema_bloques = sistema
+    if skill_bloques:
+        sistema_bloques = sistema.replace(skill.strip(), skill_bloques.strip(), 1)
+
+    def llamar(instruccion: str, compacto: bool = False) -> str:
         salida.llamadas += 1
         return llm.complete(
             [
-                {"role": "system", "content": sistema},
+                {"role": "system", "content": sistema_bloques if compacto else sistema},
                 {
                     "role": "user",
                     "content": (
@@ -214,7 +222,8 @@ precio de ese módulo»—, nunca de la plataforma entera.
                 try:
                     crudo = llamar(
                         "Bloque «" + clave + "»: " + instruccion
-                        + chr(10) + "Devuelve solo el texto, sin HTML y sin explicaciones."
+                        + chr(10) + "Devuelve solo el texto, sin HTML y sin explicaciones.",
+                        compacto=True,
                     )
                 except Exception:  # noqa: BLE001
                     continue
