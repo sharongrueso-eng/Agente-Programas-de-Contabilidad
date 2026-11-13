@@ -271,8 +271,10 @@ def referencias_de_redaccion(pais: str) -> str:
         if ruta.exists():
             piezas.append(
                 "## Referencia: " + nombre + chr(10) + chr(10)
-                + ruta.read_text(encoding="utf-8")
-                + chr(10) + chr(10)
+                # Recortada a lo esencial: con el texto entero el modelo gasta el presupuesto en
+                # razonar sobre 40.000 caracteres y devuelve la cabecera vacía.
+                + ruta.read_text(encoding="utf-8")[:2200]
+                + chr(10) + "… (referencia recortada: el resto se aplica igual)" + chr(10) + chr(10)
             )
     if not (base / f"precios-alegra-{pais.lower()}.md").exists():
         piezas.append(
@@ -622,7 +624,7 @@ def main() -> int:
             base_url=os.environ["OPENAI_BASE_URL"],
             api_key=os.environ["PDC_LLM_KEY"],
             model=modelo("PDC_MODEL_PRODUCER", "deepseek/deepseek-v4-pro"),
-            max_tokens=8000,
+            max_tokens=12000,
             timeout=300,
         ),
         judge=JuezConReintentos([
@@ -690,6 +692,10 @@ def main() -> int:
         subir_media=subir_media,
         # Un reencauche de snippet sí escribe sobre el artículo vivo: es su trabajo.
         permitir_vivo=args.en_vivo or not requires_body(brief.opportunity.action),
+        verificar_publicacion=lambda pid: str(
+            ((_wp._write("GET", f"/wp-json/wp/v2/posts/{pid}?context=edit", {}) or {})
+             .get("content") or {}).get("raw", "")
+        ),
         brands_available=len(registro.fichas),
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
@@ -714,7 +720,9 @@ def main() -> int:
     respaldo = None
     if post_existente and not args.borrador:
         try:
-            vivo = wp._write("GET", f"/wp-json/wp/v2/posts/{post_existente}?context=edit", {}) or {}
+            vivo = _wp._write(
+                "GET", f"/wp-json/wp/v2/posts/{post_existente}?context=edit", {}
+            ) or {}
             contenido_previo = (vivo.get("content") or {}).get("raw", "")
             if not contenido_previo:
                 raise RuntimeError("WordPress devolvió el contenido vacío")

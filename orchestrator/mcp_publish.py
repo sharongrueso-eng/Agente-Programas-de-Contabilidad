@@ -171,6 +171,7 @@ def publicar(
     post_id: int | None = None,
     subir_media: Any = None,
     permitir_vivo: bool = False,
+    verificar: Any = None,
 ) -> dict[str, Any]:
     """Publica una pieza por MCP. Nunca deja un post publicado sin `pdc_run_id`."""
     run_id = brief.task_id
@@ -313,6 +314,25 @@ def publicar(
             cambios["content"] = draft.html
         if len(cambios) > 1:
             ejecutar(ABILITIES["actualizar"], cambios)
+
+    # El MCP puede aceptar una escritura y no aplicarla. Si hay un verificador, se lee el post
+    # por fuera del MCP: sin esto una publicación fantasma se reporta como éxito.
+    if verificar is not None and draft.html.strip():
+        try:
+            vivo_html = str(verificar(post_id) or "")
+        except Exception:  # noqa: BLE001 - no poder verificar es no poder publicar
+            vivo_html = ""
+        esperado = draft.html.strip()
+        if len(vivo_html.strip()) < max(200, int(len(esperado) * 0.6)):
+            return _resultado(
+                "FAILED",
+                brief,
+                post_id=post_id,
+                block_reason=(
+                    "WordPress no guardó el contenido: el post tiene "
+                    f"{len(vivo_html):,} caracteres y se escribieron {len(esperado):,}."
+                ),
+            )
 
     mapa.confirmar(run_id, post_id, "borrador_verificado")
 
