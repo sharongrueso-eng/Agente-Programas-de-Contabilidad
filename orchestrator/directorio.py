@@ -149,7 +149,8 @@ def fuera_de_elenco(html: str, titulo: str, pais: str) -> list[str]:
     """
     # El elenco cerrado aplica a las piezas cabeza a cabeza. Una lista o una guía puede
     # nombrar varias marcas por diseño; un «X vs Y» no.
-    if not re.search(r"(?i)vs\.?|frente a", titulo or ""):
+    plano_titulo = (titulo or "").lower()
+    if " vs " not in plano_titulo and "frente a" not in plano_titulo:
         return []
     del_titulo = marcas_en(titulo, pais)
     del_cuerpo = marcas_en(html, pais)
