@@ -11,17 +11,9 @@ def control(code: str, status: str = CORREGIR) -> ControlResult:
 
 
 class SeveridadTests(unittest.TestCase):
-    def test_the_blocking_set_is_the_one_that_prevents_a_lie(self) -> None:
-        self.assertEqual(
-            set(),
-            {
-                "country_norms",
-                "registry_amounts",
-                "feature_claims",
-                "linea_visual",
-                "snippet_body",
-            },
-        )
+    def test_no_control_blocks_any_more(self) -> None:
+        # Decisión de Sharon (12-nov-2026): el agente corrige, no bloquea.
+        self.assertEqual(set(BLOQUEANTES), set())
 
     def test_a_style_problem_is_not_blocking(self) -> None:
         self.assertEqual(bloqueantes([control("meta_length"), control("improvement_claims")]), [])
