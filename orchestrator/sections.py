@@ -210,7 +210,7 @@ precio de ese módulo»—, nunca de la plataforma entera.
     for clave, instruccion in BLOQUES:
         if clave in {"puntos_clave", "resumen"}:
             crudo = ""
-            for _ in range(max_reintentos):
+            for intento in range(max_reintentos):
                 try:
                     crudo = llamar(
                         "Bloque «" + clave + "»: " + instruccion
@@ -253,7 +253,7 @@ precio de ese módulo»—, nunca de la plataforma entera.
             fragmentos: list[str] = []
             for marca in marcas:
                 trozo = ""
-                for _ in range(max_reintentos):
+                for intento in range(max_reintentos):
                     try:
                         trozo = _limpiar(
                             llamar(
@@ -305,7 +305,7 @@ precio de ese módulo»—, nunca de la plataforma entera.
                 continue
 
         fragmento = ""
-        for _ in range(max_reintentos):
+        for intento in range(max_reintentos):
             try:
                 crudo = llamar(
                     "Escribe SOLO este bloque, en HTML, sin encabezado de nivel 1 y sin repetir "
