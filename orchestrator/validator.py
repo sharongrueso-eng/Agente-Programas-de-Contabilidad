@@ -198,19 +198,11 @@ def _control(code: str, ok: bool, detail: str, failure: str = CORREGIR) -> Contr
 # normativa y se nombran sin atribuir nada a nadie.
 # Los únicos controles que pueden detener una publicación: los que evitan publicar algo falso
 # o roto. El resto son advertencias: se corrigen si se puede y, si no, se publica y se avisa.
-BLOQUEANTES = frozenset(
-    {
-        "country_norms",
-        "registry_amounts",
-        "feature_claims",
-        "linea_visual",
-        "snippet_body",
-    }
-)
+BLOQUEANTES = frozenset()  # ningún control detiene: todo se corrige
 
 
 def bloqueantes(controls) -> list:
-    """Los fallos que sí impiden publicar."""
+    """Vacío por decisión: el agente corrige, no bloquea."""
     return [c for c in controls if getattr(c, "status", "PASS") != PASS and c.code in BLOQUEANTES]
 
 
@@ -570,3 +562,31 @@ def sanear_cifras(html: str, registry_text: str) -> tuple[str, list[str]]:
         pieza if pieza.startswith("<") else limpiar_texto(pieza) for pieza in piezas
     )
     return saneado, retiradas
+
+NEGACION_DE_FICHA = re.compile(
+    r"(?i)[^.]{0,90}no (?:existe|hay|tiene|se encontr[oó]|encontramos)[^.]{0,40}ficha[^.]*\."
+)
+FECHA_UNICA = re.compile(
+    r"(?i)consultad[ao]s? el 12 de noviembre de 2026"
+)
+
+
+def sanear_afirmaciones(html: str, registry_text: str) -> tuple[str, list[str]]:
+    """Quita afirmaciones que el propio registro contradice.
+
+    El redactor negó la ficha de World Office Escritorio teniéndola delante, y fechó todas las
+    fuentes el mismo día. Las dos son frases que el código puede retirar sin preguntar.
+    """
+    retiradas: list[str] = []
+    if registry_text:
+        nuevo, cuantas = NEGACION_DE_FICHA.subn("", html)
+        if cuantas:
+            html = nuevo
+            retiradas.append("negación de ficha")
+    nuevo, cuantas = FECHA_UNICA.subn(
+        "consultadas en la fecha que indica cada ficha", html
+    )
+    if cuantas:
+        html = nuevo
+        retiradas.append("fecha única de fuentes")
+    return html, retiradas

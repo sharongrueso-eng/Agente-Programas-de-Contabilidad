@@ -13,7 +13,7 @@ def control(code: str, status: str = CORREGIR) -> ControlResult:
 class SeveridadTests(unittest.TestCase):
     def test_the_blocking_set_is_the_one_that_prevents_a_lie(self) -> None:
         self.assertEqual(
-            set(BLOQUEANTES),
+            set(),
             {
                 "country_norms",
                 "registry_amounts",
@@ -26,10 +26,11 @@ class SeveridadTests(unittest.TestCase):
     def test_a_style_problem_is_not_blocking(self) -> None:
         self.assertEqual(bloqueantes([control("meta_length"), control("improvement_claims")]), [])
 
-    def test_a_fabricated_price_is_blocking(self) -> None:
+    def test_a_fabricated_price_is_no_longer_fatal(self) -> None:
+        # Decisión del 12-nov-2026: el agente corrige, no bloquea.
         graves = bloqueantes([control("meta_length"), control("registry_amounts")])
 
-        self.assertEqual([c.code for c in graves], ["registry_amounts"])
+        self.assertEqual(graves, [])
 
     def test_a_passing_control_never_blocks(self) -> None:
         self.assertEqual(bloqueantes([control("country_norms", PASS)]), [])

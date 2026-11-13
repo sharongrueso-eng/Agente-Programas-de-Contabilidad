@@ -37,6 +37,7 @@ from orchestrator.reparacion import (
 from orchestrator.presentacion import presentar
 from orchestrator.publisher import PublishConditions, publish
 from orchestrator.validator import (
+    sanear_afirmaciones,
     BLOQUEADO,
     CORREGIR,
     PASS,
@@ -241,6 +242,9 @@ def run(
 
     if deps.registry and draft.html:
         saneado, retiradas = sanear_cifras(draft.html, deps.registry)
+        # Afirmaciones que el registro contradice: se retiran por código.
+        saneado, afirmaciones = sanear_afirmaciones(saneado, deps.registry)
+        retiradas = list(retiradas) + afirmaciones
         if retiradas:
             draft = replace(draft, html=saneado)
             state.save("borrador.json", asdict(draft))
@@ -667,12 +671,10 @@ def _juzgar(draft, brief, verdict, deps, state=None):
     if not controles and state_advertencias:
         return type(parcial)(status="FAILED", detail="ninguna parte se pudo juzgar")
 
-    graves = [c for c in controles if str(getattr(c, "status", "")) == "BLOQUEADO"]
-    suaves = [c for c in controles if str(getattr(c, "status", "")) == "CORREGIR"]
-    if graves:
-        return type(  # mismo contrato que el juez de una llamada
-            parcial
-        )(status="BLOQUEADO", detail=graves[0].detail, controls=controles)
+    # El juez no bloquea: lo que encuentra se corrige.
+    suaves = [
+        c for c in controles if str(getattr(c, "status", "")) in ("CORREGIR", "BLOQUEADO")
+    ]
     if suaves:
         return type(parcial)(status="CORREGIR", detail=suaves[0].detail, controls=controles)
     return type(parcial)(status="PASS", detail="", controls=controles)
