@@ -168,6 +168,13 @@ def producir_por_secciones(
 Ninguna otra. Si un nombre no está en esa lista, no existe para esta pieza: no se inventa, no se
 deforma y no se abrevia. Escribir «Susii» donde va «Siigo» invalida el artículo entero.
 
+## Lo que el registro ya prueba
+
+Cada plataforma de esa lista tiene ficha con precios publicados en el registro de abajo. Nunca
+escribas que una plataforma «no tiene ficha», «no publica precios» o «no está documentada»: sería
+falso y el artículo se detiene. Si un dato concreto no aparece, dilo de ese dato —«no publica el
+precio de ese módulo»—, nunca de la plataforma entera.
+
 ## Registro de datos del mercado (única fuente de cifras)
 
 {registro or "sin fichas de este mercado"}
