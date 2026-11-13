@@ -37,6 +37,7 @@ from orchestrator.reparacion import (
 from orchestrator.presentacion import presentar
 from orchestrator.publisher import PublishConditions, publish
 from orchestrator.validator import (
+    limpiar_artefactos,
     sanear_afirmaciones,
     BLOQUEADO,
     CORREGIR,
@@ -243,8 +244,9 @@ def run(
     if deps.registry and draft.html:
         saneado, retiradas = sanear_cifras(draft.html, deps.registry)
         # Afirmaciones que el registro contradice: se retiran por código.
+        saneado, artefactos = limpiar_artefactos(saneado)
         saneado, afirmaciones = sanear_afirmaciones(saneado, deps.registry)
-        retiradas = list(retiradas) + afirmaciones
+        retiradas = list(retiradas) + artefactos + afirmaciones
         if retiradas:
             draft = replace(draft, html=saneado)
             state.save("borrador.json", asdict(draft))

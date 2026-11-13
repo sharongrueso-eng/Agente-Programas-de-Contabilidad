@@ -590,3 +590,31 @@ def sanear_afirmaciones(html: str, registry_text: str) -> tuple[str, list[str]]:
         html = nuevo
         retiradas.append("fecha única de fuentes")
     return html, retiradas
+
+# El modelo a veces deja su propia conversación dentro del artículo y formatea en markdown.
+CHARLA_DEL_MODELO = re.compile(
+    r"(?i)[^.]{0,80}(?:no puedo desarrollar|¿c[oó]mo quieres que siga|sin confirmaci[oó]n no avanzo"
+    r"|no avanzo sin confirmaci[oó]n|dime c[oó]mo continuar)[^.]*\."
+)
+UNIDAD_PEGADA = re.compile(r"(COP|MXN|USD|CRC)(mes|año|ano|hora)")
+
+
+def limpiar_artefactos(html: str) -> tuple[str, list[str]]:
+    """Quita charla del asistente, markdown visible y unidades pegadas.
+
+    Publicar «No puedo desarrollar el H3… ¿cómo quieres que siga?» o «COPmes» es un defecto de
+    publicación, no un detalle de estilo.
+    """
+    retirados: list[str] = []
+    nuevo, cuantas = CHARLA_DEL_MODELO.subn("", html)
+    if cuantas:
+        html = nuevo
+        retirados.append(f"charla del modelo ({cuantas})")
+    nuevo, cuantas = UNIDAD_PEGADA.subn(r"/", html)
+    if cuantas:
+        html = nuevo
+        retirados.append(f"unidad pegada ({cuantas})")
+    if "**" in html:
+        html = html.replace("**", "")
+        retirados.append("asteriscos de markdown")
+    return html, retirados
