@@ -237,6 +237,24 @@ REFERENCIAS_DE_REDACCION = (
     "formatos.md",
     "portada-y-medios.md",
     "alegra-modulos-por-pais.md",
+    "auditoria-blog-seo-aeo.md",
+    "wordpress-prog-cont.md",
+    "refresco-de-precios.md",
+    "migracion-colombia.md",
+)
+
+MANDATO_DE_USO = (
+    "## Instrucción de uso obligatorio"
+    + chr(10) + chr(10)
+    + "Las referencias que siguen NO son contexto de fondo ni lectura opcional: son reglas de "
+    "producción y se aplican todas en esta pieza."
+    + chr(10) + chr(10)
+    + "- Si una regla de estas referencias contradice tu criterio, manda la referencia."
+    + chr(10)
+    + "- Si una referencia exige un dato que no tienes, no lo inventes: aplica su regla de ausencia."
+    + chr(10)
+    + "- Antes de entregar, comprueba la pieza contra cada referencia cargada."
+    + chr(10) + chr(10)
 )
 
 
@@ -264,7 +282,7 @@ def referencias_de_redaccion(pais: str) -> str:
             "escribe exactamente: «El proveedor no publica esta información en su sitio web.»"
             + chr(10) + chr(10)
         )
-    return "".join(piezas)
+    return MANDATO_DE_USO + "".join(piezas)
 
 
 def main() -> int:
