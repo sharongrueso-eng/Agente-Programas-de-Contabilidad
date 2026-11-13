@@ -236,6 +236,7 @@ def _webhook(args) -> str:
 REFERENCIAS_DE_REDACCION = (
     "formatos.md",
     "portada-y-medios.md",
+    "alegra-modulos-por-pais.md",
 )
 
 
@@ -255,6 +256,14 @@ def referencias_de_redaccion(pais: str) -> str:
                 + ruta.read_text(encoding="utf-8")
                 + chr(10) + chr(10)
             )
+    if not (base / f"precios-alegra-{pais.lower()}.md").exists():
+        piezas.append(
+            "## No hay precios verificados de Alegra para este país"
+            + chr(10) + chr(10)
+            + "No cites ninguna tarifa de Alegra en esta pieza. Cuando el artículo necesite una cifra, "
+            "escribe exactamente: «El proveedor no publica esta información en su sitio web.»"
+            + chr(10) + chr(10)
+        )
     return "".join(piezas)
 
 
