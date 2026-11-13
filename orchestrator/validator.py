@@ -258,6 +258,21 @@ def validate(
     text = " ".join([draft.title, draft.meta_description, draft.html])
     controls: list[ControlResult] = []
 
+    if has_body and not is_snippet and draft.title:
+        from .directorio import fuera_de_elenco
+
+        intrusas = fuera_de_elenco(draft.html, draft.title, brief.country)
+        controls.append(
+            ControlResult(
+                code="elenco_cerrado",
+                status=CORREGIR if intrusas else PASS,
+                detail=""
+                if not intrusas
+                else "el título anuncia otras marcas y el cuerpo nombra: "
+                + ", ".join(intrusas[:6]),
+            )
+        )
+
     # Una marca que el directorio del país no reconoce no se nombra: es el hueco de «susii».
     if has_body and not is_snippet and brief.country:
         from .directorio import extranas

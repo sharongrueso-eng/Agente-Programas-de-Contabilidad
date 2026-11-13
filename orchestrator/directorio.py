@@ -124,3 +124,38 @@ def extranas(texto: str, pais: str) -> list[str]:
                     continue
                 sospechosas.append(grupo)
     return sorted(set(sospechosas))
+
+
+def marcas_en(texto: str, pais: str) -> set[str]:
+    """Las marcas conocidas que aparecen en un texto, en minúsculas."""
+    plano = re.sub(r"<[^>]+>", " ", texto or "").lower()
+    encontradas = set()
+    for marca in list(conocidas(pais)) + [
+        m.lower() for archivo in FICHAS.glob("*.json")
+        for m in [json.loads(archivo.read_text(encoding="utf-8"))["brand"]]
+    ]:
+        if len(marca) < 4:
+            continue
+        if re.search(r"(?<![a-záéíóúñ])" + re.escape(marca) + r"(?![a-záéíóúñ])", plano):
+            encontradas.add(marca)
+    return encontradas
+
+
+def fuera_de_elenco(html: str, titulo: str, pais: str) -> list[str]:
+    """Marcas que el cuerpo nombra y el título no anuncia.
+
+    Un artículo «Alegra vs Siigo» no puede hablar de Loggro ni de World Office: el lector llega
+    por dos marcas y encuentra seis. El elenco lo fija el título.
+    """
+    # El elenco cerrado aplica a las piezas cabeza a cabeza. Una lista o una guía puede
+    # nombrar varias marcas por diseño; un «X vs Y» no.
+    if not re.search(r"(?i)vs\.?|frente a", titulo or ""):
+        return []
+    del_titulo = marcas_en(titulo, pais)
+    del_cuerpo = marcas_en(html, pais)
+    # «World Office Cloud» y «World Office» son la misma casa: se compara por raíz.
+    raices = lambda s: {palabra for nombre in s for palabra in nombre.split() if len(palabra) > 3}
+    conocidas_titulo = raices(del_titulo)
+    return sorted(
+        marca for marca in del_cuerpo if not (raices({marca}) <= conocidas_titulo)
+    )
