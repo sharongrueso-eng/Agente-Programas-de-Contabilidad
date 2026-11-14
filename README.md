@@ -4,16 +4,29 @@ Repositorio inicial para el agente editorial de programascontabilidad.com.
 
 ## Estado
 
-**Scaffold local, exclusivamente dry-run.** No consulta Google Search Console, Ahrefs, WordPress, LiteLLM ni Google Chat; no genera ni publica contenido. La configuración parte pausada y cualquier ejecución sin `--dry-run` se bloquea.
+**En producción desde el 13-nov-2026, en modo gobernado.** Las piezas nuevas nacen con los
+controles deterministas y la línea visual; el agente escribe en WordPress por el MCP. El estado
+y los pendientes viven en `contexto/estado-2026-11-13.md` y `contexto/pendientes.md`.
 
 ## Ejecutar
 
 Desde la raíz del repositorio:
 
 ```bash
-# Pruebas
-python -m unittest discover -s tests -v
+# Pruebas (434 en verde). El `-t tests` es obligatorio: sin él, unittest no importa el paquete.
+python -m unittest discover -s tests -t tests -p "test_*.py"
 
+# Controles deterministas sobre un post vivo, sin gastar tokens
+python scripts/diagnosticar_post.py --respaldo state/respaldos/post-5309-....json
+
+# Respaldo doble (duplicado en WordPress + archivo con contenido y SEO) antes de tocar nada
+python scripts/respaldar_post.py --post 5309 --entorno prod
+
+# Firma del autor en todo el archivo publicado
+python scripts/firmar_posts.py --todos --aplicar
+```
+
+```bash
 # Guardas de ejecución
 python -m orchestrator.cli run --dry-run
 
@@ -46,7 +59,9 @@ El comando emite JSON con `side_effects: false`. El modo de producción queda de
 | `orchestrator/producer.py` | Listo | Arma el prompt, valida la salida del modelo y crea el borrador |
 | `orchestrator/brief_io.py` | Listo | Lee el brief de la carpeta de la corrida |
 | `orchestrator/adapters.py` | Escrito, sin probar contra las APIs | Clientes HTTP de LiteLLM y WordPress, con transporte inyectable |
-| `orchestrator/validator.py` | Listo | Trece controles deterministas sobre el borrador |
+| `orchestrator/validator.py` | Listo | Veinte controles deterministas sobre el borrador |
+| `orchestrator/formato.py` | Listo | Presupuesto de tablas por formato y elenco que fija el título; alimenta dos controles bloqueantes |
+| `orchestrator/linea_visual.py` | Listo | Componentes de la línea visual: cajas, tablas, FAQ, firma, listas con sangría y dos columnas |
 | `orchestrator/judge.py` | Listo | Juez de otro modelo: intención/profundidad y QA final, con sugerencias aparte |
 | `orchestrator/corrector.py` | Listo | Arreglos acotados con guarda automática de enlaces, cifras, marcas y largo |
 | `orchestrator/publisher.py` | Listo | Compuertas, huella, publicación idempotente, relectura y reversión |
@@ -105,6 +120,8 @@ control y el peor de ellos como veredicto.
 | Control | Severidad | Qué verifica |
 |---|---|---|
 | `slug_keyword` | BLOQUEADO | Todas las palabras de la keyword foco están en el slug |
+| `presupuesto_tablas` | BLOQUEADO | El formato admite un máximo de tablas (comparativa 3, guía 2, lista 4) |
+| `marcas_del_formato` | BLOQUEADO | El título cierra el elenco y el cuerpo nombra otra marca del mercado |
 | `slug_year` | CORREGIR | Una URL nueva no lleva año en el slug |
 | `title_keyword` | CORREGIR | Keyword foco completa en el título SEO |
 | `meta_keyword` / `meta_length` | CORREGIR | Keyword en la meta y entre 100 y 165 caracteres |
@@ -149,12 +166,24 @@ El diario de reencauches (`state/refreshes.json`) impide trabajar la misma URL d
 
 Los documentos originales se mantienen fuera del repositorio. La skill `leandro` y sus referencias completas deben importarse desde la fuente vigente antes de habilitar redacción.
 
-## Bloqueos antes de producción
+## Bloqueos antes de activar la corrida programada
 
-- Scheduler confirmado por el equipo: tareas de Hermes dentro de la instancia alojada en Coolify; Coolify es el entorno de despliegue, no el scheduler autoritativo.
-1. Obtener la skill Leandro vigente y referencias de país/competidores desde Claude/Drive/Wiki, verificando versiones.
-2. Provisionar y probar credenciales de servicio por IT; los secretos solo van en Coolify, nunca en Git.
-3. Implementar lecturas de GSC/Ahrefs, estado persistente, idempotencia, juez de otra familia, validadores y publicador con readback/reversión.
-4. Completar pruebas end-to-end en dry-run y revisar discrepancias editoriales/técnicas antes de activar publicación.
+- Scheduler decidido por el equipo: tareas de Hermes dentro de la instancia alojada en Coolify;
+  Coolify es el entorno de despliegue, no el scheduler autoritativo.
+- **Estado al 13-nov-2026: el scheduler no está creado.** En la instancia de Hermes no hay
+  ninguna tarea programada; las de `deploy/cron.md` siguen siendo comandos por ejecutar.
 
-La autonomía de publicación descrita en v2 es una decisión del diseño, pero este scaffold no la activa.
+Lo que falta, en orden:
+
+1. **Redesplegar la imagen** para que la corrida programada lleve los controles del 13-nov
+   (`formato.py`, la excepción de Alegra, la firma, los componentes de lista y columnas). Una
+   tarea creada hoy sobre una imagen vieja publicaría con las reglas anteriores.
+2. **Crear las tareas** de `deploy/cron.md` en el contenedor y comprobar las variables de
+   entorno en modo `script`.
+3. **Una corrida manual en modo borrador** desde Coolify, leyendo el registro y el aviso de
+   Google Chat, antes de pasar `PDC_MODO=publicar`.
+4. Cerrar los pendientes de contenido de `contexto/pendientes.md` —el 5309 en borrador, sus seis
+   tablas, el post 154 que no se puede escribir por tamaño—.
+
+La autonomía de publicación descrita en v2 es una decisión del diseño; la corrida programada
+sigue en modo borrador hasta que los cuatro pasos anteriores estén hechos.

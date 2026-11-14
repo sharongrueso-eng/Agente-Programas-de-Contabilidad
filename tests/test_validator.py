@@ -139,8 +139,16 @@ class SlugAndMetadataTests(unittest.TestCase):
 
 
 class LinkTests(unittest.TestCase):
+    # La excepción de elenco cerrado libera del mínimo a la reseña de un producto ajeno; estas
+    # pruebas se hacen sobre una pieza cuyo título sí incluye Alegra, donde el mínimo aplica.
+    TITULO_CON_ALEGRA = "Siigo vs Alegra: precios y planes en Colombia"
+
     def test_three_alegra_links_with_utm_are_required(self) -> None:
-        verdict = validate(draft(html=html_body(alegra_links=2)), brief(), ValidationRules())
+        verdict = validate(
+            draft(html=html_body(alegra_links=2), title=self.TITULO_CON_ALEGRA),
+            brief(),
+            ValidationRules(),
+        )
 
         self.assertEqual(status_of(verdict, "alegra_links"), "CORREGIR")
 
@@ -148,7 +156,9 @@ class LinkTests(unittest.TestCase):
         bare = '<a href="https://www.alegra.com/co/">Alegra</a>' * 3
 
         verdict = validate(
-            draft(html=html_body(alegra_links=0, extra=bare)), brief(), ValidationRules()
+            draft(html=html_body(alegra_links=0, extra=bare), title=self.TITULO_CON_ALEGRA),
+            brief(),
+            ValidationRules(),
         )
 
         self.assertEqual(status_of(verdict, "alegra_links"), "CORREGIR")

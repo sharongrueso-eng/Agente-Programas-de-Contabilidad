@@ -13,6 +13,7 @@ from __future__ import annotations
 import re
 import unicodedata
 from dataclasses import dataclass
+from html import unescape as html_lib_unescape
 from typing import Sequence
 from urllib.parse import parse_qs, urlparse
 
@@ -104,7 +105,15 @@ def _first_tag(html: str, tag: str) -> str:
 
 
 def _hrefs(html: str) -> list[str]:
-    return re.findall(r'href="([^"]+)"', html, re.IGNORECASE)
+    """Los `href` con las entidades resueltas.
+
+    En el HTML válido la query llega como `&amp;utm_medium=...`. Sin desescaparla, `parse_qs`
+    lee un solo parámetro y el control de UTM da cero en piezas que sí llevan la UTM completa.
+    """
+    return [
+        html_lib_unescape(url)
+        for url in re.findall(r'href="([^"]+)"', html or "", re.IGNORECASE)
+    ]
 
 
 def _host(url: str) -> str:
@@ -273,6 +282,35 @@ def validate(
             )
         )
 
+    # El presupuesto de forma lo fija el tipo de pieza, no el criterio del modelo: un artículo
+    # de cinco tablas no está completo, está sin editar.
+    if has_body and not is_snippet:
+        from .formato import contar_tablas, elenco_cerrado, marcas_ajenas, presupuesto
+
+        cupo = presupuesto(brief.format)
+        tablas = contar_tablas(draft.html)
+        controls.append(
+            _control(
+                "presupuesto_tablas",
+                tablas <= cupo.tablas_max,
+                f"{tablas} tablas; el formato «{brief.format}» admite {cupo.tablas_max}",
+                BLOQUEADO,
+            )
+        )
+
+        if elenco_cerrado(draft.title, brief.country, brief.format):
+            intrusas = marcas_ajenas(draft.html, draft.title, brief.country)
+            if intrusas:
+                controls.append(
+                    _control(
+                        "marcas_del_formato",
+                        False,
+                        "el título cierra el elenco y el cuerpo nombra: "
+                        + ", ".join(intrusas[:6]),
+                        BLOQUEADO,
+                    )
+                )
+
     # Una marca que el directorio del país no reconoce no se nombra: es el hueco de «susii».
     if has_body and not is_snippet and brief.country:
         from .directorio import extranas
@@ -438,7 +476,9 @@ def validate(
         )
 
     if has_body:
-        h1 = _first_tag(draft.html, "h1")
+        # Muchos temas imprimen el título de la entrada como H1 y la pieza no lleva bloque `<h1>`:
+        # el H1 que lee el lector es el título, así que se comprueba ese cuando no hay bloque.
+        h1 = _first_tag(draft.html, "h1") or draft.title
         controls.append(
             _control("h1_keyword", _contains_keyword(h1, keyword), "el H1 no contiene la keyword foco")
         )
@@ -455,14 +495,31 @@ def validate(
         hrefs = _hrefs(draft.html)
         alegra = [url for url in hrefs if _is_alegra(url)]
         alegra_with_utm = [url for url in alegra if _has_full_utm(url)]
-        controls.append(
-            _control(
-                "alegra_links",
-                len(alegra_with_utm) >= rules.min_alegra_links,
-                f"{len(alegra_with_utm)} enlaces a Alegra con UTM completa; "
-                f"mínimo {rules.min_alegra_links}",
-            )
+        # Excepción: cuando el título cierra el elenco sin Alegra —la reseña de otro producto—,
+        # la pieza no lleva enlaces a Alegra. La marca del portal no entra en un artículo que
+        # trata de un solo software ajeno; el CTA es opcional y no se exige mínimo.
+        from .formato import elenco_cerrado as _elenco_cerrado
+
+        exenta = _elenco_cerrado(draft.title, brief.country, brief.format) and (
+            "alegra" not in draft.title.lower()
         )
+        if exenta:
+            controls.append(
+                ControlResult(
+                    code="alegra_links",
+                    status=PASS,
+                    detail=f"exenta: el elenco del título no incluye Alegra ({len(alegra_with_utm)} enlaces)",
+                )
+            )
+        else:
+            controls.append(
+                _control(
+                    "alegra_links",
+                    len(alegra_with_utm) >= rules.min_alegra_links,
+                    f"{len(alegra_with_utm)} enlaces a Alegra con UTM completa; "
+                    f"mínimo {rules.min_alegra_links}",
+                )
+            )
 
         internal = [url for url in hrefs if _is_internal(url, rules)]
         controls.append(

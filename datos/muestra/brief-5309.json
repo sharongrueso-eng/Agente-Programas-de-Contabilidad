@@ -1,0 +1,23 @@
+{
+  "task_id": "prod-2026-11-13-CO-5309",
+  "date": "2026-11-13",
+  "slot": "A",
+  "format": "comparativa",
+  "country": "CO",
+  "opportunity": {
+    "url": "https://programascontabilidad.com/comparativas-de-software/software-contable-para-restaurantes-en-colombia-comparativa-y-precios/",
+    "country": "CO",
+    "action": "refresh_structure",
+    "focus_keyword": "software contable para restaurantes en colombia",
+    "intent": "best",
+    "score": 60.0,
+    "evidence": {
+      "reason": "reencauche pedido sobre el borrador 5309: la comparativa de restaurantes ya está escrita y necesita estructura, enlaces y precios verificados",
+      "impressions": 0,
+      "clicks": 0,
+      "ctr": 0.0,
+      "position": 0.0
+    }
+  },
+  "skipped_reason": ""
+}

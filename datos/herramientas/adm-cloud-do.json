@@ -1,55 +1,159 @@
 {
- "brand": "ADM Cloud",
- "country": "DO",
- "product": "ADM Cloud (ERP en la nube)",
- "source_url": "https://www.admcloud.net/planes",
- "captured_at": "2026-11-12",
- "evidence_level": "documentacion_oficial",
- "plans": [
-  {
-   "name": "Billing",
-   "price": "18.00",
-   "currency": "USD",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "15.00 pagando anual"
-  },
-  {
-   "name": "Start",
-   "price": "24.00",
-   "currency": "USD",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "20.00 pagando anual; facturación electrónica incluida"
-  },
-  {
-   "name": "Basic",
-   "price": "36.00",
-   "currency": "USD",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "30.00 pagando anual; facturación electrónica incluida"
-  }
- ],
- "features": [
-  "Facturación electrónica e-CF (DGII)",
-  "Contabilidad",
-  "Inventario",
-  "POS",
-  "Compras y ventas",
-  "Nómina",
-  "API",
-  "GenAI"
- ],
- "advantages": [
-  "Publica precio en dólares con facturación electrónica incluida",
-  "Prueba gratuita de 15 días"
- ],
- "known_limits": [
-  "Los módulos incluidos cambian por plan: el de entrada no trae todo"
- ],
- "notes": "Precios en USD, leídos el 12-nov-2026. Verificar conversión e impuestos al citar."
+  "brand": "ADM Cloud",
+  "country": "DO",
+  "product": "ADM Cloud (ERP en la nube)",
+  "source_url": "https://www.admcloud.net/planes",
+  "captured_at": "2026-11-13",
+  "evidence_level": "documentacion_oficial",
+  "plans": [
+    {
+      "name": "Billing",
+      "price": "18.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "15.00 pagando anual"
+    },
+    {
+      "name": "Start",
+      "price": "24.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "20.00 pagando anual; facturación electrónica incluida"
+    },
+    {
+      "name": "Basic",
+      "price": "36.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "30.00 pagando anual; facturación electrónica incluida"
+    },
+    {
+      "name": "Billing",
+      "price": "15.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "anual",
+      "note": "Precio mensual pagando anualmente"
+    },
+    {
+      "name": "Start",
+      "price": "20.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "anual",
+      "note": "Precio mensual pagando anualmente"
+    },
+    {
+      "name": "Basic",
+      "price": "30.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "anual",
+      "note": "Precio mensual pagando anualmente"
+    },
+    {
+      "name": "Standard",
+      "price": "60.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "mensual",
+      "note": "Precio con facturación electrónica incluida"
+    },
+    {
+      "name": "Standard",
+      "price": "50.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "anual",
+      "note": "Precio mensual pagando anualmente"
+    },
+    {
+      "name": "Premium",
+      "price": "84.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "mensual",
+      "note": "Precio con facturación electrónica incluida"
+    },
+    {
+      "name": "Premium",
+      "price": "70.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "anual",
+      "note": "Precio mensual pagando anualmente"
+    },
+    {
+      "name": "Premium Plus",
+      "price": "108.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "mensual",
+      "note": "Precio con facturación electrónica incluida"
+    },
+    {
+      "name": "Premium Plus",
+      "price": "90.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "anual",
+      "note": "Precio mensual pagando anualmente"
+    },
+    {
+      "name": "Premium Plus Nómina",
+      "price": "144.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "mensual",
+      "note": "Precio con facturación electrónica incluida"
+    },
+    {
+      "name": "Premium Plus Nómina",
+      "price": "120.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "anual",
+      "note": "Precio mensual pagando anualmente"
+    },
+    {
+      "name": "Premium Plus Manufactura",
+      "price": "144.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "mensual",
+      "note": "Precio con facturación electrónica incluida"
+    },
+    {
+      "name": "Premium Plus Manufactura",
+      "price": "120.00",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "anual",
+      "note": "Precio mensual pagando anualmente"
+    }
+  ],
+  "features": [
+    "Facturación electrónica e-CF (DGII)",
+    "Contabilidad",
+    "Inventario",
+    "POS",
+    "Compras y ventas",
+    "Nómina",
+    "API",
+    "GenAI"
+  ],
+  "advantages": [
+    "Publica precio en dólares con facturación electrónica incluida",
+    "Prueba gratuita de 15 días"
+  ],
+  "known_limits": [
+    "Los módulos incluidos cambian por plan: el de entrada no trae todo"
+  ],
+  "notes": "Ocho planes con facturación electrónica incluida, en dólares. La página publica el precio de pago mensual y el equivalente mensual pagando al año. Registrado el 13-nov-2026 leyendo el HTML de la página de planes."
 }

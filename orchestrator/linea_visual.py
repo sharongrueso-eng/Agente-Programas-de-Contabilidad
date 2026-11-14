@@ -82,7 +82,7 @@ def puntos_clave(items: list[str], titulo: str = "Puntos clave") -> str:
         f'<div style="background:{NAVY};padding:12px 22px;">'
         f'<p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.1em;'
         f'text-transform:uppercase;color:#FFFFFF;">{titulo}</p></div>'
-        f'<ul style="margin:16px 0 0;padding-left:38px;">{filas}</ul></div>'
+        f'<ul style="margin:16px 0 0;padding-left:38px !important;">{filas}</ul></div>'
     )
 def caja(etiqueta: str, texto: str, tipo: str) -> str:
     """Caja de énfasis de la línea visual. tipo: dato, atencion, limite."""
@@ -216,7 +216,7 @@ def recomendacion(titulo: str, justificacion: str, ideal: list[str], evita: list
             f'<span style="display:inline-block;width:20px;height:20px;line-height:20px;'
             f'border-radius:50%;background:{color};color:#fff;text-align:center;font-size:12px;'
             f'font-weight:700;margin-right:8px;vertical-align:middle;">{icono}</span>'
-            f'{etiqueta}</p><ul style="margin:0;padding-left:20px;">{filas}</ul></div>'
+            f'{etiqueta}</p><ul style="margin:0;padding-left:20px !important;">{filas}</ul></div>'
         )
 
     return (
@@ -234,3 +234,83 @@ def recomendacion(titulo: str, justificacion: str, ideal: list[str], evita: list
         + lista(evita, ROJO, ROJO_SUAVE, "Evita si", "✕")
         + "</div></div></div>"
     )
+
+
+def lista(items: list[str]) -> str:
+    """Lista de viñetas que no se sale del ancho del contenido.
+
+    El tema no le da `padding-left` a `ul.wp-block-list`: la viñeta queda fuera del marco y en
+    móvil se corta. La sangría se fija aquí, en línea, para que el componente no dependa de la
+    hoja de estilos de turno.
+    """
+    filas = "".join(
+        f'<li style="margin:0 0 8px;font-size:16px;line-height:1.65;font-weight:400;'
+        f'color:{TINTA};">{item}</li>'
+        for item in items
+        if str(item).strip()
+    )
+    return f'<ul style="margin:0 0 18px;padding-left:1.35em !important;">{filas}</ul>'
+
+
+def dos_columnas(izquierda: tuple, derecha: tuple) -> str:
+    """Dos bloques lado a lado —ventajas y puntos de atención— en una sola fila.
+
+    Cada columna es `(etiqueta, items, color, fondo, icono)`. Se apilan solas cuando no hay
+    ancho: `flex-wrap` y `flex:1 1 260px`, sin media queries.
+    """
+
+    def columna(etiqueta: str, items, color: str, fondo: str, icono: str) -> str:
+        filas = "".join(
+            f'<li style="margin:0 0 8px;font-size:15px;line-height:1.6;font-weight:400;'
+            f'color:{TINTA};">{item}</li>'
+            for item in items
+            if str(item).strip()
+        )
+        return (
+            f'<div style="flex:1 1 260px;min-width:0;background:{fondo};border:1px solid '
+            f'{LINEA};border-radius:12px;padding:16px 20px 10px;box-sizing:border-box;">'
+            f'<p style="margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.08em;'
+            f'text-transform:uppercase;color:{color};">'
+            f'<span style="display:inline-block;width:20px;height:20px;line-height:20px;'
+            f'border-radius:50%;background:{color};color:#fff;text-align:center;font-size:12px;'
+            f'font-weight:700;margin-right:8px;vertical-align:middle;">{icono}</span>'
+            f"{etiqueta}</p>"
+            f'<ul style="margin:0;padding-left:1.25em !important;">{filas}</ul></div>'
+        )
+
+    return (
+        '<div style="display:flex;flex-wrap:wrap;gap:16px;margin:24px 0;">'
+        + columna(*izquierda)
+        + columna(*derecha)
+        + "</div>"
+    )
+
+
+AVATAR_LEANDRO = (
+    "https://programascontabilidad.com/wp-content/uploads/2024/06/"
+    "Leandro-banner-home-100x100.png"
+)
+AUTOR_URL = "https://programascontabilidad.com/author/ngorczany/"
+
+FIRMA_AUTOR = (
+    '<div style="background:#f5f9fd;border:1px solid #cce4f7;border-radius:12px;'
+    'padding:20px 24px;margin:32px 0;display:flex;gap:16px;align-items:flex-start">'
+    f'<img src="{AVATAR_LEANDRO}" width="72" height="72" '
+    'alt="Leandro, analista y fundador de Programas de Contabilidad" '
+    'style="border-radius:50%;flex-shrink:0;margin:0">'
+    "<div>"
+    '<p style="margin:0 0 6px"><strong>Leandro</strong> · Analista y fundador de Programas '
+    "de Contabilidad</p>"
+    '<p style="margin:0;font-size:15px;line-height:1.5">Analista colombiano y fundador de '
+    "programascontabilidad. Con 37 años, combino la experiencia técnica con una visión "
+    "analítica para ofrecer las comparativas más profundas del sector. Ayudo a profesionales "
+    "y empresas a navegar la transformación digital contable con criterio y claridad.</p>"
+    f'<p style="margin:10px 0 0"><a href="{AUTOR_URL}" rel="author">Ver todas sus '
+    "comparativas</a></p>"
+    "</div></div>"
+)
+
+
+def firma() -> str:
+    """Ficha del autor que cierra la pieza. Idéntica en todo el portal."""
+    return FIRMA_AUTOR

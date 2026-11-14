@@ -154,10 +154,130 @@
       "period": "año",
       "billing": "anual",
       "publicado": true
+    },
+    {
+      "name": "Sistema POS Inicio",
+      "price": "527.310",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Sistema POS Avanzado",
+      "price": "764.915",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Sistema POS Avanzado + Emprendedor",
+      "price": "2.827.350",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Sistema POS Avanzado + Premium",
+      "price": "2.958.060",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Sistema POS GastroBar PRO",
+      "price": "1.049.930",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Sistema POS GastroBar PRO + Premium",
+      "price": "2.895.480",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Nómina Electrónica Lite 120",
+      "price": "239.920",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Nómina Electrónica Lite 300",
+      "price": "449.925",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Nómina PLUS",
+      "price": "749.925",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Nómina PRO",
+      "price": "1.402.425",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Profesional independiente (Siigo Nube)",
+      "price": "1.751.920",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Emprendedor (Siigo Nube)",
+      "price": "2.295.920",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Premium (Siigo Nube)",
+      "price": "2.494.425",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Nube independiente + Nómina Electrónica 120",
+      "price": "2.489.800",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+    },
+    {
+      "name": "Siigo contador ilimitado",
+      "price": "535.900",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
     }
   ],
   "source_url": "https://www.siigo.com/precios-siigo/",
-  "captured_at": "2026-11-06",
+  "captured_at": "2026-11-13",
   "evidence_level": "documentacion_oficial",
   "extraction": "modelo+verificacion_literal",
   "features": [
@@ -182,7 +302,7 @@
     "Recibe el doble de documentos"
   ],
   "descartado": [],
-  "notes": "Precios en COP. Varios planes de Facturación Electrónica muestran valor mensual equivalente y valor anual; el asterisco indica que el pago es anual y el descuento aplica para cliente nuevo. Precios anuales regulares mostrados junto al descuento: WhatsApp 24 $184.800; 120 $299.900; WhatsApp 120 $364.800; 1500 $1.230.900; PRO $760.900; 24 + Nómina Electrónica 24 $239.800; 120 + Nómina Electrónica 120 $599.800. La página está truncada al final del bloque Sistema POS + Facturación; solo se alcanza a leer el plan Sistema POS Esencial y parte de 'Documentos electrónicos | Cu'.",
+  "notes": "Precios de lista con pago anual (el mensual es el anual dividido entre 12) para clientes nuevos. Incluye las líneas de Siigo Nube, POS y Nómina que la página publica en tablas separadas de la facturación electrónica. Registrado el 13-nov-2026 leyendo el HTML de la página.",
   "historial": [
     {
       "fecha": "2026-11-06",

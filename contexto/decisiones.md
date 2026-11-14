@@ -21,6 +21,27 @@
 2. Accesos: confirmar ruta de IT para GSC de solo lectura, Ahrefs, LiteLLM, WordPress API y webhook de Chat.
 3. Riesgos documentados: publicación autónoma sin aprobación previa; reglas de marca blanca frente a divulgación de vínculos; decisiones de orden de Alegra en listados/tablas; hechos legales por país.
 
+## Decisiones del 13 de noviembre de 2026 (revisión de Sharon sobre la reseña de Adm Cloud)
+
+- **La firma del autor es un componente obligatorio**, no un añadido ocasional: el mismo bloque
+  HTML (`linea_visual.firma()`) cierra toda publicación. Se aplica también al archivo ya
+  publicado, no solo a las piezas nuevas.
+- **Las viñetas van con sangría en línea y `!important`.** El tema imprime
+  `.entry-content ol, .entry-content ul { padding-left: 0 !important }`, así que la viñeta se
+  sale del marco del artículo. Los componentes de lista la fijan y ningún texto depende de la
+  hoja de estilos de turno.
+- **«Diferencia clave» no es un paso de una lista**: es un mensaje y va en caja de la línea
+  visual.
+- **Ventajas y puntos de atención se maquetan en dos columnas** (`linea_visual.dos_columnas`),
+  una al lado de la otra, con icono y color propios.
+- **El presupuesto de forma lo fija el tipo de pieza**: una comparativa admite 3 tablas, una
+  guía 2, una lista 4. Más tablas de las que admite el formato bloquean la pieza.
+- **Elenco cerrado y excepción de Alegra.** Cuando el título cierra el elenco sin Alegra —la
+  reseña de un producto ajeno—, la pieza no lleva enlaces a Alegra y el mínimo de tres no se
+  exige: la excepción está en `presupuesto_tablas`/`alegra_links` del validador. La decisión del
+  6-nov de «tres enlaces con UTM» sigue vigente para las piezas donde Alegra está en el elenco,
+  incluidas las comparativas con su CTA.
+
 ## Límite del gateway en piezas largas
 
 Medido el 2026-11-06 contra el LiteLLM de Alegra, con el mismo prompt de 46.700 caracteres:

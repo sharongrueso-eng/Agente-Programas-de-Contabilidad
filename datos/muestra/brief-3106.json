@@ -1,0 +1,23 @@
+{
+  "task_id": "prod-2026-11-13-DO-3106",
+  "date": "2026-11-13",
+  "slot": "B",
+  "format": "resena",
+  "country": "DO",
+  "opportunity": {
+    "url": "https://programascontabilidad.com/analisis-de-herramientas/adm-cloud/",
+    "country": "DO",
+    "action": "refresh_structure",
+    "focus_keyword": "Adm Cloud reseña",
+    "intent": "review",
+    "score": 45.0,
+    "evidence": {
+      "reason": "reencauche de una reseña con el HTML dañado: 600 parrafos envolviendo comentarios de bloque, FAQ dependiente de JavaScript y trece H2",
+      "impressions": 0,
+      "clicks": 0,
+      "ctr": 0.0,
+      "position": 0.0
+    }
+  },
+  "skipped_reason": ""
+}
