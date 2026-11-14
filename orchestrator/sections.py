@@ -123,6 +123,34 @@ def _json(texto: str) -> dict[str, Any]:
         raise DraftParseError(f"la cabecera no es JSON válido: {error}") from error
 
 
+def _marcar_progreso(carpeta: Path | None, terminados: list[str], fallidos: list[str]) -> None:
+    """Deja en la carpeta de la corrida cuántos bloques van.
+
+    Es la única evidencia que sobrevive si la tarea se agota a mitad: sin esto, una corrida
+    cortada deja una carpeta «bloques» con archivos sueltos y ninguna forma de saber qué faltó.
+    """
+    if carpeta is None:
+        return
+    try:
+        (carpeta.parent / "progreso.json").write_text(
+            json.dumps(
+                {
+                    "total": len(BLOQUES),
+                    "terminados": terminados,
+                    "en_disco": len(list(carpeta.glob("*.html"))),
+                    "faltan": [clave for clave, _ in BLOQUES if clave not in terminados],
+                    "fallidos": fallidos,
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+            + chr(10),
+            encoding="utf-8",
+        )
+    except OSError:
+        pass
+
+
 def producir_por_secciones(
     brief: Brief,
     *,
@@ -336,6 +364,7 @@ precio de ese módulo»—, nunca de la plataforma entera.
         if guardado:
             guardado.parent.mkdir(parents=True, exist_ok=True)
             guardado.write_text(fragmento, encoding="utf-8")
+            _marcar_progreso(carpeta, list(salida.bloques), salida.fallidos)
 
     html = "\n\n".join(partes)
     salida.draft = Draft(

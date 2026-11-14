@@ -12,6 +12,7 @@ import argparse
 import json
 import os
 import re
+import signal
 import sys
 import time
 from datetime import date, datetime
@@ -714,6 +715,33 @@ def main() -> int:
     )
 
     estado = RunState(RAIZ / "state" / "corridas", brief.task_id)
+
+    # Un timeout de la tarea de Coolify o un reinicio del contenedor matan el proceso con SIGTERM.
+    # Sin esto, la corrida se cortaba a mitad de la producción y en la carpeta quedaban solo los
+    # bloques ya escritos, sin decir por qué. El registro deja el motivo y el último paso.
+    def _interrupcion(senal: int, _marco: object) -> None:
+        previo = estado.load("checkpoint.json", {}) or {}
+        nota = {
+            "motivo": "SIGTERM: se agotó el tiempo de la tarea o el contenedor se reinició",
+            "senal": int(senal),
+            "ultimo_paso": previo.get("last_step", "production"),
+            "bloques_escritos": sorted(
+                p.stem for p in (estado.dir / "bloques").glob("*.html")
+            )
+            if (estado.dir / "bloques").exists()
+            else [],
+        }
+        try:
+            estado.save("interrupcion.json", nota)
+            print("interrumpida: queda el motivo en interrupcion.json")
+        except Exception:  # noqa: BLE001 - morir sin registro es peor que morir sin aviso
+            pass
+        raise SystemExit(143)
+
+    try:
+        signal.signal(signal.SIGTERM, _interrupcion)
+    except (ValueError, OSError):  # no hay señales si corre en un hilo que no es el principal
+        pass
 
     # Guardar la versión viva antes de escribir es la única red que no depende de WordPress ni de
     # un archivo externo. Si no se puede leer, no se escribe: sin red no hay salto.

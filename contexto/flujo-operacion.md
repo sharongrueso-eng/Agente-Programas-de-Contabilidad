@@ -119,6 +119,8 @@ README está desactualizado respecto de la carpeta: menciona `leandro` donde hoy
     veredictos.json     controles y juez
     publicacion.json    post_id, URL, estado
     checkpoint.json     last_step y resume_from
+    progreso.json       qué bloques van escritos, cuáles faltan — la única evidencia si la tarea se agota
+    interrupcion.json   motivo y último paso, cuando el proceso recibe SIGTERM
     respaldo.json       título y extracto previos, si se tocó un vivo
   refreshes.json        diario de reencauches: una URL no se repite en 30 días
   publicados.json       run_id → post_id (el MCP no sabe buscar por meta)
