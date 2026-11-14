@@ -1,19 +1,17 @@
-"""Respalda un post antes de tocarlo: duplicado en borrador + archivo local.
+"""Respalda un post antes de tocarlo, en un archivo local con contenido y SEO.
 
-Dos copias, y en este orden, porque cada una cubre un fallo distinto:
+**Un solo respaldo: el archivo.** WordPress guarda cada versión anterior en el historial de
+revisiones del propio post, visible desde el editor, así que duplicar la pieza en un borrador
+aparte dejaba copias sueltas en el CMS sin agregar protección real. El archivo local sí aporta:
+sirve para restaurar por API, para comparar después qué cambió y para reconstruir la pieza si
+el sitio se cae.
 
-1. **Duplicado en WordPress** (`ewpa/duplicate-post`, borrador, con meta y taxonomías):
-   si la escritura sobre el vivo sale mal, la versión anterior sigue dentro del CMS y se
-   puede copiar de vuelta desde el editor, sin depender de este equipo.
-2. **Archivo local** con contenido y SEO (Rank Math completo): sirve para restaurar por API
-   y para comparar después qué cambió, sin volver a leer el sitio.
-
-El duplicado se crea **antes** de escribir el archivo: si el proceso muere entre los dos
-pasos, existe la copia que de verdad importa (la que vive junto al original).
+El duplicado en WordPress sigue disponible con `--duplicado`, para el caso en que haga falta una
+copia independiente que no dependa del historial del post.
 
 Uso:
     python scripts/respaldar_post.py --post 5309 --entorno prod
-    python scripts/respaldar_post.py --post 5309 --entorno prod --sin-duplicado
+    python scripts/respaldar_post.py --post 5309 --entorno prod --duplicado
     python scripts/respaldar_post.py --post 5309 --entorno prod --dry-run
 """
 
@@ -126,7 +124,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Respalda un post antes de tocarlo.")
     parser.add_argument("--post", type=int, required=True)
     parser.add_argument("--entorno", choices=sorted(ENTORNOS), default="prod")
-    parser.add_argument("--sin-duplicado", action="store_true", help="solo el archivo local")
+    parser.add_argument(
+        "--duplicado",
+        action="store_true",
+        help="además del archivo, crea una copia en borrador dentro de WordPress",
+    )
     parser.add_argument("--dry-run", action="store_true", help="lee y no escribe nada")
     args = parser.parse_args(argv)
 
@@ -185,18 +187,19 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps({"status": "DRY_RUN", **resumen}, ensure_ascii=False, indent=2))
         return 0
 
-    # 1. La copia que vive junto al original, primero.
-    previo = respaldo_previo(args.post)
-    if previo and not args.sin_duplicado:
-        datos["duplicado"] = previo["duplicado"]
-        resumen["duplicado"] = previo["duplicado"]
-        resumen["duplicado_nota"] = "ya existía; no se crea otra copia"
-    elif not args.sin_duplicado:
-        duplicado = duplicar(cliente, args.post, titulo, fecha)
-        datos["duplicado"] = duplicado
-        resumen["duplicado"] = duplicado
+    # El archivo es el respaldo; el duplicado en WordPress solo si se pide.
+    if args.duplicado:
+        previo = respaldo_previo(args.post)
+        if previo:
+            datos["duplicado"] = previo["duplicado"]
+            resumen["duplicado"] = previo["duplicado"]
+            resumen["duplicado_nota"] = "ya existía; no se crea otra copia"
+        else:
+            duplicado = duplicar(cliente, args.post, titulo, fecha)
+            datos["duplicado"] = duplicado
+            resumen["duplicado"] = duplicado
 
-    # 2. El archivo con contenido y SEO.
+    # El archivo con contenido y SEO: el único respaldo obligatorio.
     DESTINO.mkdir(parents=True, exist_ok=True)
     ruta = DESTINO / f"post-{args.post}-{fecha}.json"
     temporal = ruta.with_suffix(".tmp")

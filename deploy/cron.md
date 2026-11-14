@@ -1,38 +1,43 @@
-# Tareas programadas de Hermes
+# Tareas programadas
 
-Zona horaria: `America/Bogota`. Se crean dentro del contenedor y viven en el volumen de
-Hermes, no en el repositorio.
+Zona horaria: `America/Bogota`.
+
+**Quién programa: Coolify, no Hermes.** La imagen (`deploy/Dockerfile`) no instala Hermes: es
+Python puro y deja el contenedor encendido con `sleep infinity` para que la tarea tenga dónde
+ejecutarse. Por eso las corridas se crean como **Scheduled Tasks de Coolify**, que entran al
+contenedor y lanzan el comando. Las tareas de `hermes cron` solo aplican si en algún momento se
+instala Hermes dentro de la imagen.
 
 ## El día hábil
 
 > Cada pieza avisa al espacio de Chat **en el momento en que queda publicada**, no al cierre.
 > La tarea de las 17:30 es solo el resumen del día.
 
+| Tarea | Comando | Cron | Qué hace |
+|---|---|---|---|
+| `pdc-slot-a` | `python scripts/corrida_diaria.py` | `10 6 * * 1-5` | Produce, valida, juzga, corrige y publica el slot A |
+| `pdc-slot-b` | `python scripts/corrida_diaria.py` | `10 7 * * 1-5` | Lo mismo para el slot B |
+| `pdc-reporte` | `python scripts/corrida_diaria.py --resumen` | `30 17 * * 1-5` | Cierre del día: solo el resumen |
+
+El wrapper `corrida_diaria.py` comprueba la ventana, la pausa y el mercado del día antes de
+trabajar: una ejecución a deshora no hace nada y lo deja escrito en el registro.
+
+## Vigías y respaldo
+
+| Tarea | Comando | Cron |
+|---|---|---|
+| `pdc-vigias` | `python scripts/corrida_diaria.py --vigias` | `0 5 * * *` |
+| `pdc-respaldo` | `bash deploy/backup.sh` | `30 23 * * *` |
+
+## Si algún día se instala Hermes en la imagen
+
 ```bash
-hermes cron add "pdc-chequeo"   --cron "40 5 * * 1-5" --prompt "Corre el chequeo del día: conectores, frescura de Search Console y salud de WordPress. Si algo falla, avisa con la plantilla chequeo_fallido y detén la producción de hoy."
-hermes cron add "pdc-auditoria" --cron "45 5 * * 1-5" --prompt "Descarga la instantánea de Search Console de los cuatro mercados, calcula las oportunidades del día y deja el diagnóstico en la carpeta de la corrida."
-hermes cron add "pdc-plan-a"    --cron "0 6 * * 1-5"  --prompt "Arma el brief del slot A con la rotación de hoy, la mejor oportunidad compatible y el registro de datos."
-hermes cron add "pdc-plan-b"    --cron "0 7 * * 1-5"  --prompt "Arma el brief del slot B con la rotación de hoy, la mejor oportunidad compatible y el registro de datos."
-hermes cron add "pdc-slot-a"    --cron "10 6 * * 1-5" --prompt "Produce, valida, juzga, corrige y publica el slot A siguiendo el runner."
-hermes cron add "pdc-slot-b"    --cron "10 7 * * 1-5" --prompt "Produce, valida, juzga, corrige y publica el slot B siguiendo el runner."
-hermes cron add "pdc-reporte"   --cron "30 17 * * 1-5" --prompt "Envía el resumen de cierre del día al espacio de Chat. El aviso de cada pieza sale en el momento de publicarse, no aquí."
-```
-
-## Vigías
-
-```bash
-hermes cron add "pdc-vigias" --cron "0 5 * * *" --prompt "Corre los vigías que toquen según watchers_due: precios los días 1 y 16, funciones lunes y viernes, regulación y caídas todos los días. Avisa solo si hay cambios."
-```
-
-## Respaldo
-
-```bash
-hermes cron add "pdc-respaldo" --cron "30 23 * * *" --script "deploy/backup.sh" --no-agent
+hermes cron add "pdc-slot-a" --cron "10 6 * * 1-5" --prompt "Produce, valida, juzga, corrige y publica el slot A siguiendo el runner."
 ```
 
 ## Lo que falta confirmar con IT
 
-- Que una tarea en modo `script` reciba las variables de entorno del contenedor. Si el
+- Que la tarea programada de Coolify herede las variables de entorno de la aplicación. Si el
   programador las filtra, el módulo lee los secretos de un archivo del perfil con
   `load_dotenv`, y eso hay que probarlo antes de la primera corrida real.
 - Que dos tareas no arranquen a la vez sobre el mismo estado: el runner tiene candado y la

@@ -19,7 +19,7 @@ python -m unittest discover -s tests -t tests -p "test_*.py"
 # Controles deterministas sobre un post vivo, sin gastar tokens
 python scripts/diagnosticar_post.py --respaldo state/respaldos/post-5309-....json
 
-# Respaldo doble (duplicado en WordPress + archivo con contenido y SEO) antes de tocar nada
+# Respaldo antes de tocar nada: archivo local con contenido y SEO (el duplicado en WordPress es opcional)
 python scripts/respaldar_post.py --post 5309 --entorno prod
 
 # Firma del autor en todo el archivo publicado

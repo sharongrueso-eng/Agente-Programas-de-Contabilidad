@@ -36,6 +36,12 @@
   una al lado de la otra, con icono y color propios.
 - **El presupuesto de forma lo fija el tipo de pieza**: una comparativa admite 3 tablas, una
   guía 2, una lista 4. Más tablas de las que admite el formato bloquean la pieza.
+- **El respaldo de un reencauche es un archivo, no un duplicado en WordPress.** WordPress ya
+  guarda cada versión anterior en el historial de revisiones del post, así que duplicar la pieza
+  en un borrador aparte dejaba copias sueltas en el CMS sin proteger nada extra. El respaldo
+  obligatorio es el archivo local con contenido y SEO completo (`scripts/respaldar_post.py`); el
+  duplicado en WordPress queda como opción explícita (`--duplicado`) para cuando se necesite una
+  copia independiente del historial.
 - **Elenco cerrado y excepción de Alegra.** Cuando el título cierra el elenco sin Alegra —la
   reseña de un producto ajeno—, la pieza no lleva enlaces a Alegra y el mínimo de tres no se
   exige: la excepción está en `presupuesto_tablas`/`alegra_links` del validador. La decisión del
