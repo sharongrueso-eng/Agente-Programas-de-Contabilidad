@@ -8,6 +8,9 @@ Repositorio inicial para el agente editorial de programascontabilidad.com.
 controles deterministas y la línea visual; el agente escribe en WordPress por el MCP. El estado
 y los pendientes viven en `contexto/estado-2026-11-13.md` y `contexto/pendientes.md`.
 
+**Cómo funciona de punta a punta** — etapas, módulos, skills, datos y estado:
+`contexto/flujo-operacion.md`.
+
 ## Ejecutar
 
 Desde la raíz del repositorio:
