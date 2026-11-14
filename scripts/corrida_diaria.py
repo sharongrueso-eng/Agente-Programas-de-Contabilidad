@@ -124,15 +124,32 @@ def main() -> int:
         "prod",
         "--secciones",
         "--gsc",
-        "--sin-avisos",
     ]
     if modo != "publicar":
         argumentos.append("--borrador")
 
-    print(f"corrida: {pais} · modo {modo}")
+    # El modo se imprime como palabra y no como el valor de la variable: Coolify redacta en el
+    # registro cualquier cadena que coincida con una variable de entorno, y con el valor crudo
+    # el log quedaba en «modo <REDACTED>», que no dice si la corrida podía publicar o no.
+    print(f"corrida: {pais} · {'publicar' if modo == 'publicar' else 'solo borrador'}")
     resultado = subprocess.run(argumentos, cwd=RAIZ, capture_output=True, text=True)
     salida = (resultado.stdout or "") + (resultado.stderr or "")
-    print(salida[-2000:])
+
+    # Cabeza y cola, no solo la cola: el JSON final pasa de 2.000 caracteres y con el recorte
+    # anterior el registro mostraba un «}» suelto, sin el motivo de nada.
+    print(f"salida de la cadena ({len(salida.splitlines())} líneas):")
+    if len(salida) > 3200:
+        print(salida[:1200] + chr(10) + "..." + chr(10) + salida[-1800:])
+    else:
+        print(salida)
+
+    import re
+
+    estados = re.findall(r'"status"\s*:\s*"([A-Z_]+)"', salida)
+    if estados:
+        print(f"estado informado por la cadena: {estados[-1]}")
+    if resultado.returncode == 0 and estados and estados[-1] != "DONE":
+        print("la cadena terminó sin publicar: revisa el motivo en la carpeta de la corrida")
 
     if resultado.returncode != 0:
         motivo_fallo = ""
