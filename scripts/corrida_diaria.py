@@ -17,6 +17,7 @@ Variables de entorno que espera (todas desde el panel de Coolify, ninguna en el 
 from __future__ import annotations
 
 import os
+import signal
 import subprocess
 import sys
 from datetime import datetime, timedelta, time, timezone
@@ -132,6 +133,29 @@ def main() -> int:
     # registro cualquier cadena que coincida con una variable de entorno, y con el valor crudo
     # el log quedaba en «modo <REDACTED>», que no dice si la corrida podía publicar o no.
     print(f"corrida: {pais} · {'publicar' if modo == 'publicar' else 'solo borrador'}")
+    print(
+        f"configuración: países=[{os.environ.get('PDC_PAISES', '')}] "
+        f"pausa=[{os.environ.get('PDC_PAUSA', '0')}] "
+        f"ventana=[{os.environ.get('PDC_VENTANA_INICIO', '06:00')}-"
+        f"{os.environ.get('PDC_VENTANA_FIN', '17:30')}]"
+    )
+
+    # Coolify mata con SIGTERM cuando la tarea agota su tiempo. Sin esto, el proceso moría sin
+    # dejar rastro y sin avisar al Chat: exactamente el síntoma de una corrida «terminada» que no
+    # publicó. Ahora el aviso sale con el motivo, y el código de salida lo distingue de un fallo.
+    def _interrumpida(_senal: int, _marco: object) -> None:
+        avisar(
+            f"PdC · la corrida de {pais} se interrumpió: la tarea agotó su tiempo antes de "
+            "terminar. Sube el timeout de la tarea y vuelve a lanzarla; los bloques ya escritos se reutilizan."
+        )
+        print("interrumpida por SIGTERM: el aviso ya salió por Chat")
+        raise SystemExit(143)
+
+    try:
+        signal.signal(signal.SIGTERM, _interrumpida)
+    except (ValueError, OSError):
+        pass
+
     resultado = subprocess.run(argumentos, cwd=RAIZ, capture_output=True, text=True)
     salida = (resultado.stdout or "") + (resultado.stderr or "")
 
