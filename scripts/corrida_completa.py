@@ -503,6 +503,23 @@ def main() -> int:
         return 2
     print(f"registro: {len(registro.fichas)} ficha(s) de {brief.country}")
 
+    # El formato no puede contradecir el tema. La reseña cierra el elenco al del título, así que
+    # solo sirve cuando la keyword nombra una marca con ficha; con un tema que obliga a nombrar
+    # varios proveedores, la pieza es una comparativa. Antes el formato salía siempre «resena» y
+    # la pieza se bloqueaba sola por nombrar los competidores que el tema exigía.
+    if brief.format == "resena":
+        keyword = (brief.opportunity.focus_keyword or "").strip().lower()
+        con_ficha = [
+            str(f.get("brand", "") if isinstance(f, dict) else getattr(f, "brand", "")).strip().lower()
+            for f in registro.fichas
+        ]
+        if keyword and not any(marca and marca in keyword for marca in con_ficha):
+            brief = _replace(brief, format="comparativa")
+            print(
+                f"formato : comparativa — el tema «{keyword}» no es una marca con ficha, "
+                "y una reseña no puede nombrar el elenco que el tema exige"
+            )
+
     if args.entorno == "prod":
         from orchestrator.mcp_client import ClienteMcp
 

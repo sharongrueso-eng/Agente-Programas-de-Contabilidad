@@ -103,11 +103,19 @@ class SalidaSecciones:
 
 
 def _limpiar(texto: str) -> str:
-    """Quita cercas de código y devuelve el HTML tal cual."""
+    """Quita cercas de código y la etiqueta del bloque si el modelo la pegó al texto."""
     limpio = texto.strip()
     if limpio.startswith("```"):
         limpio = re.sub(r"^```[a-zA-Z]*\n", "", limpio)
         limpio = re.sub(r"\n```$", "", limpio)
+    # «Respuesta directa.com: …» salía a la calle como si fuera una frase: el modelo pega el
+    # nombre del bloque a la primera oración y el lector lo lee como un dominio inventado.
+    limpio = re.sub(
+        r"^(?:<p>\s*)?(?:respuesta\s+(?:directa|breve|inmediata)|puntos\s+clave)\s*[.:\-–]\s*(?:com\b)?\s*[:.]?\s*",
+        "",
+        limpio,
+        flags=re.IGNORECASE,
+    )
     return limpio.strip()
 
 
@@ -169,6 +177,9 @@ def producir_por_secciones(
         raise ValueError("un brief sin oportunidad no se puede producir")
 
     keyword = brief.opportunity.focus_keyword
+    from orchestrator.formato import presupuesto as _presupuesto
+
+    tablas_max = _presupuesto(brief.format).tablas_max
     sistema = f"""{skill.strip()}
 
 ## Reglas no negociables
@@ -176,6 +187,7 @@ def producir_por_secciones(
 - Escribes para programascontabilidad.com con voz editorial propia, en español neutro de {brief.country}. No firmas como una persona.
 - Keyword foco: «{keyword}». No la repitas de forma artificial.
 - No inventes precios ni cifras: usa solo las del registro de datos que viene abajo.
+- La pieza admite **{tablas_max} tablas como máximo**, y la comparativa de precios con el registro ya se construye sola: ocupa una. No escribas tablas adicionales; cuando necesites comparar, usa listas o párrafos. Una tabla de más bloquea la publicación.
 - Si un competidor no publica un dato, dilo y sigue. La ausencia declarada es información.
 - Escribe «revisé» por defecto; «probé» solo con evidencia documentada.
 - El **primer párrafo** de la pieza contiene la keyword foco completa y literal: «{keyword}».
@@ -276,9 +288,19 @@ precio de ese módulo»—, nunca de la plataforma entera.
             continue
 
         # La tabla sale del registro, no del modelo: pedirle cifras dentro de celdas es
-        # justo donde inventa precios que el registro sí tiene.
+        # justo donde inventa precios que el registro sí tiene. Y solo entran las marcas que la
+        # pieza ya nombra: una tabla no puede presentar competidores que el artículo no trata.
         if clave == "tabla" and fichas:
-            construida = _tabla_del_registro(fichas)
+            dicho = " ".join(partes).lower()
+            nombradas = [
+                ficha
+                for ficha in fichas
+                if str(
+                    ficha.get("brand", "") if isinstance(ficha, dict) else getattr(ficha, "brand", "")
+                ).lower()
+                in dicho
+            ]
+            construida = _tabla_del_registro(nombradas or fichas)
             if construida:
                 salida.bloques[clave] = construida
                 partes.append(construida)
@@ -323,7 +345,7 @@ precio de ese módulo»—, nunca de la plataforma entera.
 
         guardado = (carpeta / f"{clave}.html") if carpeta else None
         if guardado and guardado.exists():
-            previo = guardado.read_text(encoding="utf-8").strip()
+            previo = _limpiar(guardado.read_text(encoding="utf-8"))
             # Un bloque en caché que nombra una plataforma inventada no se reutiliza:
             # arrastraría el error a todas las corridas siguientes.
             try:
@@ -377,35 +399,71 @@ precio de ese módulo»—, nunca de la plataforma entera.
     return salida
 
 
+def _precio_numero(valor: Any) -> float:
+    """Convierte «1.751.920» o «18» en número comparable; lo ilegible vale infinito."""
+    texto = re.sub(r"[^0-9,.]", "", str(valor or "")).replace(".", "").replace(",", ".")
+    try:
+        return float(texto)
+    except ValueError:
+        return float("inf")
+
+
 def _tabla_del_registro(fichas: Sequence[Any]) -> str:
-    """Tabla de precios por marca, con las cifras tal como las publica cada proveedor."""
+    """Punto de entrada de cada marca: su plan publicado más económico, con la cifra exacta.
+
+    Antes se escribía una fila por plan de cada ficha. Con las seis fichas colombianas eso daba
+    95 filas y una tabla de 68.000 caracteres: rompía el presupuesto de tablas del formato,
+    duplicaba lo que ya dice el análisis marca por marca y no lo leía nadie. El lector necesita
+    con qué entra cada proveedor, no su catálogo completo.
+    """
     filas: list[list[str]] = []
     for ficha in fichas:
         brand = ficha.get("brand", "") if isinstance(ficha, dict) else getattr(ficha, "brand", "")
         planes = ficha.get("plans", []) if isinstance(ficha, dict) else getattr(ficha, "plans", [])
-        for plan in planes or []:
-            if not isinstance(plan, dict):
-                continue
-            precio = str(plan.get("price", "")).strip()
-            moneda = str(plan.get("currency", "")).strip()
-            periodo = str(plan.get("period", "")).strip()
-            if not precio:
-                celda = "No publicado"
-            else:
-                celda = (
-                    f'<strong style="font-size:17px;color:#002B5B;white-space:nowrap;">'
-                    f"{precio} {moneda}</strong>"
-                    f'<span style="display:block;font-size:12px;line-height:1.4;color:#4B5563;">'
-                    f"{periodo}</span>"
-                )
-            filas.append([str(plan.get("name", "")), str(brand), celda])
+        publicados = [
+            plan
+            for plan in (planes or [])
+            if isinstance(plan, dict)
+            and str(plan.get("price", "")).strip()
+            and plan.get("publicado", True) is not False
+        ]
+        # Un «usuario adicional» es más barato que cualquier plan y no es una puerta de entrada:
+        # ponerlo como «desde» engaña al lector, que compara lo que cuesta empezar.
+        sin_adicionales = [
+            plan
+            for plan in publicados
+            if not re.search(r"adicion|add-?on|extra|complemento", str(plan.get("name", "")), re.I)
+        ]
+        publicados = sin_adicionales or publicados
+        if not publicados:
+            filas.append(
+                [
+                    f'<strong style="color:#002B5B;">{brand}</strong>',
+                    "—",
+                    '<span style="color:#4B5563;">No publicado</span>',
+                ]
+            )
+            continue
+        elegido = min(publicados, key=lambda plan: _precio_numero(plan.get("price")))
+        precio = str(elegido.get("price", "")).strip()
+        moneda = str(elegido.get("currency", "")).strip()
+        periodo = str(elegido.get("period", "")).strip()
+        celda = (
+            f'<strong style="font-size:17px;color:#002B5B;white-space:nowrap;">'
+            f"{precio} {moneda}</strong>"
+            f'<span style="display:block;font-size:12px;line-height:1.4;color:#4B5563;">'
+            f"{periodo}</span>"
+        )
+        filas.append(
+            [f'<strong style="color:#002B5B;">{brand}</strong>', str(elegido.get("name", "")), celda]
+        )
     if not filas:
         return ""
     caption = (
-        "Precios tal como los publica cada proveedor en su sitio, consultados el "
+        "Plan publicado más económico de cada proveedor en su sitio, consultados el "
         f"{datos_fecha()}; pueden cambiar sin aviso."
     )
-    return lv.tabla(caption, ["Plan", "Proveedor", "Precio publicado"], filas)
+    return lv.tabla(caption, ["Proveedor", "Plan de entrada", "Precio publicado"], filas)
 
 
 def datos_fecha() -> str:

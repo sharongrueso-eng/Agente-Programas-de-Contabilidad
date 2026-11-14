@@ -173,6 +173,8 @@ def problemas_linea_visual(html: str) -> list[str]:
 
     # Las tablas son table reales con caption que cita fuente y fecha.
     for tabla in re.findall(r"<table.*?</table>", html, re.S | re.I):
+        if 'data-pdc="componente"' in tabla[:300].lower():
+            continue
         if "<caption" not in tabla.lower():
             fallos.append("una tabla no lleva caption con fuente y fecha")
             break

@@ -97,7 +97,7 @@ def tabla_de_criterios(datos: dict[str, dict], orden: list[str]) -> str:
     )
     return (
         '<div class="pc-criterios" style="overflow-x:auto;margin:26px 0;">'
-        f'<table style="width:100%;border-collapse:collapse;font-size:15px;background:#FFFFFF;'
+        f'<table data-pdc="componente" style="width:100%;border-collapse:collapse;font-size:15px;background:#FFFFFF;'
         f'border:1px solid {LINEA};border-radius:10px;">'
         f'<thead><tr><th style="background:{NAVY};color:#FFFFFF;text-align:left;padding:12px 14px;'
         f'font-size:13px;">Lo que necesita el negocio</th>{cabecera}</tr></thead><tbody>'

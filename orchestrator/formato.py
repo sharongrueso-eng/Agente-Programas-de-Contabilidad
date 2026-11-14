@@ -46,14 +46,24 @@ def presupuesto(formato: str) -> Presupuesto:
     return PRESUPUESTOS.get((formato or "").strip().lower(), POR_DEFECTO)
 
 
+# Las tablas que construye la capa visual (paneles de criterios, tarjetas) no son contenido
+# editorial: no cuentan contra el presupuesto del formato ni necesitan pie de fuente, porque no
+# afirman cifras. Se marcan para poder distinguirlas del HTML que escribe el modelo.
+COMPONENTE = 'data-pdc="componente"'
+
+
 def contar_tablas(html: str) -> int:
-    return len(re.findall(r"<table\b", html or "", re.IGNORECASE))
+    """Tablas de contenido: las del artículo, sin las que arma la presentación."""
+    tablas = re.findall(r"<table\b[^>]*>", html or "", re.IGNORECASE)
+    return sum(1 for tabla in tablas if COMPONENTE not in tabla.lower())
 
 
 def tablas_sin_pie(html: str) -> int:
     """Tablas sin `<caption>`: la línea visual del portal exige fuente y fecha."""
     sin_pie = 0
     for tabla in re.findall(r"<table\b.*?</table>", html or "", re.S | re.IGNORECASE):
+        if COMPONENTE in tabla[:300].lower():
+            continue
         if "<caption" not in tabla.lower():
             sin_pie += 1
     return sin_pie
