@@ -20,14 +20,19 @@ Se cargan en el panel de Coolify, nunca en el repositorio ni en un chat.
 
 | Variable | Para qué | Quién la usa |
 |---|---|---|
-| `OPENAI_BASE_URL` | LiteLLM de Alegra | Productor, juez, corrector, imagen |
+| `OPENAI_BASE_URL` | LiteLLM de Alegra (`https://alegra-litellm.alegra.com/v1`) | Productor, juez, corrector, imagen |
 | `PDC_LLM_KEY` | Llave virtual única con presupuesto | Todos los módulos |
-| `PDC_MODEL_PRODUCER` / `PDC_MODEL_JUDGE` | Modelos, de familias distintas | Productor / juez |
-| `PDC_WP_URL` / `PDC_WP_TOKEN` / `PDC_WP_USER` | WordPress con el token de Leandro | Productor y publicador |
-| `GSC_CUENTA_SERVICIO_JSON` | Cuenta de servicio de Search Console | Conector GSC |
+| `PDC_MODEL_PRODUCER` / `PDC_MODEL_JUDGE` / `PDC_MODEL_CORRECTOR` | Modelos, de familias distintas | Productor / juez / corrector |
+| `PDC_PROD_URL` / `PDC_PROD_USER` / `PDC_PROD_TOKEN` / `PDC_PROD_AUTHOR_ID` | WordPress de producción por la API (lectura y verificación) | Productor y publicador |
+| `PDC_MCP_URL` / `PDC_MCP_USER` / `PDC_MCP_TOKEN` | MCP de WordPress, el canal por el que se escribe | Publicador |
+| `GSC_SERVICE_ACCOUNT_JSON` | Cuenta de servicio de Search Console, en una línea | Conector GSC |
 | `PDC_CHAT_WEBHOOK_URL` | Webhook del espacio de PdC | Avisos |
 | `PDC_STATE_DIR` | Volumen persistente de corridas | Runner |
-| `PDC_MAX_PIECES_PER_DAY` | Tope diario | Publicador |
+| `PDC_MODO` / `PDC_PAUSA` / `PDC_PAISES` / `PDC_VENTANA_INICIO` / `PDC_VENTANA_FIN` | Comportamiento: modo, pausa, mercados y ventana | Wrapper |
+
+Los nombres son los que el código lee de verdad (`grep -rhoE "PDC_[A-Z_]+" scripts orchestrator`).
+Una variable con otro nombre —`PDC_WP_TOKEN`, `GSC_CUENTA_SERVICIO_JSON`— no rompe el arranque:
+simplemente no existe para el proceso y la corrida se detiene nombrando la que falta.
 
 ## Pasos
 
