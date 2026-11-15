@@ -65,6 +65,26 @@ class TemasTests(unittest.TestCase):
         self.assertEqual(primero.focus_keyword, segundo.focus_keyword)
         self.assertNotEqual(primero.focus_keyword, siguiente.focus_keyword)
 
+    def test_cuando_todo_esta_cubierto_no_hay_temas(self):
+        # Es el caso que dispara el respaldo de GSC: sin temas curados, decide el rendimiento.
+        from orchestrator.directorio import con_ficha
+        from orchestrator.temas import _slug, segmentos
+
+        archivo = [
+            f"https://programascontabilidad.com/comparativas-de-software/"
+            f"{_slug('software contable para ' + s + ' en colombia')}/"
+            for s in segmentos("CO")
+        ]
+        for marca in con_ficha("CO"):
+            if marca != "alegra":
+                archivo.append(
+                    f"https://programascontabilidad.com/comparativas-de-software/"
+                    f"alegra-vs-{_slug(marca)}-colombia/"
+                )
+
+        self.assertEqual(temas_nuevos("CO", archivo), [])
+        self.assertIsNone(tema_del_dia("CO", archivo))
+
     def test_cubierto_ignora_acentos_y_plurales(self):
         archivo = ["https://programascontabilidad.com/software-de-facturacion-para-panaderia/"]
 

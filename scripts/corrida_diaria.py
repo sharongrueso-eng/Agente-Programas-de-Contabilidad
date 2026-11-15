@@ -12,6 +12,7 @@ Variables de entorno que espera (todas desde el panel de Coolify, ninguna en el 
     PDC_VENTANA_INICIO=06:00        hora local de Bogotá
     PDC_VENTANA_FIN=17:30
     PDC_FIN_DE_SEMANA=1             publicar también sábado y domingo; por defecto no
+    PDC_DESDE=2026-11-17            la autonomía no arranca antes de esa fecha (YYYY-MM-DD)
     PDC_STATE_DIR=/data/state
 """
 
@@ -22,7 +23,7 @@ import re
 import signal
 import subprocess
 import sys
-from datetime import datetime, timedelta, time, timezone
+from datetime import datetime, timedelta, time, timezone, date
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -142,9 +143,32 @@ def estado_del_contrato(salida: str) -> str:
     return encontrado.group(1) if encontrado else ""
 
 
+def _antes_del_arranque() -> tuple[bool, str]:
+    """Ventana de calendario: la autonomía no empieza antes de `PDC_DESDE` (YYYY-MM-DD).
+
+    Sirve para arrancar un martes y no el lunes festivo, sin tocar el cron cada vez.
+    """
+    desde = os.environ.get("PDC_DESDE", "").strip()
+    if not desde:
+        return False, ""
+    try:
+        inicio = date.fromisoformat(desde)
+    except ValueError:
+        return False, ""
+    hoy = datetime.now(ZONA).date()
+    if hoy < inicio:
+        return True, f"la autonomía arranca el {inicio.isoformat()} ({hoy.isoformat()} todavía no)"
+    return False, ""
+
+
 def main() -> int:
     if os.environ.get("PDC_PAUSA", "").strip() in {"1", "true", "sí", "si"}:
         print("pausa global activa: no se trabaja")
+        return 0
+
+    antes, motivo_arranque = _antes_del_arranque()
+    if antes:
+        print(f"sin corrida: {motivo_arranque}")
         return 0
 
     puede, motivo = dentro_de_ventana()
@@ -163,8 +187,9 @@ def main() -> int:
         "prod",
         "--secciones",
         "--gsc",
-        # Autonomía: el calendario solo crea artículos nuevos. Un reencauche reescribe una URL
-        # viva y esa escritura se autoriza a mano, con `--en-vivo`, no por horario.
+        # Autonomía: primero artículo nuevo (temas curados y, cuando se agotan, GSC). Si GSC
+        # propone un reencauche, la cadena genera la versión mejorada como borrador y no toca la
+        # URL viva: escribir encima de una página publicada se autoriza a mano con `--en-vivo`.
         "--solo-nuevos",
     ]
     if modo != "publicar":

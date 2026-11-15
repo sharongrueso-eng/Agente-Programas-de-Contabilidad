@@ -426,6 +426,7 @@ def main() -> int:
         if fuera:
             print(f"temas   : {len(fuera)} descartados por mercado fuera del portal")
         propias = [o for o in oportunidades if o.country == args.pais]
+        propuesta_de_reencauche = False
         # Primero lo que necesita cuerpo; si no hay, los títulos y metas con demanda real:
         # con 176.295 impresiones y 544 clics, un título mejor rinde más que otra pieza.
         con_cuerpo = [o for o in propias if requires_body(o.action)]
@@ -456,6 +457,17 @@ def main() -> int:
                 print(
                     f"temas   : {len(propuestas)} sin cubrir en {args.pais}; "
                     f"hoy toca «{elegidas[0].focus_keyword}»"
+                )
+            elif propias:
+                # Se agotaron los temas curados: GSC decide con lo que ya mide. Un refresco gana
+                # por CTR y posición, y en una corrida autónoma no se escribe encima de la URL
+                # viva: se genera la versión mejorada como propuesta en borrador.
+                propuesta_de_reencauche = True
+                elegidas = propias
+                print(
+                    f"temas   : sin temas nuevos en {args.pais}; GSC propone "
+                    f"{len(propias)} reencauches y empieza «{elegidas[0].url.rstrip('/').split('/')[-1]}» "
+                    f"({elegidas[0].action})"
                 )
         if not elegidas:
             print("sin oportunidades para", args.pais)
@@ -678,6 +690,10 @@ def main() -> int:
             hallado = _wp.find_by_url(brief.opportunity.url)
             post_existente = hallado.get("id") if hallado else None
         except Exception:  # noqa: BLE001
+            post_existente = None
+        if locals().get("propuesta_de_reencauche"):
+            # La propuesta se guarda aparte: tocar la URL viva es una decisión editorial.
+            print("propuesta: se crea un borrador nuevo; la URL publicada no se modifica")
             post_existente = None
         destino = f"actualiza el post {post_existente}" if post_existente else "la URL no existe, se crea"
         print(f"reencauche: {destino}")
