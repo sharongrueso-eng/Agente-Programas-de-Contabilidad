@@ -316,8 +316,11 @@ def validate(
     # Una marca que el directorio del país no reconoce no se nombra: es el hueco de «susii».
     if has_body and not is_snippet and brief.country:
         from .directorio import extranas
+        from .sujeto import permitidas as del_tema
 
-        ajenas = extranas(draft.html + " " + draft.title, brief.country)
+        ajenas = extranas(
+            draft.html + " " + draft.title, brief.country, permitidas=del_tema(brief)
+        )
         controls.append(
             ControlResult(
                 code="marca_desconocida",

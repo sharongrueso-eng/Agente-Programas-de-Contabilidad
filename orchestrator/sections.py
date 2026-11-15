@@ -350,8 +350,9 @@ precio de ese módulo»—, nunca de la plataforma entera.
             # arrastraría el error a todas las corridas siguientes.
             try:
                 from orchestrator.directorio import extranas
+                from orchestrator.sujeto import permitidas as del_tema
 
-                ajenas = extranas(previo, brief.country)
+                ajenas = extranas(previo, brief.country, permitidas=del_tema(brief))
             except Exception:  # noqa: BLE001
                 ajenas = []
             if ajenas:

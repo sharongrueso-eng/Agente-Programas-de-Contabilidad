@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+from typing import Sequence
 
 DIRECTORIO = Path(__file__).resolve().parent.parent / "datos" / "competidores" / "directorio.json"
 FICHAS = Path(__file__).resolve().parent.parent / "datos" / "herramientas"
@@ -87,13 +88,17 @@ GENERICAS = {
 }
 
 
-def extranas(texto: str, pais: str) -> list[str]:
+def extranas(texto: str, pais: str, permitidas: Sequence[str] = ()) -> list[str]:
     """Marcas nombradas en la pieza que el directorio de ese país no reconoce.
 
     Solo mira los lugares donde una marca aparece como marca: «X vs Y», «planes X» o
     «software X». Así «Recetas» o «Nómina» no se confunden con competidores.
+
+    `permitidas` son los nombres que esta pieza puede usar aunque el directorio no los tenga:
+    el tema del artículo. Un reencauche de un post sobre «susii» tiene que poder nombrar
+    «susii», que es de lo que trata.
     """
-    validas = conocidas(pais) | GENERICAS
+    validas = conocidas(pais) | GENERICAS | {nombre.lower() for nombre in permitidas}
     plano = re.sub(r"<[^>]+>", " ", texto)
     sospechosas: list[str] = []
     # Sin distinguir mayúsculas: la marca inventada apareció escrita «susii» cincuenta veces.

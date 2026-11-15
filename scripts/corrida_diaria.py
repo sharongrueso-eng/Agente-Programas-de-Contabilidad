@@ -145,6 +145,9 @@ def main() -> int:
         "prod",
         "--secciones",
         "--gsc",
+        # Autonomía: el calendario solo crea artículos nuevos. Un reencauche reescribe una URL
+        # viva y esa escritura se autoriza a mano, con `--en-vivo`, no por horario.
+        "--solo-nuevos",
     ]
     if modo != "publicar":
         argumentos.append("--borrador")

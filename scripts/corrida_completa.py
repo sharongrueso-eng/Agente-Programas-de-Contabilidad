@@ -326,6 +326,11 @@ def main() -> int:
         help="envía un aviso de prueba al Chat y termina, para comprobar el webhook en el contenedor",
     )
     parser.add_argument("--secciones", action="store_true", help="producir bloque a bloque en vez de una sola llamada")
+    parser.add_argument(
+        "--solo-nuevos",
+        action="store_true",
+        help="solo oportunidades de artículo nuevo; omite los reencauches de URLs vivas",
+    )
     parser.add_argument("--reusar", action="store_true", help="usar el borrador ya guardado y seguir desde la validación")
     parser.add_argument("--sin-avisos", action="store_true", help="no enviar nada al espacio de Chat")
     parser.add_argument("--entorno", choices=["stg", "prod"], default="stg", help="destino de la publicación")
@@ -414,7 +419,14 @@ def main() -> int:
         # Primero lo que necesita cuerpo; si no hay, los títulos y metas con demanda real:
         # con 176.295 impresiones y 544 clics, un título mejor rinde más que otra pieza.
         con_cuerpo = [o for o in propias if requires_body(o.action)]
-        elegidas = con_cuerpo or propias
+        if args.solo_nuevos:
+            # Autonomía: la corrida diaria solo crea artículos nuevos. Un reencauche escribe
+            # sobre una URL viva y esa escritura se autoriza a mano, no por calendario.
+            antes = len(con_cuerpo)
+            con_cuerpo = [o for o in con_cuerpo if (o.action or "") == "create"]
+            if antes != len(con_cuerpo):
+                print(f"nuevos  : {len(con_cuerpo)} de {antes} con cuerpo; los reencauches se omiten")
+        elegidas = con_cuerpo or ([] if args.solo_nuevos else propias)
         if not elegidas:
             print("sin oportunidades para", args.pais)
             return 2
