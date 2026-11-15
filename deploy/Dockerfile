@@ -26,9 +26,11 @@ COPY datos ./datos
 COPY scripts ./scripts
 
 # Pillow solo para recomprimir la portada: el gateway entrega ~1,3 MB y la web necesita
-# menos de 300 KB. Es la única dependencia externa del proyecto.
+# menos de 300 KB. Es la única dependencia externa del proyecto. google-analytics-data es
+# para GA4: sin ese paquete la corrida sigue, pero se queda sin las visitas de la página.
 RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir "pillow>=11" "google-api-python-client>=2" "google-auth>=2"
+    && pip install --no-cache-dir "pillow>=11" "google-api-python-client>=2" "google-auth>=2" \
+       "google-analytics-data>=0.18"
 
 # El estado vive fuera de la imagen y se monta como volumen: corridas, mapas de publicación
 # y cachés sobreviven al contenedor.

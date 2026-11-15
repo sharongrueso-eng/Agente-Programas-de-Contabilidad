@@ -9,14 +9,27 @@ Propiedad del portal: `properties/335360773` — «Programas Contabilidad».
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 from pathlib import Path
 
 PROPIEDAD_PDC = "properties/335360773"
-LLAVE = Path.home() / ".pdc" / "gsc-service-account.json"
 SCOPES = ["https://www.googleapis.com/auth/analytics.readonly"]
 RETRASO_DIAS = 1
+
+
+def _llave() -> Path:
+    """Dónde está la cuenta de servicio.
+
+    En el perfil vive en `~/.pdc/`. En Coolify no hay perfil: el conector de Search Console
+    escribe el JSON que llega por variable de entorno en el volumen y anuncia su ruta en
+    `GSC_SA_KEY`, así que esa ruta manda antes de caer en la del perfil.
+    """
+    return Path(
+        os.environ.get("GSC_SA_KEY")
+        or (Path.home() / ".pdc" / "gsc-service-account.json")
+    )
 
 
 @dataclass(frozen=True)
@@ -49,7 +62,7 @@ def _cliente(llave: Path | None = None, propiedad: str | None = None):
     from google.analytics.data_v1beta import BetaAnalyticsDataClient
     from google.oauth2 import service_account
 
-    ruta = llave or LLAVE
+    ruta = llave or _llave()
     if not ruta.exists():
         raise RuntimeError(f"no está la llave de la cuenta de servicio en {ruta}")
     credenciales = service_account.Credentials.from_service_account_file(
