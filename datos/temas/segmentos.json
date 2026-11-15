@@ -1,0 +1,59 @@
+{
+  "_nota": "Segmentos de negocio por mercado. También están los que el blog no tiene: `archivo` filtra los cubiertos. Se escribe el plural tal como lo buscaría el lector.",
+  "CO": [
+    "ferreterías",
+    "droguerías",
+    "restaurantes",
+    "panaderías",
+    "talleres de mecánica",
+    "veterinarias",
+    "papelerías",
+    "salones de belleza",
+    "distribuidoras de alimentos",
+    "clínicas odontológicas",
+    "conjuntos residenciales",
+    "empresas de transporte"
+  ],
+  "MX": [
+    "ferreterías",
+    "farmacias",
+    "restaurantes",
+    "panaderías",
+    "talleres mecánicos",
+    "veterinarias",
+    "papelerías",
+    "estéticas",
+    "distribuidoras de abarrotes",
+    "consultorios dentales",
+    "condominios",
+    "transportistas"
+  ],
+  "CR": [
+    "ferreterías",
+    "farmacias",
+    "restaurantes",
+    "panaderías",
+    "talleres mecánicos",
+    "veterinarias",
+    "pulperías",
+    "salones de belleza",
+    "distribuidoras de alimentos",
+    "consultorios dentales",
+    "condominios",
+    "empresas de transporte"
+  ],
+  "DO": [
+    "ferreterías",
+    "farmacias",
+    "restaurantes",
+    "panaderías",
+    "talleres mecánicos",
+    "veterinarias",
+    "colmados",
+    "salones de belleza",
+    "distribuidoras de alimentos",
+    "consultorios dentales",
+    "residenciales",
+    "empresas de transporte"
+  ]
+}

@@ -437,6 +437,26 @@ def main() -> int:
             if antes != len(con_cuerpo):
                 print(f"nuevos  : {len(con_cuerpo)} de {antes} con cuerpo; los reencauches se omiten")
         elegidas = con_cuerpo or ([] if args.solo_nuevos else propias)
+        if args.solo_nuevos and not elegidas:
+            # El auditor solo propone refrescos: nunca emite `create`. Los temas nuevos salen del
+            # registro cruzado con el archivo del blog, y la fecha elige cuál toca hoy.
+            try:
+                from orchestrator.sitemap import urls_del_sitio
+
+                archivo = urls_del_sitio(maximo=1200) or []
+            except Exception as error:  # noqa: BLE001 - sin archivo no hay filtro, se informa
+                archivo = []
+                print(f"temas   : no se pudo leer el archivo del blog ({error})")
+            from orchestrator.temas import tema_del_dia, temas_nuevos
+
+            propuestas = temas_nuevos(args.pais, archivo) if archivo else []
+            if propuestas:
+                hoy = tema_del_dia(args.pais, archivo)
+                elegidas = ([hoy] if hoy else []) + [p for p in propuestas if p is not hoy]
+                print(
+                    f"temas   : {len(propuestas)} sin cubrir en {args.pais}; "
+                    f"hoy toca «{elegidas[0].focus_keyword}»"
+                )
         if not elegidas:
             print("sin oportunidades para", args.pais)
             return 2
@@ -451,6 +471,10 @@ def main() -> int:
         # El mercado del artículo manda: si dice otro país, no se toca.
         confirmadas = []
         for candidata in elegidas[:4]:
+            if (candidata.action or "") == "create":
+                # Un tema nuevo no tiene URL que leer: el mercado es el que declara la propuesta.
+                confirmadas.append(candidata)
+                continue
             pais_real, motivo = _mercado_del_articulo(candidata.url)
             if pais_real and pais_real not in PAISES:
                 # Un artículo de Perú, Chile o España no se toca: el portal cubre cuatro
