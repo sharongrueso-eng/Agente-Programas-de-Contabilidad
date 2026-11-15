@@ -22,14 +22,22 @@ RETRASO_DIAS = 1
 def _llave() -> Path:
     """Dónde está la cuenta de servicio.
 
-    En el perfil vive en `~/.pdc/`. En Coolify no hay perfil: el conector de Search Console
-    escribe el JSON que llega por variable de entorno en el volumen y anuncia su ruta en
-    `GSC_SA_KEY`, así que esa ruta manda antes de caer en la del perfil.
+    En el perfil vive en `~/.pdc/`. En Coolify no hay perfil: el JSON llega por variable de
+    entorno y el conector de Search Console lo escribe en el volumen. Por eso se le pide a ese
+    conector que lo prepare y se respeta la ruta que anuncie en `GSC_SA_KEY`; si no la anuncia,
+    se busca en `PDC_STATE_DIR`, y solo al final en el perfil.
     """
-    return Path(
-        os.environ.get("GSC_SA_KEY")
-        or (Path.home() / ".pdc" / "gsc-service-account.json")
-    )
+    from orchestrator.gsc_mcp import _preparar_llave
+
+    _preparar_llave()
+    if os.environ.get("GSC_SA_KEY"):
+        return Path(os.environ["GSC_SA_KEY"])
+    estado = os.environ.get("PDC_STATE_DIR")
+    if estado:
+        candidata = Path(estado) / "gsc-service-account.json"
+        if candidata.exists():
+            return candidata
+    return Path.home() / ".pdc" / "gsc-service-account.json"
 
 
 @dataclass(frozen=True)
