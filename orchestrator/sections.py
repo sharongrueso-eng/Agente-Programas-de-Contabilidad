@@ -189,6 +189,11 @@ def producir_por_secciones(
 - No inventes precios ni cifras: usa solo las del registro de datos que viene abajo.
 - La pieza admite **{tablas_max} tablas como máximo**, y la comparativa de precios con el registro ya se construye sola: ocupa una. No escribas tablas adicionales; cuando necesites comparar, usa listas o párrafos. Una tabla de más bloquea la publicación.
 - Si un competidor no publica un dato, dilo y sigue. La ausencia declarada es información.
+- En una comparativa bastan **dos o tres competidores**: el registro es un techo, no una lista que
+  haya que cubrir entera. Los dos o tres que el lector compararía de verdad valen más que todos.
+- Devuelves **solo el HTML de la pieza**: sin cercas de markdown (```), sin encabezados tipo
+  «## Bloque «X» — fragmento listo para pegar», sin marcadores `[PENDIENTE…]` y sin notas de
+  proceso para el editor. Eso no es texto para el lector y se publica tal cual.
 - Escribe «revisé» por defecto; «probé» solo con evidencia documentada.
 - El **primer párrafo** de la pieza contiene la keyword foco completa y literal: «{keyword}».
   No parafraseada, no en el H2, no más adelante. Sin eso la pieza no pasa la validación.

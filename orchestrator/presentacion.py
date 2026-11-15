@@ -12,7 +12,17 @@ import json
 import re
 from pathlib import Path
 
-from .linea_visual import AZUL, CELESTE_SUAVE, GRIS, LINEA, NAVY, TINTA
+from .linea_visual import (
+    AZUL,
+    CELESTE_SUAVE,
+    GRIS,
+    LINEA,
+    NAVY,
+    TINTA,
+    AVATAR_LEANDRO as AVATAR_DE_LEANDRO,
+    firma as firma_del_portal,
+    normalizar_listas,
+)
 
 UTM_PRINCIPAL = "?utm_source=programascontabilidad&utm_medium=blog&utm_campaign=comparativa"
 CRITERIOS = (
@@ -144,18 +154,13 @@ def cta(url: str) -> str:
 
 
 def firma() -> str:
-    return (
-        f'<div class="pc-firma" style="border-top:1px solid {LINEA};margin-top:40px;padding-top:22px;'
-        f'display:flex;gap:16px;align-items:flex-start;">'
-        f'<div style="width:52px;height:52px;border-radius:50%;background:{CELESTE_SUAVE};'
-        f'border:1px solid {LINEA};display:flex;align-items:center;justify-content:center;'
-        f'font-weight:700;color:{NAVY};font-size:18px;">L</div>'
-        f'<div><p style="margin:0 0 4px;font-size:16px;font-weight:700;color:{NAVY};">Leandro</p>'
-        f'<p style="margin:0;font-size:14px;line-height:1.6;color:{TINTA};max-width:62ch;">'
-        f"Analista de software contable en programascontabilidad.com. Trabaja con datos publicados "
-        f"por cada proveedor y con la normativa de cada país; cuando un dato no está publicado, lo "
-        f"dice en lugar de estimarlo.</p></div></div>"
-    )
+    """La firma del portal, con la foto de Leandro.
+
+    Aquí vivía una firma propia —un círculo de 52 px con la inicial «L»— que salía cuando el
+    cuerpo no traía `pc-firma`. La ficha del autor es una sola en todo el portal y está en
+    `linea_visual`, con la foto y el enlace al archivo de autor.
+    """
+    return firma_del_portal()
 
 
 def _envolver_marcas(html: str, datos: dict[str, dict]) -> str:
@@ -240,6 +245,11 @@ def presentar(
         destino = url_cta if "utm_source=" in url_cta else url_cta + UTM_PRINCIPAL
         indice = html.find("<h2", html.find("Veredicto"))
         html = (html[:indice] + cta(destino) + html[indice:]) if indice != -1 else html + cta(destino)
-    if "pc-firma" not in html:
+    if "pc-firma" not in html and AVATAR_DE_LEANDRO not in html:
         html += firma()
+    elif AVATAR_DE_LEANDRO not in html:
+        # Una firma sin la foto no es la del portal: se cambia por la canónica, una sola vez.
+        html = re.sub(r'<div class="pc-firma".*?</div>\s*</div>', "", html, flags=re.S)
+        html += firma()
+    html = normalizar_listas(html)
     return html

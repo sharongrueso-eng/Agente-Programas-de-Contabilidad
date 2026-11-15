@@ -345,6 +345,21 @@ def validate(
                 )
             )
 
+    # Una frase que termina en «con un» o «de la» se cortó al escribir: el lector se queda sin el
+    # final del razonamiento. Es un defecto de la pieza, no de estilo.
+    if has_body and not is_snippet:
+        for parrafo in re.findall(r"<p\b[^>]*>(.*?)</p>", draft.html, re.I | re.S):
+            texto = re.sub(r"<[^>]+>", "", html_lib_unescape(parrafo)).strip()
+            if len(texto) > 40 and CORTE_DE_FRASE.search(texto):
+                controls.append(
+                    _control(
+                        "frase_cortada",
+                        False,
+                        f"párrafo cortado a mitad de frase: «…{texto[-70:]}»",
+                    )
+                )
+                break
+
     # Una marca que el directorio del país no reconoce no se nombra: es el hueco de «susii».
     if has_body and not is_snippet:
         visible = _texto_visible(draft.html)
@@ -736,21 +751,87 @@ CHARLA_DEL_MODELO = re.compile(
     r"(?i)[^.]{0,80}(?:no puedo desarrollar|¿c[oó]mo quieres que siga|sin confirmaci[oó]n no avanzo"
     r"|no avanzo sin confirmaci[oó]n|dime c[oó]mo continuar)[^.]*\."
 )
-UNIDAD_PEGADA = re.compile(r"(COP|MXN|USD|CRC)(mes|año|ano|hora)")
+UNIDAD_PEGADA = re.compile(r"\b(COP|MXN|USD|CRC)(mes|año|ano|hora)\b")
+
+# Andamiaje de la producción que se colaba al post: el modelo devolvía «## Bloque «Alegra» —
+# fragmento listo para pegar», cercas de markdown, marcadores `[PENDIENTE…]` y notas de proceso
+# («para cerrar el bloque antes de publicar…»). Nada de eso es texto para el lector.
+ANDAMIAJE = re.compile(
+    r"(?is)[ \t]*(?:#{1,4}[ \t]*Bloque\b[^\n<]*|```[a-zA-Z]*|«?`?html`?)[ \t]*\n?"
+)
+MARCADOR_PENDIENTE = re.compile(r"\[PENDIENTE[^\]]*\]", re.I)
+COMENTARIO_GUTENBERG = re.compile(r"<!--\s*/?wp:.*?-->", re.S)
+NOTA_DE_PROCESO = re.compile(
+    r"(?i)(?:fragmento listo para pegar|para cerrar el bloque|dos cosas m[aá]s"
+    r"|en el bloque antes de montar|antes de montarlo|debe quedar un cierre|un cierre por"
+    r"|el patr[oó]n de gutenberg|sustituir el (?:marcador|p[aá]rrafo)|confirmar si el precio"
+    r"|tambi[eé]n esto:|los planes y precios exactos que el registro|ninguna cifra inventada"
+    r"|le[ií]da del sitio del fabricante|volver a revisar que el veredicto"
+    r"|formula de verificaci[oó]n|f[oó]rmula de verificaci[oó]n del contexto legal"
+    r"|sin enlace ni cta de alegra en el fragmento|pares `wp:list`)"
+)
+ELEMENTO = re.compile(r"<(p|li)\b[^>]*>(.*?)</\1>", re.I | re.S)
+# Un párrafo que acaba en conector, artículo o preposición quedó a medias.
+CORTE_DE_FRASE = re.compile(
+    r"(?i)\b(?:con|de|del|en|para|por|sin|sobre|entre|seg[uú]n|un|una|unos|unas|el|la|los|las"
+    r"|y|o|que|al|su|sus|se|m[aá]s|ni|como)\s*$"
+)
 
 
 def limpiar_artefactos(html: str) -> tuple[str, list[str]]:
-    """Quita charla del asistente, markdown visible y unidades pegadas.
+    """Quita charla del asistente, andamiaje de la producción, markdown visible y unidades pegadas.
 
-    Publicar «No puedo desarrollar el H3… ¿cómo quieres que siga?» o «COPmes» es un defecto de
-    publicación, no un detalle de estilo.
+    Publicar «No puedo desarrollar el H3… ¿cómo quieres que siga?», «## Bloque «Alegra» — fragmento
+    listo para pegar» o «COPmes» es un defecto de publicación, no un detalle de estilo.
     """
     retirados: list[str] = []
     nuevo, cuantas = CHARLA_DEL_MODELO.subn("", html)
     if cuantas:
         html = nuevo
         retirados.append(f"charla del modelo ({cuantas})")
-    nuevo, cuantas = UNIDAD_PEGADA.subn(r"/", html)
+
+    nuevo, cuantas = ANDAMIAJE.subn("", html)
+    if cuantas:
+        html = nuevo
+        retirados.append(f"andamiaje ({cuantas})")
+
+    nuevo, cuantas = COMENTARIO_GUTENBERG.subn("", html)
+    if cuantas:
+        html = nuevo
+        retirados.append(f"comentarios de Gutenberg ({cuantas})")
+
+    nuevo, cuantas = MARCADOR_PENDIENTE.subn("", html)
+    if cuantas:
+        html = nuevo
+        retirados.append(f"marcadores pendientes ({cuantas})")
+
+    # Los párrafos y las viñetas que son una nota de proceso se van enteros: dejar el texto sin
+    # el andamiaje produce frases mutiladas («…así que solo tiene sentido con un»).
+    def _quitar(elemento: re.Match[str]) -> str:
+        texto = re.sub(r"<[^>]+>", "", html_lib_unescape(elemento.group(2)))
+        if NOTA_DE_PROCESO.search(texto):
+            return ""
+        return elemento.group(0)
+
+    nuevo = ELEMENTO.sub(_quitar, html)
+    if nuevo != html:
+        retirados.append("notas de proceso")
+        html = re.sub(r"<ul[^>]*>\s*</ul>|<ol[^>]*>\s*</ol>", "", nuevo)
+
+    # Y las mismas notas cuando llegan como texto suelto, sin etiqueta que las envuelva: el
+    # redactor las escribió en markdown y el andamiaje las dejó como un tramo entre dos etiquetas.
+    piezas = re.split(r"(<[^>]+>)", html)
+    coladas = [p for p in piezas if p and not p.startswith("<") and NOTA_DE_PROCESO.search(p)]
+    if coladas:
+        html = "".join(
+            p
+            for p in piezas
+            if not (p and not p.startswith("<") and NOTA_DE_PROCESO.search(p))
+        )
+        html = re.sub(r"<ul[^>]*>\s*</ul>|<ol[^>]*>\s*</ol>|<p[^>]*>\s*</p>", "", html)
+        retirados.append(f"notas de proceso sueltas ({len(coladas)})")
+
+    nuevo, cuantas = UNIDAD_PEGADA.subn("\x01/\x02", html)
     if cuantas:
         html = nuevo
         retirados.append(f"unidad pegada ({cuantas})")

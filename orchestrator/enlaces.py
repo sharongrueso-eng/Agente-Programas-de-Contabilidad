@@ -14,6 +14,7 @@ from __future__ import annotations
 import re
 import urllib.error
 import urllib.request
+from typing import Iterable
 
 CABECERAS = {"User-Agent": "Mozilla/5.0 (compatible; PdC-linkcheck)"}
 PATRON = re.compile(r'<a\b[^>]*href="([^"]+)"', re.IGNORECASE)
@@ -65,3 +66,69 @@ def rotos(html: str, *, comprobar=estado, limite: int = LIMITE) -> list[str]:
         if codigo in MALES or codigo >= 500:
             fallos.append(f"{url} ({codigo})")
     return fallos
+
+
+DOMINIO = "programascontabilidad.com"
+ANCLA = re.compile(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', re.IGNORECASE | re.DOTALL)
+
+
+def clave(url: str) -> str:
+    """Forma comparable de una URL: sin esquema, sin www, sin consulta, sin ancla ni barra final."""
+    limpio = (url or "").strip().replace("&amp;", "&")
+    limpio = re.split(r"[#?]", limpio)[0].lower()
+    limpio = re.sub(r"^https?://", "", limpio)
+    limpio = re.sub(r"^www\.", "", limpio)
+    return limpio.rstrip("/")
+
+
+def desenlazar(html: str, malas: Iterable[str]) -> tuple[str, list[str]]:
+    """Deja el texto y quita el `<a>` de los destinos que no abren.
+
+    Un enlace roto en el cuerpo invalida el artículo, y el corrector no siempre lo retira: quitar
+    el ancla sí es determinista. El texto se conserva, así que la frase sigue leyéndose.
+    """
+    objetivo = {clave(url) for url in malas}
+    retiradas: list[str] = []
+
+    def _una(coincidencia: re.Match[str]) -> str:
+        href = coincidencia.group(1)
+        if clave(href) in objetivo:
+            retiradas.append(href)
+            return coincidencia.group(2)
+        return coincidencia.group(0)
+
+    nuevo = ANCLA.sub(_una, html or "")
+    return nuevo, retiradas
+
+
+def revisar(
+    html: str,
+    *,
+    permitidas: Iterable[str] | None = None,
+    comprobar=estado,
+    dominio: str = DOMINIO,
+    limite: int = LIMITE,
+) -> tuple[str, list[str]]:
+    """Devuelve el cuerpo sin enlaces rotos y la lista de los que se retiraron.
+
+    Internos: se contrastan con el mapa del sitio, no con la red. Un enlace a
+    `programascontabilidad.com/algo-que-no-existe` devuelve 404 y además gasta una petición; el
+    sitemap dice en un milisegundo qué URLs existen. Externos: se comprueban por HTTP.
+    """
+    mapa = {clave(url) for url in (permitidas or [])}
+    malas: list[str] = []
+    for url in externos(html, 200):
+        if clave(url).startswith(dominio):
+            if mapa and clave(url) not in mapa:
+                malas.append(url)
+            continue
+        if len([m for m in malas if not clave(m).startswith(dominio)]) >= limite:
+            continue
+        codigo = comprobar(url)
+        if codigo == 0:
+            continue
+        if codigo in MALES or codigo >= 500:
+            malas.append(url)
+    if not malas:
+        return html, []
+    return desenlazar(html, malas)

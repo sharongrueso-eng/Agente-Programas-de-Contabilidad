@@ -120,6 +120,19 @@ class ControlTest(unittest.TestCase):
         self.assertEqual(control.status, "CORREGIR")
         self.assertIn("admite 2", control.detail)
 
+    def test_un_parrafo_cortado_se_marca(self):
+        html = TABLA + (
+            "<p>La venta es por asesor y ese costo corre aparte, así que solo tiene sentido con un</p>"
+        )
+        veredicto = validate(draft(html), brief("comparativa"), ValidationRules())
+        control = self.codes(veredicto)["frase_cortada"]
+        self.assertEqual(control.status, "CORREGIR")
+
+    def test_un_parrafo_que_termina_bien_no_se_marca(self):
+        html = TABLA + "<p>La venta es por asesor y ese costo corre aparte de la licencia mensual.</p>"
+        veredicto = validate(draft(html), brief("comparativa"), ValidationRules())
+        self.assertNotIn("frase_cortada", self.codes(veredicto))
+
     def test_una_faq_en_encabezados_sueltos_se_marca(self):
         html = TABLA + (
             "<h2>¿Cuánto cuesta el software?</h2><p>x</p>"

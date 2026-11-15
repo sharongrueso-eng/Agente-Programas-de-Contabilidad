@@ -12,6 +12,8 @@ primera pantalla.
 
 from __future__ import annotations
 
+import re
+
 NAVY = "#002B5B"
 AZUL = "#3299E2"
 # El acento que usa el portal en los bloques editoriales (píldoras y pasos). Es el que quedó
@@ -399,3 +401,29 @@ FIRMA_AUTOR = (
 def firma() -> str:
     """Ficha del autor que cierra la pieza. Idéntica en todo el portal."""
     return FIRMA_AUTOR
+
+
+def normalizar_listas(html: str) -> str:
+    """Deja la viñeta dentro del marco, sin depender de la hoja de estilos del tema.
+
+    El tema fuerza `padding-left:0 !important` en `.entry-content ul`, así que la sangría que se
+    pone por CSS se pierde y la viñeta se dibuja fuera del artículo (y en móvil se corta). Un
+    estilo en línea con `!important` gana sobre la hoja de estilos, así que toda lista lo lleva.
+    Se aplica a las listas que escribe el redactor, no solo a las que arma el código.
+    """
+    SANGRE = "padding-left:22px !important;"
+    MARGEN = "margin:0 0 16px 0;"
+
+    def _una(coincidencia: re.Match[str]) -> str:
+        etiqueta, atributos = coincidencia.group(1), coincidencia.group(2) or ""
+        if re.search(r"padding-left\s*:[^;\"]*!important", atributos, re.I):
+            return coincidencia.group(0)
+        if 'style="' in atributos:
+            sin_sangre = re.sub(r"padding-left\s*:[^;\"]*;?", "", atributos, flags=re.I)
+            agregado = SANGRE + ("" if re.search(r"margin\s*:", sin_sangre, re.I) else MARGEN)
+            atributos = sin_sangre.replace('style="', 'style="' + agregado, 1)
+        else:
+            atributos = atributos + ' style="' + MARGEN + SANGRE + '"'
+        return f"<{etiqueta}{atributos}>"
+
+    return re.sub(r"<(ul|ol)((?:\s[^>]*)?)>", _una, html or "", flags=re.I)

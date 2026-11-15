@@ -2,6 +2,7 @@
 
 import unittest
 
+from orchestrator.linea_visual import AVATAR_LEANDRO
 from orchestrator.presentacion import presentar
 
 
@@ -29,8 +30,11 @@ class PresentacionTests(unittest.TestCase):
         self.assertEqual(self.html.count("<h4"), 3)
 
     def test_it_closes_with_the_signature(self) -> None:
-        self.assertIn("pc-firma", self.html)
+        # La ficha del autor es la del portal, con la foto: la inicial «L» en un círculo salía
+        # cuando el cuerpo no traía firma y no es la firma que Sharon maquetó.
+        self.assertIn(AVATAR_LEANDRO, self.html)
         self.assertIn("Leandro", self.html)
+        self.assertNotIn(">L</div>", self.html)
 
     def test_there_is_one_cta_in_a_dark_box(self) -> None:
         self.assertEqual(self.html.count("pc-cta"), 1)

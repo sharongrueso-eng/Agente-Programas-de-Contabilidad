@@ -17,6 +17,7 @@ from typing import Any
 
 from orchestrator.assigner import Brief
 from orchestrator.corrector import correct
+from orchestrator.enlaces import revisar as revisar_enlaces
 from orchestrator.judge import judge
 from orchestrator.link_pass import corregir_enlaces
 from orchestrator.mcp_publish import publicar as publicar_mcp
@@ -494,6 +495,27 @@ def run(
                     f"la pieza no convergió tras {max_cycles} ciclos de corrección"
                     + (f" ({pending})" if pending else "")
                 ),
+            )
+
+    # Los enlaces rotos se retiran antes de publicar. El validador los detecta y el corrector no
+    # siempre los quita; aquí se hace determinista: el destino que no abre pierde el ancla y el
+    # texto se queda. Los internos se contrastan con el sitemap; los externos, por HTTP.
+    if deps.urls_internas and start <= ORDER.index("preparation"):
+        limpio, retirados = revisar_enlaces(
+            draft.html,
+            permitidas=list(deps.urls_internas),
+            comprobar=deps.comprobar_enlaces or (lambda _url: 0),
+        )
+        if retirados:
+            draft = replace(draft, html=limpio)
+            state.save("borrador.json", _draft_to_dict(draft))
+            steps.append(
+                {
+                    "step": "enlaces",
+                    "status": "DONE",
+                    "retirados": retirados[:12],
+                    "total": len(retirados),
+                }
             )
 
     approved = (state.load("veredictos.json", {}) or {}).get("approved_fingerprint", "")
