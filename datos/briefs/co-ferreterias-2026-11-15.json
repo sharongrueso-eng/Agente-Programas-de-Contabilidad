@@ -1,0 +1,23 @@
+{
+  "task_id": "co-ferreterias-2026-11-15",
+  "date": "2026-11-15",
+  "slot": "A",
+  "format": "comparativa",
+  "country": "CO",
+  "opportunity": {
+    "url": "https://programascontabilidad.com/comparativas-de-software/software-contable-para-ferreterias-colombia/",
+    "country": "CO",
+    "action": "create",
+    "focus_keyword": "software contable para ferreterías en colombia",
+    "intent": "best",
+    "score": 60.0,
+    "evidence": {
+      "reason": "tema sin cubrir: el archivo no tiene ninguna pieza sobre contabilidad y facturación de ferreterías en Colombia, y las fichas colombianas del registro permiten comparar precio, facturación electrónica, inventario y POS",
+      "impressions": 0,
+      "clicks": 0,
+      "ctr": 0.0,
+      "position": 0.0
+    }
+  },
+  "skipped_reason": ""
+}
