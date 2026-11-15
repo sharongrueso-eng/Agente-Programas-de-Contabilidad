@@ -22,6 +22,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ))
 
 from orchestrator.adapters import AlegraImageClient, LiteLlmClient  # noqa: E402
+from orchestrator.enlaces import estado as estado_de_enlace  # noqa: E402
 from orchestrator.assigner import Brief  # noqa: E402
 from orchestrator.audit import AuditRules, Opportunity, find_opportunities  # noqa: E402
 from orchestrator.brief_io import load_brief  # noqa: E402
@@ -235,6 +236,7 @@ def _webhook(args) -> str:
 
 
 REFERENCIAS_DE_REDACCION = (
+    "bloques-editoriales.md",
     "formatos.md",
     "portada-y-medios.md",
     "alegra-modulos-por-pais.md",
@@ -267,6 +269,9 @@ def referencias_de_redaccion(pais: str) -> str:
     """
     base = RAIZ / "skills" / "prog-cont-blog" / "references"
     piezas = []
+    # Los bloques son HTML: recortarlos a 2.200 caracteres dejaría fuera media biblioteca, que
+    # es justo lo que hay que copiar. El resto de referencias sí se recorta.
+    limites = {"bloques-editoriales.md": 7000}
     for nombre in REFERENCIAS_DE_REDACCION + (f"precios-alegra-{pais.lower()}.md",):
         ruta = base / nombre
         if ruta.exists():
@@ -274,7 +279,7 @@ def referencias_de_redaccion(pais: str) -> str:
                 "## Referencia: " + nombre + chr(10) + chr(10)
                 # Recortada a lo esencial: con el texto entero el modelo gasta el presupuesto en
                 # razonar sobre 40.000 caracteres y devuelve la cabecera vacía.
-                + ruta.read_text(encoding="utf-8")[:2200]
+                + ruta.read_text(encoding="utf-8")[: limites.get(nombre, 2200)]
                 + chr(10) + "… (referencia recortada: el resto se aplica igual)" + chr(10) + chr(10)
             )
     if not (base / f"precios-alegra-{pais.lower()}.md").exists():
@@ -728,6 +733,9 @@ def main() -> int:
         image=AlegraImageClient(
             base_url=os.environ["OPENAI_BASE_URL"], api_key=os.environ["PDC_LLM_KEY"]
         ),
+        # Los enlaces se comprueban de verdad antes de publicar: un 404 en el cuerpo invalida
+        # el artículo. Se puede apagar con --sin-avisos para una prueba sin red.
+        comprobar_enlaces=None if args.sin_avisos else estado_de_enlace,
         urls_internas=[
             o.url
             for o in (

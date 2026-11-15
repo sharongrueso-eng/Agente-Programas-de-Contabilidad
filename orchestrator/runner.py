@@ -138,6 +138,8 @@ class Deps:
     brands_available: int | None = None
     publicar_con_observaciones: bool = False
     dominio: str = "programascontabilidad.com"
+    # Comprobación de red de los enlaces del cuerpo. None = no se comprueban (pruebas, dry run).
+    comprobar_enlaces: Any = None
 
 
 def _avisar_publicacion(deps: Deps, brief: Brief, resultado: dict[str, Any]) -> None:
@@ -326,6 +328,7 @@ def run(
                 evidence_of_testing=deps.evidence_of_testing,
                 registry_text=deps.registry,
                 brands_available=deps.brands_available,
+                comprobar_enlaces=deps.comprobar_enlaces,
             )
             state.save("veredictos.json", {"validator": [asdict(c) for c in verdict.controls]})
             steps.append({"step": "validation", "status": verdict.status, "cycle": cycle})

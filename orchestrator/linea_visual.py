@@ -14,6 +14,12 @@ from __future__ import annotations
 
 NAVY = "#002B5B"
 AZUL = "#3299E2"
+# El acento que usa el portal en los bloques editoriales (píldoras y pasos). Es el que quedó
+# fijado en el artículo de referencia, editado a mano por Sharon.
+AZUL_VIVO = "#159bd7"
+TINTA_BLOQUE = "#18283F"
+FONDO_DATO = "#F4F6F8"
+FONDO_RESPUESTA = "#cce4f7"
 ENLACE = "#0B6FA4"
 CELESTE = "#00AEEF"
 CELESTE_SUAVE = "#EFF8FF"
@@ -84,37 +90,129 @@ def puntos_clave(items: list[str], titulo: str = "Puntos clave") -> str:
         f'text-transform:uppercase;color:#FFFFFF;">{titulo}</p></div>'
         f'<ul style="margin:16px 0 0;padding-left:38px !important;">{filas}</ul></div>'
     )
-def caja(etiqueta: str, texto: str, tipo: str) -> str:
-    """Caja de énfasis de la línea visual. tipo: dato, atencion, limite."""
-    estilos = {
-        "dato": ("#F5F9FD", LINEA, AZUL, NAVY, "i", TINTA),
-        "atencion": ("#FFF8E1", "#F6E3A1", AMBAR, "#7A5200", "!", "#3B2F00"),
-        "limite": (ROJO_SUAVE, "#F5C2C7", "#DC3545", ROJO, "✕", "#4A1A1F"),
-    }
-    fondo, borde, acento, color_etiqueta, icono, color_texto = estilos[tipo]
+def _pildora(texto: str, fondo: str, color: str) -> str:
+    """La etiqueta del bloque: mayúsculas pequeñas en píldora, como en el artículo de referencia."""
     return (
-        f'<div role="note" style="background:{fondo};border:1px solid {borde};'
-        f'border-left:4px solid {acento};border-radius:0 10px 10px 0;padding:18px 22px;'
-        f'margin:24px 0;">'
-        f'<p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.08em;'
-        f'text-transform:uppercase;color:{color_etiqueta};">'
-        f'<span style="display:inline-block;width:20px;height:20px;line-height:20px;'
-        f'border-radius:50%;background:{acento};color:#FFFFFF;text-align:center;font-size:12px;'
-        f'font-weight:700;margin-right:8px;vertical-align:middle;">{icono}</span>{etiqueta}</p>'
-        f'<p style="margin:0;font-size:16px;line-height:1.65;font-weight:400;'
-        f'color:{color_texto};max-width:68ch;">{texto}</p></div>'
+        f'<span style="display:inline-block;background:{fondo};color:{color};font-size:12px;'
+        f'font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;'
+        f'border-radius:999px;">{texto}</span>'
     )
 
 
-def respuesta_rapida(frase: str, apoyo: str) -> str:
+def caja(etiqueta: str, texto: str, tipo: str = "dato") -> str:
+    """Caja de énfasis de la línea visual. tipo: dato, atencion, limite.
+
+    Las tres comparten la misma estructura —píldora de etiqueta y un párrafo— con el color
+    cambiado: `dato` sobre gris claro, `atencion` sobre navy con texto blanco, `limite` en rojo.
+    Así el lector reconoce el tipo de aviso sin leer la etiqueta.
+    """
+    estilos = {
+        "dato": (FONDO_DATO, NAVY, AZUL_VIVO, "#ffffff", TINTA_BLOQUE, True),
+        "atencion": (TINTA_BLOQUE, AZUL_VIVO, FONDO_RESPUESTA, NAVY, "#ffffff", False),
+        "limite": (ROJO_SUAVE, "#DC3545", "#DC3545", "#ffffff", "#4A1A1F", True),
+    }
+    fondo, acento, fondo_pildora, color_pildora, color_texto, con_borde = estilos[tipo]
+    borde = f"border-left:8px solid {acento};" if con_borde else ""
     return (
-        f'<div style="background:{CELESTE_SUAVE};border:1px solid {LINEA};'
-        f'border-left:4px solid {AZUL};border-radius:0 12px 12px 0;padding:20px 24px;'
-        f'margin:24px 0;">'
-        f'<p style="margin:0 0 8px;font-size:19px;line-height:1.45;font-weight:700;'
-        f'color:{NAVY};max-width:68ch;">{frase}</p>'
-        f'<p style="margin:0;font-size:16px;line-height:1.65;font-weight:400;color:{TINTA};'
-        f'max-width:68ch;">{apoyo}</p></div>'
+        f'<div role="note" data-pdc="componente" style="background:{fondo};{borde}'
+        f'border-radius:10px;padding:22px 28px;margin:24px 0;color:{color_texto};">'
+        f'<p style="margin:0 0 10px;">{_pildora(etiqueta, fondo_pildora, color_pildora)}</p>'
+        f'<p style="margin:0;font-size:18px;line-height:1.45;font-weight:700;'
+        f'color:{color_texto};">{texto}</p></div>'
+    )
+
+
+def respuesta_rapida(
+    frase: str,
+    apoyo: str = "",
+    *,
+    items: tuple[str, ...] | list[str] = (),
+    pie: str = "",
+    etiqueta: str = "Respuesta rápida",
+) -> str:
+    """El bloque de apertura: la respuesta en una frase, el detalle en viñetas y el matiz al pie.
+
+    Es el bloque que el lector lee si no lee nada más, así que va arriba y sin CTA. La sangría de
+    la lista va en `margin-left`, no en `padding-left`: el tema fuerza `padding-left:0 !important`
+    en `.entry-content ul` y la viñeta se dibujaría fuera del marco.
+    """
+    lista = ""
+    if items:
+        filas = "".join(
+            f'<li style="margin:0 0 6px;">{item}</li>' for item in items if str(item).strip()
+        )
+        lista = (
+            f'<ul style="margin:0 0 16px 20px;padding:0;font-size:15px;line-height:1.6;'
+            f'color:{TINTA_BLOQUE};">{filas}</ul>'
+        )
+    parrafo = (
+        f'<p style="margin:0 0 12px;font-size:16px;line-height:1.65;color:{TINTA_BLOQUE};">'
+        f"{apoyo}</p>"
+        if apoyo
+        else ""
+    )
+    remate = (
+        f'<p style="margin:0;padding-top:12px;border-top:1px solid #8fc3ea;font-size:14px;'
+        f'line-height:1.5;color:{TINTA_BLOQUE};">{pie}</p>'
+        if pie
+        else ""
+    )
+    return (
+        f'<div role="note" data-pdc="componente" style="background:{FONDO_RESPUESTA};'
+        f'border-left:8px solid {AZUL_VIVO};border-radius:10px;padding:22px 28px;margin:24px 0;'
+        f'color:{TINTA_BLOQUE};">'
+        f'<p style="margin:0 0 10px;">{_pildora(etiqueta, NAVY, "#ffffff")}</p>'
+        f'<p style="margin:0 0 12px;font-size:18px;line-height:1.45;font-weight:700;'
+        f'color:{NAVY};">{frase}</p>{lista}{parrafo}{remate}</div>'
+    )
+
+
+def procedimiento(
+    pasos: tuple | list, titulo: str = "", entradilla: str = "", etiqueta: str = "Procedimiento"
+) -> str:
+    """Tarjeta de pasos numerados: cabecera navy y círculos celestes.
+
+    Cada paso es `(título, texto)` o un texto suelto. Los pasos no son una lista con viñetas: el
+    orden importa y el número tiene que verse, así que va numerado en círculo.
+    """
+    filas = []
+    for indice, paso in enumerate(pasos, start=1):
+        if isinstance(paso, (tuple, list)) and len(paso) == 2:
+            cabeza, cuerpo = paso
+            texto = (
+                f'<strong style="color:{NAVY};">{cabeza}</strong> {cuerpo}'
+                if str(cabeza).strip()
+                else str(cuerpo)
+            )
+        else:
+            texto = str(paso)
+        filas.append(
+            f'<div style="display:flex;gap:14px;align-items:flex-start;padding:14px 0;'
+            f'border-bottom:1px solid #E5EEF7;">'
+            f'<span style="flex:0 0 32px;width:32px;height:32px;border-radius:50%;'
+            f'background:{AZUL_VIVO};color:#ffffff;font-weight:700;font-size:15px;'
+            f'line-height:32px;text-align:center;">{indice}</span>'
+            f'<p style="margin:0;font-size:15px;line-height:1.55;">{texto}</p></div>'
+        )
+    cabecera_titulo = (
+        f'<p style="margin:4px 0 0;font-size:18px;line-height:1.4;font-weight:700;'
+        f'color:#ffffff;">{titulo}</p>'
+        if titulo
+        else ""
+    )
+    entrada = (
+        f'<p style="margin:0 0 12px;font-size:15px;line-height:1.6;color:{TINTA_BLOQUE};">'
+        f"{entradilla}</p>"
+        if entradilla
+        else ""
+    )
+    return (
+        f'<div data-pdc="componente" style="background:#ffffff;border:1px solid {FONDO_RESPUESTA};'
+        f'border-radius:10px;margin:24px 0;overflow:hidden;color:{TINTA_BLOQUE};">'
+        f'<div style="background:{NAVY};padding:14px 24px;">'
+        f'<p style="margin:0;font-size:13px;font-weight:700;letter-spacing:.06em;'
+        f'text-transform:uppercase;color:{FONDO_RESPUESTA};">{etiqueta}</p>{cabecera_titulo}</div>'
+        f'<div style="padding:8px 24px 18px;">{entrada}{"".join(filas)}</div></div>'
     )
 
 
@@ -152,49 +250,36 @@ def cta_final(url: str, etiqueta: str, pregunta: str, subtexto: str, boton: str,
 
 
 def tabla(caption: str, encabezados: list[str], filas: list[list[str]]) -> str:
-    """Tabla con encabezado navy, primera columna como th y cebra suave."""
-    cabecera = "".join(
-        f'<th scope="col" style="background:{NAVY};color:#fff;text-align:left;'
-        f"padding:14px 16px;font-size:14px;line-height:1.35;font-weight:700;"
-        f'vertical-align:bottom;">{h}</th>'
-        for h in encabezados
+    """Tabla del portal: ancho fijo, celdas alineadas a la izquierda y pie con fuente y fecha.
+
+    Usa el formato que WordPress ya estiliza (`has-fixed-layout` + `has-text-align-left` con
+    `data-align`), así la tabla se ve como las del archivo y no como un componente aparte. El
+    pie va abajo, siempre: una cifra sin fuente ni fecha no se publica.
+    """
+    alineado = 'class="has-text-align-left" data-align="left"'
+    cabecera = "".join(f'<th {alineado} scope="col">{h}</th>' for h in encabezados)
+    cuerpo = "".join(
+        "<tr>" + "".join(f'<td {alineado}>{c}</td>' for c in fila) + "</tr>" for fila in filas
     )
-    cuerpo = []
-    for i, fila in enumerate(filas):
-        fondo = "#FFFFFF" if i % 2 == 0 else "#F8FAFC"
-        celdas = "".join(
-            f'<td style="background:{fondo};padding:13px 16px;border-top:1px solid #E5EDF5;'
-            f'font-size:15px;line-height:1.5;font-weight:400;color:{TINTA};'
-            f'vertical-align:top;">{c}</td>'
-            for c in fila[1:]
-        )
-        cuerpo.append(
-            f'<tr><th scope="row" style="background:{fondo};color:{NAVY};text-align:left;'
-            f'padding:13px 16px;border-top:1px solid #E5EDF5;font-size:15px;line-height:1.5;'
-            f'font-weight:700;vertical-align:top;">{fila[0]}</th>{celdas}</tr>'
-        )
     return (
-        f'<div style="overflow-x:auto;margin:24px 0;border:1px solid {LINEA};'
-        f'border-radius:10px;"><table style="width:100%;border-collapse:collapse;">'
-        f'<caption style="caption-side:bottom;text-align:left;padding:10px 16px;'
-        f'font-size:13px;line-height:1.5;font-weight:400;color:{GRIS};">{caption}</caption>'
-        f"<thead><tr>{cabecera}</tr></thead><tbody>{''.join(cuerpo)}</tbody></table></div>"
+        f'<table class="has-fixed-layout" data-pdc="componente">'
+        f'<caption style="caption-side:bottom;text-align:left;padding:10px 16px;font-size:13px;'
+        f'line-height:1.5;font-weight:400;color:{GRIS};">{caption}</caption>'
+        f"<thead><tr>{cabecera}</tr></thead><tbody>{cuerpo}</tbody></table>"
     )
 
 
 def faq(preguntas: list[tuple[str, str]]) -> str:
     """FAQ con details: funciona sin JavaScript y el texto queda en el HTML."""
     piezas = []
-    for i, (pregunta, respuesta) in enumerate(preguntas):
-        abierto = " open" if i == 0 else ""
+    for pregunta, respuesta in preguntas:
         piezas.append(
-            f'<details{abierto} style="border:1px solid {LINEA};border-radius:10px;'
-            f'margin:0 0 10px;background:#fff;">'
-            f'<summary style="cursor:pointer;padding:16px 20px;font-size:16px;line-height:1.4;'
-            f'font-weight:700;color:{NAVY};">{pregunta}</summary>'
-            f'<div style="padding:0 20px 18px;"><p style="margin:0;font-size:16px;'
-            f'line-height:1.65;font-weight:400;color:{TINTA};max-width:68ch;">{respuesta}</p>'
-            f"</div></details>"
+            f'<details class="pdc-faq" data-pdc="componente" style="border:1px solid {LINEA};'
+            f'border-radius:10px;background:#FFFFFF;padding:14px 18px;margin:0 0 12px;">'
+            f'<summary style="cursor:pointer;"><h3 style="margin:0;font-size:18px;'
+            f'color:{NAVY};"><em>{pregunta}</em></h3></summary>'
+            f'<div style="padding-top:10px;"><p style="margin:0;font-size:16px;line-height:1.65;'
+            f"font-weight:400;color:{TINTA};\">{respuesta}</p></div></details>"
         )
     return "".join(piezas)
 

@@ -149,6 +149,29 @@ Formatos exactos en `references/formatos.md`:
 Reglas de forma: párrafos de máximo 4 líneas, mínimo 6 H2 con H3 intercalados, al menos 1 tabla, FAQ
 siempre en H2 con cada pregunta en H3, y sección `Fuentes` cerrando el artículo.
 
+### 2a. Estructura y bloques: el patrón es el post 1957
+
+**Antes de escribir, abre `references/bloques-editoriales.md`.** Ahí está el HTML exacto de los
+bloques que Sharon aprobó editando a mano el post 1957 (14-nov-2026): respuesta rápida, dato
+clave, atención, procedimiento con pasos numerados, tabla del tema, FAQ con `details` y la firma.
+Se reproducen tal cual; no se inventan variantes ni colores.
+
+- **Un bloque es un fragmento, no un documento.** Nada de `<!DOCTYPE>`, `<html>`, `<head>` ni
+  `<style>` con reglas globales dentro del artículo: el `body{…}` de un bloque pegado se aplica a
+  toda la página. (Pasó en 1957 y hubo que limpiarlo.)
+- **La viñeta no se sale del marco.** El tema fuerza `padding-left:0 !important` en
+  `.entry-content ul`: la sangría va en `margin` (`margin:0 0 16px 20px`) o en
+  `padding-left` **con** `!important`. Nunca `padding-left` a secas.
+- **Comparativa de dos marcas = dos marcas.** Si el tema exige nombrar un tercero, el formato no
+  es comparativa de dos: se replantea antes de escribir.
+- **Enlaces comprobados.** El control `enlaces_rotos` recorre el cuerpo antes de publicar; un 404
+  manda a corregir. No se enlaza una URL que no se ha visto abrir.
+- **No se promete lo que no hay.** «Los 7 mejores», «top 10» o «N plataformas» se contrastan con
+  las fichas del registro (`brand_count`). Un listado vacío es una promesa falsa.
+- Para componentes visuales nuevos (tarjetas, comparador con panel, dashboard) está la biblioteca
+  del portal en `references/kit_visual_html_programas_contabilidad_hermes.md`: se adaptan los
+  colores a los tokens de arriba y no se añaden scripts ni fuentes.
+
 ### Capturas de las landings (obligatorio)
 
 Cada reseña y cada comparativa lleva **1 a 3 capturas reales de la landing del producto**: hero de la

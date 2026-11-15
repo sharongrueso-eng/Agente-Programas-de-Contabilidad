@@ -12,13 +12,44 @@ class ComponentTests(unittest.TestCase):
 
         self.assertIn("DATO CLAVE", caja.upper())
         self.assertIn('role="note"', caja)
-        self.assertIn("border-left:4px solid", caja)
+        self.assertIn("border-left:8px solid", caja)
+        self.assertIn("border-radius:999px", caja)  # la etiqueta va en píldora
+
+    def test_the_atencion_box_is_navy_with_white_text(self) -> None:
+        caja = lv.caja("Atención", "Un negocio con 96 facturas no cabe.", "atencion")
+
+        self.assertIn(lv.TINTA_BLOQUE, caja)
+        self.assertIn("color:#ffffff", caja)
 
     def test_the_limite_box_uses_the_dark_text_variant(self) -> None:
         caja = lv.caja("Límite", "No exporta a Excel.", "limite")
 
-        self.assertIn(lv.ROJO, caja)
+        self.assertIn('background:#DC3545', caja)
         self.assertNotIn("color:#FFFFFF;\">No exporta", caja)
+
+    def test_la_respuesta_rapida_lleva_pildora_lista_y_remate(self) -> None:
+        bloque = lv.respuesta_rapida(
+            "Alegra es la opción más económica.",
+            items=("<strong>Facturas ilimitadas:</strong> Siigo cobra por cupos.",),
+            pie="<strong>Cuándo conviene Siigo:</strong> con menos de 24 documentos.",
+        )
+
+        self.assertIn("Respuesta rápida", bloque)
+        self.assertIn("<ul", bloque)
+        self.assertIn("0 0 16px 20px", bloque)  # sangría por margin, no por padding
+        self.assertNotIn("padding-left", bloque)
+        self.assertIn("border-top:1px solid #8fc3ea", bloque)
+
+    def test_el_procedimiento_numera_los_pasos(self) -> None:
+        bloque = lv.procedimiento(
+            [("Mide tu volumen.", "Promedia tres meses."), ("Decide si necesitas contabilidad.", "")],
+            titulo="Cómo decidir en 2 pasos",
+        )
+
+        self.assertIn(">1</span>", bloque)
+        self.assertIn(">2</span>", bloque)
+        self.assertIn("Cómo decidir en 2 pasos", bloque)
+        self.assertIn(lv.AZUL_VIVO, bloque)
 
     def test_the_final_cta_opens_in_a_new_tab_and_is_disclosed(self) -> None:
         cta = lv.cta_final(
@@ -39,6 +70,7 @@ class ComponentTests(unittest.TestCase):
 
         self.assertIn("<details", bloque)
         self.assertIn("<summary", bloque)
+        self.assertIn('class="pdc-faq"', bloque)
 
     def test_tables_carry_a_caption_with_the_source(self) -> None:
         tabla = lv.tabla(
@@ -48,8 +80,9 @@ class ComponentTests(unittest.TestCase):
         )
 
         self.assertIn("<caption", tabla)
-        self.assertIn('scope="row"', tabla)
-        self.assertIn("background:#002B5B", tabla)
+        self.assertIn("has-fixed-layout", tabla)
+        self.assertIn('data-align="left"', tabla)
+        self.assertIn('scope="col"', tabla)
 
 
 class ControlTests(unittest.TestCase):

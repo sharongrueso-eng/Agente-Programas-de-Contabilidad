@@ -14,7 +14,7 @@ import re
 import unicodedata
 from dataclasses import dataclass
 from html import unescape as html_lib_unescape
-from typing import Sequence
+from typing import Any, Sequence
 from urllib.parse import parse_qs, urlparse
 
 from orchestrator.assigner import Brief
@@ -159,6 +159,13 @@ def _has_full_utm(url: str) -> bool:
 PLATAFORMAS = re.compile(
     r"(\d+)\s+(?:plataformas|softwares|herramientas|programas|sistemas)", re.IGNORECASE
 )
+# «Los 7 mejores», «top 10», «las 5 opciones»: un listado se promete con un número y el lector
+# lo cuenta. Sin fichas para ese número, la promesa es falsa.
+LISTADOS = re.compile(
+    r"(?:los|las|top|ranking\s+(?:de\s+)?)\s*(\d{1,2})\s+"
+    r"(?:mejores|principales|opciones|alternativas|recomendad\w+)",
+    re.IGNORECASE,
+)
 MEJORA = re.compile(
     r"(?:ahorr\w+|reduc\w+|baj\w+|disminuy\w+|gan\w+)[^.]{0,60}?\d+\s*"
     r"(?:horas?|hrs?|minutos?|min\.?|%|por\s+ciento)"
@@ -269,6 +276,7 @@ def validate(
     evidence_of_testing: bool = False,
     registry_text: str = "",
     brands_available: int | None = None,
+    comprobar_enlaces: Any = None,
 ) -> Verdict:
     """Run every deterministic control and return the combined verdict."""
     keyword = brief.opportunity.focus_keyword if brief.opportunity else ""
@@ -377,7 +385,9 @@ def validate(
 
     if brands_available is not None:
         visible = _texto_visible(draft.html)[:1200]
-        prometidas = [int(m.group(1)) for m in PLATAFORMAS.finditer(draft.title + " " + visible)]
+        texto_promesa = draft.title + " " + visible
+        prometidas = [int(m.group(1)) for m in PLATAFORMAS.finditer(texto_promesa)]
+        prometidas += [int(m.group(1)) for m in LISTADOS.finditer(texto_promesa)]
         excesivas = sorted({n for n in prometidas if n > brands_available})
         controls.append(
             _control(
@@ -620,6 +630,20 @@ def validate(
             + " — se reemplazan por la frase de ausencia de dato público",
         )
     )
+
+    # Los enlaces se comprueban de verdad cuando quien llama puede hacer red. Un 404 en el
+    # cuerpo invalida el artículo: el lector que hace clic y llega a una página de error no vuelve.
+    if comprobar_enlaces is not None and has_body:
+        from .enlaces import rotos
+
+        caidos = rotos(draft.html, comprobar=comprobar_enlaces)
+        controls.append(
+            _control(
+                "enlaces_rotos",
+                not caidos,
+                "enlaces que no abren: " + ", ".join(caidos[:5]),
+            )
+        )
 
     worst = max((control.status for control in controls), key=lambda s: _SEVERITY[s])
     return Verdict(status=worst, controls=tuple(controls))
