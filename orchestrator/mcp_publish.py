@@ -113,6 +113,10 @@ def _resultado(status: str, brief: Brief, **extra: Any) -> dict[str, Any]:
         "block_reason": "",
     }
     base.update(extra)
+    # Una corrida reutilizada también tiene post: sin esto el contrato decía «DONE» con
+    # output_url vacío y no había forma de saber en qué post quedó la pieza.
+    if base.get("post_id") and not base.get("output_url"):
+        base["output_url"] = f"post:{base['post_id']}"
     return base
 
 
