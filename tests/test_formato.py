@@ -97,21 +97,28 @@ class ControlTest(unittest.TestCase):
         veredicto = validate(draft(TABLA * 3), brief("comparativa"), ValidationRules())
         self.assertEqual(self.codes(veredicto)["presupuesto_tablas"].status, "PASS")
 
-    def test_competidor_fuera_del_titulo_bloquea(self):
+    def test_el_cupo_del_formato_se_corrige_y_no_bloquea(self):
+        # Seis marcas del mercado en una comparativa: el cupo es 5, así que se pide corregir,
+        # pero la pieza no muere — antes este control bloqueaba la corrida entera.
+        html = TABLA + "<p>Siigo, Alegra, Loggro, Helisa, World Office, ContaPyme y Aliaddo.</p>"
+        veredicto = validate(draft(html), brief("comparativa"), ValidationRules())
+        control = self.codes(veredicto)["elenco_del_formato"]
+        self.assertEqual(control.status, "CORREGIR")
+        self.assertIn("admite 5", control.detail)
+        self.assertNotEqual(veredicto.status, "BLOQUEADO")
+
+    def test_competidor_fuera_del_titulo_dentro_del_cupo_no_bloquea(self):
         html = TABLA + "<p>Siigo y Alegra, frente a Loggro, que tiene comandas.</p>" * 3
         veredicto = validate(draft(html), brief("comparativa"), ValidationRules())
-        control = self.codes(veredicto)["marcas_del_formato"]
-        self.assertEqual(control.status, "BLOQUEADO")
-        self.assertIn("Loggro", control.detail)
+        self.assertEqual(self.codes(veredicto)["elenco_del_formato"].status, "PASS")
+        self.assertNotEqual(veredicto.status, "BLOQUEADO")
 
-    def test_elenco_abierto_no_emite_control(self):
-        html = TABLA + "<p>Siigo y Alegra compiten con Loggro.</p>"
-        veredicto = validate(
-            draft(html, titulo="Software contable para restaurantes: comparativa"),
-            brief("comparativa"),
-            ValidationRules(),
-        )
-        self.assertNotIn("marcas_del_formato", self.codes(veredicto))
+    def test_cupo_por_formato(self):
+        html = TABLA + "<p>Siigo, Loggro y Helisa.</p>"
+        veredicto = validate(draft(html), brief("resena"), ValidationRules())
+        control = self.codes(veredicto)["elenco_del_formato"]
+        self.assertEqual(control.status, "CORREGIR")
+        self.assertIn("admite 2", control.detail)
 
     def test_resena_de_otro_producto_no_exige_enlaces_de_alegra(self):
         html = TABLA + "<p>Adm Cloud es un ERP en la nube para República Dominicana.</p>"

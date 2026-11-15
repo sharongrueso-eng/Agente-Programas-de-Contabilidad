@@ -15,12 +15,17 @@ instala Hermes dentro de la imagen.
 
 | Tarea | Comando | Cron | Qué hace |
 |---|---|---|---|
-| `pdc-slot-a` | `python scripts/corrida_diaria.py` | `10 6 * * 1-5` | Produce, valida, juzga, corrige y publica el slot A |
-| `pdc-slot-b` | `python scripts/corrida_diaria.py` | `10 7 * * 1-5` | Lo mismo para el slot B |
-| `pdc-reporte` | `python scripts/corrida_diaria.py --resumen` | `30 17 * * 1-5` | Cierre del día: solo el resumen |
+| `pdc-slot-a` | `python scripts/corrida_diaria.py` | `10 6 * * *` | Produce, valida, juzga, corrige y publica el artículo del día |
+| `pdc-reporte` | `python scripts/corrida_diaria.py --resumen` | `30 17 * * *` | Cierre del día: solo el resumen |
 
 El wrapper `corrida_diaria.py` comprueba la ventana, la pausa y el mercado del día antes de
 trabajar: una ejecución a deshora no hace nada y lo deja escrito en el registro.
+
+**Cadencia diaria:** el cron es de domingo a domingo, así que hay que abrir el fin de semana con
+`PDC_FIN_DE_SEMANA=1`; sin esa variable el wrapper se niega a trabajar sábado y domingo y lo
+deja dicho en el registro. El mercado rota entre los cuatro del portal (`PDC_PAISES`); un código
+que no sea CO, MX, CR o DO se ignora con aviso, porque no hay directorio ni registro de datos
+contra el que verificar la pieza.
 
 ## Vigías y respaldo
 

@@ -8,9 +8,10 @@ Variables de entorno que espera (todas desde el panel de Coolify, ninguna en el 
 
     PDC_MODO=borrador|publicar      borrador mientras se prueba; publicar cuando se autorice
     PDC_PAUSA=1                     pausa global: no hace nada y lo dice
-    PDC_PAISES=CO,MX,CR,DO          mercados a rotar
+    PDC_PAISES=CO,MX,CR,DO          mercados a rotar (solo esos cuatro existen en el portal)
     PDC_VENTANA_INICIO=06:00        hora local de Bogotá
     PDC_VENTANA_FIN=17:30
+    PDC_FIN_DE_SEMANA=1             publicar también sábado y domingo; por defecto no
     PDC_STATE_DIR=/data/state
 """
 
@@ -24,6 +25,10 @@ from datetime import datetime, timedelta, time, timezone
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
+if str(RAIZ) not in sys.path:
+    sys.path.insert(0, str(RAIZ))
+
+from orchestrator.mercado import PAISES  # noqa: E402
 
 if __name__ == "__main__" and any(a in ("-h", "--help") for a in sys.argv[1:]):
     print(chr(10).join([
@@ -67,20 +72,35 @@ def dentro_de_ventana(ahora: datetime | None = None) -> tuple[bool, str]:
     momento = (ahora or datetime.now(ZONA)).astimezone(ZONA)
     inicio = _hora(os.environ.get("PDC_VENTANA_INICIO", "06:00"), time(6, 0))
     fin = _hora(os.environ.get("PDC_VENTANA_FIN", "17:30"), time(17, 30))
-    if momento.weekday() >= 5:
-        return False, "fin de semana: el blog no publica"
+    fin_de_semana = os.environ.get("PDC_FIN_DE_SEMANA", "0").strip().lower() in {
+        "1",
+        "true",
+        "sí",
+        "si",
+    }
+    if momento.weekday() >= 5 and not fin_de_semana:
+        return False, "fin de semana: el blog no publica (PDC_FIN_DE_SEMANA=1 lo abre)"
     if not (inicio <= momento.time() <= fin):
         return False, f"fuera de la ventana {inicio:%H:%M}–{fin:%H:%M} ({momento:%H:%M})"
     return True, ""
 
 
 def mercado_del_dia(ahora: datetime | None = None) -> str:
-    """Rotación simple y determinista: un mercado por día hábil."""
-    paises = [
-        p.strip().upper()
-        for p in os.environ.get("PDC_PAISES", "CO,MX,CR,DO").split(",")
-        if p.strip()
-    ] or ["CO"]
+    """Rotación simple y determinista: un mercado por día, entre los cuatro del portal.
+
+    Un código que no esté en `PAISES` se descarta y se dice: publicar en un mercado sin
+    directorio ni registro de datos produce una pieza que no se puede verificar.
+    """
+    crudos = [p.strip().upper() for p in os.environ.get("PDC_PAISES", "").split(",") if p.strip()]
+    paises = [p for p in crudos if p in PAISES] or ["CO"]
+    fuera = [p for p in crudos if p not in PAISES]
+    if fuera:
+        print(
+            "aviso: se ignoran mercados fuera del portal ("
+            + ", ".join(fuera)
+            + "); solo existen "
+            + ", ".join(PAISES)
+        )
     momento = (ahora or datetime.now(ZONA)).astimezone(ZONA)
     indice = momento.toordinal() % len(paises)
     return paises[indice]

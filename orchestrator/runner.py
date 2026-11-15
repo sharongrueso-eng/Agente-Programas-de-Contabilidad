@@ -163,6 +163,25 @@ def _draft_to_dict(draft: Draft) -> dict[str, str]:
     return asdict(draft)
 
 
+def _reconciliar_titulo(
+    draft: Draft, brief: Brief, state: RunState, steps: list[dict[str, Any]]
+) -> Draft:
+    """Que el título anuncie el elenco que el cuerpo trata, por código y sin gastar llamadas.
+
+    Se hace antes de validar y otra vez después de cada corrección: el corrector puede recortar
+    o ampliar el elenco, y el título tiene que seguir contando lo mismo que el artículo. El slug
+    no se toca, así que en un reencauche la URL del post vivo no cambia.
+    """
+    from .titulo import reconciliar
+
+    nuevo, motivo = reconciliar(draft, brief)
+    if nuevo.title == draft.title:
+        return draft
+    state.save("borrador.json", _draft_to_dict(nuevo))
+    steps.append({"step": "estructura", "status": "DONE", "accion": "titulo", "detalle": motivo})
+    return nuevo
+
+
 def _contract(
     status: str,
     brief: Brief,
@@ -293,6 +312,8 @@ def run(
             state.save("borrador.json", asdict(draft))
             steps.append({"step": "estructura", "status": "DONE", "accion": "enlaces_internos"})
 
+        draft = _reconciliar_titulo(draft, brief, state, steps)
+
     verdict = None
     if start <= ORDER.index("judge"):
         converged = False
@@ -356,6 +377,7 @@ def run(
                     )
                 else:
                     draft = fixed
+                    draft = _reconciliar_titulo(draft, brief, state, steps)
                     continue
 
             outcome = _juzgar(draft, brief, verdict, deps, state)
@@ -448,6 +470,7 @@ def run(
                     )
                 else:
                     draft = fixed
+                    draft = _reconciliar_titulo(draft, brief, state, steps)
                     continue
 
             state.checkpoint("judge")

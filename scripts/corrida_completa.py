@@ -338,6 +338,14 @@ def main() -> int:
     )
     args = parser.parse_args()
 
+    try:
+        from orchestrator.mercado import validar_pais
+
+        args.pais = validar_pais(args.pais)
+    except ValueError as error:
+        print(f"país: {error}")
+        return 2
+
     for archivo in ("llm.env", "mcp.env", "wp-stg.env", "wp-prod.env"):
         ruta = Path.home() / ".pdc" / archivo
         if not ruta.exists():

@@ -55,9 +55,10 @@ De comportamiento:
 ```
 PDC_MODO=borrador          # borrador mientras se prueba; publicar cuando se autorice
 PDC_PAUSA=0                # 1 detiene todo sin tocar el calendario
-PDC_PAISES=CO,MX,CR,DO
+PDC_PAISES=CO,MX,CR,DO     # los cuatro mercados del portal; un quinto se ignora
 PDC_VENTANA_INICIO=06:00
 PDC_VENTANA_FIN=17:30
+PDC_FIN_DE_SEMANA=1        # 1 publica también sábado y domingo
 PDC_STATE_DIR=/data/state
 ```
 

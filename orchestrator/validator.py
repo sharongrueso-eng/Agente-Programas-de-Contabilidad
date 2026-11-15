@@ -287,7 +287,7 @@ def validate(
     # El presupuesto de forma lo fija el tipo de pieza, no el criterio del modelo: un artículo
     # de cinco tablas no está completo, está sin editar.
     if has_body and not is_snippet:
-        from .formato import contar_tablas, elenco_cerrado, marcas_ajenas, presupuesto
+        from .formato import contar_tablas, marcas_nombradas, presupuesto
 
         cupo = presupuesto(brief.format)
         tablas = contar_tablas(draft.html)
@@ -300,18 +300,18 @@ def validate(
             )
         )
 
-        if elenco_cerrado(draft.title, brief.country, brief.format):
-            intrusas = marcas_ajenas(draft.html, draft.title, brief.country)
-            if intrusas:
-                controls.append(
-                    _control(
-                        "marcas_del_formato",
-                        False,
-                        "el título cierra el elenco y el cuerpo nombra: "
-                        + ", ".join(intrusas[:6]),
-                        BLOQUEADO,
-                    )
-                )
+        # El cupo del formato se cuenta, no se compara con el título: pasarse es una corrección
+        # —el corrector recorta el elenco, o el paso de título lo anuncia—, no una condena.
+        # Antes este control bloqueaba y la pieza moría con la producción ya pagada.
+        nombradas = marcas_nombradas(draft.html, draft.title, brief.country)
+        controls.append(
+            _control(
+                "elenco_del_formato",
+                len(nombradas) <= cupo.elenco_max,
+                f"{len(nombradas)} marcas; el formato «{brief.format}» admite {cupo.elenco_max}: "
+                + ", ".join(nombradas[:8]),
+            )
+        )
 
     # Una marca que el directorio del país no reconoce no se nombra: es el hueco de «susii».
     if has_body and not is_snippet and brief.country:

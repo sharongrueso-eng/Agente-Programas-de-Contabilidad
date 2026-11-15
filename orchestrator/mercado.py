@@ -18,6 +18,21 @@ from pathlib import Path
 
 RUTA_RELACION = Path(__file__).resolve().parent.parent / "datos" / "competidores" / "relacion.json"
 
+# Los cuatro mercados del portal. No se abre otro sin decisión editorial: cada país arrastra su
+# directorio de competidores, su normativa y su registro de datos, y sin eso la pieza no se
+# puede verificar contra nada.
+PAISES = ("CO", "MX", "CR", "DO")
+
+
+def validar_pais(codigo: str) -> str:
+    """El código del país en mayúsculas, o un error que dice cuáles existen."""
+    limpio = (codigo or "").strip().upper()
+    if limpio not in PAISES:
+        raise ValueError(
+            f"el mercado «{codigo}» no está en el portal: solo " + ", ".join(PAISES)
+        )
+    return limpio
+
 # 1. Lo que la ruta declara.
 MARCAS_RUTA = (
     ("mexico", "MX"), ("méxico", "MX"), ("cfdi", "MX"), ("sat-", "MX"),

@@ -5,9 +5,10 @@ Dos cosas que una pieza no puede decidir por sí misma, porque las decide el for
 - **Cuántas tablas caben.** La estrategia del portal fija 1–3 tablas por artículo (tres en una
   comparativa). Una pieza que llega con cinco tablas no está completa: está sin editar, y el
   lector paga el desorden.
-- **Qué marcas pueden nombrarse.** Una reseña habla de su producto; una comparativa «A vs B»
-  habla de A y B. Cualquier otra marca del mercado que aparezca es deriva: el lector llega por
-  dos nombres y encuentra seis.
+- **Cuántas marcas del mercado caben.** Una reseña habla de su producto; una comparativa «A vs
+  B» admite el contexto del mercado; una lista es un catálogo. Lo que se puede verificar es el
+  número, no la intención: el título es una promesa que se corrige —`orchestrator/titulo.py` lo
+  hace por código— y no una condena a muerte de la pieza después de producirla entera.
 
 Las dos reglas viven aquí y no en el prompt, porque un prompt se ignora y esto se puede volver
 a correr mañana con el mismo resultado.
@@ -26,17 +27,22 @@ class Presupuesto:
     """Lo que el formato admite, sin mirar el contenido."""
 
     tablas_max: int
-    # Una reseña o una guía solo nombra su producto; una lista o una comparativa, varias.
-    elenco_cerrado: bool
+    # Cuántas marcas del mercado puede nombrar la pieza, contando las del título. Alegra no
+    # cuenta: es la marca del portal y aparece en todas.
+    elenco_max: int
 
 
 PRESUPUESTOS: dict[str, Presupuesto] = {
-    "resena": Presupuesto(tablas_max=3, elenco_cerrado=True),
-    "comparativa": Presupuesto(tablas_max=3, elenco_cerrado=True),
-    "mejores": Presupuesto(tablas_max=4, elenco_cerrado=False),
-    "guia": Presupuesto(tablas_max=2, elenco_cerrado=True),
+    "resena": Presupuesto(tablas_max=3, elenco_max=2),
+    "comparativa": Presupuesto(tablas_max=3, elenco_max=5),
+    "mejores": Presupuesto(tablas_max=4, elenco_max=8),
+    "guia": Presupuesto(tablas_max=2, elenco_max=1),
 }
-POR_DEFECTO = Presupuesto(tablas_max=3, elenco_cerrado=False)
+POR_DEFECTO = Presupuesto(tablas_max=3, elenco_max=5)
+
+# Los formatos cuyo título, con un solo nombre, ya cierra el elenco: la pieza trata ese
+# producto. Se mantiene aparte del cupo porque el cupo se corrige y el cierre del título no.
+FORMATOS_DE_UN_SOLO_NOMBRE = frozenset({"resena", "guia"})
 
 # Alegra es la marca del portal: aparece en todas las piezas y no cuenta como deriva.
 MARCA_PROPIA = "alegra"
@@ -112,4 +118,32 @@ def elenco_cerrado(titulo: str, pais: str, formato: str) -> bool:
     del_titulo = marcas_en(titulo or "", pais) if pais else set()
     if len(del_titulo) >= 2:
         return True
-    return presupuesto(formato).elenco_cerrado and len(del_titulo) == 1
+    return (formato or "").strip().lower() in FORMATOS_DE_UN_SOLO_NOMBRE and len(del_titulo) == 1
+
+
+def marcas_nombradas(html: str, titulo: str, pais: str) -> list[str]:
+    """Marcas del directorio del país que la pieza nombra, en título y cuerpo.
+
+    Cuenta nombres completos, igual que `marcas_ajenas`: «en la nube» no es una marca. Alegra
+    queda fuera porque es la marca del portal. Sirve para el cupo del formato: lo que se
+    verifica es cuántas marcas del mercado entran en la pieza, no cuántas quería el modelo.
+    """
+    if not pais:
+        return []
+    from orchestrator.directorio import con_ficha, marcas as marcas_del_pais
+
+    # El directorio trae el mismo nombre dos veces: capitalizado entre las marcas del mercado y
+    # en minúsculas entre las que tienen ficha. Se unifican por minúsculas para no contar doble.
+    conocidas: dict[str, str] = {}
+    for nombre in list(marcas_del_pais(pais)) + sorted(con_ficha(pais)):
+        if len(nombre) >= 4:
+            conocidas.setdefault(nombre.lower(), nombre)
+    plano = re.sub(r"<[^>]+>", " ", (titulo or "") + " " + (html or "")).lower()
+
+    def aparece(nombre: str) -> bool:
+        patron = r"(?<![a-záéíóúñ])" + re.escape(nombre) + r"(?![a-záéíóúñ])"
+        return bool(re.search(patron, plano))
+
+    return sorted(
+        nombre for clave, nombre in conocidas.items() if clave != MARCA_PROPIA and aparece(clave)
+    )
