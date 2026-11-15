@@ -88,13 +88,26 @@ class EnlacesTests(unittest.TestCase):
         self.assertIn("precios de Siigo", limpio)
         self.assertEqual(len(retirados), 1)
 
-    def test_un_enlace_interno_fuera_del_sitemap_se_retira(self):
-        html = '<p><a href="https://programascontabilidad.com/software-pos-colombia/">POS</a></p>'
+    def test_un_enlace_interno_fuera_del_sitemap_pero_vivo_se_queda(self):
+        # Un archivo de categoría o de autor no está en el sitemap y sí abre: no se toca.
+        html = '<p><a href="https://programascontabilidad.com/author/ngorczany/">autor</a></p>'
 
         limpio, retirados = enlaces.revisar(
             html,
             permitidas=["https://programascontabilidad.com/mejores-software-contable-colombia/"],
             comprobar=lambda _u: 200,
+        )
+
+        self.assertEqual(limpio, html)
+        self.assertEqual(retirados, [])
+
+    def test_un_enlace_interno_que_no_esta_en_el_sitemap_y_da_404_se_retira(self):
+        html = '<p><a href="https://programascontabilidad.com/software-pos-colombia/">POS</a></p>'
+
+        limpio, retirados = enlaces.revisar(
+            html,
+            permitidas=["https://programascontabilidad.com/mejores-software-contable-colombia/"],
+            comprobar=lambda _u: 404,
         )
 
         self.assertNotIn("<a ", limpio)

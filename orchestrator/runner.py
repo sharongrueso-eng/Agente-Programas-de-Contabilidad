@@ -500,10 +500,10 @@ def run(
     # Los enlaces rotos se retiran antes de publicar. El validador los detecta y el corrector no
     # siempre los quita; aquí se hace determinista: el destino que no abre pierde el ancla y el
     # texto se queda. Los internos se contrastan con el sitemap; los externos, por HTTP.
-    if deps.urls_internas and start <= ORDER.index("preparation"):
+    if start <= ORDER.index("publication"):
         limpio, retirados = revisar_enlaces(
             draft.html,
-            permitidas=list(deps.urls_internas),
+            permitidas=list(deps.urls_internas or []),
             comprobar=deps.comprobar_enlaces or (lambda _url: 0),
         )
         if retirados:

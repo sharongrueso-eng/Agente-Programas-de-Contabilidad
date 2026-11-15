@@ -736,7 +736,11 @@ def main() -> int:
         # Los enlaces se comprueban de verdad antes de publicar: un 404 en el cuerpo invalida
         # el artículo. Se puede apagar con --sin-avisos para una prueba sin red.
         comprobar_enlaces=None if args.sin_avisos else estado_de_enlace,
-        urls_internas=[
+        # El sitemap es el mapa de lo que existe: sin él, los enlaces internos se contrastaban
+        # contra las oportunidades de GSC y una corrida con `--brief` quedaba sin lista (y sin
+        # comprobación). `urls_para_enlaces` son las 20 URLs reales del sitio.
+        urls_internas=urls_para_enlaces
+        or [
             o.url
             for o in (
                 find_opportunities(

@@ -117,12 +117,15 @@ def revisar(
     """
     mapa = {clave(url) for url in (permitidas or [])}
     malas: list[str] = []
+    externas: list[str] = []
     for url in externos(html, 200):
-        if clave(url).startswith(dominio):
-            if mapa and clave(url) not in mapa:
-                malas.append(url)
-            continue
-        if len([m for m in malas if not clave(m).startswith(dominio)]) >= limite:
+        interno = clave(url).startswith(dominio)
+        if interno and mapa and clave(url) in mapa:
+            continue  # está en el sitemap: existe y no hace falta pedirlo
+        # Un enlace interno que no está en el sitemap puede ser un archivo de categoría o de
+        # autor que sí abre, así que se comprueba igual que uno externo.
+        externas.append(url)
+        if len(externas) > limite:
             continue
         codigo = comprobar(url)
         if codigo == 0:
