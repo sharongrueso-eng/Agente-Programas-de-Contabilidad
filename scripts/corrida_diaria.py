@@ -18,6 +18,7 @@ Variables de entorno que espera (todas desde el panel de Coolify, ninguna en el 
 from __future__ import annotations
 
 import os
+import re
 import signal
 import subprocess
 import sys
@@ -124,6 +125,23 @@ def avisar(texto: str) -> None:
         pass
 
 
+def estado_del_contrato(salida: str) -> str:
+    """El `status` del contrato de la cadena, no el del último paso.
+
+    Antes se tomaba el último `"status": "…"` del registro, que suele ser el de `seo_titulo`
+    («ADVERTENCIA») — así el wrapper anunciaba «terminó sin publicar» con el post ya creado. El
+    del contrato es el que aparece antes de `"task_id"`.
+    """
+    marca = salida.rfind('"task_id"')
+    if marca == -1:
+        return ""
+    previo = salida.rfind('"status"', 0, marca)
+    if previo == -1:
+        return ""
+    encontrado = re.search(r'"status"\s*:\s*"([A-Z_]+)"', salida[previo:marca])
+    return encontrado.group(1) if encontrado else ""
+
+
 def main() -> int:
     if os.environ.get("PDC_PAUSA", "").strip() in {"1", "true", "sí", "si"}:
         print("pausa global activa: no se trabaja")
@@ -190,12 +208,11 @@ def main() -> int:
     else:
         print(salida)
 
-    import re
-
     estados = re.findall(r'"status"\s*:\s*"([A-Z_]+)"', salida)
-    if estados:
-        print(f"estado informado por la cadena: {estados[-1]}")
-    if resultado.returncode == 0 and estados and estados[-1] != "DONE":
+    estado = estado_del_contrato(salida) or (estados[-1] if estados else "")
+    if estado:
+        print(f"estado de la cadena: {estado}")
+    if resultado.returncode == 0 and estado and estado != "DONE":
         print("la cadena terminó sin publicar: revisa el motivo en la carpeta de la corrida")
 
     if resultado.returncode != 0:
