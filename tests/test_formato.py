@@ -120,6 +120,25 @@ class ControlTest(unittest.TestCase):
         self.assertEqual(control.status, "CORREGIR")
         self.assertIn("admite 2", control.detail)
 
+    def test_una_faq_en_encabezados_sueltos_se_marca(self):
+        html = TABLA + (
+            "<h2>¿Cuánto cuesta el software?</h2><p>x</p>"
+            "<h2>¿Sirve para una ferretería?</h2><p>y</p>"
+            "<h2>¿Se puede migrar?</h2><p>z</p>"
+        )
+        veredicto = validate(draft(html), brief("comparativa"), ValidationRules())
+        control = self.codes(veredicto)["faq_sin_details"]
+        self.assertEqual(control.status, "CORREGIR")
+
+    def test_una_faq_con_details_pasa(self):
+        html = TABLA + (
+            '<details class="pdc-faq"><summary><h3><em>¿Cuánto cuesta?</em></h3></summary>'
+            "<div><p>x</p></div></details>"
+            "<h2>¿Sirve para una ferretería?</h2><h2>¿Se puede migrar?</h2>"
+        )
+        veredicto = validate(draft(html), brief("comparativa"), ValidationRules())
+        self.assertNotIn("faq_sin_details", self.codes(veredicto))
+
     def test_resena_de_otro_producto_no_exige_enlaces_de_alegra(self):
         html = TABLA + "<p>Adm Cloud es un ERP en la nube para República Dominicana.</p>"
         veredicto = validate(

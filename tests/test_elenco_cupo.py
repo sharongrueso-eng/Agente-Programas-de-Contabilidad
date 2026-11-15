@@ -48,8 +48,8 @@ class CupoDelFormatoTests(unittest.TestCase):
 class ReconciliarTituloTests(unittest.TestCase):
     def test_una_comparativa_anuncia_el_elenco_del_cuerpo(self) -> None:
         draft = _draft(
-            "Susii: opiniones y precios",
-            "<p>Frente a Siigo, Loggro y Helisa, susii se queda corto.</p>",
+            "Loggro: precios y funciones",
+            "<p>Frente a Siigo y Helisa, Loggro se queda corto en inventario.</p>",
         )
 
         nuevo, motivo = reconciliar(draft, _Brief("comparativa"))
@@ -68,6 +68,19 @@ class ReconciliarTituloTests(unittest.TestCase):
         self.assertEqual(nuevo.title, draft.title)
         self.assertEqual(motivo, "")
 
+    def test_un_titulo_generico_no_se_retitula(self) -> None:
+        # «software contable para ferreterías» no promete ningún elenco: añadirle «· con Loggro»
+        # prometía una comparativa de una sola marca contra el resto del artículo.
+        draft = _draft(
+            "Software contable para ferreterías en Colombia: comparativa",
+            "<p>Siigo, Loggro, Helisa y World Office, cada uno con su plan.</p>",
+        )
+
+        nuevo, motivo = reconciliar(draft, _Brief("comparativa"))
+
+        self.assertEqual(nuevo.title, draft.title)
+        self.assertEqual(motivo, "")
+
     def test_no_toca_una_resena(self) -> None:
         draft = _draft("Susii: opiniones", "<p>Frente a Siigo y Loggro.</p>")
 
@@ -77,14 +90,14 @@ class ReconciliarTituloTests(unittest.TestCase):
         self.assertEqual(motivo, "")
 
     def test_un_titulo_que_ya_dice_comparativa_no_la_repite(self) -> None:
-        draft = _draft("Susii: comparativa de software contable", "<p>Siigo y Loggro.</p>")
+        draft = _draft("Loggro: comparativa de software contable", "<p>Siigo y Helisa.</p>")
 
         nuevo, _ = reconciliar(draft, _Brief("comparativa"))
 
         self.assertEqual(nuevo.title.lower().count("comparativa"), 1)
         self.assertIn(" · con ", nuevo.title)
         self.assertIn("Siigo", nuevo.title)
-        self.assertIn("Loggro", nuevo.title)
+        self.assertIn("Helisa", nuevo.title)
 
 
 class MercadosTests(unittest.TestCase):

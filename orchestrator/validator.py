@@ -331,6 +331,20 @@ def validate(
             )
         )
 
+    # La FAQ es un componente, no una lista de encabezados sueltos. Una pieza con tres o más
+    # preguntas en h2/h3 y ningún `<details>` no tiene FAQ: tiene subtítulos que parecen preguntas.
+    if has_body and not is_snippet:
+        preguntas = re.findall(r"<h[23][^>]*>\s*([^<]{10,120}\?)\s*</h[23]>", draft.html, re.I)
+        if len(preguntas) >= 3 and "<details" not in draft.html.lower():
+            controls.append(
+                _control(
+                    "faq_sin_details",
+                    False,
+                    f"{len(preguntas)} preguntas sueltas en encabezados y ningún <details>: "
+                    "la FAQ va con el componente (clase pdc-faq)",
+                )
+            )
+
     # Una marca que el directorio del país no reconoce no se nombra: es el hueco de «susii».
     if has_body and not is_snippet:
         visible = _texto_visible(draft.html)

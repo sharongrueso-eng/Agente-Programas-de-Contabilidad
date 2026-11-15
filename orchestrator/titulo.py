@@ -56,7 +56,11 @@ def reconciliar(draft: Any, brief: Any) -> tuple[Any, str]:
     # Se cuenta con Alegra dentro: «Alegra vs Siigo» ya anuncia dos nombres al lector, y este
     # paso no tiene nada que arreglar ahí.
     del_titulo = marcas_en(draft.title, pais)
-    if len(del_titulo) >= 2:
+    if len(del_titulo) != 1:
+        # Dos marcas: el título ya anuncia el elenco. Cero marcas: el título es genérico («software
+        # contable para ferreterías») y no promete ningún elenco, así que no hay promesa que
+        # arreglar. Antes se retitulaba también en ese caso y salía «… · con Loggro», que promete
+        # una comparativa de una sola marca contra el resto del artículo.
         return draft, ""
     ya_dichas = {m.lower() for m in del_titulo}
     faltan = [m for m in marcas_nombradas(draft.html, "", pais) if m.lower() not in ya_dichas]
