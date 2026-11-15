@@ -89,6 +89,11 @@ Para dos corridas diarias, duplicar la tarea con `10 7 * * 1-5`.
 
 ## 5. Operación diaria
 
+- **Qué publica solo:** artículos nuevos. La corrida diaria pasa `--solo-nuevos`, así que un
+  reencauche (actualizar una URL que ya vive) nunca sale por calendario: se lanza a mano con
+  `python scripts/corrida_completa.py --url <slug> --en-vivo --reusar`.
+- **Mercados:** solo CO, MX, CR, DO. Un artículo de Perú, Chile o España se descarta en la
+  auditoría: reescribirlo con normativa local destruye lo que posiciona en su país.
 - **Pausar:** `PDC_PAUSA=1` y redesplegar. No hace falta tocar el cron.
 - **Volver a publicar de verdad:** `PDC_MODO=publicar`.
 - **Revertir un snippet:** `python scripts/corrida_completa.py --revertir <post_id>`; usa el

@@ -41,6 +41,22 @@ MARCAS_RUTA = (
     ("republica-dominicana", "DO"), ("dominicana", "DO"), ("dgii", "DO"),
 )
 
+# 4. Mercados que el portal NO cubre, pero cuyas señales hay que reconocer.
+#
+# Un artículo peruano de «susii» (SUNAT, soles) se detectaba como CO «por defecto» y el agente
+# lo reescribió como comparativa colombiana sobre una URL que posiciona en Perú. Reconocer el
+# mercado de origen es lo que permite descartar la página en vez de convertirla.
+SENALES_FUERA_PORTAL = (
+    (r"\bsunat\b", "PE"), (r"\bsoles\b", "PE"), (r"\bper[uú]", "PE"), (r"\blima\b", "PE"),
+    (r"\bchile\b", "CL"), (r"\bsii\b", "CL"),
+    (r"\bafip\b", "AR"), (r"\bargentina\b", "AR"),
+    (r"\becuador\b", "EC"), (r"\bsri\b", "EC"),
+    (r"\bvenezuela\b", "VE"), (r"\bpanam[aá]\b", "PA"),
+    (r"\bguatemala\b", "GT"), (r"\bbolivia\b", "BO"), (r"\bparaguay\b", "PY"),
+    (r"\buruguay\b", "UY"), (r"\bespa[nñ]a\b", "ES"),
+    (r"\bestados unidos\b", "US"), (r"\bmiami\b", "US"),
+)
+
 # 2. La normativa o la moneda que el texto nombra.
 SENALES_NORMA = (
     (r"\bdian\b", "CO"), (r"\bcufe\b", "CO"), (r"\bcop\b", "CO"),
@@ -96,13 +112,26 @@ def pais_de_contenido(texto: str) -> Mercado | None:
     quien llame se abstenga en lugar de suponer.
     """
     plano = _normalizar(texto)
+    cuenta: dict[str, int] = {}
+
+    def suma(pais: str, veces: int) -> None:
+        if veces:
+            cuenta[pais] = cuenta.get(pais, 0) + veces
+
     for patron, pais in SENALES_NORMA:
-        if re.search(patron, plano):
-            return Mercado(pais, "contenido")
+        suma(pais, len(re.findall(patron, plano)))
+    for patron, pais in SENALES_FUERA_PORTAL:
+        suma(pais, len(re.findall(patron, plano)))
     for nombre, pais in NOMBRES_PAIS:
-        if _normalizar(nombre) in plano:
-            return Mercado(pais, "contenido")
-    return None
+        suma(pais, plano.count(_normalizar(nombre)))
+    if not cuenta:
+        return None
+
+    # Gana el país del que más habla, no el primero que aparezca: un artículo peruano que
+    # menciona a Colombia de pasada sigue siendo peruano. Ante empate gana el portal, para no
+    # descartar una pieza de los cuatro mercados por una duda.
+    pais = sorted(cuenta.items(), key=lambda kv: (kv[1], kv[0] in PAISES), reverse=True)[0][0]
+    return Mercado(pais, "contenido" if pais in PAISES else "fuera del portal")
 
 
 def pais_de_pagina(
@@ -127,5 +156,9 @@ def pais_de_pagina(
     for nombre, paises in _marcas_por_mercado(ruta_relacion).items():
         if len(paises) == 1 and re.search(rf"\b{re.escape(nombre)}\b", texto):
             return Mercado(next(iter(paises)), "competidor")
+
+    for patron, pais in SENALES_FUERA_PORTAL:
+        if re.search(patron, texto):
+            return Mercado(pais, "fuera del portal")
 
     return Mercado(por_defecto.upper(), "por defecto")

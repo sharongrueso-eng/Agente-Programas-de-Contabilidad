@@ -37,6 +37,16 @@ FOREIGN_AUTHORITIES = {
 }
 
 TESTING_CLAIMS = re.compile(r"\b(prob[eé]|probamos|test[eé]|testeamos)\b", re.IGNORECASE)
+# «El nombre correcto es Siigo» sobre una marca que el directorio no tiene: eso es una
+# afirmación de hecho, no una licencia editorial. Apareció publicado en un artículo vivo.
+EQUIVALENCIAS = re.compile(
+    r"el\s+nombre\s+correcto\s+es"
+    r"|en\s+realidad\s+(?:es|se\s+llama)"
+    r"|(?:es|son)\s+lo\s+mismo\s+que"
+    r"|tambi[eé]n\s+se\s+llama"
+    r"|antes\s+se\s+llamaba",
+    re.IGNORECASE,
+)
 JARGON = ("gsc", "search console", "compuerta", "run_id", "pipeline", "brief_listo")
 YEAR = re.compile(r"\b(20\d{2})\b")
 
@@ -314,6 +324,21 @@ def validate(
         )
 
     # Una marca que el directorio del país no reconoce no se nombra: es el hueco de «susii».
+    if has_body and not is_snippet:
+        visible = _texto_visible(draft.html)
+        cita = EQUIVALENCIAS.search(visible)
+        controls.append(
+            _control(
+                "equivalencia_de_marcas",
+                cita is None,
+                ""
+                if cita is None
+                else "afirma que dos marcas son la misma: «"
+                + visible[max(0, cita.start() - 40) : cita.end() + 70].strip()[:160]
+                + "»",
+            )
+        )
+
     if has_body and not is_snippet and brief.country:
         from .directorio import extranas
         from .sujeto import permitidas as del_tema

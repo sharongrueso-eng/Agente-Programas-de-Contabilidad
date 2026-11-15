@@ -562,6 +562,39 @@ def run(
                 block_reason=result.get("block_reason", ""),
             )
 
+        # El título que el lector ve en Google tiene que ser el de la pieza. Sin esta
+        # comprobación un artículo quedó con el H1 en Colombia y el <title> diciendo «en Perú».
+        if result.get("output_url"):
+            from .seo import coincide, titulo_renderizado
+
+            visto = titulo_renderizado(result["output_url"])
+            if visto and not coincide(visto, draft.title):
+                steps.append(
+                    {"step": "seo_titulo", "status": "FAILED", "renderizado": visto[:100]}
+                )
+                return _contract(
+                    "FAILED",
+                    brief,
+                    state,
+                    steps,
+                    output_url=result.get("output_url", ""),
+                    post_id=result.get("post_id"),
+                    block_reason=(
+                        "el <title> publicado no es el de la pieza: el sitio muestra «"
+                        + visto[:90]
+                        + "» y la pieza se titula «"
+                        + draft.title[:60]
+                        + "». El contenido sí quedó escrito."
+                    ),
+                )
+            steps.append(
+                {
+                    "step": "seo_titulo",
+                    "status": "PASS" if visto else "ADVERTENCIA",
+                    "renderizado": visto[:100],
+                }
+            )
+
         state.checkpoint("publication")
         _avisar_publicacion(deps, brief, result)
         return _contract(

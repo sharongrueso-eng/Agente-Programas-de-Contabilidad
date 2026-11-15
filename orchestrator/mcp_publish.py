@@ -288,6 +288,25 @@ def publicar(
             block_reason="la meta no se pudo releer: el post queda en borrador",
         )
 
+    # Meta título del plugin de SEO. Sin esto el <title> sigue diciendo lo anterior —pasó con un
+    # artículo que quedó con el H1 en Colombia y el título de Google en Perú—. Es best-effort:
+    # si el plugin no expone la meta, el contenido igual se publica y el runner lo avisa.
+    from orchestrator.seo import META_DESCRIPCION, META_TITULO
+
+    for clave, valor in (
+        (META_TITULO, draft.title),
+        (META_DESCRIPCION, draft.meta_description),
+    ):
+        if not (valor or "").strip():
+            continue
+        try:
+            ejecutar(
+                ABILITIES["meta_escribir"],
+                {"post_id": post_id, "meta_key": clave, "meta_value": valor.strip()},
+            )
+        except Exception:  # noqa: BLE001 - la meta del SEO no tumba la publicación
+            pass
+
     autor = None
     try:
         post = ejecutar(ABILITIES["obtener"], {"post_id": post_id})

@@ -344,7 +344,7 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        from orchestrator.mercado import validar_pais
+        from orchestrator.mercado import PAISES, validar_pais
 
         args.pais = validar_pais(args.pais)
     except ValueError as error:
@@ -442,6 +442,14 @@ def main() -> int:
         confirmadas = []
         for candidata in elegidas[:4]:
             pais_real, motivo = _mercado_del_articulo(candidata.url)
+            if pais_real and pais_real not in PAISES:
+                # Un artículo de Perú, Chile o España no se toca: el portal cubre cuatro
+                # mercados y reescribirlo con normativa colombiana destruye lo que posiciona.
+                print(
+                    f"descartada {candidata.url[-45:]}: es de {pais_real}, "
+                    f"fuera del portal ({motivo})"
+                )
+                continue
             if pais_real and pais_real != args.pais:
                 print(f"descartada {candidata.url[-45:]}: es de {pais_real} ({motivo})")
                 continue
@@ -990,6 +998,16 @@ def main() -> int:
 
         es_nuevo = str(getattr(elegida, "action", "")) == "create"
         post_id = str(resultado.get("post_id") or "")
+        if not post_id:
+            # El contrato no siempre trae el id; publicacion.json sí lo guarda, y sin él el
+            # enlace de edición del aviso salía con «post=&action=edit».
+            try:
+                guardado = json.loads(
+                    (estado.dir / "publicacion.json").read_text(encoding="utf-8")
+                )
+                post_id = str(guardado.get("post_id") or "")
+            except (OSError, ValueError):
+                post_id = ""
         base = os.environ.get("PDC_PROD_URL", "https://programascontabilidad.com").rstrip("/")
         texto = aviso_de_pieza(
             titulo=borrador.get("title", ""),
