@@ -260,7 +260,15 @@ def assess_page(page: PageMetrics, rules: AuditRules) -> Opportunity | None:
 def find_opportunities(
     pages: Sequence[PageMetrics], rules: AuditRules
 ) -> list[Opportunity]:
-    """Assess every page and return the opportunities ranked by score."""
-    assessed = [assess_page(page, rules) for page in pages]
+    """Assess every page and return the opportunities ranked by score.
+
+    Solo se evalúan páginas de los cuatro mercados del portal: el blog convive con artículos de
+    otros países (España, Perú) y no hay umbral configurado para ellos porque no se trabajan.
+    Antes se evaluaba todo y una página española tumbaba la corrida entera con un ValueError.
+    """
+    from .mercado import PAISES
+
+    del_portal = [page for page in pages if (page.country or "").upper() in PAISES]
+    assessed = [assess_page(page, rules) for page in del_portal]
     found = [item for item in assessed if item is not None]
     return sorted(found, key=lambda item: (item.score, item.url), reverse=True)

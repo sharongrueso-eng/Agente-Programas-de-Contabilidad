@@ -29,6 +29,37 @@ class _Brief:
 
 
 class MercadoFueraDelPortalTests(unittest.TestCase):
+    def test_una_pagina_de_otro_mercado_no_tumba_la_auditoria(self) -> None:
+        # Antes: ValueError "no impression threshold configured for country ES" y la corrida
+        # entera moría antes de evaluar una sola página colombiana.
+        from orchestrator.audit import AuditRules, PageMetrics, find_opportunities
+
+        reglas = AuditRules(min_impressions={"CO": 100, "MX": 100, "CR": 30, "DO": 30})
+        paginas = [
+            PageMetrics(
+                url="https://programascontabilidad.com/espana/facturacion/",
+                country="ES",
+                clicks=10,
+                impressions=5000,
+                position=8.0,
+                prev_clicks=10,
+                prev_position=8.0,
+            ),
+            PageMetrics(
+                url="https://programascontabilidad.com/colombia/software-contable/",
+                country="CO",
+                clicks=5,
+                impressions=900,
+                position=12.0,
+                prev_clicks=5,
+                prev_position=12.0,
+            ),
+        ]
+
+        oportunidades = find_opportunities(paginas, reglas)
+
+        self.assertTrue(all(o.country == "CO" for o in oportunidades))
+
     def test_un_articulo_peruano_se_reconoce_como_peru(self) -> None:
         texto = (
             "Susii es un sistema de facturación electrónica en Perú. Emite boletas ante la "
