@@ -415,6 +415,11 @@ def main() -> int:
         else:
             instantanea = load_snapshot(RAIZ / "datos" / "muestra" / "gsc-2026-11-05.json")
         oportunidades = find_opportunities(instantanea.pages, AuditRules.from_file())
+        # El blog tiene posts de varios países y este agente solo escribe para cuatro: un tema
+        # marcado con otro mercado no se convierte en pieza.
+        fuera = [o for o in oportunidades if (o.country or "").upper() not in PAISES]
+        if fuera:
+            print(f"temas   : {len(fuera)} descartados por mercado fuera del portal")
         propias = [o for o in oportunidades if o.country == args.pais]
         # Primero lo que necesita cuerpo; si no hay, los títulos y metas con demanda real:
         # con 176.295 impresiones y 544 clics, un título mejor rinde más que otra pieza.
