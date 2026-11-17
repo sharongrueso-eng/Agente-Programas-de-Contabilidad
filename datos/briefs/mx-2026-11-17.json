@@ -1,0 +1,23 @@
+{
+  "task_id": "prod-2026-11-17-MX",
+  "date": "2026-11-17",
+  "slot": "A",
+  "format": "comparativa",
+  "country": "MX",
+  "opportunity": {
+    "url": "https://programascontabilidad.com/comparativas-de-software/software-contable-para-veterinarias-en-mexico/",
+    "country": "MX",
+    "action": "create",
+    "focus_keyword": "software contable para veterinarias en méxico",
+    "intent": "best",
+    "score": 55.0,
+    "evidence": {
+      "reason": "segmento sin pieza en el archivo: veterinarias en México, y las fichas del país permiten comparar precio, facturación electrónica e inventario",
+      "impressions": 0,
+      "clicks": 0,
+      "ctr": 0.0,
+      "position": 0.0
+    }
+  },
+  "skipped_reason": ""
+}
