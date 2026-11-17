@@ -187,10 +187,9 @@ def main() -> int:
         "prod",
         "--secciones",
         "--gsc",
-        # Autonomía: primero artículo nuevo (temas curados y, cuando se agotan, GSC). Si GSC
-        # propone un reencauche, la cadena genera la versión mejorada como borrador y no toca la
-        # URL viva: escribir encima de una página publicada se autoriza a mano con `--en-vivo`.
-        "--solo-nuevos",
+        # Prioridad de negocio: primero se mejora lo que ya posiciona (reencauche) y solo cuando
+        # no hay nada que mejorar se escribe una pieza nueva. La elección sale del diagnóstico.
+        "--auto",
     ]
     if modo != "publicar":
         argumentos.append("--borrador")

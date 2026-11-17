@@ -191,6 +191,17 @@ def producir_por_secciones(
 - Si un competidor no publica un dato, dilo y sigue. La ausencia declarada es información.
 - En una comparativa bastan **dos o tres competidores**: el registro es un techo, no una lista que
   haya que cubrir entera. Los dos o tres que el lector compararía de verdad valen más que todos.
+- **Intención de producto**: el tema se apoya en algo donde Alegra es fuerte —facturación
+  electrónica, contabilidad, punto de venta, nómina electrónica, inventario y costos, cartera o
+  automatización con IA—. Si el ángulo no se sostiene en ninguno de esos frentes, replantéalo:
+  no se escribe una pieza donde Alegra no tiene nada que ofrecer.
+- **Alegra BOT** (el asistente con IA que responde por WhatsApp y registra facturas y gastos) se
+  resalta como beneficio cuando el ángulo lo permita: es el diferenciador que el lector no
+  encuentra en el competidor. Con nombre propio, «Alegra BOT», y una frase que diga qué resuelve.
+- **AEO: escribe para que un modelo te pueda citar.** La respuesta va en la primera o segunda
+  frase del arranque, la consulta foco en el primer párrafo, al menos dos secciones con el H2 en
+  forma de pregunta, y cada cifra con su fuente y su fecha. Un párrafo que empiece definiendo
+  («El software contable es…») vale más que tres que den rodeos.
 - Devuelves **solo el HTML de la pieza**: sin cercas de markdown (```), sin encabezados tipo
   «## Bloque «X» — fragmento listo para pegar», sin marcadores `[PENDIENTE…]` y sin notas de
   proceso para el editor. Eso no es texto para el lector y se publica tal cual.

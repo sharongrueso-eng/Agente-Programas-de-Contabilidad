@@ -174,7 +174,7 @@ class HappyPathTests(unittest.TestCase):
         self.assertEqual(publisher.calls, 0)
         self.assertEqual(
             [step["step"] for step in result["steps"]],
-            ["production", "validation", "judge", "publication"],
+            ["production", "validation", "judge", "aeo", "publication"],
         )
 
     def test_state_files_are_written(self) -> None:

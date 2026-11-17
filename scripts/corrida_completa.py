@@ -171,6 +171,52 @@ def modelo(nombre: str, por_defecto: str) -> str:
 
 
 
+def _modelos_aeo() -> tuple[str, ...]:
+    """Modelos a los que se les pregunta la consulta foco: ChatGPT y Perplexity por defecto."""
+    crudo = os.environ.get("PDC_MODEL_AEO", "openai/gpt-4o-mini,perplexity/sonar")
+    return tuple(m.strip() for m in crudo.split(",") if m.strip())
+
+
+def _preguntar_aeo():
+    """Devuelve `(modelo, pregunta) -> respuesta`, o None si no hay pasarela configurada.
+
+    Sin llave no se inventa una respuesta: el informe AEO queda como «sin_modelo».
+    """
+    base = os.environ.get("OPENAI_BASE_URL")
+    llave = os.environ.get("PDC_LLM_KEY")
+    if not base or not llave:
+        return None
+
+    from orchestrator.adapters import LiteLlmClient
+
+    def consultar(modelo: str, pregunta: str) -> str:
+        cliente = LiteLlmClient(base_url=base, api_key=llave, model=modelo, max_tokens=400)
+        return cliente.complete([{"role": "user", "content": pregunta}])
+
+    return consultar
+
+
+def _html_vivo(url: str) -> str:
+    """Contenido actual de una URL publicada, para comparar la versión nueva contra ella."""
+    from orchestrator.adapters import WordPressClient
+
+    if not url:
+        return ""
+    wp = WordPressClient(
+        os.environ.get("PDC_PROD_URL", ""),
+        os.environ.get("PDC_PROD_TOKEN", ""),
+        username=os.environ.get("PDC_PROD_USER", ""),
+    )
+    try:
+        hallado = wp.find_by_url(url)
+        if not hallado or not hallado.get("id"):
+            return ""
+        datos = wp._write("GET", f"/wp-json/wp/v2/posts/{hallado['id']}?context=edit", {})
+        return str((datos.get("content") or {}).get("raw") or "")
+    except Exception:  # noqa: BLE001 - sin lectura no hay comparación, y eso se informa
+        return ""
+
+
 def _mercado_del_articulo(url: str) -> tuple[str | None, str]:
     """Lee el mercado en el artículo publicado, no en su URL.
 
@@ -336,6 +382,11 @@ def main() -> int:
         action="store_true",
         help="solo oportunidades de artículo nuevo; omite los reencauches de URLs vivas",
     )
+    parser.add_argument(
+        "--auto",
+        action="store_true",
+        help="prioridad de negocio: reencauche primero, artículo nuevo después (es lo que corre el calendario)",
+    )
     parser.add_argument("--reusar", action="store_true", help="usar el borrador ya guardado y seguir desde la validación")
     parser.add_argument("--sin-avisos", action="store_true", help="no enviar nada al espacio de Chat")
     parser.add_argument("--entorno", choices=["stg", "prod"], default="stg", help="destino de la publicación")
@@ -427,18 +478,47 @@ def main() -> int:
             print(f"temas   : {len(fuera)} descartados por mercado fuera del portal")
         propias = [o for o in oportunidades if o.country == args.pais]
         propuesta_de_reencauche = False
-        # Primero lo que necesita cuerpo; si no hay, los títulos y metas con demanda real:
-        # con 176.295 impresiones y 544 clics, un título mejor rinde más que otra pieza.
+
+        # Diagnóstico del día: el ranking con las cifras que lo sostienen. Falla cerrada si el
+        # dato de GSC no es fresco — sin dato de máximo 7 días no hay slot.
+        from orchestrator import diagnostico as diagnostico_mod
+
+        try:
+            diag = diagnostico_mod.diagnosticar(
+                instantanea.pages,
+                args.pais,
+                capturado=instantanea.captured_at,
+                oportunidades=oportunidades,
+            )
+        except diagnostico_mod.SinDatos as error:
+            print(f"sin diagnóstico: {error}")
+            return 2
+        print(
+            f"diagnóstico: {len(diag.paginas)} páginas · {len(diag.oportunidades)} oportunidades · "
+            f"umbral {diag.umbral_impresiones} impresiones · datos de hace {diag.edad_dias} día(s)"
+        )
+
         con_cuerpo = [o for o in propias if requires_body(o.action)]
+        # Prioridad de negocio: primero se mejora lo que ya posiciona (reencauche), y solo cuando
+        # no hay nada que mejorar se escribe una pieza nueva.
+        reencauches = [o for o in con_cuerpo if (o.action or "").startswith("refresh")]
+        nuevos = [o for o in con_cuerpo if (o.action or "") == "create"]
         if args.solo_nuevos:
-            # Autonomía: la corrida diaria solo crea artículos nuevos. Un reencauche escribe
-            # sobre una URL viva y esa escritura se autoriza a mano, no por calendario.
-            antes = len(con_cuerpo)
-            con_cuerpo = [o for o in con_cuerpo if (o.action or "") == "create"]
-            if antes != len(con_cuerpo):
-                print(f"nuevos  : {len(con_cuerpo)} de {antes} con cuerpo; los reencauches se omiten")
-        elegidas = con_cuerpo or ([] if args.solo_nuevos else propias)
-        if args.solo_nuevos and not elegidas:
+            elegidas = nuevos
+            if con_cuerpo and not nuevos:
+                print(
+                    f"nuevos  : 0 de {len(con_cuerpo)} con cuerpo; "
+                    "los reencauches se omiten (--solo-nuevos)"
+                )
+        else:
+            elegidas = reencauches or nuevos
+        if elegidas and (elegidas[0].action or "").startswith("refresh"):
+            propuesta_de_reencauche = True
+            print(
+                f"prioridad: reencauche «{elegidas[0].action}» sobre "
+                f"{elegidas[0].url.rstrip('/').split('/')[-1]} ({len(reencauches)} en cola)"
+            )
+        if not elegidas and not args.solo_nuevos:
             # El auditor solo propone refrescos: nunca emite `create`. Los temas nuevos salen del
             # registro cruzado con el archivo del blog, y la fecha elige cuál toca hoy.
             try:
@@ -458,17 +538,8 @@ def main() -> int:
                     f"temas   : {len(propuestas)} sin cubrir en {args.pais}; "
                     f"hoy toca «{elegidas[0].focus_keyword}»"
                 )
-            elif propias:
-                # Se agotaron los temas curados: GSC decide con lo que ya mide. Un refresco gana
-                # por CTR y posición, y en una corrida autónoma no se escribe encima de la URL
-                # viva: se genera la versión mejorada como propuesta en borrador.
-                propuesta_de_reencauche = True
-                elegidas = propias
-                print(
-                    f"temas   : sin temas nuevos en {args.pais}; GSC propone "
-                    f"{len(propias)} reencauches y empieza «{elegidas[0].url.rstrip('/').split('/')[-1]}» "
-                    f"({elegidas[0].action})"
-                )
+            else:
+                print(f"temas   : sin temas nuevos sin cubrir en {args.pais}")
         if not elegidas:
             print("sin oportunidades para", args.pais)
             return 2
@@ -511,6 +582,26 @@ def main() -> int:
             return 2
         elegidas = confirmadas
         elegida = elegidas[0]
+
+        # Reencauche: se lee la versión viva para comparar la nueva contra ella antes de tocar
+        # nada. Sin esa lectura no hay reencauche, hay una reescritura a ciegas.
+        html_vivo = ""
+        if (elegida.action or "").startswith("refresh"):
+            html_vivo = _html_vivo(elegida.url) or ""
+            if html_vivo:
+                print(f"viva    : {len(html_vivo)} caracteres leídos de {elegida.url[-45:]}")
+            else:
+                print(f"viva    : no se pudo leer {elegida.url[-45:]}; se sigue sin comparación")
+
+        # Calendario quincenal del mercado: el plan que se revisa, guardado con la corrida.
+        try:
+            hoy_dia = __import__("datetime").date.today()
+            plan = diagnostico_mod.calendario({args.pais: diag}, desde=hoy_dia)
+            destino = Path(os.environ.get("PDC_STATE_DIR", "state")) / "calendario.json"
+            diagnostico_mod.guardar_calendario(plan, destino.parent)
+            print(f"calendario: {len(plan)} días hábiles en {destino}")
+        except Exception as error:  # noqa: BLE001 - el calendario informa, no bloquea
+            print(f"calendario: no se pudo armar ({error})")
 
         from dataclasses import replace as _replace
 
@@ -691,10 +782,14 @@ def main() -> int:
             post_existente = hallado.get("id") if hallado else None
         except Exception:  # noqa: BLE001
             post_existente = None
-        if locals().get("propuesta_de_reencauche"):
-            # La propuesta se guarda aparte: tocar la URL viva es una decisión editorial.
+        if locals().get("propuesta_de_reencauche") and args.borrador:
+            # En modo borrador el reencauche se guarda como versión paralela: la URL viva no se
+            # toca hasta que alguien la apruebe.
             print("propuesta: se crea un borrador nuevo; la URL publicada no se modifica")
             post_existente = None
+        elif locals().get("propuesta_de_reencauche") and post_existente:
+            # Modo publicar: la versión aprobada se aplica sobre la misma URL, con respaldo previo.
+            print(f"reencauche: se escribe sobre el post {post_existente}, con respaldo de la versión actual")
         destino = f"actualiza el post {post_existente}" if post_existente else "la URL no existe, se crea"
         print(f"reencauche: {destino}")
 
@@ -776,6 +871,13 @@ def main() -> int:
         # Los enlaces se comprueban de verdad antes de publicar: un 404 en el cuerpo invalida
         # el artículo. Se puede apagar con --sin-avisos para una prueba sin red.
         comprobar_enlaces=None if args.sin_avisos else estado_de_enlace,
+        # Reencauche: la versión nueva se compara contra la viva antes de reemplazarla.
+        html_vivo=locals().get("html_vivo") or None,
+        # El diagnóstico del día viaja con la corrida: el equipo ve los mismos números.
+        diagnostico=(locals().get("diag").to_dict() if locals().get("diag") else None),
+        # AEO: quién responde por la consulta foco. Sin llave queda registrado como «sin_modelo».
+        aeo_preguntar=_preguntar_aeo(),
+        aeo_modelos=_modelos_aeo(),
         # El sitemap es el mapa de lo que existe: sin él, los enlaces internos se contrastaban
         # contra las oportunidades de GSC y una corrida con `--brief` quedaba sin lista (y sin
         # comprobación). `urls_para_enlaces` son las 20 URLs reales del sitio.

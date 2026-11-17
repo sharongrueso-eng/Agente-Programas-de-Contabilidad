@@ -67,6 +67,8 @@ class Draft:
     html: str = ""
     alt_text: str = ""
     slug: str = ""
+    # Cuando la pieza nace de un reencauche, guarda la URL viva de la que es versión paralela.
+    reencauche_de: str = ""
 
 
 class LlmClient(Protocol):

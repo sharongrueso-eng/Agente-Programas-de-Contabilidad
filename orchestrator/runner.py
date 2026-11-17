@@ -132,6 +132,12 @@ class Deps:
     avisar: Any = None
     solo_borrador: bool = False
     urls_internas: Any = None
+    # Reencauche: HTML de la pieza viva contra el que se compara la versión nueva.
+    html_vivo: str | None = None
+    # Diagnóstico del día, tal cual se publicó en el reporte.
+    diagnostico: Any = None
+    aeo_preguntar: Any = None
+    aeo_modelos: Any = ()
     post_existente: int | None = None
     subir_media: Any = None
     permitir_vivo: bool = False
@@ -225,6 +231,10 @@ def run(
     steps: list[dict[str, Any]] = []
     resume = state.resume_from
     start = ORDER.index(resume) if resume else 0
+
+    # El diagnóstico del día se guarda con la corrida: el reporte y la pieza hablan del mismo dato.
+    if deps.diagnostico:
+        state.save("diagnostico.json", deps.diagnostico)
 
     draft_data = state.load("borrador.json")
     draft = Draft(**draft_data) if draft_data else None
@@ -517,6 +527,62 @@ def run(
                     "total": len(retirados),
                 }
             )
+
+    # Reencauche: la versión nueva se compara contra la que está publicada antes de reemplazarla.
+    # Publicar una versión peor que la viva es un daño, no un avance.
+    if deps.html_vivo:
+        from orchestrator.reencauche import comparar, resumen_para_reporte
+
+        if brief.opportunity and brief.opportunity.url:
+            draft = replace(draft, reencauche_de=brief.opportunity.url)
+        resultado = comparar(
+            draft.html, deps.html_vivo, brief.opportunity.focus_keyword if brief.opportunity else ""
+        )
+        state.save("comparacion.json", resumen_para_reporte(resultado, draft.reencauche_de))
+        steps.append(
+            {
+                "step": "comparacion",
+                "status": "DONE" if resultado.pasa else "FALLIDA",
+                "detalle": resultado.motivo() if not resultado.pasa else "mejor o igual que la viva",
+            }
+        )
+        if not resultado.pasa:
+            return _contract(
+                "BLOCKED",
+                brief,
+                state,
+                steps,
+                block_reason="la versión nueva es peor que la publicada: " + resultado.motivo(),
+            )
+
+    # AEO: el blog tiene que poder ser citado por un modelo. Se revisa la forma y se registra qué
+    # responden ChatGPT y Perplexity a la consulta foco (si hay llave; si no, queda «sin_modelo»).
+    from orchestrator.aeo import (
+        guardar as guardar_aeo,
+        informe as informe_aeo,
+        preguntas_para_modelos,
+        respuestas_externas,
+    )
+
+    keyword = brief.opportunity.focus_keyword if brief.opportunity else ""
+    externas = None
+    if getattr(deps, "aeo_preguntar", None):
+        externas = respuestas_externas(
+            preguntas_para_modelos(draft.html, keyword),
+            deps.aeo_preguntar,
+            getattr(deps, "aeo_modelos", ()) or (),
+        )
+    informe = informe_aeo(draft.html, keyword, externas)
+    guardar_aeo(informe, state.dir)
+    steps.append(
+        {
+            "step": "aeo",
+            "status": "ADVERTENCIA" if informe["graves_fallidos"] else "DONE",
+            "puntaje": informe["puntaje"],
+            "graves": informe["graves_fallidos"],
+            "citado": (externas or {}).get("citado"),
+        }
+    )
 
     approved = (state.load("veredictos.json", {}) or {}).get("approved_fingerprint", "")
     effective = replace(
