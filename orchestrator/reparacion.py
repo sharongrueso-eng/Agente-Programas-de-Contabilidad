@@ -95,7 +95,9 @@ def agregar_enlaces_internos(draft: Draft, urls: list[str], minimo: int = 5) -> 
     )
     bloque = (
         '<h2>Para seguir leyendo</h2>'
-        '<ul style="margin:0 0 8px;padding-left:20px;">' + items + "</ul>"
+        # `!important` porque el tema fuerza `padding-left:0 !important` en las listas del cuerpo:
+        # sin esto la viñeta de «Para seguir leyendo» se dibuja fuera del marco.
+        '<ul style="margin:0 0 16px 0;padding-left:22px !important;">' + items + "</ul>"
     )
     return replace(draft, html=draft.html + chr(10) + chr(10) + bloque)
 def _titulo_de(url: str) -> str:

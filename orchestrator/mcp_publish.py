@@ -22,6 +22,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from orchestrator.assigner import Brief
+from orchestrator.linea_visual import normalizar_listas
 from orchestrator.preparacion import IMAGE_CAPTION
 from orchestrator.producer import Draft
 
@@ -218,7 +219,9 @@ def publicar(
 
         argumentos: dict[str, Any] = {
             "title": draft.title,
-            "content": draft.html,
+            # Última pasada de listas: los bloques que se añaden después de la presentación
+            # («Para seguir leyendo») también tienen que llevar su sangría con !important.
+            "content": normalizar_listas(draft.html),
             "excerpt": draft.meta_description,
             "status": "draft",
             "slug": draft.slug,
@@ -334,7 +337,7 @@ def publicar(
         if draft.meta_description.strip():
             cambios["excerpt"] = draft.meta_description.strip()
         if draft.html.strip():
-            cambios["content"] = draft.html
+            cambios["content"] = normalizar_listas(draft.html)
         if len(cambios) > 1:
             ejecutar(ABILITIES["actualizar"], cambios)
 
