@@ -92,38 +92,55 @@ def intencion_de(query: str, consultar_modelo: Callable[[str], str] | None = Non
 # --- solapamiento ---------------------------------------------------------------------------
 
 
-def solapamientos(pages: Sequence[PageMetrics], min_compartidas: int = 1) -> list[dict[str, Any]]:
+def solapamientos(
+    pages: Sequence[PageMetrics], min_compartidas: int = 2, umbral: float = 0.3
+) -> list[dict[str, Any]]:
     """Pares de URLs del mismo país que compiten por las mismas consultas.
 
-    La dueña es la que tiene más clics; la otra se sugiere para 301 en el reporte. El agente **no**
-    aplica redirecciones: son una decisión de quien conoce el archivo.
+    Se exige un solapamiento real (Jaccard >= 0.3 sobre las consultas principales, con al menos
+    dos consultas en común): compartir una consulta genérica no es canibalización. La dueña es la
+    que tiene más clics; la otra se sugiere para 301 en el reporte. El agente **no** aplica
+    redirecciones: son una decisión de quien conoce el archivo.
     """
     por_pais: dict[str, list[PageMetrics]] = {}
     for page in pages:
         por_pais.setdefault(page.country, []).append(page)
 
-    salida: list[dict[str, Any]] = []
+    pares: list[dict[str, Any]] = []
     for pais, lista in por_pais.items():
         for i, una in enumerate(lista):
             consultas_una = {q.query.lower() for q in una.top_queries}
-            if not consultas_una:
+            if len(consultas_una) < min_compartidas:
                 continue
             for otra in lista[i + 1 :]:
-                compartidas = consultas_una & {q.query.lower() for q in otra.top_queries}
+                consultas_otra = {q.query.lower() for q in otra.top_queries}
+                compartidas = consultas_una & consultas_otra
                 if len(compartidas) < min_compartidas:
                     continue
+                union = consultas_una | consultas_otra
+                jaccard = len(compartidas) / len(union) if union else 0.0
+                if jaccard < umbral:
+                    continue
                 duena, perdedora = (una, otra) if una.clicks >= otra.clicks else (otra, una)
-                salida.append(
+                pares.append(
                     {
                         "pais": pais,
                         "duena": duena.url,
                         "sugerida_para_301": perdedora.url,
                         "consultas_compartidas": sorted(compartidas)[:10],
+                        "solapamiento": round(jaccard, 3),
                         "clics_duena": duena.clicks,
                         "clics_perdedora": perdedora.clicks,
                     }
                 )
-    return salida
+
+    # Una URL perdedora se sugiere una sola vez: el par con más solapamiento.
+    mejores: dict[str, dict[str, Any]] = {}
+    for par in pares:
+        actual = mejores.get(par["sugerida_para_301"])
+        if actual is None or par["solapamiento"] > actual["solapamiento"]:
+            mejores[par["sugerida_para_301"]] = par
+    return sorted(mejores.values(), key=lambda p: p["solapamiento"], reverse=True)
 
 
 # --- diagnóstico ----------------------------------------------------------------------------

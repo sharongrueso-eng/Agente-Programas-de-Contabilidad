@@ -108,14 +108,29 @@ class DiagnosticoTests(unittest.TestCase):
         self.assertEqual(diag.oportunidades[0].action, "refresh_by_decline")
 
     def test_dos_urls_que_compiten_se_marcan_para_consolidar(self):
-        una = pagina("https://programascontabilidad.com/a/", clics=40, consultas=("siigo precios",))
-        otra = pagina("https://programascontabilidad.com/b/", clics=5, consultas=("siigo precios",))
+        una = pagina(
+            "https://programascontabilidad.com/a/",
+            clics=40,
+            consultas=("siigo precios", "siigo planes"),
+        )
+        otra = pagina(
+            "https://programascontabilidad.com/b/",
+            clics=5,
+            consultas=("siigo precios", "siigo planes"),
+        )
 
         solapes = solapamientos([una, otra])
 
         self.assertEqual(len(solapes), 1)
         self.assertEqual(solapes[0]["duena"], una.url)
         self.assertEqual(solapes[0]["sugerida_para_301"], otra.url)
+        self.assertEqual(solapes[0]["solapamiento"], 1.0)
+
+    def test_compartir_una_consulta_generica_no_es_canibalizacion(self):
+        una = pagina("https://programascontabilidad.com/a/", consultas=("siigo precios", "software contable"))
+        otra = pagina("https://programascontabilidad.com/b/", consultas=("siigo precios", "nomina electronica"))
+
+        self.assertEqual(solapamientos([una, otra]), [])
 
 
 class CalendarioTests(unittest.TestCase):
