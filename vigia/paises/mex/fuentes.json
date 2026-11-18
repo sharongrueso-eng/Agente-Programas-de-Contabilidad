@@ -59,7 +59,10 @@
     "México"
    ],
    "modo_lectura": "ruta_pais",
-   "receta": null,
+   "receta": {
+    "contenedor": "[data-period-group]",
+    "estado": "verificada_t4"
+   },
    "estado": "verificado",
    "pista_receta": "147 cifras. La receta de Colombia ([id^='pricing-cards-']) NO sirve aqui: en MX pricing-cards-af/-pos/-contabilidad/-contador son anclas de menu, no ids de contenedor. Fijar receta en T4.",
    "nota": "Muestra mensual con pago anual (186,75) y facturado anual (2,241): el -25 % es el descuento por pago anual, no campana.",

@@ -69,7 +69,10 @@
     "USD"
    ],
    "modo_lectura": "ruta_pais",
-   "receta": null,
+   "receta": {
+    "contenedor": "[data-period-group]",
+    "estado": "verificada_t4"
+   },
    "estado": "verificado",
    "pista_receta": "105 cifras. Los precios se escriben con el codigo delante (USD 26.10 / mes), no con simbolo $: el patron de precios tiene que aceptar el codigo de moneda o la lectura sale vacia.",
    "nota": "Cobra en USD aunque el pais sea RD. La moneda no identifica el pais: lo hacen DGII, ITBIS y e-CF. Mensual con pago anual (USD 26.10) y facturado anual (USD 313.20).",

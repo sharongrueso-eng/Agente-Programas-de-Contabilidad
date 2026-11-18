@@ -196,6 +196,45 @@ Las páginas de producto (`/costarica/pos/` y `/costarica/erp/`) no publican tab
 «Alegra POS» y dice qué planes muestra cada una; o se graba el bloque visible de cada pestaña. Con eso se
 escribe el registro en diez minutos.
 
+## T4 · Lector (18-nov-2026)
+
+`vigia/lector.py` lee una fuente y devuelve una **lectura**, no un precio suelto: cifras, monedas, señales
+de país, campaña y resultado (`ok`, `sin_precios`, `moneda_distinta`, `pais_distinto`, `campana`,
+`lectura_dudosa`).
+
+```bash
+python -m vigia.lector --pais col                     # fuentes de prioridad 1
+python -m vigia.lector --pais col --fuente alegra-co
+python -m vigia.lector --pais col --desde-html paises/col/lecturas/2026-11-18/alegra-co.html
+```
+
+- Abre con Chromium a 1440 px, idioma y zona horaria del país; lee **dos veces** en contextos separados y
+  compara las cifras: si no coinciden, la lectura es dudosa.
+- Aplica la regla de moneda (nunca convierte) y comprueba las señales de país con `inventario/pais.py`.
+- Guarda el HTML y la lectura en `paises/<vigía>/lecturas/AAAA-MM-DD/<fuente>.{html,json}`.
+- La evidencia de campaña es la **frase** que la delató, no el patrón, para que se pueda buscar en la
+  página.
+
+**Corrida de humo del 18-nov sobre las cuatro fuentes de Alegra** (una lectura cada una):
+
+| Vigía | Fuente | Resultado | Cifras | Moneda |
+|---|---|---|---|---|
+| COL | Alegra | ok | 68 | COP |
+| MEX | Alegra | **campana** | 49 | MXN |
+| RD | Alegra | ok | 55 | USD |
+| CR | Alegra | ok | 32 | USD |
+
+- **La campaña de México es real**: la página trae «Buen fin 2026 · muy pronto algo bueno viene para tu
+  negocio». El lector la marca y, por regla, ese precio no se compara ni se aplica. Es el primer aviso 🟡
+  con causa verificable del sistema.
+- Las recetas de las cuatro Alegra quedan como `[data-period-group]` (México, RD y Costa Rica) y
+  `[id^='pricing-cards-']` (Colombia), probadas contra el HTML guardado.
+- El descuento anual de Siigo (−25 %/−30 % «para cliente nuevo») **no** dispara campaña: hay prueba.
+
+**Pruebas** (`tests/test_lector.py`, 18 casos): los cuatro casos del plan —normal, campaña, moneda
+equivocada y receta rota—, país distinto, el descuento anual que no es campaña y los HTML reales de
+Alegra Colombia, México y Costa Rica.
+
 ## Inventario v2 (18-nov-2026)
 
 Fuente: API pública de WordPress (`content.rendered`) de los 343 posts publicados más el único recurso,
