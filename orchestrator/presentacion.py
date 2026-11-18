@@ -218,12 +218,15 @@ def viñetas(html: str) -> str:
     )
 
 
-def utm(html: str) -> str:
+def utm(html: str, pais: str = "CO") -> str:
+    """La UTM de la pieza lleva su país: `{pais}_articulo_tmd_content`."""
+
     def poner(m: re.Match[str]) -> str:
         url = m.group(1).replace("&amp;", "&")
         if "utm_source=" in url:
             return 'href="' + url + '"'
-        return 'href="' + url + ("&" if "?" in url else "?") + UTM_PRINCIPAL[1:] + '"'
+        campana = f"?utm_source=programascontabilidad&utm_medium=blog&utm_campaign={pais.lower()}_articulo_tmd_content"
+        return 'href="' + url + ("&" if "?" in url else "?") + campana[1:] + '"'
 
     return re.sub(r'href="(https://www\.alegra\.com[^"]*)"', poner, html)
 
@@ -232,17 +235,28 @@ def presentar(
     html: str,
     *,
     pais: str,
-    url_cta: str = "https://www.alegra.com/colombia/precios/",
+    url_cta: str = "",
 ) -> str:
     """Aplica la presentación completa a una pieza recién escrita."""
+    from .reglas_editoriales import MAX_ENLACES_ALEGRA, corregir as corregir_forma
+
+    # Forma primero: el <h1> que duplica el título, las secciones repetidas y los enlaces a la
+    # versión de Alegra de otro país (una pieza de México enlazaba a /colombia/precios).
+    html, _tocados = corregir_forma(html, pais=pais)
     datos = _fichas(pais)
     html = viñetas(html)
     if datos:
         html = _envolver_marcas(html, datos)
     html = _panel_veredicto(html)
-    html = utm(html)
+    html = utm(html, pais)
     if "pc-cta" not in html:
-        destino = url_cta if "utm_source=" in url_cta else url_cta + UTM_PRINCIPAL
+        from .reglas_editoriales import MAX_ENLACES_ALEGRA, recortar_alegra, ruta_principal
+
+        # El CTA final es un enlace más a Alegra: el cuerpo deja sitio para que el total sea dos.
+        html = recortar_alegra(html, MAX_ENLACES_ALEGRA - 1)
+        destino = url_cta or f"https://www.alegra.com{ruta_principal(pais)}precios/"
+        if "utm_source=" not in destino:
+            destino += f"?utm_source=programascontabilidad&utm_medium=blog&utm_campaign={pais.lower()}_articulo_tmd_content"
         indice = html.find("<h2", html.find("Veredicto"))
         html = (html[:indice] + cta(destino) + html[indice:]) if indice != -1 else html + cta(destino)
     if "pc-firma" not in html and AVATAR_DE_LEANDRO not in html:

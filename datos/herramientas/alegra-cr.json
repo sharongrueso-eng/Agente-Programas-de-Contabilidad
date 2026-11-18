@@ -1,0 +1,37 @@
+{
+  "brand": "Alegra",
+  "country": "CR",
+  "product": "Alegra Costa Rica: facturación electrónica, POS y ERP",
+  "plans": [
+    {"name": "Alegra Facturación Emprendedor (anual, primer año)", "price": "3.75", "currency": "USD", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "promocion": "25 % OFF para usuarios nuevos el primer año", "note": "Equivalente mensual de USD 45 facturados al año. 10 facturas al mes, 1 usuario. No incluye el módulo contable. El precio mensual sin descuento no se publica en la página"},
+    {"name": "Alegra Facturación Pyme (anual, primer año)", "price": "7.50", "currency": "USD", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "promocion": "25 % OFF para usuarios nuevos el primer año", "note": "Equivalente mensual de USD 90 facturados al año. 50 facturas al mes, 3 usuarios. No incluye el módulo contable. El precio mensual sin descuento no se publica"},
+    {"name": "Alegra Facturación Pro (anual, primer año)", "price": "15", "currency": "USD", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "promocion": "25 % OFF para usuarios nuevos el primer año", "note": "Equivalente mensual de USD 180 facturados al año. 250 facturas al mes, 5 usuarios. No incluye el módulo contable. El precio mensual sin descuento no se publica"}
+  ],
+  "source_url": "https://www.alegra.com/costarica/precios/",
+  "captured_at": "2026-11-18",
+  "evidence_level": "documentacion_oficial",
+  "electronic_invoicing": "Facturación electrónica v4.4 homologada con Hacienda, con firma digital TRIBU-CR y codificación CABYS automática",
+  "features": [
+    "Facturación electrónica homologada con Hacienda",
+    "Codificación CABYS automática",
+    "POS para mostrador",
+    "Alegra ERP con contabilidad e inventario",
+    "Alegra BOT e IA para registrar facturas y gastos",
+    "Prueba gratis de 15 días, sin tarjeta"
+  ],
+  "integrations": [],
+  "support": "Correo y chat; capacitaciones grupales",
+  "advantages": [
+    "Cumplimiento de Hacienda incluido en todos los planes, con CABYS automático",
+    "Cobra en dólares: el mismo precio para todo el país"
+  ],
+  "known_limits": [
+    "Alegra Facturación no incluye el módulo contable",
+    "Los precios publicados son el equivalente mensual del pago anual con el descuento del primer año; el precio mensual sin descuento no está publicado",
+    "Los valores son más IVA"
+  ],
+  "notes": "Precios leídos del HTML de alegra.com/costarica/precios/ el 18-nov-2026. La página cobra en USD y muestra el equivalente mensual del pago anual con 25 % OFF para usuarios nuevos el primer año (facturado 45 / 90 / 180 USD al año). El precio regular mensual no está publicado en el HTML, así que no se registra: en la pieza se cita el precio con su condición o se dice que el regular no está publicado. Alegra ERP y Soy Contador para Costa Rica no muestran precio en el HTML: no se registran hasta verlos publicados.",
+  "historial": [
+    {"fecha": "2026-11-18", "cambio": "creada leyendo el HTML de la página de precios de Costa Rica; solo se registra lo publicado"}
+  ]
+}

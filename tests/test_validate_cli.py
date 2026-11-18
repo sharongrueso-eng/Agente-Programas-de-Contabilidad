@@ -27,15 +27,16 @@ BRIEF = {
 
 ALEGRA = (
     "https://www.alegra.com/co/contabilidad/?utm_source=programascontabilidad"
-    "&utm_medium=referencia&utm_campaign=co"
+    "&utm_medium=referencia&utm_campaign=co_articulo_tmd_content"
 )
 
 
 def good_draft() -> dict:
+    # Sin <h1> (lo imprime el tema) y con un solo enlace a Alegra: el máximo del cuerpo es dos y
+    # el CTA final ocupa el segundo.
     html = (
-        "<h1>Opiniones de Siigo en Colombia</h1>"
         "<p>Las opiniones de Siigo entre contadores colombianos dependen del tamaño del negocio.</p>"
-        + f'<a href="{ALEGRA}">Alegra</a>' * 3
+        + f'<a href="{ALEGRA}">Alegra</a>'
         + "".join(f'<a href="https://programascontabilidad.com/g{i}/">interna</a>' for i in range(5))
         + "".join(f'<a href="https://f{i}.gov.co/">fuente</a>' for i in range(2))
     )
@@ -76,7 +77,8 @@ class ValidateCommandTests(unittest.TestCase):
 
     def test_blocking_control_exits_two_and_lists_the_reason(self) -> None:
         broken = good_draft()
-        broken["html"] = broken["html"].replace("Opiniones de Siigo en Colombia", "Siigo a fondo")
+        # Un <h1> en el cuerpo duplica el título del tema y no dice la consulta foco.
+        broken["html"] = "<h1>Siigo a fondo</h1>" + broken["html"]
 
         with TemporaryDirectory() as temp_dir:
             brief_path, draft_path = self._files(temp_dir, broken)
@@ -91,7 +93,9 @@ class ValidateCommandTests(unittest.TestCase):
         self.assertEqual(exit_code, 2)
         self.assertEqual(payload["status"], "CORREGIR")
         failing = [c for c in payload["controls"] if c["status"] != "PASS"]
-        self.assertEqual([c["code"] for c in failing], ["h1_keyword"])
+        codigos = [c["code"] for c in failing]
+        self.assertIn("h1_keyword", codigos)
+        self.assertIn("h1_en_contenido", codigos)
 
 
 if __name__ == "__main__":

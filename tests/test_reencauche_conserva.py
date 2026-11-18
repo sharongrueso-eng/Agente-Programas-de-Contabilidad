@@ -103,7 +103,10 @@ class ConservarEnlacesTests(unittest.TestCase):
         self.assertIn(f'href="{A}"', html)
         self.assertIn(">Siigo Aspel</a>", html)
         self.assertNotIn(AUTOR, html)
-        self.assertTrue(comparar(html, VIVA, url_viva=URL).controles[2]["pasa"])
+        self.assertTrue(
+            next(c for c in comparar(html, VIVA, url_viva=URL).controles
+                 if c["codigo"] == "comparacion_enlaces")["pasa"]
+        )
 
     def test_usa_la_lista_que_ya_existe_y_no_duplica(self) -> None:
         nueva = (

@@ -65,9 +65,16 @@ def etiquetas(titulo: str, keyword: str, pais: str, marcas: list[str] | None = N
 
 
 def escribir_rank_math(
-    base: str, auth: str, post_id: int, *, titulo: str, descripcion: str, keyword: str
+    base: str,
+    auth: str,
+    post_id: int,
+    *,
+    titulo: str,
+    descripcion: str,
+    keyword: str,
+    categoria: int | None = None,
 ) -> int:
-    """Escribe título SEO, meta descripción y palabra clave en Rank Math.
+    """Escribe título SEO, meta descripción, palabra clave, categoría principal e indexación.
 
     Su API de WordPress no expone estas claves, pero el plugin sí tiene un endpoint propio que
     acepta la misma autenticación básica. Devuelve el estado HTTP.
@@ -84,6 +91,10 @@ def escribir_rank_math(
                 "rank_math_title": titulo[:60],
                 "rank_math_description": descripcion[:160],
                 "rank_math_focus_keyword": keyword,
+                # Indexar y seguir es lo que hace citable la pieza; la categoría principal
+                # alimenta el enlace de la categoría en Rank Math (16 Comparativas o 15 Análisis).
+                "rank_math_robots": ["index", "follow"],
+                **({"rank_math_primary_category": str(categoria)} if categoria else {}),
             },
         }
     ).encode()

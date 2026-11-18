@@ -1059,6 +1059,8 @@ def main() -> int:
              .get("content") or {}).get("raw", "")
         ),
         brands_available=len(fichas_pieza),
+        # Las fichas del país, para que las reglas editoriales comprueben elenco, precios y alias.
+        fichas=fichas_pieza,
         fecha_datos=fecha_datos,
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
@@ -1315,6 +1317,8 @@ def main() -> int:
                 titulo=titulo_meta,
                 descripcion=borrador_meta.get("meta_description", ""),
                 keyword=(getattr(elegida, "focus_keyword", "") if "elegida" in dir() else ""),
+                # Categoría principal de Rank Math: siempre 16 (o 15), nunca Uncategorized.
+                categoria=ids[0] if ids else None,
             )
             print(f"rank math: {estado_rm}")
         except Exception as error:  # noqa: BLE001 - un fallo de taxonomía no oculta la publicación

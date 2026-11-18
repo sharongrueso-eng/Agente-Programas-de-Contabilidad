@@ -235,6 +235,38 @@ Una comparativa **no** termina con "el ganador es Alegra". Se hace así:
   CR/PE/PA; ERP en PE/PA) **o insinuar que falta algo que sí existe** (timbrado de nómina en México, ERP
   en Colombia). Cada módulo nombrado debe aparecer en `references/alegra-modulos-por-pais.md`.
 
+### 4a. Cómo se escribe una comparativa (lo corrigió Claude a mano en el 5704)
+
+- **Alegra está siempre**, y la comparativa lleva Alegra más **tres sistemas que operen en el país**:
+  cuatro marcas como mínimo. Si el registro no alcanza, la corrida se bloquea con el motivo; no se
+  rellena con marcas inventadas ni se estira el elenco con una que no vende allí.
+- **Orden alfabético** en tablas y fichas. Ni Alegra primero ni el competidor más caro al final: la
+  simetría se ve antes de leer los números.
+- **La ventaja de Alegra se muestra con un dato comparable** (la tabla de «cuánto cuesta llevar 10
+  RFC»), nunca con adjetivos. Prohibido «el mejor» sin cifra al lado.
+- **Una sola mención contextual**, condicionada: «si la prioridad es X, Alegra suele encajar
+  porque…». **Y un CTA final** en frase neutra. Eso son **dos enlaces a `alegra.com` como máximo en
+  todo el cuerpo**, y los dos del país de la pieza, con `utm_campaign={pais}_articulo_tmd_content`.
+- **Veredicto por perfil de operación** (contador independiente, despacho, comercio con mostrador,
+  empresa con inventario): sin un ganador único. Cada perfil con su recomendación y su motivo.
+
+### 4b. Precios y marcas: lo que se puede afirmar
+
+- El precio se lee de la landing oficial (HTML, no captura) y se guarda **con su fecha de consulta**.
+  Si la marca no publica precio: «no publica el precio; se cotiza en demo». Nada más: ni estimación
+  ni «desde».
+- Siempre con **periodo** (mes, trimestre, semestre, año), **si lleva IVA**, y **si es plan o
+  complemento**. El error del 5704: «2.799 MXN al mes» era el precio **anual de un complemento**
+  (Conecta Bind), no un plan. Un complemento anual nunca se publica como mensual.
+- **Promociones con fecha de fin**, y los rangos del intro y de las FAQ usan el **precio regular**,
+  no el promocional. Si el regular no está publicado, se dice que no está publicado.
+- **Formato de miles del país**: México `$4,690` y `$974.25`; Colombia `$17.900`; punto para miles en
+  CO/CR/DO y coma en MX.
+- **Una marca es una sola**: «Bind» y «Bind ERP» son el mismo proveedor y no pueden salir como dos
+  fichas que se contradicen. Se normaliza por alias antes de comparar (`orchestrator/reglas_editoriales.py`).
+- **Se comprueba que el producto venda en ese país**. QuickBooks `/mx/` redirige a la versión global,
+  que cobra en USD y no menciona CFDI ni SAT: se escribe así, y no se le inventa un precio en pesos.
+
 ## 5. Publicación (MCP `prog-cont`)
 
 Receta completa en `references/wordpress-prog-cont.md`. Orden:

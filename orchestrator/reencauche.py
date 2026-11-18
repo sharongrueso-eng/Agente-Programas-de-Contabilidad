@@ -231,10 +231,30 @@ def comparar(
     minimo: float = 0.85,
     url_viva: str = "",
     ignorar: Iterable[str] = (),
+    pais: str = "",
 ) -> Resultado:
     """Compara la versión nueva con la publicada. Devuelve controles, no un booleano suelto."""
     controls: list[dict[str, Any]] = []
     largo_viva, largo_nueva = len(viva or ""), len(nueva or "")
+
+    # El reencauche conserva lo que tenía el post vivo: perder marcas es perder la comparación que
+    # ya posicionaba. El vivo 3544 comparaba seis sistemas y el borrador se quedó con uno.
+    from .reglas_editoriales import marcas as marcas_de
+
+    marcas_vivas = marcas_de(viva, pais)
+    marcas_nuevas = marcas_de(nueva, pais)
+    sin_marcas = sorted(marcas_vivas - marcas_nuevas)
+    controls.append(
+        {
+            "codigo": "marcas_perdidas_reencauche",
+            "pasa": not sin_marcas,
+            "detalle": (
+                f"conserva las {len(marcas_vivas)} marcas de la viva"
+                if not sin_marcas
+                else "pierde marcas de la viva: " + ", ".join(sin_marcas[:6])
+            ),
+        }
+    )
 
     controls.append(
         {

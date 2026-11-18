@@ -11,6 +11,8 @@ precios del proveedor y redirige a la home, el lector no llega a lo que se le pr
 
 from __future__ import annotations
 
+from typing import Any
+
 import re
 import urllib.error
 import urllib.request
@@ -72,6 +74,37 @@ DOMINIO = "programascontabilidad.com"
 ANCLA = re.compile(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', re.IGNORECASE | re.DOTALL)
 
 
+def destino(url: str, timeout: float = 12.0) -> tuple[int, str]:
+    """Código final y URL final. Sigue redirecciones.
+
+    Un enlace interno que responde 301 es una URL vieja: el lector aterriza igual, pero el enlace
+    del cuerpo queda apuntando a una dirección que el sitio ya movió. Se corrige a la final.
+    """
+    peticion = urllib.request.Request(url, headers=CABECERAS)
+    try:
+        with urllib.request.urlopen(peticion, timeout=timeout) as respuesta:
+            return int(getattr(respuesta, "status", 200)), respuesta.geturl()
+    except urllib.error.HTTPError as error:
+        return int(error.code), url
+    except Exception:  # noqa: BLE001 - sin red no se puede afirmar que esté roto
+        return 0, url
+
+
+def renombrar(html: str, cambios: dict[str, str]) -> str:
+    """Sustituye el destino de un enlace conservando el resto del `<a>` y su texto."""
+    if not cambios:
+        return html
+
+    def _una(coincidencia: re.Match[str]) -> str:
+        href = coincidencia.group(1)
+        nuevo = cambios.get(href) or cambios.get(href.replace("&amp;", "&"))
+        if not nuevo:
+            return coincidencia.group(0)
+        return coincidencia.group(0).replace(f'href="{href}"', f'href="{nuevo}"', 1)
+
+    return ANCLA.sub(_una, html or "")
+
+
 def clave(url: str) -> str:
     """Forma comparable de una URL: sin esquema, sin www, sin consulta, sin ancla ni barra final."""
     limpio = (url or "").strip().replace("&amp;", "&")
@@ -108,16 +141,21 @@ def revisar(
     comprobar=estado,
     dominio: str = DOMINIO,
     limite: int = LIMITE,
+    destino_de: Any = None,
 ) -> tuple[str, list[str]]:
     """Devuelve el cuerpo sin enlaces rotos y la lista de los que se retiraron.
 
     Internos: se contrastan con el mapa del sitio, no con la red. Un enlace a
     `programascontabilidad.com/algo-que-no-existe` devuelve 404 y además gasta una petición; el
     sitemap dice en un milisegundo qué URLs existen. Externos: se comprueban por HTTP.
+
+    Con `destino_de` (la función que sigue redirecciones) un enlace interno que responde 301 se
+    corrige a su URL final: el cuerpo no debe apuntar a una dirección que el sitio ya movió.
     """
     mapa = {clave(url) for url in (permitidas or [])}
     malas: list[str] = []
     externas: list[str] = []
+    cambios: dict[str, str] = {}
     for url in externos(html, 200):
         interno = clave(url).startswith(dominio)
         if interno and mapa and clave(url) in mapa:
@@ -132,6 +170,15 @@ def revisar(
             continue
         if codigo in MALES or codigo >= 500:
             malas.append(url)
+            continue
+        if interno and destino_de is not None:
+            _, final = destino_de(url)
+            if final and clave(final) != clave(url):
+                cambios[url] = final
+    if cambios:
+        html = renombrar(html, cambios)
+    avisos = [f"{url} → {final}" for url, final in cambios.items()]
     if not malas:
-        return html, []
-    return desenlazar(html, malas)
+        return html, avisos
+    arreglado, retiradas = desenlazar(html, malas)
+    return arreglado, avisos + retiradas

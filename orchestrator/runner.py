@@ -17,6 +17,7 @@ from typing import Any
 
 from orchestrator.assigner import Brief
 from orchestrator.corrector import correct
+from orchestrator.enlaces import destino as destino_de_enlace
 from orchestrator.enlaces import revisar as revisar_enlaces
 from orchestrator.judge import judge
 from orchestrator.link_pass import corregir_enlaces
@@ -135,6 +136,9 @@ class Deps:
     urls_internas: Any = None
     # Reencauche: HTML de la pieza viva contra el que se compara la versión nueva.
     html_vivo: str | None = None
+    # Fichas del país (dicts con brand/plans): las reglas editoriales las usan para comprobar
+    # elenco, precios y alias duplicados.
+    fichas: Any = ()
     # Fecha de consulta de las fichas («el 12 de noviembre de 2026»), para el pie de las tablas.
     fecha_datos: str = ""
     # Diagnóstico del día, tal cual se publicó en el reporte.
@@ -352,6 +356,7 @@ def run(
                 registry_text=deps.registry,
                 brands_available=deps.brands_available,
                 comprobar_enlaces=deps.comprobar_enlaces,
+                fichas=getattr(deps, "fichas", ()),
             )
             state.save("veredictos.json", {"validator": [asdict(c) for c in verdict.controls]})
             steps.append({"step": "validation", "status": verdict.status, "cycle": cycle})
@@ -540,6 +545,8 @@ def run(
             draft.html,
             permitidas=list(deps.urls_internas or []),
             comprobar=deps.comprobar_enlaces or (lambda _url: 0),
+            # Con red disponible, un enlace interno que responde 301 se corrige a su URL final.
+            destino_de=destino_de_enlace if deps.comprobar_enlaces else None,
         )
         if retirados:
             draft = replace(draft, html=limpio)
@@ -566,6 +573,7 @@ def run(
             brief.opportunity.focus_keyword if brief.opportunity else "",
             url_viva=url_viva,
             ignorar=retirados,
+            pais=brief.country,
         )
         state.save("comparacion.json", resumen_para_reporte(resultado, draft.reencauche_de))
         steps.append(

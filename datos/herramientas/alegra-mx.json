@@ -1,0 +1,52 @@
+{
+  "brand": "Alegra",
+  "country": "MX",
+  "product": "Alegra México: Facturación electrónica CFDI, POS, ERP y Soy Contador",
+  "plans": [
+    {"name": "Alegra Facturación Inicial (mensual)", "price": "249", "currency": "MXN", "period": "mes", "billing": "mensual", "publicado": true, "iva": "más IVA", "note": "No incluye el módulo contable. 1 usuario, CFDI ilimitados"},
+    {"name": "Alegra Facturación Inicial (anual)", "price": "187", "currency": "MXN", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "note": "Equivalente mensual del pago anual: se factura $2,241 MXN al año. 25 % menos que el mensual"},
+    {"name": "Alegra Facturación Pro (mensual)", "price": "449", "currency": "MXN", "period": "mes", "billing": "mensual", "publicado": true, "iva": "más IVA", "note": "No incluye el módulo contable. 2 usuarios"},
+    {"name": "Alegra Facturación Pro (anual)", "price": "337", "currency": "MXN", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "note": "Equivalente mensual del pago anual: se factura $4,041 MXN al año"},
+    {"name": "Alegra Facturación Plus (mensual)", "price": "699", "currency": "MXN", "period": "mes", "billing": "mensual", "publicado": true, "iva": "más IVA", "note": "No incluye el módulo contable. 3 usuarios"},
+    {"name": "Alegra Facturación Plus (anual)", "price": "524", "currency": "MXN", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "note": "Equivalente mensual del pago anual: se factura $6,291 MXN al año"},
+    {"name": "Alegra ERP Inicial (mensual)", "price": "1,299", "currency": "MXN", "period": "mes", "billing": "mensual", "publicado": true, "iva": "más IVA", "note": "Contabilidad, inventario, bancos y facturación en una sola plataforma"},
+    {"name": "Alegra ERP Inicial (anual)", "price": "974", "currency": "MXN", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "note": "Equivalente mensual del pago anual"},
+    {"name": "Alegra ERP Pro (mensual)", "price": "1,999", "currency": "MXN", "period": "mes", "billing": "mensual", "publicado": true, "iva": "más IVA", "note": ""},
+    {"name": "Alegra ERP Pro (anual)", "price": "1,499", "currency": "MXN", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "note": "Equivalente mensual del pago anual"},
+    {"name": "Alegra ERP Plus (mensual)", "price": "2,999", "currency": "MXN", "period": "mes", "billing": "mensual", "publicado": true, "iva": "más IVA", "note": ""},
+    {"name": "Alegra ERP Plus (anual)", "price": "2,249", "currency": "MXN", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "note": "Equivalente mensual del pago anual"},
+    {"name": "Soy Contador Inicial (mensual)", "price": "490", "currency": "MXN", "period": "mes", "billing": "mensual", "publicado": true, "iva": "más IVA", "note": "Hasta 10 RFC activos y 3 usuarios de equipo"},
+    {"name": "Soy Contador Inicial (anual)", "price": "441", "currency": "MXN", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "note": "Equivalente mensual del pago anual (10 % menos). Hasta 10 RFC activos"},
+    {"name": "Soy Contador Despacho (mensual)", "price": "990", "currency": "MXN", "period": "mes", "billing": "mensual", "publicado": true, "iva": "más IVA", "note": "Hasta 30 RFC activos y 5 usuarios de equipo"},
+    {"name": "Soy Contador Despacho (anual)", "price": "891", "currency": "MXN", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "note": "Equivalente mensual del pago anual. Hasta 30 RFC activos"},
+    {"name": "Soy Contador Firma (mensual)", "price": "1,990", "currency": "MXN", "period": "mes", "billing": "mensual", "publicado": true, "iva": "más IVA", "note": "Hasta 75 RFC activos y 10 usuarios de equipo"},
+    {"name": "Soy Contador Firma (anual)", "price": "1,791", "currency": "MXN", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "note": "Equivalente mensual del pago anual. Hasta 75 RFC activos"}
+  ],
+  "source_url": "https://www.alegra.com/mexico/precios/",
+  "captured_at": "2026-11-18",
+  "evidence_level": "documentacion_oficial",
+  "electronic_invoicing": "Facturación electrónica CFDI con el SAT incluida en todos los planes; descarga masiva y buzón CFDI",
+  "features": [
+    "Facturación electrónica CFDI ilimitada",
+    "Alegra ERP con contabilidad, inventario y bancos",
+    "POS para mostrador, mesas y comandas",
+    "Soy Contador: 10, 30 o 75 RFC activos según el plan",
+    "Alegra BOT e IA para registrar facturas y gastos",
+    "Prueba gratis de 15 días, sin tarjeta"
+  ],
+  "integrations": [],
+  "support": "Correo, chat y capacitaciones grupales; soporte prioritario en Firma",
+  "advantages": [
+    "El plan más barato para empezar a facturar: 187 MXN al mes con pago anual más IVA",
+    "Contabilidad e inventario conviven en ERP sin cambiar de plataforma",
+    "Soy Contador escala por RFC activos (10, 30, 75), no por facturas"
+  ],
+  "known_limits": [
+    "Alegra Facturación no incluye el módulo contable: para contabilidad hay que ir a ERP o a Soy Contador",
+    "Los precios son más IVA, no IVA incluido"
+  ],
+  "notes": "Precios leídos del HTML de alegra.com/mexico/precios/ el 18-nov-2026. El pago anual se muestra como equivalente mensual (facturado una vez al año): 25 % menos en Facturación, POS y ERP; 10 % menos en Soy Contador. La página no publica IVA incluido: todos los valores son más IVA. Alegra POS: Inicial 199/149, Pro 399/299 y Restobar 599/449 MXN al mes (mensual/anual).",
+  "historial": [
+    {"fecha": "2026-11-18", "cambio": "creada leyendo el HTML de la página de precios de México"}
+  ]
+}

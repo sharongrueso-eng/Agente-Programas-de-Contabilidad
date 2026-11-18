@@ -1,0 +1,37 @@
+{
+  "brand": "Alegra",
+  "country": "DO",
+  "product": "Alegra República Dominicana: facturación electrónica e-CF, POS y ERP",
+  "plans": [
+    {"name": "Alegra Facturación Inicial (anual, primer año)", "price": "13.50", "currency": "USD", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "promocion": "10 % OFF el primer año", "note": "Equivalente mensual de USD 162 facturados al año. 25 facturas al mes, 1 usuario. No incluye el módulo contable"},
+    {"name": "Alegra Facturación Pyme (anual, primer año)", "price": "26.10", "currency": "USD", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "promocion": "10 % OFF el primer año", "note": "Equivalente mensual de USD 313,20 facturados al año. 150 facturas al mes, 2 usuarios. No incluye el módulo contable"},
+    {"name": "Alegra Facturación Pro (anual, primer año)", "price": "40.50", "currency": "USD", "period": "mes", "billing": "anual", "publicado": true, "iva": "más IVA", "promocion": "10 % OFF el primer año", "note": "Equivalente mensual de USD 486 facturados al año. Facturas ilimitadas, 3 usuarios. No incluye el módulo contable"}
+  ],
+  "source_url": "https://www.alegra.com/rdominicana/precios/",
+  "captured_at": "2026-11-18",
+  "evidence_level": "documentacion_oficial",
+  "electronic_invoicing": "Emisión de e-CF de ventas con cumplimiento de la DGII incluido en todos los planes",
+  "features": [
+    "Facturación electrónica e-CF con la DGII",
+    "POS para mostrador",
+    "Alegra ERP con contabilidad, bancos e inventario",
+    "Soy Contador para despachos",
+    "Alegra BOT e IA para registrar facturas y gastos",
+    "Prueba gratis de 15 días, sin tarjeta"
+  ],
+  "integrations": [],
+  "support": "Correo, chat y capacitaciones grupales",
+  "advantages": [
+    "Cumplimiento de la DGII incluido en todos los planes",
+    "Cobra en dólares, con el mismo precio para todo el país"
+  ],
+  "known_limits": [
+    "Alegra Facturación no incluye el módulo contable",
+    "Los precios publicados son el equivalente mensual del pago anual con el descuento del primer año; el mensual sin descuento no está publicado",
+    "Los valores son más IVA"
+  ],
+  "notes": "Precios leídos del HTML de alegra.com/rdominicana/precios/ el 18-nov-2026. La página cobra en USD y muestra el equivalente mensual del pago anual con 10 % OFF (facturado 162 / 313,20 / 486 USD al año). El precio regular mensual no está publicado. La ruta de precios de República Dominicana es /rdominicana/precios/; /republica-dominicana/ y /do/ devuelven 404.",
+  "historial": [
+    {"fecha": "2026-11-18", "cambio": "creada leyendo el HTML de la página de precios de República Dominicana"}
+  ]
+}

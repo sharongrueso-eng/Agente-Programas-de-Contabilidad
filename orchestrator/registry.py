@@ -209,7 +209,17 @@ def elegir_fichas(
             continue
         puntuadas.append((grupo, peso, orden, ficha))
     puntuadas.sort(key=lambda t: t[:3])
-    return [t[3] for t in puntuadas[: max(1, maximo)]]
+    elegidas = [t[3] for t in puntuadas[: max(1, maximo)]]
+    # Alegra va siempre: una comparativa de su propio blog sin Alegra no tiene sentido, y en México
+    # no había ficha, así que `elegir_fichas` la dejaba fuera sin avisar.
+    if elegidas and not any(str(f.get("brand", "")).lower() == "alegra" for f in elegidas):
+        alegra = next((f for f in fichas if str(f.get("brand", "")).lower() == "alegra"), None)
+        if alegra is not None:
+            if len(elegidas) >= max(1, maximo):
+                elegidas[-1] = alegra
+            else:
+                elegidas.append(alegra)
+    return elegidas
 
 
 def texto_acotado(fichas: Sequence[dict[str, Any]], maximo: int = 6000) -> str:

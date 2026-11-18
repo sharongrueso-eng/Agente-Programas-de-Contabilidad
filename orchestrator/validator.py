@@ -226,11 +226,22 @@ def _control(code: str, ok: bool, detail: str, failure: str = CORREGIR) -> Contr
 # normativa y se nombran sin atribuir nada a nadie.
 # Los únicos controles que pueden detener una publicación: los que evitan publicar algo falso
 # o roto. El resto son advertencias: se corrigen si se puede y, si no, se publica y se avisa.
-BLOQUEANTES = frozenset()  # ningún control detiene: todo se corrige
+# Los controles que detienen una publicación: los que impiden publicar algo falso o que reemplaza
+# una página buena por otra peor. El resto se corrige o se avisa.
+BLOQUEANTES = frozenset(
+    {
+        "alegra_ausente",
+        "elenco_insuficiente",
+        "precio_periodo",
+        "marca_duplicada",
+        "enlaces_alegra",
+        "marcas_perdidas_reencauche",
+    }
+)
 
 
 def bloqueantes(controls) -> list:
-    """Vacío por decisión: el agente corrige, no bloquea."""
+    """Los controles que el corrector no puede arreglar solo: detienen la corrida."""
     return [c for c in controls if getattr(c, "status", "PASS") != PASS and c.code in BLOQUEANTES]
 
 
@@ -277,6 +288,7 @@ def validate(
     registry_text: str = "",
     brands_available: int | None = None,
     comprobar_enlaces: Any = None,
+    fichas: Sequence[Any] = (),
 ) -> Verdict:
     """Run every deterministic control and return the combined verdict."""
     keyword = brief.opportunity.focus_keyword if brief.opportunity else ""
@@ -675,6 +687,36 @@ def validate(
         )
 
     worst = max((control.status for control in controls), key=lambda s: _SEVERITY[s])
+    # Reglas editoriales del reencauche de México (5704): Alegra siempre, elenco mínimo de cuatro,
+    # precios con su periodo, marca única y enlaces a Alegra del país con su UTM.
+    if has_body and not is_snippet:
+        from .reglas_editoriales import revisar as revisar_reglas
+
+        formato = (getattr(brief, "format", "") or "").lower()
+        busca_elenco = (
+            "comparativ" in formato
+            or "mejor" in formato
+            or any(
+                palabra in keyword.lower()
+                for palabra in ("mejor", "precio", "comparativ", "alternativ", " vs", "top ")
+            )
+        )
+        for hallazgo in revisar_reglas(
+            draft.html,
+            pais=brief.country,
+            keyword=keyword,
+            fichas=fichas,
+            comparativa=busca_elenco,
+        ):
+            controls.append(
+                _control(
+                    hallazgo["codigo"],
+                    hallazgo["pasa"],
+                    hallazgo["detalle"],
+                    failure=BLOQUEADO if hallazgo.get("grave") else CORREGIR,
+                )
+            )
+
     return Verdict(status=worst, controls=tuple(controls))
 
 
@@ -769,6 +811,10 @@ NOTA_DE_PROCESO = re.compile(
     r"|le[ií]da del sitio del fabricante|volver a revisar que el veredicto"
     r"|formula de verificaci[oó]n|f[oó]rmula de verificaci[oó]n del contexto legal"
     r"|sin enlace ni cta de alegra en el fragmento|pares `wp:list`)"
+    # Notas internas del reencauche de México (5704): hablan del registro, no al lector.
+    r"|el registro de esta comparativa|la versi[oó]n anterior de esta p[aá]gina"
+    r"|consultadas en la fecha que indica cada ficha|en la ficha del registro"
+    r"|seg[uú]n el registro de|la ficha del registro dice"
 )
 ELEMENTO = re.compile(r"<(p|li)\b[^>]*>(.*?)</\1>", re.I | re.S)
 # Un párrafo que acaba en conector, artículo o preposición quedó a medias.
