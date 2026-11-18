@@ -179,9 +179,22 @@ las tarjetas (al primer bloque le precede «POS» y pertenece a Facturación). H
 con un solo plan «Pyme» a USD 20 que no encaja en los demás.
 
 **Por qué se deja así:** un `producto` mal asignado no se queda en un JSON, viaja al actualizador y
-reescribe el post equivocado con el precio de otro producto. Se resuelve en dos minutos mirando la página
-con una persona, o grabando el bloque que está activo en cada pestaña; ninguna de las dos cosas se puede
-inferir desde el HTML guardado, así que no se inventa.
+reescribe el post equivocado con el precio de otro producto.
+
+**Lo que sí se confirmó** haciendo clic en las pestañas de la página:
+
+- **Alegra Facturación** → bloque `Emprendedor / Pyme / Pro` a USD 5 / 10 / 20.
+- **POS** → un solo plan, `Pyme`, a USD 20 (15 con pago anual).
+- **Contabilidad** → `Independiente / Firma / Estudio Contable` a USD 50 / 80 / 120.
+
+**Lo que sigue sin resolverse:** los dos bloques `Pyme / Pro / Plus` (USD 40 / 70 / 120 y USD 20 / 50 / 80)
+pertenecen a pestañas que no se pueden activar desde el HTML ni con clic (las pestañas «Alegra ERP» y
+«Alegra POS» existen pero están fuera del carrusel visible y al pulsarlas no cambian el bloque mostrado).
+Las páginas de producto (`/costarica/pos/` y `/costarica/erp/`) no publican tabla de precios.
+
+**Cómo se desbloquea:** una persona abre `https://www.alegra.com/costarica/precios/`, pulsa «Alegra ERP» y
+«Alegra POS» y dice qué planes muestra cada una; o se graba el bloque visible de cada pestaña. Con eso se
+escribe el registro en diez minutos.
 
 ## Inventario v2 (18-nov-2026)
 
