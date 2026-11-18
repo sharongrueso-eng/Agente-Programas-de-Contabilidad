@@ -21,7 +21,9 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
-INTENCIONES_DE_COMPARACION = ("best", "comparison", "comparativa")
+# `compare` es la etiqueta que usa la auditoría (`audit.classify_intent`); sin ella, una consulta
+# «X vs Y» nunca pedía tabla comparativa ni veredicto.
+INTENCIONES_DE_COMPARACION = ("best", "compare", "comparison", "comparativa")
 MIN_ENLACES_INTERNOS = 5
 
 

@@ -16,7 +16,7 @@ y los pendientes viven en `contexto/estado-2026-11-13.md` y `contexto/pendientes
 Desde la raíz del repositorio:
 
 ```bash
-# Pruebas (434 en verde). El `-t tests` es obligatorio: sin él, unittest no importa el paquete.
+# Pruebas (528 en verde). El `-t tests` es obligatorio: sin él, unittest no importa el paquete.
 python -m unittest discover -s tests -t tests -p "test_*.py"
 
 # Controles deterministas sobre un post vivo, sin gastar tokens
@@ -72,6 +72,9 @@ El comando emite JSON con `side_effects: false`. El modo de producción queda de
 | `orchestrator/watchers.py` | Listo | Cadencia de vigías, diff de precios todo-o-nada y caídas de GSC |
 | `orchestrator/notices.py` | Listo | Plantillas fijas de aviso y envío al webhook de Chat |
 | `orchestrator/gsc_api.py` | Escrito, sin probar contra la API | Ventanas de 28 días, consulta y armado de la instantánea |
+| `orchestrator/gsc_mcp.py` | Listo, probado contra GSC el 17-nov | Instantánea del país: consultas, totales por URL, ventana previa y 16 meses, con filtro de país |
+| `orchestrator/diagnostico.py` | Listo | Ranking del día, intención ambigua por modelo con memoria, solapamientos y calendario quincenal |
+| `orchestrator/ahrefs.py` | Escrito, sin probar contra la API | Volumen, SERP y citas en IA como evidencia; no cambia ninguna decisión |
 | `orchestrator/preparacion.py` | Listo | Prompt de portada por país, reintentos y respaldo |
 | `orchestrator/registry.py` | Listo | Fichas por marca y país; bloquea cifras fuera del registro |
 | `deploy/` | Escrito, sin probar en Coolify | Dockerfile, compose, variables, respaldo y tareas |
@@ -144,6 +147,16 @@ equipo usa otra convención, se cambia en un solo lugar (`validator._has_full_ut
 ### Cómo decide la auditoría
 
 Solo las reglas deterministas viven en código; el criterio editorial queda para el juez.
+
+Los datos salen de Search Console con el filtro del país de la corrida (búsquedas hechas desde
+ese país) y en cuatro consultas: página × consulta de los últimos 28 días (las 25 principales de
+cada URL), totales por URL de esos 28 días (la suma de consultas se queda corta por las
+anónimas), totales de los 28 días anteriores (para la regla de caída) y totales de 16 meses
+(promedio por cada 28 días, en el diagnóstico). Si la intención de la consulta principal queda
+ambigua con las reglas, la decide un modelo (`PDC_MODEL_INTENCION`) y la respuesta se guarda en
+`$PDC_STATE_DIR/intenciones.json`, que arranca con `datos/referencia/intenciones-semilla.json`.
+Con `AHREFS_API_KEY`, las primeras oportunidades del ranking llevan volumen, SERP y citas en IA
+como evidencia; GSC decide.
 
 1. **Umbral de señal** — menos impresiones que el mínimo del país (100 en CO/MX, 30 en DO/CR): no hay oportunidad.
 2. **Declive** — clics a 70 % o menos de los 28 días previos (con al menos 20 clics antes), o posición que empeora 3 o más puestos.

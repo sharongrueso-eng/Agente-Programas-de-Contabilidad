@@ -75,6 +75,10 @@ class PageMetrics:
     top_queries: tuple[QueryMetrics, ...] = ()
     format: str | None = None
     updated_days_ago: int | None = None
+    # Ventana previa y promedio de 16 meses por cada 28 días. None = no se consultó.
+    prev_impressions: int | None = None
+    hist_clicks_28d: float | None = None
+    hist_impressions_28d: float | None = None
 
 
 @dataclass(frozen=True)

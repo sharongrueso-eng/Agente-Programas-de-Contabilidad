@@ -25,11 +25,56 @@ SITIO_PDC = "sc-domain:programascontabilidad.com"
 # Google publica con dos o tres días de retraso: la última fecha cerrada es hoy menos tres.
 RETRASO_DIAS = 3
 FILAS_POR_PAGINA = 1000
+# Search Console filtra por país con el código ISO 3166-1 alfa-3 en minúsculas.
+PAIS_GSC = {"CO": "col", "MX": "mex", "CR": "cri", "DO": "dom"}
+MESES_HISTORICO = 16
 
 
 def ventana_cerrada(dias: int = 28, hoy: date | None = None) -> tuple[date, date]:
     fin = (hoy or date.today()) - timedelta(days=RETRASO_DIAS)
     return fin - timedelta(days=dias - 1), fin
+
+
+def ventana_previa(inicio: date, dias: int = 28) -> tuple[date, date]:
+    """Los `dias` inmediatamente anteriores a la ventana actual, sin solaparse con ella."""
+    return inicio - timedelta(days=dias), inicio - timedelta(days=1)
+
+
+def restar_meses(fecha: date, meses: int) -> date:
+    m = fecha.month - 1 - meses
+    anio = fecha.year + m // 12
+    mes = m % 12 + 1
+    bisiesto = anio % 4 == 0 and (anio % 100 != 0 or anio % 400 == 0)
+    ultimo = (31, 29 if bisiesto else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)[mes - 1]
+    return date(anio, mes, min(fecha.day, ultimo))
+
+
+def ventana_historica(fin: date, meses: int = MESES_HISTORICO) -> tuple[date, date]:
+    """Los últimos `meses` meses hasta `fin`, el máximo que guarda Search Console."""
+    return restar_meses(fin, meses) + timedelta(days=1), fin
+
+
+def filtro_de_pais(pais: str) -> list[dict[str, str]]:
+    """Solo búsquedas hechas desde ese país: así el umbral de 100/30 impresiones es del país."""
+    return [{"dimension": "country", "operator": "equals", "expression": PAIS_GSC[pais]}]
+
+
+def _grupos_de_filtros(filtros: Sequence[dict[str, str]] | None) -> list[dict[str, Any]]:
+    """Mismo formato que `mcp-gsc/server.py`: todos los filtros en un grupo, con AND."""
+    if not filtros:
+        return []
+    return [
+        {
+            "filters": [
+                {
+                    "dimension": f.get("dimension", "query"),
+                    "operator": f.get("operator", "contains"),
+                    "expression": str(f["expression"]),
+                }
+                for f in filtros
+            ]
+        }
+    ]
 
 
 def _preparar_llave() -> None:
@@ -95,6 +140,9 @@ class _ClienteApi:
             "startRow": int(kwargs.get("start_row") or 0),
             "dataState": kwargs.get("data_state") or "final",
         }
+        grupos = _grupos_de_filtros(kwargs.get("filters"))
+        if grupos:
+            cuerpo["dimensionFilterGroups"] = grupos
         respuesta = (
             servicio.searchanalytics()
             .query(siteUrl=kwargs["site_url"], body=cuerpo)
@@ -131,9 +179,21 @@ def _servidor(ruta: Path | None = None) -> Any:
     return modulo
 
 
-def _cache_filas(site_url: str, start: date, end: date) -> Path:
+def _cache_filas(
+    site_url: str,
+    start: date,
+    end: date,
+    dimensiones: Sequence[str] = ("page", "query"),
+    filtros: Sequence[dict[str, str]] | None = None,
+) -> Path:
     limpio = re.sub(r"[^a-zA-Z0-9]+", "_", site_url).strip("_")
-    return RAIZ_CACHE / f"{limpio}-{start.isoformat()}-{end.isoformat()}.json"
+    sufijo = ""
+    if tuple(dimensiones) != ("page", "query") or filtros:
+        partes = ["-".join(dimensiones)] + [
+            f"{f.get('dimension')}_{f.get('operator')}_{f.get('expression')}" for f in filtros or ()
+        ]
+        sufijo = "-" + re.sub(r"[^a-zA-Z0-9_-]+", "_", "-".join(partes))
+    return RAIZ_CACHE / f"{limpio}-{start.isoformat()}-{end.isoformat()}{sufijo}.json"
 
 
 def filas(
@@ -143,12 +203,14 @@ def filas(
     dimensiones: Sequence[str] = ("page", "query"),
     servidor: Any = None,
     cache: bool = True,
+    filtros: Sequence[dict[str, str]] | None = None,
 ) -> list[dict[str, Any]]:
     """Pide todas las filas del periodo, paginando hasta que la API diga que no hay más.
 
     La ventana está cerrada, así que los datos no cambian: se guardan por día y se reutilizan.
+    `filtros` va tal cual a la API (por ejemplo, el país con `filtro_de_pais`).
     """
-    archivo = _cache_filas(site_url, start, end)
+    archivo = _cache_filas(site_url, start, end, dimensiones, filtros)
     _preparar_llave()
     if cache and archivo.exists():
         try:
@@ -168,6 +230,7 @@ def filas(
             row_limit=FILAS_POR_PAGINA,
             start_row=inicio,
             data_state="final",
+            **({"filters": list(filtros)} if filtros else {}),
         )
         if isinstance(respuesta, dict) and respuesta.get("error"):
             raise RuntimeError(f"Search Console respondió con error: {respuesta['error']}")
@@ -222,11 +285,49 @@ def snapshot_desde_mcp(
     dias: int = 28,
     hoy: date | None = None,
     servidor: Any = None,
+    por_pais: bool = True,
+    meses_historico: int = MESES_HISTORICO,
 ) -> Snapshot:
-    """Instantánea real del mercado, con la fecha de cierre de la ventana."""
+    """Instantánea real del mercado, con la fecha de cierre de la ventana.
+
+    Pide cinco cosas, todas con el filtro del país (las búsquedas hechas desde ese país):
+
+    1. página × consulta de los últimos 28 días: las 25 consultas principales de cada URL;
+    2. totales por página de esos 28 días: la suma de consultas se queda corta por las anónimas;
+    3. totales por página de los 28 días anteriores: sin ellos la regla de caída nunca dispara;
+    4. totales por página de los últimos 16 meses: el promedio por cada 28 días.
+
+    Si fallan 2-4 la corrida sigue con lo que hay y lo dice; si falla 1, no hay instantánea.
+    """
     start, end = ventana_cerrada(dias, hoy)
-    crudas = filas(site_url, start, end, servidor=servidor)
-    paginas = snapshot_from_rows(crudas, pais)
+    filtros = filtro_de_pais(pais) if por_pais and pais in PAIS_GSC else None
+    crudas = filas(site_url, start, end, servidor=servidor, filtros=filtros)
+    if not crudas:
+        raise RuntimeError(
+            f"Search Console no devolvió filas para {pais} entre {start} y {end}; "
+            "sin datos no se elige tema"
+        )
+
+    def _por_pagina(desde: date, hasta: date, que: str) -> list[dict[str, Any]] | None:
+        try:
+            return filas(site_url, desde, hasta, ("page",), servidor=servidor, filtros=filtros)
+        except Exception as error:  # noqa: BLE001 - informa y sigue; la ventana actual ya está
+            print(f"gsc     : sin {que} ({str(error)[:120]})")
+            return None
+
+    previa = ventana_previa(start, dias)
+    historica = ventana_historica(end, meses_historico)
+    totales = _por_pagina(start, end, "totales por página")
+    previos = _por_pagina(*previa, "ventana previa")
+    historico = _por_pagina(*historica, "histórico de 16 meses")
+    paginas = snapshot_from_rows(
+        crudas,
+        pais,
+        totales=totales,
+        totales_previos=previos,
+        historico=historico,
+        dias_historico=(historica[1] - historica[0]).days + 1,
+    )
     if not paginas:
         raise RuntimeError(
             f"Search Console no devolvió filas para {pais} entre {start} y {end}; "

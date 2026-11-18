@@ -22,7 +22,8 @@ sale son de código, no del modelo. El modelo escribe y opina; el código decide
 | Imagen | Coolify, `deploy/Dockerfile` | Python puro, sin Hermes dentro; el contenedor duerme con `sleep infinity` para que la tarea tenga dónde correr |
 | Estado | Volumen montado en `/data` | Corridas, mapas de publicación, caché de GSC, sitemap |
 | Sitio | WordPress de producción, por el **MCP** (`ewpa/*`) | El MCP escribe meta y autor; la API REST solo se usa para leer y verificar |
-| Datos de tráfico | Google Search Console, cuenta de servicio | Ventanas de 28 días |
+| Datos de tráfico | Google Search Console, cuenta de servicio | Filtro por país; 28 días, los 28 previos y 16 meses |
+| Evidencia externa | Ahrefs API v3 (opcional, `AHREFS_API_KEY`) | Volumen, SERP y citas en IA; no decide |
 | Modelos | LiteLLM de Alegra (`OPENAI_BASE_URL`) | Productor, juez y corrector de familias distintas |
 | Avisos | Webhook de Google Chat | Un aviso por pieza, en el momento en que ocurre |
 
@@ -36,7 +37,7 @@ que una corrida se puede retomar desde el punto donde se cortó.
 | 1 | **Disparo** | Scheduled Task de Coolify → `scripts/corrida_diaria.py` | Comprueba pausa, ventana horaria y fin de semana; elige el mercado del día |
 | 2 | **Rotación** | `orchestrator/rotation.py` | Slot y país como función pura de la fecha: 3 formatos × 4 países, seis días hábiles cubren las doce combinaciones, sin calendario guardado |
 | 3 | **Preflight** | `scripts/corrida_diaria.py`, `corrida_completa.verificar_entorno` | Verifica todas las variables de una vez y nombra las que faltan; sin esto no se gasta un token |
-| 4 | **Auditoría** | `orchestrator/gsc_io.py`, `gsc_api.py`, `gsc_mcp.py`, `audit.py` | Oportunidades tipadas con acción y puntaje **en clics**; se niega a trabajar con métricas viejas (máximo 7 días) |
+| 4 | **Auditoría** | `orchestrator/gsc_io.py`, `gsc_api.py`, `gsc_mcp.py`, `audit.py`, `diagnostico.py`, `ahrefs.py` | Oportunidades tipadas con acción y puntaje **en clics**, con la ventana previa real (la caída ya puede dispararse), el promedio de 16 meses y la intención ambigua decidida por modelo; se niega a trabajar con métricas viejas (máximo 7 días) |
 | 5 | **Selección** | `assigner.py`, `decision.py`, `mercado.py` | Elige el trabajo más barato que mueve el número y **verifica que el artículo sea del mercado del slot** leyendo su contenido, no su URL |
 | 6 | **Brief** | `brief_io.py` | Brief del día: URL, acción (`refresh_snippet`, `refresh_structure`, `refresh_by_decline`, `create`), keyword, intención |
 | 7 | **Investigación** | `registry.py`, `directorio.py`, `competidores.py`, `recolector.py` | Carga las fichas del país y el registro legal; todo dato citable sale de ahí, con su fuente y fecha |

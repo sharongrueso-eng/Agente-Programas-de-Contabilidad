@@ -62,6 +62,15 @@ PDC_FIN_DE_SEMANA=1        # 1 publica también sábado y domingo
 PDC_STATE_DIR=/data/state
 ```
 
+Opcionales del diagnóstico:
+
+```
+AHREFS_API_KEY=<llave de la API v3>   # sin ella no hay volumen, SERP ni citas en IA; GSC decide igual
+PDC_AHREFS_MAXIMO=6                   # oportunidades del ranking que reciben evidencia de Ahrefs
+PDC_MODEL_INTENCION=deepseek/deepseek-v4-flash   # desempata la intención ambigua
+PDC_INTENCION_MAX_NUEVAS=40           # consultas nuevas al modelo por corrida; el resto, otro día
+```
+
 ## 3. La tarea programada
 
 Coolify → **Scheduled Tasks** de la aplicación. Una tarea por corrida:
