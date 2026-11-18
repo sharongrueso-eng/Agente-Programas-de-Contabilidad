@@ -10,7 +10,7 @@ reconoce por las señales propias del país (`senales-pais.json`), no por la URL
 | 0. Reglas | Aprobadas el 18-nov-2026 por Sharon Grueso (`REGLAS-VIGIA.md`) |
 | 1. Inventario | Hecho (v2, por país). Falta revisar la confianza media y los pendientes |
 | 2. Registro de precios | Sin empezar |
-| 3. Fuentes | COL y MEX: las de prioridad 1 verificadas (T2). Faltan DOM y CRI |
+| 3. Fuentes | Los cuatro países: prioridad 1 verificada (T2). Queda prioridad 2 y 3 |
 | 4 a 12 | Sin empezar |
 
 ## T1 · Entorno verificado (18-nov-2026)
@@ -82,6 +82,35 @@ modo de lectura. El HTML de cada una está en `paises/col/lecturas/2026-11-18/` 
   por documento.
 - **Aspel es de Siigo.** Decisión pendiente: fusionarla con una fuente Siigo de MEX (hoy no existe) o
   dejarla con su clave y su nombre.
+
+## T2 · Fuentes de prioridad 1 de República Dominicana (18-nov-2026)
+
+| Fuente | Cifras | Moneda | Modo | Qué hay que saber |
+|---|---|---|---|---|
+| Alegra | 90 | USD | ruta_pais | Escribe «USD 26.10 / mes», sin símbolo `$` |
+| Citrus | 0 | USD | no_publica | Home, `/productos/erp` y `/pruebaGratis` sin precios |
+
+- **La moneda no dice el país en RD.** Alegra cobra en USD: el país lo confirman DGII, ITBIS, e-CF,
+  TSS y los formatos 606/607.
+- **Citrus no publica precios**: solo prueba gratis y el login del ERP. Se comprueba cada corrida.
+
+## T2 · Fuentes de prioridad 1 de Costa Rica (18-nov-2026)
+
+| Fuente | Cifras | Moneda | Modo | Qué hay que saber |
+|---|---|---|---|---|
+| Alegra | 105 | USD | ruta_pais | «USD 7,50 / mes», con coma decimal |
+| Factura Profesional | 9 | USD | ruta_pais | `/precios` da 404; la página buena es `/planes-tarifas` |
+| GTI | 5 | CRC | ruta_pais | Colones con punto de miles (₡ 7.650 a ₡ 76.500), sin IVA indicado |
+
+- **Alegra cobra en USD en Costa Rica**: TRIBU-CR y Hacienda son las señales de país, no la moneda.
+- En Costa Rica el `$` es USD; los colones van con `₡`.
+
+### Lección para T4, en los cuatro países
+
+El patrón de precios tiene que aceptar **el código de moneda delante** (`USD 13.50`, `COP 49.900`), no
+solo el símbolo. Con el patrón que solo buscaba `$`, Alegra Costa Rica y Alegra RD devolvían **cero
+cifras aunque las tienen**: una lectura vacía que parece «no publica» y que habría mandado dos fuentes a
+`no_publica` por error.
 
 ## Inventario v2 (18-nov-2026)
 

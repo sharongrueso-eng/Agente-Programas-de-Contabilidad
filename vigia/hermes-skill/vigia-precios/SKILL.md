@@ -160,6 +160,9 @@ la página, la cifra anterior, la leída y la regla que decidió el resultado.
   Colombia): por eso el metadato es el último nivel, no el primero.
 - **En República Dominicana y Costa Rica la moneda sola no dice el país**: Alegra y varias marcas cobran
   en USD.
+- **Los precios no siempre llevan símbolo.** Alegra Costa Rica y Alegra RD escriben «USD 26.10 / mes»:
+  un patrón que solo busque `$`, `US$`, `RD$` o `₡` devuelve cero cifras y la fuente parece «no publica».
+  Acepta siempre el código de moneda (`USD`, `COP`, `CRC`, `MXN`, `DOP`) delante del número.
 - **El webhook de Chat no se llama igual en las dos partes.** Esta skill declara `GCHAT_WEBHOOK_URL`, pero
   el agente diario usa `PDC_CHAT_WEBHOOK_URL` (`~/.pdc/chat.env`, `scripts/corrida_completa.py`) y el
   repositorio no trae un `gchat.py` suelto. Al hacer T7 lee el nombre que exista en el entorno y deja el

@@ -43,10 +43,20 @@
    ],
    "url_verificada": true,
    "moneda_esperada": "USD",
-   "senales_pais": [],
+   "senales_pais": [
+    "Hacienda",
+    "TRIBU-CR",
+    "CRC",
+    "Costa Rica",
+    "USD"
+   ],
    "modo_lectura": "ruta_pais",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "pista_receta": "105 cifras. Precios con el codigo delante y coma decimal (USD 7,50 / mes). Mismo aviso que Alegra RD: aceptar el codigo de moneda en el patron.",
+   "nota": "Cobra en USD en Costa Rica: la moneda no dice el pais, lo dicen TRIBU-CR y Hacienda. Mensual con pago anual y facturado anual.",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/cri/lecturas/2026-11-18/alegra-cr.html"
   },
   {
    "id": "factura-profesional-cr",
@@ -66,17 +76,24 @@
     "$": 1,
     "USD": 23
    },
-   "url": null,
+   "url": "https://www.facturaprofesional.com/planes-tarifas",
    "url_candidatas": [
     "https://www.facturaprofesional.com/",
     "https://www.facturaprofesional.com"
    ],
-   "url_verificada": false,
-   "moneda_esperada": null,
-   "senales_pais": [],
-   "modo_lectura": "por_definir",
+   "url_verificada": true,
+   "moneda_esperada": "USD",
+   "senales_pais": [
+    "CRC",
+    "Costa Rica"
+   ],
+   "modo_lectura": "ruta_pais",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "pista_receta": "9 cifras en $ sin codigo (21.99, 131.89, 329.89). La URL /precios da 404: la pagina buena es /planes-tarifas.",
+   "nota": "Precios en dolares con simbolo $; en Costa Rica el simbolo $ es USD (los colones van con ₡).",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/cri/lecturas/2026-11-18/factura-profesional-cr.html"
   },
   {
    "id": "gti-cr",
@@ -102,12 +119,19 @@
     "https://www.facturaelectronica.cr/Planes",
     "https://www.facturaelectronica.cr/"
    ],
-   "url_verificada": false,
-   "moneda_esperada": null,
-   "senales_pais": [],
-   "modo_lectura": "por_definir",
+   "url_verificada": true,
+   "moneda_esperada": "CRC",
+   "senales_pais": [
+    "₡",
+    "Costa Rica"
+   ],
+   "modo_lectura": "ruta_pais",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "pista_receta": "5 cifras en colones con punto de miles (₡ 7.650 a ₡ 76.500).",
+   "nota": "Precios en colones, sin IVA indicado: el registro debe anotar que el impuesto no se especifica.",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/cri/lecturas/2026-11-18/gti-cr.html"
   },
   {
    "id": "facturele-cr",

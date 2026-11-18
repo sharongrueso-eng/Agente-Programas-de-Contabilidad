@@ -59,10 +59,22 @@
    ],
    "url_verificada": true,
    "moneda_esperada": "USD",
-   "senales_pais": [],
+   "senales_pais": [
+    "DGII",
+    "ITBIS",
+    "e-CF",
+    "TSS",
+    "606",
+    "607",
+    "USD"
+   ],
    "modo_lectura": "ruta_pais",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "pista_receta": "105 cifras. Los precios se escriben con el codigo delante (USD 26.10 / mes), no con simbolo $: el patron de precios tiene que aceptar el codigo de moneda o la lectura sale vacia.",
+   "nota": "Cobra en USD aunque el pais sea RD. La moneda no identifica el pais: lo hacen DGII, ITBIS y e-CF. Mensual con pago anual (USD 26.10) y facturado anual (USD 313.20).",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html"
   },
   {
    "id": "cloudya-do",
@@ -168,17 +180,24 @@
     "DOP": 4,
     "$": 1
    },
-   "url": null,
+   "url": "https://www.citrus.com.do/",
    "url_candidatas": [
     "https://www.citrus.com.do/",
     "https://www.citrus.com.do/productos/ecf"
    ],
    "url_verificada": false,
-   "moneda_esperada": null,
-   "senales_pais": [],
-   "modo_lectura": "por_definir",
+   "moneda_esperada": "USD",
+   "senales_pais": [
+    "e-CF",
+    "República Dominicana"
+   ],
+   "modo_lectura": "no_publica",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "pista_receta": null,
+   "nota": "No publica precios: la home, /productos/erp y /pruebaGratis no tienen cifras; solo formulario de prueba y el login del ERP. Se comprueba cada corrida que siga sin publicar.",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/citrus-do.html"
   },
   {
    "id": "dgmax-do",
