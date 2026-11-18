@@ -61,6 +61,13 @@ class LlmFalso:
         for clave in self.falla_en:
             if f'Bloque «{clave}»' in usuario:
                 return ""
+        if "Bloque «preguntas»" in usuario:
+            return (
+                "P: ¿Cuánto cuesta el plan de entrada?\n"
+                "R: Depende del proveedor; el registro trae el precio publicado de cada uno.\n"
+                "P: ¿Sirve para la factura electrónica de la DIAN?\n"
+                "R: Sí, las opciones comparadas emiten factura electrónica validada por la DIAN."
+            )
         return '<h2>Sección</h2><p>Contenido del bloque con detalle suficiente para pasar el mínimo.</p>'
 
 

@@ -16,7 +16,7 @@ y los pendientes viven en `contexto/estado-2026-11-13.md` y `contexto/pendientes
 Desde la raíz del repositorio:
 
 ```bash
-# Pruebas (528 en verde). El `-t tests` es obligatorio: sin él, unittest no importa el paquete.
+# Pruebas (562 en verde). El `-t tests` es obligatorio: sin él, unittest no importa el paquete.
 python -m unittest discover -s tests -t tests -p "test_*.py"
 
 # Controles deterministas sobre un post vivo, sin gastar tokens

@@ -165,3 +165,54 @@ def fuera_de_elenco(html: str, titulo: str, pais: str) -> list[str]:
     return sorted(
         marca for marca in del_cuerpo if not (raices({marca}) <= conocidas_titulo)
     )
+
+
+# Palabras que acompañan a una marca en una búsqueda y no son la marca.
+_ACOMPANANTES = {
+    "vs", "versus", "contra", "opiniones", "opinion", "opinión", "reseña", "resena", "alternativas",
+    "alternativa", "precio", "precios", "planes", "plan", "costo", "costos", "login", "ingresar",
+    "gratis", "descargar", "demo", "que", "qué", "es", "como", "cómo", "funciona", "app",
+    "colombia", "mexico", "méxico", "costa", "rica", "republica", "república", "dominicana", "rd",
+    "nube", "online", "web", "2025", "2026", "2027",
+}
+
+
+_CATEGORIA = {
+    "software", "sistema", "sistemas", "programa", "programas", "contable", "contables",
+    "contabilidad", "facturación", "facturacion", "factura", "facturas", "electrónica",
+    "electronica", "nómina", "nomina", "erp", "crm", "pos", "punto", "venta", "inventario",
+    "cartera", "empresa", "empresas", "negocio", "negocios", "pyme", "pymes", "gestión",
+    "gestion", "aplicación", "aplicacion", "herramienta", "herramientas", "contador",
+    "contadores", "facturador", "administrativo",
+}
+_VACIAS = {"de", "del", "la", "el", "los", "las", "en", "para", "con", "y", "o", "un", "una", "mi"}
+
+
+def marca_sin_datos(keyword: str, pais: str) -> str | None:
+    """La marca que nombra la búsqueda si el agente no tiene con qué escribir de ella, o None.
+
+    Pasó con «susii» (12 y 14-nov, Colombia): la consulta principal de la página era una marca
+    que el directorio del país no conoce y que no tiene ficha. La pieza no podía decir nada de
+    ella y el juez la bloqueaba. Una búsqueda así no se elige como foco.
+
+    Solo cuenta como marca una palabra que queda sola al quitar las genéricas y las que
+    acompañan a una marca («precios», «opiniones», «colombia»…).
+    """
+    palabras = [
+        p for p in re.findall(r"[a-záéíóúüñ0-9]+", (keyword or "").lower()) if len(p) > 1
+    ]
+    # Una búsqueda de categoría («programas contables», «software para veterinarias») no es
+    # una búsqueda de marca, aunque nombre un segmento que no está en el directorio.
+    if any(p in _CATEGORIA or p.rstrip("s") in _CATEGORIA for p in palabras):
+        return None
+    restantes = [
+        p for p in palabras if p not in GENERICAS and p not in _ACOMPANANTES and p not in _VACIAS
+    ]
+    if len(restantes) != 1:
+        return None
+    candidata = restantes[0]
+    if len(candidata) < 4 or candidata.isdigit():
+        return None
+    if candidata in conocidas(pais) or candidata in con_ficha(pais) or candidata == "alegra":
+        return None
+    return candidata

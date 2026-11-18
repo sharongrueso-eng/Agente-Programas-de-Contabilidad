@@ -72,6 +72,19 @@ def consumo_total() -> dict[str, int]:
     return total
 
 
+class RespuestaCortada(RuntimeError):
+    """El modelo llegó al límite de tokens: el texto que devolvió está incompleto.
+
+    Con un modelo que razona, el razonamiento se come casi todo el presupuesto de salida y el
+    HTML sale cortado a mitad de palabra («integración con Rap»). Aceptarlo es publicar una
+    pieza rota; por eso se trata como un error y quien llama reintenta.
+    """
+
+
+# Techo del reintento: si con esto tampoco cabe, el bloque es demasiado grande y hay que partirlo.
+TOPE_DE_TOKENS = 32_000
+
+
 class LiteLlmClient:
     """OpenAI-compatible chat completions, as exposed by the Alegra LiteLLM gateway."""
 
@@ -94,13 +107,22 @@ class LiteLlmClient:
         self.max_tokens = max_tokens
 
     def complete(self, messages: Sequence[dict[str, str]]) -> str:
+        """Devuelve el texto. Si se cortó por límite, reintenta una vez con el doble de margen."""
+        try:
+            return self._complete(messages, self.max_tokens)
+        except RespuestaCortada:
+            if self.max_tokens is None or self.max_tokens >= TOPE_DE_TOKENS:
+                raise
+            return self._complete(messages, min(self.max_tokens * 2, TOPE_DE_TOKENS))
+
+    def _complete(self, messages: Sequence[dict[str, str]], max_tokens: int | None) -> str:
         payload: dict[str, Any] = {
             "model": self.model,
             "messages": list(messages),
             "temperature": self.temperature,
         }
-        if self.max_tokens is not None:
-            payload["max_tokens"] = self.max_tokens
+        if max_tokens is not None:
+            payload["max_tokens"] = max_tokens
 
         status, raw = self.transport.request(
             "POST",
@@ -128,6 +150,13 @@ class LiteLlmClient:
         uso = data.get("usage") or {}
         if uso:
             CONSUMO.append({"modelo": self.model, **uso})
+
+        if str(choices[0].get("finish_reason") or "").lower() == "length":
+            razonamiento = (uso.get("completion_tokens_details") or {}).get("reasoning_tokens")
+            raise RespuestaCortada(
+                f"respuesta cortada por límite de {max_tokens} tokens"
+                + (f" ({razonamiento} de razonamiento)" if razonamiento else "")
+            )
 
         content = (choices[0].get("message") or {}).get("content")
         if not content or not str(content).strip():

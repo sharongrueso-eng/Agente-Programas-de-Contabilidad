@@ -196,6 +196,17 @@ def _preguntar_aeo():
     return consultar
 
 
+def _legal_del_pais(legal: str, pais: str) -> str:
+    """Solo la sección del país: el redactor recibía el archivo entero, con la normativa de los
+    cuatro mercados, y una pieza mexicana podía citar a la DIAN."""
+    from orchestrator.producer import legal_section
+
+    try:
+        return legal_section(legal, pais)
+    except ValueError:
+        return legal
+
+
 def _modelo_de_intencion():
     """`consulta -> intención` para las consultas que las reglas dejan ambiguas, o None.
 
@@ -581,6 +592,21 @@ def main() -> int:
         # Prioridad de negocio: primero se mejora lo que ya posiciona (reencauche), y solo cuando
         # no hay nada que mejorar se escribe una pieza nueva.
         reencauches = [o for o in con_cuerpo if (o.action or "").startswith("refresh")]
+        # Una búsqueda de una marca que el agente no conoce ni tiene en fichas («susii») no se
+        # elige como foco: la pieza no tendría nada que decir de ella y el juez la bloquea.
+        from orchestrator.directorio import marca_sin_datos
+
+        sin_datos = [o for o in reencauches if marca_sin_datos(o.focus_keyword or "", args.pais)]
+        if sin_datos:
+            reencauches = [o for o in reencauches if o not in sin_datos]
+            print(
+                "sin datos: se omiten "
+                + ", ".join(
+                    f"«{o.focus_keyword}» ({o.url.rstrip('/').split('/')[-1][:30]})"
+                    for o in sin_datos[:3]
+                )
+                + " — marca sin ficha ni entrada en el directorio"
+            )
         nuevos = [o for o in con_cuerpo if (o.action or "") == "create"]
         if args.solo_nuevos:
             elegidas = nuevos
@@ -744,7 +770,13 @@ def main() -> int:
             dominante = str(ficha.get("consulta_dominante") or "").strip()
             if publicado in {"comparativa", "resena", "mejores", "guia"}:
                 brief = _replace(brief, format=publicado)
-            if dominante and dominante != (elegida.focus_keyword or ""):
+            from orchestrator.directorio import marca_sin_datos as _marca_sin_datos
+
+            if (
+                dominante
+                and dominante != (elegida.focus_keyword or "")
+                and not _marca_sin_datos(dominante, brief.country)
+            ):
                 brief = _replace(brief, opportunity=_replace(elegida, focus_keyword=dominante))
             print(
                 f"promesa : se conserva el formato «{brief.format}» y la consulta "
@@ -763,6 +795,26 @@ def main() -> int:
         print("registro no utilizable:", registro.error or "sin fichas del mercado")
         return 2
     print(f"registro: {len(registro.fichas)} ficha(s) de {brief.country}")
+
+    # Las fichas de la pieza, no las del país: las que nombra el tema, las que ya trata la página
+    # viva, Alegra y las que publican precios, hasta el elenco que admite el formato. Antes iban
+    # todas (13 en México) cortadas a 6.000 caracteres: la pieza siempre se pasaba del elenco y
+    # en Colombia World Office quedaba nombrado sin sus precios.
+    from orchestrator.formato import presupuesto as _presupuesto_formato
+    from orchestrator.registry import elegir_fichas, fecha_de_consulta, texto_acotado
+
+    fichas_pieza = elegir_fichas(
+        registro.fichas,
+        keyword=brief.opportunity.focus_keyword or "",
+        url=brief.opportunity.url or "",
+        html_vivo=locals().get("html_vivo") or "",
+        maximo=_presupuesto_formato(brief.format).elenco_max,
+    ) or list(registro.fichas)
+    fecha_datos = fecha_de_consulta(fichas_pieza)
+    print(
+        f"fichas  : {', '.join(str(f.get('brand')) for f in fichas_pieza)} "
+        f"(de {len(registro.fichas)} del país) · consultadas {fecha_datos or 'sin fecha'}"
+    )
 
     # El formato no puede contradecir el tema. La reseña cierra el elenco al del título, así que
     # solo sirve cuando la keyword nombra una marca con ficha; con un tema que obliga a nombrar
@@ -997,7 +1049,8 @@ def main() -> int:
             ((_wp._write("GET", f"/wp-json/wp/v2/posts/{pid}?context=edit", {}) or {})
              .get("content") or {}).get("raw", "")
         ),
-        brands_available=len(registro.fichas),
+        brands_available=len(fichas_pieza),
+        fecha_datos=fecha_datos,
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
         solo_borrador=args.borrador,
@@ -1090,18 +1143,21 @@ def main() -> int:
             llm=deps.producer,
             skill=deps.skill,
             skill_bloques=deps.skill_bloques,
-            legal=deps.legal,
-            registro=registro.texto[:6000],  # el gateway devuelve vacío con prompts largos
-            marcas=[
-                f["brand"] if isinstance(f, dict) else getattr(f, "brand", "")
-                for f in registro.fichas
-            ],
-            fichas=list(registro.fichas),
+            legal=_legal_del_pais(deps.legal, brief.country),
+            # Solo las fichas de la pieza, enteras: el gateway devuelve vacío con prompts largos,
+            # así que si no caben sobran las últimas, nunca la mitad de una.
+            registro=texto_acotado(fichas_pieza, 6000),
+            marcas=[str(f.get("brand", "")) for f in fichas_pieza],
+            fichas=list(fichas_pieza),
             carpeta=RAIZ / "state" / "corridas" / brief.task_id / "bloques",
             # Reencauche: el redactor recibe las secciones y los enlaces que la página ya tiene.
             contexto=(
-                contexto_para_reescribir(html_vivo) if locals().get("html_vivo") else ""
+                contexto_para_reescribir(html_vivo, propia=brief.opportunity.url or "")
+                if locals().get("html_vivo")
+                else ""
             ),
+            # y las secciones de la viva que la pieza no cubra se escriben como bloque propio.
+            html_vivo=locals().get("html_vivo") or "",
         )
         from dataclasses import replace as _reemplazar
 

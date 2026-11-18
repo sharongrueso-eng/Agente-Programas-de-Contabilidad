@@ -12,7 +12,7 @@ import re
 from datetime import date
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, Sequence
 
 REQUIRED_FIELDS = (
     "brand",
@@ -145,6 +145,108 @@ def fichas_text(fichas: Iterable[dict[str, Any]]) -> str:
         lines.append(f"  fuente: {ficha['source_url']} (consultada {ficha['captured_at']})")
         lines.append(f"  nivel de evidencia: {ficha['evidence_level']}")
     return "\n".join(lines)
+
+
+_MESES = (
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+)
+
+
+def tiene_precios(ficha: dict[str, Any]) -> bool:
+    """Si la ficha publica al menos un precio. Una ficha «por confirmar» no tiene qué citar."""
+    return any(str(plan.get("price", "")).strip() for plan in ficha.get("plans", []) or [])
+
+
+def _plano(texto: str) -> str:
+    import unicodedata
+
+    sin = unicodedata.normalize("NFKD", texto or "")
+    sin = "".join(c for c in sin if not unicodedata.combining(c)).lower()
+    return re.sub(r"[^a-z0-9]+", " ", sin).strip()
+
+
+def _nombrada(marca: str, texto_plano: str) -> int:
+    """Veces que aparece la marca en el texto (en minúsculas, sin acentos, palabra completa)."""
+    nombre = _plano(marca)
+    if not nombre:
+        return 0
+    return len(re.findall(rf"(?<![a-z0-9]){re.escape(nombre)}(?![a-z0-9])", texto_plano))
+
+
+def elegir_fichas(
+    fichas: Sequence[dict[str, Any]],
+    *,
+    keyword: str = "",
+    url: str = "",
+    html_vivo: str = "",
+    maximo: int = 5,
+) -> list[dict[str, Any]]:
+    """Las fichas de **la pieza**, no las del país.
+
+    Antes el redactor recibía todas las fichas del mercado (13 en México) y la instrucción de
+    analizar cada marca: el formato admite 2 a 8, así que la pieza siempre se pasaba del elenco,
+    y el corte del registro a 6.000 caracteres dejaba marcas nombradas sin sus precios.
+
+    Orden: las que nombra la keyword o la URL, las que ya trata la página viva (si es un
+    reencauche), Alegra, y después las que publican precios. Una ficha sin precios entra solo
+    si el tema la nombra.
+    """
+    tema = _plano(f"{keyword} {url.replace('-', ' ').replace('/', ' ')}")
+    viva = _plano(re.sub(r"<[^>]+>", " ", html_vivo or ""))
+    puntuadas = []
+    for orden, ficha in enumerate(fichas):
+        marca = str(ficha.get("brand", ""))
+        if _nombrada(marca, tema):
+            grupo, peso = 0, 0
+        elif viva and _nombrada(marca, viva):
+            grupo, peso = 1, -_nombrada(marca, viva)
+        elif marca.lower() == "alegra":
+            grupo, peso = 2, 0
+        elif tiene_precios(ficha):
+            grupo, peso = 3, 0
+        else:
+            continue
+        puntuadas.append((grupo, peso, orden, ficha))
+    puntuadas.sort(key=lambda t: t[:3])
+    return [t[3] for t in puntuadas[: max(1, maximo)]]
+
+
+def texto_acotado(fichas: Sequence[dict[str, Any]], maximo: int = 6000) -> str:
+    """El texto de las fichas sin cortar ninguna a la mitad: si no caben, sobran las últimas."""
+    elegidas = list(fichas)
+    texto = fichas_text(elegidas)
+    while len(texto) > maximo and len(elegidas) > 1:
+        elegidas.pop()
+        texto = fichas_text(elegidas)
+    return texto[:maximo]
+
+
+def fecha_de_consulta(fichas: Iterable[dict[str, Any]]) -> str:
+    """La fecha de consulta de los datos, tal como está en las fichas: «el 12 de noviembre de
+    2026» o «entre el 6 y el 12 de noviembre de 2026». Vacía si ninguna ficha trae fecha.
+
+    La pieza decía «consultados el» día de la corrida y el juez lo bloqueaba con razón: las
+    fichas se consultaron otro día.
+    """
+    fechas = []
+    for ficha in fichas:
+        try:
+            fechas.append(date.fromisoformat(str(ficha.get("captured_at", "")).strip()))
+        except ValueError:
+            continue
+    if not fechas:
+        return ""
+    desde, hasta = min(fechas), max(fechas)
+
+    def largo(d: date, con_anio: bool = True) -> str:
+        return f"{d.day} de {_MESES[d.month - 1]}" + (f" de {d.year}" if con_anio else "")
+
+    if desde == hasta:
+        return f"el {largo(hasta)}"
+    if desde.year == hasta.year and desde.month == hasta.month:
+        return f"entre el {desde.day} y el {largo(hasta)}"
+    return f"entre el {largo(desde, desde.year != hasta.year)} y el {largo(hasta)}"
 
 
 def fichas_for_country(fichas: Iterable[dict[str, Any]], country: str) -> list[dict[str, Any]]:

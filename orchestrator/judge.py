@@ -65,6 +65,10 @@ Evalúas exactamente dos controles:
 
 Reglas de criterio:
 
+- La normativa que aparece en el contexto legal del país está respaldada: citarla con su número
+  no es una afirmación sin respaldo. Bloquea si la pieza cita normativa de otro país o una que
+  contradiga ese contexto.
+- La fecha de consulta válida es la de las fichas del registro («consultada AAAA-MM-DD»).
 - No inventes datos ni rellenes huecos con tu propio conocimiento. Si algo no está en el
   registro y no es verificable en el texto, es una observación, no un hecho.
 - Bloquea solo por errores de hecho, cifras, país o afirmaciones sin respaldo. El estilo, el
@@ -151,6 +155,7 @@ def build_messages(
     brief: Brief,
     verdict: Verdict,
     registry: str,
+    legal: str = "",
 ) -> list[dict[str, str]]:
     """Arma el encargo del juez: qué se escribió, para qué y con qué evidencia."""
     if brief.opportunity is None:
@@ -173,6 +178,7 @@ def build_messages(
             for control in verdict.controls
         ],
         "registro_de_datos": registry.strip(),
+        "contexto_legal_del_pais": legal.strip()[:6000] or "sin contexto legal en este encargo",
         "tipo_de_pieza": (
             "snippet (solo título y meta)"
             if _solo_snippet(opportunity.action)
@@ -260,10 +266,11 @@ def judge(
     llm: LlmClient,
     max_prompt_chars: int = MAX_PROMPT_CHARS,
     contexto_parte: str = "",
+    legal: str = "",
 ) -> JudgeOutcome:
     """Corre el juez y devuelve su veredicto, o un fallo explicitado."""
     try:
-        messages = build_messages(draft, brief, verdict, registry)
+        messages = build_messages(draft, brief, verdict, registry, legal)
         if contexto_parte:
             messages[-1]["content"] += chr(10) * 2 + contexto_parte
         check_prompt_budget(messages, max_prompt_chars)
