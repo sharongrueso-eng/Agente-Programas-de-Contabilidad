@@ -1,0 +1,253 @@
+{
+  "version": "2026-11-18",
+  "descripcion": "Palabras propias de cada país para reconocer a qué vigía pertenece una cifra. Cada patrón es una expresión regular; si empieza por (?i) no distingue mayúsculas. Pesos: fuerte 3, media 2, débil 1. Para agregar una señal, súmala a la lista del país y corre las pruebas.",
+  "pesos": {
+    "fuerte": 3,
+    "media": 2,
+    "debil": 1
+  },
+  "decision": {
+    "minimo": 3,
+    "ventaja": 2.0,
+    "nota": "Gana un país si suma al menos 'minimo' y al menos 'ventaja' veces lo del segundo. Si no, se sube al siguiente nivel (frase -> sección -> post) y, al final, a pendientes."
+  },
+  "paises": {
+    "MX": {
+      "nombre": "México",
+      "vigia": "mex",
+      "monedas": [
+        "MXN"
+      ],
+      "fuerte": [
+        "\\bSAT\\b",
+        "\\bCFDIs?\\b",
+        "\\bRFCs?\\b",
+        "\\bRESICO\\b",
+        "\\bDIOT\\b",
+        "(?i)\\bcarta porte\\b",
+        "(?i)complementos? de pago",
+        "(?i)buz[oó]n tributario",
+        "\\bCURP\\b",
+        "(?i)\\be\\.firma\\b",
+        "\\bFIEL\\b",
+        "\\bIMSS\\b",
+        "\\bINFONAVIT\\b",
+        "(?i)\\btimbrad[oa]s?\\b",
+        "\\bMXN\\b",
+        "(?i)\\bmulti-?RFC\\b"
+      ],
+      "media": [
+        "\\bPACs?\\b",
+        "\\bCSD\\b",
+        "(?i)\\bM[eé]xico\\b",
+        "(?i)\\bmexican[oa]s?\\b",
+        "(?i)IVA (?:del )?16\\s?%",
+        "(?i)\\btimbres?\\b",
+        "(?i)\\bfolios?\\b",
+        "\\bMX\\$"
+      ],
+      "debil": [
+        "(?i)\\bMonterrey\\b",
+        "(?i)\\bGuadalajara\\b",
+        "(?i)\\bCDMX\\b",
+        "(?i)Ciudad de M[eé]xico",
+        "\\bCONTPAQ ?i\\b",
+        "\\bAspel\\b",
+        "\\bFacturama\\b",
+        "(?i)\\bmis ?kuentas\\b",
+        "\\bISR\\b"
+      ]
+    },
+    "CO": {
+      "nombre": "Colombia",
+      "vigia": "col",
+      "monedas": [
+        "COP"
+      ],
+      "fuerte": [
+        "\\bDIAN\\b",
+        "\\bUVT\\b",
+        "(?i)\\bex[oó]gena\\b",
+        "\\bCUFE\\b",
+        "\\bRADIAN\\b",
+        "\\bUGPP\\b",
+        "\\bPILA\\b",
+        "(?i)ReteFuente|retenci[oó]n en la fuente",
+        "(?i)\\bReteICA\\b",
+        "(?i)r[eé]gimen simple(?: de tributaci[oó]n)?",
+        "\\bRST\\b",
+        "\\bMuisca\\b",
+        "\\bCOP\\b",
+        "(?i)documento soporte"
+      ],
+      "media": [
+        "\\bNIT\\b",
+        "\\bRUT\\b",
+        "(?i)\\bColombia\\b",
+        "(?i)\\bcolombian[oa]s?\\b",
+        "(?i)IVA (?:del )?19\\s?%",
+        "(?i)n[oó]mina electr[oó]nica",
+        "(?i)\\bcesant[ií]as\\b",
+        "\\bARL\\b",
+        "\\bEPS\\b",
+        "\\bSupersociedades\\b"
+      ],
+      "debil": [
+        "(?i)\\bBogot[aá]\\b",
+        "(?i)\\bMedell[ií]n\\b",
+        "(?i)\\bCali\\b",
+        "(?i)\\bBarranquilla\\b",
+        "\\bNequi\\b",
+        "\\bDaviplata\\b",
+        "\\bWompi\\b",
+        "\\bBold\\b",
+        "\\bSiigo\\b",
+        "(?i)\\bWorld ?Office\\b",
+        "\\bHelisa\\b",
+        "\\bLoggro\\b"
+      ]
+    },
+    "DO": {
+      "nombre": "República Dominicana",
+      "vigia": "dom",
+      "monedas": [
+        "DOP"
+      ],
+      "fuerte": [
+        "\\bDGII\\b",
+        "\\bITBIS\\b",
+        "\\be-?CFs?\\b",
+        "\\be-?NCFs?\\b",
+        "\\bNCFs?\\b",
+        "\\bRNC\\b",
+        "(?i)Ley 32-23",
+        "\\bTSS\\b",
+        "\\bIT-1\\b",
+        "\\bIR-(?:2|3|17)\\b",
+        "(?i)(?:formatos?|reportes?|formularios?)\\s+(?:de\\s+)?60[678]",
+        "60[678]\\s*/\\s*60[678]",
+        "\\bRD\\$",
+        "\\bDOP\\b",
+        "\\bTrackID\\b",
+        "(?i)Facturador Gratuito"
+      ],
+      "media": [
+        "(?i)Rep[uú]blica Dominicana",
+        "(?i)\\bdominican[oa]s?\\b",
+        "(?i)comprobantes? fiscal(?:es)?",
+        "(?i)Oficina Virtual",
+        "(?i)ITBIS (?:del )?18\\s?%",
+        "\\bRD\\b"
+      ],
+      "debil": [
+        "(?i)Santo Domingo",
+        "(?i)\\bSantiago de los Caballeros\\b",
+        "\\bCloud ?Ya\\b",
+        "\\bCitrus\\b",
+        "\\bDG ?Max\\b",
+        "\\bAxentra\\b",
+        "\\bAlanube\\b",
+        "\\b60[678]\\b"
+      ]
+    },
+    "CR": {
+      "nombre": "Costa Rica",
+      "vigia": "cri",
+      "monedas": [
+        "CRC"
+      ],
+      "fuerte": [
+        "(?i)\\bTRIBU-CR\\b",
+        "\\bATV\\b",
+        "\\bCCSS\\b",
+        "\\bBCCR\\b",
+        "(?i)c[eé]dula jur[ií]dica",
+        "(?i)\\bcolones\\b",
+        "₡",
+        "\\bCRC\\b",
+        "\\bD-1(?:04|51|01)\\b",
+        "(?i)(?:versi[oó]n|factura(?:ci[oó]n)?(?: electr[oó]nica)?|FE|v)\\s*4\\.4",
+        "(?i)tiquetes? electr[oó]nicos?"
+      ],
+      "media": [
+        "\\bHacienda\\b",
+        "(?i)Costa Rica",
+        "(?i)\\bcostarricense[s]?\\b",
+        "(?i)\\bticos?\\b",
+        "(?i)IVA (?:del )?13\\s?%",
+        "(?i)comprobantes? electr[oó]nicos?"
+      ],
+      "debil": [
+        "(?i)San Jos[eé]\\b",
+        "\\bGTI\\b",
+        "\\bFacturele\\b",
+        "(?i)\\bTico ?factura\\b",
+        "\\bINS\\b"
+      ]
+    },
+    "PE": {
+      "nombre": "Perú",
+      "vigia": null,
+      "monedas": [
+        "PEN"
+      ],
+      "fuerte": [
+        "\\bSUNAT\\b",
+        "\\bIGV\\b",
+        "\\bS/\\.?\\s?\\d",
+        "\\bPEN\\b",
+        "(?i)boletas? electr[oó]nicas?",
+        "\\bNRUS\\b"
+      ],
+      "media": [
+        "(?i)\\bPer[uú]\\b",
+        "(?i)\\bperuan[oa]s?\\b",
+        "\\bRUC\\b"
+      ],
+      "debil": [
+        "(?i)\\bLima\\b"
+      ]
+    },
+    "PA": {
+      "nombre": "Panamá",
+      "vigia": null,
+      "monedas": [
+        "PAB"
+      ],
+      "fuerte": [
+        "\\bITBMS\\b",
+        "\\bB/\\.",
+        "(?i)\\bbalboas?\\b"
+      ],
+      "media": [
+        "(?i)\\bPanam[aá]\\b",
+        "(?i)\\bpaname[ñn][oa]s?\\b",
+        "\\bDGI\\b"
+      ],
+      "debil": []
+    },
+    "ES": {
+      "nombre": "España",
+      "vigia": null,
+      "monedas": [
+        "EUR"
+      ],
+      "fuerte": [
+        "\\bAEAT\\b",
+        "(?i)\\bVeri\\*?factu\\b",
+        "(?i)Agencia Tributaria",
+        "€",
+        "\\bEUR\\b",
+        "(?i)IVA (?:del )?21\\s?%"
+      ],
+      "media": [
+        "(?i)\\bEspa[ñn]a\\b",
+        "\\bNIF\\b",
+        "(?i)\\beuros?\\b"
+      ],
+      "debil": [
+        "(?i)\\bMadrid\\b"
+      ]
+    }
+  }
+}

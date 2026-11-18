@@ -1,0 +1,4 @@
+# descargas y salidas intermedias del inventario
+inventario/raw/
+inventario/salida/
+__pycache__/

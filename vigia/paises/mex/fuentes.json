@@ -1,0 +1,556 @@
+{
+ "generado": "2026-11-18",
+ "pais": "MX",
+ "vigia": "mex",
+ "fuentes": [
+  {
+   "id": "alegra-mx",
+   "marca": "Alegra",
+   "pais": "MX",
+   "prioridad": 1,
+   "cifras_publicadas": 103,
+   "limites_publicados": 0,
+   "posts": [
+    30,
+    39,
+    44,
+    61,
+    100,
+    1595,
+    1646,
+    1974,
+    2104,
+    2214,
+    2752,
+    3281,
+    3294,
+    3379,
+    3470,
+    3526,
+    3544,
+    3733,
+    3853,
+    3859,
+    3930,
+    4295
+   ],
+   "productos_citados": [
+    "Contabilidad",
+    "ERP",
+    "Facturación",
+    "POS"
+   ],
+   "monedas_en_posts": {
+    "MXN": 55,
+    "$": 48
+   },
+   "url": "https://www.alegra.com/mexico/precios/",
+   "url_candidatas": [
+    "https://www.alegra.com/mexico/precios/"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "MXN",
+   "senales_pais": [],
+   "modo_lectura": "ruta_pais",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "contpaqi-mx",
+   "marca": "CONTPAQi",
+   "pais": "MX",
+   "prioridad": 1,
+   "cifras_publicadas": 61,
+   "limites_publicados": 0,
+   "posts": [
+    9,
+    1966,
+    2048,
+    3281,
+    3544,
+    3733,
+    3736,
+    4603
+   ],
+   "productos_citados": [
+    "Contabilidad",
+    "Factura electrónica",
+    "Nóminas"
+   ],
+   "monedas_en_posts": {
+    "$": 10,
+    "MXN": 51
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://www.contpaqi.com/",
+    "https://www.contpaqi.com/contabiliza",
+    "https://www.contpaqi.com/factura-electronica",
+    "https://www.contpaqi.com/contabilidad"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "facturama-mx",
+   "marca": "Facturama",
+   "pais": "MX",
+   "prioridad": 1,
+   "cifras_publicadas": 42,
+   "limites_publicados": 0,
+   "posts": [
+    1595,
+    3281,
+    3294,
+    5186
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 32,
+    "$": 10
+   },
+   "url": "https://facturama.mx/planes-facturacion",
+   "url_candidatas": [
+    "https://facturama.mx/planes-facturacion",
+    "https://facturama.mx/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "miskuentas-mx",
+   "marca": "Miskuentas",
+   "pais": "MX",
+   "prioridad": 1,
+   "cifras_publicadas": 24,
+   "limites_publicados": 0,
+   "posts": [
+    2157,
+    3544,
+    3859
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 20,
+    "$": 4
+   },
+   "url": "https://www.miskuentas.com/tienda/",
+   "url_candidatas": [
+    "https://www.miskuentas.com/tienda/",
+    "https://www.miskuentas.com/store/",
+    "https://www.miskuentas.com/",
+    "https://www.miskuentas.com/contabilidad-electronica/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "eleventa-mx",
+   "marca": "Eleventa",
+   "pais": "MX",
+   "prioridad": 2,
+   "cifras_publicadas": 18,
+   "limites_publicados": 0,
+   "posts": [
+    1982,
+    4295
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 13,
+    "$": 5
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://eleventa.com/punto-de-venta/facturacion-electronica"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "aspel-mx",
+   "marca": "Aspel",
+   "pais": "MX",
+   "prioridad": 1,
+   "cifras_publicadas": 8,
+   "limites_publicados": 0,
+   "posts": [
+    30,
+    3470,
+    3526,
+    3930
+   ],
+   "productos_citados": [
+    "COI",
+    "SAE"
+   ],
+   "monedas_en_posts": {
+    "$": 3,
+    "MXN": 3,
+    "USD": 2
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://www.aspel.com.mx/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "odoo-mx",
+   "marca": "Odoo",
+   "pais": "MX",
+   "prioridad": 2,
+   "cifras_publicadas": 7,
+   "limites_publicados": 0,
+   "posts": [
+    1982,
+    3853
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1,
+    "MXN": 2,
+    "USD": 4
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://apps.odoo.com/apps/modules/9.0/custom_invoice/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "siigo-mx",
+   "marca": "Siigo",
+   "pais": "MX",
+   "prioridad": 2,
+   "cifras_publicadas": 6,
+   "limites_publicados": 0,
+   "posts": [
+    30
+   ],
+   "productos_citados": [
+    "Nube"
+   ],
+   "monedas_en_posts": {
+    "$": 4,
+    "USD": 2
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "bind-erp-mx",
+   "marca": "Bind ERP",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 5,
+   "limites_publicados": 0,
+   "posts": [
+    44,
+    61,
+    3544
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 4,
+    "$": 1
+   },
+   "url": "https://bind.com.mx/precios",
+   "url_candidatas": [
+    "https://bind.com.mx/precios",
+    "https://bind.com.mx/",
+    "https://bind.com.mx/recursos/mejor-erp-para-mexico"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "factura-com-mx",
+   "marca": "Factura.com",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 5,
+   "limites_publicados": 0,
+   "posts": [
+    3281,
+    3294
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 3,
+    "MXN": 2
+   },
+   "url": null,
+   "url_candidatas": [
+    "http://factura.com"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "shopify-mx",
+   "marca": "Shopify",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 4,
+   "limites_publicados": 0,
+   "posts": [
+    5186
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 2,
+    "USD": 2
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "contadigital-mx",
+   "marca": "Contadigital",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 3,
+   "limites_publicados": 0,
+   "posts": [
+    2104
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 3
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "square-mx",
+   "marca": "Square",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 3,
+   "limites_publicados": 0,
+   "posts": [
+    3526,
+    3930
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1,
+    "MXN": 2
+   },
+   "url": "https://squareup.com/us/es/pricing",
+   "url_candidatas": [
+    "https://squareup.com/us/es/pricing",
+    "https://squareup.com/mx/es"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "poster-mx",
+   "marca": "Poster",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 3,
+   "limites_publicados": 0,
+   "posts": [
+    3470,
+    3526
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 1,
+    "$": 2
+   },
+   "url": "https://joinposter.mx/precios",
+   "url_candidatas": [
+    "https://joinposter.mx/precios"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "quickbooks-mx",
+   "marca": "QuickBooks",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 2,
+   "limites_publicados": 0,
+   "posts": [
+    116,
+    3544
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1,
+    "MXN": 1
+   },
+   "url": "https://quickbooks.intuit.com/global/pricing/",
+   "url_candidatas": [
+    "https://quickbooks.intuit.com/global/pricing/",
+    "https://quickbooks.intuit.com/mx/",
+    "https://quickbooks.intuit.com/mx/aviso-importante/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "konta-mx",
+   "marca": "Konta",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 2,
+   "limites_publicados": 0,
+   "posts": [
+    2618
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 2
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "clip-mx",
+   "marca": "Clip",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    3930
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "facturabot-mx",
+   "marca": "Facturabot",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    3297
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 1
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://facturabot.com/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "dfacture-mx",
+   "marca": "DFacture",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    2214
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  }
+ ]
+}
