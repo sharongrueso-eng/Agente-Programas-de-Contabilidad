@@ -7,11 +7,32 @@ reconoce por las señales propias del país (`senales-pais.json`), no por la URL
 
 | Paso de la guía | Estado |
 |---|---|
-| 0. Reglas | Borrador en `REGLAS-VIGIA.md`, pendiente de aprobar |
+| 0. Reglas | Aprobadas el 18-nov-2026 por Sharon Grueso (`REGLAS-VIGIA.md`) |
 | 1. Inventario | Hecho (v2, por país). Falta revisar la confianza media y los pendientes |
 | 2. Registro de precios | Sin empezar |
 | 3. Fuentes | Borrador en `paises/<vigía>/fuentes.json`: solo Alegra tiene URL verificada |
 | 4 a 12 | Sin empezar |
+
+## T1 · Entorno verificado (18-nov-2026)
+
+Corrido en la copia local (Windows). El contenedor de Coolify se verifica aparte: ver
+`docs/CONTENEDOR.md`.
+
+- **36 pruebas en verde** en `vigia/tests`, con Python 3.14.9 y un venv aparte (`~/.pdc/venv-vigia`)
+  con lo que pide `requirements.txt` (playwright, beautifulsoup4, lxml, pytest).
+- **Chromium 159.0.8154.6** (Playwright 1.65.2) abre `https://www.alegra.com/colombia/precios/` a
+  1440 px, ve DIAN y lee las cifras en COP ($37.425, $449.100…).
+- **El inventario se reproduce.** Regenerado el 18-nov con los 343 posts y el recurso: 1.120
+  ubicaciones (COL 508, MEX 299, DOM 186, CRI 127), 64 fuentes (MEX 19, CRI 16, COL 15, DOM 14), 41
+  rangos de mercado, 33 cifras fuera de alcance (PE 22, PA 7, ES 4) y las mismas 85 cifras de Alegra
+  que no coinciden con su página en 50 posts (MEX 11 en 7, COL 35 en 15, CRI 13 en 10, DOM 26 en 18).
+- **Una sola diferencia: sin país son 15, no 16.** Es «$100 mil dólares» del post 16 (*Pequeñas
+  empresas, segmento que crece en América Latina*): hoy queda con país CO y confianza baja por las
+  señales del propio post («Colombia» 4 frente a «Perú» 2), y la foto del inventario v2 la había dejado
+  sin país. Con la regla aprobada (≥3 puntos y el doble del segundo) el resultado correcto es CO, así
+  que esa cifra se mueve a los pendientes de COL: 39 en vez de 38, y el total 150 en vez de 149.
+- Los archivos regenerados **no se subieron**: T1 solo pide el informe. Se subirán cuando se revise la
+  confianza media.
 
 ## Inventario v2 (18-nov-2026)
 

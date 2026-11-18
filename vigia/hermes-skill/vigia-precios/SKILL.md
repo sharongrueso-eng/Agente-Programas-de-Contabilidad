@@ -120,8 +120,10 @@ python -m venv ~/.pdc/venv-vigia
   el agente diario no se ensucia. Es el mismo patrón de `~/.pdc/mcp-gsc/.venv`.
 - **Al pip pásale la ruta en estilo Windows (`C:/Users/...`)**, no `/c/Users/...`: pip es un binario
   nativo y MSYS no traduce la ruta, así que falla con «Could not open requirements file».
-- Chromium: compruébalo lanzando `sync_playwright().chromium.launch()`. Si falta, **repórtalo y no lo
-  instales** (T1 lo prohíbe explícitamente); `PLAYWRIGHT_BROWSERS_PATH` solo se fija en el contenedor.
+- Chromium: compruébalo lanzando `sync_playwright().chromium.launch()`. Se instala **una vez** en la
+  imagen del contenedor o en el comando posterior al despliegue, con `PLAYWRIGHT_BROWSERS_PATH` en una
+  carpeta permanente (`docs/CONTENEDOR.md`, DEC-010): nunca en cada corrida y nunca dentro de una tarea
+  del plan. En la copia local de Sharon quedó instalado en `%LOCALAPPDATA%\ms-playwright`.
 - Skill: copia `vigia/hermes-skill/vigia-precios` a `$HERMES_HOME/skills/pdc/` (en Windows
   `C:\Users\Alegra\AppData\Local\hermes\skills\pdc\`) y confirma con `skills_list(category='pdc')`;
   en el contenedor hace falta `/reload-skills`.

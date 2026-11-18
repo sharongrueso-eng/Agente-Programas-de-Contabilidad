@@ -37,3 +37,13 @@ las palabras propias de cada país (SAT, DIAN, DGII, Hacienda, CFDI, e-CF, UVT, 
 guardadas con su peso en `senales-pais.json`. Se mira de lo más cercano a lo más amplio: moneda, frase o
 fila, sección, título, post y, al final, el metadato `pdc_target_country`. Si las señales contradicen el
 metadato, ganan las señales y se avisa.
+
+## DEC-009 · 18-nov-2026 · Reglas del vigía aprobadas
+Sharon Grueso aprobó `REGLAS-VIGIA.md` el 18-nov-2026. Desde ahora cada regla que bloquea se escribe como
+código y como prueba (T4 y T5); ninguna se salta porque una lectura del modelo parezca razonable.
+
+## DEC-010 · 18-nov-2026 · Chromium vive en la imagen, no en la corrida
+Chromium y las librerías del sistema se instalan una vez en la imagen del contenedor (o en un comando
+posterior al despliegue de Coolify), con `PLAYWRIGHT_BROWSERS_PATH` apuntando a una carpeta permanente.
+Nunca se reinstala en cada corrida: alarga cada ejecución del vigía y la ata a la red del momento. Ver
+`docs/CONTENEDOR.md`.

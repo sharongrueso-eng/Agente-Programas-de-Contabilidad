@@ -1,7 +1,7 @@
 # Reglas del vigía de precios
 
-> **Borrador del 18-nov-2026, pendiente de aprobación** por quien responde por PdC. Cada regla que
-> bloquea se convierte después en código (`reglas.json` y pruebas).
+> **Aprobadas el 18-nov-2026 por Sharon Grueso** (responsable de PdC). Cada regla que bloquea se
+> convierte en código (`reglas.json` y pruebas) al construir el lector y el comparador (T4 y T5).
 
 ## 1. Cuatro vigías, un solo código
 
