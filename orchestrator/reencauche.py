@@ -64,6 +64,30 @@ def _h2(html: str) -> list[str]:
     return titulos
 
 
+# Palabras que no dicen de qué habla una sección: sin ellas, «cómo comparar» y «qué comparar»
+# siguen siendo el mismo tema.
+_VACIAS = frozenset(
+    "para como que los las del con por sin una unos unas este esta estos estas sobre entre mas "
+    "cuando donde desde hasta cada todo toda todos todas sus su al lo le les ni pero porque".split()
+)
+
+
+def _tema(texto: str) -> set[str]:
+    """Palabras con contenido de un texto, sin acentos ni vacías. Es el «tema» de la sección."""
+    import unicodedata
+
+    plano = unicodedata.normalize("NFKD", texto or "")
+    plano = "".join(c for c in plano if not unicodedata.combining(c)).lower()
+    palabras = [p for p in re.findall(r"[a-z0-9]+", plano) if len(p) > 3 and p not in _VACIAS]
+    return set(palabras)
+
+
+def _texto(html: str) -> str:
+    """Todo el texto visible, para buscar los temas sin depender de cómo se tituló."""
+    sin_tags = re.sub(r"<[^>]+>", " ", html or "")
+    return re.sub(r"\s+", " ", sin_tags)
+
+
 def _internos(html: str, dominio: str = "programascontabilidad.com") -> set[str]:
     return {
         u.split("#")[0].rstrip("/")
@@ -86,13 +110,23 @@ def comparar(nueva: str, viva: str, keyword: str = "", *, minimo: float = 0.85) 
         }
     )
 
-    perdidas = [t for t in _h2(viva) if t not in _h2(nueva)]
+    # Secciones: se mide el **tema**, no el título literal. Un reencauche de estructura reordena y
+    # renombra secciones por definición; exigir el mismo encabezado bloqueaba mejoras legítimas
+    # (pasó con «mejor-software-contable-mexico»: la versión nueva decía lo mismo con otros títulos).
+    temas_viva = set().union(*(_tema(t) for t in _h2(viva))) if _h2(viva) else set()
+    temas_nueva = _tema(_texto(nueva))
+    cubiertos = temas_viva & temas_nueva
+    cobertura = len(cubiertos) / len(temas_viva) if temas_viva else 1.0
+    faltan = sorted(temas_viva - temas_nueva)[:8]
     controls.append(
         {
             "codigo": "comparacion_secciones",
-            "pasa": not perdidas,
-            "detalle": "conserva todas las secciones" if not perdidas
-            else "pierde: " + "; ".join(perdidas[:5]),
+            "pasa": cobertura >= 0.8,
+            "detalle": (
+                f"cubre {cobertura:.0%} de los temas de la viva"
+                if cobertura >= 0.8
+                else f"pierde temas: {', '.join(faltan)}"
+            ),
         }
     )
 
