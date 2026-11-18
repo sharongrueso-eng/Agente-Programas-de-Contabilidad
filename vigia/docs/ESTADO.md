@@ -9,7 +9,7 @@ reconoce por las señales propias del país (`senales-pais.json`), no por la URL
 |---|---|
 | 0. Reglas | Aprobadas el 18-nov-2026 por Sharon Grueso (`REGLAS-VIGIA.md`) |
 | 1. Inventario | Hecho (v2, por país). Falta revisar la confianza media y los pendientes |
-| 2. Registro de precios | Sin empezar |
+| 2. Registro de precios | COL: 16 planes de Alegra con pruebas (T3). Faltan MEX, DOM y CRI |
 | 3. Fuentes | Los cuatro países: prioridad 1 verificada (T2). Queda prioridad 2 y 3 |
 | 4 a 12 | Sin empezar |
 
@@ -111,6 +111,24 @@ El patrón de precios tiene que aceptar **el código de moneda delante** (`USD 1
 solo el símbolo. Con el patrón que solo buscaba `$`, Alegra Costa Rica y Alegra RD devolvían **cero
 cifras aunque las tienen**: una lectura vacía que parece «no publica» y que habría mandado dos fuentes a
 `no_publica` por error.
+
+## T3 · Registro de precios de Alegra Colombia (18-nov-2026)
+
+`paises/col/registro-precios.json` tiene los **16 planes de Alegra Colombia**: Facturación electrónica,
+Contabilidad, POS y Nómina electrónica, cuatro planes cada uno (Emprendedor, Pyme, Pro y Plus).
+
+- Cada plan guarda moneda (COP), mensual de lista, anual equivalente al mes, facturado anual, los límites
+  que publica la página (usuarios con acceso, ingresos mensuales, bodegas) y su fuente con fecha.
+- El **descuento anual es 25 % en los cuatro productos** y cuadra con `paises/col/PAIS.md`:
+  `anual_facturado = 12 × anual_equivalente_mes` y `anual_equivalente_mes = mensual × 0,75`.
+- Las pruebas nuevas (`tests/test_registro.py`, 52 casos; 88 en total) comprueban fórmulas, claves únicas,
+  moneda, orden de magnitud y presencia de límites. Los precios en sí los confirma una persona la primera
+  vez, como pide el paso 2.
+- **Cruce con el inventario**: los posts publican Contabilidad Emprendedor a $69.900 y la página del
+  18-nov dice $74.900. Es el hallazgo que ya estaba en `ESTADO.md`; el registro toma la página, no el post.
+- **Trampa para T4**: en Alegra la fila de precio incluye también el facturado anual y el ahorro. Hay que
+  leer solo `span.cards-simple-price-and-period`; si se toma toda la fila, el facturado anual aparece como
+  precio mensual (pasó al armar este registro y se vio en la primera pasada).
 
 ## Inventario v2 (18-nov-2026)
 

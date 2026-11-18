@@ -1,0 +1,414 @@
+{
+ "generado": "2026-11-18",
+ "pais": "CO",
+ "vigia": "col",
+ "marca": "Alegra",
+ "fuente": "https://www.alegra.com/colombia/precios/",
+ "nota": "Línea base de Alegra Colombia leída del DOM el 18-nov-2026. El descuento anual es permanente, no una campaña. Fórmulas verificadas en tests/test_registro.py.",
+ "planes": [
+  {
+   "clave": "alegra|facturacion|CO|emprendedor",
+   "marca": "Alegra",
+   "producto": "Facturación electrónica",
+   "pais": "CO",
+   "plan": "Emprendedor",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 17900,
+   "anual_equivalente_mes": 13425,
+   "anual_facturado": 161100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "facturas": "ilimitadas",
+    "ingresos_mensuales": 10000000,
+    "usuarios": 1
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|facturacion|CO|pyme",
+   "marca": "Alegra",
+   "producto": "Facturación electrónica",
+   "pais": "CO",
+   "plan": "Pyme",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 49900,
+   "anual_equivalente_mes": 37425,
+   "anual_facturado": 449100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "facturas": "ilimitadas",
+    "ingresos_mensuales": 40000000,
+    "usuarios": 2
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|facturacion|CO|pro",
+   "marca": "Alegra",
+   "producto": "Facturación electrónica",
+   "pais": "CO",
+   "plan": "Pro",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 99900,
+   "anual_equivalente_mes": 74925,
+   "anual_facturado": 899100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "facturas": "ilimitadas",
+    "ingresos_mensuales": 180000000,
+    "usuarios": 3
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|facturacion|CO|plus",
+   "marca": "Alegra",
+   "producto": "Facturación electrónica",
+   "pais": "CO",
+   "plan": "Plus",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 179900,
+   "anual_equivalente_mes": 134925,
+   "anual_facturado": 1619100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "facturas": "ilimitadas",
+    "ingresos_mensuales": 500000000,
+    "usuarios": 5
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|contabilidad|CO|emprendedor",
+   "marca": "Alegra",
+   "producto": "Contabilidad",
+   "pais": "CO",
+   "plan": "Emprendedor",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 74900,
+   "anual_equivalente_mes": 56175,
+   "anual_facturado": 674100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "facturas": "ilimitadas",
+    "ingresos_mensuales": 10000000,
+    "usuarios": 1,
+    "bodegas": 1
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|contabilidad|CO|pyme",
+   "marca": "Alegra",
+   "producto": "Contabilidad",
+   "pais": "CO",
+   "plan": "Pyme",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 163900,
+   "anual_equivalente_mes": 122925,
+   "anual_facturado": 1475100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "facturas": "ilimitadas",
+    "ingresos_mensuales": 40000000,
+    "usuarios": 2,
+    "bodegas": 2
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|contabilidad|CO|pro",
+   "marca": "Alegra",
+   "producto": "Contabilidad",
+   "pais": "CO",
+   "plan": "Pro",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 250900,
+   "anual_equivalente_mes": 188175,
+   "anual_facturado": 2258100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "facturas": "ilimitadas",
+    "ingresos_mensuales": 180000000,
+    "usuarios": 3,
+    "bodegas": 10
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|contabilidad|CO|plus",
+   "marca": "Alegra",
+   "producto": "Contabilidad",
+   "pais": "CO",
+   "plan": "Plus",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 319900,
+   "anual_equivalente_mes": 239925,
+   "anual_facturado": 2879100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "facturas": "ilimitadas",
+    "ingresos_mensuales": 500000000,
+    "usuarios": 8,
+    "bodegas": 100
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|pos|CO|emprendedor",
+   "marca": "Alegra",
+   "producto": "POS",
+   "pais": "CO",
+   "plan": "Emprendedor",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 25900,
+   "anual_equivalente_mes": 19425,
+   "anual_facturado": 233100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "ingresos_mensuales": 10000000,
+    "usuarios": 1,
+    "bodegas": 1
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|pos|CO|pyme",
+   "marca": "Alegra",
+   "producto": "POS",
+   "pais": "CO",
+   "plan": "Pyme",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 79900,
+   "anual_equivalente_mes": 59925,
+   "anual_facturado": 719100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "ingresos_mensuales": 40000000,
+    "usuarios": 2,
+    "bodegas": 2
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|pos|CO|pro",
+   "marca": "Alegra",
+   "producto": "POS",
+   "pais": "CO",
+   "plan": "Pro",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 139900,
+   "anual_equivalente_mes": 104925,
+   "anual_facturado": 1259100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "ingresos_mensuales": 180000000,
+    "usuarios": 3,
+    "bodegas": 10
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|pos|CO|plus",
+   "marca": "Alegra",
+   "producto": "POS",
+   "pais": "CO",
+   "plan": "Plus",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 199900,
+   "anual_equivalente_mes": 149925,
+   "anual_facturado": 1799100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "ingresos_mensuales": 500000000,
+    "usuarios": 8,
+    "bodegas": 100
+   },
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|nomina|CO|emprendedor",
+   "marca": "Alegra",
+   "producto": "Nómina electrónica",
+   "pais": "CO",
+   "plan": "Emprendedor",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 29900,
+   "anual_equivalente_mes": 22425,
+   "anual_facturado": 269100,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|nomina|CO|pyme",
+   "marca": "Alegra",
+   "producto": "Nómina electrónica",
+   "pais": "CO",
+   "plan": "Pyme",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 69000,
+   "anual_equivalente_mes": 51750,
+   "anual_facturado": 621000,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|nomina|CO|pro",
+   "marca": "Alegra",
+   "producto": "Nómina electrónica",
+   "pais": "CO",
+   "plan": "Pro",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 139000,
+   "anual_equivalente_mes": 104250,
+   "anual_facturado": 1251000,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|nomina|CO|plus",
+   "marca": "Alegra",
+   "producto": "Nómina electrónica",
+   "pais": "CO",
+   "plan": "Plus",
+   "moneda": "COP",
+   "impuesto": "no especificado",
+   "mensual": 259000,
+   "anual_equivalente_mes": 194250,
+   "anual_facturado": 2331000,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "campana_activa": null,
+   "descuento_anual": 0.25
+  }
+ ]
+}
