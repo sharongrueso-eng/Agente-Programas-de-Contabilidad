@@ -1,0 +1,370 @@
+{
+ "generado": "2026-11-18",
+ "pais": "DO",
+ "vigia": "dom",
+ "marca": "Alegra",
+ "fuente": "https://www.alegra.com/rdominicana/precios/",
+ "nota": "Línea base de Alegra República Dominicana leída del DOM el 18-nov-2026. Cobra en USD y el descuento anual es 10 % en todos los productos (paises/dom/PAIS.md), permanente y no campaña. El bloque de POS aparece dos veces en la página con los mismos precios: se deduplica.",
+ "planes": [
+  {
+   "clave": "alegra|facturaci-n-electr-nica|DO|inicial",
+   "marca": "Alegra",
+   "producto": "Facturación electrónica",
+   "pais": "DO",
+   "plan": "Inicial",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 15.0,
+   "anual_equivalente_mes": 13.5,
+   "anual_facturado": 162.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "facturas": "25",
+    "usuarios": 1
+   },
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "64023234",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|facturaci-n-electr-nica|DO|pyme",
+   "marca": "Alegra",
+   "producto": "Facturación electrónica",
+   "pais": "DO",
+   "plan": "Pyme",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 29.0,
+   "anual_equivalente_mes": 26.1,
+   "anual_facturado": 313.2,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "facturas": "150",
+    "usuarios": 2
+   },
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "64023234",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|facturaci-n-electr-nica|DO|pro",
+   "marca": "Alegra",
+   "producto": "Facturación electrónica",
+   "pais": "DO",
+   "plan": "Pro",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 45.0,
+   "anual_equivalente_mes": 40.5,
+   "anual_facturado": 486.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "facturas": "ilimitadas",
+    "usuarios": 3
+   },
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "64023234",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|pos|DO|pos-inicial",
+   "marca": "Alegra",
+   "producto": "POS",
+   "pais": "DO",
+   "plan": "POS Inicial",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 25.0,
+   "anual_equivalente_mes": 22.5,
+   "anual_facturado": 270.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "ceb4903a",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|pos|DO|pos-pro",
+   "marca": "Alegra",
+   "producto": "POS",
+   "pais": "DO",
+   "plan": "POS Pro",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 39.0,
+   "anual_equivalente_mes": 35.1,
+   "anual_facturado": 421.2,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "ceb4903a",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|pos|DO|pos-gastrobar",
+   "marca": "Alegra",
+   "producto": "POS",
+   "pais": "DO",
+   "plan": "POS Gastrobar",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 55.0,
+   "anual_equivalente_mes": 49.5,
+   "anual_facturado": 594.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "ceb4903a",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|erp|DO|inicial",
+   "marca": "Alegra",
+   "producto": "ERP",
+   "pais": "DO",
+   "plan": "Inicial",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 79.0,
+   "anual_equivalente_mes": 71.1,
+   "anual_facturado": 853.2,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "usuarios": 3
+   },
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "947cee51",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|erp|DO|pro",
+   "marca": "Alegra",
+   "producto": "ERP",
+   "pais": "DO",
+   "plan": "Pro",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 129.0,
+   "anual_equivalente_mes": 116.1,
+   "anual_facturado": 1393.2,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "usuarios": 5
+   },
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "947cee51",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|erp|DO|plus",
+   "marca": "Alegra",
+   "producto": "ERP",
+   "pais": "DO",
+   "plan": "Plus",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 199.0,
+   "anual_equivalente_mes": 179.1,
+   "anual_facturado": 2149.2,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "usuarios": 10
+   },
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "947cee51",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|n-mina-electr-nica|DO|n-mina-pyme",
+   "marca": "Alegra",
+   "producto": "Nómina electrónica",
+   "pais": "DO",
+   "plan": "Nómina Pyme",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 29.0,
+   "anual_equivalente_mes": 26.1,
+   "anual_facturado": 313.2,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "997b348a",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|n-mina-electr-nica|DO|n-mina-pro",
+   "marca": "Alegra",
+   "producto": "Nómina electrónica",
+   "pais": "DO",
+   "plan": "Nómina Pro",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 59.0,
+   "anual_equivalente_mes": 53.1,
+   "anual_facturado": 637.2,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "997b348a",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|n-mina-electr-nica|DO|n-mina-plus",
+   "marca": "Alegra",
+   "producto": "Nómina electrónica",
+   "pais": "DO",
+   "plan": "Nómina Plus",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 89.0,
+   "anual_equivalente_mes": 80.1,
+   "anual_facturado": 961.2,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "997b348a",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|contabilidad|DO|independiente",
+   "marca": "Alegra",
+   "producto": "Contabilidad",
+   "pais": "DO",
+   "plan": "Independiente",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 59.0,
+   "anual_equivalente_mes": 53.1,
+   "anual_facturado": 637.2,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "0b76b8f7",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|contabilidad|DO|firma",
+   "marca": "Alegra",
+   "producto": "Contabilidad",
+   "pais": "DO",
+   "plan": "Firma",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 120.0,
+   "anual_equivalente_mes": 108.0,
+   "anual_facturado": 1296.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "0b76b8f7",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|contabilidad|DO|estudio",
+   "marca": "Alegra",
+   "producto": "Contabilidad",
+   "pais": "DO",
+   "plan": "Estudio",
+   "moneda": "USD",
+   "impuesto": "no especificado",
+   "mensual": 350.0,
+   "anual_equivalente_mes": 315.0,
+   "anual_facturado": 3780.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/rdominicana/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "campana_activa": null,
+   "grupo": "0b76b8f7",
+   "descuento_anual": 0.1
+  }
+ ]
+}

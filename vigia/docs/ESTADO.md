@@ -9,7 +9,7 @@ reconoce por las señales propias del país (`senales-pais.json`), no por la URL
 |---|---|
 | 0. Reglas | Aprobadas el 18-nov-2026 por Sharon Grueso (`REGLAS-VIGIA.md`) |
 | 1. Inventario | Hecho (v2, por país). Falta revisar la confianza media y los pendientes |
-| 2. Registro de precios | COL (16 planes) y MEX (12) con pruebas (T3). Faltan DOM y CRI |
+| 2. Registro de precios | COL (16), MEX (12) y DOM (15) con pruebas (T3). CRI bloqueado: ver abajo |
 | 3. Fuentes | Los cuatro países: prioridad 1 verificada (T2). Queda prioridad 2 y 3 |
 | 4 a 12 | Sin empezar |
 
@@ -148,6 +148,40 @@ Despacho, Firma).
 - **Trampa para T4**: el producto de cada tarjeta se identifica por `data-period-group`, **no** por el
   encabezado que está al lado. Al bloque de Facturación le precede un h3 que dice «Alegra POS»: quien
   asigne producto por el encabezado más cercano va a etiquetar mal cuatro de los cinco bloques.
+
+## T3 · Registro de precios de Alegra República Dominicana (18-nov-2026)
+
+`paises/dom/registro-precios.json`: **15 planes** en cinco productos, todos en USD.
+
+| Producto | Planes | Mensual | Descuento anual |
+|---|---|---|---|
+| Facturación electrónica | Inicial, Pyme, Pro | 15 / 29 / 45 | 10 % |
+| POS | POS Inicial, POS Pro, POS Gastrobar | 25 / 39 / 55 | 10 % |
+| ERP | Inicial, Pro, Plus | 79 / 129 / 199 | 10 % |
+| Nómina electrónica | Pyme, Pro, Plus | 29 / 59 / 89 | 10 % |
+| Contabilidad | Independiente, Firma, Estudio | 59 / 120 / 350 | 10 % |
+
+- El **10 % anual en todos los productos** es lo que dice `paises/dom/PAIS.md` y ya es prueba.
+- El bloque de POS aparece **dos veces** en la página con los mismos planes y precios: se deduplica.
+- El producto sale de `data-period-group`, no del encabezado vecino.
+
+## T3 · Costa Rica: bloqueado a propósito (18-nov-2026)
+
+No se escribió `paises/cri/registro-precios.json`. La página de Alegra Costa Rica tiene cinco bloques y
+**dos de ellos no se pueden distinguir sin mirar la página**:
+
+- `Pyme / Pro / Plus` a USD 40 / 70 / 120
+- `Pyme / Pro / Plus` a USD 20 / 50 / 80
+
+Los dos dan exactamente el 25 % de descuento anual, que es el de Facturación, POS y ERP en `PAIS.md`, así
+que el descuento no sirve para separar POS de ERP. Los encabezados de la página están corridos respecto a
+las tarjetas (al primer bloque le precede «POS» y pertenece a Facturación). Hay además un bloque suelto
+con un solo plan «Pyme» a USD 20 que no encaja en los demás.
+
+**Por qué se deja así:** un `producto` mal asignado no se queda en un JSON, viaja al actualizador y
+reescribe el post equivocado con el precio de otro producto. Se resuelve en dos minutos mirando la página
+con una persona, o grabando el bloque que está activo en cada pestaña; ninguna de las dos cosas se puede
+inferir desde el HTML guardado, así que no se inventa.
 
 ## Inventario v2 (18-nov-2026)
 

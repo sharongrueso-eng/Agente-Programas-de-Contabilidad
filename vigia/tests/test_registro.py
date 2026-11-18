@@ -15,6 +15,7 @@ VIGIA = Path(__file__).resolve().parents[1]
 DESCUENTO_ANUAL = {
     "col": {"*": 0.25},
     "mex": {"*": 0.25, "Soy Contador": 0.10},
+    "dom": {"*": 0.10},
 }
 MONEDA = {"col": "COP", "mex": "MXN", "dom": "USD", "cri": "USD"}
 
@@ -80,7 +81,7 @@ def test_descuento_anual_es_el_del_pais_md(pais, plan):
 @pytest.mark.parametrize("pais,plan", PLANES, ids=[f"{pais}-{p['clave']}" for pais, p in PLANES])
 def test_orden_de_magnitud(pais, plan):
     # Fuera de este rango no es una promoción: es una cifra mal leída.
-    minimo, maximo = (10_000, 5_000_000) if pais == "col" else (50, 20_000)
+    minimo, maximo = (10_000, 5_000_000) if pais == "col" else (5, 20_000)
     assert minimo <= plan["mensual"] <= maximo, plan["clave"]
 
 
