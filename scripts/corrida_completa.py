@@ -752,7 +752,15 @@ def main() -> int:
             # Un reencauche de snippet no reescribe el cuerpo: se produce solo la cabecera.
             args.secciones = False
         brief = Brief(
-            f"{args.entorno}-{date.today().isoformat()}-{args.pais}",
+            # El task_id lleva el objetivo: dos piezas del mismo país el mismo día (o un reintento
+            # de otra URL) no pueden compartir registro, o el mapa de publicaciones da la segunda
+            # por hecha y no publica nada. Con el objetivo dentro, reintentar la misma URL sigue
+            # siendo idempotente y una pieza distinta abre su propia carpeta.
+            f"{args.entorno}-{date.today().isoformat()}-{args.pais}-"
+            + (
+                (elegida.url or elegida.focus_keyword or "tema").rstrip("/").split("/")[-1][:40]
+                or "tema"
+            ),
             date.today(),
             "A",
             "resena",
