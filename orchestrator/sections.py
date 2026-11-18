@@ -171,6 +171,7 @@ def producir_por_secciones(
     fichas: Sequence[Any] = (),
     carpeta: Path | None = None,
     max_reintentos: int = 3,
+    contexto: str = "",
 ) -> SalidaSecciones:
     """Escribe la cabecera y cada bloque con llamadas separadas, y ensambla la pieza."""
     if brief.opportunity is None:
@@ -181,6 +182,8 @@ def producir_por_secciones(
 
     tablas_max = _presupuesto(brief.format).tablas_max
     sistema = f"""{skill.strip()}
+
+{contexto.strip()}
 
 ## Reglas no negociables
 

@@ -1080,6 +1080,7 @@ def main() -> int:
     elif args.secciones:
         from dataclasses import asdict
 
+        from orchestrator.reencauche import contexto_para_reescribir
         from orchestrator.sections import producir_por_secciones
 
         print()
@@ -1097,6 +1098,10 @@ def main() -> int:
             ],
             fichas=list(registro.fichas),
             carpeta=RAIZ / "state" / "corridas" / brief.task_id / "bloques",
+            # Reencauche: el redactor recibe las secciones y los enlaces que la página ya tiene.
+            contexto=(
+                contexto_para_reescribir(html_vivo) if locals().get("html_vivo") else ""
+            ),
         )
         from dataclasses import replace as _reemplazar
 

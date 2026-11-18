@@ -160,3 +160,41 @@ def comparar(nueva: str, viva: str, keyword: str = "", *, minimo: float = 0.85) 
 
 def resumen_para_reporte(resultado: Resultado, url: str) -> dict[str, Any]:
     return {"url_viva": url, **resultado.to_dict()}
+
+
+def contexto_para_reescribir(
+    html_vivo: str, *, maximo_enlaces: int = 12, maximo_secciones: int = 25
+) -> str:
+    """Lo que el redactor necesita para reencauchar sin destruir lo que la página ya tiene.
+
+    Un reencauche no es una pieza nueva con el mismo título: es la misma promesa, mejor escrita.
+    El productor recibía solo el brief, así que escribía desde cero y perdía secciones y enlaces
+    internos (la comparación lo bloqueaba). Este bloque le dice qué hay que conservar.
+    """
+    secciones = _h2(html_vivo)[:maximo_secciones]
+    enlaces = sorted(_internos(html_vivo))[:maximo_enlaces]
+    arranque = ""
+    primero = re.search(r"<p\b[^>]*>(.*?)</p>", html_vivo or "", re.I | re.S)
+    if primero:
+        arranque = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", primero.group(1))).strip()[:400]
+
+    lineas = [
+        "## Esta pieza se reencaucha: no es un artículo nuevo",
+        "",
+        "Escribes la versión mejorada de una URL que ya está publicada. La promesa no cambia: mismas "
+        "secciones y mismos enlaces internos, mejor orden, mejor arranque y más profundidad. Si "
+        "cambias el tema, pierdes lo que la página ya posiciona.",
+        "",
+    ]
+    if secciones:
+        lineas.append("Secciones que la página ya tiene (deben seguir existiendo; puedes renombrarlas, "
+                      "reordenarlas y ampliarlas):")
+        lineas += [f"- {titulo}" for titulo in secciones]
+        lineas.append("")
+    if enlaces:
+        lineas.append("Enlaces internos que la página ya usa y hay que conservar tal cual:")
+        lineas += [f"- {url}" for url in enlaces]
+        lineas.append("")
+    if arranque:
+        lineas += [f"Primer párrafo actual, para no perder el ángulo: «{arranque}»", ""]
+    return "\n".join(lineas)
