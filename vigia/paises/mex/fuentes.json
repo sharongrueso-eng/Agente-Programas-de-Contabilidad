@@ -50,10 +50,21 @@
    ],
    "url_verificada": true,
    "moneda_esperada": "MXN",
-   "senales_pais": [],
+   "senales_pais": [
+    "SAT",
+    "CFDI",
+    "RFC",
+    "RESICO",
+    "MXN",
+    "México"
+   ],
    "modo_lectura": "ruta_pais",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "pista_receta": "147 cifras. La receta de Colombia ([id^='pricing-cards-']) NO sirve aqui: en MX pricing-cards-af/-pos/-contabilidad/-contador son anclas de menu, no ids de contenedor. Fijar receta en T4.",
+   "nota": "Muestra mensual con pago anual (186,75) y facturado anual (2,241): el -25 % es el descuento por pago anual, no campana.",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html"
   },
   {
    "id": "contpaqi-mx",
@@ -81,7 +92,7 @@
     "$": 10,
     "MXN": 51
    },
-   "url": null,
+   "url": "https://www.contpaqi.com/",
    "url_candidatas": [
     "https://www.contpaqi.com/",
     "https://www.contpaqi.com/contabiliza",
@@ -89,11 +100,21 @@
     "https://www.contpaqi.com/contabilidad"
    ],
    "url_verificada": false,
-   "moneda_esperada": null,
-   "senales_pais": [],
-   "modo_lectura": "por_definir",
+   "moneda_esperada": "MXN",
+   "senales_pais": [
+    "SAT",
+    "CFDI",
+    "RFC",
+    "RESICO",
+    "México"
+   ],
+   "modo_lectura": "no_publica",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "pista_receta": null,
+   "nota": "No publica precios: probadas / y /productos (0 cifras) y /tienda (404). Cotiza por socios de negocio. Se comprueba cada corrida que siga sin publicar; si aparece un precio, aviso amarillo.",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/contpaqi-mx.html"
   },
   {
    "id": "facturama-mx",
@@ -118,12 +139,22 @@
     "https://facturama.mx/planes-facturacion",
     "https://facturama.mx/"
    ],
-   "url_verificada": false,
-   "moneda_esperada": null,
-   "senales_pais": [],
-   "modo_lectura": "por_definir",
+   "url_verificada": true,
+   "moneda_esperada": "MXN",
+   "senales_pais": [
+    "CFDI",
+    "RFC",
+    "Carta Porte",
+    "MXN",
+    "México"
+   ],
+   "modo_lectura": "ruta_pais",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "pista_receta": "4 cifras: paquetes prepago de folios y timbres (55, 110, 165 y 1,650 MXN). No es una tabla de planes mensuales; si el registro necesita suscripciones, hay que buscar esa pagina aparte.",
+   "nota": "Los precios son por paquete prepago, no por mes: el registro debe guardarlos como pago unico por documento.",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/facturama-mx.html"
   },
   {
    "id": "miskuentas-mx",
@@ -142,19 +173,35 @@
     "MXN": 20,
     "$": 4
    },
-   "url": "https://www.miskuentas.com/tienda/",
+   "url": "https://www.miskuentas.com/contabilidad/",
    "url_candidatas": [
     "https://www.miskuentas.com/tienda/",
     "https://www.miskuentas.com/store/",
     "https://www.miskuentas.com/",
     "https://www.miskuentas.com/contabilidad-electronica/"
    ],
-   "url_verificada": false,
-   "moneda_esperada": null,
-   "senales_pais": [],
-   "modo_lectura": "por_definir",
-   "receta": null,
-   "estado": "borrador"
+   "url_verificada": true,
+   "moneda_esperada": "MXN",
+   "senales_pais": [
+    "SAT",
+    "CFDI",
+    "RFC",
+    "DIOT",
+    "MXN",
+    "México"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "div.fac-plan-card__prices",
+    "elementos": 6,
+    "precios_cubiertos": 18,
+    "estado": "propuesta_t4"
+   },
+   "estado": "verificado",
+   "pista_receta": "div.fac-plan-card__prices cubre 18 de 19 cifras en 6 tarjetas de plan (propuesta para T4).",
+   "nota": "La tienda (/tienda/) redirige a la home; la pagina con precios vive en /contabilidad/. Planes de 600 al mes y 6,000 anual.",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/miskuentas-mx.html"
   },
   {
    "id": "eleventa-mx",
@@ -205,16 +252,29 @@
     "MXN": 3,
     "USD": 2
    },
-   "url": null,
+   "url": "https://www.siigo.com/mx/",
    "url_candidatas": [
     "https://www.aspel.com.mx/"
    ],
-   "url_verificada": false,
-   "moneda_esperada": null,
-   "senales_pais": [],
+   "url_verificada": true,
+   "moneda_esperada": "MXN",
+   "senales_pais": [
+    "SAT",
+    "CFDI",
+    "RFC",
+    "DIOT",
+    "Carta Porte",
+    "complemento de pago",
+    "timbrado",
+    "México"
+   ],
    "modo_lectura": "por_definir",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "pista_receta": "Clases CSS-module con hash (div._container_*): receta en T4, sin depender del hash.",
+   "nota": "aspel.com.mx REDIRIGE a siigo.com/mx/: Aspel es de Siigo. Decidir si esta fuente se fusiona con una fuente Siigo de MEX (hoy no existe) o queda como Siigo con la clave de Aspel. 9 cifras en MXN (292,84 a 9.826).",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/aspel-mx.html"
   },
   {
    "id": "odoo-mx",

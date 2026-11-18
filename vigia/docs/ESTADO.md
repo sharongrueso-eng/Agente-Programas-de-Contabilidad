@@ -10,7 +10,7 @@ reconoce por las señales propias del país (`senales-pais.json`), no por la URL
 | 0. Reglas | Aprobadas el 18-nov-2026 por Sharon Grueso (`REGLAS-VIGIA.md`) |
 | 1. Inventario | Hecho (v2, por país). Falta revisar la confianza media y los pendientes |
 | 2. Registro de precios | Sin empezar |
-| 3. Fuentes | COL: las 5 de prioridad 1 verificadas (T2). Faltan MEX, CRI y DOM |
+| 3. Fuentes | COL y MEX: las de prioridad 1 verificadas (T2). Faltan DOM y CRI |
 | 4 a 12 | Sin empezar |
 
 ## T1 · Entorno verificado (18-nov-2026)
@@ -59,6 +59,29 @@ modo de lectura. El HTML de cada una está en `paises/col/lecturas/2026-11-18/` 
   lo visible o contará dos veces.
 - **Hallazgo que toca a MEX**: `aspel.com.mx` ya no es Aspel, redirige a `siigo.com/mx/` (Siigo compró
   Aspel). Hay que decidir si sigue como fuente propia o se trata como Siigo.
+
+## T2 · Fuentes de prioridad 1 de México (18-nov-2026)
+
+| Fuente | Cifras visibles | Moneda | Modo | Qué hay que saber |
+|---|---|---|---|---|
+| Alegra | 76 | MXN | ruta_pais | Mensual con pago anual ($186,75) y facturado anual ($2,241) |
+| Miskuentas | 19 | MXN | ruta_pais | `/tienda/` redirige; la página con precios vive en `/contabilidad/` |
+| Facturama | 4 | MXN | ruta_pais | Paquetes prepago de folios ($55 a $1.650): pago único por documento |
+| Siigo (ex Aspel) | 9 | MXN | por_definir | `aspel.com.mx` redirige a `siigo.com/mx/` |
+| CONTPAQi | 0 | MXN | no_publica | Probadas `/`, `/productos` y `/tienda` (404): cotiza por socios |
+
+- **Ninguna depende de la IP**: son dominios o rutas de país, igual que en Colombia.
+- **La receta de Colombia no se hereda.** En México, `pricing-cards-af/-pos/-contabilidad/-contador`
+  son anclas del menú, no ids de contenedor: `[id^='pricing-cards-']` devuelve 0 elementos. La receta de
+  Alegra México se fija en T4 contra el HTML guardado.
+- **El HTML guardado trae más menciones que las visibles** (Alegra 147 frente a 76; es el mismo aviso que
+  Loggro en COL): el lector debe leer el DOM visible o contará cifras duplicadas.
+- **CONTPAQi no publica precios.** Se comprueba en cada corrida que siga así; si aparece un precio, aviso
+  🟡. Nunca se escribe «no tiene».
+- **Facturama** vende paquetes prepago, no planes mensuales: el registro debe guardarlos como pago único
+  por documento.
+- **Aspel es de Siigo.** Decisión pendiente: fusionarla con una fuente Siigo de MEX (hoy no existe) o
+  dejarla con su clave y su nombre.
 
 ## Inventario v2 (18-nov-2026)
 
