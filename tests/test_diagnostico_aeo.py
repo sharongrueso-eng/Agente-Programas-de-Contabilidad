@@ -133,6 +133,68 @@ class DiagnosticoTests(unittest.TestCase):
         self.assertEqual(solapamientos([una, otra]), [])
 
 
+class DescansoTests(unittest.TestCase):
+    """La regla de «una URL cada 30 días», que ahora sí aplica la corrida diaria."""
+
+    def _oportunidad(self, url: str):
+        from orchestrator.audit import Opportunity
+
+        return Opportunity(
+            url=url,
+            country="CO",
+            action="refresh_structure",
+            focus_keyword="software contable",
+            intent="best",
+            score=50.0,
+            evidence={"reason": "prueba"},
+        )
+
+    def test_una_url_trabajada_hace_menos_de_30_dias_descansa(self):
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+
+        from orchestrator.diagnostico import en_descanso
+        from orchestrator.state import RefreshJournal
+
+        with TemporaryDirectory() as temp:
+            diario = RefreshJournal.load(Path(temp) / "reencauches.json")
+            trabajada = self._oportunidad("https://programascontabilidad.com/a/")
+            libre = self._oportunidad("https://programascontabilidad.com/b/")
+            diario.entries[trabajada.url] = date(2026, 11, 10)
+
+            libres, descansando = en_descanso([trabajada, libre], diario, date(2026, 11, 17))
+
+        self.assertEqual([o.url for o in descansando], [trabajada.url])
+        self.assertEqual([o.url for o in libres], [libre.url])
+
+    def test_pasados_los_30_dias_la_url_vuelve_a_la_cola(self):
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+
+        from orchestrator.diagnostico import en_descanso
+        from orchestrator.state import RefreshJournal
+
+        with TemporaryDirectory() as temp:
+            diario = RefreshJournal.load(Path(temp) / "reencauches.json")
+            trabajada = self._oportunidad("https://programascontabilidad.com/a/")
+            diario.entries[trabajada.url] = date(2026, 10, 18)
+
+            libres, descansando = en_descanso([trabajada], diario, date(2026, 11, 17))
+
+        self.assertEqual(descansando, [])
+        self.assertEqual([o.url for o in libres], [trabajada.url])
+
+    def test_sin_registro_todo_esta_disponible(self):
+        from orchestrator.diagnostico import en_descanso
+
+        una = self._oportunidad("https://programascontabilidad.com/a/")
+
+        libres, descansando = en_descanso([una], None, date(2026, 11, 17))
+
+        self.assertEqual(descansando, [])
+        self.assertEqual(len(libres), 1)
+
+
 class CalendarioTests(unittest.TestCase):
     def test_el_calendario_solo_usa_dias_habiles(self):
         dias = dias_habiles(date(2026, 11, 17), 14)

@@ -555,6 +555,29 @@ def main() -> int:
         propias = [del_diagnostico.get(o.url, o) for o in propias]
 
         con_cuerpo = [o for o in propias if requires_body(o.action)]
+
+        # Descanso de 30 días: una URL trabajada no se vuelve a tocar hasta que pase el mes. El
+        # registro existía y solo lo usaba el comando `plan`; sin esto, la misma URL reaparecía
+        # cada vez que el turno le tocaba al país.
+        from orchestrator.state import RefreshJournal, StateError
+
+        try:
+            diario = RefreshJournal.load(
+                Path(os.environ.get("PDC_STATE_DIR", "state")) / "reencauches.json"
+            )
+        except StateError as error:
+            print(f"sin descanso: no se pudo leer el registro de reencauches ({error})")
+            return 2
+        con_cuerpo, descansando = diagnostico_mod.en_descanso(con_cuerpo, diario)
+        if descansando:
+            proximas = ", ".join(
+                f"{o.url.rstrip('/').split('/')[-1][:34]} ({(diario.last_refresh(o.url) or date.today()).isoformat()})"
+                for o in descansando[:3]
+            )
+            print(
+                f"descanso: {len(descansando)} URL(s) trabajadas en los últimos "
+                f"{diario.min_days} días → {proximas}"
+            )
         # Prioridad de negocio: primero se mejora lo que ya posiciona (reencauche), y solo cuando
         # no hay nada que mejorar se escribe una pieza nueva.
         reencauches = [o for o in con_cuerpo if (o.action or "").startswith("refresh")]
@@ -710,6 +733,23 @@ def main() -> int:
             args.pais,
             elegida,
         )
+        # En un reencauche manda la promesa de la página viva: si la URL publicada es una guía de
+        # «mejores», el reencauche sigue siendo esa guía, reordenada y ampliada. Antes el brief se
+        # armaba con «resena» y la consulta dominante de turno, y la pieza resultante no cubría los
+        # temas de la URL (la comparación la bloqueó, con razón: habría reemplazado una buena
+        # página por otra distinta).
+        if (elegida.action or "").startswith("refresh"):
+            ficha = next((f for f in diag.paginas if f["url"] == elegida.url), {})
+            publicado = str(ficha.get("formato_publicado") or "").strip().lower()
+            dominante = str(ficha.get("consulta_dominante") or "").strip()
+            if publicado in {"comparativa", "resena", "mejores", "guia"}:
+                brief = _replace(brief, format=publicado)
+            if dominante and dominante != (elegida.focus_keyword or ""):
+                brief = _replace(brief, opportunity=_replace(elegida, focus_keyword=dominante))
+            print(
+                f"promesa : se conserva el formato «{brief.format}» y la consulta "
+                f"«{brief.opportunity.focus_keyword if brief.opportunity else ''}» de la página viva"
+            )
 
     if brief.opportunity is None:
         print("el brief no tiene oportunidad asignada:", brief.skipped_reason)
@@ -1117,6 +1157,29 @@ def main() -> int:
         + f"salida {consumo['salida']:,} · razonamiento {consumo['razonamiento']:,}"
     )
     print(json.dumps(resultado, ensure_ascii=False, indent=1))
+
+    # Una URL trabajada descansa 30 días. Se anota solo cuando la pieza salió (DONE): una corrida
+    # bloqueada no gastó el turno de la URL y mañana puede reintentarse.
+    if (
+        resultado.get("status") == "DONE"
+        and brief.opportunity
+        and (brief.opportunity.action or "").startswith("refresh")
+        and brief.opportunity.url
+    ):
+        try:
+            from orchestrator.state import RefreshJournal
+
+            diario = RefreshJournal.load(
+                Path(os.environ.get("PDC_STATE_DIR", "state")) / "reencauches.json"
+            )
+            diario.record(brief.opportunity.url, date.today())
+            hasta = date.today() + __import__("datetime").timedelta(days=diario.min_days)
+            print(
+                f"descanso: {brief.opportunity.url.rstrip('/').split('/')[-1]} "
+                f"no se vuelve a tocar hasta {hasta.isoformat()}"
+            )
+        except Exception as error:  # noqa: BLE001 - no se pierde la publicación por el registro
+            print(f"descanso: no se pudo anotar la URL ({error})")
 
     webhook = _webhook(args)
     if webhook and resultado["status"] != "DONE":

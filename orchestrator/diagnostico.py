@@ -364,6 +364,28 @@ def diagnosticar(
     )
 
 
+def en_descanso(
+    oportunidades: Sequence[Opportunity], journal: Any, dia: date | None = None
+) -> tuple[list[Opportunity], list[Opportunity]]:
+    """Separa lo que se puede tocar hoy de lo que está en descanso de 30 días.
+
+    La regla es del proyecto y vive en `RefreshJournal`; el registro estaba conectado al comando
+    `plan` pero no a la corrida diaria, así que la misma URL volvía a salir cada vez que le tocaba
+    al país. Aquí se aplica a lo que la corrida va a elegir.
+    """
+    if journal is None:
+        return list(oportunidades), []
+    hoy = dia or date.today()
+    libres: list[Opportunity] = []
+    descansando: list[Opportunity] = []
+    for oportunidad in oportunidades:
+        if oportunidad.url and not journal.can_refresh(oportunidad.url, hoy):
+            descansando.append(oportunidad)
+        else:
+            libres.append(oportunidad)
+    return libres, descansando
+
+
 # --- calendario quincenal -------------------------------------------------------------------
 
 
