@@ -85,6 +85,15 @@ GENERICAS = {
     "control", "gestión", "gestion", "ción", "cada", "otro", "otra", "esos", "esas",
     "análisis", "analisis", "guía", "guia", "comparativa", "comparativas", "precios",
     "comparación", "comparacion", "cuadro", "tabla", "diferencia", "diferencias",
+    # Adjetivos y sustantivos que aparecen en cualquier comparación de precios. «tarifa publicada
+    # vs cotización» bloqueó una pieza entera tres ciclos por tomar «publicada» por una marca.
+    "publicado", "publicada", "publicados", "publicadas", "publica", "publicar",
+    "tarifa", "tarifas", "cotización", "cotizacion", "cotizaciones", "lista", "listas",
+    "mensual", "anual", "módulo", "modulo", "módulos", "modulos", "usuario", "usuarios",
+    "documento", "documentos", "factura", "facturas", "económico", "economico", "económica",
+    "gratis", "gratuito", "gratuita", "básico", "basico", "básica", "premium", "inicial",
+    "completo", "completa", "empresarial", "profesional", "avanzado", "avanzada", "estándar",
+    "estandar", "oficial", "real", "actual", "vigente", "incluido", "incluida",
 }
 
 
