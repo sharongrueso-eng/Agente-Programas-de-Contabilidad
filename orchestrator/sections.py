@@ -65,8 +65,10 @@ BLOQUES: tuple[tuple[str, str], ...] = (
     ),
     (
         "preguntas",
-        "Tres o cuatro preguntas conversacionales como H2, redactadas como las haría un lector, "
-        "cada una con su respuesta breve.",
+        "Tres o cuatro preguntas que haría un lector, cada una con su respuesta breve (dos o "
+        "tres frases, con el dato del registro cuando aplique). Sin HTML. Formato exacto, una "
+        "línea por pregunta y otra por respuesta:\nP: ¿…?\nR: …\n"
+        "El componente de la FAQ lo arma el código.",
     ),
     (
         "fuentes",
@@ -117,6 +119,46 @@ def _limpiar(texto: str) -> str:
         flags=re.IGNORECASE,
     )
     return limpio.strip()
+
+
+def cortado(fragmento: str) -> bool:
+    """Un bloque que no termina en una etiqueta de cierre ni en un signo de fin de frase se cortó.
+
+    Pasaba con el texto a mitad de palabra («integración con Rap», «exig»): el bloque superaba
+    el mínimo de 80 caracteres y entraba a la pieza roto.
+    """
+    final = (fragmento or "").rstrip()
+    if not final:
+        return True
+    if final.endswith(">"):
+        # Termina en etiqueta: tiene que ser un cierre, no una etiqueta de apertura suelta.
+        return bool(re.search(r"<(?!/)[a-zA-Z][^>]*>\s*$", final)) and not re.search(
+            r"<(br|hr|img)[^>]*>\s*$", final, re.I
+        )
+    visible = re.sub(r"<[^>]+>", " ", final).rstrip()
+    return not re.search(r"[.!?…»”\")]\s*$", visible)
+
+
+_PAR_FAQ = re.compile(
+    r"^\s*(?:\d+[.)]\s*)?(?:P|Pregunta)\s*[:.\-–]\s*(?P<p>.+?)\s*$\s*"
+    r"^\s*(?:R|Respuesta)\s*[:.\-–]\s*(?P<r>.+?)\s*$",
+    re.IGNORECASE | re.MULTILINE,
+)
+
+
+def pares_de_faq(texto: str) -> list[tuple[str, str]]:
+    """Pares pregunta-respuesta del formato «P: … / R: …», sin etiquetas de bloque."""
+    pares = []
+    for m in _PAR_FAQ.finditer(_limpiar(texto)):
+        pregunta = re.sub(r"<[^>]+>", "", m.group("p")).strip().strip("*").strip()
+        respuesta = re.sub(r"</?(p|div|h\d)[^>]*>", "", m.group("r")).strip().strip("*").strip()
+        if len(pregunta) >= 8 and len(respuesta) >= 20 and not cortado(respuesta):
+            if not pregunta.endswith("?"):
+                pregunta = pregunta.rstrip(".") + "?"
+            if not pregunta.startswith("¿"):
+                pregunta = "¿" + pregunta
+            pares.append((pregunta, respuesta))
+    return pares
 
 
 def _json(texto: str) -> dict[str, Any]:
@@ -172,8 +214,16 @@ def producir_por_secciones(
     carpeta: Path | None = None,
     max_reintentos: int = 3,
     contexto: str = "",
+    html_vivo: str = "",
+    maximo_secciones_vivas: int = 4,
 ) -> SalidaSecciones:
-    """Escribe la cabecera y cada bloque con llamadas separadas, y ensambla la pieza."""
+    """Escribe la cabecera y cada bloque con llamadas separadas, y ensambla la pieza.
+
+    En un reencauche (`html_vivo`), los bloques fijos no tienen dónde poner las secciones propias
+    de la página publicada («Cloud o instalación local», «Según tu caso de uso»…). Al terminar,
+    cada sección de la viva que la pieza no cubre se escribe como bloque propio, a partir de lo
+    que dice hoy, y se inserta antes de las preguntas y el cierre.
+    """
     if brief.opportunity is None:
         raise ValueError("un brief sin oportunidad no se puede producir")
 
@@ -181,6 +231,11 @@ def producir_por_secciones(
     from orchestrator.formato import presupuesto as _presupuesto
 
     tablas_max = _presupuesto(brief.format).tablas_max
+    from orchestrator.registry import fecha_de_consulta
+
+    fecha_consulta = fecha_de_consulta(
+        [f for f in fichas if isinstance(f, dict)]
+    ) or f"el {datos_fecha()}"
     sistema = f"""{skill.strip()}
 
 {contexto.strip()}
@@ -208,7 +263,13 @@ def producir_por_secciones(
 - Devuelves **solo el HTML de la pieza**: sin cercas de markdown (```), sin encabezados tipo
   «## Bloque «X» — fragmento listo para pegar», sin marcadores `[PENDIENTE…]` y sin notas de
   proceso para el editor. Eso no es texto para el lector y se publica tal cual.
-- Escribe «revisé» por defecto; «probé» solo con evidencia documentada.
+- No escribas en primera persona que revisaste o probaste algo («revisé», «probé», «comprobamos»):
+  atribuye cada dato a su fuente y su fecha («según la página de precios de X, consultada …»).
+- **Fecha de consulta de los datos: {fecha_consulta}.** Es la única fecha de consulta que puede
+  aparecer en la pieza; no pongas la de hoy ni otra.
+- En un tema de segmento (veterinarias, ferreterías, restaurantes…) no afirmes nada sobre el
+  sector, su regulación, sus autoridades o su mercado que no esté en el registro o en el contexto
+  legal: habla de lo que el software resuelve para ese negocio. Sin estadísticas del sector.
 - El **primer párrafo** de la pieza contiene la keyword foco completa y literal: «{keyword}».
   No parafraseada, no en el H2, no más adelante. Sin eso la pieza no pasa la validación.
 - Si la marca que nombra la keyword **no tiene ficha en el registro**, el título y la meta no
@@ -230,10 +291,7 @@ deforma y no se abrevia. Escribir «Susii» donde va «Siigo» invalida el artí
 
 ## Lo que el registro ya prueba
 
-Cada plataforma de esa lista tiene ficha con precios publicados en el registro de abajo. Nunca
-escribas que una plataforma «no tiene ficha», «no publica precios» o «no está documentada»: sería
-falso y el artículo se detiene. Si un dato concreto no aparece, dilo de ese dato —«no publica el
-precio de ese módulo»—, nunca de la plataforma entera.
+{{prueba_texto}}
 
 ## Registro de datos del mercado (única fuente de cifras)
 
@@ -242,6 +300,7 @@ precio de ese módulo»—, nunca de la plataforma entera.
 
     marcas_texto = ", ".join(marcas) if marcas else "las que aparezcan en el registro"
     sistema = sistema.replace("{marcas_texto}", marcas_texto)
+    sistema = sistema.replace("{prueba_texto}", _prueba_del_registro(fichas))
 
     salida = SalidaSecciones(draft=None)  # type: ignore[arg-type]
 
@@ -306,6 +365,28 @@ precio de ese módulo»—, nunca de la plataforma entera.
                 salida.fallidos.append(clave)
             continue
 
+        # La FAQ es un componente (`<details>`), no encabezados sueltos: el validador lo exige y
+        # la instrucción anterior pedía preguntas en H2, así que se marcaba en casi todas las
+        # corridas. El modelo escribe los pares; el código arma el componente.
+        if clave == "preguntas":
+            pares: list[tuple[str, str]] = []
+            for intento in range(max_reintentos):
+                try:
+                    pares = pares_de_faq(
+                        llamar("Bloque «preguntas»: " + instruccion, compacto=True)
+                    )
+                except Exception:  # noqa: BLE001
+                    continue
+                if len(pares) >= 2:
+                    break
+            if len(pares) >= 2:
+                construido = "<h2>Preguntas frecuentes</h2>\n" + lv.faq(pares[:5])
+                salida.bloques[clave] = construido
+                partes.append(construido)
+            else:
+                salida.fallidos.append(clave)
+            continue
+
         # La tabla sale del registro, no del modelo: pedirle cifras dentro de celdas es
         # justo donde inventa precios que el registro sí tiene. Y solo entran las marcas que la
         # pieza ya nombra: una tabla no puede presentar competidores que el artículo no trata.
@@ -343,6 +424,9 @@ precio de ese módulo»—, nunca de la plataforma entera.
                             )
                         )
                     except Exception:  # noqa: BLE001 - una marca caída no tumba el bloque
+                        continue
+                    if cortado(trozo):
+                        trozo = ""
                         continue
                     if "<h3" in trozo.lower() and len(trozo) >= 300:
                         break
@@ -393,7 +477,7 @@ precio de ese módulo»—, nunca de la plataforma entera.
                 fragmento = _limpiar(crudo)
             except Exception:  # noqa: BLE001 - un bloque caído no tumba la pieza
                 continue
-            if len(fragmento) >= 80:
+            if len(fragmento) >= 80 and not cortado(fragmento):
                 break
             fragmento = ""
 
@@ -408,6 +492,17 @@ precio de ese módulo»—, nunca de la plataforma entera.
             guardado.write_text(fragmento, encoding="utf-8")
             _marcar_progreso(carpeta, list(salida.bloques), salida.fallidos)
 
+    if html_vivo:
+        _completar_secciones_vivas(
+            partes,
+            salida,
+            html_vivo=html_vivo,
+            llamar=llamar,
+            carpeta=carpeta,
+            maximo=maximo_secciones_vivas,
+            max_reintentos=max_reintentos,
+        )
+
     html = "\n\n".join(partes)
     salida.draft = Draft(
         title=str(cabecera["title"]).strip(),
@@ -417,6 +512,115 @@ precio de ese módulo»—, nunca de la plataforma entera.
         slug=_slug(str(cabecera["title"])),
     )
     return salida
+
+
+# Bloques de cierre: las secciones recuperadas de la viva van antes de estos.
+_CIERRE = ("preguntas", "fuentes", "resumen", "veredicto", "cta")
+
+
+def _completar_secciones_vivas(
+    partes: list[str],
+    salida: "SalidaSecciones",
+    *,
+    html_vivo: str,
+    llamar: Any,
+    carpeta: Path | None,
+    maximo: int,
+    max_reintentos: int,
+) -> None:
+    """Escribe, una por una, las secciones de la viva que la pieza nueva dejó por fuera."""
+    from orchestrator.reencauche import _visible, anclas_internas, secciones_perdidas
+
+    perdidas = secciones_perdidas("\n\n".join(partes), html_vivo)[:maximo]
+    if not perdidas:
+        return
+    nuevas: list[str] = []
+    for numero, seccion in enumerate(perdidas, start=1):
+        clave = f"viva_{numero}"
+        guardado = (carpeta / f"{clave}.html") if carpeta else None
+        if guardado and guardado.exists():
+            previo = _limpiar(guardado.read_text(encoding="utf-8"))
+            if len(previo) >= 80:
+                salida.bloques[clave] = previo
+                nuevas.append(previo)
+                continue
+        enlaces = [href for href, _ in anclas_internas(seccion.html).values()]
+        instruccion = (
+            f"Bloque «{clave}»: la página publicada tiene la sección «{seccion.titulo}» y la "
+            "versión nueva no la cubre. Escríbela mejorada en HTML: un <h2> con ese mismo tema "
+            "(puedes ajustar el título sin cambiar de qué habla) y su desarrollo. Parte de lo "
+            "que dice hoy, actualiza lo que haya cambiado y no repitas lo que ya cubren otras "
+            "secciones. Las cifras salen solo del registro de datos: si la sección trae un precio "
+            "que el registro no tiene, se quita."
+            + (
+                " Conserva estos enlaces internos con la misma URL: " + ", ".join(enlaces)
+                if enlaces
+                else ""
+            )
+            + "\n\nLo que dice hoy la sección:\n"
+            + _visible(seccion.html)[:2500]
+        )
+        fragmento = ""
+        for _ in range(max_reintentos):
+            try:
+                fragmento = _limpiar(
+                    llamar(
+                        "Escribe SOLO este bloque, en HTML, sin encabezado de nivel 1. No "
+                        f"expliques nada fuera del HTML.\n\n{instruccion}"
+                    )
+                )
+            except Exception:  # noqa: BLE001 - una sección caída no tumba la pieza
+                continue
+            if len(fragmento) >= 80 and not cortado(fragmento):
+                break
+            fragmento = ""
+        if not fragmento:
+            salida.fallidos.append(clave)
+            continue
+        if "<h2" not in fragmento.lower():
+            fragmento = f"<h2>{seccion.titulo}</h2>\n{fragmento}"
+        salida.bloques[clave] = fragmento
+        nuevas.append(fragmento)
+        if guardado:
+            guardado.parent.mkdir(parents=True, exist_ok=True)
+            guardado.write_text(fragmento, encoding="utf-8")
+
+    if not nuevas:
+        return
+    # partes = [h1, intro, *bloques en el orden en que se escribieron]
+    escritas = [c for c in salida.bloques if not c.startswith("viva_")]
+    cierre = next((i for i, c in enumerate(escritas) if c in _CIERRE), len(escritas))
+    posicion = 2 + cierre
+    partes[posicion:posicion] = nuevas
+
+
+def _prueba_del_registro(fichas: Sequence[Any]) -> str:
+    """Qué marcas tienen precios en el registro y cuáles no, para que el redactor no rellene."""
+    from orchestrator.registry import tiene_precios
+
+    con = [str(f.get("brand", "")) for f in fichas if isinstance(f, dict) and tiene_precios(f)]
+    sin = [str(f.get("brand", "")) for f in fichas if isinstance(f, dict) and not tiene_precios(f)]
+    lineas = []
+    if con:
+        lineas.append(
+            "Tienen precios publicados en el registro de abajo: " + ", ".join(con) + ". Nunca "
+            "escribas que una de ellas «no tiene ficha» o «no está documentada». Si un dato "
+            "concreto no aparece, dilo de ese dato —«no publica el precio de ese módulo»—, "
+            "nunca de la plataforma entera."
+        )
+    if sin:
+        lineas.append(
+            "No tienen precios en el registro: " + ", ".join(sin) + ". De ellas escribe "
+            "exactamente «El proveedor no publica ese precio en su sitio web.» y no describas su "
+            "modelo de cobro, sus planes ni qué incluye cada plan."
+        )
+    if not lineas:
+        lineas.append("Cita solo lo que trae el registro de abajo.")
+    lineas.append(
+        "Lo que una ficha lista como funciones del producto no se reparte por planes: «incluido "
+        "desde X al mes» solo si el registro lo dice de ese plan."
+    )
+    return "\n\n".join(lineas)
 
 
 def _precio_numero(valor: Any) -> float:
@@ -479,9 +683,12 @@ def _tabla_del_registro(fichas: Sequence[Any]) -> str:
         )
     if not filas:
         return ""
+    from orchestrator.registry import fecha_de_consulta
+
+    consulta = fecha_de_consulta([f for f in fichas if isinstance(f, dict)]) or f"el {datos_fecha()}"
     caption = (
-        "Plan publicado más económico de cada proveedor en su sitio, consultados el "
-        f"{datos_fecha()}; pueden cambiar sin aviso."
+        "Plan publicado más económico de cada proveedor en su sitio, consultados "
+        f"{consulta}; pueden cambiar sin aviso."
     )
     return lv.tabla(caption, ["Proveedor", "Plan de entrada", "Precio publicado"], filas)
 

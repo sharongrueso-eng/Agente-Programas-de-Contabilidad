@@ -19,8 +19,13 @@ def _url_alegra(html: str, country: str, slug: str) -> str:
         f"?utm_source=blog_programascontabilidad&utm_medium=referral"
         f"&utm_campaign={country.lower()}_articulo_tmd_content&utm_term={slug}"
     )
-def completar_cta(draft: Draft, *, country: str, fecha: date | None = None) -> Draft:
-    """Añade el CTA final si falta. Es obligatorio y la pieza no debe salir sin él."""
+def completar_cta(
+    draft: Draft, *, country: str, fecha: date | None = None, consulta: str = ""
+) -> Draft:
+    """Añade el CTA final si falta. Es obligatorio y la pieza no debe salir sin él.
+
+    `consulta` es la fecha de las fichas: el CTA dice «Precios consultados …» y no puede ser el
+    día de la corrida."""
     if "background:#00AEEF" in draft.html:
         return draft
     # Solo se toca una pieza que ya usa la línea visual: una heredada se deja como está.
@@ -37,6 +42,8 @@ def completar_cta(draft: Draft, *, country: str, fecha: date | None = None) -> D
         boton="Ver planes y precios",
         fecha=fecha_texto,
     )
+    if consulta:
+        bloque = bloque.replace(f"Precios consultados el {fecha_texto}", f"Precios consultados {consulta}")
     # Antes de las preguntas frecuentes si existen; si no, al final.
     marca = re.search(r"<h2[^>]*>[^<]*[Pp]reguntas", draft.html)
     if marca:
@@ -48,13 +55,21 @@ _MESES = (
     "enero", "febrero", "marzo", "abril", "mayo", "junio",
     "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
 )
-def completar_captions(draft: Draft, *, fecha: date | None = None) -> Draft:
+def completar_captions(
+    draft: Draft, *, fecha: date | None = None, consulta: str = ""
+) -> Draft:
     """Pone pie de fuente y fecha a las tablas que no lo llevan.
     La línea visual lo exige y es un defecto de forma: pedirle al modelo que lo arregle en
     una pieza de 46.000 caracteres cuesta una llamada larga que vuelve vacía.
+
+    `consulta` es la fecha de las fichas («el 12 de noviembre de 2026»). Sin ella se usaba la
+    del día de la corrida, y el juez lo bloqueaba: los datos no se consultaron ese día.
     """
-    dia = fecha or date.today()
-    texto = f"Precios y datos consultados el {dia.day} de {_MESES[dia.month - 1]} de {dia.year}."
+    if consulta:
+        texto = f"Precios y datos consultados {consulta}."
+    else:
+        dia = fecha or date.today()
+        texto = f"Precios y datos consultados el {dia.day} de {_MESES[dia.month - 1]} de {dia.year}."
     pie = (
         f'<caption style="caption-side:bottom;text-align:left;padding:10px 16px;font-size:13px;'
         f'line-height:1.5;font-weight:400;color:#4B5563;">{texto}</caption>'
@@ -114,3 +129,40 @@ def ajustar_meta(draft: Draft, maximo: int = 165) -> Draft:
     if not recorte.endswith("."):
         recorte += "."
     return replace(draft, meta_description=recorte)
+
+
+# Texto de proceso que el modelo a veces deja en la pieza y se publicaría tal cual.
+_NOTAS_DE_PROCESO = re.compile(
+    r"(?i)("
+    r"¿\s*quieres\s+que\s+(?:proceda|contin[uú]e|siga|lo\s+(?:ajuste|complete|amplíe))"
+    r"|¿\s*deseas\s+que\s+(?:proceda|contin[uú]e)"
+    r"|la\s+pieza\s+se\s+detiene"
+    r"|se\s+detiene\s+por\s+validaci[oó]n"
+    r"|nota\s+para\s+el\s+editor"
+    r"|\[\s*pendiente"
+    r"|como\s+modelo\s+de\s+lenguaje"
+    r"|fragmento\s+listo\s+para\s+pegar"
+    r"|^\s*##\s*bloque"
+    r")"
+)
+
+
+def quitar_notas_de_proceso(draft: Draft) -> tuple[Draft, list[str]]:
+    """Quita los párrafos y elementos de lista que son notas del modelo, no texto del lector.
+
+    Pasó el 13-nov: «la pieza se detiene por validación» y «¿Quieres que proceda?» quedaron
+    en el cuerpo y el juez bloqueó la pieza.
+    """
+    quitadas: list[str] = []
+
+    def _una(m: re.Match[str]) -> str:
+        visible = re.sub(r"<[^>]+>", " ", m.group(0))
+        if _NOTAS_DE_PROCESO.search(visible):
+            quitadas.append(re.sub(r"\s+", " ", visible).strip()[:120])
+            return ""
+        return m.group(0)
+
+    html = re.sub(r"<(p|li)\b[^>]*>.*?</\1>", _una, draft.html, flags=re.I | re.S)
+    if not quitadas:
+        return draft, []
+    return replace(draft, html=html), quitadas

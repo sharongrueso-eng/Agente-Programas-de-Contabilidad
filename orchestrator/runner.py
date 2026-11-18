@@ -34,6 +34,7 @@ from orchestrator.reparacion import (
     completar_captions,
     completar_cta,
     normalizar_slug,
+    quitar_notas_de_proceso,
 )
 from orchestrator.presentacion import presentar
 from orchestrator.publisher import PublishConditions, publish
@@ -134,6 +135,8 @@ class Deps:
     urls_internas: Any = None
     # Reencauche: HTML de la pieza viva contra el que se compara la versión nueva.
     html_vivo: str | None = None
+    # Fecha de consulta de las fichas («el 12 de noviembre de 2026»), para el pie de las tablas.
+    fecha_datos: str = ""
     # Diagnóstico del día, tal cual se publicó en el reporte.
     diagnostico: Any = None
     aeo_preguntar: Any = None
@@ -295,13 +298,22 @@ def run(
     # El CTA final es obligatorio y se construye en código: pedírselo al modelo costaba una
     # llamada larga que el gateway devolvía vacía.
     if draft.html:
-        con_cta = completar_cta(draft, country=brief.country)
+        con_cta = completar_cta(draft, country=brief.country, consulta=deps.fecha_datos)
         if con_cta.html != draft.html:
             draft = con_cta
             state.save("borrador.json", asdict(draft))
             steps.append({"step": "estructura", "status": "DONE", "accion": "cta_final"})
 
-        con_pie = completar_captions(draft)
+        sin_notas, quitadas = quitar_notas_de_proceso(draft)
+        if quitadas:
+            draft = sin_notas
+            state.save("borrador.json", asdict(draft))
+            steps.append(
+                {"step": "estructura", "status": "DONE", "accion": "notas_de_proceso",
+                 "quitadas": quitadas[:5]}
+            )
+
+        con_pie = completar_captions(draft, consulta=deps.fecha_datos)
         if con_pie.html != draft.html:
             draft = con_pie
             state.save("borrador.json", asdict(draft))
@@ -507,9 +519,22 @@ def run(
                 ),
             )
 
+    # Reencauche: los enlaces internos que la viva tenía y la versión nueva soltó se devuelven en
+    # código, antes de revisar enlaces rotos (así un destino que ya no abre se vuelve a retirar).
+    url_viva = brief.opportunity.url if brief.opportunity and brief.opportunity.url else ""
+    if deps.html_vivo:
+        from orchestrator.reencauche import conservar_enlaces
+
+        con_enlaces_vivos, devueltos = conservar_enlaces(draft.html, deps.html_vivo, propia=url_viva)
+        if devueltos:
+            draft = replace(draft, html=con_enlaces_vivos)
+            state.save("borrador.json", _draft_to_dict(draft))
+            steps.append({"step": "enlaces_vivos", "status": "DONE", "devueltos": devueltos[:12]})
+
     # Los enlaces rotos se retiran antes de publicar. El validador los detecta y el corrector no
     # siempre los quita; aquí se hace determinista: el destino que no abre pierde el ancla y el
     # texto se queda. Los internos se contrastan con el sitemap; los externos, por HTTP.
+    retirados: list[str] = []
     if start <= ORDER.index("publication"):
         limpio, retirados = revisar_enlaces(
             draft.html,
@@ -536,7 +561,11 @@ def run(
         if brief.opportunity and brief.opportunity.url:
             draft = replace(draft, reencauche_de=brief.opportunity.url)
         resultado = comparar(
-            draft.html, deps.html_vivo, brief.opportunity.focus_keyword if brief.opportunity else ""
+            draft.html,
+            deps.html_vivo,
+            brief.opportunity.focus_keyword if brief.opportunity else "",
+            url_viva=url_viva,
+            ignorar=retirados,
         )
         state.save("comparacion.json", resumen_para_reporte(resultado, draft.reencauche_de))
         steps.append(
@@ -771,6 +800,19 @@ def _trozos(html: str, maximo: int = 9_000) -> list[str]:
     return trozos
 
 
+def _legal_del_pais(deps: Deps, brief: Brief) -> str:
+    """La sección del país del contexto legal, para que el juez no tome una norma vigente
+    (Resolución 000227 de 2025) por una afirmación sin respaldo."""
+    if not deps.legal:
+        return ""
+    try:
+        from orchestrator.producer import legal_section
+
+        return legal_section(deps.legal, brief.country)
+    except ValueError:
+        return ""
+
+
 def _juzgar(draft, brief, verdict, deps, state=None):
     """Juzga la pieza completa, por partes si es larga, y combina los veredictos.
 
@@ -778,8 +820,9 @@ def _juzgar(draft, brief, verdict, deps, state=None):
     acusaba secciones ausentes que sí existían.
     """
     partes = _trozos(draft.html)
+    legal = _legal_del_pais(deps, brief)
     if len(partes) == 1:
-        return judge(draft, brief, verdict, deps.registry, llm=deps.judge)
+        return judge(draft, brief, verdict, deps.registry, llm=deps.judge, legal=legal)
 
     controles: list = []
     state_advertencias: list = []
@@ -791,6 +834,7 @@ def _juzgar(draft, brief, verdict, deps, state=None):
             verdict,
             deps.registry,
             llm=deps.judge,
+            legal=legal,
             contexto_parte=(
                 f"Estás leyendo la PARTE {indice} de {len(partes)} del artículo. Juzga solo lo "
                 'que aparece en esta parte: hechos, cifras, atribuciones y tono. No informes '
