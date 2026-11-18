@@ -13,15 +13,16 @@ Esta es la regla de negocio del agente, en código:
 - El ranking y el calendario quincenal se guardan con la corrida: el equipo ve el mismo número que
   vio el agente.
 
-Ahrefs no entra aquí: aporta volumen, SERP, competidores y citaciones en respuestas de IA, pero
-GSC decide. Cuando haya llave de Ahrefs, se suma a la evidencia de cada oportunidad sin cambiar
-las decisiones.
+Ahrefs no decide: aporta volumen, SERP, competidores y citaciones en respuestas de IA, pero GSC
+decide. Con `AHREFS_API_KEY` (ver `orchestrator/ahrefs.py`) se suma a la evidencia de las
+primeras oportunidades del ranking sin cambiar acción, intención ni puntaje.
 """
 
 from __future__ import annotations
 
 import json
-from dataclasses import asdict, dataclass, field
+import re
+from dataclasses import asdict, dataclass, field, replace
 from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Callable, Iterable, Mapping, Sequence
@@ -87,6 +88,88 @@ def intencion_de(query: str, consultar_modelo: Callable[[str], str] | None = Non
     if respuesta in {"compare", "best", "review", "price", "learn"}:
         return respuesta, "modelo"
     return reglas, "reglas"
+
+
+INTENCIONES = ("compare", "best", "review", "price", "learn")
+
+
+def pregunta_de_intencion(query: str) -> str:
+    """El prompt del modelo: una palabra, sin explicación, para que no haya nada que interpretar."""
+    return (
+        "Clasifica la intención de esta búsqueda de Google hecha por una pyme o un contador que "
+        "busca software contable, de facturación electrónica, POS, ERP o nómina en "
+        "Latinoamérica. Responde solo una palabra:\n"
+        "compare = quiere comparar dos o más programas o ver alternativas\n"
+        "best = quiere una lista de los mejores programas para un caso\n"
+        "review = quiere saber cómo es un programa concreto (opiniones, funciones, qué es)\n"
+        "price = quiere precios o planes\n"
+        "learn = quiere aprender a hacer algo o entender un tema, o va a la web de una marca\n\n"
+        f"Búsqueda: {query}"
+    )
+
+
+class LimiteDelDia(RuntimeError):
+    """Se alcanzó el máximo de consultas nuevas al modelo en esta corrida."""
+
+
+class ModeloConMemoria:
+    """Envuelve `consultar_modelo`: lo que el modelo ya decidió no se le vuelve a preguntar.
+
+    La memoria es un JSON {consulta normalizada: intención} en el volumen de estado. Se carga
+    también una semilla del repositorio (`datos/referencia/intenciones-semilla.json`), así la
+    primera corrida no hace cientos de llamadas. Solo se guardan respuestas válidas, y hay un
+    máximo de consultas nuevas por corrida para no comerse el tiempo de la tarea: lo que queda
+    sin preguntar se resuelve con las reglas hoy y con el modelo otro día.
+    """
+
+    def __init__(
+        self,
+        consultar: Callable[[str], str],
+        ruta: Path,
+        *,
+        semilla: Path | None = None,
+        maximo_nuevas: int = 40,
+    ) -> None:
+        self.consultar = consultar
+        self.ruta = Path(ruta)
+        self.maximo_nuevas = maximo_nuevas
+        self.nuevas = 0
+        self.memoria: dict[str, str] = {}
+        for archivo in (semilla, self.ruta):
+            if archivo and Path(archivo).exists():
+                try:
+                    datos = json.loads(Path(archivo).read_text(encoding="utf-8"))
+                except (OSError, json.JSONDecodeError):
+                    continue
+                self.memoria.update(
+                    {self.clave(k): v for k, v in datos.items() if v in INTENCIONES}
+                )
+
+    @staticmethod
+    def clave(query: str) -> str:
+        return " ".join(query.lower().split())
+
+    def __call__(self, query: str) -> str:
+        clave = self.clave(query)
+        if clave in self.memoria:
+            return self.memoria[clave]
+        if self.nuevas >= self.maximo_nuevas:
+            raise LimiteDelDia(f"máximo de {self.maximo_nuevas} consultas nuevas por corrida")
+        self.nuevas += 1
+        crudo = (self.consultar(query) or "").strip().lower()
+        respuesta = next((t for t in re.findall(r"[a-z]+", crudo) if t in INTENCIONES), "")
+        if respuesta:
+            self.memoria[clave] = respuesta
+        return respuesta
+
+    def guardar(self) -> None:
+        self.ruta.parent.mkdir(parents=True, exist_ok=True)
+        temporal = self.ruta.with_suffix(".tmp")
+        temporal.write_text(
+            json.dumps(dict(sorted(self.memoria.items())), ensure_ascii=False, indent=1),
+            encoding="utf-8",
+        )
+        temporal.replace(self.ruta)
 
 
 # --- solapamiento ---------------------------------------------------------------------------
@@ -186,6 +269,12 @@ def _ficha_de_pagina(page: PageMetrics) -> dict[str, Any]:
         "ctr_esperado": expected_ctr(page.position),
         "posicion": page.position,
         "posicion_previa": page.prev_position,
+        "impresiones_previas": page.prev_impressions,
+        "historico_16m_por_28_dias": (
+            {"clics": page.hist_clicks_28d, "impresiones": page.hist_impressions_28d}
+            if page.hist_impressions_28d is not None
+            else None
+        ),
         "consulta_dominante": dominante,
         "intencion": intencion,
         "formato_publicado": page.format,
@@ -206,6 +295,7 @@ def diagnosticar(
     hoy: date | None = None,
     consultar_modelo: Callable[[str], str] | None = None,
     oportunidades: Sequence[Opportunity] | None = None,
+    ahrefs: Any = None,
 ) -> Diagnostico:
     """Arma el diagnóstico del país. Sin datos frescos lanza `SinDatos`."""
     if pais not in PAISES:
@@ -234,7 +324,32 @@ def diagnosticar(
         oportunidades = find_opportunities(pages, reglas)
 
     propias = [o for o in oportunidades if (o.country or "").upper() == pais]
+
+    # Lo que el modelo decidió para una consulta ambigua también vale para la oportunidad de esa
+    # URL, pero solo si las reglas la dejaron en «learn» y es la misma consulta: el modelo
+    # desempata, no corrige a las reglas.
+    por_modelo = {
+        f["url"]: f["intencion"]
+        for f in fichas
+        if f.get("intencion_decidida_por") == "modelo"
+    }
+    fichas_por_url = {f["url"]: f for f in fichas}
+    propias = [
+        replace(o, intent=por_modelo[o.url])
+        if o.intent == "learn"
+        and o.url in por_modelo
+        and fichas_por_url[o.url]["consulta_dominante"].lower() == (o.focus_keyword or "").lower()
+        else o
+        for o in propias
+    ]
     ranking = sorted(propias, key=lambda o: (PRIORIDAD.get(o.action, 9), -o.score))
+
+    estado_ahrefs = "sin llave: no se usa"
+    if ahrefs is not None:
+        try:
+            ranking, estado_ahrefs = ahrefs.enriquecer(pais, ranking)
+        except Exception as error:  # noqa: BLE001 - Ahrefs complementa; nunca tumba el diagnóstico
+            estado_ahrefs = f"error: {str(error)[:160]}"
 
     return Diagnostico(
         pais=pais,
@@ -245,6 +360,7 @@ def diagnosticar(
         paginas=sorted(fichas, key=lambda f: f["clics"], reverse=True),
         oportunidades=ranking,
         solapamientos=[s for s in solapamientos(pages) if s["pais"] == pais],
+        ahrefs=estado_ahrefs,
     )
 
 

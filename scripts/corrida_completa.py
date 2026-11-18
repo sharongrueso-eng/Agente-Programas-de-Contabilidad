@@ -196,6 +196,44 @@ def _preguntar_aeo():
     return consultar
 
 
+def _modelo_de_intencion():
+    """`consulta -> intención` para las consultas que las reglas dejan ambiguas, o None.
+
+    Sin pasarela configurada no se pregunta nada y las reglas deciden, como antes. La memoria
+    vive en el volumen de estado y arranca con la semilla del repositorio.
+    """
+    base = os.environ.get("OPENAI_BASE_URL")
+    llave = os.environ.get("PDC_LLM_KEY")
+    if not base or not llave:
+        return None
+
+    from orchestrator.adapters import LiteLlmClient
+    from orchestrator.diagnostico import ModeloConMemoria, pregunta_de_intencion
+
+    cliente = LiteLlmClient(
+        base_url=base,
+        api_key=llave,
+        model=modelo("PDC_MODEL_INTENCION", "deepseek/deepseek-v4-flash"),
+        temperature=0.0,
+        max_tokens=10,
+        timeout=30,
+    )
+
+    def consultar(query: str) -> str:
+        return cliente.complete([{"role": "user", "content": pregunta_de_intencion(query)}])
+
+    try:
+        maximo = max(0, int(os.environ.get("PDC_INTENCION_MAX_NUEVAS", "40") or 40))
+    except ValueError:
+        maximo = 40
+    return ModeloConMemoria(
+        consultar,
+        Path(os.environ.get("PDC_STATE_DIR", "state")) / "intenciones.json",
+        semilla=RAIZ / "datos" / "referencia" / "intenciones-semilla.json",
+        maximo_nuevas=maximo,
+    )
+
+
 def _html_vivo(url: str) -> str:
     """Contenido actual de una URL publicada, para comparar la versión nueva contra ella."""
     from orchestrator.adapters import WordPressClient
@@ -482,21 +520,39 @@ def main() -> int:
         # Diagnóstico del día: el ranking con las cifras que lo sostienen. Falla cerrada si el
         # dato de GSC no es fresco — sin dato de máximo 7 días no hay slot.
         from orchestrator import diagnostico as diagnostico_mod
+        from orchestrator.ahrefs import desde_entorno as ahrefs_desde_entorno
 
+        # Intención ambigua: la decide un modelo barato, con memoria en el volumen de estado.
+        memoria_intenciones = _modelo_de_intencion()
         try:
             diag = diagnostico_mod.diagnosticar(
                 instantanea.pages,
                 args.pais,
                 capturado=instantanea.captured_at,
                 oportunidades=oportunidades,
+                consultar_modelo=memoria_intenciones,
+                ahrefs=ahrefs_desde_entorno(),
             )
         except diagnostico_mod.SinDatos as error:
             print(f"sin diagnóstico: {error}")
             return 2
+        finally:
+            if memoria_intenciones is not None:
+                try:
+                    memoria_intenciones.guardar()
+                except OSError as error:
+                    print(f"intención: no se pudo guardar la memoria ({error})")
         print(
             f"diagnóstico: {len(diag.paginas)} páginas · {len(diag.oportunidades)} oportunidades · "
             f"umbral {diag.umbral_impresiones} impresiones · datos de hace {diag.edad_dias} día(s)"
         )
+        if memoria_intenciones is not None:
+            print(f"intención: {memoria_intenciones.nuevas} consulta(s) nueva(s) al modelo")
+        print(f"ahrefs  : {diag.ahrefs}")
+        # El diagnóstico trae la intención que desempató el modelo y la evidencia de Ahrefs: las
+        # oportunidades del país salen de ahí, en el mismo orden de antes.
+        del_diagnostico = {o.url: o for o in diag.oportunidades}
+        propias = [del_diagnostico.get(o.url, o) for o in propias]
 
         con_cuerpo = [o for o in propias if requires_body(o.action)]
         # Prioridad de negocio: primero se mejora lo que ya posiciona (reencauche), y solo cuando
