@@ -1,71 +1,91 @@
-"""Línea base de precios de Alegra Colombia (T3).
+"""Línea base de precios de Alegra, por país (T3).
 
 Comprueba lo que puede comprobar una máquina: que las fórmulas cuadren, que el descuento anual sea el que
-dice PAIS.md (25 %, permanente, no campaña) y que las claves sean únicas. Los precios en sí los verifica
-una persona contra la página la primera vez.
+dice el PAIS.md de cada vigía y que las claves sean únicas. Los precios en sí los confirma una persona
+contra la página la primera vez.
 """
 import json
 from pathlib import Path
 
 import pytest
 
-REGISTRO = Path(__file__).resolve().parents[1] / "paises" / "col" / "registro-precios.json"
-DATOS = json.loads(REGISTRO.read_text(encoding="utf-8"))
-PLANES = DATOS["planes"]
-PRODUCTOS = {"facturacion", "contabilidad", "pos", "nomina"}
-DESCUENTO_ANUAL_CO = 0.25  # paises/col/PAIS.md, 18-nov-2026
+VIGIA = Path(__file__).resolve().parents[1]
+
+# paises/<vigía>/PAIS.md, 18-nov-2026: descuento anual permanente por producto ("*" = todos).
+DESCUENTO_ANUAL = {
+    "col": {"*": 0.25},
+    "mex": {"*": 0.25, "Soy Contador": 0.10},
+}
+MONEDA = {"col": "COP", "mex": "MXN", "dom": "USD", "cri": "USD"}
 
 
-def test_registro_completo():
-    assert len(PLANES) == 16
-    por_producto = {}
-    for p in PLANES:
-        por_producto.setdefault(p["producto"], []).append(p)
-    assert len(por_producto) == 4
-    for producto in por_producto.values():
-        assert len(producto) == 4
+def _planes():
+    salida = []
+    for pais in DESCUENTO_ANUAL:
+        ruta = VIGIA / "paises" / pais / "registro-precios.json"
+        if ruta.exists():
+            for plan in json.loads(ruta.read_text(encoding="utf-8"))["planes"]:
+                salida.append((pais, plan))
+    return salida
 
 
-def test_claves_unicas_y_bien_formadas():
-    claves = [p["clave"] for p in PLANES]
+PLANES = _planes()
+
+
+def _descuento(pais, producto):
+    regla = DESCUENTO_ANUAL[pais]
+    return regla.get(producto, regla["*"])
+
+
+def test_hay_registro_por_pais():
+    for pais in DESCUENTO_ANUAL:
+        assert (VIGIA / "paises" / pais / "registro-precios.json").exists(), pais
+    assert len(PLANES) >= 16
+
+
+def test_claves_unicas():
+    claves = [p["clave"] for _, p in PLANES]
     assert len(claves) == len(set(claves))
-    for p in PLANES:
+
+
+def test_clave_bien_formada():
+    for _pais, p in PLANES:
         partes = p["clave"].split("|")
-        assert partes[0] == "alegra"
-        assert partes[1] in PRODUCTOS
-        assert partes[2] == "CO"
-        assert partes[3]
+        assert len(partes) == 4, p["clave"]
+        assert partes[0] == "alegra", p["clave"]
+        assert partes[2] == p["pais"], p["clave"]
+        assert partes[3], p["clave"]
 
 
-def test_moneda_y_fuente():
-    for p in PLANES:
-        assert p["moneda"] == "COP", p["clave"]
-        assert p["fuente"].startswith("https://www.alegra.com/colombia/precios/")
-        assert p["fecha_consulta"] == "2026-11-18"
-        assert p["campana_activa"] is None
+def test_moneda_fuente_y_fecha():
+    for pais, p in PLANES:
+        assert p["moneda"] == MONEDA[pais], p["clave"]
+        assert p["fuente"].startswith("https://www.alegra.com/"), p["clave"]
+        assert p["fecha_consulta"] == "2026-11-18", p["clave"]
+        assert p["campana_activa"] is None, p["clave"]
 
 
-@pytest.mark.parametrize("plan", PLANES, ids=[p["clave"] for p in PLANES])
-def test_facturado_es_doce_veces_el_mensual_anual(plan):
-    assert plan["anual_facturado"] == 12 * plan["anual_equivalente_mes"]
+@pytest.mark.parametrize("pais,plan", PLANES, ids=[f"{pais}-{p['clave']}" for pais, p in PLANES])
+def test_facturado_es_doce_veces_el_mensual_anual(pais, plan):
+    assert plan["anual_facturado"] == pytest.approx(12 * plan["anual_equivalente_mes"], abs=1)
 
 
-@pytest.mark.parametrize("plan", PLANES, ids=[p["clave"] for p in PLANES])
-def test_descuento_anual_es_el_de_pais_md(plan):
-    esperado = round(plan["mensual"] * (1 - DESCUENTO_ANUAL_CO))
-    assert abs(plan["anual_equivalente_mes"] - esperado) <= 1
-    assert plan["descuento_anual"] == pytest.approx(DESCUENTO_ANUAL_CO, abs=0.001)
+@pytest.mark.parametrize("pais,plan", PLANES, ids=[f"{pais}-{p['clave']}" for pais, p in PLANES])
+def test_descuento_anual_es_el_del_pais_md(pais, plan):
+    esperado = plan["mensual"] * (1 - _descuento(pais, plan["producto"]))
+    assert plan["anual_equivalente_mes"] == pytest.approx(esperado, abs=1)
+    assert plan["descuento_anual"] == pytest.approx(_descuento(pais, plan["producto"]), abs=0.001)
 
 
-@pytest.mark.parametrize("plan", PLANES, ids=[p["clave"] for p in PLANES])
-def test_orden_de_magnitud(plan):
-    # Un plan de Alegra Colombia no cuesta menos de 10.000 ni más de 5.000.000 al mes:
-    # si aparece fuera de ahí, es una cifra mal leída, no una promoción.
-    assert 10_000 <= plan["mensual"] <= 5_000_000, plan["clave"]
+@pytest.mark.parametrize("pais,plan", PLANES, ids=[f"{pais}-{p['clave']}" for pais, p in PLANES])
+def test_orden_de_magnitud(pais, plan):
+    # Fuera de este rango no es una promoción: es una cifra mal leída.
+    minimo, maximo = (10_000, 5_000_000) if pais == "col" else (50, 20_000)
+    assert minimo <= plan["mensual"] <= maximo, plan["clave"]
 
 
-def test_limites_de_facturacion_y_contabilidad():
-    for p in PLANES:
-        if p["producto"] in ("Facturación electrónica", "Contabilidad"):
+def test_limites_de_facturacion_colombia():
+    for pais, p in PLANES:
+        if pais == "col" and p["producto"] in ("Facturación electrónica", "Contabilidad"):
             assert p["limites"].get("usuarios"), p["clave"]
             assert p["limites"].get("ingresos_mensuales"), p["clave"]

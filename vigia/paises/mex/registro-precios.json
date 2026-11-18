@@ -1,0 +1,301 @@
+{
+ "generado": "2026-11-18",
+ "pais": "MX",
+ "vigia": "mex",
+ "marca": "Alegra",
+ "fuente": "https://www.alegra.com/mexico/precios/",
+ "nota": "Línea base de Alegra México leída del DOM el 18-nov-2026. Precios sin IVA (+ IVA indicado en la página). El descuento anual es permanente, no campaña: 25 % en Facturación, POS y ERP, 10 % en Soy Contador (paises/mex/PAIS.md).",
+ "planes": [
+  {
+   "clave": "alegra|facturaci-n-electr-nica|MX|inicial",
+   "marca": "Alegra",
+   "producto": "Facturación electrónica",
+   "pais": "MX",
+   "plan": "Inicial",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 249.0,
+   "anual_equivalente_mes": 186.75,
+   "anual_facturado": 2241.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "usuarios": 1,
+    "facturas": "ilimitadas"
+   },
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "ef124701",
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|facturaci-n-electr-nica|MX|pro",
+   "marca": "Alegra",
+   "producto": "Facturación electrónica",
+   "pais": "MX",
+   "plan": "Pro",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 449.0,
+   "anual_equivalente_mes": 336.75,
+   "anual_facturado": 4041.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "usuarios": 2,
+    "facturas": "ilimitadas"
+   },
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "ef124701",
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|facturaci-n-electr-nica|MX|plus",
+   "marca": "Alegra",
+   "producto": "Facturación electrónica",
+   "pais": "MX",
+   "plan": "Plus",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 699.0,
+   "anual_equivalente_mes": 524.25,
+   "anual_facturado": 6291.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "usuarios": 3,
+    "facturas": "ilimitadas"
+   },
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "ef124701",
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|pos|MX|pos-lite",
+   "marca": "Alegra",
+   "producto": "POS",
+   "pais": "MX",
+   "plan": "POS Lite",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 199.0,
+   "anual_equivalente_mes": 149.25,
+   "anual_facturado": 1791.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "766f8845",
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|pos|MX|pos-pro",
+   "marca": "Alegra",
+   "producto": "POS",
+   "pais": "MX",
+   "plan": "POS Pro",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 399.0,
+   "anual_equivalente_mes": 299.25,
+   "anual_facturado": 3591.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "766f8845",
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|pos|MX|pos-restobar",
+   "marca": "Alegra",
+   "producto": "POS",
+   "pais": "MX",
+   "plan": "POS Restobar",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 599.0,
+   "anual_equivalente_mes": 449.25,
+   "anual_facturado": 5391.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "766f8845",
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|erp|MX|erp-inicial",
+   "marca": "Alegra",
+   "producto": "ERP",
+   "pais": "MX",
+   "plan": "ERP Inicial",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 1299.0,
+   "anual_equivalente_mes": 974.25,
+   "anual_facturado": 11691.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "usuarios": 3
+   },
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "bc6ffdae",
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|erp|MX|erp-pro",
+   "marca": "Alegra",
+   "producto": "ERP",
+   "pais": "MX",
+   "plan": "ERP Pro",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 1999.0,
+   "anual_equivalente_mes": 1499.25,
+   "anual_facturado": 17991.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "usuarios": 5
+   },
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "bc6ffdae",
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|erp|MX|erp-plus",
+   "marca": "Alegra",
+   "producto": "ERP",
+   "pais": "MX",
+   "plan": "ERP Plus",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 2999.0,
+   "anual_equivalente_mes": 2249.25,
+   "anual_facturado": 26991.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {
+    "usuarios": 10
+   },
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "bc6ffdae",
+   "descuento_anual": 0.25
+  },
+  {
+   "clave": "alegra|soy-contador|MX|inicial",
+   "marca": "Alegra",
+   "producto": "Soy Contador",
+   "pais": "MX",
+   "plan": "Inicial",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 490.0,
+   "anual_equivalente_mes": 441.0,
+   "anual_facturado": 5292.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "6ec10359",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|soy-contador|MX|despacho",
+   "marca": "Alegra",
+   "producto": "Soy Contador",
+   "pais": "MX",
+   "plan": "Despacho",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 990.0,
+   "anual_equivalente_mes": 891.0,
+   "anual_facturado": 10692.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "6ec10359",
+   "descuento_anual": 0.1
+  },
+  {
+   "clave": "alegra|soy-contador|MX|firma",
+   "marca": "Alegra",
+   "producto": "Soy Contador",
+   "pais": "MX",
+   "plan": "Firma",
+   "moneda": "MXN",
+   "impuesto": "aparte",
+   "mensual": 1990.0,
+   "anual_equivalente_mes": 1791.0,
+   "anual_facturado": 21492.0,
+   "formulas": {
+    "anual_facturado": "12 * anual_equivalente_mes",
+    "anual_equivalente_mes": "mensual * (1 - descuento_anual)"
+   },
+   "limites": {},
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "campana_activa": null,
+   "grupo": "6ec10359",
+   "descuento_anual": 0.1
+  }
+ ]
+}

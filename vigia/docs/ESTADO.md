@@ -9,7 +9,7 @@ reconoce por las señales propias del país (`senales-pais.json`), no por la URL
 |---|---|
 | 0. Reglas | Aprobadas el 18-nov-2026 por Sharon Grueso (`REGLAS-VIGIA.md`) |
 | 1. Inventario | Hecho (v2, por país). Falta revisar la confianza media y los pendientes |
-| 2. Registro de precios | COL: 16 planes de Alegra con pruebas (T3). Faltan MEX, DOM y CRI |
+| 2. Registro de precios | COL (16 planes) y MEX (12) con pruebas (T3). Faltan DOM y CRI |
 | 3. Fuentes | Los cuatro países: prioridad 1 verificada (T2). Queda prioridad 2 y 3 |
 | 4 a 12 | Sin empezar |
 
@@ -129,6 +129,25 @@ Contabilidad, POS y Nómina electrónica, cuatro planes cada uno (Emprendedor, P
 - **Trampa para T4**: en Alegra la fila de precio incluye también el facturado anual y el ahorro. Hay que
   leer solo `span.cards-simple-price-and-period`; si se toma toda la fila, el facturado anual aparece como
   precio mensual (pasó al armar este registro y se vio en la primera pasada).
+
+## T3 · Registro de precios de Alegra México (18-nov-2026)
+
+`paises/mex/registro-precios.json`: **12 planes** en cuatro productos — Facturación electrónica (Inicial,
+Pro, Plus), POS (POS Lite, POS Pro, POS Restobar), ERP (Inicial, Pro, Plus) y Soy Contador (Inicial,
+Despacho, Firma).
+
+- **Los precios son sin IVA** (+ IVA indicado en la página): el registro lo anota en `impuesto: "aparte"`.
+  Nunca se le suma el IVA.
+- **Descuento anual**: 25 % en Facturación, POS y ERP; 10 % en Soy Contador. Coincide con `PAIS.md` y ya es
+  prueba.
+- **La página repite el bloque de POS dos veces** (dos `data-period-group` con los mismos planes y
+  precios): el registro deduplica por producto, plan y precios.
+- Cruce con el inventario: «Soy Contador arranca en $441 al mes» es el mensual con pago anual; de lista son
+  $490. Y el anexo E de prog-cont-blog queda al día: los planes de POS hoy son POS Lite, POS Pro y
+  **POS Restobar**.
+- **Trampa para T4**: el producto de cada tarjeta se identifica por `data-period-group`, **no** por el
+  encabezado que está al lado. Al bloque de Facturación le precede un h3 que dice «Alegra POS»: quien
+  asigne producto por el encabezado más cercano va a etiquetar mal cuatro de los cinco bloques.
 
 ## Inventario v2 (18-nov-2026)
 
