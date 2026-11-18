@@ -58,12 +58,29 @@
    ],
    "url_verificada": true,
    "moneda_esperada": "COP",
-   "senales_pais": [],
+   "senales_pais": [
+    "DIAN",
+    "IVA",
+    "factura electrónica",
+    "Colombia",
+    "COP"
+   ],
    "modo_lectura": "ruta_pais",
    "receta": {
-    "contenedor": "[id^='pricing-cards-']"
+    "contenedor": "[id^='pricing-cards-']",
+    "precios_detectados": 106,
+    "muestra": [
+     "$ 17.900",
+     "$ 13.425",
+     "$161.100",
+     "$53.700",
+     "$ 10.000.000"
+    ]
    },
-   "estado": "borrador"
+   "estado": "verificado",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "nota": "La URL trae el país (/colombia/precios/). Receta ya usada por el agente: contenedores [id^='pricing-cards-']."
   },
   {
    "id": "siigo-co",
@@ -110,12 +127,25 @@
     "https://www.siigo.com/sistema-pos/",
     "https://www.siigo.com/nomina-electronica/"
    ],
-   "url_verificada": false,
-   "moneda_esperada": null,
-   "senales_pais": [],
-   "modo_lectura": "por_definir",
+   "url_verificada": true,
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "NIT",
+    "UVT",
+    "PILA",
+    "IVA",
+    "documento soporte",
+    "factura electrónica",
+    "Colombia"
+   ],
+   "modo_lectura": "ruta_pais",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/siigo-co.html",
+   "nota": "Dominio exclusivo de Colombia (siigo.com), sin selector de país ni de moneda: se comporta como una ruta de país. Los -25 %/-30 % son el descuento por pago anual («descuento aplica para cliente nuevo»), no campaña.",
+   "pista_receta": "Tarjetas de plan, 71 cifras. El contenedor usa clases CSS-module con hash (div._container_cards__*): la receta se fija en T4 y no debe depender del hash."
   },
   {
    "id": "vendty-co",
@@ -141,12 +171,21 @@
     "https://www.vendty.com/precios",
     "https://vendty.com/"
    ],
-   "url_verificada": false,
-   "moneda_esperada": null,
-   "senales_pais": [],
-   "modo_lectura": "por_definir",
+   "url_verificada": true,
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "RUT",
+    "IVA",
+    "Colombia"
+   ],
+   "modo_lectura": "ruta_pais",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/vendty-co.html",
+   "nota": "La raíz es Colombia; /cr/ y /mx/ son los otros países. Sin selector de moneda.",
+   "pista_receta": "3 columnas por plan (div.dmRespCol.large-3) que cubren 7 de 8 cifras; el resto son textos de la pagina."
   },
   {
    "id": "loggro-co",
@@ -177,12 +216,25 @@
     "https://loggro.com/pymes/software-contable/",
     "https://loggro.com/restobar/"
    ],
-   "url_verificada": false,
-   "moneda_esperada": null,
-   "senales_pais": [],
-   "modo_lectura": "por_definir",
+   "url_verificada": true,
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "NIT",
+    "PILA",
+    "IVA",
+    "Régimen Simple",
+    "documento soporte",
+    "factura electrónica",
+    "Colombia"
+   ],
+   "modo_lectura": "ruta_pais",
    "receta": null,
-   "estado": "borrador"
+   "estado": "verificado",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/loggro-co.html",
+   "nota": "Dominio exclusivo de Colombia (loggro.com), sin selector de país ni moneda.",
+   "pista_receta": "142 cifras: tarjetas de plan mas tablas comparativas (table.caracteristicas tr) con bloques ocultos (.hidden) que duplican cifras. En T4 hay que leer solo lo visible."
   },
   {
    "id": "world-office-co",
@@ -203,17 +255,30 @@
     "$": 12,
     "COP": 2
    },
-   "url": null,
+   "url": "https://worldoffice.com.co/",
    "url_candidatas": [
     "https://worldoffice.com.co/",
     "https://www.worldoffice.com.co/"
    ],
    "url_verificada": false,
-   "moneda_esperada": null,
-   "senales_pais": [],
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "NIT",
+    "RADIAN",
+    "IVA",
+    "documento soporte",
+    "factura electrónica",
+    "Colombia",
+    "COP"
+   ],
    "modo_lectura": "por_definir",
    "receta": null,
-   "estado": "borrador"
+   "estado": "borrador",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/world-office-co.html",
+   "nota": "La home no tiene tabla de planes: solo aparece $220.000 en una sección de contadores. Hay que buscar /planes o /precios; si no publica, modo_lectura: no_publica. No se deduce el precio.",
+   "pista_receta": "La home solo tiene 2 cifras en una seccion de contadores; no hay tabla de planes."
   },
   {
    "id": "gridpos-co",

@@ -10,7 +10,7 @@ reconoce por las señales propias del país (`senales-pais.json`), no por la URL
 | 0. Reglas | Aprobadas el 18-nov-2026 por Sharon Grueso (`REGLAS-VIGIA.md`) |
 | 1. Inventario | Hecho (v2, por país). Falta revisar la confianza media y los pendientes |
 | 2. Registro de precios | Sin empezar |
-| 3. Fuentes | Borrador en `paises/<vigía>/fuentes.json`: solo Alegra tiene URL verificada |
+| 3. Fuentes | COL: las 5 de prioridad 1 verificadas (T2). Faltan MEX, CRI y DOM |
 | 4 a 12 | Sin empezar |
 
 ## T1 · Entorno verificado (18-nov-2026)
@@ -33,6 +33,32 @@ Corrido en la copia local (Windows). El contenedor de Coolify se verifica aparte
   que esa cifra se mueve a los pendientes de COL: 39 en vez de 38, y el total 150 en vez de 149.
 - Los archivos regenerados **no se subieron**: T1 solo pide el informe. Se subirán cuando se revise la
   confianza media.
+
+## T2 · Fuentes de prioridad 1 de Colombia (18-nov-2026)
+
+Las cinco fuentes de prioridad 1 de COL quedaron con URL verificada, moneda esperada, señales del país y
+modo de lectura. El HTML de cada una está en `paises/col/lecturas/2026-11-18/` como evidencia.
+
+| Fuente | Cifras leídas | Moneda | Modo | Receta |
+|---|---|---|---|---|
+| Alegra | 106 | COP | ruta_pais | `[id^='pricing-cards-']` (la que ya usa el agente) |
+| Siigo | 71 | COP | ruta_pais | se fija en T4 (clases CSS-module con hash) |
+| Vendty | 8 | COP | ruta_pais | se fija en T4 (columnas `div.dmRespCol.large-3`) |
+| Loggro | 142 | COP | ruta_pais | se fija en T4 (tarjetas y tablas, con bloques ocultos) |
+| World Office | 2 | COP | por_definir | la home no tiene tabla de planes |
+
+- **Ninguna fuente de prioridad 1 de COL depende de la IP.** Los precios leídos desde este equipo y los
+  leídos por un servicio externo (otra salida de red) coinciden: son dominios o rutas de país, no
+  selectores de moneda. No hace falta nadie leyendo a mano en Colombia.
+- **World Office** solo muestra $220.000 en una sección de contadores de la home. Buscar `/planes` en
+  T4; si no publica, queda `no_publica`, nunca «no tiene».
+- **Siigo**: el -25 %/-30 % es el descuento por pago anual («descuento aplica para cliente nuevo»), no
+  campaña. El título de la página dice «Ecomm Mes - Beneficios Exclusivos Online»: si aparece insignia de
+  campaña, el lector tiene que marcarla.
+- **Loggro** publica 142 cifras y muchas están duplicadas en bloques `.hidden`: el lector debe leer solo
+  lo visible o contará dos veces.
+- **Hallazgo que toca a MEX**: `aspel.com.mx` ya no es Aspel, redirige a `siigo.com/mx/` (Siigo compró
+  Aspel). Hay que decidir si sigue como fuente propia o se trata como Siigo.
 
 ## Inventario v2 (18-nov-2026)
 
