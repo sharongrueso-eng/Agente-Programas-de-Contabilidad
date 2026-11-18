@@ -17,6 +17,16 @@ from pathlib import Path
 DEFAULT_MIN_DAYS_BETWEEN_REFRESHES = 30
 
 
+def merece_descanso(resultado: dict) -> bool:
+    """¿La corrida escribió de verdad la pieza, y por eso la URL descansa 30 días?
+
+    Un `DONE` puede ser «reutilizado»: el mapa de publicaciones ya tenía esa corrida por hecha y
+    no escribió nada. Anotar la URL en ese caso la deja un mes sin tocar por un trabajo que no se
+    hizo —pasó con mejor-software-contable-mexico, anotada el 17-nov sin haberse tocado—.
+    """
+    return resultado.get("status") == "DONE" and not resultado.get("reutilizado")
+
+
 class StateError(ValueError):
     """Raised when persisted state cannot be trusted."""
 
@@ -60,6 +70,17 @@ class RefreshJournal:
     def record(self, url: str, day: date) -> None:
         self.entries[url] = day
         self._flush()
+
+    def olvidar(self, url: str) -> bool:
+        """Saca una URL del registro. Devuelve si estaba.
+
+        Sirve para mantenimiento: una entrada anotada por error deja la URL un mes sin tocar.
+        """
+        if url not in self.entries:
+            return False
+        del self.entries[url]
+        self._flush()
+        return True
 
     def _flush(self) -> None:
         payload = {

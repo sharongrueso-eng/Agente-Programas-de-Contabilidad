@@ -28,6 +28,7 @@ from orchestrator.audit import AuditRules, Opportunity, find_opportunities  # no
 from orchestrator.brief_io import load_brief  # noqa: E402
 from orchestrator.gsc_io import load_snapshot  # noqa: E402
 from orchestrator.resiliencia import ModeloConReintentos  # noqa: E402
+from orchestrator.state import merece_descanso  # noqa: E402
 from orchestrator.mcp_client import cliente_desde_entorno  # noqa: E402
 from orchestrator.mcp_publish import MapaPublicaciones  # noqa: E402
 from orchestrator.producer import requires_body  # noqa: E402
@@ -1227,10 +1228,13 @@ def main() -> int:
     )
     print(json.dumps(resultado, ensure_ascii=False, indent=1))
 
-    # Una URL trabajada descansa 30 días. Se anota solo cuando la pieza salió (DONE): una corrida
-    # bloqueada no gastó el turno de la URL y mañana puede reintentarse.
+    # Una URL trabajada descansa 30 días. Se anota solo cuando la pieza salió de verdad: ni una
+    # corrida bloqueada ni una «reutilizada» (el mapa ya la tenía por hecha y no escribió nada)
+    # gastan el turno de la URL.
+    if resultado.get("status") == "DONE" and resultado.get("reutilizado"):
+        print("descanso: el mapa ya tenía esta corrida por hecha; no se escribió nada")
     if (
-        resultado.get("status") == "DONE"
+        merece_descanso(resultado)
         and brief.opportunity
         and (brief.opportunity.action or "").startswith("refresh")
         and brief.opportunity.url

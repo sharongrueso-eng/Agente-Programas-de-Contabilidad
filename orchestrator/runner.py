@@ -718,7 +718,15 @@ def run(
         state.checkpoint("publication")
         _avisar_publicacion(deps, brief, result)
         return _contract(
-            "DONE", brief, state, steps, output_url=result.get("output_url", "")
+            "DONE",
+            brief,
+            state,
+            steps,
+            output_url=result.get("output_url", ""),
+            # `reutilizado` viaja al contrato: DONE con reutilizado=True significa que el mapa ya
+            # tenía esta corrida por hecha y **no se escribió nada**. La corrida diaria lo necesita
+            # para no mandar la URL a descanso por un trabajo que no se hizo.
+            reutilizado=bool(result.get("reutilizado")),
         )
 
     result = publish(
