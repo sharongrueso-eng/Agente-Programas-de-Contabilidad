@@ -86,15 +86,47 @@ lee del repositorio.
 
 ### Regenerar el inventario
 
-Desde `vigia/inventario/` (tarda unos 5 minutos; se regenera para los cuatro vigías a la vez):
+Desde `vigia/inventario/` (tarda 10–15 minutos: son ~343 posts y cada uno se pide dos veces con `curl`;
+se regenera para los cuatro vigías a la vez):
 
 ```bash
 python descargar.py && python units.py && python extraer.py && python comparar_alegra.py && python armar.py
 cp -r salida/paises/* ../paises/ && cp salida/sin-pais.json ..
 ```
 
+- Lánzalo en segundo plano con aviso al terminar (`terminal(background=True, notify=True)`): en primer
+  plano se pasa del tiempo máximo y pierdes la progresión.
+- `raw/` y `salida/` están en `vigia/.gitignore`: nunca los subas. Copia a `paises/` solo cuando el
+  informe de diferencias ya esté escrito.
+
 Compara los conteos de cada vigía con la tabla de `docs/ESTADO.md` y explica las diferencias antes de
 subir nada.
+
+### Instalar y verificar en este equipo (tarea T1)
+
+Sirve para la copia local de Sharon en Windows; el contenedor de Coolify se instala con los comandos de
+las instrucciones (pip + `playwright install chromium` + `install-deps`).
+
+```bash
+REPO="C:/Users/Alegra/Desktop/Insumos para Programa de Contabilidad/programascontabilidad-studio"
+cd "$REPO" && git pull --ff-only && git checkout -b vigia/inicio
+cp -r <ruta del paquete>/vigia ./vigia          # el zip trae la carpeta vigia/ ya armada
+python -m venv ~/.pdc/venv-vigia
+~/.pdc/venv-vigia/Scripts/python.exe -m pip install -r "C:/Users/Alegra/Desktop/.../vigia/requirements.txt"
+~/.pdc/venv-vigia/Scripts/python.exe -m pytest -q vigia/tests    # esperado: 36 pruebas en verde
+```
+
+- Usa un venv aparte (`~/.pdc/venv-vigia`), no el python de Hermes: playwright, lxml y bs4 quedan ahí y
+  el agente diario no se ensucia. Es el mismo patrón de `~/.pdc/mcp-gsc/.venv`.
+- **Al pip pásale la ruta en estilo Windows (`C:/Users/...`)**, no `/c/Users/...`: pip es un binario
+  nativo y MSYS no traduce la ruta, así que falla con «Could not open requirements file».
+- Chromium: compruébalo lanzando `sync_playwright().chromium.launch()`. Si falta, **repórtalo y no lo
+  instales** (T1 lo prohíbe explícitamente); `PLAYWRIGHT_BROWSERS_PATH` solo se fija en el contenedor.
+- Skill: copia `vigia/hermes-skill/vigia-precios` a `$HERMES_HOME/skills/pdc/` (en Windows
+  `C:\Users\Alegra\AppData\Local\hermes\skills\pdc\`) y confirma con `skills_list(category='pdc')`;
+  en el contenedor hace falta `/reload-skills`.
+- Publica con `gh pr create` (corre `gh auth status` antes) y confirma que `git status --short` solo
+  muestra `?? vigia/`: si aparece `inventario/raw` o `salida`, el `.gitignore` del paquete no se copió.
 
 ### Correr un vigía (cuando exista `vigia/correr.py`)
 
@@ -126,3 +158,10 @@ la página, la cifra anterior, la leída y la regla que decidió el resultado.
   Colombia): por eso el metadato es el último nivel, no el primero.
 - **En República Dominicana y Costa Rica la moneda sola no dice el país**: Alegra y varias marcas cobran
   en USD.
+- **El webhook de Chat no se llama igual en las dos partes.** Esta skill declara `GCHAT_WEBHOOK_URL`, pero
+  el agente diario usa `PDC_CHAT_WEBHOOK_URL` (`~/.pdc/chat.env`, `scripts/corrida_completa.py`) y el
+  repositorio no trae un `gchat.py` suelto. Al hacer T7 lee el nombre que exista en el entorno y deja el
+  alias escrito, en vez de declarar una variable nueva que nadie llena.
+- **Esta skill es una copia del repositorio.** Si la editas desde Hermes, copia el mismo cambio a
+  `vigia/hermes-skill/vigia-precios/SKILL.md` y súbelo en el PR: la próxima instalación sobrescribe la
+  copia local.
