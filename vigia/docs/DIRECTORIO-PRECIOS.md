@@ -178,23 +178,22 @@ Directorio de precios de PdC. Cada fila sale del registro del vigía; la URL es 
 | Citrus | Citrus e-CF | 250 transacciones | 450/mes | DOP | https://www.citrus.com.do/productos/ecf#precios | ✅ |
 | Citrus | Citrus e-CF | 5 mil transacciones | 1400/mes | DOP | https://www.citrus.com.do/productos/ecf#precios | ✅ |
 
-## Costa Rica (CR) — 21 planes
+## Costa Rica (CR) — 20 planes
 
 | Marca | Producto | Plan | Precio | Moneda | Fuente | Estado |
 |---|---|---|---|---|---|---|
-| Alegra | Contabilidad | Estudio Contable | 120/mes · 1296 facturado/año | USD | https://www.alegra.com/costarica/precios/ | ✅ |
-| Alegra | Contabilidad | Firma | 80/mes · 864 facturado/año | USD | https://www.alegra.com/costarica/precios/ | ✅ |
-| Alegra | Contabilidad | Independiente | 50/mes · 540 facturado/año | USD | https://www.alegra.com/costarica/precios/ | ✅ |
-| Alegra | Facturación electrónica | Emprendedor | 5/mes · 45 facturado/año | USD | https://www.alegra.com/costarica/precios/ | ✅ |
-| Alegra | Facturación electrónica | Pro | 20/mes · 180 facturado/año | USD | https://www.alegra.com/costarica/precios/ | ✅ |
-| Alegra | Facturación electrónica | Pyme | 10/mes · 90 facturado/año | USD | https://www.alegra.com/costarica/precios/ | ✅ |
-| Alegra | POS | Pyme | 20/mes · 180 facturado/año | USD | https://www.alegra.com/costarica/precios/ | ✅ |
-| Alegra | por_confirmar | Plus | 120/mes · 1080 facturado/año | USD | https://www.alegra.com/costarica/precios/ | 🔎 por confirmar |
-| Alegra | por_confirmar | Plus | 80/mes · 720 facturado/año | USD | https://www.alegra.com/costarica/precios/ | 🔎 por confirmar |
-| Alegra | por_confirmar | Pro | 70/mes · 630 facturado/año | USD | https://www.alegra.com/costarica/precios/ | 🔎 por confirmar |
-| Alegra | por_confirmar | Pro | 50/mes · 450 facturado/año | USD | https://www.alegra.com/costarica/precios/ | 🔎 por confirmar |
-| Alegra | por_confirmar | Pyme | 40/mes · 360 facturado/año | USD | https://www.alegra.com/costarica/precios/ | 🔎 por confirmar |
-| Alegra | por_confirmar | Pyme | 20/mes · 180 facturado/año | USD | https://www.alegra.com/costarica/precios/ | 🔎 por confirmar |
+| Alegra | Alegra ERP | Plus | 120/mes · 1080 facturado/año · 90/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
+| Alegra | Alegra ERP | Pro | 70/mes · 630 facturado/año · 52.5/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
+| Alegra | Alegra ERP | Pyme | 40/mes · 360 facturado/año · 30/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
+| Alegra | Alegra POS | Plus | 80/mes · 720 facturado/año · 60/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
+| Alegra | Alegra POS | Pro | 50/mes · 450 facturado/año · 37.5/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
+| Alegra | Alegra POS | Pyme | 20/mes · 180 facturado/año · 15/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
+| Alegra | Contabilidad | Estudio Contable | 120/mes · 1296 facturado/año · 108/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
+| Alegra | Contabilidad | Firma | 80/mes · 864 facturado/año · 72/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
+| Alegra | Contabilidad | Independiente | 50/mes · 540 facturado/año · 45/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
+| Alegra | Facturación electrónica | Emprendedor | 5/mes · 45 facturado/año · 3.75/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
+| Alegra | Facturación electrónica | Pro | 20/mes · 180 facturado/año · 15/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
+| Alegra | Facturación electrónica | Pyme | 10/mes · 90 facturado/año · 7.5/mes con pago anual (−25 %) | USD | https://www.alegra.com/costarica/precios/ | ✅ |
 | Factura Profesional | Facturación electrónica | Características · columna 1 | 21.99/mes | USD | https://www.facturaprofesional.com/planes-tarifas | 🔎 por confirmar |
 | Factura Profesional | Facturación electrónica | Características · columna 2 | 11.99/mes | USD | https://www.facturaprofesional.com/planes-tarifas | 🔎 por confirmar |
 | Factura Profesional | Facturación electrónica | Características · columna 3 | 29.99/mes | USD | https://www.facturaprofesional.com/planes-tarifas | 🔎 por confirmar |

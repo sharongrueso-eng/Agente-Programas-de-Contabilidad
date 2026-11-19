@@ -43,6 +43,9 @@ def _pesos(p: dict) -> str:
     # el de lista es la línea base y el otro es la promoción del momento.
     if p.get("precio_promocional_anual"):
         partes.append(f"{_num(p['precio_promocional_anual'])} con promoción")
+    # Descuento por pago anual: el mensual es la línea base y el anual su equivalente con descuento.
+    if p.get("descuento_anual_pct") and p.get("anual_equivalente_mes") is not None:
+        partes.append(f"{_num(p['anual_equivalente_mes'])}/mes con pago anual (−{p['descuento_anual_pct']} %)")
     if p.get("precio_promocional_mes"):
         partes.append(f"{_num(p['precio_promocional_mes'])}/mes con promoción")
     return " · ".join(partes) or "—"

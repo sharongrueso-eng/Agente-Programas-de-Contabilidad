@@ -156,19 +156,12 @@ DO,Citrus,Citrus PT Camareros,Licencia anual,900/mes · 10800 facturado/año,DOP
 DO,Citrus,Citrus e-CF,250 transacciones,450/mes,DOP,https://www.citrus.com.do/productos/ecf#precios,confirmado,2026-11-19
 DO,Citrus,Citrus e-CF,1 mil transacciones,747/mes,DOP,https://www.citrus.com.do/productos/ecf#precios,confirmado,2026-11-19
 DO,Citrus,Citrus e-CF,5 mil transacciones,1400/mes,DOP,https://www.citrus.com.do/productos/ecf#precios,confirmado,2026-11-19
-CR,Alegra,Facturación electrónica,Emprendedor,5/mes · 45 facturado/año,USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
-CR,Alegra,Facturación electrónica,Pyme,10/mes · 90 facturado/año,USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
-CR,Alegra,Facturación electrónica,Pro,20/mes · 180 facturado/año,USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
-CR,Alegra,POS,Pyme,20/mes · 180 facturado/año,USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
-CR,Alegra,por_confirmar,Pyme,40/mes · 360 facturado/año,USD,https://www.alegra.com/costarica/precios/,pendiente_lectura,2026-11-18
-CR,Alegra,por_confirmar,Pro,70/mes · 630 facturado/año,USD,https://www.alegra.com/costarica/precios/,pendiente_lectura,2026-11-18
-CR,Alegra,por_confirmar,Plus,120/mes · 1080 facturado/año,USD,https://www.alegra.com/costarica/precios/,pendiente_lectura,2026-11-18
-CR,Alegra,por_confirmar,Pyme,20/mes · 180 facturado/año,USD,https://www.alegra.com/costarica/precios/,pendiente_lectura,2026-11-18
-CR,Alegra,por_confirmar,Pro,50/mes · 450 facturado/año,USD,https://www.alegra.com/costarica/precios/,pendiente_lectura,2026-11-18
-CR,Alegra,por_confirmar,Plus,80/mes · 720 facturado/año,USD,https://www.alegra.com/costarica/precios/,pendiente_lectura,2026-11-18
-CR,Alegra,Contabilidad,Independiente,50/mes · 540 facturado/año,USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
-CR,Alegra,Contabilidad,Firma,80/mes · 864 facturado/año,USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
-CR,Alegra,Contabilidad,Estudio Contable,120/mes · 1296 facturado/año,USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
+CR,Alegra,Facturación electrónica,Emprendedor,5/mes · 45 facturado/año · 3.75/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
+CR,Alegra,Facturación electrónica,Pyme,10/mes · 90 facturado/año · 7.5/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
+CR,Alegra,Facturación electrónica,Pro,20/mes · 180 facturado/año · 15/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
+CR,Alegra,Contabilidad,Independiente,50/mes · 540 facturado/año · 45/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
+CR,Alegra,Contabilidad,Firma,80/mes · 864 facturado/año · 72/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
+CR,Alegra,Contabilidad,Estudio Contable,120/mes · 1296 facturado/año · 108/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-18
 CR,Factura Profesional,Facturación electrónica,Características · columna 1,21.99/mes,USD,https://www.facturaprofesional.com/planes-tarifas,pendiente_lectura,2026-11-18
 CR,Factura Profesional,Facturación electrónica,Características · columna 2,11.99/mes,USD,https://www.facturaprofesional.com/planes-tarifas,pendiente_lectura,2026-11-18
 CR,Factura Profesional,Facturación electrónica,Características · columna 3,29.99/mes,USD,https://www.facturaprofesional.com/planes-tarifas,pendiente_lectura,2026-11-18
@@ -177,3 +170,9 @@ CR,GTI,Facturación electrónica,Pospago,7650 facturado/año,CRC,https://www.fac
 CR,GTI,Facturación electrónica,Pospago — ₡12750,12750 facturado/año,CRC,https://www.facturaelectronica.cr/Planes,pendiente_lectura,2026-11-18
 CR,GTI,Facturación electrónica,Pospago 75 documentos,3505 facturado/año,CRC,https://www.facturaelectronica.cr/Planes,pendiente_lectura,2026-11-18
 CR,GTI,Facturación electrónica,Pospago — ₡2700,2700 facturado/año,CRC,https://www.facturaelectronica.cr/Planes,pendiente_lectura,2026-11-18
+CR,Alegra,Alegra ERP,Pyme,40/mes · 360 facturado/año · 30/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-19
+CR,Alegra,Alegra ERP,Pro,70/mes · 630 facturado/año · 52.5/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-19
+CR,Alegra,Alegra ERP,Plus,120/mes · 1080 facturado/año · 90/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-19
+CR,Alegra,Alegra POS,Pyme,20/mes · 180 facturado/año · 15/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-19
+CR,Alegra,Alegra POS,Pro,50/mes · 450 facturado/año · 37.5/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-19
+CR,Alegra,Alegra POS,Plus,80/mes · 720 facturado/año · 60/mes con pago anual (−25 %),USD,https://www.alegra.com/costarica/precios/,confirmado,2026-11-19

@@ -397,7 +397,7 @@ antes. Cuatro reemplazos, contados y verificados uno por uno:
 `docs/DIRECTORIO-PRECIOS.md` (para leer y citar). Cada fila lleva marca, producto, plan, precio, moneda,
 **la URL de donde salió** y el estado de la cifra.
 
-**178 planes en los cuatro países.** Estados: ✅ confirmado · ⚠️ leído durante campaña, se confirma después ·
+**177 planes en los cuatro países.** Estados: ✅ confirmado · ⚠️ leído durante campaña, se confirma después ·
 🔎 falta confirmarlo a mano.
 
 | País | Planes | Marcas con precio | Sin precio publicado |
@@ -405,13 +405,17 @@ antes. Cuatro reemplazos, contados y verificados uno por uno:
 | Colombia | 54 | Alegra ✅ · Siigo ⚠️ · Loggro ⚠️ · Vendty ⚠️ · World Office ⚠️ | — |
 | México | 77 | Alegra ✅ · Facturama ✅ · CONTPAQi ✅ · Miskuentas ⚠️ · Siigo ⚠️ | — |
 | República Dominicana | 26 | Alegra ✅ · Citrus ✅ | — |
-| Costa Rica | 21 | Alegra (3 bloques ✅ y 2 🔎) · Factura Profesional 🔎 · GTI 🔎 | — |
+| Costa Rica | 20 | Alegra (3 bloques ✅ y 2 🔎) · Factura Profesional 🔎 · GTI 🔎 | — |
 
 - **World Office sí publica precios, y el inventario lo daba por faltante.** No están en la home: están en
   `planesCloud.html` (Cloud POS, Enterprise, Pyme Plus) y `planesEscritorio.html` (Pyme, Empresarial,
   Contador, Propiedad Horizontal), detrás de la pestaña «precios». Los 7 planes ya están cargados con su URL,
   su precio de lista y su precio con el −32 % que muestra la página. Es un error de método mío: cerré la
   búsqueda en la home en vez de seguir la pestaña.
+- **Costa Rica quedó resuelto: los dos bloques sin producto eran ERP y POS.** Alegra CR publica cuatro
+  productos (Facturación 5/10/20, POS 20/50/80, ERP 40/70/120 y Contabilidad 50/80/120), todos con −25 % por
+  pago anual (30/52,50/90 en ERP y 15/37,50/60 en POS). Sharon los identificó en la landing; las cifras
+  cuadran con el descuento anual de la página, así que el registro quedó completo y sin `por_confirmar`.
 - **CONTPAQi publica su lista completa, y no está en el HTML.** Las cifras viven en el PDF
   `Lista_de_Precios_Sistemas_CONTPAQi_2026.pdf` (8 páginas), enlazado desde `/listadeprecios`. Los nombres de
   producto son imágenes, así que la extracción de texto sola no alcanza: hay que leer el PDF como página. Con
