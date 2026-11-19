@@ -433,6 +433,11 @@ def main() -> int:
         help="solo oportunidades de artículo nuevo; omite los reencauches de URLs vivas",
     )
     parser.add_argument(
+        "--solo-reencauche",
+        action="store_true",
+        help="solo reencauches de URLs vivas; si no hay ninguno, no crea artículo nuevo",
+    )
+    parser.add_argument(
         "--auto",
         action="store_true",
         help="prioridad de negocio: reencauche primero, artículo nuevo después (es lo que corre el calendario)",
@@ -609,7 +614,16 @@ def main() -> int:
                 + " — marca sin ficha ni entrada en el directorio"
             )
         nuevos = [o for o in con_cuerpo if (o.action or "") == "create"]
-        if args.solo_nuevos:
+        if args.solo_reencauche:
+            # Solo se mejora lo que ya existe: si la cola está vacía, no se escribe una pieza nueva.
+            elegidas = reencauches
+            if not reencauches:
+                print(
+                    f"reencauche: 0 en cola para {args.pais} "
+                    f"(de {len(con_cuerpo)} oportunidades); no se crea artículo nuevo (--solo-reencauche)"
+                )
+                return 2
+        elif args.solo_nuevos:
             elegidas = nuevos
             if con_cuerpo and not nuevos:
                 print(
