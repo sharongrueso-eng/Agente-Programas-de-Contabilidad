@@ -56,6 +56,9 @@ lee del repositorio.
 
 ## Reglas que no se rompen
 
+0. **No se escriben artículos nuevos.** El vigía solo trabaja sobre piezas ya publicadas: actualiza cifras
+   y deja la lista de reencauche (`python -m vigia.reencauche --pais <vigía>`). Si un pedido implica crear
+   una pieza, no es del vigía.
 1. **No escribas en WordPress** (ni por API ni por el MCP `prog-cont`) salvo en una tarea del plan que
    lo pida de forma explícita. Para leer, usa la API pública (`/wp-json/wp/v2/...`) o el MCP.
 2. **Nunca conviertas una moneda** para que una tabla cuadre. Moneda inesperada = lectura dudosa.

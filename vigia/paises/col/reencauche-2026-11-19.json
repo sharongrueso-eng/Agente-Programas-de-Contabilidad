@@ -1,0 +1,430 @@
+{
+ "pais": "col",
+ "fecha": "2026-11-19",
+ "criterio": "cifras publicadas de confianza alta que no coinciden con ningún valor vigente del registro para su marca y producto; solo piezas ya publicadas",
+ "posts_a_reencauchar": 9,
+ "cifras_a_corregir": 25,
+ "por_tipo": {
+  "precio_viejo": 15,
+  "moneda_distinta": 4,
+  "revisar": 3,
+  "producto_mal_atribuido": 3
+ },
+ "cifras_ok": 36,
+ "cifras_sin_registro": 163,
+ "posts": [
+  {
+   "post_id": 3728,
+   "url": "https://programascontabilidad.com/comparativas-de-software/precios-de-software-contable-colombia-2026/",
+   "cifras": [
+    {
+     "tipo": "precio_viejo",
+     "producto": "Contabilidad",
+     "plan_publicado": "Emprendedor",
+     "texto_actual": "$69.900",
+     "valor_publicado": 69900.0,
+     "moneda": "$",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 74900,
+     "seccion": "¿Cuánto cuesta un software contable en Colombia en 2026?",
+     "contexto": "Los precios de software contable en Colombia varían según el producto que necesites. Para contabilidad completa , el rango va desde $69.900/mes (Alegra plan Emprendedor) hasta $279"
+    },
+    {
+     "tipo": "precio_viejo",
+     "producto": "Contabilidad",
+     "plan_publicado": "Emprendedor",
+     "texto_actual": "$279.900",
+     "valor_publicado": 279900.0,
+     "moneda": "$",
+     "sugerencia_plan": "Pro",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 250900,
+     "seccion": "¿Cuánto cuesta un software contable en Colombia en 2026?",
+     "contexto": "Colombia varían según el producto que necesites. Para contabilidad completa , el rango va desde $69.900/mes (Alegra plan Emprendedor) hasta $279.900/mes (Alegra PLUS)."
+    },
+    {
+     "tipo": "precio_viejo",
+     "producto": "Contabilidad",
+     "plan_publicado": null,
+     "texto_actual": "$218.900",
+     "valor_publicado": 218900.0,
+     "moneda": "$",
+     "sugerencia_plan": "Plus",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 239925,
+     "seccion": "¿Cuánto cuesta un software contable en Colombia en 2026?",
+     "contexto": "ina electrónica , desde $29.900/mes (Alegra, hasta 10 empleados). El costo real de una pyme que necesita los tres módulos juntos está entre $218.900 y $350.000/mes dependiendo del "
+    },
+    {
+     "tipo": "precio_viejo",
+     "producto": "Contabilidad",
+     "plan_publicado": null,
+     "texto_actual": "$350.000",
+     "valor_publicado": 350000.0,
+     "moneda": "$",
+     "sugerencia_plan": "Plus",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 319900,
+     "seccion": "¿Cuánto cuesta un software contable en Colombia en 2026?",
+     "contexto": "nica , desde $29.900/mes (Alegra, hasta 10 empleados). El costo real de una pyme que necesita los tres módulos juntos está entre $218.900 y $350.000/mes dependiendo del proveedor —"
+    },
+    {
+     "tipo": "precio_viejo",
+     "producto": "Contabilidad",
+     "plan_publicado": "Alegra Contabilidad",
+     "texto_actual": "$69.900 COP",
+     "valor_publicado": 69900.0,
+     "moneda": "COP",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 74900,
+     "seccion": "Tabla Comparativa: Planes y precios de software contable en Colombia 2026",
+     "contexto": "Alegra Contabilidad | Emprendedor | $69.900 COP | 1 + contador gratis | ✅ Ilimitada | ✅ Incluido | 15 días"
+    },
+    {
+     "tipo": "precio_viejo",
+     "producto": "Contabilidad",
+     "plan_publicado": "Alegra Contabilidad",
+     "texto_actual": "$149.900 COP",
+     "valor_publicado": 149900.0,
+     "moneda": "COP",
+     "sugerencia_plan": "Pyme",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 163900,
+     "seccion": "Tabla Comparativa: Planes y precios de software contable en Colombia 2026",
+     "contexto": "Alegra Contabilidad | Pyme | $149.900 COP | 2 + contador gratis | ✅ Ilimitada | ✅ Incluido | 15 días"
+    },
+    {
+     "tipo": "precio_viejo",
+     "producto": "Contabilidad",
+     "plan_publicado": "Alegra Contabilidad",
+     "texto_actual": "$219.900 COP",
+     "valor_publicado": 219900.0,
+     "moneda": "COP",
+     "sugerencia_plan": "Plus",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 239925,
+     "seccion": "Tabla Comparativa: Planes y precios de software contable en Colombia 2026",
+     "contexto": "Alegra Contabilidad | Pro | $219.900 COP | 3 + contador gratis | ✅ Ilimitada | ✅ Incluido | 15 días"
+    },
+    {
+     "tipo": "precio_viejo",
+     "producto": "Contabilidad",
+     "plan_publicado": "Alegra Contabilidad",
+     "texto_actual": "$279.900 COP",
+     "valor_publicado": 279900.0,
+     "moneda": "COP",
+     "sugerencia_plan": "Pro",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 250900,
+     "seccion": "Tabla Comparativa: Planes y precios de software contable en Colombia 2026",
+     "contexto": "Alegra Contabilidad | Plus | $279.900 COP | 8 + contador gratis | ✅ Ilimitada | ✅ Incluido | 15 días"
+    }
+   ],
+   "n_precio_viejo": 8
+  },
+  {
+   "post_id": 34,
+   "url": "https://programascontabilidad.com/comparativas-de-software/cual-elegir-entre-alegra-vs-loggro/",
+   "cifras": [
+    {
+     "tipo": "precio_viejo",
+     "producto": "Contabilidad",
+     "plan_publicado": null,
+     "texto_actual": "$69.900",
+     "valor_publicado": 69900.0,
+     "moneda": "$",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 74900,
+     "seccion": "Alegra vs Siigo vs World Office: comparativa técnica 2026",
+     "contexto": "Precio base (contabilidad) | Desde $69.900/mes — mensual, sin contrato | Desde $145.993/mes — pago ANUAL obligatorio | Consultar worldoffice.c"
+    },
+    {
+     "tipo": "precio_viejo",
+     "producto": "Contabilidad",
+     "plan_publicado": "Emprendedor",
+     "texto_actual": "$69.900",
+     "valor_publicado": 69900.0,
+     "moneda": "$",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 74900,
+     "seccion": "Alegra Colombia — precios por módulo (pago mensual, sin contrato anual)",
+     "contexto": "o clave: Alegra estructura sus planes por rango de ingresos mensuales, no por número de transacciones. El plan Emprendedor de Contabilidad ($69.900/mes) cubre ingresos hasta $10.00"
+    },
+    {
+     "tipo": "precio_viejo",
+     "producto": "Facturación electrónica",
+     "plan_publicado": "Facturación",
+     "texto_actual": "$69.900",
+     "valor_publicado": 69900.0,
+     "moneda": "$",
+     "sugerencia_plan": "Pro",
+     "sugerencia_producto": "Facturación electrónica",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 74925,
+     "seccion": "Empresa de servicios — 50 facturas/mes, 3 empleados",
+     "contexto": "Recomendación: Alegra Facturación ($17.900/mes) o Alegra Contabilidad ($69.900/mes) si necesitan reportes contables completos. La relación costo-valor en este perfil es la más al"
+    },
+    {
+     "tipo": "revisar",
+     "producto": "POS",
+     "plan_publicado": "Emprendedor",
+     "texto_actual": "$10.000.000",
+     "valor_publicado": 10000000.0,
+     "moneda": "$",
+     "sugerencia_plan": "Plus",
+     "sugerencia_producto": "POS",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 1799100,
+     "seccion": "Alegra Colombia — precios por módulo (pago mensual, sin contrato anual)",
+     "contexto": "nes por rango de ingresos mensuales, no por número de transacciones. El plan Emprendedor de Contabilidad ($69.900/mes) cubre ingresos hasta $10.000.000/mes e incluye POS sin costo "
+    }
+   ],
+   "n_precio_viejo": 3
+  },
+  {
+   "post_id": 3199,
+   "url": "https://programascontabilidad.com/comparativas-de-software/mejor-sistema-pos-en-colombia/",
+   "cifras": [
+    {
+     "tipo": "precio_viejo",
+     "producto": "POS",
+     "plan_publicado": "POS",
+     "texto_actual": "$80,000",
+     "valor_publicado": 80000.0,
+     "moneda": "$",
+     "sugerencia_plan": "Pyme",
+     "sugerencia_producto": "POS",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 79900,
+     "seccion": "Retail micro y pyme: ¿quién tiene mejor calculadora TCO y curva de aprendizaje?",
+     "contexto": "ora TCO bastante transparente y optimizada. Los costos mensuales de Alegra POS están entre los más accesibles, con planes que van desde los $80,000 hasta $120,000 COP mensuales, de"
+    },
+    {
+     "tipo": "precio_viejo",
+     "producto": "POS",
+     "plan_publicado": "POS",
+     "texto_actual": "$120,000 COP",
+     "valor_publicado": 120000.0,
+     "moneda": "COP",
+     "sugerencia_plan": "Pro",
+     "sugerencia_producto": "POS",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 104925,
+     "seccion": "Retail micro y pyme: ¿quién tiene mejor calculadora TCO y curva de aprendizaje?",
+     "contexto": "te transparente y optimizada. Los costos mensuales de Alegra POS están entre los más accesibles, con planes que van desde los $80,000 hasta $120,000 COP mensuales, dependiendo de l"
+    }
+   ],
+   "n_precio_viejo": 2
+  },
+  {
+   "post_id": 3322,
+   "url": "https://programascontabilidad.com/analisis-de-herramientas/mejor-software-de-facturacion-electronica-colombia/",
+   "cifras": [
+    {
+     "tipo": "precio_viejo",
+     "producto": "Facturación electrónica",
+     "plan_publicado": "Alegra facturación",
+     "texto_actual": "$30.000 COP",
+     "valor_publicado": 30000.0,
+     "moneda": "COP",
+     "sugerencia_plan": "Pyme",
+     "sugerencia_producto": "Facturación electrónica",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 37425,
+     "seccion": "Comparativa 2025: funcionalidades y precios normalizados (COP)",
+     "contexto": "Alegra facturación | $30.000 COP | $200 COP | 1000 documentos/mes | Sí | Sí | Sí"
+    },
+    {
+     "tipo": "revisar",
+     "producto": "Facturación electrónica",
+     "plan_publicado": "Alegra facturación",
+     "texto_actual": "$200 COP",
+     "valor_publicado": 200.0,
+     "moneda": "COP",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Facturación electrónica",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 13425,
+     "seccion": "Comparativa 2025: funcionalidades y precios normalizados (COP)",
+     "contexto": "Alegra facturación | $30.000 COP | $200 COP | 1000 documentos/mes | Sí | Sí | Sí"
+    }
+   ],
+   "n_precio_viejo": 1
+  },
+  {
+   "post_id": 1438,
+   "url": "https://programascontabilidad.com/uncategorized/mejor-programa-contable-world-office-o-alegra/",
+   "cifras": [
+    {
+     "tipo": "precio_viejo",
+     "producto": "POS",
+     "plan_publicado": "Alegra",
+     "texto_actual": "$20,000",
+     "valor_publicado": 20000.0,
+     "moneda": "$",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "POS",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 19425,
+     "seccion": "Matriz 1-Página: precio, límite de documentos, usuarios, POS, Nómina, Soporte, pruebas Gratis",
+     "contexto": "Alegra | Desde $59,900/mes | Desde $20,000/usuario/mes | Desde $1,500 por documento | ✔ | ✔ | 24/7 | 15 días"
+    },
+    {
+     "tipo": "revisar",
+     "producto": "POS",
+     "plan_publicado": "Alegra",
+     "texto_actual": "$1,500",
+     "valor_publicado": 1500.0,
+     "moneda": "$",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "POS",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 19425,
+     "seccion": "Matriz 1-Página: precio, límite de documentos, usuarios, POS, Nómina, Soporte, pruebas Gratis",
+     "contexto": "Alegra | Desde $59,900/mes | Desde $20,000/usuario/mes | Desde $1,500 por documento | ✔ | ✔ | 24/7 | 15 días"
+    }
+   ],
+   "n_precio_viejo": 1
+  },
+  {
+   "post_id": 153,
+   "url": "https://programascontabilidad.com/analisis-de-herramientas/alegra-software-review/",
+   "cifras": [
+    {
+     "tipo": "moneda_distinta",
+     "producto": "Contabilidad",
+     "plan_publicado": "PRO",
+     "texto_actual": "30 USD",
+     "valor_publicado": 30.0,
+     "moneda": "USD",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 56175,
+     "seccion": "Costo del servicio",
+     "contexto": "número de funciones que tengan disponibles. Con el software contable de Alegra tienes los siguientes planes: PYMES cuyo costo por mes es de 30 USD, PRO por 50 USD y el PLUS que cue"
+    },
+    {
+     "tipo": "moneda_distinta",
+     "producto": "Contabilidad",
+     "plan_publicado": "PRO",
+     "texto_actual": "50 USD",
+     "valor_publicado": 50.0,
+     "moneda": "USD",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 56175,
+     "seccion": "Costo del servicio",
+     "contexto": "nes que tengan disponibles. Con el software contable de Alegra tienes los siguientes planes: PYMES cuyo costo por mes es de 30 USD, PRO por 50 USD y el PLUS que cuesta 80 USD."
+    },
+    {
+     "tipo": "moneda_distinta",
+     "producto": "Contabilidad",
+     "plan_publicado": "PRO",
+     "texto_actual": "80 USD",
+     "valor_publicado": 80.0,
+     "moneda": "USD",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 56175,
+     "seccion": "Costo del servicio",
+     "contexto": "Con el software contable de Alegra tienes los siguientes planes: PYMES cuyo costo por mes es de 30 USD, PRO por 50 USD y el PLUS que cuesta 80 USD."
+    }
+   ],
+   "n_precio_viejo": 0
+  },
+  {
+   "post_id": 23,
+   "url": "https://programascontabilidad.com/comparativas-de-software/cuales-son-los-programas-de-contabilidad-mas-usados/",
+   "cifras": [
+    {
+     "tipo": "producto_mal_atribuido",
+     "producto": "Contabilidad",
+     "plan_publicado": null,
+     "texto_actual": "$17.900",
+     "valor_publicado": 17900.0,
+     "moneda": "$",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Facturación electrónica",
+     "posible_producto_mal_atribuido": true,
+     "sugerencia_valor": 17900,
+     "seccion": "Software para PyMEs: Agilidad y ecosistemas integrados en la nube",
+     "contexto": "DIAN. Soporte en vivo incluido en todos los planes. Cumple NIIF para PyMEs y es Proveedor Tecnológico autorizado ante la DIAN. Planes desde $17.900/mes."
+    },
+    {
+     "tipo": "producto_mal_atribuido",
+     "producto": "Contabilidad",
+     "plan_publicado": null,
+     "texto_actual": "$17.900",
+     "valor_publicado": 17900.0,
+     "moneda": "$",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Facturación electrónica",
+     "posible_producto_mal_atribuido": true,
+     "sugerencia_valor": 17900,
+     "seccion": "El rincón del contador: Funcionalidades críticas y confiabilidad operativa",
+     "contexto": "Precio base (COP/mes) | Desde $17.900 | Desde $108.900 | Bajo consulta | Bajo consulta | Bajo consulta"
+    }
+   ],
+   "n_precio_viejo": 0
+  },
+  {
+   "post_id": 1957,
+   "url": "https://programascontabilidad.com/comparativas-de-software/facturacionsiigo-o-alegra-que-programa-es-mejor/",
+   "cifras": [
+    {
+     "tipo": "producto_mal_atribuido",
+     "producto": "Facturación electrónica",
+     "plan_publicado": null,
+     "texto_actual": "674.100 COP",
+     "valor_publicado": 674100.0,
+     "moneda": "COP",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Contabilidad",
+     "posible_producto_mal_atribuido": true,
+     "sugerencia_valor": 674100,
+     "seccion": "Siigo vs Alegra: comparación por dimensión",
+     "contexto": "Contabilidad | Siigo Nube desde 1.751.920 COP/año con 1 usuario | Desde 674.100 COP/año con 1 usuario, facturación e inventario incluidos"
+    }
+   ],
+   "n_precio_viejo": 0
+  },
+  {
+   "post_id": 2668,
+   "url": "https://programascontabilidad.com/comparativas-de-software/administracion/mejor-sistema-de-facturacion/",
+   "cifras": [
+    {
+     "tipo": "moneda_distinta",
+     "producto": "Facturación electrónica",
+     "plan_publicado": "Alegra",
+     "texto_actual": "$10 USD",
+     "valor_publicado": 10.0,
+     "moneda": "USD",
+     "sugerencia_plan": "Emprendedor",
+     "sugerencia_producto": "Facturación electrónica",
+     "posible_producto_mal_atribuido": false,
+     "sugerencia_valor": 13425,
+     "seccion": "¿Cuál es el mejor sistema de facturación electrónica?",
+     "contexto": "Alegra | No | Desde $10 USD/mes | Facturación electrónica, integración contable, reportes fiscales, soporte en español | Muy am"
+    }
+   ],
+   "n_precio_viejo": 0
+  }
+ ]
+}

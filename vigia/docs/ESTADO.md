@@ -333,6 +333,38 @@ resumen y la deduplicación de avisos.
   Siigo y World Office `sin_registro`. El estado de campaña manda sobre `sin_registro`: si la página está
   en promoción se avisa eso, no un genérico.
 
+## Alcance: solo reencauche, sin artículos nuevos (19-nov-2026)
+
+Instrucción de Sharon: **el vigía no escribe piezas nuevas**. Sobre el contenido, su trabajo es dejar la
+lista de reencauche de los posts ya publicados. `vigia/reencauche.py` compara las cifras publicadas del
+inventario con los valores vigentes del registro y clasifica cada diferencia:
+
+| Tipo | Qué significa | Qué se hace |
+|---|---|---|
+| `precio_viejo` | La cifra publicada no existe hoy en la página y se parece a un plan vigente | Se reencaucha la pieza |
+| `moneda_distinta` | La pieza publica en otra moneda (los USD viejos de Alegra) | Lo decide una persona; nunca se convierte |
+| `producto_mal_atribuido` | La cifra existe, pero el inventario la puso en otro producto | Se corrige el inventario, no la pieza |
+| `revisar` | Se parece más a un límite, un rango o a otra marca | Lectura manual |
+
+**Corrida de COL (19-nov): 9 posts a reencauchar, 15 precios viejos, 4 en otra moneda, 3 mal atribuidas,
+3 a revisar y 36 cifras al día.**
+
+| Post | Cifras | Qué le pasa |
+|---|---|---|
+| 3728 · `precios-de-software-contable-colombia-2026` | 8 | Todas son precios viejos: `$69.900` → **74.900**, `$279.900` → **250.900**, `$218.900` → **239.925**, `$350.000` → **319.900** |
+| 34 · `cual-elegir-entre-alegra-vs-loggro` | 4 | `$69.900` ×2 → **74.900**; una cifra a revisar |
+| 3199 · `mejor-sistema-pos-en-colombia` | 2 | `$80.000` → **79.900**; `$120.000` es el anual equivalente de Pro (**104.925**) |
+| 3322 · `mejor-software-de-facturacion-electronica-colombia` | 2 | `$30.000` → Pyme **37.425**; una a revisar |
+| 1438 · `mejor-programa-contable-world-office-o-alegra` | 2 | `$20.000` → Emprendedor POS **19.425**; una a revisar |
+| 153 · `alegra-software-review` | 3 | Publica **30, 50 y 80 USD**: precios de cuando la reseña se escribió |
+| 23 · `cuales-son-los-programas-de-contabilidad-mas-usados` | 2 | El valor existe: es Facturación, no Contabilidad |
+| 1957 · `facturacionsiigo-o-alegra-que-programa-es-mejor` | 1 | Igual: el 674.100 es Contabilidad, no Facturación |
+| 2668 · `mejor-sistema-de-facturacion` | 1 | Publica **10 USD** |
+
+- **Ningún post nuevo, ninguna publicación:** la salida es una lista de trabajo
+  (`paises/<vigía>/reencauche-AAAA-MM-DD.json`) con la cifra publicada, la vigente y la frase donde está.
+- El 3728 se lleva 8 de las 15 correcciones: es la pieza que más plata vieja publica hoy.
+
 ## Inventario v2 (18-nov-2026)
 
 Fuente: API pública de WordPress (`content.rendered`) de los 343 posts publicados más el único recurso,
