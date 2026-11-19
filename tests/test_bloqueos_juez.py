@@ -178,11 +178,14 @@ class RedactorTests(unittest.TestCase):
         producir_por_secciones(brief(), llm=llm, skill="S", legal="L", fichas=fichas)
         return llm.sistemas[0]
 
-    def test_no_pide_revise_y_fija_la_fecha_de_las_fichas(self):
+    def test_no_pide_revise_ni_fecha_las_fichas(self):
+        # 19-nov-2026: el post no lleva fechas de consulta (las mantiene el vigía) y el redactor no
+        # dice «revisé».
         sistema = self.sistema([ficha("Siigo", fecha="2026-11-06"), ficha("Alegra")])
 
         self.assertNotIn("Escribe «revisé» por defecto", sistema)
-        self.assertIn("entre el 6 y el 12 de noviembre de 2026", sistema)
+        self.assertNotIn("entre el 6 y el 12 de noviembre de 2026", sistema)
+        self.assertIn("Ninguna fecha de consulta en el cuerpo", sistema)
 
     def test_las_fichas_sin_precio_llevan_la_frase_que_acepta_el_validador(self):
         sistema = self.sistema([ficha("Odoo", precio="", pais="MX"), ficha("Konta", pais="MX")])
@@ -209,7 +212,9 @@ class ReparacionesTests(unittest.TestCase):
 
         self.assertIn("Precios y datos consultados el 12 de noviembre de 2026.", con.html)
 
-    def test_el_cta_usa_la_fecha_de_las_fichas(self):
+    def test_el_cta_no_lleva_fecha(self):
+        # Regla del 19-nov-2026: el post no dice cuándo se consultó el precio (eso vive en el
+        # vigía); una fecha en el cuerpo envejece el artículo.
         from orchestrator.reparacion import completar_cta
 
         html = '<p style="color:#123456">Texto con la línea visual.</p>'
@@ -217,8 +222,10 @@ class ReparacionesTests(unittest.TestCase):
 
         con = completar_cta(draft, country="CO", fecha=date(2026, 11, 17), consulta="el 12 de noviembre de 2026")
 
-        self.assertIn("Precios consultados el 12 de noviembre de 2026", con.html)
+        self.assertNotIn("consultados", con.html)
         self.assertNotIn("17 de noviembre", con.html)
+        self.assertNotIn("12 de noviembre", con.html)
+        self.assertIn("background:", con.html)
 
     def test_se_quitan_las_notas_de_proceso(self):
         html = (

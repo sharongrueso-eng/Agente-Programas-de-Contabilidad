@@ -31,7 +31,8 @@ Produce y actualiza reseñas y comparativas de software contable/facturación en
 Costa Rica, República Dominicana, Perú, Panamá).
 
 Una entrada **no está terminada** si le falta: portada (foto limpia, sin texto ni logo), tabla
-comparativa, FAQ en H3 con schema, fuentes con fecha de consulta e interlinks internos reales.
+comparativa cuando el tema la pida, FAQ en H3 con schema, fuentes oficiales (sin fecha) e
+interlinks internos reales.
 
 ## Alcance
 
@@ -91,10 +92,12 @@ Trampas del SERP de Ahrefs, comprobadas el 3-nov-2026:
 2. Verifica que la keyword tenga demanda medida. **GSC y Ahrefs son la fuente**; el volumen de una
    herramienta gratis en este nicho vale poco. Si no hay GSC todavía, usa Ahrefs
    (`site_explorer_organic_keywords` del competidor + `keywords_explorer_overview`) y anota la fuente.
-3. Revisa precios y funciones del software reseñado **en su página oficial ese mismo día**. Cada cifra
-   lleva su fecha de consulta. **En un refresco, extrae del post cada precio y cada cifra y verifica uno
-   por uno contra la fuente viva**: los planes cambian de nombre y de tarifa sin aviso, y el artículo
-   termina contradiciendo a su propia fuente (hay posts con las cuatro tarifas de un plan por debajo del
+3. Revisa precios y funciones del software reseñado **en su página oficial**. La cifra se cita con
+   su fuente, sin fecha: los precios los mantiene al día el **vigía de precios** (`vigia-precios`),
+   que actualiza la cifra en el post cuando cambia. **En un refresco, extrae del post cada precio y
+   cada cifra y verifica uno por uno contra la fuente viva**: los planes cambian de nombre y de tarifa
+   sin aviso, y el artículo termina contradiciendo a su propia fuente (hay posts con las cuatro
+   tarifas de un plan por debajo del
    precio real). Para corregir varias entradas de golpe, `references/refresco-de-precios.md` tiene el
    procedimiento por lotes con dry-run, colisiones de valores y auditoría de residuos.
    **Comprueba también que el producto siga siendo el mismo.** Una comparativa vieja no se invalida solo
@@ -235,37 +238,65 @@ Una comparativa **no** termina con "el ganador es Alegra". Se hace así:
   CR/PE/PA; ERP en PE/PA) **o insinuar que falta algo que sí existe** (timbrado de nómina en México, ERP
   en Colombia). Cada módulo nombrado debe aparecer en `references/alegra-modulos-por-pais.md`.
 
-### 4a. Cómo se escribe una comparativa (lo corrigió Claude a mano en el 5704)
+### 4a. Alegra entra como una alternativa, no como la protagonista (19-nov-2026)
 
-- **Alegra está siempre**, y la comparativa lleva Alegra más **tres sistemas que operen en el país**:
-  cuatro marcas como mínimo. Si el registro no alcanza, la corrida se bloquea con el motivo; no se
-  rellena con marcas inventadas ni se estira el elenco con una que no vende allí.
-- **Orden alfabético** en tablas y fichas. Ni Alegra primero ni el competidor más caro al final: la
-  simetría se ve antes de leer los números.
+- **El artículo no abre con Alegra.** Arranca por el problema y el mercado del país. Alegra aparece
+  en su propio apartado, como una opción más entre las que se comparan, y solo **al final**, en el
+  veredicto, se presenta como la que más encaja para un perfil concreto. Nada de «Alegra es la
+  mejor» en la introducción.
+- **Alegra está siempre**, y una comparativa de mercado lleva Alegra más **tres sistemas que operen
+  en el país**: cuatro marcas como mínimo. Si el registro no alcanza, la corrida se bloquea con el
+  motivo; no se rellena con marcas inventadas.
+- **Orden alfabético** en tablas y fichas, para que la simetría se vea antes de leer los números.
 - **La ventaja de Alegra se muestra con un dato comparable** (la tabla de «cuánto cuesta llevar 10
   RFC»), nunca con adjetivos. Prohibido «el mejor» sin cifra al lado.
 - **Una sola mención contextual**, condicionada: «si la prioridad es X, Alegra suele encajar
   porque…». **Y un CTA final** en frase neutra. Eso son **dos enlaces a `alegra.com` como máximo en
-  todo el cuerpo**, y los dos del país de la pieza, con `utm_campaign={pais}_articulo_tmd_content`.
+  todo el cuerpo**, los dos del país de la pieza, con `utm_campaign={pais}_articulo_tmd_content`.
 - **Veredicto por perfil de operación** (contador independiente, despacho, comercio con mostrador,
   empresa con inventario): sin un ganador único. Cada perfil con su recomendación y su motivo.
 
-### 4b. Precios y marcas: lo que se puede afirmar
+### 4b. Cada sistema se describe solo
 
-- El precio se lee de la landing oficial (HTML, no captura) y se guarda **con su fecha de consulta**.
-  Si la marca no publica precio: «no publica el precio; se cotiza en demo». Nada más: ni estimación
-  ni «desde».
-- Siempre con **periodo** (mes, trimestre, semestre, año), **si lleva IVA**, y **si es plan o
-  complemento**. El error del 5704: «2.799 MXN al mes» era el precio **anual de un complemento**
-  (Conecta Bind), no un plan. Un complemento anual nunca se publica como mensual.
-- **Promociones con fecha de fin**, y los rangos del intro y de las FAQ usan el **precio regular**,
-  no el promocional. Si el regular no está publicado, se dice que no está publicado.
-- **Formato de miles del país**: México `$4,690` y `$974.25`; Colombia `$17.900`; punto para miles en
-  CO/CR/DO y coma en MX.
-- **Una marca es una sola**: «Bind» y «Bind ERP» son el mismo proveedor y no pueden salir como dos
-  fichas que se contradicen. Se normaliza por alias antes de comparar (`orchestrator/reglas_editoriales.py`).
+- Un H3 por marca, con lo que es, sus funciones, sus beneficios y sus límites. En la ficha de un
+  competidor **no se nombra a Alegra** ni se compara con ella: el lector quiere saber qué hace ese
+  producto y para quién sirve.
+- Los beneficios de Alegra (facturación, contabilidad, Alegra BOT) se cuentan **en su apartado,
+  una vez**. Repetirlos en cada sección es lo que hace que un post parezca un anuncio.
+- **Tope de menciones**: no más de `3 × competidores + 4` veces el nombre de Alegra en toda la
+  pieza (`alegra_densidad`). En el 5711 aparecía 50 veces para un solo competidor.
+- **Sin subtítulos repetidos**: dos H2 que preguntan lo mismo con otras palabras —«¿Qué sistema
+  conviene?» y «Veredicto: qué sistema conviene»— son el mismo subtítulo dos veces
+  (`subtitulos_similares`).
+
+### 4c. Precios: opcionales, comparables y sin fechas (19-nov-2026)
+
+- **No todos los posts llevan precios.** Un artículo que compara funcionalidades (como el 5064) no
+  necesita tabla de precios: se compara por lo que cada sistema hace. Tampoco hay que meter una
+  tabla gigante con todos los planes de todos: **se comparan los equivalentes** (POS con POS, ERP
+  con ERP, contador con contador).
+- Si hay precios, tienen que **poder compararse**: todos en la **moneda del país** de la pieza
+  (si el competidor cobra en dólares y el país no, se convierte o se dice en qué moneda cobra) y
+  todos en el **mismo periodo** (mensual o anual; si un plan es anual, se lleva a su equivalente
+  mensual y se dice).
+- El precio se lee de la landing oficial (HTML, no captura). Si la marca no publica precio: «no
+  publica el precio; se cotiza en demo». Nunca se estima.
+- Siempre con **periodo**, **si lleva IVA** y **si es plan o complemento**. El error del 5704:
+  «2.799 MXN al mes» era el precio **anual de un complemento** (Conecta Bind), no un plan.
+- **Promociones con fecha de fin**, y los rangos del intro y de las FAQ usan el **precio regular**.
+- **Formato de miles del país**: México `$4,690` y `$974.25`; Colombia `$17.900`.
+- **Una marca es una sola**: «Bind» y «Bind ERP» son el mismo proveedor.
 - **Se comprueba que el producto venda en ese país**. QuickBooks `/mx/` redirige a la versión global,
   que cobra en USD y no menciona CFDI ni SAT: se escribe así, y no se le inventa un precio en pesos.
+
+### 4d. Sin fechas de consulta en el post (19-nov-2026)
+
+- **Prohibido** escribir «consultada el 18 de noviembre de 2026», «a fecha de…», «con datos de…» y
+  el H2 «Fuentes y fecha de consulta». La sección se llama **«Fuentes»**.
+- Por qué: los precios los mantiene al día el **vigía de precios** (skill `vigia-precios`), que
+  actualiza la cifra en el post cuando cambia. Una fecha escrita a mano lo envejece en dos semanas.
+- La fuente se cita por su nombre y su enlace. La fecha de captura vive en la ficha del registro,
+  no en el artículo. `reglas_editoriales.corregir()` la retira si el modelo la escribe igual.
 
 ## 5. Publicación (MCP `prog-cont`)
 
@@ -424,7 +455,7 @@ No se informa "listo" hasta confirmar, leyendo el sitio:
 - Rank Math con keyword, título ≤60 y descripción 140-160.
 - FAQ: número de H3 en la sección = número de preguntas del schema.
 - Al menos 1 tabla y 2-4 enlaces internos que respondan 200.
-- Sección `Fuentes` con al menos 2 fuentes oficiales o del fabricante y fecha de consulta.
+- Sección `Fuentes` con al menos 2 fuentes oficiales o del fabricante, sin fecha de consulta.
 - Un solo enlace de Alegra en el cuerpo + CTA final con UTM.
 - **Módulos nombrados contra la matriz del país:** ningún módulo que la tabla marque ❌ para ese país
   aparece en el texto ni en el enlace del CTA (grep del artículo contra

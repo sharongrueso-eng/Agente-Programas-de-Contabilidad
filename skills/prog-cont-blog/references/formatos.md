@@ -38,7 +38,8 @@ electrónica · ideal para · punto débil.
 2. H2 `¿Qué es [software]?`
 3. H2 `Funciones y módulos principales` (H3 por bloque: facturación, inventario, contabilidad, POS)
 4. H2 `¿Cómo funciona [software]?`
-5. H2 `Precios publicados de [software] en {año}` + tabla con fecha de consulta
+5. H2 `Precios publicados de [software] en {año}` + tabla, solo si los precios aportan a la
+   decisión; sin fecha de consulta
 6. H2 `[Software] y la facturación electrónica en {país}` (norma local: CFDI/SAT, DIAN, TRIBU-CR,
 e-CF/DGII, SUNAT, DGI/ITBMS)
 7. H2 `Ventajas y puntos de atención` con H3 `👍 Ventajas` / `👎 Puntos de atención`

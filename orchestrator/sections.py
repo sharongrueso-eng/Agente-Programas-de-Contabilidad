@@ -48,15 +48,19 @@ BLOQUES: tuple[tuple[str, str], ...] = (
     (
         "analisis",
         "Análisis software por software. Un H3 por CADA marca del registro de datos, sin excepción "
-        "y sin agregar marcas que no estén. Cada H3 lleva, como mínimo: qué es (dos frases), los "
-        "planes y precios reales que publica (con su periodicidad), dos ventajas concretas, dos "
-        "límites concretos y una frase de veredicto sobre para quién sirve. No resumas una marca "
-        "en una línea: si está en el registro, se desarrolla.",
+        "y sin agregar marcas que no estén. Cada H3 lleva, como mínimo: qué es (dos frases), sus "
+        "funciones y beneficios concretos, dos límites concretos y una frase de veredicto sobre "
+        "para quién sirve. Desarrolla CADA marca por separado y no nombres a Alegra dentro de la "
+        "ficha de otra marca: Alegra tiene su propio H3 y ahí se cuenta lo suyo. No resumas una "
+        "marca en una línea: si está en el registro, se desarrolla.",
     ),
     (
         "tabla",
-        "Tabla comparativa o cálculo diferencial con los precios y planes del registro de datos. "
-        "Usa una tabla HTML. Si un competidor no publica precios, la celda dice que no los publica. "
+        "Tabla comparativa SOLO si aporta: funciones lado a lado, o el costo de un mismo escenario "
+        "(por ejemplo, llevar 10 clientes o 3 usuarios). Si el tema se decide por funcionalidades, "
+        "no hay tabla de precios y esta sección puede ser una lista de criterios. Si hay precios, "
+        "se comparan los planes equivalentes (POS con POS, ERP con ERP), todos en la moneda del "
+        "país y en el mismo periodo; nunca una tabla con todos los planes de todos. "
         "Incluye aquí el segundo enlace a Alegra con UTM.",
     ),
     (
@@ -245,7 +249,24 @@ def producir_por_secciones(
 - Escribes para programascontabilidad.com con voz editorial propia, en español neutro de {brief.country}. No firmas como una persona.
 - Keyword foco: «{keyword}». No la repitas de forma artificial.
 - No inventes precios ni cifras: usa solo las del registro de datos que viene abajo.
-- La pieza admite **{tablas_max} tablas como máximo**, y la comparativa de precios con el registro ya se construye sola: ocupa una. No escribas tablas adicionales; cuando necesites comparar, usa listas o párrafos. Una tabla de más bloquea la publicación.
+- **Los precios no son obligatorios.** Muchos temas se deciden por funciones, integraciones o
+  facilidad de uso: ahí no va tabla de precios ni comparación de tarifas. Si hay precios, que
+  permitan comparar: planes equivalentes (POS con POS, ERP con ERP), todos en la moneda del país
+  (convierte si vienen en dólares y el país no usa dólares) y todos en el mismo periodo (mensual o
+  anual, no los dos). Nunca una tabla con todos los planes de todos los competidores.
+- La pieza admite **{tablas_max} tablas como máximo** y, si no hacen falta, no lleva ninguna.
+  Cuando necesites comparar sin tabla, usa listas o párrafos.
+- **Sin fechas de consulta.** No escribas «consultada el 18 de noviembre de 2026» ni «a fecha de…»:
+  los precios los mantiene al día el vigía y una fecha en el texto envejece el artículo. La fuente
+  se cita por su nombre y su enlace, nada más.
+- **Alegra no abre la pieza.** El artículo empieza por el problema del país y el mercado; Alegra
+  entra como una alternativa más, en su propio apartado, y solo al final —en el veredicto— se
+  presenta como la opción que más encaja según el perfil. Nada de «Alegra es la mejor» al principio.
+- **Cada sistema se describe solo.** En la ficha de un competidor no se nombra a Alegra ni se
+  compara con ella: sus funciones, sus límites y para quién sirve. Los beneficios de Alegra
+  (facturación, contabilidad, Alegra BOT) se cuentan en su apartado, una vez y sin repetirlos.
+- **No repitas subtítulos.** Dos H2 que preguntan lo mismo con otras palabras («¿Qué sistema
+  conviene?» y «Veredicto: qué sistema conviene») son un defecto: cada sección tiene su pregunta.
 - Si un competidor no publica un dato, dilo y sigue. La ausencia declarada es información.
 - En una comparativa bastan **dos o tres competidores**: el registro es un techo, no una lista que
   haya que cubrir entera. Los dos o tres que el lector compararía de verdad valen más que todos.
@@ -258,15 +279,15 @@ def producir_por_secciones(
   encuentra en el competidor. Con nombre propio, «Alegra BOT», y una frase que diga qué resuelve.
 - **AEO: escribe para que un modelo te pueda citar.** La respuesta va en la primera o segunda
   frase del arranque, la consulta foco en el primer párrafo, al menos dos secciones con el H2 en
-  forma de pregunta, y cada cifra con su fuente y su fecha. Un párrafo que empiece definiendo
-  («El software contable es…») vale más que tres que den rodeos.
+  forma de pregunta, y cada cifra con su fuente (sin fecha: la mantiene al día el vigía). Un
+  párrafo que empiece definiendo («El software contable es…») vale más que tres que den rodeos.
 - Devuelves **solo el HTML de la pieza**: sin cercas de markdown (```), sin encabezados tipo
   «## Bloque «X» — fragmento listo para pegar», sin marcadores `[PENDIENTE…]` y sin notas de
   proceso para el editor. Eso no es texto para el lector y se publica tal cual.
 - No escribas en primera persona que revisaste o probaste algo («revisé», «probé», «comprobamos»):
-  atribuye cada dato a su fuente y su fecha («según la página de precios de X, consultada …»).
-- **Fecha de consulta de los datos: {fecha_consulta}.** Es la única fecha de consulta que puede
-  aparecer en la pieza; no pongas la de hoy ni otra.
+  atribuye cada dato a su fuente por su nombre («según la página de precios de X»), sin fecha.
+- **Ninguna fecha de consulta en el cuerpo.** Ni «consultada el…», ni «a fecha de…», ni un H2
+  «Fuentes y fecha de consulta». La sección de fuentes se titula «Fuentes».
 - En un tema de segmento (veterinarias, ferreterías, restaurantes…) no afirmes nada sobre el
   sector, su regulación, sus autoridades o su mercado que no esté en el registro o en el contexto
   legal: habla de lo que el software resuelve para ese negocio. Sin estadísticas del sector.
@@ -418,9 +439,9 @@ deforma y no se abrevia. Escribir «Susii» donde va «Siigo» invalida el artí
                             llamar(
                                 "Bloque «analisis»: " + instruccion
                                 + "\n\nDesarrolla SOLO «" + marca + "»: un H3 con su nombre y "
-                                "debajo los planes y precios que el registro publica para esa "
-                                "marca, dos ventajas, dos límites y una frase de veredicto. "
-                                "Nada más."
+                                "debajo qué es, sus funciones y beneficios concretos, dos "
+                                "límites y una frase de veredicto. No nombres a Alegra en esta "
+                                "ficha. Nada más."
                             )
                         )
                     except Exception:  # noqa: BLE001 - una marca caída no tumba el bloque

@@ -59,11 +59,11 @@ def _plan_publicado(ficha: dict) -> str:
 
 def tarjeta_marca(ficha: dict, cuerpo: str) -> str:
     fuente = ficha.get("source_url", "")
-    fecha = ficha.get("captured_at", "")
+    # Sin fecha de consulta: el vigía mantiene el precio al día y la fecha envejece la pieza.
     pie = (
         f'<p style="margin:14px 0 0;font-size:13px;color:{GRIS};">Fuente del precio: '
         f'<a href="{fuente}" style="color:#0B6FA4;text-decoration:underline;">'
-        f'{fuente.replace("https://", "").rstrip("/")}</a> · consultada el {fecha}</p>'
+        f'{fuente.replace("https://", "").rstrip("/")}</a></p>'
         if fuente
         else ""
     )

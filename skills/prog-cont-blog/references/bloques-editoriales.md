@@ -82,11 +82,12 @@ Pasos numerados, no viñetas: el orden importa. Entre 3 y 5 pasos; cada uno empi
 ## 4. Tablas
 
 Formato del tema, no componente propio: `has-fixed-layout` y todas las celdas alineadas a la
-izquierda con `data-align`. El pie va abajo y cita fuente y fecha.
+izquierda con `data-align`. El pie va abajo y cita la fuente, **sin fecha**: los precios los
+mantiene al día el vigía y una fecha en el post lo envejece.
 
 ```html
 <table class="has-fixed-layout" data-pdc="componente">
-  <caption style="caption-side:bottom;text-align:left;padding:10px 16px;font-size:13px;line-height:1.5;font-weight:400;color:#4B5563;">Precios de lista leídos en siigo.com/precios-siigo el 13 de noviembre de 2026.</caption>
+  <caption style="caption-side:bottom;text-align:left;padding:10px 16px;font-size:13px;line-height:1.5;font-weight:400;color:#4B5563;">Precios de lista publicados en siigo.com/precios-siigo.</caption>
   <thead><tr>
     <th class="has-text-align-left" data-align="left" scope="col">Plan</th>
     <th class="has-text-align-left" data-align="left" scope="col">Documentos al año</th>
@@ -129,7 +130,7 @@ Todas cerradas por defecto: abrir la primera empuja el resto fuera de pantalla.
 9. `h2` Cómo pasar de una a otra.
 10. `h2` Veredicto (panel de tres bloques por perfil).
 11. `h2` Preguntas frecuentes → **details**.
-12. `h2` Fuentes y fecha de actualización.
+12. `h2` Fuentes.
 13. Firma del autor, y el CTA final al cierre.
 
 En una comparativa de **dos** marcas no se nombra un tercer competidor: el lector que llega
@@ -151,5 +152,5 @@ comparativa de dos.
 - **No se promete lo que no hay.** «Los 7 mejores», «top 10», «N plataformas» se contrastan con
   las fichas del registro (`brand_count`). Prometer un listado que no se puede llenar es el
   mismo error que inventar un precio.
-- **Cada precio lleva fuente y fecha dentro del bloque o en el pie de la tabla.** Si el
+- **Cada precio cita su fuente dentro del bloque o en el pie de la tabla, sin fecha.** Si el
   proveedor no lo publica, se escribe «No publicado»; no se estima.
