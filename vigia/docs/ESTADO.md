@@ -365,6 +365,31 @@ inventario con los valores vigentes del registro y clasifica cada diferencia:
   (`paises/<vigía>/reencauche-AAAA-MM-DD.json`) con la cifra publicada, la vigente y la frase donde está.
 - El 3728 se lleva 8 de las 15 correcciones: es la pieza que más plata vieja publica hoy.
 
+## T9 · Actualizador todo o nada: primer reencauche aplicado en staging (19-nov-2026)
+
+`vigia/actualizador.py` respalda `content.raw`, aplica **reemplazos exactos** (nunca cifras inventadas),
+verifica leyendo el post de vuelta por la API y, si algo falla en cualquier post, **restaura todos**.
+
+**Primer trabajo real: los posts 3728 y 34**, cuya columna de Alegra Contabilidad estaba con los precios de
+antes. Cuatro reemplazos, contados y verificados uno por uno:
+
+| Antes | Después | 3728 | 34 |
+|---|---|---|---|
+| `$69.900` | `$74.900` | 5 | 4 |
+| `$149.900` | `$163.900` | 2 | 1 |
+| `$219.900` | `$250.900` | 2 | 1 |
+| `$279.900` | `$319.900` | 4 | 1 |
+| `marzo de 2026` | `noviembre de 2026` | — | 1 |
+
+- **Aplicado y verificado en staging**: leído de vuelta por la API (cero cifras viejas, las nuevas en su
+  sitio) y comprobado en la página pública. Respaldos en `paises/col/respaldos/`.
+- **Producción no se tocó: la llave de producción devuelve 403.** Hay que regenerar la contraseña de
+  aplicación del usuario que publica y dejarla en `~/.pdc/wp-prod.env` (`PDC_PROD_TOKEN`).
+- **Lo que no se tocó a propósito**: `$218.900` es la suma de tres módulos, `$350.000` es el costo total
+  estimado del proveedor y `$37.000` el extremo de un rango del mercado. No son precios de plan.
+- El `279.900` que aparece en la página pública del 3728 son extractos de **otros** posts en bloques de
+  relacionados: en el contenido de esa pieza quedó en cero.
+
 ## Inventario v2 (18-nov-2026)
 
 Fuente: API pública de WordPress (`content.rendered`) de los 343 posts publicados más el único recurso,

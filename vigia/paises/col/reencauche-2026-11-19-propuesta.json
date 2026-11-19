@@ -1,0 +1,94 @@
+{
+ "fecha": "2026-11-19",
+ "posts": [
+  {
+   "post_id": 3728,
+   "slug": "precios-de-software-contable-colombia-2026",
+   "modified": "2026-04-29T20:53:50",
+   "cambios": [
+    {
+     "antes": "$69.900",
+     "despues": "$74.900",
+     "ocurrencias": 5
+    },
+    {
+     "antes": "$149.900",
+     "despues": "$163.900",
+     "ocurrencias": 2
+    },
+    {
+     "antes": "$219.900",
+     "despues": "$250.900",
+     "ocurrencias": 2
+    },
+    {
+     "antes": "$279.900",
+     "despues": "$319.900",
+     "ocurrencias": 4
+    }
+   ],
+   "intactos": [
+    {
+     "valor": "$218.900",
+     "motivo": "es la suma de tres módulos, no el precio de un plan"
+    },
+    {
+     "valor": "$350.000",
+     "motivo": "es el costo total estimado, no un plan de Alegra"
+    },
+    {
+     "valor": "$37.000",
+     "motivo": "es el extremo inferior de un rango del mercado"
+    }
+   ],
+   "url": "https://programascontabilidad.com/precios-de-software-contable-colombia-2026/",
+   "en_pagina": {
+    "$69.900": 0,
+    "$149.900": 0,
+    "$219.900": 0,
+    "$279.900": 0
+   }
+  },
+  {
+   "post_id": 34,
+   "slug": "cual-elegir-entre-alegra-vs-loggro",
+   "modified": "2026-11-14T09:35:26",
+   "cambios": [
+    {
+     "antes": "$69.900",
+     "despues": "$74.900",
+     "ocurrencias": 4
+    },
+    {
+     "antes": "$149.900",
+     "despues": "$163.900",
+     "ocurrencias": 1
+    },
+    {
+     "antes": "$219.900",
+     "despues": "$250.900",
+     "ocurrencias": 1
+    },
+    {
+     "antes": "$279.900",
+     "despues": "$319.900",
+     "ocurrencias": 1
+    },
+    {
+     "antes": "marzo de 2026",
+     "despues": "noviembre de 2026",
+     "ocurrencias": 1
+    }
+   ],
+   "intactos": [],
+   "url": "https://programascontabilidad.com/cual-elegir-entre-alegra-vs-loggro/",
+   "en_pagina": {
+    "$69.900": 0,
+    "$149.900": 0,
+    "$219.900": 0,
+    "$279.900": 0,
+    "marzo de 2026": 0
+   }
+  }
+ ]
+}
