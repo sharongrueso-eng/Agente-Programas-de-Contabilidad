@@ -262,6 +262,54 @@ Alegra Colombia, México y Costa Rica.
 - **Pruebas**: 13 nuevas (201 en total), una por resultado del plan y una de extremo a extremo que pasa el
   HTML real de Colombia por lector y comparador y espera `sin_cambios` ×16.
 
+## T7 · Avisos en Google Chat (18-nov-2026)
+
+`vigia/avisos.py`: un resumen por corrida con el prefijo del país (`[COL]`, `[MEX]`, `[CRI]`, `[DOM]`) y
+tres colores —🟢 nada que hacer, 🟡 algo que revisar, 🔴 falló el proceso—. Cada problema se avisa **una
+sola vez por día**: lo enviado queda en `paises/<vigía>/avisos-enviados.json` (últimos 30 días).
+
+- **El nombre del webhook no coincidía.** La skill declaraba `GCHAT_WEBHOOK_URL` y el agente diario usa
+  `PDC_CHAT_WEBHOOK_URL` (`~/.pdc/chat.env`). Se aceptan los dos, con el del agente primero: sin eso, T7
+  habría quedado con un aviso que nunca sale.
+- **Un 200 no es un envío.** El éxito se comprueba por el `name` que devuelve la API de Chat; si responde
+  sin `name`, se reporta como fallo y el problema no se marca como avisado.
+- Probado con un **envío real al espacio** el 18-nov.
+
+## T8 · Corrida en ensayo (18-nov-2026)
+
+```bash
+python -m vigia.correr --pais col            # ensayo, avisa en Chat
+python -m vigia.correr --pais col --no-avisar
+python -m vigia.correr --pais col --solo alegra-co
+```
+
+Toma el **candado del país** (dos corridas del mismo país no se pisan; países distintos conviven, y el
+candado se suelta aunque el lector falle), lee sus fuentes de prioridad 1, compara, deja
+`paises/<vigía>/lecturas/AAAA-MM-DD/resumen.json` y avisa. El modo sale de `VIGIA_MODO_<VIGÍA>`; sin
+variable, **ensayo**, que no toca WordPress.
+
+**Primera corrida real (COL, 18-nov):**
+
+| Fuente | Resultado |
+|---|---|
+| Alegra | `sin_cambios` (16 planes contra el registro) |
+| Siigo, Vendty, Loggro, World Office | `sin_registro` |
+
+`sin_registro` es un estado propio y honesto: la fuente se leyó bien, pero todavía no hay registro de esa
+marca contra el cual comparar. No es un error y no pide aviso amarillo.
+
+**Pruebas**: 22 nuevas (223 en total) sobre el candado, los modos, la pausa, la campaña que no compara, el
+resumen y la deduplicación de avisos.
+
+**Las cuatro tareas de Coolify** (después de fusionar; servidor en UTC):
+
+| Nombre | Frecuencia | Comando |
+|---|---|---|
+| vigia-col | `0 12 1,16 * *` | `cd <REPO> && git pull --ff-only && python -m vigia.correr --pais col` |
+| vigia-mex | `15 12 1,16 * *` | `cd <REPO> && git pull --ff-only && python -m vigia.correr --pais mex` |
+| vigia-cri | `30 12 1,16 * *` | `cd <REPO> && git pull --ff-only && python -m vigia.correr --pais cri` |
+| vigia-dom | `45 12 1,16 * *` | `cd <REPO> && git pull --ff-only && python -m vigia.correr --pais dom` |
+
 ## Inventario v2 (18-nov-2026)
 
 Fuente: API pública de WordPress (`content.rendered`) de los 343 posts publicados más el único recurso,
