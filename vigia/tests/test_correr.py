@@ -122,6 +122,16 @@ def test_candado_se_suelta_aunque_falle_el_lector(monkeypatch):
     assert correr.tomar_candado("col") is True
 
 
+def test_sin_registro_no_cuenta_como_problema():
+    texto = avisos.armar_mensaje("col", "2026-11-18", [
+        {"fuente": "alegra-co", "resultado": "sin_cambios", "n_sin_cambios": 16},
+        {"fuente": "siigo-co", "resultado": "sin_registro", "motivo": "no hay registro todavía"},
+    ], "ensayo")
+    assert texto.startswith("🟢")
+    assert "1 sin registro todavía" in texto
+    assert "con algo que revisar" not in texto
+
+
 def test_mensaje_del_resumen_tiene_los_estados():
     texto = avisos.armar_mensaje("col", "2026-11-18", [
         {"fuente": "alegra-co", "resultado": "sin_cambios", "n_sin_cambios": 16},

@@ -53,11 +53,17 @@ def color(resultados: list[dict]) -> str:
 def armar_mensaje(pais: str, fecha: str, resultados: list[dict], modo: str = "ensayo") -> str:
     """Texto del resumen. Una línea por fuente y un total arriba."""
     prefijo = PREFIJO.get(pais, f"[{pais.upper()}]")
-    con_cambios = [r for r in resultados if r.get("resultado") not in VERDE]
-    lineas = [
-        f"{color(resultados)} {prefijo} Vigía de precios · {fecha}",
-        f"Modo {modo} · {len(resultados)} fuentes · {len(con_cambios)} con algo que revisar",
-    ]
+    sin_registro = [r for r in resultados if r.get("resultado") == "sin_registro"]
+    con_cambios = [r for r in resultados
+                   if r.get("resultado") not in VERDE and r.get("resultado") != "sin_registro"]
+    cabeza = f"Modo {modo} · {len(resultados)} fuentes"
+    if con_cambios:
+        cabeza += f" · {len(con_cambios)} con algo que revisar"
+    if sin_registro:
+        cabeza += f" · {len(sin_registro)} sin registro todavía"
+    if not con_cambios and not sin_registro:
+        cabeza += " · todo al día"
+    lineas = [f"{color(resultados)} {prefijo} Vigía de precios · {fecha}", cabeza]
     for r in resultados:
         detalle = r.get("motivo") or ""
         if r.get("resultado") == "sin_cambios":

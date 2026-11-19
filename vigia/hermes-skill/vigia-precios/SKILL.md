@@ -170,9 +170,12 @@ la página, la cifra anterior, la leída y la regla que decidió el resultado.
   Facturación tiene un h3 previo que dice «Alegra POS». El producto sale de `data-period-group`; el
   encabezado más cercano etiqueta mal cuatro de cinco bloques.
 - **El webhook de Chat no se llama igual en las dos partes.** Esta skill declara `GCHAT_WEBHOOK_URL`, pero
-  el agente diario usa `PDC_CHAT_WEBHOOK_URL` (`~/.pdc/chat.env`, `scripts/corrida_completa.py`) y el
-  repositorio no trae un `gchat.py` suelto. Al hacer T7 lee el nombre que exista en el entorno y deja el
-  alias escrito, en vez de declarar una variable nueva que nadie llena.
+  el agente diario usa `PDC_CHAT_WEBHOOK_URL` (`~/.pdc/chat.env`, `scripts/corrida_completa.py`).
+  `vigia/avisos.py` ya acepta los dos, con el del agente primero; no declares una variable nueva que nadie
+  llena. El envío se confirma por el `name` de la API, no por el 200.
+- **`sin_registro` no es un error.** Una fuente leída sin registro de esa marca se reporta como
+  `sin_registro` y no cuenta como problema en el resumen; si no, el aviso sale amarillo todos los días por
+  algo que es trabajo pendiente, no una falla.
 - **Esta skill es una copia del repositorio.** Si la editas desde Hermes, copia el mismo cambio a
   `vigia/hermes-skill/vigia-precios/SKILL.md` y súbelo en el PR: la próxima instalación sobrescribe la
   copia local.
