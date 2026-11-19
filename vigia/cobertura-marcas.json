@@ -1,0 +1,494 @@
+{
+ "CO": [
+  {
+   "marca": "Alegra",
+   "posts": 29,
+   "cifras": 240,
+   "productos": [
+    "Contabilidad",
+    "Facturación",
+    "Nómina",
+    "POS"
+   ],
+   "cubierta": true
+  },
+  {
+   "marca": "Siigo",
+   "posts": 18,
+   "cifras": 125,
+   "productos": [
+    "Contador",
+    "Nube",
+    "POS",
+    "Pyme"
+   ],
+   "cubierta": true
+  },
+  {
+   "marca": "Loggro",
+   "posts": 8,
+   "cifras": 25,
+   "productos": [],
+   "cubierta": true
+  },
+  {
+   "marca": "World Office",
+   "posts": 5,
+   "cifras": 14,
+   "productos": [],
+   "cubierta": true
+  },
+  {
+   "marca": "Vendty",
+   "posts": 4,
+   "cifras": 43,
+   "productos": [],
+   "cubierta": true
+  },
+  {
+   "marca": "Cuenti",
+   "posts": 4,
+   "cifras": 10,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "GridPOS",
+   "posts": 2,
+   "cifras": 8,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Helisa",
+   "posts": 2,
+   "cifras": 7,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "SAP Business One",
+   "posts": 1,
+   "cifras": 7,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Fudo",
+   "posts": 1,
+   "cifras": 6,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Treinta",
+   "posts": 1,
+   "cifras": 6,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Soft Restaurant",
+   "posts": 1,
+   "cifras": 2,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Aliaddo",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Holded",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Quipu",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  }
+ ],
+ "MX": [
+  {
+   "marca": "Alegra",
+   "posts": 22,
+   "cifras": 111,
+   "productos": [
+    "Contabilidad",
+    "ERP",
+    "Facturación",
+    "POS"
+   ],
+   "cubierta": true
+  },
+  {
+   "marca": "CONTPAQi",
+   "posts": 8,
+   "cifras": 65,
+   "productos": [
+    "Contabilidad",
+    "Factura electrónica",
+    "Nóminas"
+   ],
+   "cubierta": true
+  },
+  {
+   "marca": "Facturama",
+   "posts": 4,
+   "cifras": 45,
+   "productos": [],
+   "cubierta": true
+  },
+  {
+   "marca": "Aspel",
+   "posts": 4,
+   "cifras": 10,
+   "productos": [
+    "COI",
+    "SAE"
+   ],
+   "cubierta": true
+  },
+  {
+   "marca": "Miskuentas",
+   "posts": 3,
+   "cifras": 24,
+   "productos": [],
+   "cubierta": true
+  },
+  {
+   "marca": "Factura.com",
+   "posts": 2,
+   "cifras": 5,
+   "productos": [],
+   "cubierta": true
+  },
+  {
+   "marca": "Poster",
+   "posts": 2,
+   "cifras": 3,
+   "productos": [],
+   "cubierta": true
+  },
+  {
+   "marca": "Siigo",
+   "posts": 1,
+   "cifras": 6,
+   "productos": [
+    "Nube"
+   ],
+   "cubierta": true
+  },
+  {
+   "marca": "Bind ERP",
+   "posts": 3,
+   "cifras": 5,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Eleventa",
+   "posts": 2,
+   "cifras": 18,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Odoo",
+   "posts": 2,
+   "cifras": 7,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Square",
+   "posts": 2,
+   "cifras": 3,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "QuickBooks",
+   "posts": 2,
+   "cifras": 2,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Shopify",
+   "posts": 1,
+   "cifras": 4,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Contadigital",
+   "posts": 1,
+   "cifras": 3,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Konta",
+   "posts": 1,
+   "cifras": 2,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Clip",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Facturabot",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "DFacture",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  }
+ ],
+ "DO": [
+  {
+   "marca": "Alegra",
+   "posts": 28,
+   "cifras": 99,
+   "productos": [
+    "Contabilidad",
+    "ERP",
+    "Facturación",
+    "Nómina",
+    "POS"
+   ],
+   "cubierta": true
+  },
+  {
+   "marca": "Citrus",
+   "posts": 4,
+   "cifras": 8,
+   "productos": [],
+   "cubierta": true
+  },
+  {
+   "marca": "CloudYa",
+   "posts": 3,
+   "cifras": 14,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Sistema Monica",
+   "posts": 3,
+   "cifras": 5,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Adm Cloud",
+   "posts": 2,
+   "cifras": 11,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Cashflow",
+   "posts": 2,
+   "cifras": 6,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "QuickBooks",
+   "posts": 2,
+   "cifras": 2,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Axentra",
+   "posts": 1,
+   "cifras": 10,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "DGMax",
+   "posts": 1,
+   "cifras": 7,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Facturador DGII",
+   "posts": 1,
+   "cifras": 7,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Madison",
+   "posts": 1,
+   "cifras": 4,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Odoo",
+   "posts": 1,
+   "cifras": 3,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Softland",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "SAP Business One",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  }
+ ],
+ "CR": [
+  {
+   "marca": "Alegra",
+   "posts": 17,
+   "cifras": 49,
+   "productos": [
+    "Contabilidad",
+    "ERP",
+    "Facturación",
+    "Nómina",
+    "POS"
+   ],
+   "cubierta": true
+  },
+  {
+   "marca": "GTI",
+   "posts": 5,
+   "cifras": 20,
+   "productos": [],
+   "cubierta": true
+  },
+  {
+   "marca": "Factura Profesional",
+   "posts": 4,
+   "cifras": 24,
+   "productos": [],
+   "cubierta": true
+  },
+  {
+   "marca": "Facturele",
+   "posts": 2,
+   "cifras": 11,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Softland",
+   "posts": 2,
+   "cifras": 3,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "QuickBooks",
+   "posts": 2,
+   "cifras": 2,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "SoftDial",
+   "posts": 1,
+   "cifras": 7,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Odoo",
+   "posts": 1,
+   "cifras": 5,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "FACTURATica",
+   "posts": 1,
+   "cifras": 4,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Adm Cloud",
+   "posts": 1,
+   "cifras": 3,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Ticofactura",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "TicoPay",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "FactuSOL",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "SAP Business One",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Facturabot",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  },
+  {
+   "marca": "Vendty",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "cubierta": false
+  }
+ ]
+}
