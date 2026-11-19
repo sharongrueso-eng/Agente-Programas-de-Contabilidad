@@ -32,9 +32,9 @@ def _num(v) -> str:
 
 def _pesos(p: dict) -> str:
     partes = []
-    if p.get("mensual"):
+    if p.get("mensual") is not None:
         partes.append(_num(p["mensual"]) + "/mes")
-    if p.get("anual_facturado"):
+    if p.get("anual_facturado") is not None:
         etiqueta = "año" if p.get("periodo", "").startswith("pago único") else "facturado/año"
         partes.append(f"{_num(p['anual_facturado'])} {etiqueta}")
     if not partes and p.get("precio_lista_anual"):

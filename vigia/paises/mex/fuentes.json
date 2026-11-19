@@ -77,56 +77,6 @@
    }
   },
   {
-   "id": "contpaqi-mx",
-   "marca": "CONTPAQi",
-   "pais": "MX",
-   "prioridad": 1,
-   "cifras_publicadas": 61,
-   "limites_publicados": 0,
-   "posts": [
-    9,
-    1966,
-    2048,
-    3281,
-    3544,
-    3733,
-    3736,
-    4603
-   ],
-   "productos_citados": [
-    "Contabilidad",
-    "Factura electrónica",
-    "Nóminas"
-   ],
-   "monedas_en_posts": {
-    "$": 10,
-    "MXN": 51
-   },
-   "url": "https://www.contpaqi.com/",
-   "url_candidatas": [
-    "https://www.contpaqi.com/",
-    "https://www.contpaqi.com/contabiliza",
-    "https://www.contpaqi.com/factura-electronica",
-    "https://www.contpaqi.com/contabilidad"
-   ],
-   "url_verificada": false,
-   "moneda_esperada": "MXN",
-   "senales_pais": [
-    "SAT",
-    "CFDI",
-    "RFC",
-    "RESICO",
-    "México"
-   ],
-   "modo_lectura": "no_publica",
-   "receta": null,
-   "estado": "verificado",
-   "pista_receta": null,
-   "nota": "No publica precios: probadas / y /productos (0 cifras) y /tienda (404). Cotiza por socios de negocio. Se comprueba cada corrida que siga sin publicar; si aparece un precio, aviso amarillo.",
-   "fecha_consulta": "2026-11-18",
-   "evidencia": "paises/mex/lecturas/2026-11-18/contpaqi-mx.html"
-  },
-  {
    "id": "facturama-mx",
    "marca": "Facturama",
    "pais": "MX",
@@ -622,6 +572,31 @@
    "modo_lectura": "por_definir",
    "receta": null,
    "estado": "borrador"
+  },
+  {
+   "id": "contpaqi-mx",
+   "marca": "CONTPAQi",
+   "pais": "MX",
+   "prioridad": 1,
+   "url": "https://www.contpaqi.com/listadeprecios",
+   "url_candidatas": [
+    "https://www.contpaqi.com/listadeprecios",
+    "https://www.contpaqi.com/hubfs/Listas%20de%20precios/Lista_de_Precios_Sistemas_CONTPAQi_2026.pdf"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "MXN",
+   "senales_pais": [
+    "SAT",
+    "CFDI",
+    "RFC",
+    "México"
+   ],
+   "modo_lectura": "documento",
+   "pista_receta": "La lista de precios es un PDF enlazado en la página; los nombres de producto van en imágenes.",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/mex/lecturas/2026-11-19/contpaqi-lista-de-precios-2026.pdf",
+   "estado": "verificado",
+   "nota": "Los precios no están en el HTML: viven en el PDF Lista_de_Precios_Sistemas_CONTPAQi_2026.pdf."
   }
  ]
 }

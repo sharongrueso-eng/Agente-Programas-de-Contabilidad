@@ -63,7 +63,7 @@ Directorio de precios de PdC. Cada fila sale del registro del vigía; la URL es 
 | World Office | World Office Escritorio | Propiedad Horizontal | 2000000 año · 1618400 con promoción | COP | https://worldoffice.com.co/planesEscritorio.html | ⚠️ campaña |
 | World Office | World Office Escritorio | Pyme | 3400000 año · 2751280 con promoción | COP | https://worldoffice.com.co/planesEscritorio.html | ⚠️ campaña |
 
-## México (MX) — 25 planes
+## México (MX) — 77 planes
 
 | Marca | Producto | Plan | Precio | Moneda | Fuente | Estado |
 |---|---|---|---|---|---|---|
@@ -79,6 +79,58 @@ Directorio de precios de PdC. Cada fila sale del registro del vigía; la URL es 
 | Alegra | Soy Contador | Despacho | 990/mes · 10692 facturado/año | MXN | https://www.alegra.com/mexico/precios/ | ✅ |
 | Alegra | Soy Contador | Firma | 1990/mes · 21492 facturado/año | MXN | https://www.alegra.com/mexico/precios/ | ✅ |
 | Alegra | Soy Contador | Inicial | 490/mes · 5292 facturado/año | MXN | https://www.alegra.com/mexico/precios/ | ✅ |
+| CONTPAQi | CONTPAQi Anticipa | Crecimiento | 2990 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Anticipa | Empresarial | 8490 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Anticipa | Esencial | 0 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Anticipa | Profesional | 4590 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Bancos | Licencia nueva (multi-RFC) | 4890 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Bancos | Renovación (multi-RFC) | 4490 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi CFDI Facturación en línea+ | Licencia nueva (multi-RFC) | 1790 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Comercial Premium | Licencia nueva (multi-RFC) | 10490 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Comercial Premium | Renovación (multi-RFC) | 9790 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Comercial Pro | Licencia nueva (multi-RFC) | 11290 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Comercial Pro | Renovación (multi-RFC) | 9890 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Comercial Start | Licencia nueva (multi-RFC) | 3990 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Comercial Start | Renovación (multi-RFC) | 3890 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad | Licencia nueva (multi-RFC) | 6190 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad | Renovación (multi-RFC) | 5690 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad Nube | Corporativo | 20490 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad Nube | Empresarial | 11790 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad Nube | Equipos | 6290 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad Nube | Inicial | 4690 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Escritorio Virtual | Corporativo | 17096/mes · 189369 facturado/año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Escritorio Virtual | Duo | 1990/mes · 21390 facturado/año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Escritorio Virtual | Ejecutivo | 4190/mes · 45590 facturado/año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Escritorio Virtual | Empresarial | 6590/mes · 75590 facturado/año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Escritorio Virtual | Empresarial Plus | 7248/mes · 80285 facturado/año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Escritorio Virtual | Max | 1990/mes · 22990 facturado/año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Escritorio Virtual | Plus | 2890/mes · 31590 facturado/año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Escritorio Virtual | Xplus | 5790/mes · 65890 facturado/año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Evalúa | Corporativo | 23190 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Evalúa | Empresarial | 9490 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Evalúa | Equipos | 5990 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Evalúa | Inicial | 2190 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Nóminas | Licencia nueva (multi-RFC) | 7690 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Nóminas | Renovación (multi-RFC) | 7390 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Nóminas Nube | Corporativo | 8690 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Nóminas Nube | Empresarial | 6490 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Nóminas Nube | Equipos | 4890 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Nóminas Nube | Inicial | 3290 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 1 TB | 88790 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 10 GB | 3090 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 100 GB | 15490 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 2 GB | 1790 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 2 TB | 142990 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 200 GB | 21590 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 5 GB | 2590 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 50 GB | 10990 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 500 GB | 49190 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 70 GB | 11790 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 700 GB | 74290 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi Respaldos | 800 GB | 81390 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi XML en línea | Licencia nueva (multi-RFC) | 1790 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | CONTPAQi XML en línea | Renovación (multi-RFC) | 1690 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| CONTPAQi | Conecta tu nube | Individual | 1990 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
 | Facturama | Paquetes de folios | 10 Folios | 55 año | MXN | https://facturama.mx/planes-facturacion | ✅ |
 | Facturama | Paquetes de folios | 25 Folios | 110 año | MXN | https://facturama.mx/planes-facturacion | ✅ |
 | Facturama | Paquetes de folios | 40 Folios | 165 año | MXN | https://facturama.mx/planes-facturacion | ✅ |
@@ -95,13 +147,7 @@ Directorio de precios de PdC. Cada fila sale del registro del vigía; la URL es 
 
 **Aspel** ya no es una fuente propia: redirige a **Siigo** (https://www.siigo.com/mx/). Sus precios están en la fila Siigo.
 
-**Sin precio en el directorio:**
-
-| Marca | Por qué | URL revisada |
-|---|---|---|
-| CONTPAQi | no publica precios en su sitio | https://www.contpaqi.com/ |
-
-## República Dominicana (DO) — 15 planes
+## República Dominicana (DO) — 26 planes
 
 | Marca | Producto | Plan | Precio | Moneda | Fuente | Estado |
 |---|---|---|---|---|---|---|
@@ -120,12 +166,17 @@ Directorio de precios de PdC. Cada fila sale del registro del vigía; la URL es 
 | Alegra | POS | POS Gastrobar | 55/mes · 594 facturado/año | USD | https://www.alegra.com/rdominicana/precios/ | ✅ |
 | Alegra | POS | POS Inicial | 25/mes · 270 facturado/año | USD | https://www.alegra.com/rdominicana/precios/ | ✅ |
 | Alegra | POS | POS Pro | 39/mes · 421.2 facturado/año | USD | https://www.alegra.com/rdominicana/precios/ | ✅ |
-
-**Sin precio en el directorio:**
-
-| Marca | Por qué | URL revisada |
-|---|---|---|
-| Citrus | no publica precios en su sitio | https://www.citrus.com.do/ |
+| Citrus | Citrus CRM | Licencia anual | 585/mes · 7020 facturado/año | DOP | https://www.citrus.com.do/productos/crm#precios | ✅ |
+| Citrus | Citrus CRM | Licencia mensual | 650/mes | DOP | https://www.citrus.com.do/productos/crm#precios | ✅ |
+| Citrus | Citrus ERP | Licencia anual | 585/mes · 7020 facturado/año | DOP | https://www.citrus.com.do/productos/erp#precios | ✅ |
+| Citrus | Citrus ERP | Licencia mensual | 650/mes | DOP | https://www.citrus.com.do/productos/erp#precios | ✅ |
+| Citrus | Citrus PT Camareros | Licencia anual | 900/mes · 10800 facturado/año | DOP | https://www.citrus.com.do/productos/ptcamareros#precios | ✅ |
+| Citrus | Citrus PT Camareros | Licencia mensual | 1000/mes | DOP | https://www.citrus.com.do/productos/ptcamareros#precios | ✅ |
+| Citrus | Citrus PT Comercios | Licencia anual | 450/mes · 5400 facturado/año | DOP | https://www.citrus.com.do/productos/ptcomercios#precios | ✅ |
+| Citrus | Citrus PT Comercios | Licencia mensual | 500/mes | DOP | https://www.citrus.com.do/productos/ptcomercios#precios | ✅ |
+| Citrus | Citrus e-CF | 1 mil transacciones | 747/mes | DOP | https://www.citrus.com.do/productos/ecf#precios | ✅ |
+| Citrus | Citrus e-CF | 250 transacciones | 450/mes | DOP | https://www.citrus.com.do/productos/ecf#precios | ✅ |
+| Citrus | Citrus e-CF | 5 mil transacciones | 1400/mes | DOP | https://www.citrus.com.do/productos/ecf#precios | ✅ |
 
 ## Costa Rica (CR) — 21 planes
 

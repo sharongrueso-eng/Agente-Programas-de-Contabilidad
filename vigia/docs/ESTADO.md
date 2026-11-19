@@ -397,14 +397,14 @@ antes. Cuatro reemplazos, contados y verificados uno por uno:
 `docs/DIRECTORIO-PRECIOS.md` (para leer y citar). Cada fila lleva marca, producto, plan, precio, moneda,
 **la URL de donde salió** y el estado de la cifra.
 
-**115 planes en los cuatro países.** Estados: ✅ confirmado · ⚠️ leído durante campaña, se confirma después ·
+**178 planes en los cuatro países.** Estados: ✅ confirmado · ⚠️ leído durante campaña, se confirma después ·
 🔎 falta confirmarlo a mano.
 
 | País | Planes | Marcas con precio | Sin precio publicado |
 |---|---|---|---|
 | Colombia | 54 | Alegra ✅ · Siigo ⚠️ · Loggro ⚠️ · Vendty ⚠️ · World Office ⚠️ | — |
-| México | 25 | Alegra ✅ · Facturama ✅ · Miskuentas ⚠️ · Siigo ⚠️ | CONTPAQi: no publica precios |
-| República Dominicana | 15 | Alegra ✅ | Citrus: no publica precios |
+| México | 77 | Alegra ✅ · Facturama ✅ · CONTPAQi ✅ · Miskuentas ⚠️ · Siigo ⚠️ | — |
+| República Dominicana | 26 | Alegra ✅ · Citrus ✅ | — |
 | Costa Rica | 21 | Alegra (3 bloques ✅ y 2 🔎) · Factura Profesional 🔎 · GTI 🔎 | — |
 
 - **World Office sí publica precios, y el inventario lo daba por faltante.** No están en la home: están en
@@ -412,6 +412,16 @@ antes. Cuatro reemplazos, contados y verificados uno por uno:
   Contador, Propiedad Horizontal), detrás de la pestaña «precios». Los 7 planes ya están cargados con su URL,
   su precio de lista y su precio con el −32 % que muestra la página. Es un error de método mío: cerré la
   búsqueda en la home en vez de seguir la pestaña.
+- **CONTPAQi publica su lista completa, y no está en el HTML.** Las cifras viven en el PDF
+  `Lista_de_Precios_Sistemas_CONTPAQi_2026.pdf` (8 páginas), enlazado desde `/listadeprecios`. Los nombres de
+  producto son imágenes, así que la extracción de texto sola no alcanza: hay que leer el PDF como página. Con
+  eso quedaron 52 planes —licenciamiento anual de Contabilidad, Nóminas, Bancos, XML en línea, Comercial
+  Start/Pro/Premium y CFDI Facturación en línea+, más Evalúa, Contabilidad y Nóminas Nube, Anticipa, Escritorio
+  Virtual, Respaldos y Conecta tu nube— cada uno con su página de la lista como evidencia.
+- **Citrus sí publica precios, por producto y con dos modalidades.** Cada página (`/productos/erp`, `/crm`,
+  `/ecf`, `/ptcomercios`, `/ptcamareros`) tiene el ancla `#precios` y dos pestañas: «Pago Anual −10 %» y «Pago
+  Mensual». ERP y CRM: 585 al mes con pago anual, 650 mensual. PT Comercios: 450 / 500. PT Camareros: 900 /
+  1.000. e-CF cobra por volumen de transacciones (450, 747 y 1.400 al mes). Son 11 planes.
 - **Aspel ya no es una fuente aparte**: `aspel.com.mx` redirige a `siigo.com/mx/` y sus tres planes están
   en la fila de Siigo. El directorio lo dice en vez de listarlo como faltante.
 - **Lo que falta está escrito con su motivo y su URL**, no en blanco: es la lista de lo que hay que ir a
