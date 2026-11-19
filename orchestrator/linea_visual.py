@@ -236,7 +236,7 @@ def nota_metodo(fuentes: str, fecha: str = "") -> str:
 def cta_final(url: str, etiqueta: str, pregunta: str, subtexto: str, boton: str, fecha: str = "") -> str:
     """CTA final. `fecha` se acepta por compatibilidad y no se imprime: el post no lleva fechas."""
     return (
-        f'<div style="background:{NAVY};border-radius:14px;padding:32px 32px 28px;'
+        f'<div class="pc-cta" style="background:{NAVY};border-radius:14px;padding:32px 32px 28px;'
         f'margin:32px 0;text-align:center;">'
         f'<p style="margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.1em;'
         f'text-transform:uppercase;color:{CELESTE};">{etiqueta}</p>'

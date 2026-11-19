@@ -205,12 +205,16 @@ class RedactorTests(unittest.TestCase):
 
 
 class ReparacionesTests(unittest.TestCase):
-    def test_el_pie_usa_la_fecha_de_las_fichas(self):
+    def test_el_pie_de_la_tabla_no_lleva_fecha(self):
+        # Regla del 19-nov-2026: la fecha de la ficha vive en el registro y en el vigía, no en el
+        # artículo. El pie cita la fuente, sin fecha.
         draft = Draft(title="t", meta_description="m", html="<table><tr><td>1</td></tr></table>", alt_text="a", slug="s")
 
         con = completar_captions(draft, consulta="el 12 de noviembre de 2026")
 
-        self.assertIn("Precios y datos consultados el 12 de noviembre de 2026.", con.html)
+        self.assertIn("<caption", con.html)
+        self.assertNotIn("consultados", con.html)
+        self.assertNotIn("noviembre de 2026", con.html)
 
     def test_el_cta_no_lleva_fecha(self):
         # Regla del 19-nov-2026: el post no dice cuándo se consultó el precio (eso vive en el

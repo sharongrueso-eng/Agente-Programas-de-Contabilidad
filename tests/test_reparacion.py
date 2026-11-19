@@ -56,6 +56,24 @@ class CtaTests(unittest.TestCase):
         self.assertTrue(any("CTA final" in f for f in problemas_linea_visual(antes)))
         self.assertEqual(problemas_linea_visual(completar_cta(pieza(antes), country="CO").html), [])
 
+    def test_a_cta_from_the_visual_line_is_not_duplicated(self) -> None:
+        # La corrida del 5722 salió con tres enlaces a Alegra: `presentar` puso su CTA y
+        # `completar_cta` añadió un segundo porque solo reconocía el color `#00AEEF`.
+        html = ESTILO + '<div class="pc-cta" style="background:#002B5B;">Siguiente paso</div>'
+
+        self.assertEqual(completar_cta(pieza(html), country="CO").html, html)
+
+    def test_the_footer_of_a_table_carries_no_date(self) -> None:
+        from orchestrator.reparacion import completar_captions
+
+        html = ESTILO + "<h2>Precios</h2><table><thead><tr><th>Plan</th></tr></thead></table>"
+
+        arreglada = completar_captions(pieza(html), fecha=date(2026, 11, 19), consulta="entre el 12 y el 18 de noviembre de 2026")
+
+        self.assertIn("<caption", arreglada.html)
+        self.assertNotIn("consultados", arreglada.html)
+        self.assertNotIn("noviembre de 2026", arreglada.html)
+
 
 if __name__ == "__main__":
     unittest.main()
