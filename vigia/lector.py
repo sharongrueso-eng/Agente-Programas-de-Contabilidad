@@ -159,10 +159,47 @@ def _producto_de(card, fuente: dict) -> tuple[str | None, str | None]:
     return producto, grupo
 
 
+def _producto_por_prefijo(plan: str, receta: dict) -> str | None:
+    """Producto por el nombre del plan, cuando la página no lo dice en el DOM."""
+    for prefijo, producto in (receta.get("producto_por_prefijo") or {}).items():
+        if plan.lower().startswith(prefijo.lower()):
+            return producto
+    return None
+
+
 def _tarjetas(soup: BeautifulSoup, pais: str, fuente: dict | None = None) -> list[dict]:
-    """Tarjetas de plan (Alegra y sitios con la misma maqueta): nombre, producto y cifras."""
+    """Tarjetas de plan: nombre, producto y cifras.
+
+    Dos maquetas:
+    - La de Alegra (`.cards-simple--card`), con el producto por contenedor o por `data-period-group`.
+    - Cualquier otra, con la receta de la fuente: `contenedor` + `plan` (selector del nombre) y, si hace
+      falta, `plan_filtro` (solo los planes cuyo nombre contenga ese texto).
+    """
     fuente = fuente or {}
+    receta = fuente.get("receta") or {}
     salida = []
+
+    if receta.get("contenedor") and receta.get("plan"):
+        for nodo in soup.select(receta["contenedor"]):
+            nombre = nodo.select_one(receta["plan"])
+            if not nombre:
+                continue
+            plan = re.sub(r"\s+", " ", nombre.get_text(" ", strip=True))
+            filtro = receta.get("plan_filtro")
+            if filtro and filtro.lower() not in plan.lower():
+                continue
+            # Insignias que no son nombre de plan («POPULAR», «RECOMENDADO»).
+            if any(e.lower() in plan.lower() for e in receta.get("plan_excluir") or []):
+                continue
+            texto = re.sub(r"\s+", " ", nodo.get_text(" ", strip=True)).split("Facturado")[0]
+            cifras = _dedupe(_cifras_en([texto], pais))
+            if not cifras:
+                continue
+            producto, grupo = _producto_de(nodo, fuente)
+            producto = producto or _producto_por_prefijo(plan, receta) or receta.get("producto")
+            salida.append({"plan": plan, "producto": producto, "grupo": grupo, "cifras": cifras})
+        return salida
+
     for card in soup.select(".cards-simple--card"):
         nombre = card.select_one(".cards-simple--plan-name")
         if not nombre:

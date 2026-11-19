@@ -140,12 +140,20 @@
     "Colombia"
    ],
    "modo_lectura": "ruta_pais",
-   "receta": null,
+   "receta": {
+    "contenedor": "article[class*='card_base']",
+    "plan": "h3",
+    "producto_por_prefijo": {
+     "Facturación": "Facturación electrónica",
+     "Sistema POS": "POS",
+     "Nómina": "Nómina electrónica"
+    }
+   },
    "estado": "verificado",
    "fecha_consulta": "2026-11-18",
    "evidencia": "paises/col/lecturas/2026-11-18/siigo-co.html",
    "nota": "Dominio exclusivo de Colombia (siigo.com), sin selector de país ni de moneda: se comporta como una ruta de país. Los -25 %/-30 % son el descuento por pago anual («descuento aplica para cliente nuevo»), no campaña.",
-   "pista_receta": "Tarjetas de plan, 71 cifras. El contenedor usa clases CSS-module con hash (div._container_cards__*): la receta se fija en T4 y no debe depender del hash."
+   "pista_receta": "Receta generica: contenedor + plan (+ plan_filtro). Verificada contra el HTML del 18-nov."
   },
   {
    "id": "vendty-co",
@@ -180,12 +188,20 @@
     "Colombia"
    ],
    "modo_lectura": "ruta_pais",
-   "receta": null,
+   "receta": {
+    "contenedor": "div.dmRespCol",
+    "plan": "h2, h3",
+    "producto": "POS",
+    "plan_excluir": [
+     "Popular",
+     "Recomendado"
+    ]
+   },
    "estado": "verificado",
    "fecha_consulta": "2026-11-18",
    "evidencia": "paises/col/lecturas/2026-11-18/vendty-co.html",
    "nota": "La raíz es Colombia; /cr/ y /mx/ son los otros países. Sin selector de moneda.",
-   "pista_receta": "3 columnas por plan (div.dmRespCol.large-3) que cubren 7 de 8 cifras; el resto son textos de la pagina."
+   "pista_receta": "Receta generica: contenedor + plan (+ plan_filtro). Verificada contra el HTML del 18-nov."
   },
   {
    "id": "loggro-co",
@@ -229,12 +245,17 @@
     "Colombia"
    ],
    "modo_lectura": "ruta_pais",
-   "receta": null,
+   "receta": {
+    "contenedor": "div[class*='cardMain'], div[class*='cardRegular']",
+    "plan": "h2",
+    "plan_filtro": "POS",
+    "producto": "POS"
+   },
    "estado": "verificado",
    "fecha_consulta": "2026-11-18",
    "evidencia": "paises/col/lecturas/2026-11-18/loggro-co.html",
    "nota": "Dominio exclusivo de Colombia (loggro.com), sin selector de país ni moneda.",
-   "pista_receta": "142 cifras: tarjetas de plan mas tablas comparativas (table.caracteristicas tr) con bloques ocultos (.hidden) que duplican cifras. En T4 hay que leer solo lo visible."
+   "pista_receta": "Receta generica: contenedor + plan (+ plan_filtro). Verificada contra el HTML del 18-nov."
   },
   {
    "id": "world-office-co",

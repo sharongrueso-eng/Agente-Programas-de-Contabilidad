@@ -103,18 +103,24 @@ def correr(pais_vigia: str, fecha: str | None = None, avisar_bool: bool = True, 
             base = {"fuente": fuente["id"], "marca": fuente.get("marca"),
                     "resultado": lectura.get("resultado"), "motivo": lectura.get("motivo"),
                     "n_cifras": lectura.get("n_cifras"), "campana_evidencia": lectura.get("campana_evidencia")}
-            mismo_registro = bool(registro) and (registro.get("marca") == fuente.get("marca"))
+            de_la_marca = [p for p in (registro or {}).get("planes", [])
+                           if p.get("marca") == fuente.get("marca")]
+            confirmados = [p for p in de_la_marca if p.get("estado") != "pendiente_confirmar"]
+            mismo_registro = bool(confirmados)
             if mismo_registro and lectura.get("resultado") == "ok":
-                salida = comparar(lectura, registro or {})
+                salida = comparar(lectura, {"planes": confirmados})
                 base.update({"resultado": salida["resultado"], "cambios": salida["cambios"],
                              "resumen": salida["resumen"],
                              "n_sin_cambios": salida["resumen"].get("sin_cambios", 0),
                              "n_cambios": salida["resumen"].get("cambio_explicable", 0)})
                 base["motivo"] = base["motivo"] or ", ".join(
                     sorted({c.get("detalle") for c in salida["cambios"] if c.get("detalle")}) or []) or None
-            elif not mismo_registro:
-                base.update({"resultado": "sin_registro",
-                             "motivo": f"no hay registro de precios de {fuente.get('marca')} todavía"})
+            elif lectura.get("resultado") == "ok":
+                motivo = (f"línea base de {fuente.get('marca')} sin confirmar (se leyó durante una campaña)"
+                          if de_la_marca else f"no hay registro de precios de {fuente.get('marca')} todavía")
+                base.update({"resultado": "sin_registro", "motivo": motivo})
+            # si la lectura ya trae campaña, moneda distinta o país distinto, ese estado manda:
+            # es más informativo que «sin registro» y es lo que pide la regla.
             resultados.append(base)
     finally:
         salida_aviso = {"ok": True, "enviado": False, "motivo": "sin aviso"}

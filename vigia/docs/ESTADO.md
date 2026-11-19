@@ -310,6 +310,29 @@ resumen y la deduplicación de avisos.
 | vigia-cri | `30 12 1,16 * *` | `cd <REPO> && git pull --ff-only && python -m vigia.correr --pais cri` |
 | vigia-dom | `45 12 1,16 * *` | `cd <REPO> && git pull --ff-only && python -m vigia.correr --pais dom` |
 
+## Registros de las competidoras de Colombia (18-nov-2026)
+
+`paises/col/registro-precios.json` pasa de 16 a **47 planes**: Alegra 16, Siigo 25, Loggro 3 y Vendty 3.
+
+| Marca | Planes | Qué se guardó |
+|---|---|---|
+| Siigo | 25 | Mensual con pago anual, anual facturado y precio de lista anual (el descuento es para cliente nuevo) |
+| Loggro | 3 | Solo los POS: mensual y anual |
+| Vendty | 3 | POS: mensual y el anual recurrente cuando lo publica |
+
+- **Loggro queda a medias a propósito.** Su página repite Básico / Estándar / Premium en tres pestañas
+  (contabilidad, facturación y nómina) con precios distintos y las pestañas no se pueden activar desde el
+  HTML ni con clic. Se registran los tres POS, que no tienen homónimos, y se anota el resto como pendiente.
+- **Las tres estaban en campaña el 18-nov**: Siigo «Ecomm Mes · beneficios exclusivos online», Loggro
+  «Black Week / Cyber Days» y Vendty «2 × 1: paga 1 año y disfruta 2». Por regla, una campaña no cambia la
+  línea base: esos 31 planes quedan en `estado: "pendiente_confirmar"` y el comparador los ignora hasta que
+  una persona confirme el precio de lista cuando la campaña termine.
+- **Recetas genéricas** en `fuentes.json`: `contenedor` + `plan`, con `plan_filtro`, `plan_excluir` y
+  `producto_por_prefijo` para las maquetas que no son de Alegra.
+- **Corrida de ensayo de COL del 18-nov**: Alegra `sin_cambios`; Vendty y Loggro `campana`;
+  Siigo y World Office `sin_registro`. El estado de campaña manda sobre `sin_registro`: si la página está
+  en promoción se avisa eso, no un genérico.
+
 ## Inventario v2 (18-nov-2026)
 
 Fuente: API pública de WordPress (`content.rendered`) de los 343 posts publicados más el único recurso,

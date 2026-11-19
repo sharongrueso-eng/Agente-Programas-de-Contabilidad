@@ -153,6 +153,7 @@ def test_extremo_a_extremo_colombia_con_el_html_real():
               "receta": {"contenedor": "[id^='pricing-cards-']"}}
     lec = leer_html(html.read_text(encoding="utf-8"), fuente, "2026-11-18")
     reg = json.loads(registro_ruta.read_text(encoding="utf-8"))
+    reg = {"planes": [p for p in reg["planes"] if p["marca"] == "Alegra"]}
 
     salida = comparar(lec, reg)
     assert salida["resultado"] == "sin_cambios", [c for c in salida["cambios"]
@@ -171,6 +172,7 @@ def test_registro_real_colombia_sin_cambios_contra_si_mismo():
     if not ruta.exists():
         pytest.skip("no está el registro de Colombia")
     reg = json.loads(ruta.read_text(encoding="utf-8"))
+    reg = {"planes": [p for p in reg["planes"] if p["marca"] == "Alegra"]}
     tarjetas = [tarjeta(p["producto"], p["plan"], p["mensual"]) for p in reg["planes"]]
     salida = comparar(lectura(tarjetas), reg)
     assert salida["resultado"] == "sin_cambios"

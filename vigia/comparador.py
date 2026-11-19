@@ -78,6 +78,8 @@ def comparar(lectura: dict, registro: dict) -> dict:
 
     reg = {}
     for p in registro.get("planes", []):
+        if p.get("estado") == "pendiente_confirmar":
+            continue  # línea base tomada durante una campaña: no sirve para comparar
         reg[(p["producto"], _norm(p["plan"]))] = p
 
     lec, sin_producto = {}, 0

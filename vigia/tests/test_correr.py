@@ -96,7 +96,8 @@ def test_fuente_sin_registro_se_reporta(monkeypatch):
     salida = correr.correr("col", "2026-11-18", avisar_bool=False, solo="siigo-co",
                            leer=leer, comparar=lambda l, r: comparacion(), guardar=False)
     assert salida["resultados"][0]["resultado"] == "sin_registro"
-    assert "registro de precios" in salida["resultados"][0]["motivo"]
+    assert ("registro de precios" in salida["resultados"][0]["motivo"]
+            or "línea base" in salida["resultados"][0]["motivo"])
 
 
 def test_campana_no_compara(monkeypatch):
@@ -120,6 +121,33 @@ def test_candado_se_suelta_aunque_falle_el_lector(monkeypatch):
                       leer=revienta, guardar=False)
     # el candado no puede quedarse pegado: la siguiente corrida tiene que poder entrar
     assert correr.tomar_candado("col") is True
+
+
+def test_linea_base_pendiente_no_se_compara(monkeypatch):
+    """Un registro leído durante una campaña no es línea base: se reporta, no se compara."""
+    monkeypatch.delenv("VIGIA_MODO_COL", raising=False)
+    llamadas = []
+
+    salida = correr.correr("col", "2026-11-18", avisar_bool=False, solo="siigo-co",
+                           leer=lambda *a, **k: dict(lectura_ok(), fuente="siigo-co", resultado="ok"),
+                           comparar=lambda *a, **k: llamadas.append(1),
+                           guardar=False)
+    assert llamadas == []  # no se comparó contra una base sin confirmar
+    r = salida["resultados"][0]
+    assert r["resultado"] == "sin_registro"
+    assert "sin confirmar" in r["motivo"]
+
+
+def test_la_campana_manda_sobre_sin_registro(monkeypatch):
+    """Si la página está en campaña, el aviso dice campaña y no «sin registro»."""
+    monkeypatch.delenv("VIGIA_MODO_COL", raising=False)
+    salida = correr.correr("col", "2026-11-18", avisar_bool=False, solo="siigo-co",
+                           leer=lambda *a, **k: dict(lectura_ok(), fuente="siigo-co",
+                                                     resultado="campana",
+                                                     motivo="campaña detectada: black week"),
+                           comparar=lambda *a, **k: pytest.fail("con campaña no se compara"),
+                           guardar=False)
+    assert salida["resultados"][0]["resultado"] == "campana"
 
 
 def test_sin_registro_no_cuenta_como_problema():
