@@ -26,7 +26,11 @@ def completar_cta(
 
     La fecha no se imprime: el vigía mantiene los precios al día y una fecha en el cuerpo envejece
     el artículo. `fecha` y `consulta` se aceptan por compatibilidad."""
-    if "background:#00AEEF" in draft.html:
+    # Un CTA ya puesto no se repite: `linea_visual.cta_final` no usa `#00AEEF`, así que la guarda
+    # por color dejaba pasar un segundo CTA y la pieza salía con tres enlaces a Alegra.
+    if "background:#00AEEF" in draft.html or "pc-cta" in draft.html:
+        return draft
+    if re.search(r"(?i)>\s*Siguiente paso\s*<", draft.html):
         return draft
     # Solo se toca una pieza que ya usa la línea visual: una heredada se deja como está.
     if not re.search(r'style="[^"]*#[0-9A-Fa-f]{6}', draft.html):
@@ -53,18 +57,15 @@ _MESES = (
 def completar_captions(
     draft: Draft, *, fecha: date | None = None, consulta: str = ""
 ) -> Draft:
-    """Pone pie de fuente y fecha a las tablas que no lo llevan.
-    La línea visual lo exige y es un defecto de forma: pedirle al modelo que lo arregle en
-    una pieza de 46.000 caracteres cuesta una llamada larga que vuelve vacía.
+    """Pone el pie de fuente a las tablas que no lo llevan.
 
-    `consulta` es la fecha de las fichas («el 12 de noviembre de 2026»). Sin ella se usaba la
-    del día de la corrida, y el juez lo bloqueaba: los datos no se consultaron ese día.
+    La línea visual lo exige y es un defecto de forma: pedirle al modelo que lo arregle en una
+    pieza de 46.000 caracteres cuesta una llamada larga que vuelve vacía.
+
+    Sin fecha: los precios los mantiene al día el vigía (`scripts/sincronizar_precios.py`) y una
+    fecha en el pie envejece el artículo. `fecha` y `consulta` se aceptan por compatibilidad.
     """
-    if consulta:
-        texto = f"Precios y datos consultados {consulta}."
-    else:
-        dia = fecha or date.today()
-        texto = f"Precios y datos consultados el {dia.day} de {_MESES[dia.month - 1]} de {dia.year}."
+    texto = "Precios de lista publicados en las páginas oficiales de cada proveedor."
     pie = (
         f'<caption style="caption-side:bottom;text-align:left;padding:10px 16px;font-size:13px;'
         f'line-height:1.5;font-weight:400;color:#4B5563;">{texto}</caption>'

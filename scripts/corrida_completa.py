@@ -961,7 +961,17 @@ def main() -> int:
         elif locals().get("propuesta_de_reencauche") and post_existente:
             # Modo publicar: la versión aprobada se aplica sobre la misma URL, con respaldo previo.
             print(f"reencauche: se escribe sobre el post {post_existente}, con respaldo de la versión actual")
-        destino = f"actualiza el post {post_existente}" if post_existente else "la URL no existe, se crea"
+        url_oportunidad = (brief.opportunity.url if brief.opportunity else "") or ""
+        destino = (
+            f"se escribe sobre el post {post_existente}, con respaldo de la versión actual"
+            if post_existente
+            else f"la URL {url_oportunidad.rstrip('/').split('/')[-1]} no se encontró por su "
+            "dirección y se crea como pieza nueva"
+        )
+        if locals().get("propuesta_de_reencauche") and args.borrador:
+            destino = "versión paralela en borrador: el artículo publicado no se modifica"
+            if post_existente:
+                destino += f" (reemplaza al post {post_existente})"
         print(f"reencauche: {destino}")
 
     urls_para_enlaces: list[str] = []
@@ -1073,8 +1083,10 @@ def main() -> int:
              .get("content") or {}).get("raw", "")
         ),
         brands_available=len(fichas_pieza),
-        # Las fichas del país, para que las reglas editoriales comprueben elenco, precios y alias.
-        fichas=fichas_pieza,
+        # Los controles editoriales miran TODAS las fichas del país: el texto puede citar un plan de
+        # una marca que no está en el elenco, y con solo las elegidas el precio anual se colaba
+        # como mensual (pasó en la corrida del 5711 y en la del 5722).
+        fichas=registro.fichas,
         fecha_datos=fecha_datos,
         mcp=cliente_mcp,
         mapa=MapaPublicaciones(RAIZ / "state" / "publicados.json"),
