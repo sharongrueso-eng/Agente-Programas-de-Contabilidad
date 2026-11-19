@@ -282,9 +282,10 @@
    "receta": null,
    "estado": "verificado",
    "pista_receta": "Clases CSS-module con hash (div._container_*): receta en T4, sin depender del hash.",
-   "nota": "aspel.com.mx REDIRIGE a siigo.com/mx/: Aspel es de Siigo. Decidir si esta fuente se fusiona con una fuente Siigo de MEX (hoy no existe) o queda como Siigo con la clave de Aspel. 9 cifras en MXN (292,84 a 9.826).",
+   "nota": "aspel.com.mx REDIRIGE a siigo.com/mx/: Aspel es de Siigo. Decidir si esta fuente se fusiona con una fuente Siigo de MEX (hoy no existe) o queda como Siigo con la clave de Aspel. 9 cifras en MXN (292,84 a 9.826). Sus precios están en la fila Siigo del directorio.",
    "fecha_consulta": "2026-11-18",
-   "evidencia": "paises/mex/lecturas/2026-11-18/aspel-mx.html"
+   "evidencia": "paises/mex/lecturas/2026-11-18/aspel-mx.html",
+   "marca_actual": "Siigo"
   },
   {
    "id": "odoo-mx",

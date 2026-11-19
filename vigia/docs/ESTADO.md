@@ -390,6 +390,30 @@ antes. Cuatro reemplazos, contados y verificados uno por uno:
 - El `279.900` que aparece en la página pública del 3728 son extractos de **otros** posts en bloques de
   relacionados: en el contenido de esa pieza quedó en cero.
 
+## Directorio de precios, un solo lugar por país (19-nov-2026)
+
+`python -m vigia.directorio` arma el directorio desde los registros y lo deja en tres formatos:
+`directorio-precios.json` (para el código), `directorio-precios.csv` (para hoja de cálculo) y
+`docs/DIRECTORIO-PRECIOS.md` (para leer y citar). Cada fila lleva marca, producto, plan, precio, moneda,
+**la URL de donde salió** y el estado de la cifra.
+
+**108 planes en los cuatro países.** Estados: ✅ confirmado · ⚠️ leído durante campaña, se confirma después ·
+🔎 falta confirmarlo a mano.
+
+| País | Planes | Marcas con precio | Sin precio publicado |
+|---|---|---|---|
+| Colombia | 47 | Alegra ✅ · Siigo ⚠️ · Loggro ⚠️ · Vendty ⚠️ | World Office: no tiene tabla de planes en su home |
+| México | 25 | Alegra ✅ · Facturama ✅ · Miskuentas ⚠️ · Siigo ⚠️ | CONTPAQi: no publica precios |
+| República Dominicana | 15 | Alegra ✅ | Citrus: no publica precios |
+| Costa Rica | 21 | Alegra (3 bloques ✅ y 2 🔎) · Factura Profesional 🔎 · GTI 🔎 | — |
+
+- **Aspel ya no es una fuente aparte**: `aspel.com.mx` redirige a `siigo.com/mx/` y sus tres planes están
+  en la fila de Siigo. El directorio lo dice en vez de listarlo como faltante.
+- **Lo que falta está escrito con su motivo y su URL**, no en blanco: es la lista de lo que hay que ir a
+  buscar (CONTPAQi, Citrus, World Office y las pestañas de Alegra Costa Rica).
+- Reproducible: cualquier cambio en un registro se refleja al volver a correr el comando. No hay tabla
+  mantenida a mano.
+
 ## Inventario v2 (18-nov-2026)
 
 Fuente: API pública de WordPress (`content.rendered`) de los 343 posts publicados más el único recurso,

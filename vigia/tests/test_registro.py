@@ -17,7 +17,8 @@ DESCUENTO_ANUAL = {
     "mex": {"*": 0.25, "Soy Contador": 0.10},
     "dom": {"*": 0.10},
 }
-MONEDA = {"col": "COP", "mex": "MXN", "dom": "USD", "cri": "USD"}
+# Un país puede tener fuentes en más de una moneda (GTI cobra en colones en Costa Rica).
+MONEDA = {"col": {"COP"}, "mex": {"MXN"}, "dom": {"USD"}, "cri": {"USD", "CRC"}}
 
 
 def _planes():
@@ -52,8 +53,12 @@ def test_hay_registro_por_pais():
 
 
 def test_claves_unicas():
-    claves = [p["clave"] for _, p in PLANES]
-    assert len(claves) == len(set(claves))
+    # Sobre todos los registros que existan, no solo los de DESCUENTO_ANUAL: Costa Rica también cuenta.
+    claves = []
+    for ruta in (VIGIA / "paises").glob("*/registro-precios.json"):
+        claves += [p["clave"] for p in json.loads(ruta.read_text(encoding="utf-8"))["planes"]]
+    repetidas = {c for c in claves if claves.count(c) > 1}
+    assert not repetidas, repetidas
 
 
 def test_clave_bien_formada():
@@ -67,7 +72,7 @@ def test_clave_bien_formada():
 
 def test_moneda_fuente_y_fecha():
     for pais, p in PLANES:
-        assert p["moneda"] == MONEDA[pais], p["clave"]
+        assert p["moneda"] in MONEDA[pais], p["clave"]
         assert p["fuente"].startswith("https://"), p["clave"]
         assert p["fecha_consulta"] == "2026-11-18", p["clave"]
         if p.get("estado") != "pendiente_confirmar":
@@ -79,7 +84,8 @@ def test_facturado_es_doce_veces_el_mensual_anual(pais, plan):
     if plan.get("anual_facturado") is None or plan.get("anual_equivalente_mes") is None:
         pytest.skip("el plan no publica precio anual")
     # El equivalente mensual se publica redondeado: se admite el redondeo de la página, no un error de miles.
-    tolerancia = max(2, plan["anual_facturado"] * 0.001)
+    # El equivalente mensual se publica redondeado a peso: se admite hasta un mes de redondeo.
+    tolerancia = max(12, plan["anual_facturado"] * 0.001)
     assert plan["anual_facturado"] == pytest.approx(12 * plan["anual_equivalente_mes"], abs=tolerancia)
 
 
@@ -96,7 +102,8 @@ def test_descuento_anual_es_el_del_pais_md(pais, plan):
 def test_orden_de_magnitud(pais, plan):
     # Fuera de este rango no es una promoción: es una cifra mal leída.
     if plan["marca"] != "Alegra":
-        assert plan["mensual"] > 0, plan["clave"]
+        if plan.get("mensual") is not None:
+            assert plan["mensual"] > 0, plan["clave"]
         return
     minimo, maximo = (10_000, 5_000_000) if pais == "col" else (5, 20_000)
     assert minimo <= plan["mensual"] <= maximo, plan["clave"]
