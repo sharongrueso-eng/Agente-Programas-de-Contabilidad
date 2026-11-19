@@ -1,0 +1,140 @@
+{
+ "pais": "CRI",
+ "generado": "2026-11-19",
+ "criterio": "marcas citadas en los posts del país sin ningún precio en el registro; cada reencauche que toque una de estas piezas debe dar de alta la marca",
+ "marcas": [
+  {
+   "marca": "Facturele",
+   "pais": "CRI",
+   "posts": 2,
+   "cifras": 11,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/facturele-2/",
+    "https://programascontabilidad.com/comparativas-de-software/software-de-facturacion/"
+   ]
+  },
+  {
+   "marca": "Softland",
+   "pais": "CRI",
+   "posts": 2,
+   "cifras": 3,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/sistema-sencillo-de-facturacion/",
+    "https://programascontabilidad.com/comparativas-de-software/softland-o-alegra-cual-software-contable-elegir/"
+   ]
+  },
+  {
+   "marca": "QuickBooks",
+   "pais": "CRI",
+   "posts": 2,
+   "cifras": 2,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/facturele-2/",
+    "https://programascontabilidad.com/comparativas-de-software/quickbooks-costa-rica/"
+   ]
+  },
+  {
+   "marca": "SoftDial",
+   "pais": "CRI",
+   "posts": 1,
+   "cifras": 7,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/sistema-erp/"
+   ]
+  },
+  {
+   "marca": "Odoo",
+   "pais": "CRI",
+   "posts": 1,
+   "cifras": 5,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/sistema-sencillo-de-facturacion/"
+   ]
+  },
+  {
+   "marca": "FACTURATica",
+   "pais": "CRI",
+   "posts": 1,
+   "cifras": 4,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/facturador-electronico-ministerio-de-hacienda/"
+   ]
+  },
+  {
+   "marca": "Adm Cloud",
+   "pais": "CRI",
+   "posts": 1,
+   "cifras": 3,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/sistema-erp/"
+   ]
+  },
+  {
+   "marca": "Ticofactura",
+   "pais": "CRI",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/facturador-electronico-ministerio-de-hacienda/"
+   ]
+  },
+  {
+   "marca": "TicoPay",
+   "pais": "CRI",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/facturele-2/"
+   ]
+  },
+  {
+   "marca": "FactuSOL",
+   "pais": "CRI",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/facturele-2/"
+   ]
+  },
+  {
+   "marca": "SAP Business One",
+   "pais": "CRI",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/facturele-2/"
+   ]
+  },
+  {
+   "marca": "Facturabot",
+   "pais": "CRI",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/programa-para-hacer-facturas-cri/"
+   ]
+  },
+  {
+   "marca": "Vendty",
+   "pais": "CRI",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/vendty/"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,111 @@
+{
+ "pais": "COL",
+ "generado": "2026-11-19",
+ "criterio": "marcas citadas en los posts del país sin ningún precio en el registro; cada reencauche que toque una de estas piezas debe dar de alta la marca",
+ "marcas": [
+  {
+   "marca": "Cuenti",
+   "pais": "COL",
+   "posts": 3,
+   "cifras": 4,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/alternativas-a-siigo/",
+    "https://programascontabilidad.com/comparativas-de-software/cuales-son-los-programas-de-contabilidad-mas-usados/",
+    "https://programascontabilidad.com/comparativas-de-software/precios-de-software-contable-colombia-2026/"
+   ]
+  },
+  {
+   "marca": "GridPOS",
+   "pais": "COL",
+   "posts": 2,
+   "cifras": 8,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/alegra-pos-vs-gridpos/",
+    "https://programascontabilidad.com/comparativas-de-software/pos/sistema-pos-para-restaurantes/"
+   ]
+  },
+  {
+   "marca": "Helisa",
+   "pais": "COL",
+   "posts": 2,
+   "cifras": 7,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/helisa-software-vs-alegra/",
+    "https://programascontabilidad.com/uncategorized/mejor-programa-contable-world-office-o-alegra/"
+   ]
+  },
+  {
+   "marca": "SAP Business One",
+   "pais": "COL",
+   "posts": 1,
+   "cifras": 7,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/sistema-de-gestion-sap/"
+   ]
+  },
+  {
+   "marca": "Fudo",
+   "pais": "COL",
+   "posts": 1,
+   "cifras": 6,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/pos/sistema-pos-para-restaurantes/"
+   ]
+  },
+  {
+   "marca": "Treinta",
+   "pais": "COL",
+   "posts": 1,
+   "cifras": 6,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/pos/sistema-pos-para-restaurantes/"
+   ]
+  },
+  {
+   "marca": "Soft Restaurant",
+   "pais": "COL",
+   "posts": 1,
+   "cifras": 2,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/pos/sistema-pos-para-restaurantes/"
+   ]
+  },
+  {
+   "marca": "Aliaddo",
+   "pais": "COL",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/alternativas-a-siigo/"
+   ]
+  },
+  {
+   "marca": "Holded",
+   "pais": "COL",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/administracion/mejor-sistema-de-facturacion/"
+   ]
+  },
+  {
+   "marca": "Quipu",
+   "pais": "COL",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/administracion/mejor-sistema-de-facturacion/"
+   ]
+  }
+ ]
+}

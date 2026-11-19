@@ -75,6 +75,10 @@ def desfases(pais_vigia: str, marca: str | None = None, solo_alta: bool = True) 
         vigentes.setdefault((p["marca"], p["producto"]), []).append(p)
 
     posts, ignoradas, sin_producto, ok = {}, 0, 0, 0
+    # Marcas que el post cita y el registro no tiene: no se pueden reencauchar, pero tampoco se olvidan.
+    # Ojo: una marca registrada con otro producto no es un hueco de marca, es atribución.
+    registradas = {p.get("marca_actual") or p["marca"] for p in registro.get("planes", [])}
+    sin_registro = {}
     for u in ubic:
         if marca and u.get("marca") != marca:
             continue
@@ -84,6 +88,11 @@ def desfases(pais_vigia: str, marca: str | None = None, solo_alta: bool = True) 
         planes = vigentes.get((u.get("marca"), producto), [])
         if not planes:
             ignoradas += 1
+            marca_cifra = u.get("marca")
+            if marca_cifra not in registradas:
+                d = sin_registro.setdefault(marca_cifra, {"marca": marca_cifra, "cifras": 0, "posts": set()})
+                d["cifras"] += 1
+                d["posts"].add(u["post_id"])
             continue
         valor = u.get("valor")
         if not valor:
@@ -158,6 +167,11 @@ def desfases(pais_vigia: str, marca: str | None = None, solo_alta: bool = True) 
         "por_tipo": conteo,
         "cifras_ok": ok,
         "cifras_sin_registro": ignoradas,
+        # Qué marcas hay que dar de alta para poder reencauchar esas cifras, por peso.
+        "marcas_sin_registro": sorted(
+            ({"marca": d["marca"], "cifras": d["cifras"], "posts": len(d["posts"])}
+             for d in sin_registro.values()),
+            key=lambda x: (-x["posts"], -x["cifras"])),
         "posts": lista,
     }
 
@@ -177,6 +191,10 @@ def main(argv=None) -> int:
           f"{t['precio_viejo']} precios viejos · {t['moneda_distinta']} en otra moneda · "
           f"{t['producto_mal_atribuido']} mal atribuidas · {t['revisar']} a revisar · "
           f"{salida['cifras_ok']} al día")
+    if salida["marcas_sin_registro"]:
+        print(f"  marcas en los posts sin registro de precios ({len(salida['marcas_sin_registro'])}):")
+        for m in salida["marcas_sin_registro"][:8]:
+            print(f"      {m['marca']}: {m['posts']} posts · {m['cifras']} cifras")
     for p in salida["posts"][:15]:
         print(f"  post {p['post_id']:5} ({len(p['cifras'])} cifras) {p['url']}")
         for c in p["cifras"][:4]:

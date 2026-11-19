@@ -65,6 +65,45 @@ def calcular():
     return salida
 
 
+def marcas_por_revisar(pais_vigia):
+    """Marcas que citan los posts de un país y no tienen ningún precio registrado.
+
+    Es la cola de trabajo del reencauche: cuando una pieza se va a reencauchar, si su marca
+    no está aquí no se puede actualizar el precio, así que la marca entra a esta lista.
+    """
+    pais = pais_vigia.upper()
+    with open(VIGIA / "paises" / pais_vigia / "ubicaciones.json", encoding="utf-8") as f:
+        ubicaciones = json.load(f)["ubicaciones"]
+    with open(VIGIA / "paises" / pais_vigia / "registro-precios.json", encoding="utf-8") as f:
+        registro = json.load(f)["planes"]
+    registradas = {p.get("marca_actual") or p["marca"] for p in registro}
+
+    cola = {}
+    for u in ubicaciones:
+        marca = u.get("marca")
+        if not marca or marca in registradas or ABSORBIDAS.get(marca) in registradas:
+            continue
+        d = cola.setdefault(marca, {"marca": marca, "pais": pais, "posts": set(), "cifras": 0,
+                                    "productos": set(), "urls": set()})
+        d["posts"].add(u.get("post_id"))
+        d["cifras"] += 1
+        if u.get("producto"):
+            d["productos"].add(u["producto"])
+        if u.get("url"):
+            d["urls"].add(u["url"])
+    lista = [{"marca": d["marca"], "pais": d["pais"], "posts": len(d["posts"]), "cifras": d["cifras"],
+              "productos": sorted(d["productos"]), "urls": sorted(d["urls"])[:3]}
+             for d in cola.values()]
+    lista.sort(key=lambda x: (-x["posts"], -x["cifras"]))
+    salida = {"pais": pais, "generado": __import__("datetime").date.today().isoformat(),
+              "criterio": ("marcas citadas en los posts del país sin ningún precio en el registro; "
+                           "cada reencauche que toque una de estas piezas debe dar de alta la marca"),
+              "marcas": lista}
+    (VIGIA / "paises" / pais_vigia / "marcas-por-revisar.json").write_text(
+        json.dumps(salida, ensure_ascii=False, indent=1), encoding="utf-8")
+    return salida
+
+
 def markdown(cobertura):
     lineas = ["# Cobertura de marcas del directorio", "",
               "Marcas que citan los posts de PdC contra las marcas con precio registrado.",
@@ -86,6 +125,9 @@ def main():
     (VIGIA / "cobertura-marcas.json").write_text(
         json.dumps(cobertura, ensure_ascii=False, indent=1), encoding="utf-8")
     (VIGIA / "docs" / "COBERTURA-MARCAS.md").write_text(markdown(cobertura), encoding="utf-8")
+    for pais_vigia in CARPETA.values():
+        cola = marcas_por_revisar(pais_vigia)
+        print(f"{pais_vigia}: cola de marcas por revisar → {len(cola['marcas'])} marcas")
     for pais, filas in cobertura.items():
         faltan = [f for f in filas if not f["cubierta"]]
         print(f"{pais}: {len(filas)} marcas citadas · {len(faltan)} sin precio registrado")

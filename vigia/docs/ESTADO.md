@@ -390,6 +390,23 @@ antes. Cuatro reemplazos, contados y verificados uno por uno:
 - El `279.900` que aparece en la página pública del 3728 son extractos de **otros** posts en bloques de
   relacionados: en el contenido de esa pieza quedó en cero.
 
+## Cobertura de marcas
+
+El directorio se amplía **a medida que se reencaucha**, no de una vez: solo entran las marcas que los posts
+citan. `vigia/cobertura.py` cruza el inventario con los registros y deja, por país, la cola de marcas citadas
+sin precio (`paises/<vigía>/marcas-por-revisar.json` y `docs/COBERTURA-MARCAS.md`).
+
+| País | Marcas citadas | Con precio | En cola |
+|---|---:|---:|---:|
+| Colombia | 15 | 5 | 10 |
+| México | 19 | 8 | 11 |
+| República Dominicana | 14 | 2 | 12 |
+| Costa Rica | 16 | 3 | 13 |
+
+`vigia.reencauche` ya reporta `marcas_sin_registro`: las marcas del post que no están en el registro, con posts
+y cifras. Sus cifras no se reencauchan —no hay valor vigente contra el cual comparar— y la marca queda en la
+cola antes de la siguiente corrida de ese país.
+
 ## Directorio de precios, un solo lugar por país (19-nov-2026)
 
 `python -m vigia.directorio` arma el directorio desde los registros y lo deja en tres formatos:

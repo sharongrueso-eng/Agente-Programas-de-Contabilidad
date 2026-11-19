@@ -106,3 +106,13 @@ def test_agrupa_por_post(con_datos):
     assert salida["posts_a_reencauchar"] == 2
     assert salida["posts"][0]["post_id"] == 3728
     assert len(salida["posts"][0]["cifras"]) == 2
+
+
+def test_desfases_nombra_las_marcas_sin_registro():
+    """El reencauche dice qué marcas faltan para poder corregir esas cifras."""
+    salida = reencauche.desfases("col")
+    assert "marcas_sin_registro" in salida
+    nombres = {m["marca"] for m in salida["marcas_sin_registro"]}
+    # Alegra y Siigo están registradas: no pueden aparecer como faltantes de marca.
+    assert "Alegra" not in nombres and "Siigo" not in nombres
+    assert all(m["posts"] >= 1 and m["cifras"] >= 1 for m in salida["marcas_sin_registro"])

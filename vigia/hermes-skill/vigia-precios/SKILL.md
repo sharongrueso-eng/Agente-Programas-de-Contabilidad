@@ -176,6 +176,11 @@ la página, la cifra anterior, la leída y la regla que decidió el resultado.
   el agente diario usa `PDC_CHAT_WEBHOOK_URL` (`~/.pdc/chat.env`, `scripts/corrida_completa.py`).
   `vigia/avisos.py` ya acepta los dos, con el del agente primero; no declares una variable nueva que nadie
   llena. El envío se confirma por el `name` de la API, no por el 200.
+- **El directorio crece con el reencauche, no de una sola vez.** Solo se dan de alta las marcas que los posts
+  citan de verdad. Antes de reencauchar una pieza, corre `python -m vigia.reencauche --pais <vigía>`: trae
+  `marcas_sin_registro`, la lista de marcas del post que no tienen precio registrado. Esas cifras no se tocan
+  (no hay valor vigente con qué compararlas), y la marca entra en `paises/<vigía>/marcas-por-revisar.json` para
+  darla de alta antes de la siguiente corrida del país. Nunca se inventa el precio para poder reencauchar.
 - **Una tabla de precios puede estar en una pestaña o en otra ruta, no en la home.** World Office no tenía
   nada en `worldoffice.com.co/`, y sus 7 planes estaban en `planesCloud.html` y `planesEscritorio.html`.
   Antes de escribir «no tiene tabla de planes», sigue los enlaces con «precio», «planes» o «tarifas» y prueba

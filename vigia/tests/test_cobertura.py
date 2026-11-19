@@ -53,3 +53,14 @@ def test_markdown_tiene_una_seccion_por_pais(datos):
     for pais in cobertura.PAISES_VIGIA:
         assert f"## {pais}" in texto
     assert "| Marca | Posts | Cifras |" in texto
+
+
+def test_cola_de_marcas_por_pais(tmp_path, monkeypatch):
+    """La cola de marcas por reencauchar no incluye marcas que ya tienen registro."""
+    cola = cobertura.marcas_por_revisar("col")
+    nombres = {m["marca"] for m in cola["marcas"]}
+    assert "Alegra" not in nombres and "Siigo" not in nombres
+    assert nombres, "Colombia debería tener marcas citadas sin registro"
+    assert all(m["posts"] >= 1 and m["cifras"] >= 1 for m in cola["marcas"])
+    assert cola["marcas"] == sorted(cola["marcas"], key=lambda x: (-x["posts"], -x["cifras"]))
+    assert (VIGIA / "paises" / "col" / "marcas-por-revisar.json").exists()
