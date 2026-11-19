@@ -176,6 +176,10 @@ la página, la cifra anterior, la leída y la regla que decidió el resultado.
   el agente diario usa `PDC_CHAT_WEBHOOK_URL` (`~/.pdc/chat.env`, `scripts/corrida_completa.py`).
   `vigia/avisos.py` ya acepta los dos, con el del agente primero; no declares una variable nueva que nadie
   llena. El envío se confirma por el `name` de la API, no por el 200.
+- **Una tabla de precios puede estar en una pestaña o en otra ruta, no en la home.** World Office no tenía
+  nada en `worldoffice.com.co/`, y sus 7 planes estaban en `planesCloud.html` y `planesEscritorio.html`.
+  Antes de escribir «no tiene tabla de planes», sigue los enlaces con «precio», «planes» o «tarifas» y prueba
+  esas rutas: una conclusión así se convierte en un faltante que nadie vuelve a mirar.
 - **`sin_registro` no es un error.** Una fuente leída sin registro de esa marca se reporta como
   `sin_registro` y no cuenta como problema en el resumen; si no, el aviso sale amarillo todos los días por
   algo que es trabajo pendiente, no una falla.

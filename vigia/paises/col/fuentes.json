@@ -258,50 +258,6 @@
    "pista_receta": "Receta generica: contenedor + plan (+ plan_filtro). Verificada contra el HTML del 18-nov."
   },
   {
-   "id": "world-office-co",
-   "marca": "World Office",
-   "pais": "CO",
-   "prioridad": 1,
-   "cifras_publicadas": 14,
-   "limites_publicados": 0,
-   "posts": [
-    24,
-    34,
-    1438,
-    3322,
-    3728
-   ],
-   "productos_citados": [],
-   "monedas_en_posts": {
-    "$": 12,
-    "COP": 2
-   },
-   "url": "https://worldoffice.com.co/",
-   "url_candidatas": [
-    "https://worldoffice.com.co/",
-    "https://www.worldoffice.com.co/"
-   ],
-   "url_verificada": false,
-   "moneda_esperada": "COP",
-   "senales_pais": [
-    "DIAN",
-    "NIT",
-    "RADIAN",
-    "IVA",
-    "documento soporte",
-    "factura electrónica",
-    "Colombia",
-    "COP"
-   ],
-   "modo_lectura": "por_definir",
-   "receta": null,
-   "estado": "borrador",
-   "fecha_consulta": "2026-11-18",
-   "evidencia": "paises/col/lecturas/2026-11-18/world-office-co.html",
-   "nota": "La home no tiene tabla de planes: solo aparece $220.000 en una sección de contadores. Hay que buscar /planes o /precios; si no publica, modo_lectura: no_publica. No se deduce el precio.",
-   "pista_receta": "La home solo tiene 2 cifras en una seccion de contadores; no hay tabla de planes."
-  },
-  {
    "id": "gridpos-co",
    "marca": "GridPOS",
    "pais": "CO",
@@ -558,6 +514,94 @@
    "modo_lectura": "por_definir",
    "receta": null,
    "estado": "borrador"
+  },
+  {
+   "id": "world-office-cloud-co",
+   "marca": "World Office",
+   "pais": "CO",
+   "prioridad": 1,
+   "cifras_publicadas": 3,
+   "limites_publicados": 0,
+   "posts": [
+    3132
+   ],
+   "productos_citados": [
+    "World Office Cloud"
+   ],
+   "monedas_en_posts": {
+    "COP": 1
+   },
+   "url": "https://worldoffice.com.co/planesCloud.html",
+   "url_candidatas": [
+    "https://worldoffice.com.co/planesCloud.html"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "NIT",
+    "IVA",
+    "Colombia"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "h2, h3",
+    "plan_excluir": [
+     "Compara",
+     "Todo claro",
+     "Qué pagas"
+    ],
+    "nota": "El nombre del plan está en el h2; los precios van debajo en el mismo bloque."
+   },
+   "pista_receta": "Tarjetas con el nombre del plan en h2 y dos cifras: precio de lista y precio con −32 %.",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/col/lecturas/2026-11-19/world-office-cloud.html",
+   "estado": "verificado",
+   "nota": "La tabla no está en la home: vive en esta página aparte, detrás de la pestaña «precios»."
+  },
+  {
+   "id": "world-office-escritorio-co",
+   "marca": "World Office",
+   "pais": "CO",
+   "prioridad": 1,
+   "cifras_publicadas": 4,
+   "limites_publicados": 0,
+   "posts": [
+    3132
+   ],
+   "productos_citados": [
+    "World Office Escritorio"
+   ],
+   "monedas_en_posts": {
+    "COP": 1
+   },
+   "url": "https://worldoffice.com.co/planesEscritorio.html",
+   "url_candidatas": [
+    "https://worldoffice.com.co/planesEscritorio.html"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "NIT",
+    "IVA",
+    "Colombia"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "h2, h3",
+    "plan_excluir": [
+     "Compara",
+     "Todo claro",
+     "Qué pagas"
+    ],
+    "nota": "El nombre del plan está en el h2; los precios van debajo en el mismo bloque."
+   },
+   "pista_receta": "Tarjetas con el nombre del plan en h2 y dos cifras: precio de lista y precio con −32 %.",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/col/lecturas/2026-11-19/world-office-escritorio.html",
+   "estado": "verificado",
+   "nota": "Segunda página de precios (escritorio). La home no tiene tabla."
   }
  ]
 }

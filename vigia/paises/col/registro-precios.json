@@ -1147,12 +1147,181 @@
    "campana_activa": "2 x 1: paga 1 ano y disfruta 2, la oferta finaliza en...",
    "nota": "El plan anual se cobra por adelantado; el mensual que muestra la página es el equivalente con pago anual. Linea base leida durante campana: se confirma el precio de lista cuando la campana termine.",
    "estado": "pendiente_confirmar"
+  },
+  {
+   "clave": "world-office|world-office-cloud|CO|cloud-pos",
+   "marca": "World Office",
+   "producto": "World Office Cloud",
+   "pais": "CO",
+   "plan": "Cloud POS",
+   "moneda": "COP",
+   "impuesto": "sin IVA (es software)",
+   "periodo": "pago único anual",
+   "mensual": null,
+   "anual_facturado": 1000000,
+   "anual_equivalente_mes": 83333,
+   "precio_promocional_anual": 680000,
+   "formulas": {
+    "anual_equivalente_mes": "anual_facturado / 12"
+   },
+   "limites": {},
+   "fuente": "https://worldoffice.com.co/planesCloud.html",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/col/lecturas/2026-11-19/world-office-cloud.html",
+   "campana_activa": "−32 % sobre el precio de lista en la página de planes",
+   "estado": "pendiente_confirmar",
+   "nota": "Precio de lista 1,000,000 al año; la página muestra además 680,000 con el −32 %. Sin iva (es software). Licencia anual por empresa."
+  },
+  {
+   "clave": "world-office|world-office-cloud|CO|enterprise",
+   "marca": "World Office",
+   "producto": "World Office Cloud",
+   "pais": "CO",
+   "plan": "Enterprise",
+   "moneda": "COP",
+   "impuesto": "sin IVA (es software)",
+   "periodo": "pago único anual",
+   "mensual": null,
+   "anual_facturado": 3225000,
+   "anual_equivalente_mes": 268750,
+   "precio_promocional_anual": 2193000,
+   "formulas": {
+    "anual_equivalente_mes": "anual_facturado / 12"
+   },
+   "limites": {},
+   "fuente": "https://worldoffice.com.co/planesCloud.html",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/col/lecturas/2026-11-19/world-office-cloud.html",
+   "campana_activa": "−32 % sobre el precio de lista en la página de planes",
+   "estado": "pendiente_confirmar",
+   "nota": "Precio de lista 3,225,000 al año; la página muestra además 2,193,000 con el −32 %. Sin iva (es software). Licencia anual por empresa."
+  },
+  {
+   "clave": "world-office|world-office-cloud|CO|pyme-plus",
+   "marca": "World Office",
+   "producto": "World Office Cloud",
+   "pais": "CO",
+   "plan": "Pyme Plus",
+   "moneda": "COP",
+   "impuesto": "sin IVA (es software)",
+   "periodo": "pago único anual",
+   "mensual": null,
+   "anual_facturado": 3000000,
+   "anual_equivalente_mes": 250000,
+   "precio_promocional_anual": 2040000,
+   "formulas": {
+    "anual_equivalente_mes": "anual_facturado / 12"
+   },
+   "limites": {},
+   "fuente": "https://worldoffice.com.co/planesCloud.html",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/col/lecturas/2026-11-19/world-office-cloud.html",
+   "campana_activa": "−32 % sobre el precio de lista en la página de planes",
+   "estado": "pendiente_confirmar",
+   "nota": "Precio de lista 3,000,000 al año; la página muestra además 2,040,000 con el −32 %. Sin iva (es software). Licencia anual por empresa."
+  },
+  {
+   "clave": "world-office|world-office-escritorio|CO|pyme",
+   "marca": "World Office",
+   "producto": "World Office Escritorio",
+   "pais": "CO",
+   "plan": "Pyme",
+   "moneda": "COP",
+   "impuesto": "IVA incluido",
+   "periodo": "pago único anual",
+   "mensual": null,
+   "anual_facturado": 3400000,
+   "anual_equivalente_mes": 283333,
+   "precio_promocional_anual": 2751280,
+   "formulas": {
+    "anual_equivalente_mes": "anual_facturado / 12"
+   },
+   "limites": {},
+   "fuente": "https://worldoffice.com.co/planesEscritorio.html",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/col/lecturas/2026-11-19/world-office-escritorio.html",
+   "campana_activa": "−32 % sobre el precio de lista en la página de planes",
+   "estado": "pendiente_confirmar",
+   "nota": "Precio de lista 3,400,000 al año; la página muestra además 2,751,280 con el −32 %. Iva incluido. Licencia anual por empresa."
+  },
+  {
+   "clave": "world-office|world-office-escritorio|CO|empresarial",
+   "marca": "World Office",
+   "producto": "World Office Escritorio",
+   "pais": "CO",
+   "plan": "Empresarial",
+   "moneda": "COP",
+   "impuesto": "IVA incluido",
+   "periodo": "pago único anual",
+   "mensual": null,
+   "anual_facturado": 3600000,
+   "anual_equivalente_mes": 300000,
+   "precio_promocional_anual": 2913120,
+   "formulas": {
+    "anual_equivalente_mes": "anual_facturado / 12"
+   },
+   "limites": {},
+   "fuente": "https://worldoffice.com.co/planesEscritorio.html",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/col/lecturas/2026-11-19/world-office-escritorio.html",
+   "campana_activa": "−32 % sobre el precio de lista en la página de planes",
+   "estado": "pendiente_confirmar",
+   "nota": "Precio de lista 3,600,000 al año; la página muestra además 2,913,120 con el −32 %. Iva incluido. Licencia anual por empresa."
+  },
+  {
+   "clave": "world-office|world-office-escritorio|CO|contador",
+   "marca": "World Office",
+   "producto": "World Office Escritorio",
+   "pais": "CO",
+   "plan": "Contador",
+   "moneda": "COP",
+   "impuesto": "IVA incluido",
+   "periodo": "pago único anual",
+   "mensual": null,
+   "anual_facturado": 1000000,
+   "anual_equivalente_mes": 83333,
+   "precio_promocional_anual": 809200,
+   "formulas": {
+    "anual_equivalente_mes": "anual_facturado / 12"
+   },
+   "limites": {},
+   "fuente": "https://worldoffice.com.co/planesEscritorio.html",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/col/lecturas/2026-11-19/world-office-escritorio.html",
+   "campana_activa": "−32 % sobre el precio de lista en la página de planes",
+   "estado": "pendiente_confirmar",
+   "nota": "Precio de lista 1,000,000 al año; la página muestra además 809,200 con el −32 %. Iva incluido. Licencia anual por empresa."
+  },
+  {
+   "clave": "world-office|world-office-escritorio|CO|propiedad-horizontal",
+   "marca": "World Office",
+   "producto": "World Office Escritorio",
+   "pais": "CO",
+   "plan": "Propiedad Horizontal",
+   "moneda": "COP",
+   "impuesto": "IVA incluido",
+   "periodo": "pago único anual",
+   "mensual": null,
+   "anual_facturado": 2000000,
+   "anual_equivalente_mes": 166667,
+   "precio_promocional_anual": 1618400,
+   "formulas": {
+    "anual_equivalente_mes": "anual_facturado / 12"
+   },
+   "limites": {},
+   "fuente": "https://worldoffice.com.co/planesEscritorio.html",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/col/lecturas/2026-11-19/world-office-escritorio.html",
+   "campana_activa": "−32 % sobre el precio de lista en la página de planes",
+   "estado": "pendiente_confirmar",
+   "nota": "Precio de lista 2,000,000 al año; la página muestra además 1,618,400 con el −32 %. Iva incluido. Licencia anual por empresa."
   }
  ],
  "marcas": [
   "Alegra",
   "Loggro",
   "Siigo",
-  "Vendty"
+  "Vendty",
+  "World Office"
  ]
 }

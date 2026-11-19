@@ -397,16 +397,21 @@ antes. Cuatro reemplazos, contados y verificados uno por uno:
 `docs/DIRECTORIO-PRECIOS.md` (para leer y citar). Cada fila lleva marca, producto, plan, precio, moneda,
 **la URL de donde salió** y el estado de la cifra.
 
-**108 planes en los cuatro países.** Estados: ✅ confirmado · ⚠️ leído durante campaña, se confirma después ·
+**115 planes en los cuatro países.** Estados: ✅ confirmado · ⚠️ leído durante campaña, se confirma después ·
 🔎 falta confirmarlo a mano.
 
 | País | Planes | Marcas con precio | Sin precio publicado |
 |---|---|---|---|
-| Colombia | 47 | Alegra ✅ · Siigo ⚠️ · Loggro ⚠️ · Vendty ⚠️ | World Office: no tiene tabla de planes en su home |
+| Colombia | 54 | Alegra ✅ · Siigo ⚠️ · Loggro ⚠️ · Vendty ⚠️ · World Office ⚠️ | — |
 | México | 25 | Alegra ✅ · Facturama ✅ · Miskuentas ⚠️ · Siigo ⚠️ | CONTPAQi: no publica precios |
 | República Dominicana | 15 | Alegra ✅ | Citrus: no publica precios |
 | Costa Rica | 21 | Alegra (3 bloques ✅ y 2 🔎) · Factura Profesional 🔎 · GTI 🔎 | — |
 
+- **World Office sí publica precios, y el inventario lo daba por faltante.** No están en la home: están en
+  `planesCloud.html` (Cloud POS, Enterprise, Pyme Plus) y `planesEscritorio.html` (Pyme, Empresarial,
+  Contador, Propiedad Horizontal), detrás de la pestaña «precios». Los 7 planes ya están cargados con su URL,
+  su precio de lista y su precio con el −32 % que muestra la página. Es un error de método mío: cerré la
+  búsqueda en la home en vez de seguir la pestaña.
 - **Aspel ya no es una fuente aparte**: `aspel.com.mx` redirige a `siigo.com/mx/` y sus tres planes están
   en la fila de Siigo. El directorio lo dice en vez de listarlo como faltante.
 - **Lo que falta está escrito con su motivo y su URL**, no en blanco: es la lista de lo que hay que ir a

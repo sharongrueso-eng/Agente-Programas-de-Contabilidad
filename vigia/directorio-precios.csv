@@ -46,6 +46,13 @@ CO,Loggro,POS,POS PLUS,292990/mes · 3515880 facturado/año,COP,https://loggro.c
 CO,Vendty,POS,Emprendedor,155000/mes,COP,https://www.vendty.com/precios,pendiente_confirmar,2026-11-18
 CO,Vendty,POS,Profesional,85000/mes · 1020000 facturado/año,COP,https://www.vendty.com/precios,pendiente_confirmar,2026-11-18
 CO,Vendty,POS,Empresarial,140000/mes · 1680000 facturado/año,COP,https://www.vendty.com/precios,pendiente_confirmar,2026-11-18
+CO,World Office,World Office Cloud,Cloud POS,1000000 año · 680000 con promoción,COP,https://worldoffice.com.co/planesCloud.html,pendiente_confirmar,2026-11-19
+CO,World Office,World Office Cloud,Enterprise,3225000 año · 2193000 con promoción,COP,https://worldoffice.com.co/planesCloud.html,pendiente_confirmar,2026-11-19
+CO,World Office,World Office Cloud,Pyme Plus,3000000 año · 2040000 con promoción,COP,https://worldoffice.com.co/planesCloud.html,pendiente_confirmar,2026-11-19
+CO,World Office,World Office Escritorio,Pyme,3400000 año · 2751280 con promoción,COP,https://worldoffice.com.co/planesEscritorio.html,pendiente_confirmar,2026-11-19
+CO,World Office,World Office Escritorio,Empresarial,3600000 año · 2913120 con promoción,COP,https://worldoffice.com.co/planesEscritorio.html,pendiente_confirmar,2026-11-19
+CO,World Office,World Office Escritorio,Contador,1000000 año · 809200 con promoción,COP,https://worldoffice.com.co/planesEscritorio.html,pendiente_confirmar,2026-11-19
+CO,World Office,World Office Escritorio,Propiedad Horizontal,2000000 año · 1618400 con promoción,COP,https://worldoffice.com.co/planesEscritorio.html,pendiente_confirmar,2026-11-19
 MX,Alegra,Facturación electrónica,Inicial,249/mes · 2241 facturado/año,MXN,https://www.alegra.com/mexico/precios/,confirmado,2026-11-18
 MX,Alegra,Facturación electrónica,Pro,449/mes · 4041 facturado/año,MXN,https://www.alegra.com/mexico/precios/,confirmado,2026-11-18
 MX,Alegra,Facturación electrónica,Plus,699/mes · 6291 facturado/año,MXN,https://www.alegra.com/mexico/precios/,confirmado,2026-11-18
@@ -68,9 +75,9 @@ MX,Facturama,Paquetes de folios,Folios Ilimitados,1650 año,MXN,https://facturam
 MX,Facturama,Paquetes de folios,40 Folios,165 año,MXN,https://facturama.mx/planes-facturacion,confirmado,2026-11-18
 MX,Facturama,Paquetes de folios,25 Folios,110 año,MXN,https://facturama.mx/planes-facturacion,confirmado,2026-11-18
 MX,Facturama,Paquetes de folios,10 Folios,55 año,MXN,https://facturama.mx/planes-facturacion,confirmado,2026-11-18
-MX,Siigo,Software administrativo,Siigo Fiscal PYME,308.25/mes · 3514.05 facturado/año,MXN,https://www.siigo.com/mx/,pendiente_confirmar,2026-11-18
-MX,Siigo,Software administrativo,Siigo Aspel SAE,963.33/mes · 9826 facturado/año,MXN,https://www.siigo.com/mx/,pendiente_confirmar,2026-11-18
-MX,Siigo,Software administrativo,Siigo Aspel COI,485.83/mes · 4372.5 facturado/año,MXN,https://www.siigo.com/mx/,pendiente_confirmar,2026-11-18
+MX,Siigo,Software administrativo,Siigo Fiscal PYME,308.25/mes · 3514.05 facturado/año · 292.84/mes con promoción,MXN,https://www.siigo.com/mx/,pendiente_confirmar,2026-11-18
+MX,Siigo,Software administrativo,Siigo Aspel SAE,963.33/mes · 9826 facturado/año · 818.83/mes con promoción,MXN,https://www.siigo.com/mx/,pendiente_confirmar,2026-11-18
+MX,Siigo,Software administrativo,Siigo Aspel COI,485.83/mes · 4372.5 facturado/año · 364.38/mes con promoción,MXN,https://www.siigo.com/mx/,pendiente_confirmar,2026-11-18
 DO,Alegra,Facturación electrónica,Inicial,15/mes · 162 facturado/año,USD,https://www.alegra.com/rdominicana/precios/,confirmado,2026-11-18
 DO,Alegra,Facturación electrónica,Pyme,29/mes · 313.2 facturado/año,USD,https://www.alegra.com/rdominicana/precios/,confirmado,2026-11-18
 DO,Alegra,Facturación electrónica,Pro,45/mes · 486 facturado/año,USD,https://www.alegra.com/rdominicana/precios/,confirmado,2026-11-18

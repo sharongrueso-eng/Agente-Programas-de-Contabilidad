@@ -4,7 +4,7 @@ Actualizado: **2026-11-19**. Cada cifra dice de qué página salió.
 
 Directorio de precios de PdC. Cada fila sale del registro del vigía; la URL es la página donde se leyó la cifra. Estados: ✅ confirmado, ⚠️ línea base leída durante campaña, 🔎 por confirmar a mano.
 
-## Colombia (CO) — 47 planes
+## Colombia (CO) — 54 planes
 
 | Marca | Producto | Plan | Precio | Moneda | Fuente | Estado |
 |---|---|---|---|---|---|---|
@@ -55,12 +55,13 @@ Directorio de precios de PdC. Cada fila sale del registro del vigía; la URL es 
 | Vendty | POS | Emprendedor | 155000/mes | COP | https://www.vendty.com/precios | ⚠️ campaña |
 | Vendty | POS | Empresarial | 140000/mes · 1680000 facturado/año | COP | https://www.vendty.com/precios | ⚠️ campaña |
 | Vendty | POS | Profesional | 85000/mes · 1020000 facturado/año | COP | https://www.vendty.com/precios | ⚠️ campaña |
-
-**Sin precio en el directorio:**
-
-| Marca | Por qué | URL revisada |
-|---|---|---|
-| World Office | no tiene tabla de planes en la página revisada | https://worldoffice.com.co/ |
+| World Office | World Office Cloud | Cloud POS | 1000000 año · 680000 con promoción | COP | https://worldoffice.com.co/planesCloud.html | ⚠️ campaña |
+| World Office | World Office Cloud | Enterprise | 3225000 año · 2193000 con promoción | COP | https://worldoffice.com.co/planesCloud.html | ⚠️ campaña |
+| World Office | World Office Cloud | Pyme Plus | 3000000 año · 2040000 con promoción | COP | https://worldoffice.com.co/planesCloud.html | ⚠️ campaña |
+| World Office | World Office Escritorio | Contador | 1000000 año · 809200 con promoción | COP | https://worldoffice.com.co/planesEscritorio.html | ⚠️ campaña |
+| World Office | World Office Escritorio | Empresarial | 3600000 año · 2913120 con promoción | COP | https://worldoffice.com.co/planesEscritorio.html | ⚠️ campaña |
+| World Office | World Office Escritorio | Propiedad Horizontal | 2000000 año · 1618400 con promoción | COP | https://worldoffice.com.co/planesEscritorio.html | ⚠️ campaña |
+| World Office | World Office Escritorio | Pyme | 3400000 año · 2751280 con promoción | COP | https://worldoffice.com.co/planesEscritorio.html | ⚠️ campaña |
 
 ## México (MX) — 25 planes
 
@@ -88,9 +89,9 @@ Directorio de precios de PdC. Cada fila sale del registro del vigía; la URL es 
 | Miskuentas | Contabilidad | Intermedio | 3000/mes · 30000 facturado/año | MXN | https://www.miskuentas.com/contabilidad/ | ⚠️ campaña |
 | Miskuentas | Contabilidad | Maestro | 6000/mes · 60000 facturado/año | MXN | https://www.miskuentas.com/contabilidad/ | ⚠️ campaña |
 | Miskuentas | Contabilidad | Negocio | 600/mes · 6000 facturado/año | MXN | https://www.miskuentas.com/contabilidad/ | ⚠️ campaña |
-| Siigo | Software administrativo | Siigo Aspel COI | 485.83/mes · 4372.5 facturado/año | MXN | https://www.siigo.com/mx/ | ⚠️ campaña |
-| Siigo | Software administrativo | Siigo Aspel SAE | 963.33/mes · 9826 facturado/año | MXN | https://www.siigo.com/mx/ | ⚠️ campaña |
-| Siigo | Software administrativo | Siigo Fiscal PYME | 308.25/mes · 3514.05 facturado/año | MXN | https://www.siigo.com/mx/ | ⚠️ campaña |
+| Siigo | Software administrativo | Siigo Aspel COI | 485.83/mes · 4372.5 facturado/año · 364.38/mes con promoción | MXN | https://www.siigo.com/mx/ | ⚠️ campaña |
+| Siigo | Software administrativo | Siigo Aspel SAE | 963.33/mes · 9826 facturado/año · 818.83/mes con promoción | MXN | https://www.siigo.com/mx/ | ⚠️ campaña |
+| Siigo | Software administrativo | Siigo Fiscal PYME | 308.25/mes · 3514.05 facturado/año · 292.84/mes con promoción | MXN | https://www.siigo.com/mx/ | ⚠️ campaña |
 
 **Aspel** ya no es una fuente propia: redirige a **Siigo** (https://www.siigo.com/mx/). Sus precios están en la fila Siigo.
 

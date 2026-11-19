@@ -33,7 +33,8 @@ def test_los_faltantes_se_nombran_no_se_omiten():
     faltantes = {p["pais"]: [f["marca"] for f in p["faltantes"]] for p in d["paises"]}
     assert "CONTPAQi" in faltantes["MX"]      # no publica precios
     assert "Citrus" in faltantes["DO"]        # no publica precios
-    assert "World Office" in faltantes["CO"]  # no tiene tabla de planes
+    # World Office ya no es un faltante: sus precios están en planesCloud.html y planesEscritorio.html
+    assert "World Office" not in faltantes["CO"]
     # Aspel no cuenta como faltante: es Siigo
     assert "Aspel" not in faltantes["MX"]
 

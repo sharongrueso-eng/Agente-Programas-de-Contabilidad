@@ -570,26 +570,101 @@
      "estado": "pendiente_confirmar",
      "nota": "El plan anual se cobra por adelantado; el mensual que muestra la página es el equivalente con pago anual. Linea base leida durante campana: se confirma el precio de lista cuando la campana termine.",
      "fecha_consulta": "2026-11-18"
+    },
+    {
+     "marca": "World Office",
+     "producto": "World Office Cloud",
+     "plan": "Cloud POS",
+     "precio": "1000000 año · 680000 con promoción",
+     "moneda": "COP",
+     "periodo": "pago único anual",
+     "fuente": "https://worldoffice.com.co/planesCloud.html",
+     "estado": "pendiente_confirmar",
+     "nota": "Precio de lista 1,000,000 al año; la página muestra además 680,000 con el −32 %. Sin iva (es software). Licencia anual por empresa.",
+     "fecha_consulta": "2026-11-19"
+    },
+    {
+     "marca": "World Office",
+     "producto": "World Office Cloud",
+     "plan": "Enterprise",
+     "precio": "3225000 año · 2193000 con promoción",
+     "moneda": "COP",
+     "periodo": "pago único anual",
+     "fuente": "https://worldoffice.com.co/planesCloud.html",
+     "estado": "pendiente_confirmar",
+     "nota": "Precio de lista 3,225,000 al año; la página muestra además 2,193,000 con el −32 %. Sin iva (es software). Licencia anual por empresa.",
+     "fecha_consulta": "2026-11-19"
+    },
+    {
+     "marca": "World Office",
+     "producto": "World Office Cloud",
+     "plan": "Pyme Plus",
+     "precio": "3000000 año · 2040000 con promoción",
+     "moneda": "COP",
+     "periodo": "pago único anual",
+     "fuente": "https://worldoffice.com.co/planesCloud.html",
+     "estado": "pendiente_confirmar",
+     "nota": "Precio de lista 3,000,000 al año; la página muestra además 2,040,000 con el −32 %. Sin iva (es software). Licencia anual por empresa.",
+     "fecha_consulta": "2026-11-19"
+    },
+    {
+     "marca": "World Office",
+     "producto": "World Office Escritorio",
+     "plan": "Pyme",
+     "precio": "3400000 año · 2751280 con promoción",
+     "moneda": "COP",
+     "periodo": "pago único anual",
+     "fuente": "https://worldoffice.com.co/planesEscritorio.html",
+     "estado": "pendiente_confirmar",
+     "nota": "Precio de lista 3,400,000 al año; la página muestra además 2,751,280 con el −32 %. Iva incluido. Licencia anual por empresa.",
+     "fecha_consulta": "2026-11-19"
+    },
+    {
+     "marca": "World Office",
+     "producto": "World Office Escritorio",
+     "plan": "Empresarial",
+     "precio": "3600000 año · 2913120 con promoción",
+     "moneda": "COP",
+     "periodo": "pago único anual",
+     "fuente": "https://worldoffice.com.co/planesEscritorio.html",
+     "estado": "pendiente_confirmar",
+     "nota": "Precio de lista 3,600,000 al año; la página muestra además 2,913,120 con el −32 %. Iva incluido. Licencia anual por empresa.",
+     "fecha_consulta": "2026-11-19"
+    },
+    {
+     "marca": "World Office",
+     "producto": "World Office Escritorio",
+     "plan": "Contador",
+     "precio": "1000000 año · 809200 con promoción",
+     "moneda": "COP",
+     "periodo": "pago único anual",
+     "fuente": "https://worldoffice.com.co/planesEscritorio.html",
+     "estado": "pendiente_confirmar",
+     "nota": "Precio de lista 1,000,000 al año; la página muestra además 809,200 con el −32 %. Iva incluido. Licencia anual por empresa.",
+     "fecha_consulta": "2026-11-19"
+    },
+    {
+     "marca": "World Office",
+     "producto": "World Office Escritorio",
+     "plan": "Propiedad Horizontal",
+     "precio": "2000000 año · 1618400 con promoción",
+     "moneda": "COP",
+     "periodo": "pago único anual",
+     "fuente": "https://worldoffice.com.co/planesEscritorio.html",
+     "estado": "pendiente_confirmar",
+     "nota": "Precio de lista 2,000,000 al año; la página muestra además 1,618,400 con el −32 %. Iva incluido. Licencia anual por empresa.",
+     "fecha_consulta": "2026-11-19"
     }
    ],
-   "n_planes": 47,
+   "n_planes": 54,
    "marcas": [
     "Alegra",
     "Loggro",
     "Siigo",
-    "Vendty"
+    "Vendty",
+    "World Office"
    ],
-   "faltantes": [
-    {
-     "marca": "World Office",
-     "motivo": "no tiene tabla de planes en la página revisada",
-     "url": "https://worldoffice.com.co/",
-     "url_candidatas": [
-      "https://worldoffice.com.co/",
-      "https://www.worldoffice.com.co/"
-     ]
-    }
-   ],
+   "faltantes": [],
    "absorbidas": []
   },
   {
@@ -865,7 +940,7 @@
      "marca": "Siigo",
      "producto": "Software administrativo",
      "plan": "Siigo Fiscal PYME",
-     "precio": "308.25/mes · 3514.05 facturado/año",
+     "precio": "308.25/mes · 3514.05 facturado/año · 292.84/mes con promoción",
      "moneda": "MXN",
      "periodo": "mensual con pago anual",
      "fuente": "https://www.siigo.com/mx/",
@@ -877,7 +952,7 @@
      "marca": "Siigo",
      "producto": "Software administrativo",
      "plan": "Siigo Aspel SAE",
-     "precio": "963.33/mes · 9826 facturado/año",
+     "precio": "963.33/mes · 9826 facturado/año · 818.83/mes con promoción",
      "moneda": "MXN",
      "periodo": "mensual con pago anual",
      "fuente": "https://www.siigo.com/mx/",
@@ -889,7 +964,7 @@
      "marca": "Siigo",
      "producto": "Software administrativo",
      "plan": "Siigo Aspel COI",
-     "precio": "485.83/mes · 4372.5 facturado/año",
+     "precio": "485.83/mes · 4372.5 facturado/año · 364.38/mes con promoción",
      "moneda": "MXN",
      "periodo": "mensual con pago anual",
      "fuente": "https://www.siigo.com/mx/",

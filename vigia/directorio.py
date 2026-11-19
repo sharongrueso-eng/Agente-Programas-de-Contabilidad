@@ -39,6 +39,12 @@ def _pesos(p: dict) -> str:
         partes.append(f"{_num(p['anual_facturado'])} {etiqueta}")
     if not partes and p.get("precio_lista_anual"):
         partes.append(f"{_num(p['precio_lista_anual'])} lista/año")
+    # Cuando la página muestra precio de lista y precio con descuento, el directorio muestra los dos:
+    # el de lista es la línea base y el otro es la promoción del momento.
+    if p.get("precio_promocional_anual"):
+        partes.append(f"{_num(p['precio_promocional_anual'])} con promoción")
+    if p.get("precio_promocional_mes"):
+        partes.append(f"{_num(p['precio_promocional_mes'])}/mes con promoción")
     return " · ".join(partes) or "—"
 
 
