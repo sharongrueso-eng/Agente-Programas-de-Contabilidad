@@ -412,6 +412,11 @@ antes. Cuatro reemplazos, contados y verificados uno por uno:
   Contador, Propiedad Horizontal), detrás de la pestaña «precios». Los 7 planes ya están cargados con su URL,
   su precio de lista y su precio con el −32 % que muestra la página. Es un error de método mío: cerré la
   búsqueda en la home en vez de seguir la pestaña.
+- **El directorio cubre las marcas que el blog cita de verdad, y faltan 73.** Se buscó cada marca del léxico
+  (`inventario/marcas.py`) en los 343 posts: 11 marcas del directorio aparecen en el blog y hay 73 marcas
+  citadas que no tenían precio registrado, con 429 menciones. La lista completa, con país, dominio y si
+  publican precios, está en `docs/MARCAS-PENDIENTES.md`. Sin esto, un reencauche de un post que cita a Softland
+  o a Helisa no tendría contra qué comparar.
 - **Costa Rica quedó resuelto: los dos bloques sin producto eran ERP y POS.** Alegra CR publica cuatro
   productos (Facturación 5/10/20, POS 20/50/80, ERP 40/70/120 y Contabilidad 50/80/120), todos con −25 % por
   pago anual (30/52,50/90 en ERP y 15/37,50/60 en POS). Sharon los identificó en la landing; las cifras
