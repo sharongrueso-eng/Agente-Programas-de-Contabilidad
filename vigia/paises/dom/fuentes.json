@@ -77,7 +77,15 @@
    "pista_receta": "105 cifras. Los precios se escriben con el codigo delante (USD 26.10 / mes), no con simbolo $: el patron de precios tiene que aceptar el codigo de moneda o la lectura sale vacia.",
    "nota": "Cobra en USD aunque el pais sea RD. La moneda no identifica el pais: lo hacen DGII, ITBIS y e-CF. Mensual con pago anual (USD 26.10) y facturado anual (USD 313.20).",
    "fecha_consulta": "2026-11-18",
-   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html"
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "grupos": {
+    "64023234": "Facturación electrónica",
+    "ceb4903a": "POS",
+    "947cee51": "ERP",
+    "c14fca1c": "POS",
+    "997b348a": "Nómina electrónica",
+    "0b76b8f7": "Contabilidad"
+   }
   },
   {
    "id": "cloudya-do",

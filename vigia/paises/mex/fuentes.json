@@ -67,7 +67,14 @@
    "pista_receta": "147 cifras. La receta de Colombia ([id^='pricing-cards-']) NO sirve aqui: en MX pricing-cards-af/-pos/-contabilidad/-contador son anclas de menu, no ids de contenedor. Fijar receta en T4.",
    "nota": "Muestra mensual con pago anual (186,75) y facturado anual (2,241): el -25 % es el descuento por pago anual, no campana.",
    "fecha_consulta": "2026-11-18",
-   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html"
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "grupos": {
+    "ef124701": "Facturación electrónica",
+    "766f8845": "POS",
+    "bc6ffdae": "ERP",
+    "ad918f07": "POS",
+    "6ec10359": "Soy Contador"
+   }
   },
   {
    "id": "contpaqi-mx",

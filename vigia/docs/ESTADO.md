@@ -11,7 +11,8 @@ reconoce por las señales propias del país (`senales-pais.json`), no por la URL
 | 1. Inventario | Hecho (v2, por país). Falta revisar la confianza media y los pendientes |
 | 2. Registro de precios | COL (16), MEX (12) y DOM (15) con pruebas (T3). CRI bloqueado: ver abajo |
 | 3. Fuentes | Los cuatro países: prioridad 1 verificada (T2). Queda prioridad 2 y 3 |
-| 4 a 12 | Sin empezar |
+| 4 y 5. Lector y comparador | Hechos (T4, T5), con pruebas sobre HTML real |
+| 6 a 12 | Sin empezar |
 
 ## T1 · Entorno verificado (18-nov-2026)
 
@@ -234,6 +235,32 @@ python -m vigia.lector --pais col --desde-html paises/col/lecturas/2026-11-18/al
 **Pruebas** (`tests/test_lector.py`, 18 casos): los cuatro casos del plan —normal, campaña, moneda
 equivocada y receta rota—, país distinto, el descuento anual que no es campaña y los HTML reales de
 Alegra Colombia, México y Costa Rica.
+
+## T5 · Comparador (18-nov-2026)
+
+`vigia/comparador.py` clasifica una lectura contra el registro en los siete resultados de
+`REGLAS-VIGIA.md`: `sin_cambios`, `cambio_explicable`, `estructura_cambiada` (con `detalle`:
+`plan_nuevo`, `plan_retirado` o `plan_renombrado`), `campana`, `lectura_dudosa`, `cambio_mercado` y
+`falla`. Cuando hay varios cambios en una corrida manda el peor.
+
+**Con los datos reales del 18-nov (lector + comparador sobre el HTML guardado):**
+
+| Vigía | Lectura | Tarjetas | Comparación |
+|---|---|---|---|
+| COL | ok | 16 | `sin_cambios` ×16 |
+| MEX | campana | 15 | `campana`: no comparó nada |
+| RD | ok | 18 | `sin_cambios` ×15 (el bloque de POS viene duplicado) |
+
+- **Homónimos resueltos.** En Colombia «Emprendedor» existe en los cuatro productos. El comparador empareja
+  por **(producto, plan)**, nunca por nombre solo, y para eso el lector marca el producto de cada tarjeta:
+  por el id del contenedor en Colombia y por `data-period-group` en México y RD (mapa en
+  `fuentes.json` → `grupos`).
+- **Renombrado, no retiro.** Si un plan desaparece y aparece otro con el mismo precio en el mismo producto,
+  el resultado es `plan_renombrado` y lo dice: «ahora se llama X». Si no hay pareja, es `plan_retirado`.
+- **El comparador no decide precios.** Dice qué cambió y bajo qué regla; aplicar es del actualizador y solo
+  en modo `aplicar`.
+- **Pruebas**: 13 nuevas (201 en total), una por resultado del plan y una de extremo a extremo que pasa el
+  HTML real de Colombia por lector y comparador y espera `sin_cambios` ×16.
 
 ## Inventario v2 (18-nov-2026)
 

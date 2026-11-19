@@ -42,6 +42,9 @@ ZONA = {"CO": "America/Bogota", "MX": "America/Mexico_City",
 # Moneda que implica cada símbolo cuando la página no escribe el código. En Costa Rica y RD el símbolo
 # $ es USD (ESTADO.md). Queda marcada como inferida para que se pueda auditar.
 SIMBOLO_POR_PAIS = {"CO": "COP", "MX": "MXN", "CR": "USD", "DO": "USD"}
+# Nombre del producto según el id del contenedor (maqueta de Alegra Colombia).
+PRODUCTO_POR_ID = {"facturacion": "Facturación electrónica", "contabilidad": "Contabilidad",
+                   "pos": "POS", "nomina": "Nómina electrónica", "erp": "ERP"}
 
 # El código de moneda delante del número es parte del patrón: Alegra CR y RD escriben «USD 26.10 / mes»
 # y con un patrón que solo busque el símbolo la lectura sale vacía.
@@ -130,8 +133,35 @@ def _dedupe(cifras: list[dict]) -> list[dict]:
     return limpio
 
 
-def _tarjetas(soup: BeautifulSoup, pais: str) -> list[dict]:
-    """Tarjetas de plan (Alegra y sitios con la misma maqueta): nombre + cifras de esa tarjeta."""
+def _producto_de(card, fuente: dict) -> tuple[str | None, str | None]:
+    """Producto y grupo de una tarjeta.
+
+    Colombia agrupa por id (`pricing-cards-<producto>`); México y RD agrupan por `data-period-group`, y el
+    mapa grupo→producto vive en `fuentes.json` porque el encabezado de al lado miente (en México al bloque
+    de Facturación le precede un h3 que dice «Alegra POS»).
+    """
+    grupo = None
+    producto = None
+    el = card
+    for _ in range(6):
+        el = el.parent
+        if el is None:
+            break
+        ident = el.get("id") or ""
+        if ident.startswith("pricing-cards-"):
+            producto = PRODUCTO_POR_ID.get(ident.replace("pricing-cards-", ""))
+            break
+        g = el.get("data-period-group")
+        if g:
+            grupo = g[-8:]
+            producto = (fuente.get("grupos") or {}).get(grupo)
+            break
+    return producto, grupo
+
+
+def _tarjetas(soup: BeautifulSoup, pais: str, fuente: dict | None = None) -> list[dict]:
+    """Tarjetas de plan (Alegra y sitios con la misma maqueta): nombre, producto y cifras."""
+    fuente = fuente or {}
     salida = []
     for card in soup.select(".cards-simple--card"):
         nombre = card.select_one(".cards-simple--plan-name")
@@ -144,9 +174,11 @@ def _tarjetas(soup: BeautifulSoup, pais: str) -> list[dict]:
         # Solo la parte del precio: si se toma la fila entera, el facturado anual se cuela como mensual.
         texto = re.sub(r"\s+", " ", fila.get_text(" ", strip=True)).split("Facturado")[0]
         cifras = _dedupe(_cifras_en([texto], pais))
-        if cifras:
-            salida.append({"plan": re.sub(r"\s+", " ", nombre.get_text(" ", strip=True)),
-                           "cifras": cifras})
+        if not cifras:
+            continue
+        producto, grupo = _producto_de(card, fuente)
+        salida.append({"plan": re.sub(r"\s+", " ", nombre.get_text(" ", strip=True)),
+                       "producto": producto, "grupo": grupo, "cifras": cifras})
     return salida
 
 
@@ -186,7 +218,7 @@ def leer_html(html: str, fuente: dict, fecha: str | None = None) -> dict:
         "monedas_leidas": monedas,
         "cifras": cifras,
         "n_cifras": len(cifras),
-        "tarjetas": _tarjetas(soup, pais),
+        "tarjetas": _tarjetas(soup, pais, fuente),
         "campana": campana,
         "campana_evidencia": evidencia,
         "pais_por_senales": pais_detectado,
