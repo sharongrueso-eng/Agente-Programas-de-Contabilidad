@@ -63,7 +63,7 @@ Directorio de precios de PdC. Cada fila sale del registro del vigía; la URL es 
 | World Office | World Office Escritorio | Propiedad Horizontal | 2000000 año · 1618400 con promoción | COP | https://worldoffice.com.co/planesEscritorio.html | ⚠️ campaña |
 | World Office | World Office Escritorio | Pyme | 3400000 año · 2751280 con promoción | COP | https://worldoffice.com.co/planesEscritorio.html | ⚠️ campaña |
 
-## México (MX) — 77 planes
+## México (MX) — 87 planes
 
 | Marca | Producto | Plan | Precio | Moneda | Fuente | Estado |
 |---|---|---|---|---|---|---|
@@ -131,16 +131,26 @@ Directorio de precios de PdC. Cada fila sale del registro del vigía; la URL es 
 | CONTPAQi | CONTPAQi XML en línea | Licencia nueva (multi-RFC) | 1790 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
 | CONTPAQi | CONTPAQi XML en línea | Renovación (multi-RFC) | 1690 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
 | CONTPAQi | Conecta tu nube | Individual | 1990 año | MXN | https://www.contpaqi.com/listadeprecios | ✅ |
+| Contalink | Contalink | Flex | 990/mes | MXN | https://www.contalink.com/precios | ✅ |
+| Contalink | Contalink | Pro | 790/mes | MXN | https://www.contalink.com/precios | ✅ |
+| Contalink | Contalink | Start | 590/mes | MXN | https://www.contalink.com/precios | ✅ |
+| Factura.com | Factura.com | Emprendedor | 490 año | MXN | https://factura.com/planes-anuales | ✅ |
+| Factura.com | Factura.com | Empresarial | 1890 año | MXN | https://factura.com/planes-anuales | ✅ |
+| Factura.com | Factura.com | Pyme | 990 año | MXN | https://factura.com/planes-anuales | ✅ |
 | Facturama | Paquetes de folios | 10 Folios | 55 año | MXN | https://facturama.mx/planes-facturacion | ✅ |
 | Facturama | Paquetes de folios | 25 Folios | 110 año | MXN | https://facturama.mx/planes-facturacion | ✅ |
 | Facturama | Paquetes de folios | 40 Folios | 165 año | MXN | https://facturama.mx/planes-facturacion | ✅ |
 | Facturama | Paquetes de folios | Folios Ilimitados | 1650 año | MXN | https://facturama.mx/planes-facturacion | ✅ |
+| Loyverse | Loyverse POS | De pago, por tienda | 9/mes | USD | https://loyverse.com/es/pricing | 🔎 por confirmar |
 | Miskuentas | Contabilidad | Básico | 1000/mes · 10000 facturado/año | MXN | https://www.miskuentas.com/contabilidad/ | ⚠️ campaña |
 | Miskuentas | Contabilidad | Emprendedor | 800/mes · 8000 facturado/año | MXN | https://www.miskuentas.com/contabilidad/ | ⚠️ campaña |
 | Miskuentas | Contabilidad | Empresarial | 600/mes · 6000 facturado/año | MXN | https://www.miskuentas.com/contabilidad/ | ⚠️ campaña |
 | Miskuentas | Contabilidad | Intermedio | 3000/mes · 30000 facturado/año | MXN | https://www.miskuentas.com/contabilidad/ | ⚠️ campaña |
 | Miskuentas | Contabilidad | Maestro | 6000/mes · 60000 facturado/año | MXN | https://www.miskuentas.com/contabilidad/ | ⚠️ campaña |
 | Miskuentas | Contabilidad | Negocio | 600/mes · 6000 facturado/año | MXN | https://www.miskuentas.com/contabilidad/ | ⚠️ campaña |
+| Poster | Poster POS | Business | 837/mes | MXN | https://joinposter.mx/pricing | ✅ |
+| Poster | Poster POS | Mini | 495/mes | MXN | https://joinposter.mx/pricing | ✅ |
+| Poster | Poster POS | Pro | 1179/mes | MXN | https://joinposter.mx/pricing | ✅ |
 | Siigo | Software administrativo | Siigo Aspel COI | 485.83/mes · 4372.5 facturado/año · 364.38/mes con promoción | MXN | https://www.siigo.com/mx/ | ⚠️ campaña |
 | Siigo | Software administrativo | Siigo Aspel SAE | 963.33/mes · 9826 facturado/año · 818.83/mes con promoción | MXN | https://www.siigo.com/mx/ | ⚠️ campaña |
 | Siigo | Software administrativo | Siigo Fiscal PYME | 308.25/mes · 3514.05 facturado/año · 292.84/mes con promoción | MXN | https://www.siigo.com/mx/ | ⚠️ campaña |

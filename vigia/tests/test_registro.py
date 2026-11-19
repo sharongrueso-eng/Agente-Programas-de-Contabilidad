@@ -18,7 +18,7 @@ DESCUENTO_ANUAL = {
     "dom": {"*": 0.10},
 }
 # Un país puede tener fuentes en más de una moneda (GTI cobra en colones en Costa Rica).
-MONEDA = {"col": {"COP"}, "mex": {"MXN"}, "dom": {"USD", "DOP"}, "cri": {"USD", "CRC"}}
+MONEDA = {"col": {"COP"}, "mex": {"MXN", "USD"}, "dom": {"USD", "DOP"}, "cri": {"USD", "CRC"}}
 
 
 def _planes():
