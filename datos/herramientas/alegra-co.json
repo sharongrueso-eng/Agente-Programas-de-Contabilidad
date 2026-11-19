@@ -4,248 +4,296 @@
   "product": "Alegra (facturación electrónica, contabilidad y POS)",
   "plans": [
     {
-      "name": "Facturación electrónica Emprendedor",
+      "name": "Facturación electrónica Emprendedor (mensual)",
       "price": "17.900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
-      "note": "Solo facturación, sin módulo contable. Precio de lista sin descuento"
+      "publicado": true,
+      "note": "Solo facturación, sin módulo contable. Precio de lista"
     },
     {
-      "name": "Facturación electrónica Emprendedor",
+      "name": "Facturación electrónica Emprendedor (anual)",
       "price": "13.425",
       "currency": "COP",
       "period": "mes",
       "billing": "anual",
-      "note": "Equivale a 161.100 COP al año (25 % off para usuarios nuevos)"
+      "publicado": true,
+      "note": "Equivale a 161.100 COP facturados al año"
     },
     {
-      "name": "Facturación electrónica Pyme",
+      "name": "Facturación electrónica Pyme (mensual)",
       "price": "49.900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
-      "note": "Solo facturación, sin módulo contable"
+      "publicado": true,
+      "note": "Solo facturación, sin módulo contable. Precio de lista"
     },
     {
-      "name": "Facturación electrónica Pyme",
+      "name": "Facturación electrónica Pyme (anual)",
       "price": "37.425",
       "currency": "COP",
       "period": "mes",
       "billing": "anual",
-      "note": "Equivale a 449.100 COP al año"
+      "publicado": true,
+      "note": "Equivale a 449.100 COP facturados al año"
     },
     {
-      "name": "Facturación electrónica Pro",
+      "name": "Facturación electrónica Pro (mensual)",
       "price": "99.900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
-      "note": "Solo facturación, sin módulo contable"
+      "publicado": true,
+      "note": "Solo facturación, sin módulo contable. Precio de lista"
     },
     {
-      "name": "Facturación electrónica Plus",
-      "price": "179.900",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "note": "Solo facturación, sin módulo contable"
-    },
-    {
-      "name": "POS Emprendedor",
-      "price": "25.900",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "note": "Línea POS, para tiendas físicas que atienden en mostrador"
-    },
-    {
-      "name": "POS Emprendedor",
-      "price": "19.425",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "anual",
-      "note": "Equivale a 233.100 COP al año"
-    },
-    {
-      "name": "POS Pyme",
-      "price": "79.900",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "note": "Línea POS"
-    },
-    {
-      "name": "POS Pyme",
-      "price": "59.925",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "anual",
-      "note": "Equivale a 719.100 COP al año"
-    },
-    {
-      "name": "Contabilidad Emprendedor",
-      "price": "74.900",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "note": "Línea Contabilidad, con 1 bodega de inventario"
-    },
-    {
-      "name": "Contabilidad Emprendedor",
-      "price": "56.175",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "anual",
-      "note": "Equivale a 674.100 COP al año"
-    },
-    {
-      "name": "Contabilidad Pyme",
-      "price": "163.900",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "note": "Línea Contabilidad, con 2 bodegas de inventario"
-    },
-    {
-      "name": "Contabilidad Pyme",
-      "price": "122.925",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "anual",
-      "note": "Equivale a 1.475.100 COP al año"
-    },
-    {
-      "name": "Facturación electrónica Pro",
+      "name": "Facturación electrónica Pro (anual)",
       "price": "74.925",
       "currency": "COP",
       "period": "mes",
       "billing": "anual",
-      "note": "Equivalente mensual del plan anual"
+      "publicado": true,
+      "note": "Equivale a 899.100 COP facturados al año"
     },
     {
-      "name": "Facturación electrónica Plus",
+      "name": "Facturación electrónica Plus (mensual)",
+      "price": "179.900",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Solo facturación, sin módulo contable. Precio de lista"
+    },
+    {
+      "name": "Facturación electrónica Plus (anual)",
       "price": "134.925",
       "currency": "COP",
       "period": "mes",
       "billing": "anual",
-      "note": "Equivalente mensual del plan anual"
+      "publicado": true,
+      "note": "Equivale a 1.619.100 COP facturados al año"
     },
     {
-      "name": "Facturación electrónica Emprendedor",
-      "price": "161.100",
+      "name": "Contabilidad Emprendedor (mensual)",
+      "price": "74.900",
       "currency": "COP",
-      "period": "año",
-      "billing": "anual",
-      "note": "Total facturado al año"
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
     },
     {
-      "name": "Facturación electrónica Pyme",
-      "price": "449.100",
+      "name": "Contabilidad Emprendedor (anual)",
+      "price": "56.175",
       "currency": "COP",
-      "period": "año",
+      "period": "mes",
       "billing": "anual",
-      "note": "Total facturado al año"
+      "publicado": true,
+      "note": "Equivale a 674.100 COP facturados al año"
     },
     {
-      "name": "Facturación electrónica Pro",
-      "price": "899.100",
+      "name": "Contabilidad Pyme (mensual)",
+      "price": "163.900",
       "currency": "COP",
-      "period": "año",
-      "billing": "anual",
-      "note": "Total facturado al año"
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
     },
     {
-      "name": "Facturación electrónica Plus",
-      "price": "1.619.100",
+      "name": "Contabilidad Pyme (anual)",
+      "price": "122.925",
       "currency": "COP",
-      "period": "año",
+      "period": "mes",
       "billing": "anual",
-      "note": "Total facturado al año"
+      "publicado": true,
+      "note": "Equivale a 1.475.100 COP facturados al año"
     },
     {
-      "name": "POS Emprendedor",
-      "price": "233.100",
+      "name": "Contabilidad Pro (mensual)",
+      "price": "250.900",
       "currency": "COP",
-      "period": "año",
-      "billing": "anual",
-      "note": "Total facturado al año"
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
     },
     {
-      "name": "POS Pyme",
-      "price": "719.100",
+      "name": "Contabilidad Pro (anual)",
+      "price": "188.175",
       "currency": "COP",
-      "period": "año",
+      "period": "mes",
       "billing": "anual",
-      "note": "Total facturado al año"
+      "publicado": true,
+      "note": "Equivale a 2.258.100 COP facturados al año"
     },
     {
-      "name": "Contabilidad Emprendedor",
-      "price": "674.100",
+      "name": "Contabilidad Plus (mensual)",
+      "price": "319.900",
       "currency": "COP",
-      "period": "año",
-      "billing": "anual",
-      "note": "Total facturado al año"
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
     },
     {
-      "name": "Contabilidad Pyme",
-      "price": "1.475.100",
+      "name": "Contabilidad Plus (anual)",
+      "price": "239.925",
       "currency": "COP",
-      "period": "año",
+      "period": "mes",
       "billing": "anual",
-      "note": "Total facturado al año"
+      "publicado": true,
+      "note": "Equivale a 2.879.100 COP facturados al año"
     },
     {
-      "name": "Nómina Emprendedor",
+      "name": "POS Emprendedor (mensual)",
+      "price": "25.900",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "POS Emprendedor (anual)",
+      "price": "19.425",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 233.100 COP facturados al año"
+    },
+    {
+      "name": "POS Pyme (mensual)",
+      "price": "79.900",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "POS Pyme (anual)",
+      "price": "59.925",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 719.100 COP facturados al año"
+    },
+    {
+      "name": "POS Pro (mensual)",
+      "price": "139.900",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "POS Pro (anual)",
+      "price": "104.925",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 1.259.100 COP facturados al año"
+    },
+    {
+      "name": "POS Plus (mensual)",
+      "price": "199.900",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "POS Plus (anual)",
+      "price": "149.925",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 1.799.100 COP facturados al año"
+    },
+    {
+      "name": "Nómina electrónica Emprendedor (mensual)",
       "price": "29.900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
-      "note": "Línea Nómina, de 1 a 10 empleados"
+      "publicado": true,
+      "note": ""
     },
     {
-      "name": "Nómina Emprendedor",
+      "name": "Nómina electrónica Emprendedor (anual)",
       "price": "22.425",
       "currency": "COP",
       "period": "mes",
       "billing": "anual",
-      "note": "Equivalente mensual del plan anual"
+      "publicado": true,
+      "note": "Equivale a 269.100 COP facturados al año"
     },
     {
-      "name": "Nómina Emprendedor",
-      "price": "269.100",
-      "currency": "COP",
-      "period": "año",
-      "billing": "anual",
-      "note": "Total facturado al año (1 a 10 empleados)"
-    },
-    {
-      "name": "Nómina Pyme",
+      "name": "Nómina electrónica Pyme (mensual)",
       "price": "69.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
-      "note": "Línea Nómina, de 11 a 20 empleados"
+      "publicado": true,
+      "note": ""
     },
     {
-      "name": "Nómina Pyme",
+      "name": "Nómina electrónica Pyme (anual)",
       "price": "51.750",
       "currency": "COP",
       "period": "mes",
       "billing": "anual",
-      "note": "Equivalente mensual del plan anual"
+      "publicado": true,
+      "note": "Equivale a 621.000 COP facturados al año"
     },
     {
-      "name": "Nómina Pyme",
-      "price": "621.000",
+      "name": "Nómina electrónica Pro (mensual)",
+      "price": "139.000",
       "currency": "COP",
-      "period": "año",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "Nómina electrónica Pro (anual)",
+      "price": "104.250",
+      "currency": "COP",
+      "period": "mes",
       "billing": "anual",
-      "note": "Total facturado al año (11 a 20 empleados)"
+      "publicado": true,
+      "note": "Equivale a 1.251.000 COP facturados al año"
+    },
+    {
+      "name": "Nómina electrónica Plus (mensual)",
+      "price": "259.000",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "Nómina electrónica Plus (anual)",
+      "price": "194.250",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 2.331.000 COP facturados al año"
     }
   ],
   "source_url": "https://www.alegra.com/colombia/precios/",
-  "captured_at": "2026-11-13",
+  "captured_at": "2026-11-18",
   "evidence_level": "documentacion_oficial",
   "electronic_invoicing": "Facturación electrónica con la DIAN incluida en los planes",
   "features": [
@@ -263,5 +311,12 @@
     "Descuento del 25 % pagando anual para usuarios nuevos"
   ],
   "known_limits": [],
-  "notes": "La página de precios separa tres líneas y repite los nombres Emprendedor/Pyme en cada una: 17.900 COP/mes es facturación electrónica SIN módulo contable, no contabilidad. Contabilidad Emprendedor son 74.900 COP/mes y POS Emprendedor 25.900 COP/mes. Registrado el 13-nov-2026 leyendo el HTML de la página. Los planes para contadores y empresas no muestran precio público: no se registran hasta verlos."
+  "notes": "La página de precios separa tres líneas y repite los nombres Emprendedor/Pyme en cada una: 17.900 COP/mes es facturación electrónica SIN módulo contable, no contabilidad. Contabilidad Emprendedor son 74.900 COP/mes y POS Emprendedor 25.900 COP/mes. Registrado el 13-nov-2026 leyendo el HTML de la página. Los planes para contadores y empresas no muestran precio público: no se registran hasta verlos.",
+  "precios_origen": "directorio del vigía",
+  "historial": [
+    {
+      "fecha": "2026-11-19",
+      "cambio": "precios sincronizados desde el directorio del vigía (32 planes)"
+    }
+  ]
 }
