@@ -24,15 +24,13 @@ def completar_cta(
 ) -> Draft:
     """Añade el CTA final si falta. Es obligatorio y la pieza no debe salir sin él.
 
-    `consulta` es la fecha de las fichas: el CTA dice «Precios consultados …» y no puede ser el
-    día de la corrida."""
+    La fecha no se imprime: el vigía mantiene los precios al día y una fecha en el cuerpo envejece
+    el artículo. `fecha` y `consulta` se aceptan por compatibilidad."""
     if "background:#00AEEF" in draft.html:
         return draft
     # Solo se toca una pieza que ya usa la línea visual: una heredada se deja como está.
     if not re.search(r'style="[^"]*#[0-9A-Fa-f]{6}', draft.html):
         return draft
-    dia = fecha or date.today()
-    fecha_texto = f"{dia.day} de {_MESES[dia.month - 1]} de {dia.year}"
     url = _url_alegra(draft.html, country, draft.slug).replace("&", "&amp;")
     bloque = lv.cta_final(
         url=url,
@@ -40,10 +38,7 @@ def completar_cta(
         pregunta="¿Quieres comparar el costo real del año completo?",
         subtexto="Puedes ver los planes vigentes y decidir con los precios delante.",
         boton="Ver planes y precios",
-        fecha=fecha_texto,
     )
-    if consulta:
-        bloque = bloque.replace(f"Precios consultados el {fecha_texto}", f"Precios consultados {consulta}")
     # Antes de las preguntas frecuentes si existen; si no, al final.
     marca = re.search(r"<h2[^>]*>[^<]*[Pp]reguntas", draft.html)
     if marca:

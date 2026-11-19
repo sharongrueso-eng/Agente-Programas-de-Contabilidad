@@ -218,7 +218,8 @@ def procedimiento(
     )
 
 
-def nota_metodo(fecha: str, fuentes: str) -> str:
+def nota_metodo(fuentes: str, fecha: str = "") -> str:
+    """Nota de método sin fecha: el vigía mantiene los precios al día y la fecha envejece el post."""
     return (
         f'<div role="note" style="background:#F4F6F8;border:1px solid #E1E6EB;'
         f'border-left:4px solid {NAVY};border-radius:0 10px 10px 0;padding:18px 22px;'
@@ -226,12 +227,14 @@ def nota_metodo(fecha: str, fuentes: str) -> str:
         f'<p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.08em;'
         f'text-transform:uppercase;color:{GRIS};">Nota de método</p>'
         f'<p style="margin:0;font-size:14px;line-height:1.65;font-weight:400;color:{GRIS};'
-        f'max-width:68ch;">Precios consultados el {fecha} en {fuentes}. Pueden cambiar sin '
-        f'aviso: confirma la cotización vigente antes de contratar.</p></div>'
+        f'max-width:68ch;">Precios tomados de las páginas oficiales de cada proveedor '
+        f'({fuentes}). Pueden cambiar sin aviso: confirma la cotización vigente antes de '
+        f'contratar.</p></div>'
     )
 
 
-def cta_final(url: str, etiqueta: str, pregunta: str, subtexto: str, boton: str, fecha: str) -> str:
+def cta_final(url: str, etiqueta: str, pregunta: str, subtexto: str, boton: str, fecha: str = "") -> str:
+    """CTA final. `fecha` se acepta por compatibilidad y no se imprime: el post no lleva fechas."""
     return (
         f'<div style="background:{NAVY};border-radius:14px;padding:32px 32px 28px;'
         f'margin:32px 0;text-align:center;">'
@@ -246,8 +249,7 @@ def cta_final(url: str, etiqueta: str, pregunta: str, subtexto: str, boton: str,
         f'font-weight:700;line-height:1.2;padding:16px 34px;border-radius:8px;'
         f'text-decoration:none;">{boton} &rarr;</a>'
         f'<p style="margin:14px 0 0;font-size:13px;line-height:1.5;font-weight:400;'
-        f'color:#A8BFD4;">Se abre el sitio del proveedor en una pestaña nueva · Precios '
-        f'consultados el {fecha}</p></div>'
+        f'color:#A8BFD4;">Se abre el sitio del proveedor en una pestaña nueva</p></div>'
     )
 
 

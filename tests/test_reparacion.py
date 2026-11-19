@@ -28,7 +28,8 @@ class CtaTests(unittest.TestCase):
         )
 
         self.assertIn("background:#00AEEF", arreglada.html)
-        self.assertIn("9 de noviembre de 2026", arreglada.html)
+        # Sin fecha: el precio lo mantiene al día el vigía, no una fecha en el cuerpo.
+        self.assertNotIn("9 de noviembre de 2026", arreglada.html)
 
     def test_the_cta_goes_before_the_faq(self) -> None:
         html = ESTILO + "<h2>Preguntas frecuentes</h2><p>x</p>"

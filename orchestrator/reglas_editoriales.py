@@ -125,32 +125,36 @@ def _graves(
     # 2. Un precio anual o de complemento no se publica «al mes». Se comparan cifras sin el
     # separador de miles para que «2,799» y «2799» sean el mismo número.
     texto = re.sub(r"(?<=\d)[,.\s](?=\d{3}\b)", "", _visible(html))
+    hallado: list[str] = []
     for ficha in fichas:
         for plan in ficha.get("plans") or ():
             nombre = _plano(str(plan.get("name", "")))
             precio = re.sub(r"(?<=\d)[,.\s](?=\d{3}\b)", "", str(plan.get("price", "")).strip())
             if not precio or not re.search(r"\d", precio):
                 continue
-            anual = _plano(str(plan.get("billing", ""))) == "anual" or "anual" in nombre
-            complemento = "complemento" in nombre or "conecta" in nombre or "complemento" in _plano(
-                str(plan.get("note", ""))
+            # El precio se publica «al mes» bien cuando el plan es mensual, bien cuando la ficha
+            # da el equivalente mensual del pago anual. El error es publicar al mes un precio que
+            # la ficha da por año (el caso Conecta Bind: 2.799 era el año, no el mes).
+            periodo = _plano(str(plan.get("period", "")))
+            por_ano = periodo in {"año", "ano", "anual"} or (
+                "anual" in nombre and not periodo
             )
-            if not (anual or complemento):
+            complemento = "complemento" in nombre or "conecta" in nombre
+            if not (por_ano or complemento):
                 continue
             variantes = {precio, f"{precio}.00"}
             for variante in variantes:
                 patron = re.escape(variante) + r"[^\d]{0,60}?(?:al mes|por mes|mensual)"
                 if re.search(patron, texto):
-                    salida.append(
-                        {
-                            "codigo": "precio_periodo",
-                            "pasa": False,
-                            "detalle": f"«{variante}» es {plan.get('name')} "
-                            f"({plan.get('billing')}) y la pieza lo publica al mes",
-                            "grave": True,
-                        }
+                    hallado.append(
+                        f"«{variante}» es {plan.get('name')} ({plan.get('period') or plan.get('billing')}) "
+                        "y la pieza lo publica al mes"
                     )
                     break
+
+    if hallado:
+        detalle = hallado[0] + (f" (+{len(hallado) - 1} más)" if len(hallado) > 1 else "")
+        salida.append({"codigo": "precio_periodo", "pasa": False, "detalle": detalle, "grave": True})
 
     # 3. Dos alias de la misma marca no son dos proveedores.
     for clave in {canonica(f.get("brand", "")) for f in fichas}:
@@ -171,35 +175,18 @@ def _graves(
 
     # 4. Enlaces a Alegra: máximo dos, del país de la pieza y con su UTM.
     enlaces = re.findall(r'href="(https?://[^"]*alegra\.com[^"]*)"', html or "", re.I)
+    problemas: list[str] = []
     if len(enlaces) > MAX_ENLACES_ALEGRA:
-        salida.append(
-            {
-                "codigo": "enlaces_alegra",
-                "pasa": False,
-                "detalle": f"{len(enlaces)} enlaces a alegra.com; el máximo es {MAX_ENLACES_ALEGRA}",
-                "grave": True,
-            }
-        )
+        problemas.append(f"{len(enlaces)} enlaces a alegra.com; el máximo es {MAX_ENLACES_ALEGRA}")
     ruta = rutas(pais)
     for enlace in enlaces:
         if ruta and not any(r in enlace for r in ruta):
-            salida.append(
-                {
-                    "codigo": "enlaces_alegra",
-                    "pasa": False,
-                    "detalle": f"enlace a otra versión de país: {enlace[:110]}",
-                    "grave": True,
-                }
-            )
+            problemas.append(f"enlace a otra versión de país: {enlace[:90]}")
         if UTM.format(pais=_plano(pais)) not in enlace.replace("%7B", "{"):
-            salida.append(
-                {
-                    "codigo": "enlaces_alegra",
-                    "pasa": False,
-                    "detalle": f"enlace sin la UTM del artículo: {enlace[:110]}",
-                    "grave": True,
-                }
-            )
+            problemas.append(f"enlace sin la UTM {UTM.format(pais=_plano(pais))}: {enlace[:90]}")
+    if problemas:
+        detalle = problemas[0] + (f" (+{len(problemas) - 1} más)" if len(problemas) > 1 else "")
+        salida.append({"codigo": "enlaces_alegra", "pasa": False, "detalle": detalle, "grave": True})
     return salida
 
 
@@ -286,6 +273,232 @@ def _forma(html: str) -> list[dict]:
     return salida
 
 
+MESES = (
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+)
+
+# «consultada el 18 de noviembre de 2026», «consultados entre el 11 y el 18 de noviembre de 2026».
+FECHA_DE_CONSULTA = re.compile(
+    r"(?i)\b(?:consultad|actualizad|revisad|verificad|tomad)[oa]s?\b"
+    r"(?:\s+(?:el|entre\s+el|desde\s+el|hasta\s+el))?[^.;:()]{0,60}?"
+    r"\b(?:de\s+)?(?:" + "|".join(MESES) + r")\s+de\s+\d{4}"
+)
+FECHA_DE_HOY = re.compile(
+    r"(?i)\b(?:a\s+fecha\s+de|al\s+cierre\s+de|con\s+datos\s+de)\s+(?:" + "|".join(MESES) + r")\s+de\s+\d{4}"
+)
+MESES_TEXTO = re.compile(r"(?i)\b(?:" + "|".join(MESES) + r")\s+de\s+\d{4}\b")
+
+MONEDAS = re.compile(r"(?i)(?:US\$|RD\$|₡|\$|USD|COP|MXN|DOP|CRC)\s?[\d.,]+|\b[\d.,]+\s?(?:USD|COP|MXN|DOP|CRC)\b")
+PERIODOS = re.compile(r"(?i)\b(al\s+mes|por\s+mes|mensual|al\s+año|por\s+año|anual|trimestral|semestral)\b")
+
+# Palabras de pregunta y conectores que no distinguen un subtítulo de otro.
+VACIAS = frozenset(
+    """que cual cuales como cuando donde porque para por con sin sobre entre desde hasta
+    sistema software contabilidad contable programa programas mejor mejores elegir opcion
+    opciones guia comparativa comparar dominicana republica colombia mexico costa rica 2026""".split()
+)
+
+
+def _palabras(texto: str) -> set[str]:
+    return {p for p in re.findall(r"[a-z0-9áéíóúñ]{4,}", _plano(texto)) if p not in VACIAS}
+
+
+def _subtitulos(html: str, nivel: int) -> list[str]:
+    patron = rf"<h{nivel}[^>]*>(.*?)</h{nivel}>"
+    return [_plano(re.sub(r"<[^>]+>", "", t)) for t in re.findall(patron, html or "", re.I | re.S)]
+
+
+PREFIJOS = re.compile(
+    r"(?i)^(?:veredicto|conclusi[oó]n|resumen|en resumen|respuesta r[aá]pida|lo esencial)\s*:?\s*"
+)
+
+
+def _normalizar_titulo(titulo: str) -> list[str]:
+    limpio = PREFIJOS.sub("", _plano(titulo))
+    return re.findall(r"[a-z0-9áéíóúñ]{2,}", limpio)
+
+
+def _similares(html: str, nivel: int = 2, umbral: float = 0.55) -> list[tuple[str, str, float]]:
+    """Pares de subtítulos que hablan de lo mismo.
+
+    Dos formas de repetirse: con las mismas palabras en otro orden (Jaccard) o repitiendo la
+    misma frase de cuatro palabras tras un prefijo distinto. «¿Qué sistema de contabilidad
+    conviene en RD?» y «Veredicto: qué sistema de contabilidad conviene según el tamaño» son el
+    mismo subtítulo dos veces.
+    """
+    titulos = [t for t in _subtitulos(html, nivel) if t]
+    salida: list[tuple[str, str, float]] = []
+    for i, uno in enumerate(titulos):
+        for otro in titulos[i + 1 :]:
+            a_palabras, b_palabras = _normalizar_titulo(uno), _normalizar_titulo(otro)
+            a, b = _palabras(uno), _palabras(otro)
+            jaccard = len(a & b) / len(a | b) if (a or b) else 0.0
+            # La cabeza del título (lo que va después de «Veredicto:») es lo que lo identifica.
+            # «Qué es un sistema de contabilidad» y «Errores al elegir un sistema de contabilidad»
+            # comparten cuatro palabras y no son el mismo subtítulo.
+            misma_cabeza = a_palabras[:4] == b_palabras[:4] and len(a_palabras) >= 4
+            if misma_cabeza or jaccard >= umbral:
+                salida.append((uno, otro, round(max(jaccard, 0.99 if misma_cabeza else 0.0), 2)))
+    return salida
+
+
+def _bloques_de_marca(html: str, marcas_ajenas: set[str]) -> list[tuple[str, str]]:
+    """(título, cuerpo) de cada H3 que es el nombre de un competidor."""
+    bloques = []
+    formas = [_plano(m) for m in marcas_ajenas if m]
+    partes = re.split(r"(<h3[^>]*>.*?</h3>)", html or "", flags=re.I | re.S)
+    for i in range(1, len(partes), 2):
+        titulo = _plano(re.sub(r"<[^>]+>", "", partes[i]))
+        cuerpo = partes[i + 1] if i + 1 < len(partes) else ""
+        if any(titulo.startswith(m) or f" {m} " in f" {titulo} " for m in formas):
+            bloques.append((titulo, cuerpo))
+    return bloques
+
+
+def _voz(html: str, pais: str, fichas: Sequence[Mapping[str, Any]]) -> list[dict]:
+    """Fechas en el cuerpo, protagonismo y densidad de Alegra, subtítulos repetidos y precios."""
+    salida: list[dict] = []
+    texto = _visible(html)
+
+    # 1. Sin fechas de consulta: el vigía mantiene los precios al día y la fecha envejece el post.
+    fechas = FECHA_DE_CONSULTA.findall(html or "") + FECHA_DE_HOY.findall(html or "")
+    if fechas or re.search(r"(?i)<h2[^>]*>[^<]*fecha\s+de\s+consulta", html or ""):
+        salida.append(
+            {
+                "codigo": "fecha_de_consulta",
+                "pasa": False,
+                "detalle": "el cuerpo lleva la fecha en que se consultó la fuente o el precio "
+                "(va en la ficha del vigía, no en el artículo)",
+                "grave": False,
+            }
+        )
+
+    # 2. Alegra no abre la pieza: entra como una alternativa más y cierra como la recomendada.
+    formas = {str(f.get("brand", "")) for f in fichas} | set(MARCAS_CONOCIDAS)
+    nombres_ajenos = {
+        n
+        for n in formas
+        if n and n.lower() != "alegra"
+        and re.search(r"\b" + re.escape(_plano(n)) + r"\b", texto)
+    }
+    ajenas = nombres_ajenos
+    # El arranque es lo que se lee antes del primer H2: ahí no puede estar Alegra sola.
+    arranque_html = (html or "").split("<h2")[0] if "<h2" in (html or "") else (html or "")[:2500]
+    arranque = _visible(arranque_html)
+    if re.search(r"(?i)\balegra\b", arranque) and not any(
+        re.search(r"\b" + re.escape(_plano(m)) + r"\b", arranque) for m in ajenas
+    ):
+        salida.append(
+            {
+                "codigo": "alegra_protagonista",
+                "pasa": False,
+                "detalle": "el artículo abre con Alegra y ninguna otra marca: la comparación "
+                "empieza por el mercado y Alegra entra como una alternativa",
+                "grave": False,
+            }
+        )
+
+    # 3. Densidad: Alegra nombrada una y otra vez deja de ser una comparación.
+    menciones = len(re.findall(r"(?i)\balegra\b", texto))
+    tope = 3 * max(1, len({canonica(n) for n in ajenas})) + 4
+    if menciones > tope:
+        salida.append(
+            {
+                "codigo": "alegra_densidad",
+                "pasa": False,
+                "detalle": f"Alegra aparece {menciones} veces para {len(ajenas)} competidor(es); "
+                f"el tope es {tope}",
+                "grave": False,
+            }
+        )
+
+    # 4. Cada sistema se describe solo: Alegra no se cuela en la ficha de otro.
+    for titulo, cuerpo in _bloques_de_marca(html or "", ajenas):
+        if re.search(r"(?i)\balegra\b", _visible(cuerpo)):
+            salida.append(
+                {
+                    "codigo": "alegra_en_otra_ficha",
+                    "pasa": False,
+                    "detalle": f"la ficha «{titulo[:60]}» nombra a Alegra: cada sistema se "
+                    "describe por separado",
+                    "grave": False,
+                }
+            )
+            break
+
+    # 5. Subtítulos repetidos con otras palabras.
+    repetidos = _similares(html or "", 2) + _similares(html or "", 3, 0.7)
+    if repetidos:
+        uno, otro, cuanto = repetidos[0]
+        salida.append(
+            {
+                "codigo": "subtitulos_similares",
+                "pasa": False,
+                "detalle": f"«{uno[:48]}» y «{otro[:48]}» cuentan lo mismo ({cuanto})",
+                "grave": False,
+            }
+        )
+
+    # 6. Si hay precios, tienen que poder compararse: misma moneda y mismo periodo.
+    precios = MONEDAS.findall(html or "")
+    if len(precios) >= 3:
+        vistas = set()
+        for precio in precios:
+            marca = re.search(r"(?i)(USD|COP|MXN|DOP|CRC)", precio)
+            if marca:
+                vistas.add(marca.group(1).upper())
+            elif "US$" in precio:
+                vistas.add("USD")
+            elif "RD$" in precio:
+                vistas.add("DOP")
+            elif "₡" in precio:
+                vistas.add("CRC")
+            else:
+                vistas.add("?")
+        local = {"CO": "COP", "MX": "MXN", "CR": "CRC", "DO": "DOP"}.get(pais, "")
+        mezcla = {m for m in vistas if m and m != "?"}
+        if local and mezcla and (len(mezcla) > 1 or local not in mezcla):
+            salida.append(
+                {
+                    "codigo": "moneda_incomparable",
+                    "pasa": False,
+                    "detalle": f"los precios no están en la moneda del país ({local}): "
+                    f"{', '.join(sorted(mezcla))}",
+                    "grave": False,
+                }
+            )
+        periodos = {p.lower() for p in PERIODOS.findall(html or "")}
+        mensual = {p for p in periodos if "mes" in p or "mensual" in p}
+        anual = {p for p in periodos if "año" in p or "anual" in p}
+        if mensual and anual:
+            salida.append(
+                {
+                    "codigo": "periodo_incomparable",
+                    "pasa": False,
+                    "detalle": "los precios mezclan mensual y anual: hay que llevar a un solo periodo",
+                    "grave": False,
+                }
+            )
+
+    # 7. Una tabla con todos los planes de todos los competidores no se lee.
+    for tabla_html in re.findall(r"<table[^>]*>.*?</table>", html or "", re.I | re.S):
+        filas = re.findall(r"<tr[^>]*>(.*?)</tr>", tabla_html, re.I | re.S)
+        con_precio = sum(1 for f in filas if MONEDAS.search(f))
+        if con_precio > 10:
+            salida.append(
+                {
+                    "codigo": "tabla_de_precios_gigante",
+                    "pasa": False,
+                    "detalle": f"una tabla compara {con_precio} precios: se comparan los planes "
+                    "equivalentes, no todos los de todos",
+                    "grave": False,
+                }
+            )
+            break
+    return salida
+
+
 def revisar(
     html: str,
     *,
@@ -295,7 +508,11 @@ def revisar(
     comparativa: bool = True,
 ) -> list[dict]:
     """Todos los controles editoriales. Los `grave` bloquean; el resto se corrige."""
-    return _graves(html, pais, keyword, fichas, comparativa=comparativa) + _forma(html)
+    return (
+        _graves(html, pais, keyword, fichas, comparativa=comparativa)
+        + _forma(html)
+        + _voz(html, pais, fichas)
+    )
 
 
 def recortar_alegra(html: str, maximo: int = MAX_ENLACES_ALEGRA) -> str:
@@ -309,9 +526,28 @@ def recortar_alegra(html: str, maximo: int = MAX_ENLACES_ALEGRA) -> str:
 
 
 def corregir(html: str, *, pais: str) -> tuple[str, list[str]]:
-    """Arreglos deterministas: quita el h1, deduplica secciones y arregla los enlaces a Alegra."""
+    """Arreglos deterministas: fechas de consulta, h1, secciones y enlaces a Alegra."""
     tocados: list[str] = []
     original = html
+
+    # Sin fechas de consulta: el vigía mantiene el precio al día y la fecha en el texto envejece
+    # el artículo. Se quita la cláusula y se limpia la puntuación que queda suelta.
+    sin_fechas, cuantas_fechas = FECHA_DE_CONSULTA.subn("", html or "")
+    sin_fechas, cuantas_hoy = FECHA_DE_HOY.subn("", sin_fechas)
+    if cuantas_fechas + cuantas_hoy:
+        sin_fechas = re.sub(r"[ \t]{2,}", " ", sin_fechas)
+        sin_fechas = re.sub(r"\s+([,.;:])", r"\1", sin_fechas)
+        sin_fechas = re.sub(r"\(\s*[;,]\s*\)", "", sin_fechas)
+        sin_fechas = re.sub(r"\s+</(p|li|div)>", r"</\1>", sin_fechas)
+        html = sin_fechas
+        tocados.append(f"fecha de consulta retirada ({cuantas_fechas + cuantas_hoy})")
+
+    # «Fuentes y fecha de consulta» pasa a «Fuentes»: sin fecha no hay nada más que anunciar.
+    html, secciones = re.subn(
+        r"(?i)(<h2[^>]*>)\s*Fuentes\s+y\s+fecha\s+de\s+consulta\s*(</h2>)", r"\1Fuentes\2", html
+    )
+    if secciones:
+        tocados.append("«Fuentes y fecha de consulta» → «Fuentes»")
 
     # El tema imprime el título: un <h1> dentro del cuerpo duplica el encabezado.
     sin_h1, cuantos = re.subn(r"<h1[^>]*>.*?</h1>\s*", "", html or "", flags=re.I | re.S)
@@ -323,14 +559,16 @@ def corregir(html: str, *, pais: str) -> tuple[str, list[str]]:
     vistos: set[str] = set()
     salida: list[str] = []
     posicion = 0
+    podado = False
     for encontrado in re.finditer(r"(<h2[^>]*>)(.*?)(</h2>)", html, re.I | re.S):
         titulo = _plano(re.sub(r"<[^>]+>", "", encontrado.group(2)))
         if titulo in vistos:
             salida.append(html[posicion : encontrado.start()])
             posicion = encontrado.end()
+            podado = True
             tocados.append(f"sección duplicada: {titulo[:40]}")
         vistos.add(titulo)
-    if tocados:
+    if podado:
         salida.append(html[posicion:])
         html = "".join(salida)
 

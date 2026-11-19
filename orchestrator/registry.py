@@ -142,7 +142,7 @@ def fichas_text(fichas: Iterable[dict[str, Any]]) -> str:
                 lines.append(f"  {etiqueta}: " + "; ".join(str(v) for v in valor))
             elif isinstance(valor, str) and valor.strip():
                 lines.append(f"  {etiqueta}: {valor.strip()}")
-        lines.append(f"  fuente: {ficha['source_url']} (consultada {ficha['captured_at']})")
+        lines.append(f"  fuente: {ficha['source_url']}")
         lines.append(f"  nivel de evidencia: {ficha['evidence_level']}")
     return "\n".join(lines)
 
