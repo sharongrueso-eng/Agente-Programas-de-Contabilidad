@@ -389,6 +389,44 @@ def referencias_de_redaccion(pais: str) -> str:
     return MANDATO_DE_USO + "".join(piezas)
 
 
+def guardar_respaldo(post_id: int, destino: Path, wp) -> dict | None:
+    """Guarda el post tal como está, antes de escribir encima.
+
+    Sharon lo pidió explícito: un reencauche se aplica sobre la pieza viva —bajarla a borrador o
+    duplicarla con el mismo slug rompe la URL y la desindexa—, pero la versión anterior tiene que
+    poder volver. Se guarda el contenido completo, no solo el título: `--revertir` lo repone.
+    """
+    try:
+        previo = wp._write("GET", f"/wp-json/wp/v2/posts/{post_id}?context=edit", {})
+    except Exception as error:  # noqa: BLE001 - sin lectura no hay respaldo, y sin respaldo no se escribe
+        print("respaldo: no se pudo leer el post —", str(error)[:120])
+        return None
+    if not isinstance(previo, dict) or not previo.get("id"):
+        return None
+    respaldo = {
+        "post_id": post_id,
+        "title": (previo.get("title") or {}).get("raw", ""),
+        "excerpt": (previo.get("excerpt") or {}).get("raw", ""),
+        "content": (previo.get("content") or {}).get("raw", ""),
+        "slug": previo.get("slug", ""),
+        "status": previo.get("status", ""),
+        "modified": previo.get("modified", ""),
+        "guardado_en": datetime.now().isoformat(timespec="seconds"),
+    }
+    if not respaldo["content"]:
+        print("respaldo: el post llegó vacío; no se escribe encima sin copia")
+        return None
+    destino.mkdir(parents=True, exist_ok=True)
+    (destino / "respaldo.json").write_text(
+        json.dumps(respaldo, ensure_ascii=False, indent=1), encoding="utf-8"
+    )
+    print(
+        f"respaldo: post {post_id} · {len(respaldo['content']):,} caracteres · "
+        f"«{respaldo['title'][:50]}» · {destino.name}/respaldo.json"
+    )
+    return respaldo
+
+
 def buscar_respaldo(objetivo: int, raiz: Path) -> dict | None:
     """El respaldo más reciente de un post, dando prioridad al que tiene el HTML completo.
 
@@ -843,7 +881,10 @@ def main() -> int:
     # solo sirve cuando la keyword nombra una marca con ficha; con un tema que obliga a nombrar
     # varios proveedores, la pieza es una comparativa. Antes el formato salía siempre «resena» y
     # la pieza se bloqueaba sola por nombrar los competidores que el tema exigía.
-    if brief.format == "resena":
+    # Un reencauche conserva el formato y la consulta de la página viva (arriba); reetiquetarlo
+    # aquí convertía una guía en comparativa y la pieza salía corta de marcas respecto a un elenco
+    # que la URL nunca prometió. El cambio de formato es solo para piezas nuevas.
+    if brief.format == "resena" and not (brief.opportunity.action or "").startswith("refresh"):
         keyword = (brief.opportunity.focus_keyword or "").strip().lower()
         con_ficha = [
             str(f.get("brand", "") if isinstance(f, dict) else getattr(f, "brand", "")).strip().lower()
@@ -953,14 +994,14 @@ def main() -> int:
             post_existente = hallado.get("id") if hallado else None
         except Exception:  # noqa: BLE001
             post_existente = None
-        if locals().get("propuesta_de_reencauche") and args.borrador:
-            # En modo borrador el reencauche se guarda como versión paralela: la URL viva no se
-            # toca hasta que alguien la apruebe.
-            print("propuesta: se crea un borrador nuevo; la URL publicada no se modifica")
-            post_existente = None
-        elif locals().get("propuesta_de_reencauche") and post_existente:
-            # Modo publicar: la versión aprobada se aplica sobre la misma URL, con respaldo previo.
-            print(f"reencauche: se escribe sobre el post {post_existente}, con respaldo de la versión actual")
+        if locals().get("propuesta_de_reencauche") and post_existente:
+            # Un reencauche NO se guarda como borrador aparte: duplicar el slug o bajar el post a
+            # borrador rompe la URL y la desindexa. Se escribe sobre la misma URL conservando su
+            # estado, con la versión anterior guardada (decisión de Sharon, 19-nov-2026).
+            print(
+                f"reencauche: se escribe sobre el post {post_existente} conservando su estado; "
+                "la versión anterior se guarda para poder volver"
+            )
         url_oportunidad = (brief.opportunity.url if brief.opportunity else "") or ""
         destino = (
             f"se escribe sobre el post {post_existente}, con respaldo de la versión actual"
@@ -1077,7 +1118,11 @@ def main() -> int:
         post_existente=post_existente,
         subir_media=subir_media,
         # Un reencauche de snippet sí escribe sobre el artículo vivo: es su trabajo.
-        permitir_vivo=args.en_vivo or not requires_body(brief.opportunity.action),
+        # Un reencauche escribe sobre la URL publicada (bajarla a borrador la desindexa), así que la
+        # autorización viene del propio reencauche y no de `--en-vivo`.
+        permitir_vivo=args.en_vivo
+        or bool(locals().get("propuesta_de_reencauche"))
+        or not requires_body(brief.opportunity.action if brief.opportunity else ""),
         verificar_publicacion=lambda pid: str(
             ((_wp._write("GET", f"/wp-json/wp/v2/posts/{pid}?context=edit", {}) or {})
              .get("content") or {}).get("raw", "")
@@ -1231,6 +1276,12 @@ def main() -> int:
             )
 
     inicio = time.time()
+    # La versión anterior del post vivo se guarda antes de escribir: el reencauche se aplica sobre
+    # la URL publicada y tiene que poder volver a ella (`--revertir <post>`).
+    if post_existente and (args.en_vivo or locals().get("propuesta_de_reencauche")):
+        if guardar_respaldo(post_existente, estado.dir, _wp) is None:
+            print("sin respaldo no se escribe sobre el post vivo")
+            return 2
     resultado = run(
         brief,
         deps=deps,
