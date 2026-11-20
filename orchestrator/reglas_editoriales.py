@@ -139,12 +139,13 @@ def _graves(
             por_ano = periodo in {"año", "ano", "anual"} or (
                 "anual" in nombre and not periodo
             )
-            complemento = "complemento" in nombre or "conecta" in nombre
-            if not (por_ano or complemento):
+            # Solo es error si el precio es de año y se publica al mes. Un complemento mensual
+            # citado al mes está bien: la palabra «complemento» no lo vuelve anual.
+            if not por_ano:
                 continue
             variantes = {precio, f"{precio}.00"}
             for variante in variantes:
-                patron = re.escape(variante) + r"[^\d]{0,60}?(?:al mes|por mes|mensual)"
+                patron = re.escape(variante) + r"[^\d]{0,60}?(?:al mes|por mes|\bmensual\b)"
                 if re.search(patron, texto):
                     hallado.append(
                         f"«{variante}» es {plan.get('name')} ({plan.get('period') or plan.get('billing')}) "
@@ -351,6 +352,9 @@ def _bloques_de_marca(html: str, marcas_ajenas: set[str]) -> list[tuple[str, str
     for i in range(1, len(partes), 2):
         titulo = _plano(re.sub(r"<[^>]+>", "", partes[i]))
         cuerpo = partes[i + 1] if i + 1 < len(partes) else ""
+        # Una pregunta de FAQ que nombra dos marcas no es la ficha de una de ellas.
+        if "?" in titulo or "¿" in re.sub(r"<[^>]+>", "", partes[i]):
+            continue
         if any(titulo.startswith(m) or f" {m} " in f" {titulo} " for m in formas):
             bloques.append((titulo, cuerpo))
     return bloques
@@ -401,7 +405,10 @@ def _voz(html: str, pais: str, fichas: Sequence[Mapping[str, Any]]) -> list[dict
 
     # 3. Densidad: Alegra nombrada una y otra vez deja de ser una comparación.
     menciones = len(re.findall(r"(?i)\balegra\b", texto))
-    tope = 3 * max(1, len({canonica(n) for n in ajenas})) + 4
+    # Una comparativa de cuatro marcas necesita nombrar a Alegra en su apartado, en la tabla y en el
+    # veredicto. El tope sube con el elenco (4 por competidor); el 5711 tenía 50 menciones para un
+    # solo competidor y sigue disparando.
+    tope = 4 * max(1, len({canonica(n) for n in ajenas})) + 4
     if menciones > tope:
         salida.append(
             {
@@ -415,7 +422,10 @@ def _voz(html: str, pais: str, fichas: Sequence[Mapping[str, Any]]) -> list[dict
 
     # 4. Cada sistema se describe solo: Alegra no se cuela en la ficha de otro.
     for titulo, cuerpo in _bloques_de_marca(html or "", ajenas):
-        if re.search(r"(?i)\balegra\b", _visible(cuerpo)):
+        # Dentro de la ficha de otra marca se mira la prosa, no las tablas: una tabla de criterios
+        # compara marcas por columnas y ahí el nombre de Alegra es una columna, no una digresión.
+        limpio = re.sub(r"<table[^>]*>.*?</table>", " ", cuerpo or "", flags=re.S | re.I)
+        if re.search(r"(?i)\balegra\b", _visible(limpio)):
             salida.append(
                 {
                     "codigo": "alegra_en_otra_ficha",
@@ -471,7 +481,10 @@ def _voz(html: str, pais: str, fichas: Sequence[Mapping[str, Any]]) -> list[dict
         periodos = {p.lower() for p in PERIODOS.findall(html or "")}
         mensual = {p for p in periodos if "mes" in p or "mensual" in p}
         anual = {p for p in periodos if "año" in p or "anual" in p}
-        if mensual and anual:
+        # Si el texto declara la equivalencia («680.000 al año, unos 56.667 al mes»), la mezcla de
+        # periodos es la comparación bien hecha, no un defecto.
+        equivalente = re.search(r"(?i)al a[ñn]o[^.]{0,80}?\bal mes\b", texto)
+        if mensual and anual and not equivalente:
             salida.append(
                 {
                     "codigo": "periodo_incomparable",
