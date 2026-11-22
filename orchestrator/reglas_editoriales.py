@@ -184,11 +184,15 @@ def _graves(
                 }
             )
 
-    # 4. Enlaces a Alegra: máximo dos, del país de la pieza y con su UTM.
-    enlaces = re.findall(r'href="(https?://[^"]*alegra\.com[^"]*)"', html or "", re.I)
+    # 4. Enlaces a Alegra en el cuerpo: uno solo, del país de la pieza y con su UTM.
+    #    La sección «Fuentes» queda fuera del conteo: ahí Alegra se cita, y la cita puede ir
+    #    enlazada sin UTM porque es la fuente de la cifra, no una llamada a la acción.
+    corte = re.search(r"(?is)<h2[^>]*>\s*Fuentes", html or "")
+    cuerpo = (html or "")[: corte.start()] if corte else (html or "")
+    enlaces = re.findall(r'href="(https?://[^"]*alegra\.com[^"]*)"', cuerpo, re.I)
     problemas: list[str] = []
     if len(enlaces) > MAX_ENLACES_ALEGRA:
-        problemas.append(f"{len(enlaces)} enlaces a alegra.com; el máximo es {MAX_ENLACES_ALEGRA}")
+        problemas.append(f"{len(enlaces)} enlaces a alegra.com en el cuerpo; el máximo es {MAX_ENLACES_ALEGRA}")
     ruta = rutas(pais)
     for enlace in enlaces:
         if ruta and not any(r in enlace for r in ruta):
@@ -566,13 +570,19 @@ def revisar(
 
 
 def recortar_alegra(html: str, maximo: int = MAX_ENLACES_ALEGRA) -> str:
-    """Deja como mucho `maximo` enlaces a Alegra: los demás pierden el ancla y conservan el texto."""
+    """Deja como mucho `maximo` enlaces a Alegra en el cuerpo; los demás pierden el ancla.
+
+    La sección «Fuentes» no se toca: ahí el enlace a la página de precios no es una llamada a la
+    acción, es la cita que permite comprobar la cifra.
+    """
+    corte = re.search(r"(?is)<h2[^>]*>\s*Fuentes", html or "")
+    cuerpo, cola = (html[: corte.start()], html[corte.start():]) if corte else (html, "")
     enlaces = list(
-        re.finditer(r'<a\b[^>]*href="https?://[^"]*alegra\.com[^"]*"[^>]*>(.*?)</a>', html, re.I | re.S)
+        re.finditer(r'<a\b[^>]*href="https?://[^"]*alegra\.com[^"]*"[^>]*>(.*?)</a>', cuerpo, re.I | re.S)
     )
     for extra in reversed(enlaces[maximo:]):
-        html = html[: extra.start()] + extra.group(1) + html[extra.end() :]
-    return html
+        cuerpo = cuerpo[: extra.start()] + extra.group(1) + cuerpo[extra.end():]
+    return cuerpo + cola
 
 
 def corregir(html: str, *, pais: str) -> tuple[str, list[str]]:
