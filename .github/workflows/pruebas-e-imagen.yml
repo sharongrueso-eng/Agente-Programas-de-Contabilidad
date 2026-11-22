@@ -1,0 +1,77 @@
+name: pruebas e imagen
+
+# GitHub valida; Coolify ejecuta. Este flujo no corre el vigía ni publica nada: comprueba que
+# el código pasa las pruebas y que la imagen se construye igual que en el servidor. Sirve para
+# que un fallo de build —como el de libatomic1, que dejó el contenedor con la imagen vieja—
+# se vea en el push y no tres días después dentro de una tarea que «funciona».
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pruebas:
+    name: pruebas (agente y vigía)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest "pillow>=11" "google-api-python-client>=2" "google-auth>=2" \
+            "google-analytics-data>=0.18" "pyyaml>=6"
+
+      # Los dos directorios se corren por separado: hay un test_directorio.py en cada uno y
+      # juntos chocan al importar (mismo nombre de módulo).
+      - name: pruebas del agente
+        run: python -m pytest -q tests
+
+      - name: pruebas del vigía
+        run: python -m pytest -q vigia/tests
+
+  imagen:
+    name: imagen (Dockerfile de Coolify)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      # Se construye la misma imagen que construye Coolify, con su mismo Dockerfile. Sin esto,
+      # un error de dependencias del sistema (Chromium, apt, rutas) solo aparece en producción.
+      - name: construir
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./deploy/Dockerfile
+          push: false
+          load: true
+          tags: pdc-agent:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # La prueba que faltaba el día que el build «pasó» y el contenedor quedó con la imagen
+      # vieja: aquí se confirma que el paquete y Chromium están dentro de verdad.
+      - name: comprobar el vigía dentro de la imagen
+        run: |
+          docker run --rm pdc-agent:ci python -c "
+          import vigia, playwright, os
+          print('vigia', vigia.__file__)
+          print('browsers', sorted(os.listdir('/ms-playwright')))
+          assert 'vigia/__init__.py' in vigia.__file__
+          assert any(b.startswith('chromium') for b in os.listdir('/ms-playwright'))
+          "
