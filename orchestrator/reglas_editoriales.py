@@ -155,7 +155,8 @@ def _graves(
                 continue
             variantes = {precio, f"{precio}.00"}
             for variante in variantes:
-                patron = re.escape(variante) + r"[^\d]{0,60}?(?:al mes|por mes|\bmensual\b)"
+                # (?<!\d) para que «999» no case dentro de «2999»: dos planes distintos.
+                patron = r"(?<!\d)" + re.escape(variante) + r"[^\d]{0,60}?(?:al mes|por mes|\bmensual\b)"
                 if re.search(patron, texto):
                     hallado.append(
                         f"«{variante}» es {plan.get('name')} ({plan.get('period') or plan.get('billing')}) "

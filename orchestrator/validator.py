@@ -53,7 +53,8 @@ YEAR = re.compile(r"\b(20\d{2})\b")
 
 @dataclass(frozen=True)
 class ValidationRules:
-    min_alegra_links: int = 3
+    # Sharon: el cuerpo lleva un solo enlace a Alegra, el CTA con UTM; la cita va en Fuentes.
+    min_alegra_links: int = 1
     min_internal_links: int = 5
     min_sources: int = 2
     site_domain: str = "programascontabilidad.com"

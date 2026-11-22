@@ -21,7 +21,7 @@ def html_body(
     *,
     h1: str = "Opiniones de Siigo en Colombia",
     intro: str = "Las opiniones de Siigo entre contadores colombianos cambian según el tamaño del negocio.",
-    alegra_links: int = 3,
+    alegra_links: int = 1,
     internal_links: int = 5,
     sources: int = 2,
     extra: str = "",
@@ -143,9 +143,9 @@ class LinkTests(unittest.TestCase):
     # pruebas se hacen sobre una pieza cuyo título sí incluye Alegra, donde el mínimo aplica.
     TITULO_CON_ALEGRA = "Siigo vs Alegra: precios y planes en Colombia"
 
-    def test_three_alegra_links_with_utm_are_required(self) -> None:
+    def test_one_alegra_link_with_utm_is_enough(self) -> None:
         verdict = validate(
-            draft(html=html_body(alegra_links=2), title=self.TITULO_CON_ALEGRA),
+            draft(html=html_body(alegra_links=0), title=self.TITULO_CON_ALEGRA),
             brief(),
             ValidationRules(),
         )

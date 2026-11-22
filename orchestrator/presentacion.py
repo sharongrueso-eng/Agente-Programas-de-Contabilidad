@@ -26,7 +26,7 @@ from .linea_visual import (
 
 UTM_PRINCIPAL = "?utm_source=programascontabilidad&utm_medium=blog&utm_campaign=comparativa"
 CRITERIOS = (
-    ("Facturación electrónica DIAN", ("facturación electrónica", "facturacion electronica")),
+    ("Facturación electrónica", ("facturación electrónica", "facturacion electronica")),
     ("Punto de venta (POS)", ("pos", "punto de venta")),
     ("Inventario y costos", ("inventario", "kardex", "costos")),
     ("Nómina electrónica", ("nómina", "nomina")),
