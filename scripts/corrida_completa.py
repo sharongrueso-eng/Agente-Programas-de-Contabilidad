@@ -857,26 +857,6 @@ def main() -> int:
         return 2
     print(f"registro: {len(registro.fichas)} ficha(s) de {brief.country}")
 
-    # Las fichas de la pieza, no las del país: las que nombra el tema, las que ya trata la página
-    # viva, Alegra y las que publican precios, hasta el elenco que admite el formato. Antes iban
-    # todas (13 en México) cortadas a 6.000 caracteres: la pieza siempre se pasaba del elenco y
-    # en Colombia World Office quedaba nombrado sin sus precios.
-    from orchestrator.formato import presupuesto as _presupuesto_formato
-    from orchestrator.registry import elegir_fichas, fecha_de_consulta, texto_acotado
-
-    fichas_pieza = elegir_fichas(
-        registro.fichas,
-        keyword=brief.opportunity.focus_keyword or "",
-        url=brief.opportunity.url or "",
-        html_vivo=locals().get("html_vivo") or "",
-        maximo=_presupuesto_formato(brief.format).elenco_max,
-    ) or list(registro.fichas)
-    fecha_datos = fecha_de_consulta(fichas_pieza)
-    print(
-        f"fichas  : {', '.join(str(f.get('brand')) for f in fichas_pieza)} "
-        f"(de {len(registro.fichas)} del país) · consultadas {fecha_datos or 'sin fecha'}"
-    )
-
     # El formato no puede contradecir el tema. La reseña cierra el elenco al del título, así que
     # solo sirve cuando la keyword nombra una marca con ficha; con un tema que obliga a nombrar
     # varios proveedores, la pieza es una comparativa. Antes el formato salía siempre «resena» y
@@ -916,6 +896,26 @@ def main() -> int:
                 f"formato : comparativa — la viva ya compara {len(vivas)} marcas "
                 f"({', '.join(sorted(vivas))}) y «{antes}» admite {cupo}"
             )
+
+    # Las fichas de la pieza, no las del país: las que nombra el tema, las que ya trata la página
+    # viva, Alegra y las que publican precios, hasta el elenco que admite el formato. Antes iban
+    # todas (13 en México) cortadas a 6.000 caracteres: la pieza siempre se pasaba del elenco y
+    # en Colombia World Office quedaba nombrado sin sus precios.
+    from orchestrator.formato import presupuesto as _presupuesto_formato
+    from orchestrator.registry import elegir_fichas, fecha_de_consulta, texto_acotado
+
+    fichas_pieza = elegir_fichas(
+        registro.fichas,
+        keyword=brief.opportunity.focus_keyword or "",
+        url=brief.opportunity.url or "",
+        html_vivo=locals().get("html_vivo") or "",
+        maximo=_presupuesto_formato(brief.format).elenco_max,
+    ) or list(registro.fichas)
+    fecha_datos = fecha_de_consulta(fichas_pieza)
+    print(
+        f"fichas  : {', '.join(str(f.get('brand')) for f in fichas_pieza)} "
+        f"(de {len(registro.fichas)} del país) · consultadas {fecha_datos or 'sin fecha'}"
+    )
 
     if args.entorno == "prod":
         from orchestrator.mcp_client import ClienteMcp
