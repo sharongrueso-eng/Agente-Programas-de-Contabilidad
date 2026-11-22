@@ -150,8 +150,9 @@ def cifras_autorizadas(fichas: Any = ()) -> str:
         marca = ficha.get("brand") or "?"
         fuente = ficha.get("source_url") or ""
         capturado = str(ficha.get("captured_at") or "").strip()
-        nota = ficha.get("notes") or ""
-        if nota and ("provisional" in str(nota).lower() or "no para citar" in str(nota).lower()):
+        nota = str(ficha.get("notes") or "")
+        sin_confirmar = bool(ficha.get("precios_sin_confirmar"))
+        if sin_confirmar or nota.strip().lower().startswith("ficha provisional") or "no para citar" in nota.lower():
             lineas.append(f"### {marca} — ficha provisional: no cites sus precios")
             lineas.append("")
             continue

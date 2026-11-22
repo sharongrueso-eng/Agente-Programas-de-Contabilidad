@@ -270,8 +270,12 @@ def _graves(
     #    artículo propio y no de la landing del proveedor (CONTPAQi en México, entre otras).
     sin_miles = re.sub(r"(?<=\d)[,.\s](?=\d{3}\b)", "", visible)
     for ficha in fichas:
-        nota = _plano(str(ficha.get("notes") or ficha.get("note") or ""))
-        if "provisional" not in nota and "no para citar" not in nota:
+        nota = _plano(str(ficha.get("notes") or ficha.get("note") or "")).strip()
+        # Provisionalidad declarada, no la palabra suelta: una nota puede decir «deja de ser
+        # provisional» y no por eso invalidar la cifra. Tampoco sostiene una cifra la ficha
+        # que el vigía no pudo confirmar en su última pasada.
+        provisional = nota.startswith("ficha provisional") or "no para citar" in nota
+        if not (provisional or ficha.get("precios_sin_confirmar")):
             continue
         marca_ficha = _plano(str(ficha.get("brand", "")))
         if not marca_ficha or marca_ficha not in visible:

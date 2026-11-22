@@ -43,6 +43,8 @@ PRECIO = re.compile(
     re.IGNORECASE,
 )
 SOLO_ANUAL = re.compile(r"(?P<anual>[\d.,]+)\s*facturado\s*/\s*año", re.IGNORECASE)
+# Otras fichas del directorio escriben solo «1650 año» o «165 /año»: es el precio anual del plan.
+ANUAL_CORTO = re.compile(r"^(?P<anual>[\d.,]+)\s*(?:/\s*)?(?:año|anual)$", re.IGNORECASE)
 
 
 def _numero(texto: str) -> str:
@@ -70,6 +72,26 @@ def leer_directorio(
             if not pais or not marca:
                 continue
             salida.setdefault((pais, marca), []).append(fila)
+    return salida
+
+
+def _clave_marca(marca: str) -> str:
+    """La marca comparable: sin tildes, sin mayúsculas y sin signos.
+
+    El directorio escribe «CONTPAQi» y la ficha «Contpaqi»; con comparación exacta la marca no
+    emparejaba y su ficha se quedaba con el precio viejo sin que nadie lo notara.
+    """
+    import unicodedata
+
+    plano = unicodedata.normalize("NFKD", str(marca or "")).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]", "", plano.lower())
+
+
+def _por_marca(directorio: dict[tuple[str, str], list[dict]]) -> dict[tuple[str, str], list[dict]]:
+    """Reindexa (país, marca) por la marca normalizada."""
+    salida: dict[tuple[str, str], list[dict]] = {}
+    for (pais, marca), filas in directorio.items():
+        salida.setdefault((pais, _clave_marca(marca)), []).extend(filas)
     return salida
 
 
@@ -124,7 +146,7 @@ def planes_de(filas: list[dict]) -> list[dict]:
                 )
             continue
 
-        anual_solo = SOLO_ANUAL.search(precio)
+        anual_solo = SOLO_ANUAL.search(precio) or ANUAL_CORTO.search(precio.strip())
         if anual_solo:
             anual = _numero(anual_solo.group("anual"))
             planes.append(
@@ -147,15 +169,19 @@ def aplicar(pais: str, *, escribir: bool = False, ruta: Path = DIRECTORIO) -> di
     # Lo que el vigía vio pero no pudo confirmar: si una marca solo tiene filas pendientes, el
     # precio de la ficha ya no está sostenido y se invalida en lugar de quedarse como si fuera de hoy.
     pendientes = leer_directorio(ruta, estados={"pendiente_confirmar", "pendiente", "sin_confirmar"})
+    directorio = _por_marca(directorio)
+    pendientes = _por_marca(pendientes)
     informe: dict[str, dict] = {}
     for archivo in sorted(FICHAS.glob(f"*-{pais.lower()}.json")):
         ficha = json.loads(archivo.read_text(encoding="utf-8"))
         marca = str(ficha.get("brand", "")).strip()
-        filas = directorio.get((pais.upper(), marca)) or []
+        clave = (pais.upper(), _clave_marca(marca))
+        filas = directorio.get(clave) or []
         if not filas:
-            sin_confirmar = pendientes.get((pais.upper(), marca)) or []
+            sin_confirmar = pendientes.get(clave) or []
             if sin_confirmar and escribir:
-                ficha["captured_at"] = ""
+                # No se vacía `captured_at`: es un campo obligatorio de la ficha. El estado va
+                # aparte y es lo que leen el control y el prompt del redactor.
                 ficha["precios_sin_confirmar"] = (
                     "el vigía no pudo confirmar el precio en su última pasada: no se publica"
                 )
@@ -195,6 +221,12 @@ def aplicar(pais: str, *, escribir: bool = False, ruta: Path = DIRECTORIO) -> di
             ficha["source_url"] = filas[0].get("fuente") or ficha.get("source_url", "")
             ficha["captured_at"] = filas[0].get("fecha") or ficha.get("captured_at", "")
             ficha["precios_origen"] = "directorio del vigía"
+            if ficha.get("notes") and "provisional" in str(ficha["notes"]).lower():
+                ficha["notes"] = (
+                    "Precios leídos de la lista oficial del proveedor por el vigía; "
+                    "la ficha deja de ser provisional en cuanto el directorio confirma."
+                )
+            ficha.pop("precios_sin_confirmar", None)
             historial = ficha.setdefault("historial", [])
             historial.append(
                 {

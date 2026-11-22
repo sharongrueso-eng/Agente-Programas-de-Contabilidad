@@ -2,9 +2,550 @@
   "brand": "Contpaqi",
   "country": "MX",
   "product": "por confirmar en su landing",
-  "plans": [],
-  "source_url": "https://programascontabilidad.com/analisis-de-herramientas/facturama-precios-funciones-mexico/",
-  "captured_at": "2026-11-11",
+  "plans": [
+    {
+      "name": "CONTPAQi Contabilidad Licencia nueva (multi-RFC) (anual)",
+      "price": "6.190",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Contabilidad Renovación (multi-RFC) (anual)",
+      "price": "5.690",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Nóminas Licencia nueva (multi-RFC) (anual)",
+      "price": "7.690",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Nóminas Renovación (multi-RFC) (anual)",
+      "price": "7.390",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Bancos Licencia nueva (multi-RFC) (anual)",
+      "price": "4.890",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Bancos Renovación (multi-RFC) (anual)",
+      "price": "4.490",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi XML en línea Licencia nueva (multi-RFC) (anual)",
+      "price": "1.790",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi XML en línea Renovación (multi-RFC) (anual)",
+      "price": "1.690",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Comercial Start Licencia nueva (multi-RFC) (anual)",
+      "price": "3.990",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Comercial Start Renovación (multi-RFC) (anual)",
+      "price": "3.890",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Comercial Pro Licencia nueva (multi-RFC) (anual)",
+      "price": "11.290",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Comercial Pro Renovación (multi-RFC) (anual)",
+      "price": "9.890",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Comercial Premium Licencia nueva (multi-RFC) (anual)",
+      "price": "10.490",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Comercial Premium Renovación (multi-RFC) (anual)",
+      "price": "9.790",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi CFDI Facturación en línea+ Licencia nueva (multi-RFC) (anual)",
+      "price": "1.790",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Evalúa Inicial (anual)",
+      "price": "2.190",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Evalúa Equipos (anual)",
+      "price": "5.990",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Evalúa Empresarial (anual)",
+      "price": "9.490",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Evalúa Corporativo (anual)",
+      "price": "23.190",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Contabilidad Nube Inicial (anual)",
+      "price": "4.690",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Contabilidad Nube Equipos (anual)",
+      "price": "6.290",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Contabilidad Nube Empresarial (anual)",
+      "price": "11.790",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Contabilidad Nube Corporativo (anual)",
+      "price": "20.490",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Nóminas Nube Inicial (anual)",
+      "price": "3.290",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Nóminas Nube Equipos (anual)",
+      "price": "4.890",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Nóminas Nube Empresarial (anual)",
+      "price": "6.490",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Nóminas Nube Corporativo (anual)",
+      "price": "8.690",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Anticipa Esencial (anual)",
+      "price": "0",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Anticipa Crecimiento (anual)",
+      "price": "2.990",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Anticipa Profesional (anual)",
+      "price": "4.590",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Anticipa Empresarial (anual)",
+      "price": "8.490",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Duo (mensual)",
+      "price": "1.990",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Duo (anual)",
+      "price": "1.782",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 21.390 MXN facturados al año"
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Max (mensual)",
+      "price": "1.990",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Max (anual)",
+      "price": "1.916",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 22.990 MXN facturados al año"
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Plus (mensual)",
+      "price": "2.890",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Plus (anual)",
+      "price": "2.632",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 31.590 MXN facturados al año"
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Ejecutivo (mensual)",
+      "price": "4.190",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Ejecutivo (anual)",
+      "price": "3.799",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 45.590 MXN facturados al año"
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Xplus (mensual)",
+      "price": "5.790",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Xplus (anual)",
+      "price": "5.491",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 65.890 MXN facturados al año"
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Empresarial (mensual)",
+      "price": "6.590",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Empresarial (anual)",
+      "price": "6.299",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 75.590 MXN facturados al año"
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Empresarial Plus (mensual)",
+      "price": "7.248",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Empresarial Plus (anual)",
+      "price": "6.690",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 80.285 MXN facturados al año"
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Corporativo (mensual)",
+      "price": "17.096",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "CONTPAQi Escritorio Virtual Corporativo (anual)",
+      "price": "15.781",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Equivale a 189.369 MXN facturados al año"
+    },
+    {
+      "name": "CONTPAQi Respaldos 2 GB (anual)",
+      "price": "1.790",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Respaldos 5 GB (anual)",
+      "price": "2.590",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Respaldos 10 GB (anual)",
+      "price": "3.090",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Respaldos 50 GB (anual)",
+      "price": "10.990",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Respaldos 70 GB (anual)",
+      "price": "11.790",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Respaldos 100 GB (anual)",
+      "price": "15.490",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Respaldos 200 GB (anual)",
+      "price": "21.590",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Respaldos 500 GB (anual)",
+      "price": "49.190",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Respaldos 700 GB (anual)",
+      "price": "74.290",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Respaldos 800 GB (anual)",
+      "price": "81.390",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Respaldos 1 TB (anual)",
+      "price": "88.790",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "CONTPAQi Respaldos 2 TB (anual)",
+      "price": "142.990",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "Conecta tu nube Individual (anual)",
+      "price": "1.990",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    }
+  ],
+  "source_url": "https://www.contpaqi.com/listadeprecios",
+  "captured_at": "2026-11-19",
   "evidence_level": "secundaria: artículos publicados del blog",
   "extraction": {
     "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
@@ -17,11 +558,16 @@
     "precios_observados": []
   },
   "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
-  "notes": "Ficha provisional. Sirve para saber que el competidor está cubierto y qué cifras se han publicado; no para citar precios como vigentes.",
+  "notes": "Precios leídos de la lista oficial de CONTPAQi por el vigía y confirmados en el directorio.",
   "historial": [
     {
       "fecha": "2026-11-11",
       "cambio": "creada desde artículos del blog"
+    },
+    {
+      "fecha": "2026-11-22",
+      "cambio": "precios sincronizados desde el directorio del vigía (60 planes)"
     }
-  ]
+  ],
+  "precios_origen": "directorio del vigía"
 }

@@ -1,62 +1,63 @@
 {
- "brand": "misKuentas",
- "country": "MX",
- "product": "misKuentas (facturación electrónica CFDI)",
- "source_url": "https://www.miskuentas.com/facturacion",
- "captured_at": "2026-11-12",
- "evidence_level": "documentacion_oficial",
- "plans": [
-  {
-   "name": "Plan 500 timbres (anual)",
-   "price": "1.200",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true,
-   "note": "IVA incluido"
-  },
-  {
-   "name": "Plan 1.000 timbres (anual)",
-   "price": "2.000",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true,
-   "note": "IVA incluido"
-  },
-  {
-   "name": "Timbrado ilimitado (mensual)",
-   "price": "350",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "IVA incluido"
-  },
-  {
-   "name": "Timbrado ilimitado (anual)",
-   "price": "2.100",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true,
-   "note": "IVA incluido; precio anterior 3.500, descuento del 40 %"
-  }
- ],
- "features": [
-  "Facturación electrónica CFDI 4.0",
-  "Timbrado",
-  "Administración de comprobantes",
-  "Adendas",
-  "Catálogo de clientes"
- ],
- "advantages": [
-  "Precio por volumen de timbres, publicado con IVA incluido",
-  "Plan ilimitado mensual accesible frente a competidores"
- ],
- "known_limits": [
-  "No publica contabilidad ni nómina en la página revisada",
-  "El precio anual con descuento puede cambiar sin aviso"
- ],
- "notes": "No se encontraron precios de contabilidad ni de POS en la página de facturación."
+  "brand": "misKuentas",
+  "country": "MX",
+  "product": "misKuentas (facturación electrónica CFDI)",
+  "source_url": "https://www.miskuentas.com/facturacion",
+  "captured_at": "2026-11-12",
+  "evidence_level": "documentacion_oficial",
+  "plans": [
+    {
+      "name": "Plan 500 timbres (anual)",
+      "price": "1.200",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "IVA incluido"
+    },
+    {
+      "name": "Plan 1.000 timbres (anual)",
+      "price": "2.000",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "IVA incluido"
+    },
+    {
+      "name": "Timbrado ilimitado (mensual)",
+      "price": "350",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "IVA incluido"
+    },
+    {
+      "name": "Timbrado ilimitado (anual)",
+      "price": "2.100",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "IVA incluido; precio anterior 3.500, descuento del 40 %"
+    }
+  ],
+  "features": [
+    "Facturación electrónica CFDI 4.0",
+    "Timbrado",
+    "Administración de comprobantes",
+    "Adendas",
+    "Catálogo de clientes"
+  ],
+  "advantages": [
+    "Precio por volumen de timbres, publicado con IVA incluido",
+    "Plan ilimitado mensual accesible frente a competidores"
+  ],
+  "known_limits": [
+    "No publica contabilidad ni nómina en la página revisada",
+    "El precio anual con descuento puede cambiar sin aviso"
+  ],
+  "notes": "No se encontraron precios de contabilidad ni de POS en la página de facturación.",
+  "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica"
 }

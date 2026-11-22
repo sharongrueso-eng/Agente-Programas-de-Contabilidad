@@ -1,88 +1,80 @@
 {
- "brand": "Facturama",
- "country": "MX",
- "product": "Facturama (facturación electrónica CFDI)",
- "plans": [
-  {
-   "name": "Folios ilimitados",
-   "price": "1.650",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true
-  },
-  {
-   "name": "40 folios",
-   "price": "165",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true
-  },
-  {
-   "name": "25 folios",
-   "price": "110",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true
-  },
-  {
-   "name": "10 folios",
-   "price": "55",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true
-  },
-  {
-   "name": "Módulo facturación masiva",
-   "price": "1.650",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true,
-   "note": "folio adicional 0.5 MXN"
-  },
-  {
-   "name": "Cotizaciones ilimitadas",
-   "price": "750",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true
-  }
- ],
- "source_url": "https://facturama.mx/planes-facturacion",
- "captured_at": "2026-11-12",
- "evidence_level": "documentacion_oficial",
- "extraction": {
-  "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
-  "posts": [
-   "https://programascontabilidad.com/analisis-de-herramientas/facturama-precios-funciones-mexico/",
-   "https://programascontabilidad.com/comparativas-de-software/facturacion-en-mexico-alegra-facturama/"
+  "brand": "Facturama",
+  "country": "MX",
+  "product": "Facturama (facturación electrónica CFDI)",
+  "plans": [
+    {
+      "name": "Paquetes de folios Folios Ilimitados (anual)",
+      "price": "1.650",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "Paquetes de folios 40 Folios (anual)",
+      "price": "165",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "Paquetes de folios 25 Folios (anual)",
+      "price": "110",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    },
+    {
+      "name": "Paquetes de folios 10 Folios (anual)",
+      "price": "55",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+    }
   ],
-  "precios_observados": []
- },
- "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
- "notes": "Precios anuales en MXN con IVA no especificado en la página. Leído el 12-nov-2026.",
- "historial": [
-  {
-   "fecha": "2026-11-11",
-   "cambio": "creada desde artículos del blog"
-  }
- ],
- "features": [
-  "CFDI 4.0",
-  "Timbrado",
-  "Facturación masiva",
-  "Cotizaciones",
-  "API"
- ],
- "advantages": [
-  "Vende por folios: el costo escala con el volumen real"
- ],
- "known_limits": [
-  "El plan de folios ilimitados es el único que no obliga a contar facturas"
- ]
+  "source_url": "https://facturama.mx/planes-facturacion",
+  "captured_at": "2026-11-18",
+  "evidence_level": "documentacion_oficial",
+  "extraction": {
+    "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
+    "posts": [
+      "https://programascontabilidad.com/analisis-de-herramientas/facturama-precios-funciones-mexico/",
+      "https://programascontabilidad.com/comparativas-de-software/facturacion-en-mexico-alegra-facturama/"
+    ],
+    "precios_observados": []
+  },
+  "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
+  "notes": "Precios anuales en MXN con IVA no especificado en la página. Leído el 12-nov-2026.",
+  "historial": [
+    {
+      "fecha": "2026-11-11",
+      "cambio": "creada desde artículos del blog"
+    },
+    {
+      "fecha": "2026-11-22",
+      "cambio": "precios sincronizados desde el directorio del vigía (4 planes)"
+    }
+  ],
+  "features": [
+    "CFDI 4.0",
+    "Timbrado",
+    "Facturación masiva",
+    "Cotizaciones",
+    "API"
+  ],
+  "advantages": [
+    "Vende por folios: el costo escala con el volumen real"
+  ],
+  "known_limits": [
+    "El plan de folios ilimitados es el único que no obliga a contar facturas"
+  ],
+  "precios_origen": "directorio del vigía"
 }
