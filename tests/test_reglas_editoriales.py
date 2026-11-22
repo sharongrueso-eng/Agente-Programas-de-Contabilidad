@@ -44,13 +44,10 @@ def test_la_comparativa_sin_alegra_bloquea() -> None:
     ]["detalle"]
 
 
-def test_la_comparativa_con_menos_de_cuatro_marcas_bloquea() -> None:
+def test_la_comparativa_con_dos_marcas_ya_no_bloquea() -> None:
     html = "<h2>Comparativa</h2><p>Alegra y Bind ERP tienen precios parecidos.</p>"
-    hallazgos = _codigos(html)
-    assert hallazgos["elenco_insuficiente"]["grave"] is True
-    assert "2 marca" in hallazgos["elenco_insuficiente"]["detalle"]
-
-    assert "elenco_insuficiente" not in _codigos(HTML_BUENO)
+    assert "elenco_insuficiente" not in _codigos(html)
+    assert "elenco_vacio" not in _codigos(html)
 
 
 def test_el_precio_de_un_complemento_anual_no_se_publica_al_mes() -> None:
@@ -137,7 +134,7 @@ def test_los_codigos_graves_detienen_la_corrida() -> None:
 
     assert {
         "alegra_ausente",
-        "elenco_insuficiente",
+        "elenco_vacio",
         "precio_periodo",
         "marca_duplicada",
         "enlaces_alegra",

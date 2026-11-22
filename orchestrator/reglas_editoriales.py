@@ -54,6 +54,10 @@ def ruta_principal(pais: str) -> str:
 
 UTM = "{pais}_articulo_tmd_content"
 CAMPANAS = {"CO": "col", "MX": "mex", "CR": "cri", "DO": "dom", "PE": "per", "ES": "esp"}
+# La moneda de cada mercado. Una pieza que habla en la de otro país se copió de otro mercado.
+MONEDAS_DEL_PORTAL = {"CO": "COP", "MX": "MXN", "CR": "CRC", "DO": "DOP"}
+# Días que un precio puede tener antes de que el vigía lo refresque.
+MAX_DIAS_PRECIO = 45
 
 
 def campana(pais: str) -> str:
@@ -61,10 +65,9 @@ def campana(pais: str) -> str:
     return CAMPANAS.get((pais or "").strip().upper(), (pais or "").strip().lower())
 
 
-# Un solo enlace a Alegra en el cuerpo: el CTA final. La mención contextual va sin enlace y
-# Alegra queda citada en Fuentes con su URL de precios, que no es un enlace del cuerpo.
+# Un enlace a Alegra en el cuerpo —el CTA— más la cita de Fuentes: dos como máximo en todo el
+# post. La mención contextual va sin enlace.
 MAX_ENLACES_ALEGRA = 1
-MIN_MARCAS_COMPARATIVA = 4
 
 INTENCIONES_CON_ELENCO = {"compare", "price", "best", "learn"}
 
@@ -110,8 +113,9 @@ def _graves(
     marcas = marcas_nombradas(html, fichas)
     total = len(marcas)
 
-    # 1. Alegra siempre, y la comparativa lleva al menos cuatro sistemas del país. Solo aplica a
-    # las piezas de comparativa: una reseña de una marca no tiene elenco que completar.
+    # 1. Alegra siempre. El número de marcas lo decide el formato y la página viva, no una cuota:
+    #    Sharon quitó el mínimo de cuatro sistemas para que una reseña o una comparativa corta
+    #    no se bloquee por elenco.
     if comparativa and "alegra" not in marcas:
         salida.append(
             {
@@ -121,13 +125,12 @@ def _graves(
                 "grave": True,
             }
         )
-    if comparativa and total < MIN_MARCAS_COMPARATIVA:
+    if comparativa and total < 1:
         salida.append(
             {
-                "codigo": "elenco_insuficiente",
+                "codigo": "elenco_vacio",
                 "pasa": False,
-                "detalle": f"{total} marca(s) en la comparativa; el mínimo es {MIN_MARCAS_COMPARATIVA} "
-                f"({', '.join(sorted(marcas))})",
+                "detalle": f"la pieza no nombra ningún sistema del país ({', '.join(sorted(marcas))})",
                 "grave": True,
             }
         )
@@ -216,6 +219,83 @@ def _graves(
                 "grave": True,
             }
         )
+
+    # 6. La moneda de los precios es la del país de la pieza. Un código de otra moneda del portal
+    #    delata que el texto se copió de una pieza de otro mercado (MXN en Colombia, COP en México).
+    visible = _visible(html)
+    ajenas = [
+        codigo
+        for pais_codigo, codigo in MONEDAS_DEL_PORTAL.items()
+        if pais_codigo != (pais or "").upper() and re.search(rf"\b{codigo}\b", visible, re.I)
+    ]
+    if ajenas:
+        salida.append(
+            {
+                "codigo": "moneda_del_pais",
+                "pasa": False,
+                "detalle": f"la pieza de {pais} habla en {', '.join(ajenas)}; "
+                f"su moneda es {MONEDAS_DEL_PORTAL.get((pais or '').upper(), 'la del país')}",
+                "grave": True,
+            }
+        )
+
+    # 7. Una ficha provisional no sostiene una cifra. El portal marca así las que salieron de un
+    #    artículo propio y no de la landing del proveedor (CONTPAQi en México, entre otras).
+    sin_miles = re.sub(r"(?<=\d)[,.\s](?=\d{3}\b)", "", visible)
+    for ficha in fichas:
+        nota = _plano(str(ficha.get("notes") or ficha.get("note") or ""))
+        if "provisional" not in nota and "no para citar" not in nota:
+            continue
+        marca_ficha = _plano(str(ficha.get("brand", "")))
+        if not marca_ficha or marca_ficha not in visible:
+            continue
+        for plan in ficha.get("plans") or ():
+            precio = re.sub(r"(?<=\d)[,.\s](?=\d{3}\b)", "", str(plan.get("price", "")).strip())
+            if precio and re.search(rf"(?<!\d){re.escape(precio)}(?!\d)", sin_miles):
+                salida.append(
+                    {
+                        "codigo": "ficha_provisional",
+                        "pasa": False,
+                        "detalle": f"«{ficha.get('brand')}» se cita con {precio}, y su ficha es "
+                        "provisional: se lee la landing oficial antes de publicar la cifra",
+                        "grave": True,
+                    }
+                )
+                break
+
+    # 8. Frescura del vigía: una ficha sincronizada desde el directorio no puede llevar meses sin
+    #    revisarse. Sin fecha se avisa; con fecha vieja se bloquea (el dato ya no es el de hoy).
+    for ficha in fichas:
+        marca_ficha = _plano(str(ficha.get("brand", "")))
+        if not marca_ficha or marca_ficha not in visible:
+            continue
+        capturado = str(ficha.get("captured_at") or "").strip()
+        if not capturado:
+            salida.append(
+                {
+                    "codigo": "precio_sin_fecha",
+                    "pasa": False,
+                    "detalle": f"la ficha de «{ficha.get('brand')}» no dice cuándo se leyó su precio",
+                    "grave": False,
+                }
+            )
+            continue
+        try:
+            from datetime import date as _date
+
+            edad = (_date.today() - _date.fromisoformat(capturado[:10])).days
+        except ValueError:
+            continue
+        if edad > MAX_DIAS_PRECIO:
+            salida.append(
+                {
+                    "codigo": "precio_vencido",
+                    "pasa": False,
+                    "detalle": f"«{ficha.get('brand')}» se leyó hace {edad} días "
+                    f"(máximo {MAX_DIAS_PRECIO}); el vigía tiene que refrescarla",
+                    "grave": True,
+                }
+            )
     return salida
 
 

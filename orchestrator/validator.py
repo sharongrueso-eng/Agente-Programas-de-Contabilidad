@@ -232,7 +232,7 @@ def _control(code: str, ok: bool, detail: str, failure: str = CORREGIR) -> Contr
 BLOQUEANTES = frozenset(
     {
         "alegra_ausente",
-        "elenco_insuficiente",
+        "elenco_vacio",
         "precio_periodo",
         "marca_duplicada",
         "enlaces_alegra",

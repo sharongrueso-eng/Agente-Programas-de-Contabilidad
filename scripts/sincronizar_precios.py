@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import re
 import sys
 from datetime import date
@@ -26,7 +27,14 @@ RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ))
 
 FICHAS = RAIZ / "datos" / "herramientas"
-DIRECTORIO = RAIZ / "vigia" / "directorio-precios.csv"
+# En el contenedor los registros del vigía viven en el volumen (VIGIA_RAIZ=/data/vigia); en local,
+# al lado del repositorio. Sin esto, la corrida sincronizaría contra un CSV que no es el que el
+# vigía acaba de escribir.
+DIRECTORIO = (
+    Path(os.environ["VIGIA_RAIZ"]) / "directorio-precios.csv"
+    if os.environ.get("VIGIA_RAIZ")
+    else RAIZ / "vigia" / "directorio-precios.csv"
+)
 
 # «17900/mes · 161100 facturado/año» → mensual 17900, anual facturado 161100.
 PRECIO = re.compile(

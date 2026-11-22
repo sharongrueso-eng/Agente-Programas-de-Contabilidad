@@ -178,6 +178,14 @@ def correr_vigias() -> int:
         print(f"sin vigías: no se pudo cargar el paquete (¿falta el despliegue?) · {error}")
         return 0
 
+    try:
+        from scripts.sincronizar_precios import aplicar as sincronizar_precios
+    except ImportError:
+        try:
+            from sincronizar_precios import aplicar as sincronizar_precios  # el script como módulo suelto
+        except ImportError:
+            sincronizar_precios = None  # type: ignore[assignment]
+
     paises = [p.strip().upper() for p in os.environ.get("PDC_PAISES", "CO,MX,CR,DO").split(",") if p.strip()]
     resumen = []
     for pais in paises:
@@ -195,6 +203,23 @@ def correr_vigias() -> int:
         novedades = [r for r in fuentes if r.get("resultado") not in ("ok", "sin_cambios", None)]
         print(f"vigía {pais}: {len(fuentes)} fuentes · {len(novedades)} con novedad · modo {salida.get('modo')}")
         resumen.append(f"{pais}: {len(novedades)} novedades" if novedades else f"{pais}: sin cambios")
+
+        # El vigía deja el directorio; las fichas del agente son lo que lee el redactor. Sin este
+        # paso, el precio nuevo se queda en el CSV y el post sigue citando el viejo.
+        if sincronizar_precios is None:
+            print(f"fichas {pais}: sin puente de sincronización")
+            continue
+        try:
+            informe = sincronizar_precios(pais, escribir=True)
+            cambiadas = [n for n, d in informe.items() if d.get("cambios")]
+            print(
+                f"fichas {pais}: {len(informe)} sincronizadas"
+                + (f" · {len(cambiadas)} con precios nuevos" if cambiadas else " · sin cambios")
+            )
+            resumen.append(f"{pais}: {len(cambiadas)} fichas al día")
+        except Exception as error:  # sin puente, la corrida editorial avisará precio_sin_fecha
+            print(f"fichas {pais}: no se pudo sincronizar · {type(error).__name__}: {error}")
+            resumen.append(f"{pais}: fichas sin sincronizar")
     if resumen:
         print("vigías · " + " · ".join(resumen))
     return 0

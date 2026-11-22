@@ -24,7 +24,7 @@ class SeveridadTests(unittest.TestCase):
             set(BLOQUEANTES),
             {
                 "alegra_ausente",
-                "elenco_insuficiente",
+                "elenco_vacio",
                 "precio_periodo",
                 "marca_duplicada",
                 "enlaces_alegra",

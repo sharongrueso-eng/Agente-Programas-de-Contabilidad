@@ -897,6 +897,26 @@ def main() -> int:
                 "y una reseña no puede nombrar el elenco que el tema exige"
             )
 
+    # Un reencauche conserva el formato de la viva, pero no su cupo: si la página ya compara más
+    # marcas de las que el formato admite, la pieza se marca sola por nombrar lo que la URL ya
+    # publicaba. El 39 de México comparaba cinco marcas y salió como «resena», que admite dos.
+    from orchestrator.formato import FORMATOS_DE_UN_SOLO_NOMBRE
+
+    if str(getattr(brief.opportunity, "action", "") or "").startswith("refresh") and brief.format in FORMATOS_DE_UN_SOLO_NOMBRE:
+        from orchestrator.formato import PRESUPUESTOS
+        from orchestrator.reglas_editoriales import marcas as _marcas
+
+        vivas = _marcas(locals().get("html_vivo") or "", brief.country)
+        vivas.discard("alegra")
+        cupo = PRESUPUESTOS[brief.format].elenco_max
+        if len(vivas) > cupo:
+            antes = brief.format
+            brief = _replace(brief, format="comparativa")
+            print(
+                f"formato : comparativa — la viva ya compara {len(vivas)} marcas "
+                f"({', '.join(sorted(vivas))}) y «{antes}» admite {cupo}"
+            )
+
     if args.entorno == "prod":
         from orchestrator.mcp_client import ClienteMcp
 
