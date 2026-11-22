@@ -43,12 +43,41 @@ def _fichas(pais: str) -> dict[str, dict]:
     return datos
 
 
+def precio_numero(valor: object) -> float:
+    """El número de un precio publicado, con la coma o el punto que use el país.
+
+    México escribe «$1,299» (coma de miles, punto decimal) y Colombia «$108.990» (punto de
+    miles). Sin esto, `float("1,299")` revienta y la pieza no se presenta.
+    """
+    limpio = re.sub(r"[^\d.,]", "", str(valor or ""))
+    if not limpio:
+        return 0.0
+    if "," in limpio and "." in limpio:
+        # el último separador que aparece es el decimal
+        decimal = "," if limpio.rfind(",") > limpio.rfind(".") else "."
+        miles = "." if decimal == "," else ","
+        limpio = limpio.replace(miles, "").replace(decimal, ".")
+    elif "," in limpio:
+        partes = limpio.split(",")
+        # «1,299» son miles; «1,29» es decimal
+        limpio = limpio.replace(",", "") if len(partes[-1]) == 3 else limpio.replace(",", ".")
+    elif "." in limpio:
+        partes = limpio.split(".")
+        # «108.990» son miles (grupos de tres); «974.25» es decimal
+        if len(partes) > 1 and all(len(p) == 3 for p in partes[1:]):
+            limpio = "".join(partes)
+    try:
+        return float(limpio)
+    except ValueError:
+        return 0.0
+
+
 def _plan_publicado(ficha: dict) -> str:
     precios = [p for p in (ficha.get("plans") or []) if p.get("publicado", True)]
     mensuales = [p for p in precios if str(p.get("billing", "")).lower() == "mensual"] or precios
     if not mensuales:
         return "Precio no publicado"
-    elegido = min(mensuales, key=lambda p: float(str(p.get("price") or "0").replace(".", "") or 0))
+    elegido = min(mensuales, key=lambda p: precio_numero(p.get("price")))
     if not elegido.get("price"):
         return "Precio no publicado"
     return (
