@@ -1,0 +1,524 @@
+{
+ "generado": "2026-11-18",
+ "pais": "DO",
+ "vigia": "dom",
+ "fuentes": [
+  {
+   "id": "alegra-do",
+   "marca": "Alegra",
+   "pais": "DO",
+   "prioridad": 1,
+   "cifras_publicadas": 98,
+   "limites_publicados": 8,
+   "posts": [
+    134,
+    138,
+    177,
+    181,
+    1834,
+    1840,
+    1848,
+    2172,
+    2390,
+    2419,
+    2461,
+    2462,
+    2472,
+    2479,
+    2510,
+    2552,
+    2610,
+    2743,
+    3114,
+    3163,
+    3234,
+    3242,
+    3262,
+    3277,
+    3745,
+    3748,
+    4214,
+    4433,
+    4740
+   ],
+   "productos_citados": [
+    "Contabilidad",
+    "ERP",
+    "Facturación",
+    "Nómina",
+    "POS"
+   ],
+   "monedas_en_posts": {
+    "USD": 71,
+    "$": 8,
+    "DOP": 27
+   },
+   "url": "https://www.alegra.com/rdominicana/precios/",
+   "url_candidatas": [
+    "https://www.alegra.com/rdominicana/precios/"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "USD",
+   "senales_pais": [
+    "DGII",
+    "ITBIS",
+    "e-CF",
+    "TSS",
+    "606",
+    "607",
+    "USD"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "[data-period-group]",
+    "estado": "verificada_t4"
+   },
+   "estado": "verificado",
+   "pista_receta": "105 cifras. Los precios se escriben con el codigo delante (USD 26.10 / mes), no con simbolo $: el patron de precios tiene que aceptar el codigo de moneda o la lectura sale vacia.",
+   "nota": "Cobra en USD aunque el pais sea RD. La moneda no identifica el pais: lo hacen DGII, ITBIS y e-CF. Mensual con pago anual (USD 26.10) y facturado anual (USD 313.20).",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/dom/lecturas/2026-11-18/alegra-do.html",
+   "grupos": {
+    "64023234": "Facturación electrónica",
+    "ceb4903a": "POS",
+    "947cee51": "ERP",
+    "c14fca1c": "POS",
+    "997b348a": "Nómina electrónica",
+    "0b76b8f7": "Contabilidad"
+   }
+  },
+  {
+   "id": "cloudya-do",
+   "marca": "CloudYa",
+   "pais": "DO",
+   "prioridad": 2,
+   "cifras_publicadas": 14,
+   "limites_publicados": 0,
+   "posts": [
+    1834,
+    1852,
+    4740
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 12,
+    "DOP": 2
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://www.cloudya.do/rd/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "adm-cloud-do",
+   "marca": "Adm Cloud",
+   "pais": "DO",
+   "prioridad": 2,
+   "cifras_publicadas": 11,
+   "limites_publicados": 0,
+   "posts": [
+    138,
+    3106
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 11
+   },
+   "url": "https://www.admcloud.net/planes",
+   "url_candidatas": [
+    "https://www.admcloud.net/planes",
+    "https://www.admcloud.net/",
+    "https://www2.admcloud.net/home_es"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "axentra-do",
+   "marca": "Axentra",
+   "pais": "DO",
+   "prioridad": 2,
+   "cifras_publicadas": 10,
+   "limites_publicados": 0,
+   "posts": [
+    4779
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 5,
+    "DOP": 5
+   },
+   "url": "https://axentra.com.do/precios",
+   "url_candidatas": [
+    "https://axentra.com.do/precios",
+    "https://axentra.com.do/",
+    "https://axentra.com.do/producto/ecf",
+    "https://axentra.com.do/producto/pos"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "dgmax-do",
+   "marca": "DGMax",
+   "pais": "DO",
+   "prioridad": 2,
+   "cifras_publicadas": 7,
+   "limites_publicados": 0,
+   "posts": [
+    4433
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 5,
+    "DOP": 2
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://dgmax.do/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "cashflow-do",
+   "marca": "Cashflow",
+   "pais": "DO",
+   "prioridad": 2,
+   "cifras_publicadas": 6,
+   "limites_publicados": 1,
+   "posts": [
+    2419,
+    4286
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "DOP": 1,
+    "USD": 3,
+    "$": 3
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://cashflow.do/es/nomina",
+    "https://cashflow.do/es"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "facturador-dgii-do",
+   "marca": "Facturador DGII",
+   "pais": "DO",
+   "prioridad": 2,
+   "cifras_publicadas": 7,
+   "limites_publicados": 0,
+   "posts": [
+    3748
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "DOP": 6,
+    "$": 1
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "sistema-monica-do",
+   "marca": "Sistema Monica",
+   "pais": "DO",
+   "prioridad": 3,
+   "cifras_publicadas": 5,
+   "limites_publicados": 0,
+   "posts": [
+    1834,
+    1848,
+    2610
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "DOP": 5
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://sistemamonica.com/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "madison-do",
+   "marca": "Madison",
+   "pais": "DO",
+   "prioridad": 3,
+   "cifras_publicadas": 4,
+   "limites_publicados": 0,
+   "posts": [
+    134
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 4
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "odoo-do",
+   "marca": "Odoo",
+   "pais": "DO",
+   "prioridad": 3,
+   "cifras_publicadas": 3,
+   "limites_publicados": 0,
+   "posts": [
+    177
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 3
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://www.odoo.com/es_ES"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "quickbooks-do",
+   "marca": "QuickBooks",
+   "pais": "DO",
+   "prioridad": 3,
+   "cifras_publicadas": 2,
+   "limites_publicados": 0,
+   "posts": [
+    2610,
+    4214
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 1,
+    "DOP": 1
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://quickbooks.intuit.com/global/es/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "softland-do",
+   "marca": "Softland",
+   "pais": "DO",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    4433
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "sap-business-one-do",
+   "marca": "SAP Business One",
+   "pais": "DO",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    4214
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 1
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://www.sap.com/latinamerica/products/erp/business-one.html"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "citrus-erp-do",
+   "marca": "Citrus",
+   "pais": "DO",
+   "prioridad": 1,
+   "url": "https://www.citrus.com.do/productos/erp#precios",
+   "url_candidatas": [
+    "https://www.citrus.com.do/productos/erp"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "DOP",
+   "senales_pais": [
+    "DGII",
+    "ITBIS",
+    "e-CF",
+    "República Dominicana"
+   ],
+   "modo_lectura": "ruta_pais",
+   "pista_receta": "Pestañas «Pago Anual −10 %» y «Pago Mensual»: el precio cambia al cambiar de pestaña.",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/dom/lecturas/2026-11-19/citrus-erp.png",
+   "estado": "verificado",
+   "nota": "Precio por producto en su propia página, detrás del ancla #precios."
+  },
+  {
+   "id": "citrus-crm-do",
+   "marca": "Citrus",
+   "pais": "DO",
+   "prioridad": 1,
+   "url": "https://www.citrus.com.do/productos/crm#precios",
+   "url_candidatas": [
+    "https://www.citrus.com.do/productos/crm"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "DOP",
+   "senales_pais": [
+    "DGII",
+    "ITBIS",
+    "e-CF",
+    "República Dominicana"
+   ],
+   "modo_lectura": "ruta_pais",
+   "pista_receta": "Pestañas «Pago Anual −10 %» y «Pago Mensual»: el precio cambia al cambiar de pestaña.",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/dom/lecturas/2026-11-19/citrus-crm.png",
+   "estado": "verificado",
+   "nota": "Precio por producto en su propia página, detrás del ancla #precios."
+  },
+  {
+   "id": "citrus-ptcomercios-do",
+   "marca": "Citrus",
+   "pais": "DO",
+   "prioridad": 1,
+   "url": "https://www.citrus.com.do/productos/ptcomercios#precios",
+   "url_candidatas": [
+    "https://www.citrus.com.do/productos/ptcomercios"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "DOP",
+   "senales_pais": [
+    "DGII",
+    "ITBIS",
+    "e-CF",
+    "República Dominicana"
+   ],
+   "modo_lectura": "ruta_pais",
+   "pista_receta": "Pestañas «Pago Anual −10 %» y «Pago Mensual»: el precio cambia al cambiar de pestaña.",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/dom/lecturas/2026-11-19/citrus-ptcomercios.png",
+   "estado": "verificado",
+   "nota": "Precio por producto en su propia página, detrás del ancla #precios."
+  },
+  {
+   "id": "citrus-ptcamareros-do",
+   "marca": "Citrus",
+   "pais": "DO",
+   "prioridad": 1,
+   "url": "https://www.citrus.com.do/productos/ptcamareros#precios",
+   "url_candidatas": [
+    "https://www.citrus.com.do/productos/ptcamareros"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "DOP",
+   "senales_pais": [
+    "DGII",
+    "ITBIS",
+    "e-CF",
+    "República Dominicana"
+   ],
+   "modo_lectura": "ruta_pais",
+   "pista_receta": "Pestañas «Pago Anual −10 %» y «Pago Mensual»: el precio cambia al cambiar de pestaña.",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/dom/lecturas/2026-11-19/citrus-ptcamareros.png",
+   "estado": "verificado",
+   "nota": "Precio por producto en su propia página, detrás del ancla #precios."
+  },
+  {
+   "id": "citrus-ecf-do",
+   "marca": "Citrus",
+   "pais": "DO",
+   "prioridad": 1,
+   "url": "https://www.citrus.com.do/productos/ecf#precios",
+   "url_candidatas": [
+    "https://www.citrus.com.do/productos/ecf"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "DOP",
+   "senales_pais": [
+    "DGII",
+    "ITBIS",
+    "e-CF"
+   ],
+   "modo_lectura": "ruta_pais",
+   "pista_receta": "Planes por volumen de transacciones.",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/dom/lecturas/2026-11-19/citrus-ecf.png",
+   "estado": "verificado",
+   "nota": "Cobra por volumen de transacciones."
+  }
+ ]
+}

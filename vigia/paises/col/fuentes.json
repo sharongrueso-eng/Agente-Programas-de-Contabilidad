@@ -1,0 +1,607 @@
+{
+ "generado": "2026-11-18",
+ "pais": "CO",
+ "vigia": "col",
+ "fuentes": [
+  {
+   "id": "alegra-co",
+   "marca": "Alegra",
+   "pais": "CO",
+   "prioridad": 1,
+   "cifras_publicadas": 234,
+   "limites_publicados": 24,
+   "posts": [
+    23,
+    24,
+    31,
+    34,
+    35,
+    62,
+    88,
+    109,
+    139,
+    153,
+    1438,
+    1510,
+    1881,
+    1951,
+    1957,
+    2033,
+    2078,
+    2458,
+    2668,
+    2915,
+    3199,
+    3211,
+    3322,
+    3464,
+    3728,
+    3931,
+    4240,
+    4273,
+    4646
+   ],
+   "productos_citados": [
+    "Contabilidad",
+    "Facturación",
+    "Nómina",
+    "POS"
+   ],
+   "monedas_en_posts": {
+    "COP": 60,
+    "$": 194,
+    "USD": 4
+   },
+   "url": "https://www.alegra.com/colombia/precios/",
+   "url_candidatas": [
+    "https://www.alegra.com/colombia/precios/"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "IVA",
+    "factura electrónica",
+    "Colombia",
+    "COP"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "[id^='pricing-cards-']",
+    "precios_detectados": 106,
+    "muestra": [
+     "$ 17.900",
+     "$ 13.425",
+     "$161.100",
+     "$53.700",
+     "$ 10.000.000"
+    ]
+   },
+   "estado": "verificado",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/alegra-co.html",
+   "nota": "La URL trae el país (/colombia/precios/). Receta ya usada por el agente: contenedores [id^='pricing-cards-']."
+  },
+  {
+   "id": "siigo-co",
+   "marca": "Siigo",
+   "pais": "CO",
+   "prioridad": 1,
+   "cifras_publicadas": 124,
+   "limites_publicados": 0,
+   "posts": [
+    23,
+    24,
+    34,
+    109,
+    139,
+    1438,
+    1881,
+    1951,
+    1957,
+    2423,
+    2458,
+    2668,
+    3199,
+    3322,
+    3464,
+    3728,
+    3931,
+    4240
+   ],
+   "productos_citados": [
+    "Contador",
+    "Nube",
+    "POS",
+    "Pyme"
+   ],
+   "monedas_en_posts": {
+    "COP": 29,
+    "$": 93,
+    "USD": 2
+   },
+   "url": "https://www.siigo.com/precios-siigo/",
+   "url_candidatas": [
+    "https://www.siigo.com/precios-siigo/",
+    "https://www.siigo.com/",
+    "https://www.siigo.com/sistema-pos/",
+    "https://www.siigo.com/nomina-electronica/"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "NIT",
+    "UVT",
+    "PILA",
+    "IVA",
+    "documento soporte",
+    "factura electrónica",
+    "Colombia"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "article[class*='card_base']",
+    "plan": "h3",
+    "producto_por_prefijo": {
+     "Facturación": "Facturación electrónica",
+     "Sistema POS": "POS",
+     "Nómina": "Nómina electrónica"
+    }
+   },
+   "estado": "verificado",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/siigo-co.html",
+   "nota": "Dominio exclusivo de Colombia (siigo.com), sin selector de país ni de moneda: se comporta como una ruta de país. Los -25 %/-30 % son el descuento por pago anual («descuento aplica para cliente nuevo»), no campaña.",
+   "pista_receta": "Receta generica: contenedor + plan (+ plan_filtro). Verificada contra el HTML del 18-nov."
+  },
+  {
+   "id": "vendty-co",
+   "marca": "Vendty",
+   "pais": "CO",
+   "prioridad": 1,
+   "cifras_publicadas": 43,
+   "limites_publicados": 0,
+   "posts": [
+    35,
+    109,
+    3199,
+    3931
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "COP": 6,
+    "$": 36,
+    "USD": 1
+   },
+   "url": "https://www.vendty.com/precios",
+   "url_candidatas": [
+    "https://www.vendty.com/precios",
+    "https://vendty.com/"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "RUT",
+    "IVA",
+    "Colombia"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "div.dmRespCol",
+    "plan": "h2, h3",
+    "producto": "POS",
+    "plan_excluir": [
+     "Popular",
+     "Recomendado"
+    ]
+   },
+   "estado": "verificado",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/vendty-co.html",
+   "nota": "La raíz es Colombia; /cr/ y /mx/ son los otros países. Sin selector de moneda.",
+   "pista_receta": "Receta generica: contenedor + plan (+ plan_filtro). Verificada contra el HTML del 18-nov."
+  },
+  {
+   "id": "loggro-co",
+   "marca": "Loggro",
+   "pais": "CO",
+   "prioridad": 1,
+   "cifras_publicadas": 25,
+   "limites_publicados": 1,
+   "posts": [
+    1438,
+    2458,
+    3199,
+    3322,
+    3464,
+    3728,
+    3931,
+    4273
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "COP": 9,
+    "$": 17
+   },
+   "url": "https://loggro.com/pymes/planes/",
+   "url_candidatas": [
+    "https://loggro.com/pymes/planes/",
+    "https://loggro.com/",
+    "https://loggro.com/pymes/software-contable/",
+    "https://loggro.com/restobar/"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "NIT",
+    "PILA",
+    "IVA",
+    "Régimen Simple",
+    "documento soporte",
+    "factura electrónica",
+    "Colombia"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "div[class*='cardMain'], div[class*='cardRegular']",
+    "plan": "h2",
+    "plan_filtro": "POS",
+    "producto": "POS"
+   },
+   "estado": "verificado",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/col/lecturas/2026-11-18/loggro-co.html",
+   "nota": "Dominio exclusivo de Colombia (loggro.com), sin selector de país ni moneda.",
+   "pista_receta": "Receta generica: contenedor + plan (+ plan_filtro). Verificada contra el HTML del 18-nov."
+  },
+  {
+   "id": "gridpos-co",
+   "marca": "GridPOS",
+   "pais": "CO",
+   "prioridad": 2,
+   "cifras_publicadas": 8,
+   "limites_publicados": 0,
+   "posts": [
+    3931,
+    4646
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 3,
+    "COP": 5
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://www.gridpos.co/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "helisa-co",
+   "marca": "Helisa",
+   "pais": "CO",
+   "prioridad": 2,
+   "cifras_publicadas": 7,
+   "limites_publicados": 0,
+   "posts": [
+    1438,
+    2033
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "COP": 1,
+    "$": 6
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://helisa.com/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "sap-business-one-co",
+   "marca": "SAP Business One",
+   "pais": "CO",
+   "prioridad": 2,
+   "cifras_publicadas": 7,
+   "limites_publicados": 0,
+   "posts": [
+    31
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "COP": 7
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://www.sap.com/latinamerica/cmp/dg/corporate-brand/index.html"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "fudo-co",
+   "marca": "Fudo",
+   "pais": "CO",
+   "prioridad": 2,
+   "cifras_publicadas": 6,
+   "limites_publicados": 0,
+   "posts": [
+    3931
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "COP": 1,
+    "$": 5
+   },
+   "url": "https://fu.do/es-co/precios/",
+   "url_candidatas": [
+    "https://fu.do/es-co/precios/",
+    "https://fu.do/es-co/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "treinta-co",
+   "marca": "Treinta",
+   "pais": "CO",
+   "prioridad": 2,
+   "cifras_publicadas": 6,
+   "limites_publicados": 0,
+   "posts": [
+    3931
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "COP": 6
+   },
+   "url": "https://treinta.co/planes-y-precios",
+   "url_candidatas": [
+    "https://treinta.co/planes-y-precios",
+    "https://treinta.co/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "cuenti-co",
+   "marca": "Cuenti",
+   "pais": "CO",
+   "prioridad": 3,
+   "cifras_publicadas": 4,
+   "limites_publicados": 0,
+   "posts": [
+    23,
+    3728,
+    4273
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "COP": 2,
+    "$": 2
+   },
+   "url": "https://cuenti.com/planes/",
+   "url_candidatas": [
+    "https://cuenti.com/planes/",
+    "https://cuenti.com/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "soft-restaurant-co",
+   "marca": "Soft Restaurant",
+   "pais": "CO",
+   "prioridad": 3,
+   "cifras_publicadas": 2,
+   "limites_publicados": 0,
+   "posts": [
+    3931
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 2
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://softrestaurant.com.co/",
+    "https://www.softrestaurant.com.co/soluciones/soft-restaurant-10"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "aliaddo-co",
+   "marca": "Aliaddo",
+   "pais": "CO",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    4273
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "COP": 1
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://aliaddo.com/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "holded-co",
+   "marca": "Holded",
+   "pais": "CO",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    2668
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 1
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "quipu-co",
+   "marca": "Quipu",
+   "pais": "CO",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    2668
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 1
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "world-office-cloud-co",
+   "marca": "World Office",
+   "pais": "CO",
+   "prioridad": 1,
+   "cifras_publicadas": 3,
+   "limites_publicados": 0,
+   "posts": [
+    3132
+   ],
+   "productos_citados": [
+    "World Office Cloud"
+   ],
+   "monedas_en_posts": {
+    "COP": 1
+   },
+   "url": "https://worldoffice.com.co/planesCloud.html",
+   "url_candidatas": [
+    "https://worldoffice.com.co/planesCloud.html"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "NIT",
+    "IVA",
+    "Colombia"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "h2, h3",
+    "plan_excluir": [
+     "Compara",
+     "Todo claro",
+     "Qué pagas"
+    ],
+    "nota": "El nombre del plan está en el h2; los precios van debajo en el mismo bloque."
+   },
+   "pista_receta": "Tarjetas con el nombre del plan en h2 y dos cifras: precio de lista y precio con −32 %.",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/col/lecturas/2026-11-19/world-office-cloud.html",
+   "estado": "verificado",
+   "nota": "La tabla no está en la home: vive en esta página aparte, detrás de la pestaña «precios»."
+  },
+  {
+   "id": "world-office-escritorio-co",
+   "marca": "World Office",
+   "pais": "CO",
+   "prioridad": 1,
+   "cifras_publicadas": 4,
+   "limites_publicados": 0,
+   "posts": [
+    3132
+   ],
+   "productos_citados": [
+    "World Office Escritorio"
+   ],
+   "monedas_en_posts": {
+    "COP": 1
+   },
+   "url": "https://worldoffice.com.co/planesEscritorio.html",
+   "url_candidatas": [
+    "https://worldoffice.com.co/planesEscritorio.html"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "COP",
+   "senales_pais": [
+    "DIAN",
+    "NIT",
+    "IVA",
+    "Colombia"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "h2, h3",
+    "plan_excluir": [
+     "Compara",
+     "Todo claro",
+     "Qué pagas"
+    ],
+    "nota": "El nombre del plan está en el h2; los precios van debajo en el mismo bloque."
+   },
+   "pista_receta": "Tarjetas con el nombre del plan en h2 y dos cifras: precio de lista y precio con −32 %.",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/col/lecturas/2026-11-19/world-office-escritorio.html",
+   "estado": "verificado",
+   "nota": "Segunda página de precios (escritorio). La home no tiene tabla."
+  }
+ ]
+}

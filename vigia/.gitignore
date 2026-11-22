@@ -1,0 +1,7 @@
+# descargas y salidas intermedias del inventario
+inventario/raw/
+inventario/salida/
+__pycache__/
+
+# candado de una corrida en curso: no se versiona
+paises/*/corrida.lock

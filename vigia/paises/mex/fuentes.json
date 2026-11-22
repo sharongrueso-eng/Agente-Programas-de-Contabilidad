@@ -1,0 +1,602 @@
+{
+ "generado": "2026-11-18",
+ "pais": "MX",
+ "vigia": "mex",
+ "fuentes": [
+  {
+   "id": "alegra-mx",
+   "marca": "Alegra",
+   "pais": "MX",
+   "prioridad": 1,
+   "cifras_publicadas": 103,
+   "limites_publicados": 0,
+   "posts": [
+    30,
+    39,
+    44,
+    61,
+    100,
+    1595,
+    1646,
+    1974,
+    2104,
+    2214,
+    2752,
+    3281,
+    3294,
+    3379,
+    3470,
+    3526,
+    3544,
+    3733,
+    3853,
+    3859,
+    3930,
+    4295
+   ],
+   "productos_citados": [
+    "Contabilidad",
+    "ERP",
+    "Facturación",
+    "POS"
+   ],
+   "monedas_en_posts": {
+    "MXN": 55,
+    "$": 48
+   },
+   "url": "https://www.alegra.com/mexico/precios/",
+   "url_candidatas": [
+    "https://www.alegra.com/mexico/precios/"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "MXN",
+   "senales_pais": [
+    "SAT",
+    "CFDI",
+    "RFC",
+    "RESICO",
+    "MXN",
+    "México"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "[data-period-group]",
+    "estado": "verificada_t4"
+   },
+   "estado": "verificado",
+   "pista_receta": "147 cifras. La receta de Colombia ([id^='pricing-cards-']) NO sirve aqui: en MX pricing-cards-af/-pos/-contabilidad/-contador son anclas de menu, no ids de contenedor. Fijar receta en T4.",
+   "nota": "Muestra mensual con pago anual (186,75) y facturado anual (2,241): el -25 % es el descuento por pago anual, no campana.",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/alegra-mx.html",
+   "grupos": {
+    "ef124701": "Facturación electrónica",
+    "766f8845": "POS",
+    "bc6ffdae": "ERP",
+    "ad918f07": "POS",
+    "6ec10359": "Soy Contador"
+   }
+  },
+  {
+   "id": "facturama-mx",
+   "marca": "Facturama",
+   "pais": "MX",
+   "prioridad": 1,
+   "cifras_publicadas": 42,
+   "limites_publicados": 0,
+   "posts": [
+    1595,
+    3281,
+    3294,
+    5186
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 32,
+    "$": 10
+   },
+   "url": "https://facturama.mx/planes-facturacion",
+   "url_candidatas": [
+    "https://facturama.mx/planes-facturacion",
+    "https://facturama.mx/"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "MXN",
+   "senales_pais": [
+    "CFDI",
+    "RFC",
+    "Carta Porte",
+    "MXN",
+    "México"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": null,
+   "estado": "verificado",
+   "pista_receta": "4 cifras: paquetes prepago de folios y timbres (55, 110, 165 y 1,650 MXN). No es una tabla de planes mensuales; si el registro necesita suscripciones, hay que buscar esa pagina aparte.",
+   "nota": "Los precios son por paquete prepago, no por mes: el registro debe guardarlos como pago unico por documento.",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/facturama-mx.html"
+  },
+  {
+   "id": "miskuentas-mx",
+   "marca": "Miskuentas",
+   "pais": "MX",
+   "prioridad": 1,
+   "cifras_publicadas": 24,
+   "limites_publicados": 0,
+   "posts": [
+    2157,
+    3544,
+    3859
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 20,
+    "$": 4
+   },
+   "url": "https://www.miskuentas.com/contabilidad/",
+   "url_candidatas": [
+    "https://www.miskuentas.com/tienda/",
+    "https://www.miskuentas.com/store/",
+    "https://www.miskuentas.com/",
+    "https://www.miskuentas.com/contabilidad-electronica/"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "MXN",
+   "senales_pais": [
+    "SAT",
+    "CFDI",
+    "RFC",
+    "DIOT",
+    "MXN",
+    "México"
+   ],
+   "modo_lectura": "ruta_pais",
+   "receta": {
+    "contenedor": "div.fac-plan-card__prices",
+    "elementos": 6,
+    "precios_cubiertos": 18,
+    "estado": "propuesta_t4"
+   },
+   "estado": "verificado",
+   "pista_receta": "div.fac-plan-card__prices cubre 18 de 19 cifras en 6 tarjetas de plan (propuesta para T4).",
+   "nota": "La tienda (/tienda/) redirige a la home; la pagina con precios vive en /contabilidad/. Planes de 600 al mes y 6,000 anual.",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/miskuentas-mx.html"
+  },
+  {
+   "id": "eleventa-mx",
+   "marca": "Eleventa",
+   "pais": "MX",
+   "prioridad": 2,
+   "cifras_publicadas": 18,
+   "limites_publicados": 0,
+   "posts": [
+    1982,
+    4295
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 13,
+    "$": 5
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://eleventa.com/punto-de-venta/facturacion-electronica"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "aspel-mx",
+   "marca": "Aspel",
+   "pais": "MX",
+   "prioridad": 1,
+   "cifras_publicadas": 8,
+   "limites_publicados": 0,
+   "posts": [
+    30,
+    3470,
+    3526,
+    3930
+   ],
+   "productos_citados": [
+    "COI",
+    "SAE"
+   ],
+   "monedas_en_posts": {
+    "$": 3,
+    "MXN": 3,
+    "USD": 2
+   },
+   "url": "https://www.siigo.com/mx/",
+   "url_candidatas": [
+    "https://www.aspel.com.mx/"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "MXN",
+   "senales_pais": [
+    "SAT",
+    "CFDI",
+    "RFC",
+    "DIOT",
+    "Carta Porte",
+    "complemento de pago",
+    "timbrado",
+    "México"
+   ],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "verificado",
+   "pista_receta": "Clases CSS-module con hash (div._container_*): receta en T4, sin depender del hash.",
+   "nota": "aspel.com.mx REDIRIGE a siigo.com/mx/: Aspel es de Siigo. Decidir si esta fuente se fusiona con una fuente Siigo de MEX (hoy no existe) o queda como Siigo con la clave de Aspel. 9 cifras en MXN (292,84 a 9.826). Sus precios están en la fila Siigo del directorio.",
+   "fecha_consulta": "2026-11-18",
+   "evidencia": "paises/mex/lecturas/2026-11-18/aspel-mx.html",
+   "marca_actual": "Siigo"
+  },
+  {
+   "id": "odoo-mx",
+   "marca": "Odoo",
+   "pais": "MX",
+   "prioridad": 2,
+   "cifras_publicadas": 7,
+   "limites_publicados": 0,
+   "posts": [
+    1982,
+    3853
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1,
+    "MXN": 2,
+    "USD": 4
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://apps.odoo.com/apps/modules/9.0/custom_invoice/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "siigo-mx",
+   "marca": "Siigo",
+   "pais": "MX",
+   "prioridad": 2,
+   "cifras_publicadas": 6,
+   "limites_publicados": 0,
+   "posts": [
+    30
+   ],
+   "productos_citados": [
+    "Nube"
+   ],
+   "monedas_en_posts": {
+    "$": 4,
+    "USD": 2
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "bind-erp-mx",
+   "marca": "Bind ERP",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 5,
+   "limites_publicados": 0,
+   "posts": [
+    44,
+    61,
+    3544
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 4,
+    "$": 1
+   },
+   "url": "https://bind.com.mx/precios",
+   "url_candidatas": [
+    "https://bind.com.mx/precios",
+    "https://bind.com.mx/",
+    "https://bind.com.mx/recursos/mejor-erp-para-mexico"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "factura-com-mx",
+   "marca": "Factura.com",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 5,
+   "limites_publicados": 0,
+   "posts": [
+    3281,
+    3294
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 3,
+    "MXN": 2
+   },
+   "url": null,
+   "url_candidatas": [
+    "http://factura.com"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "shopify-mx",
+   "marca": "Shopify",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 4,
+   "limites_publicados": 0,
+   "posts": [
+    5186
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 2,
+    "USD": 2
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "contadigital-mx",
+   "marca": "Contadigital",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 3,
+   "limites_publicados": 0,
+   "posts": [
+    2104
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 3
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "square-mx",
+   "marca": "Square",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 3,
+   "limites_publicados": 0,
+   "posts": [
+    3526,
+    3930
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1,
+    "MXN": 2
+   },
+   "url": "https://squareup.com/us/es/pricing",
+   "url_candidatas": [
+    "https://squareup.com/us/es/pricing",
+    "https://squareup.com/mx/es"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "poster-mx",
+   "marca": "Poster",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 3,
+   "limites_publicados": 0,
+   "posts": [
+    3470,
+    3526
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 1,
+    "$": 2
+   },
+   "url": "https://joinposter.mx/precios",
+   "url_candidatas": [
+    "https://joinposter.mx/precios"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "quickbooks-mx",
+   "marca": "QuickBooks",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 2,
+   "limites_publicados": 0,
+   "posts": [
+    116,
+    3544
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1,
+    "MXN": 1
+   },
+   "url": "https://quickbooks.intuit.com/global/pricing/",
+   "url_candidatas": [
+    "https://quickbooks.intuit.com/global/pricing/",
+    "https://quickbooks.intuit.com/mx/",
+    "https://quickbooks.intuit.com/mx/aviso-importante/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "konta-mx",
+   "marca": "Konta",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 2,
+   "limites_publicados": 0,
+   "posts": [
+    2618
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 2
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "clip-mx",
+   "marca": "Clip",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    3930
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "facturabot-mx",
+   "marca": "Facturabot",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    3297
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "MXN": 1
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://facturabot.com/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "dfacture-mx",
+   "marca": "DFacture",
+   "pais": "MX",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    2214
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "contpaqi-mx",
+   "marca": "CONTPAQi",
+   "pais": "MX",
+   "prioridad": 1,
+   "url": "https://www.contpaqi.com/listadeprecios",
+   "url_candidatas": [
+    "https://www.contpaqi.com/listadeprecios",
+    "https://www.contpaqi.com/hubfs/Listas%20de%20precios/Lista_de_Precios_Sistemas_CONTPAQi_2026.pdf"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "MXN",
+   "senales_pais": [
+    "SAT",
+    "CFDI",
+    "RFC",
+    "México"
+   ],
+   "modo_lectura": "documento",
+   "pista_receta": "La lista de precios es un PDF enlazado en la página; los nombres de producto van en imágenes.",
+   "fecha_consulta": "2026-11-19",
+   "evidencia": "paises/mex/lecturas/2026-11-19/contpaqi-lista-de-precios-2026.pdf",
+   "estado": "verificado",
+   "nota": "Los precios no están en el HTML: viven en el PDF Lista_de_Precios_Sistemas_CONTPAQi_2026.pdf."
+  }
+ ]
+}

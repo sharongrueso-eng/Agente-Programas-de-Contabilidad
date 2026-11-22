@@ -1,0 +1,134 @@
+{
+ "pais": "DOM",
+ "generado": "2026-11-19",
+ "criterio": "marcas citadas en los posts del país sin ningún precio en el registro; cada reencauche que toque una de estas piezas debe dar de alta la marca",
+ "marcas": [
+  {
+   "marca": "CloudYa",
+   "pais": "DOM",
+   "posts": 3,
+   "cifras": 14,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/cloudya-sistema-contable/",
+    "https://programascontabilidad.com/analisis-de-herramientas/sistema-contable-monica/",
+    "https://programascontabilidad.com/comparativas-de-software/cloudya-vs-alegra-republica-dominicana/"
+   ]
+  },
+  {
+   "marca": "Sistema Monica",
+   "pais": "DOM",
+   "posts": 3,
+   "cifras": 5,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/mygestion-sistema-contable/",
+    "https://programascontabilidad.com/analisis-de-herramientas/sistema-contable-monica/",
+    "https://programascontabilidad.com/comparativas-de-software/programa-de-contabilidad-para-pymes/"
+   ]
+  },
+  {
+   "marca": "Adm Cloud",
+   "pais": "DOM",
+   "posts": 2,
+   "cifras": 11,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/adm-cloud/",
+    "https://programascontabilidad.com/comparativas-de-software/adm-cloud-software-comparacion/"
+   ]
+  },
+  {
+   "marca": "Cashflow",
+   "pais": "DOM",
+   "posts": 2,
+   "cifras": 7,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/cashflow-en-rd/",
+    "https://programascontabilidad.com/uncategorized/cashflow-nomina/"
+   ]
+  },
+  {
+   "marca": "QuickBooks",
+   "pais": "DOM",
+   "posts": 2,
+   "cifras": 2,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/contabilidad/itbis-republica-dominicana/",
+    "https://programascontabilidad.com/comparativas-de-software/programa-de-contabilidad-para-pymes/"
+   ]
+  },
+  {
+   "marca": "Axentra",
+   "pais": "DOM",
+   "posts": 1,
+   "cifras": 10,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/axentra-review/"
+   ]
+  },
+  {
+   "marca": "DGMax",
+   "pais": "DOM",
+   "posts": 1,
+   "cifras": 7,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/dgmax-resena-software/"
+   ]
+  },
+  {
+   "marca": "Facturador DGII",
+   "pais": "DOM",
+   "posts": 1,
+   "cifras": 7,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/cuanto-cuesta-un-sistema-de-facturacion-electronica/"
+   ]
+  },
+  {
+   "marca": "Madison",
+   "pais": "DOM",
+   "posts": 1,
+   "cifras": 4,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/software-madison-alegra-comparativa/"
+   ]
+  },
+  {
+   "marca": "Odoo",
+   "pais": "DOM",
+   "posts": 1,
+   "cifras": 3,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/alegra-vs-odoo/"
+   ]
+  },
+  {
+   "marca": "Softland",
+   "pais": "DOM",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/dgmax-resena-software/"
+   ]
+  },
+  {
+   "marca": "SAP Business One",
+   "pais": "DOM",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/contabilidad/itbis-republica-dominicana/"
+   ]
+  }
+ ]
+}

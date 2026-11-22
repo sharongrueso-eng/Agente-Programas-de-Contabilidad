@@ -1,0 +1,920 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Factura Electrónica</title><base href="https://www.facturaelectronica.cr/Planes"></head><body>
+
+    <!-- Google Tag Manager (noscript) -->
+    
+    <!-- End Google Tag Manager (noscript) -->
+
+    <form method="post" action="./Planes" id="Formulario">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="Km9L7SdPG41LMxnY9Axzp41t1TT8k08VUVAbeqHUfoGBSJnhSTSnAsjYytlnnpGPo4gVJ9kJb6vQxdW7IBBTT1XOvZWJdjDBhtBkzGqG9Xg=">
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="2D3030EE">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="mrwfraM2kk05uRJI8HAZFc3QNwGvh7tSjFzyPUWfPmi3bm5Jf84vdHuOR2DPm6gxZDtMz9VZqBbEe329quykK2+HQPLeVjDHLXaY76Gv5WpfbDz79wr5EyKKhAUOXpmw1MuEJTHkpqAoOpbiHigqcW6a1nSSvWHQaVNf8T/3RMaxGEKdQ7X/VKsTUGKXEsLuLAzWTGHUHgkt3vvdpjcnxXglnfpCEdkAC+QVJhv0zkhyt4DTGjCGFspVl4J4MblM4aOnbgH87bZ5DOfdu2j2K8R0KMu1cKcbb31QEMtr/OfkuCaE4CGBBRd7EZp0lz62pSVtPZkrDxSZVLpl+i1H2uYXoZUOi5PkBv9715vsRtjX+fXXSzNSaqSRxOEP8WQzy9ghJ0qmcGFgy2kI1HZxyPsBAGQwdFLYRLUw+M8a1CCkSfudZYkicyiHXEr5x9c6y4qvnQppWh1aWBk3x22g5SZYzxSs5E/l+XVyIa+7utALjDdFnw9E2JUzg2XxzcTv1xUOUROE5LWdBIfDPpEmXkJJBAxbxktTdxn6t2giPJRWCOTyozrvKT1eb4nxKq5pqs7LJpigXnsRHbsHsU7vXDugmE+u/xj56Sg2k0OvlqNrB+ABvMrgokFpklmzCfwf">
+</div>
+        
+
+        <div class="body">
+            <div class="se-pre-con"></div>
+            <header id="header" class="header-narrow header-semi-transparent" data-plugin-options="{&quot;stickyEnabled&quot;: true, &quot;stickyEnableOnBoxed&quot;: true, &quot;stickyEnableOnMobile&quot;: true, &quot;stickyStartAt&quot;: 1, &quot;stickySetTop&quot;: &quot;1&quot;}">
+                <div class="header-body shadow-sm">
+                    <div class="header-container container-fluid p-4 pt-0 pb-0 ">
+                        <div class="header-row">
+                            <div class="header-column">
+                                <div class="header-logo">
+                                    <a class="h-100">
+                                        <img src="img/LogoFEConectividad.webp">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="header-column">
+                            </div>
+
+                            <div class="header-column header-menu">
+                                <div class="header-row">
+                                    <div class="header-nav header-nav-stripe">
+                                        <button type="button" class="btn header-btn-collapse-nav" data-bs-toggle="collapse" data-bs-target=".header-nav-main">
+                                            <i class="fa fa-bars"></i>
+                                        </button>
+                                        <div class="header-nav-main header-nav-main-square header-nav-main-effect-2 header-nav-main-sub-effect-1 collapse">
+                                            <nav class="navbar-expand-lg">
+                                                <ul class="d-inline nav nav-pills" id="mainNav">
+                                                    <li class="mt-2 botonMenu">
+                                                        <a id="btnHome" href="javascript:__doPostBack('ctl00$btnHome','')">Inicio</a>
+                                                    </li>
+                                                    <li class="mt-2 botonMenu">
+                                                        <a id="btnActivarCuentas" href="javascript:__doPostBack('ctl00$btnActivarCuentas','')">Activar Cuenta</a>
+                                                    </li>
+                                                    <li class="mt-2 botonMenu">
+                                                        <a id="btnPlanes" href="javascript:__doPostBack('ctl00$btnPlanes','')">Planes</a>
+                                                    </li>
+                                                    <li class="nav-item dropdown dropdown-full-color dropdown-primary mt-2 botonMenu">
+                                                        <a href="#">Servicios
+                                                            <span class="navbar-toggler-icon">
+                                                                <i class="fa fa-caret-down"></i>
+                                                            </span>
+
+                                                        </a>
+                                                        <ul class="dropdown-menu mt-2">
+                                                            <li>
+                                                                <a id="btnPagarFacturacion" href="javascript:__doPostBack('ctl00$btnPagarFacturacion','')">Pagar Facturación</a>
+                                                            </li>
+                                                            <li>
+                                                                <a id="btnRecargarPrepago" href="javascript:__doPostBack('ctl00$btnRecargarPrepago','')">Recargar Prepago</a>
+                                                            </li>
+                                                            
+                                                        </ul>
+                                                    </li>
+                                                    <li class="dropdown dropdown-full-color dropdown-primary mt-2 botonMenu">
+                                                        <a href="#">Herramientas
+                                                            <span class="navbar-toggler-icon">
+                                                                <i class="fa fa-caret-down"></i>
+                                                             </span>
+                                                        </a>
+                                                        <ul class="dropdown-menu mt-2">
+                                                            <li><a href="https://www.qdeclaro.com/" target="_blank">Q-Declaro</a></li>
+                                                            <li><a href="https://www.facturaelectronica.cr/DeTiqueteAFactura/" target="_blank">De Tiquete a Factura</a></li>
+                                                            <li class="btn-cc">
+                                                                <a href="https://www.facturaelectronica.cr/ClubDeContadores" target="_blank" class="btn-cc">Club de Contadores</a>
+                                                            </li>
+                                                            
+                                                        </ul>
+                                                    </li>
+                                                    <li class="mt-2 botonMenu">
+                                                        <a id="btnConectividad" href="javascript:__doPostBack('ctl00$btnConectividad','')">GTI Conectividad</a>
+                                                    </li>
+                                                    <li class="dropdown dropdown-full-color dropdown-primary mt-2 botonMenu">
+                                                        <a href="#">Acerca de
+                                                              <span class="navbar-toggler-icon">
+                                                                <i class="fa fa-caret-down"></i>
+                                                             </span>
+                                                        </a>
+                                                        <ul class="dropdown-menu mt-2">
+                                                            <li>
+                                                                <a id="btnNuestroServicio" href="javascript:__doPostBack('ctl00$btnNuestroServicio','')">Nuestro servicio</a>
+                                                            </li>
+                                                            <li>
+                                                                <a id="btnLeyesyReglamentos" href="javascript:__doPostBack('ctl00$btnLeyesyReglamentos','')">Leyes y reglamentos</a>
+                                                            </li>
+                                                            <li>
+                                                                <a id="btnProgramaL" href="javascript:__doPostBack('ctl00$btnProgramaL','')">Programa L</a>
+                                                            </li>
+                                                            <li>
+                                                                <a id="btnPoliticaAdmin" href="javascript:__doPostBack('ctl00$btnPoliticaAdmin','')">Pólitica Administración de Datos</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="mt-2 botonMenu">
+                                                        <a id="btnContacto" href="javascript:__doPostBack('ctl00$btnContacto','')">Contacto</a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <div class="social">
+            <ul>
+                <li><a href="https://wa.me/50662223030" class="icon-whatsapp-bar" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                <li><a href="mailto:infofacturaelectronica@gticr.com" target="_blank" class="icon-mail-bar"><i class="fa fa-envelope" style="font-size: 20px"></i></a></li>
+                <li><a href="tel:21054400" class="icon-phone-bar"><i class="fa fa-phone" style="font-size: 20px"></i></a></li>
+                <li><a href="https://www.facebook.com/GTIFacturaElectronica" target="_blank" class="icon-facebook-bar"><i class="fab fa-facebook"></i></a></li>
+               
+                <li><a href="https://www.instagram.com/gticr/" target="_blank" class="icon-instagram"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://cr.linkedin.com/company/factura-electronica-gti" target="_blank" class="icon-linkedin"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="https://www.tiktok.com/@gtifacturaelectronica" target="_blank" class="icon-tikTok"></a></li>
+
+                <li><a href="https://open.spotify.com/episode/6GXD688aiaS63nV7KDmX3N?si=fc06ee2cc30f462d" target="_blank" class="icon-spotify-bar"><i class="fab fa-spotify"></i></a></li>
+                <li><a href="https://www.youtube.com/@gti-gestionentecnologiaein6254" target="_blank" class="icon-youtube-bar"><i class="fab fa-youtube"></i></a></li>
+                
+                </ul>
+        </div>
+
+        <div class="main">
+            
+
+    
+
+    
+    <div class="headerPlanes">
+
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 p-0">
+                    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="hover" data-bs-wrap="true">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img id="ContentPage_imgHeaderPlanes" src="img/pagina-planes/banner1Planes.webp">
+                            </div>
+                            <div class="carousel-item active">
+                                <img id="ContentPage_imgHeaderPlanes1" src="img/pagina-planes/banner2Planes.webp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        
+
+        
+        <div class="row" style="background-color: #ffffff; padding-top: 10px; padding-bottom: 20px;">
+
+            <div class="offset-lg-2 col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center" style="margin-top: 15px; margin-bottom: 15px;">
+                <h1 class="mb-sm mt-xs" style="margin-bottom: 0"><strong style="font-size: 40px"><span style="color: #84a62d">RECARGUE </span><span style="color: #203051">SUS </span><span style="color: #e74a1d">PLANES </span><span style="color: #203051">GTI</span></strong></h1>
+            </div>
+
+            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-center" style="text-align: center; display: flex !important; justify-content: center !important; align-items: center !important;">
+                <button onclick="__doPostBack('ctl00$ContentPage$btnRecargarPlan','')" id="ContentPage_btnRecargarPlan" type="button" class="btn btn-block w-100" style="text-align: center; background-color: #203051; color: #ffffff; font-size: 20px">IR AHORA</button>
+            </div>
+        </div>
+        
+
+        <div class="container">
+            <div class="row" id="planesTab">
+
+                <div class="title-page-GTI col-12 col-center text-center">
+                    <h1 class="mb-sm mt-xs"><strong>Planes para todos</strong></h1>
+                </div>
+
+                <div class="col-center text-center">
+                    <ul class="row nav nav-tabs d-flex bd-highlight contenedorTabPlanes" role="tablist">
+                        <li class="nav-item col-lg-3 col-md-12  mb-md" role="presentation">
+                            <a class="btn btn-block btn-default active show p-3 w-100 bd-highlightcentrarContenidoConGrid" href="#tab-fisicos" data-bs-toggle="tab" aria-selected="true" role="tab">
+                               <b class="centrarContenidoConGrid">    
+                                Persona Física
+                                </b>
+                            </a>
+                        </li>
+                        <li class="nav-item col-lg-3 col-md-12 mb-md" role="presentation">
+                            <a class="btn btn-block btn-default p-3 w-100 bd-highlight" href="#tab-juridicos" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">
+                                 <b class="centrarContenidoConGrid">
+                                    Persona Jurídica
+                                </b>
+                            </a>
+                        </li>
+                        <li class="nav-item col-lg-3 col-md-12 mb-md" role="presentation">
+                            <a class="btn btn-block btn-default p-3 w-100 bd-highlight" href="#tab-rea" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">
+                                <b class="centrarContenidoConGrid">
+                                Régimen Especial Agropecuario
+                                </b>
+                            </a>
+                        </li>
+                        <li class="nav-item col-lg-3 col-md-12 mb-md" role="presentation">
+                            <a class="btn btn-block btn-default p-3 w-100 bd-highlight" href="#tab-rs" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">
+                                <b class="centrarContenidoConGrid">
+                                    Régimen Simplificado
+                                </b>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="tab-contentF">
+            <div class="tab-content container">
+
+                <div id="tab-fisicos" class="tab-pane active show" role="tabpanel">
+                    <div class="fisicaTab col-md-12">
+                        <h4 class="text-center">Si su actividad económica la realiza de forma individual</h4>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="planPre col-md-6">
+
+                                <div class="contenedorPlanes">
+                                    <div class="title-planes">
+                                        <h5 class="text-center"><strong>Prepago</strong></h5>
+                                        <div class="contenedorTexto centrarVertical">
+                                            <h6 class="text-center">Diseñados para <strong>personas físicas</strong> que utilizan cantidades pequeñas de documentos electrónicos</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="contenedorPlan col-center">
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago único ANUAL</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pt-1 pb-1">
+                                                    <h1>24 documentos</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 13.920 + I.V.A</h2>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 centrarContenido">
+                                                    <a id="ContentPage_btnFPrepago24" class="btn" href="javascript:__doPostBack('ctl00$ContentPage$btnFPrepago24','')">Comprar ahora</a>
+                                                </div>
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>
+                                                        Todos los planes prepago tienen vigencia de 1 año a partir de la activación de la cuenta, pasado este tiempo, los documentos sin uso expiran.
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago único ANUAL</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pt-1 pb-1">
+                                                    <h1>60 documentos</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 20.880 + I.V.A</h2>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 centrarContenido">
+                                                    <a id="ContentPage_btnFPrepago60" class="btn" href="javascript:__doPostBack('ctl00$ContentPage$btnFPrepago60','')">Comprar ahora</a>
+                                                </div>
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>
+                                                        Todos los planes prepago tienen vigencia de 1 año a partir de la activación de la cuenta, pasado este tiempo, los documentos sin uso expiran.
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago único ANUAL</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pt-1 pb-1">
+                                                    <h1>150 documentos</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 29.250 + I.V.A</h2>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 centrarContenido">
+                                                    <a id="ContentPage_btnFPrepago150" class="btn" href="javascript:__doPostBack('ctl00$ContentPage$btnFPrepago150','')">Comprar ahora</a>
+                                                </div>
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>
+                                                        Todos los planes prepago tienen vigencia de 1 año a partir de la activación de la cuenta, pasado este tiempo, los documentos sin uso expiran.
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="planPos col-md-6">
+                                <div class="contenedorPlanes">
+                                    <div class="title-planes">
+                                        <h5 class="text-center"><strong>Pospago</strong></h5>
+                                        <div class="contenedorTexto">
+                                            <h4>(Documentos Ilimitados) </h4>
+                                            <h6 class="text-center">Este plan es para personas que facturan con <strong>cédula física</strong> con una necesidad de gran volumen de documentos electrónicos mensuales o anuales</h6>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="contenedorPlan col-center">
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago MENSUAL</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pt-1 pb-1">
+                                                    <h1>Ilimitados</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 7.650 + I.V.A</h2>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 centrarContenido">
+                                                    <a id="ContentPage_btnIlimitadoMensual" class="btn" href="javascript:__doPostBack('ctl00$ContentPage$btnIlimitadoMensual','')">Comprar ahora</a>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>Aplica únicamente para contribuyente con cédula física</p>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago único ANUAL</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pt-1 pb-1">
+                                                    <h1>Ilimitados</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 76.500 + I.V.A</h2>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 centrarContenido">
+                                                    <a id="ContentPage_btnIlimitadoAnual" class="btn btn-lg btn-primary btn-gti-orange-border btn-gti-little" href="javascript:__doPostBack('ctl00$ContentPage$btnIlimitadoAnual','')">Comprar ahora</a>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>Aplica únicamente para contribuyente con cédula física</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div id="tab-juridicos" class="tab-pane" role="tabpanel">
+
+                    <div class="juridicaTab col-md-12">
+                        <h4 class="text-center">Si su actividad económica la realiza mediante una empresa</h4>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="planPre col-md-6">
+
+                                <div class="contenedorPlanes">
+                                    <div class="title-planes">
+                                        <h5 class="text-center"><strong>Prepago</strong></h5>
+                                        <div class="contenedorTexto centrarVertical">
+                                            <h6 class="text-center">Diseñados para <strong>empresas</strong> que utilizan
+                                    cantidades pequeñas de documentos electrónicos</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="contenedorPlan col-center">
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago único ANUAL</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pt-1 pb-1">
+                                                    <h1>24 documentos</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 13.920 + I.V.A</h2>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 centrarContenido">
+                                                    <a id="ContentPage_btnJPrepago24" class="btn" href="javascript:__doPostBack('ctl00$ContentPage$btnJPrepago24','')">Comprar ahora</a>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>
+                                                        Todos los planes prepago tienen vigencia de 1 año a partir de la activación de la cuenta, pasado este tiempo, los documentos sin uso expiran.
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago único ANUAL</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pt-1 pb-1">
+                                                    <h1>60 documentos</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 20.880 + I.V.A</h2>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 centrarContenido">
+                                                    <a id="ContentPage_btnJPrepago60" class="btn" href="javascript:__doPostBack('ctl00$ContentPage$btnJPrepago60','')">Comprar ahora</a>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>
+                                                        Todos los planes prepago tienen vigencia de 1 año a partir de la activación de la cuenta, pasado este tiempo, los documentos sin uso expiran.
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago único ANUAL</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pt-1 pb-1">
+                                                    <h1>150 documentos</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 29.250 + I.V.A</h2>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 centrarContenido">
+                                                    <a id="ContentPage_btnJPrepago150" class="btn" href="javascript:__doPostBack('ctl00$ContentPage$btnJPrepago150','')">Comprar ahora</a>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>
+                                                        Todos los planes prepago tienen vigencia de 1 año a partir de la activación de la cuenta, pasado este tiempo, los documentos sin uso expiran.
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="planPos col-md-6">
+
+                                <div class="contenedorPlanes">
+                                    <div class="title-planes">
+                                        <h5 class="text-center"><strong>Pospago</strong></h5>
+                                        <div class="contenedorTexto centrarVertical">
+                                            <h6 class="text-center">Creado para empresas con una necesidad abundante de documentos mensuales o anuales</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="contenedorPlan col-center">
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago MENSUAL</h5>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 pr-0 pl-0 centrarContenido ">
+                                                    <h6>Pague solo 10 meses si compra el plan anual</h6>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pt-1 pb-1">
+                                                    <h1>250 documentos</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 12.750 + I.V.A</h2>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 centrarContenido">
+                                                    <a id="ContentPage_btnPlanB" class="btn" href="javascript:__doPostBack('ctl00$ContentPage$btnPlanB','')">Comprar ahora</a>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>Planes tienen vigencia de 1 mes a partir de la activación de la cuenta, los documentos no son acumulativos.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago MENSUAL</h5>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 pr-0 pl-0 centrarContenido">
+                                                    <h6>Pague solo 10 meses si compra el plan anual</h6>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pt-1 pb-1">
+                                                    <h1>500 documentos</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 25.500 + I.V.A</h2>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 centrarContenido">
+                                                    <a id="ContentPage_btnPlanC" class="btn" href="javascript:__doPostBack('ctl00$ContentPage$btnPlanC','')">Comprar ahora</a>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>Planes tienen vigencia de 1 mes a partir de la activación de la cuenta, los documentos no son acumulativos.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12 pr-0 pl-0 centrarVertical">
+                                                    <h5 class="tituloPlan">Pago MENSUAL</h5>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 pr-0 pl-0 centrarContenido">
+                                                    <h6>Pague solo 10 meses si compra el plan anual</h6>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pt-1 pb-1 pr-0 pl-0">
+                                                    <h1>1000 documentos</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 41.000 + I.V.A</h2>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12 pr-0 pl-0 centrarContenido">
+                                                    <a id="ContentPage_btnPlanD" class="btn" href="javascript:__doPostBack('ctl00$ContentPage$btnPlanD','')">Comprar ahora</a>
+
+                                                </div>
+
+                                                <div class="col-12 pr-0 pl-0">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12 pr-0 pl-0">
+                                                    <p>Planes tienen vigencia de 1 mes a partir de la activación de la cuenta, los documentos no son acumulativos.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div id="tab-rea" class="tab-pane" role="tabpanel">
+                    <div class="juridicaTab col-md-12">
+                        <h4 class="text-center">Todas las personas físicas y jurídicas dedicadas a labores agropecuarias y pesqueras</h4>
+                    </div>
+
+                    <div class="container">
+                        <div class="row col-center">
+
+                            <div class="planPos col-center col-lg-6 col-md-12">
+
+                                <div class="contenedorPlanes ">
+                                    <div class="title-planes pb-5">
+                                        <h5 class="text-center"><strong>Pospago</strong></h5>
+                                        <h4>(Labores agropecuarias y pesqueras)</h4>
+                                        <h6 class="text-center">Creado para personas físicas y jurídicas</h6>
+                                    </div>
+
+                                    <div class="contenedorPlan col-center">
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago MENSUAL</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                </div>
+
+                                                <div class="col-lg-12 col-md-12 pt-1 pb-1">
+                                                    <h1>75 Documentos + Qdeclaro Contable</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 3.505 + I.V.A</h2>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>Planes tienen vigencia de 1 mes a partir de la activación de la cuenta, los documentos no son acumulativos.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="container planesPlan">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <h5 class="tituloPlan">Pago MENSUAL</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                </div>
+
+                                                <div class="col-12 pt-1 pb-1">
+                                                    <h1>300 Documentos + Qdeclaro Contable</h1>
+                                                    <h2><strong class="iconoColones">₡</strong> 5.841 + I.V.A</h2>
+                                                </div>
+
+                                                <div class="col-12 centrarContenido">
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>Planes tienen vigencia de 1 mes a partir de la activación de la cuenta, los documentos no son acumulativos.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h3>Para realizar la compra de su planes REA comuníquese al: 2105 4400</h3>
+                                            </div>
+                                            <div class="col-3">
+
+                                            </div>
+                                            <div class=" col-6 col centrarContenido">
+                                                <a href="tel:21054400" class="btn">Llamar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            
+                <div id="tab-rs" class="tab-pane" role="tabpanel">
+                       <div class="juridicaTab col-md-12">
+                           <h4 class="text-center">Planes especiales para negocios dentro del Régimen Simplificado </h4>
+                       </div>
+
+                     <div class="container">
+     <div class="row col-center">
+
+         <div class="planPos col-center col-lg-6 col-md-12">
+
+             <div class="contenedorPlanes ">
+                 <div class="title-planes pb-5">
+                     <h5 class="text-center"><strong>Pospago</strong></h5>
+                     <h4>(Plan especial para Régimen Simplificado)</h4>
+                     <h6 class="text-center">Creado para personas físicas y jurídicas</h6>
+                 </div>
+
+                 <div class="contenedorPlan col-center">
+
+                     <div class="container planesPlan">
+                         <div class="row">
+                             <div class="col-lg-6 col-md-12">
+                                 <h5 class="tituloPlan">Pago MENSUAL</h5>
+                             </div>
+                             <div class="col-6">
+                             </div>
+
+                             <div class="col-lg-12 col-md-12 pt-1 pb-1">
+                                 <h1>Documentos ilimitados</h1>
+                                 <h2><strong class="iconoColones">₡</strong> 2.700 + I.V.A</h2>
+                             </div>
+
+                             <div class="col-12">
+                                 <hr>
+                             </div>
+                             <div class="col-12">
+                                 <p>Planes tienen vigencia de 1 mes a partir de la activación de la cuenta, los documentos no son acumulativos.</p>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+
+                 <div class="container">
+                     <div class="row">
+                         <div class="col-12">
+                             <h3>Para realizar la compra de su planes RS <br>comuníquese al: 2105 4400</h3>
+                         </div>
+                         <div class="col-3">
+
+                         </div>
+                         <div class=" col-6 col centrarContenido">
+                             <a href="tel:21054400" class="btn">Llamar</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+         </div>
+     </div>
+ </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <div class="cotizarPlan">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-3 offset-md-3">
+                    <h1 class="text-left">Tenemos planes a su medida</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button onclick="__doPostBack('ctl00$ContentPage$btnCotizar','')" id="ContentPage_btnCotizar" style="padding-right: 40px; padding-left: 40px;" type="button" class="btn btn-primary btn-gti-orange btn-gti-middle btn-gti-page">¡BUSQUE AQUÍ!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+
+
+        </div>
+
+        <footer class="footerSection short">
+            <div class="container">
+                 <div class="row footerInfo">
+
+                     <div class="footerRedes col-md-3 col-lg-3 col-xs-12" style="text-align: center">
+                             <div class="footerLogo">
+                                <a href="#" class="logo">
+                                <img src="img/footer/logo-footer.webp" style="height:85px;width:157px;">
+                                </a>
+                            </div>
+                        </div>
+
+
+                     <div class="col-md-6 col-lg-6 col-xs-12">
+
+                          <div class="footerFactura">
+                            <h5 style="color: white;">¡Comuníquese con nosotros!</h5>
+                            <h5 style=" margin-bottom: 0">Oficinas Centrales</h5>
+                            <ul class="footer_ul_amrc">
+                                <li>
+                                    <a>
+                                        <i class="fas fa-map-marker-alt" style="color: #84a62d"></i>
+                                        Dirección: San José, Curridabat, José María Zeledón,
+                                        50m este de la farmacia Valenciano.
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="far fa-clock" style="color: #84a62d"></i>
+                                        Horario: Lun a Vier: 8:00 a.m.-5:00 p.m.
+                                    </a>
+                                </li>
+                            </ul>
+                            <h5 style="margin-top: 20px; margin-bottom: 0">Oficinas comerciales</h5>
+                            <ul class="footer_ul_amrc">
+                                <li>
+                                    <a>
+                                        <i class="fas fa-map-marker-alt" style="color: #84a62d"></i>
+                                        Dirección: San José, Curridabat, José María Zeledón, 100 metros al sur de la Farmacia Valenciano, frente al Skatepark.
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <i class="far fa-clock" style="color: #84a62d"></i>
+                                        Horario: Lun a Vier: 8:00 a.m.-5:00 p.m.
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="tel:+50621054400">
+                                        <i class="glyphicon glyphicon-earphone" style="color: #84a62d"></i>
+                                        Teléfono: (506)2105-4400
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://wa.me/50662223030">
+                                        <i class="fab fa-whatsapp" style="color: #84a62d"></i>
+                                        WhatsApp: 6222-3030
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:ventas@gticr.com">
+                                        <i class="far fa-envelope" style="color: #84a62d"></i>
+                                        Ventas: ventas@gticr.com
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:infofacturaelectronica@gticr.com">
+                                        <i class="far fa-envelope" style="color: #84a62d"></i>
+                                        Servicio al Cliente: infofacturaelectronica@gticr.com
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        </div>
+
+                   
+                        <div class="footerRedes col-md-3 col-lg-3 col-xs-12" style="text-align: center">
+                            <a id="btnLogoProgramaL" href="javascript:__doPostBack('ctl00$btnLogoProgramaL','')"><img id="imglogoL" src="img/L.webp" style="width:109px;"></a>
+                            <p style="color: white; margin-bottom: 0; font-size: 12px">EMPRESA CERTIFICADA EN EL PROGRAMA</p>
+                            <h5 style="margin-bottom: 50px; font-size: 13px">ENTIDAD LIBRE DE EFECTIVO</h5>
+                            <img id="imgLogoGS1Master" src="img/logoGS1-2025.09.02.15.10.webp" style="width:150px;margin-bottom: 10px">
+                        </div>
+                   
+          
+
+                 </div>
+            </div>
+            <div class="footerCopyright container">
+                <div class="center col-sm-12 col-md-12 text-center mb-3 mb-md-0">
+                    <p style="color: white">Gestión en Tecnología e Información GTI | © 2026. Todos los derechos reservados.</p>
+                    <p style="color: white">Primera Aplicación Web Certificada por GS1 Costa Rica</p>
+                </div>
+            </div>
+        </footer>
+
+    </form>
+
+    
+
+
+
+
+
+
+<div id="AgentAppContainer" class="needsclick" style="display: block;"></div></body></html>

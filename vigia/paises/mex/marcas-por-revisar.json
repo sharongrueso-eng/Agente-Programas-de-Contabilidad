@@ -1,0 +1,123 @@
+{
+ "pais": "MEX",
+ "generado": "2026-11-19",
+ "criterio": "marcas citadas en los posts del país sin ningún precio en el registro; cada reencauche que toque una de estas piezas debe dar de alta la marca",
+ "marcas": [
+  {
+   "marca": "Bind ERP",
+   "pais": "MEX",
+   "posts": 3,
+   "cifras": 5,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/bind-erp-alegra/",
+    "https://programascontabilidad.com/comparativas-de-software/gestionix-alternativas/",
+    "https://programascontabilidad.com/comparativas-de-software/software-de-contabilidad-mexico/"
+   ]
+  },
+  {
+   "marca": "Eleventa",
+   "pais": "MEX",
+   "posts": 2,
+   "cifras": 18,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/alegra-vs-eleventa-mexico/",
+    "https://programascontabilidad.com/comparativas-de-software/cual-es-el-mejor-sistema-punto-de-venta-y-facturacion-en-mexico/"
+   ]
+  },
+  {
+   "marca": "Odoo",
+   "pais": "MEX",
+   "posts": 2,
+   "cifras": 7,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/alegra-vs-odoo-mexico/",
+    "https://programascontabilidad.com/comparativas-de-software/cual-es-el-mejor-sistema-punto-de-venta-y-facturacion-en-mexico/"
+   ]
+  },
+  {
+   "marca": "Square",
+   "pais": "MEX",
+   "posts": 2,
+   "cifras": 3,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/contabilidad/pos-sin-integracion-contable-en-mexico/",
+    "https://programascontabilidad.com/comparativas-de-software/pos/sistemas-pos-mexico/"
+   ]
+  },
+  {
+   "marca": "QuickBooks",
+   "pais": "MEX",
+   "posts": 2,
+   "cifras": 2,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/quickbooks-mexico/",
+    "https://programascontabilidad.com/comparativas-de-software/software-de-contabilidad-mexico/"
+   ]
+  },
+  {
+   "marca": "Shopify",
+   "pais": "MEX",
+   "posts": 1,
+   "cifras": 4,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/facturama-precios-funciones-mexico/"
+   ]
+  },
+  {
+   "marca": "Contadigital",
+   "pais": "MEX",
+   "posts": 1,
+   "cifras": 3,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/analisis-de-herramientas/contadigital-solucion-contabilidad/"
+   ]
+  },
+  {
+   "marca": "Konta",
+   "pais": "MEX",
+   "posts": 1,
+   "cifras": 2,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/konta-que-es-como-funciona/"
+   ]
+  },
+  {
+   "marca": "Clip",
+   "pais": "MEX",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/contabilidad/pos-sin-integracion-contable-en-mexico/"
+   ]
+  },
+  {
+   "marca": "Facturabot",
+   "pais": "MEX",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/programa-para-hacer-facturas-cri/"
+   ]
+  },
+  {
+   "marca": "DFacture",
+   "pais": "MEX",
+   "posts": 1,
+   "cifras": 1,
+   "productos": [],
+   "urls": [
+    "https://programascontabilidad.com/comparativas-de-software/dfacture-alegra-facturas/"
+   ]
+  }
+ ]
+}
