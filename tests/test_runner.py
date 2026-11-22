@@ -14,8 +14,8 @@ from orchestrator.runner import Deps, LockHeld, RunLock, RunState, run
 
 KEYWORD = "opiniones de siigo"
 ALEGRA = (
-    "https://www.alegra.com/co/contabilidad/?utm_source=programascontabilidad"
-    "&utm_medium=referencia&utm_campaign=co"
+    "https://www.alegra.com/colombia/precios/?utm_source=programascontabilidad"
+        "&utm_medium=referencia&utm_campaign=col_articulo_tmd_content"
 )
 
 

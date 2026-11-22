@@ -76,8 +76,9 @@ BLOQUES: tuple[tuple[str, str], ...] = (
     ),
     (
         "fuentes",
-        "Fuentes oficiales del país, enlazadas y nombradas. Incluye el tercer enlace a Alegra con UTM "
-        "solo si el CTA no lo lleva.",
+        "Fuentes oficiales del país, enlazadas y nombradas. Incluye siempre a Alegra, nombrada y con "
+        "la dirección de su página de precios (alegra.com/{pais}/precios) escrita en texto: es la "
+        "fuente de sus cifras. El cuerpo lleva un solo enlace a Alegra, el CTA.",
     ),
     (
         "resumen",

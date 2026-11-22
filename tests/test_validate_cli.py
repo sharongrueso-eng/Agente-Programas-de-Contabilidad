@@ -26,8 +26,8 @@ BRIEF = {
 }
 
 ALEGRA = (
-    "https://www.alegra.com/co/contabilidad/?utm_source=programascontabilidad"
-    "&utm_medium=referencia&utm_campaign=co_articulo_tmd_content"
+    "https://www.alegra.com/colombia/precios/?utm_source=programascontabilidad"
+    "&utm_medium=referencia&utm_campaign=col_articulo_tmd_content"
 )
 
 

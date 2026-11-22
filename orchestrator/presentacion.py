@@ -219,14 +219,18 @@ def viñetas(html: str) -> str:
 
 
 def utm(html: str, pais: str = "CO") -> str:
-    """La UTM de la pieza lleva su país: `{pais}_articulo_tmd_content`."""
+    """La UTM de la pieza lleva la campaña de su país: `col_`, `mex_`, `cri_`, `dom_`."""
+    from .reglas_editoriales import campana as _campana
 
     def poner(m: re.Match[str]) -> str:
         url = m.group(1).replace("&amp;", "&")
         if "utm_source=" in url:
             return 'href="' + url + '"'
-        campana = f"?utm_source=programascontabilidad&utm_medium=blog&utm_campaign={pais.lower()}_articulo_tmd_content"
-        return 'href="' + url + ("&" if "?" in url else "?") + campana[1:] + '"'
+        consulta = (
+            "?utm_source=programascontabilidad&utm_medium=blog"
+            f"&utm_campaign={_campana(pais)}_articulo_tmd_content"
+        )
+        return 'href="' + url + ("&" if "?" in url else "?") + consulta[1:] + '"'
 
     return re.sub(r'href="(https://www\.alegra\.com[^"]*)"', poner, html)
 
@@ -252,11 +256,16 @@ def presentar(
     if "pc-cta" not in html:
         from .reglas_editoriales import MAX_ENLACES_ALEGRA, recortar_alegra, ruta_principal
 
-        # El CTA final es un enlace más a Alegra: el cuerpo deja sitio para que el total sea dos.
+        # El CTA final es el único enlace a Alegra del cuerpo: lo que quede antes se desenlaza.
         html = recortar_alegra(html, MAX_ENLACES_ALEGRA - 1)
         destino = url_cta or f"https://www.alegra.com{ruta_principal(pais)}precios/"
         if "utm_source=" not in destino:
-            destino += f"?utm_source=programascontabilidad&utm_medium=blog&utm_campaign={pais.lower()}_articulo_tmd_content"
+            from .reglas_editoriales import campana as _campana
+
+            destino += (
+                "?utm_source=programascontabilidad&utm_medium=blog"
+                f"&utm_campaign={_campana(pais)}_articulo_tmd_content"
+            )
         indice = html.find("<h2", html.find("Veredicto"))
         html = (html[:indice] + cta(destino) + html[indice:]) if indice != -1 else html + cta(destino)
     if "pc-firma" not in html and AVATAR_DE_LEANDRO not in html:

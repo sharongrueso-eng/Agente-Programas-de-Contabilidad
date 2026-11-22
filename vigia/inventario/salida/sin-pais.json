@@ -1,0 +1,177 @@
+{
+ "generado": "2026-11-18",
+ "nota": "Cifras de precio a las que no se les pudo reconocer el país. Asignarlas a mano o agregar la señal que falte en senales-pais.json.",
+ "sin_pais": [
+  {
+   "motivo": "sin_pais",
+   "post_id": 2848,
+   "url": "https://programascontabilidad.com/comparativas-de-software/tns-vs-alegra/",
+   "pais": null,
+   "marca_propuesta": "TNS",
+   "texto_actual": "$50 USD",
+   "contexto": "Básico | Desde $50 USD mensuales | Desde $9 USD mensuales",
+   "seccion": "¿Cuáles son los costos de cada software contable?"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 2848,
+   "url": "https://programascontabilidad.com/comparativas-de-software/tns-vs-alegra/",
+   "pais": null,
+   "marca_propuesta": "Alegra",
+   "texto_actual": "$9 USD",
+   "contexto": "Básico | Desde $50 USD mensuales | Desde $9 USD mensuales",
+   "seccion": "¿Cuáles son los costos de cada software contable?"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 2848,
+   "url": "https://programascontabilidad.com/comparativas-de-software/tns-vs-alegra/",
+   "pais": null,
+   "marca_propuesta": "TNS",
+   "texto_actual": "$100 USD",
+   "contexto": "Avanzado | Desde $100 USD mensuales | Desde $20 USD mensuales",
+   "seccion": "¿Cuáles son los costos de cada software contable?"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 2848,
+   "url": "https://programascontabilidad.com/comparativas-de-software/tns-vs-alegra/",
+   "pais": null,
+   "marca_propuesta": "Alegra",
+   "texto_actual": "$20 USD",
+   "contexto": "Avanzado | Desde $100 USD mensuales | Desde $20 USD mensuales",
+   "seccion": "¿Cuáles son los costos de cada software contable?"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 2848,
+   "url": "https://programascontabilidad.com/comparativas-de-software/tns-vs-alegra/",
+   "pais": null,
+   "marca_propuesta": "TNS",
+   "texto_actual": "$200 USD",
+   "contexto": "Enterprise | Desde $200 USD mensuales | Desde $40 USD mensuales",
+   "seccion": "¿Cuáles son los costos de cada software contable?"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 2848,
+   "url": "https://programascontabilidad.com/comparativas-de-software/tns-vs-alegra/",
+   "pais": null,
+   "marca_propuesta": "Alegra",
+   "texto_actual": "$40 USD",
+   "contexto": "Enterprise | Desde $200 USD mensuales | Desde $40 USD mensuales",
+   "seccion": "¿Cuáles son los costos de cada software contable?"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 149,
+   "url": "https://programascontabilidad.com/comparativas-de-software/sos-contador-software-comparacion-2/",
+   "pais": null,
+   "marca_propuesta": "Alegra",
+   "texto_actual": "$1990",
+   "contexto": "tiene para vos 3 paquetes, los cuales puedes cancelar de manera anual o mensual. El primero de ellos es el Plan PYMES que tiene un costo de $1990 ARS, el segundo es el Plan PRO por $2990 ARS y el último es el Plan PLUS que cuesta $3990 ARS.",
+   "seccion": "Planes"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 149,
+   "url": "https://programascontabilidad.com/comparativas-de-software/sos-contador-software-comparacion-2/",
+   "pais": null,
+   "marca_propuesta": "Alegra",
+   "texto_actual": "$2990",
+   "contexto": "des cancelar de manera anual o mensual. El primero de ellos es el Plan PYMES que tiene un costo de $1990 ARS, el segundo es el Plan PRO por $2990 ARS y el último es el Plan PLUS que cuesta $3990 ARS.",
+   "seccion": "Planes"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 149,
+   "url": "https://programascontabilidad.com/comparativas-de-software/sos-contador-software-comparacion-2/",
+   "pais": null,
+   "marca_propuesta": "Alegra",
+   "texto_actual": "$3990",
+   "contexto": "o de ellos es el Plan PYMES que tiene un costo de $1990 ARS, el segundo es el Plan PRO por $2990 ARS y el último es el Plan PLUS que cuesta $3990 ARS.",
+   "seccion": "Planes"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 192,
+   "url": "https://programascontabilidad.com/gestion-de-empresas/como-saber-si-tu-pyme-necesita-un-crm/",
+   "pais": null,
+   "marca_propuesta": null,
+   "texto_actual": "US$ 12,50",
+   "contexto": "dedicadas. Pipedrive no tiene versión gratuita , pero ofrece una prueba gratis. La versión de pago de Pipedrive está disponible a partir de US$ 12,50/mes.",
+   "seccion": "¿Cuál es el mejor CRM para pymes en Argentina?"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 104,
+   "url": "https://programascontabilidad.com/comparativas-de-software/alegra-vs-izettle/",
+   "pais": null,
+   "marca_propuesta": "Alegra",
+   "texto_actual": "$350 pesos",
+   "contexto": "Plan PYME ($350 pesos)",
+   "seccion": "Comparación de Tarifas"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 104,
+   "url": "https://programascontabilidad.com/comparativas-de-software/alegra-vs-izettle/",
+   "pais": null,
+   "marca_propuesta": "Alegra",
+   "texto_actual": "$750 pesos",
+   "contexto": "Plan PRO ($750 pesos)",
+   "seccion": "Comparación de Tarifas"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 104,
+   "url": "https://programascontabilidad.com/comparativas-de-software/alegra-vs-izettle/",
+   "pais": null,
+   "marca_propuesta": "Alegra",
+   "texto_actual": "$1200 pesos",
+   "contexto": "Plan PLUS ($1200 pesos)",
+   "seccion": "Comparación de Tarifas"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 104,
+   "url": "https://programascontabilidad.com/comparativas-de-software/alegra-vs-izettle/",
+   "pais": null,
+   "marca_propuesta": "Alegra",
+   "texto_actual": "$499 pesos",
+   "contexto": "iZettle Go Plus ($499 pesos mensuales)",
+   "seccion": "Comparación de Tarifas"
+  },
+  {
+   "motivo": "sin_pais",
+   "post_id": 104,
+   "url": "https://programascontabilidad.com/comparativas-de-software/alegra-vs-izettle/",
+   "pais": null,
+   "marca_propuesta": "Alegra",
+   "texto_actual": "$749 pesos",
+   "contexto": "De igual manera, este sistema le pide a sus clientes a comprar un lector de tarjeta por $749 pesos y pagar una tarifa adicional por cada iPad donde se use la aplicación, lo cual incrementa aún más l",
+   "seccion": "Comparación de Tarifas"
+  }
+ ],
+ "fuera_de_alcance_por_pais": {
+  "PE": 22,
+  "PA": 7,
+  "ES": 4
+ },
+ "metadato_pais_en_conflicto": {
+  "2323": {
+   "url": "https://programascontabilidad.com/comparativas-de-software/susii-alegra/",
+   "pais_meta": "CO",
+   "paises_por_senales": {
+    "PE": 18
+   }
+  },
+  "2157": {
+   "url": "https://programascontabilidad.com/analisis-de-herramientas/miskuentas-que-es-eleccion/",
+   "pais_meta": "CO",
+   "paises_por_senales": {
+    "MX": 17
+   }
+  }
+ }
+}

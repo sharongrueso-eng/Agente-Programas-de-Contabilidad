@@ -71,7 +71,7 @@ def test_el_enlace_de_alegra_de_otro_pais_se_corrige() -> None:
     html = HTML_BUENO + '<p><a href="https://www.alegra.com/colombia/precios/">Ver planes</a></p>'
     arreglado, tocados = reglas.corregir(html, pais="MX")
     assert "/mexico/" in arreglado and "/colombia/" not in arreglado
-    assert "mx_articulo_tmd_content" in arreglado
+    assert "mex_articulo_tmd_content" in arreglado
     assert tocados
 
     hallazgos = _codigos(arreglado)

@@ -53,7 +53,17 @@ def ruta_principal(pais: str) -> str:
     return elegidas[0] if elegidas else "/colombia/"
 
 UTM = "{pais}_articulo_tmd_content"
-MAX_ENLACES_ALEGRA = 2
+CAMPANAS = {"CO": "col", "MX": "mex", "CR": "cri", "DO": "dom", "PE": "per", "ES": "esp"}
+
+
+def campana(pais: str) -> str:
+    """El prefijo de campaña que va en la UTM del artículo, que no es el código ISO."""
+    return CAMPANAS.get((pais or "").strip().upper(), (pais or "").strip().lower())
+
+
+# Un solo enlace a Alegra en el cuerpo: el CTA final. La mención contextual va sin enlace y
+# Alegra queda citada en Fuentes con su URL de precios, que no es un enlace del cuerpo.
+MAX_ENLACES_ALEGRA = 1
 MIN_MARCAS_COMPARATIVA = 4
 
 INTENCIONES_CON_ELENCO = {"compare", "price", "best", "learn"}
@@ -183,12 +193,39 @@ def _graves(
     for enlace in enlaces:
         if ruta and not any(r in enlace for r in ruta):
             problemas.append(f"enlace a otra versión de país: {enlace[:90]}")
-        if UTM.format(pais=_plano(pais)) not in enlace.replace("%7B", "{"):
-            problemas.append(f"enlace sin la UTM {UTM.format(pais=_plano(pais))}: {enlace[:90]}")
+        if UTM.format(pais=campana(pais)) not in enlace.replace("%7B", "{"):
+            problemas.append(f"enlace sin la UTM {UTM.format(pais=campana(pais))}: {enlace[:90]}")
     if problemas:
         detalle = problemas[0] + (f" (+{len(problemas) - 1} más)" if len(problemas) > 1 else "")
         salida.append({"codigo": "enlaces_alegra", "pasa": False, "detalle": detalle, "grave": True})
+
+    # 5. Alegra siempre citada en Fuentes, aunque en el cuerpo se la enlace una sola vez.
+    #    Sharon: «si debe quedar siempre en la lista de fuentes». Sin la cita, la cifra de Alegra
+    #    queda sin respaldo verificable y el lector no puede comprobarla.
+    if html and re.search(r"(?is)<h2[^>]*>\s*Fuentes", html) and not alegra_en_fuentes(html):
+        salida.append(
+            {
+                "codigo": "alegra_en_fuentes",
+                "pasa": False,
+                "detalle": "Alegra no aparece en la sección de Fuentes con su URL de precios",
+                "grave": True,
+            }
+        )
     return salida
+
+
+def alegra_en_fuentes(html: str) -> bool:
+    """Alegra citada en la sección «Fuentes», con su URL de precios.
+
+    El cuerpo solo lleva un enlace a Alegra —el CTA—, pero la cifra que se publica tiene que
+    poder comprobarse: en Fuentes Alegra aparece nombrada y con la dirección de su página de
+    precios, en texto, sin que eso cuente como enlace del cuerpo.
+    """
+    seccion = re.search(r"(?is)<h2[^>]*>\s*Fuentes\s*</h2>(.*?)(?=<h2|<div[^>]*id=\"comments|$)", html or "")
+    if not seccion:
+        return False
+    bloque = seccion.group(1)
+    return bool(re.search(r"alegra", bloque, re.I) and re.search(r"alegra\.com", bloque, re.I))
 
 
 MARCAS_CONOCIDAS = (
@@ -592,7 +629,7 @@ def corregir(html: str, *, pais: str) -> tuple[str, list[str]]:
         url = coincidencia.group(1)
         if destinos and not any(r in url for r in destinos):
             url = re.sub(r"alegra\.com/[a-z\-]+/", f"alegra.com{ruta_principal(pais)}", url)
-        marca = UTM.format(pais=_plano(pais))
+        marca = UTM.format(pais=campana(pais))
         if marca not in url:
             if "utm_campaign=" in url:
                 url = re.sub(r"utm_campaign=[^&]+", f"utm_campaign={marca}", url)

@@ -1,0 +1,437 @@
+{
+ "generado": "2026-11-18",
+ "pais": "CR",
+ "vigia": "cri",
+ "fuentes": [
+  {
+   "id": "alegra-cr",
+   "marca": "Alegra",
+   "pais": "CR",
+   "prioridad": 1,
+   "cifras_publicadas": 42,
+   "limites_publicados": 0,
+   "posts": [
+    73,
+    132,
+    1249,
+    1395,
+    1472,
+    1916,
+    1927,
+    2790,
+    2812,
+    2813,
+    2839,
+    2970,
+    3297,
+    3617,
+    3742
+   ],
+   "productos_citados": [
+    "Contabilidad",
+    "ERP",
+    "Facturación",
+    "POS"
+   ],
+   "monedas_en_posts": {
+    "USD": 27,
+    "$": 15
+   },
+   "url": "https://www.alegra.com/costarica/precios/",
+   "url_candidatas": [
+    "https://www.alegra.com/costarica/precios/"
+   ],
+   "url_verificada": true,
+   "moneda_esperada": "USD",
+   "senales_pais": [],
+   "modo_lectura": "ruta_pais",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "factura-profesional-cr",
+   "marca": "Factura Profesional",
+   "pais": "CR",
+   "prioridad": 1,
+   "cifras_publicadas": 24,
+   "limites_publicados": 0,
+   "posts": [
+    1927,
+    2839,
+    3531,
+    3617
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1,
+    "USD": 23
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://www.facturaprofesional.com/",
+    "https://www.facturaprofesional.com"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "gti-cr",
+   "marca": "GTI",
+   "pais": "CR",
+   "prioridad": 1,
+   "cifras_publicadas": 20,
+   "limites_publicados": 0,
+   "posts": [
+    73,
+    1472,
+    1898,
+    2839,
+    4180
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "CRC": 19,
+    "USD": 1
+   },
+   "url": "https://www.facturaelectronica.cr/Planes",
+   "url_candidatas": [
+    "https://www.facturaelectronica.cr/Planes",
+    "https://www.facturaelectronica.cr/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "facturele-cr",
+   "marca": "Facturele",
+   "pais": "CR",
+   "prioridad": 2,
+   "cifras_publicadas": 11,
+   "limites_publicados": 0,
+   "posts": [
+    2839,
+    3742
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 10,
+    "USD": 1
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://www.facturele.com/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "softdial-cr",
+   "marca": "SoftDial",
+   "pais": "CR",
+   "prioridad": 2,
+   "cifras_publicadas": 7,
+   "limites_publicados": 0,
+   "posts": [
+    2970
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 6,
+    "CRC": 1
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://softdialcr.com/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "odoo-cr",
+   "marca": "Odoo",
+   "pais": "CR",
+   "prioridad": 3,
+   "cifras_publicadas": 5,
+   "limites_publicados": 0,
+   "posts": [
+    3617
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 5
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "facturatica-cr",
+   "marca": "FACTURATica",
+   "pais": "CR",
+   "prioridad": 3,
+   "cifras_publicadas": 4,
+   "limites_publicados": 0,
+   "posts": [
+    1472
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 4
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://facturatica.com/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "softland-cr",
+   "marca": "Softland",
+   "pais": "CR",
+   "prioridad": 3,
+   "cifras_publicadas": 3,
+   "limites_publicados": 0,
+   "posts": [
+    1249,
+    3617
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 1,
+    "$": 2
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://softland.cr/",
+    "https://softland.com/cr/productos/softland-erp/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "adm-cloud-cr",
+   "marca": "Adm Cloud",
+   "pais": "CR",
+   "prioridad": 3,
+   "cifras_publicadas": 3,
+   "limites_publicados": 0,
+   "posts": [
+    2970
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 3
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://www.admcloud.net/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "quickbooks-cr",
+   "marca": "QuickBooks",
+   "pais": "CR",
+   "prioridad": 3,
+   "cifras_publicadas": 2,
+   "limites_publicados": 0,
+   "posts": [
+    1913,
+    3742
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 2
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://quickbooks.intuit.com/global/oa/online-accounting-software-for-small-business/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "ticofactura-cr",
+   "marca": "Ticofactura",
+   "pais": "CR",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    1472
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://ticofactura.cr/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "ticopay-cr",
+   "marca": "TicoPay",
+   "pais": "CR",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    3742
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "factusol-cr",
+   "marca": "FactuSOL",
+   "pais": "CR",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    3742
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "sap-business-one-cr",
+   "marca": "SAP Business One",
+   "pais": "CR",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    3742
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "$": 1
+   },
+   "url": null,
+   "url_candidatas": [],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "facturabot-cr",
+   "marca": "Facturabot",
+   "pais": "CR",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    3297
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 1
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://facturabot.com/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  },
+  {
+   "id": "vendty-cr",
+   "marca": "Vendty",
+   "pais": "CR",
+   "prioridad": 3,
+   "cifras_publicadas": 1,
+   "limites_publicados": 0,
+   "posts": [
+    2813
+   ],
+   "productos_citados": [],
+   "monedas_en_posts": {
+    "USD": 1
+   },
+   "url": null,
+   "url_candidatas": [
+    "https://www.vendty.com/"
+   ],
+   "url_verificada": false,
+   "moneda_esperada": null,
+   "senales_pais": [],
+   "modo_lectura": "por_definir",
+   "receta": null,
+   "estado": "borrador"
+  }
+ ]
+}
