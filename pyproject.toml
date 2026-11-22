@@ -13,6 +13,8 @@ dependencies = []
 # Solo para recomprimir la portada bajo PDC_IMAGE_MAX_KB. Sin Pillow, la imagen se sube
 # tal como llega del gateway y el paso lo anota.
 image = ["pillow>=11"]
+# El vigía de precios: lee páginas con bs4/lxml y, cuando la página es una SPA, con Chromium.
+vigia = ["beautifulsoup4>=4", "lxml>=5", "playwright>=1.40"]
 
 [project.scripts]
 pdc-agent = "orchestrator.cli:main"

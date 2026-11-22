@@ -32,7 +32,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pytest "pillow>=11" "google-api-python-client>=2" "google-auth>=2" \
-            "google-analytics-data>=0.18" "pyyaml>=6"
+            "google-analytics-data>=0.18" "beautifulsoup4>=4" "lxml>=5" "pyyaml>=6"
 
       # Los dos directorios se corren por separado: hay un test_directorio.py en cada uno y
       # juntos chocan al importar (mismo nombre de módulo).
@@ -69,9 +69,10 @@ jobs:
       - name: comprobar el vigía dentro de la imagen
         run: |
           docker run --rm pdc-agent:ci python -c "
-          import vigia, playwright, os
+          import vigia, vigia.correr, playwright, bs4, lxml, os
           print('vigia', vigia.__file__)
           print('browsers', sorted(os.listdir('/ms-playwright')))
           assert 'vigia/__init__.py' in vigia.__file__
+          print('lector', vigia.correr.lector.__file__)
           assert any(b.startswith('chromium') for b in os.listdir('/ms-playwright'))
           "

@@ -28,11 +28,12 @@ COPY scripts ./scripts
 COPY vigia ./vigia
 
 # Pillow solo para recomprimir la portada: el gateway entrega ~1,3 MB y la web necesita
-# menos de 300 KB. Es la única dependencia externa del proyecto. google-analytics-data es
-# para GA4: sin ese paquete la corrida sigue, pero se queda sin las visitas de la página.
+# menos de 300 KB. google-analytics-data es para GA4: sin ese paquete la corrida sigue, pero se
+# queda sin las visitas de la página. bs4 y lxml son para el vigía: sin ellos la corrida de las
+# 05:00 muere al importar el lector (`No module named 'bs4'`), no al leer la página.
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir "pillow>=11" "google-api-python-client>=2" "google-auth>=2" \
-       "google-analytics-data>=0.18"
+       "google-analytics-data>=0.18" "beautifulsoup4>=4" "lxml>=5"
 
 # El vigía de precios lee páginas con navegador (varias son SPA y no traen precios en el HTML).
 # Chromium entra en la imagen, no se instala por corrida: descargarlo cada mañana añadiría
