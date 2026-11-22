@@ -28,8 +28,9 @@ import unicodedata
 
 from bs4 import BeautifulSoup
 
-RAIZ = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.join(RAIZ, "inventario"))
+RAIZ = os.environ.get("VIGIA_RAIZ") or os.path.dirname(os.path.abspath(__file__))  # VIGIA_RAIZ permite que los datos vivan en el volumen del contenedor
+PAQUETE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(PAQUETE, "inventario"))
 
 from numeros import valor  # noqa: E402
 from pais import decidir, puntajes, senales  # noqa: E402

@@ -16,8 +16,9 @@ import json
 import os
 import sys
 
-RAIZ = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, RAIZ)
+RAIZ = os.environ.get("VIGIA_RAIZ") or os.path.dirname(os.path.abspath(__file__))  # VIGIA_RAIZ permite que los datos vivan en el volumen del contenedor
+PAQUETE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, PAQUETE)
 
 VIGIAS = [("col", "CO", "Colombia"), ("mex", "MX", "México"),
           ("dom", "DO", "República Dominicana"), ("cri", "CR", "Costa Rica")]

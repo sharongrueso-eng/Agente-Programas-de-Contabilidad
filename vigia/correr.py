@@ -26,8 +26,9 @@ import os
 import sys
 import time
 
-RAIZ = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, RAIZ)
+RAIZ = os.environ.get("VIGIA_RAIZ") or os.path.dirname(os.path.abspath(__file__))  # VIGIA_RAIZ permite que los datos vivan en el volumen del contenedor
+PAQUETE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, PAQUETE)
 
 import avisos  # noqa: E402
 import comparador  # noqa: E402
@@ -36,6 +37,30 @@ import lector  # noqa: E402
 MODOS = ("ensayo", "aplicar", "pausa")
 CANDADO_VIGENCIA_S = 2 * 3600  # un candado de más de dos horas es de una corrida muerta
 ESTADOS_SIN_REGISTRO = ("sin_registro",)
+
+
+def preparar_datos() -> str:
+    """Si los datos viven en un volumen vacío, los siembra desde el paquete.
+
+    En el contenedor el código es de solo lectura y se reemplaza en cada despliegue; el registro
+    de precios, en cambio, tiene que sobrevivir para que el comparador tenga línea base. La primera
+    vez se copian los registros del paquete al volumen y a partir de ahí manda el volumen.
+    """
+    if RAIZ == PAQUETE:
+        return RAIZ
+    os.makedirs(RAIZ, exist_ok=True)
+    destino = os.path.join(RAIZ, "paises")
+    if not os.path.exists(destino):
+        import shutil
+
+        origen = os.path.join(PAQUETE, "paises")
+        if os.path.isdir(origen):
+            shutil.copytree(origen, destino)
+        for nombre in ("directorio-precios.json", "directorio-precios.csv", "cobertura-marcas.json"):
+            fuente = os.path.join(PAQUETE, nombre)
+            if os.path.exists(fuente):
+                shutil.copy2(fuente, os.path.join(RAIZ, nombre))
+    return RAIZ
 
 
 def modo(pais_vigia: str) -> str:
@@ -81,6 +106,7 @@ def correr(pais_vigia: str, fecha: str | None = None, avisar_bool: bool = True, 
            leer=None, comparar=None, transporte=None, guardar: bool = True) -> dict:
     """Corrida completa de un país. Los argumentos `leer`/`comparar`/`transporte` existen para las pruebas."""
     fecha = fecha or dt.date.today().isoformat()
+    preparar_datos()  # en el contenedor los registros se leen del volumen, no de la imagen
     modo_actual = modo(pais_vigia)
     pais = lector.VIGIA_PAIS[pais_vigia]
 

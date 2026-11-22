@@ -21,8 +21,9 @@ import re
 import sys
 import unicodedata
 
-RAIZ = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, RAIZ)
+RAIZ = os.environ.get("VIGIA_RAIZ") or os.path.dirname(os.path.abspath(__file__))  # VIGIA_RAIZ permite que los datos vivan en el volumen del contenedor
+PAQUETE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, PAQUETE)
 
 TOLERANCIA = 0.01  # un peso de diferencia no es un desfase
 

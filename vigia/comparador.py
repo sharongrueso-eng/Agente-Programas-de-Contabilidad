@@ -23,7 +23,7 @@ import os
 import re
 import unicodedata
 
-RAIZ = os.path.dirname(os.path.abspath(__file__))
+RAIZ = os.environ.get("VIGIA_RAIZ") or os.path.dirname(os.path.abspath(__file__))  # VIGIA_RAIZ permite que los datos vivan en el volumen del contenedor
 
 RESULTADOS = ("sin_cambios", "cambio_explicable", "estructura_cambiada", "campana",
               "lectura_dudosa", "cambio_mercado", "falla")

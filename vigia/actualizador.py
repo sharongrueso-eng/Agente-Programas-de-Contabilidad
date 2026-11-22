@@ -24,7 +24,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-RAIZ = os.path.dirname(os.path.abspath(__file__))
+RAIZ = os.environ.get("VIGIA_RAIZ") or os.path.dirname(os.path.abspath(__file__))  # VIGIA_RAIZ permite que los datos vivan en el volumen del contenedor
 ENTORNOS = {
     "staging": ("PDC_STG_URL", "PDC_STG_USER", "PDC_STG_TOKEN"),
     "produccion": ("PDC_PROD_URL", "PDC_PROD_USER", "PDC_PROD_TOKEN"),

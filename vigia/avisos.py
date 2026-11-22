@@ -15,7 +15,7 @@ import json
 import os
 import urllib.request
 
-RAIZ = os.path.dirname(os.path.abspath(__file__))
+RAIZ = os.environ.get("VIGIA_RAIZ") or os.path.dirname(os.path.abspath(__file__))  # VIGIA_RAIZ permite que los datos vivan en el volumen del contenedor
 PREFIJO = {"col": "[COL]", "mex": "[MEX]", "cri": "[CRI]", "dom": "[DOM]"}
 VARIABLES = ("PDC_CHAT_WEBHOOK_URL", "GCHAT_WEBHOOK_URL")
 # Lo que una persona tiene que mirar. `sin_cambios` no molesta.

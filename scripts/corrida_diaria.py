@@ -161,10 +161,54 @@ def _antes_del_arranque() -> tuple[bool, str]:
     return False, ""
 
 
+VIGIAS = {"CO": "col", "MX": "mex", "CR": "cri", "DO": "dom"}
+
+
+def correr_vigias() -> int:
+    """Corre el vigía de precios de cada mercado y sale.
+
+    No publica ni toca WordPress: lee las páginas oficiales, compara contra el registro y avisa
+    por Chat lo que cambió. Corre a las 05:00, antes de que el redactor elija los precios del día,
+    así la corrida editorial ya encuentra las fichas al día. Un fallo en un país no detiene los demás.
+    """
+    sys.path.insert(0, str(RAIZ))
+    try:
+        from vigia import correr as vigia_correr
+    except ImportError as error:  # el paquete no está desplegado: se dice, no se finge una corrida
+        print(f"sin vigías: no se pudo cargar el paquete (¿falta el despliegue?) · {error}")
+        return 0
+
+    paises = [p.strip().upper() for p in os.environ.get("PDC_PAISES", "CO,MX,CR,DO").split(",") if p.strip()]
+    resumen = []
+    for pais in paises:
+        vigia = VIGIAS.get(pais)
+        if not vigia:
+            print(f"vigía {pais}: ese mercado no tiene vigía; se salta")
+            continue
+        try:
+            salida = vigia_correr.correr(vigia)
+        except Exception as error:  # una fuente rota no puede tumbar la corrida del resto
+            print(f"vigía {pais}: falló · {type(error).__name__}: {error}")
+            resumen.append(f"{pais}: falló")
+            continue
+        fuentes = salida.get("resultados") or []
+        novedades = [r for r in fuentes if r.get("resultado") not in ("ok", "sin_cambios", None)]
+        print(f"vigía {pais}: {len(fuentes)} fuentes · {len(novedades)} con novedad · modo {salida.get('modo')}")
+        resumen.append(f"{pais}: {len(novedades)} novedades" if novedades else f"{pais}: sin cambios")
+    if resumen:
+        print("vigías · " + " · ".join(resumen))
+    return 0
+
+
 def main() -> int:
     if os.environ.get("PDC_PAUSA", "").strip() in {"1", "true", "sí", "si"}:
         print("pausa global activa: no se trabaja")
         return 0
+
+    # Los vigías no son la corrida editorial: no eligen mercado ni respetan su ventana, porque
+    # corren antes (05:00) justamente para que la corrida de las 06:10 encuentre los precios al día.
+    if "--vigias" in sys.argv[1:]:
+        return correr_vigias()
 
     antes, motivo_arranque = _antes_del_arranque()
     if antes:
