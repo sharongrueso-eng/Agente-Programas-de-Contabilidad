@@ -176,6 +176,15 @@ la página, la cifra anterior, la leída y la regla que decidió el resultado.
   el agente diario usa `PDC_CHAT_WEBHOOK_URL` (`~/.pdc/chat.env`, `scripts/corrida_completa.py`).
   `vigia/avisos.py` ya acepta los dos, con el del agente primero; no declares una variable nueva que nadie
   llena. El envío se confirma por el `name` de la API, no por el 200.
+- **Un despliegue fallido deja la tarea corriendo código viejo, sin avisar.** Coolify conserva el
+  contenedor anterior cuando el build falla, así que una tarea programada parece funcionar y ejecuta la
+  versión de antes. Antes de encender algo nuevo, verificarlo dentro del contenedor con una tarea
+  desechable: `python -c "import vigia, playwright; print(vigia.__file__)"`. Si responde
+  `No module named 'vigia'`, no entró. El log del build se lee por API en
+  `/api/v1/deployments/<deployment_uuid>` (campo `logs`), no en `/deployments/<uuid>/logs`.
+- **`python:3.12-slim` no trae `libatomic1`.** El instalador de Playwright arranca un binario de Node que
+  la necesita: sin ella el build muere con `libatomic.so.1: cannot open shared object` antes de instalar
+  nada. Va en el `apt-get install` de la imagen, junto a `ca-certificates` y `tzdata`.
 - **El directorio crece con el reencauche, no de una sola vez.** Solo se dan de alta las marcas que los posts
   citan de verdad. Antes de reencauchar una pieza, corre `python -m vigia.reencauche --pais <vigía>`: trae
   `marcas_sin_registro`, la lista de marcas del post que no tienen precio registrado. Esas cifras no se tocan
