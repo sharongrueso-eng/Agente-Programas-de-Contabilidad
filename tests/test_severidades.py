@@ -29,6 +29,11 @@ class SeveridadTests(unittest.TestCase):
                 "marca_duplicada",
                 "enlaces_alegra",
                 "marcas_perdidas_reencauche",
+                "precio_cero",
+                "ficha_provisional",
+                "precio_vencido",
+                "moneda_del_pais",
+                "alegra_en_fuentes",
             },
         )
         self.assertEqual(bloqueantes([control("alegra_ausente", BLOQUEADO)]), [

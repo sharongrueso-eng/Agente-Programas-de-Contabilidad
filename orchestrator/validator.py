@@ -239,6 +239,13 @@ BLOQUEANTES = frozenset(
         "marca_duplicada",
         "enlaces_alegra",
         "marcas_perdidas_reencauche",
+        # Un precio de cero y una tarifa que el vigía no confirmó se publicaron en el 39 de México:
+        # el control existía como aviso y el corrector no lo arregló.
+        "precio_cero",
+        "ficha_provisional",
+        "precio_vencido",
+        "moneda_del_pais",
+        "alegra_en_fuentes",
     }
 )
 
