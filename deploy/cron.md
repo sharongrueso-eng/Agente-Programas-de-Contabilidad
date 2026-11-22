@@ -16,7 +16,7 @@ instala Hermes dentro de la imagen.
 | Tarea | Comando | Cron | Qué hace |
 |---|---|---|---|
 | `pdc-slot-a` | `python scripts/corrida_diaria.py` | `10 6 * * *` | Produce, valida, juzga, corrige y publica el artículo del día |
-| `pdc-reporte` | `python scripts/corrida_diaria.py --resumen` | `30 17 * * *` | Cierre del día: solo el resumen |
+| `pdc-reporte` | `python scripts/corrida_diaria.py --resumen` | `30 17 * * *` | **No existe todavía**: `--resumen` no está implementado. No crear la tarea hasta que lo esté. |
 
 El wrapper `corrida_diaria.py` comprueba la ventana, la pausa y el mercado del día antes de
 trabajar: una ejecución a deshora no hace nada y lo deja escrito en el registro.
@@ -29,10 +29,30 @@ contra el que verificar la pieza.
 
 ## Vigías y respaldo
 
-| Tarea | Comando | Cron |
-|---|---|---|
-| `pdc-vigias` | `python scripts/corrida_diaria.py --vigias` | `0 5 * * *` |
-| `pdc-respaldo` | `bash deploy/backup.sh` | `30 23 * * *` |
+Las tres tareas existen en Coolify (verificado por API el 22-nov-2026):
+
+| Tarea | Comando | Cron (UTC) | Hora Bogotá | Estado |
+|---|---|---|---|---|
+| `vigias-precios` | `python scripts/corrida_diaria.py --vigias` | `0 10 * * *` | 05:00 | activa |
+| `corrida-diaria` | `python scripts/corrida_diaria.py` | `10 11 * * 1-5` | 06:10 L-V | activa |
+| `respaldo-estado` | `bash deploy/backup.sh` | `30 4 * * *` | 23:30 | activa |
+
+Los vigías corren **antes** del redactor a propósito: a las 06:10 la corrida editorial ya
+encuentra las fichas de precios al día. `VIGIA_MODO` vale `ensayo` por defecto, así que la
+primera corrida lee y avisa pero no cambia precios; se pasa a `aplicar` cuando se revise.
+
+### Comprobar el despliegue, no suponerlo
+
+Un build fallido deja el contenedor con la imagen anterior y **la tarea sigue «funcionando»**:
+ejecuta código viejo sin protestar. Antes de encender una tarea nueva, verificarlo dentro del
+contenedor con una tarea desechable (`enabled:false`) que solo importe y liste:
+
+```bash
+python -c "import vigia, playwright; print(vigia.__file__); print(__import__('os').listdir('/ms-playwright'))"
+```
+
+Se ejecuta con `POST /api/v1/applications/<app>/scheduled-tasks/<tarea>/execute`, se lee la salida
+en `.../executions` y se borra la tarea. Si dice `No module named 'vigia'`, el despliegue no entró.
 
 ## Si algún día se instala Hermes en la imagen
 
