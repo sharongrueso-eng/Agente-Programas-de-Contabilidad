@@ -7,7 +7,7 @@
 FROM python:3.12-slim
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates tzdata \
+    && apt-get install -y --no-install-recommends ca-certificates tzdata libatomic1 \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONUNBUFFERED=1 \
@@ -37,7 +37,9 @@ RUN pip install --no-cache-dir --upgrade pip \
 # El vigía de precios lee páginas con navegador (varias son SPA y no traen precios en el HTML).
 # Chromium entra en la imagen, no se instala por corrida: descargarlo cada mañana añadiría
 # minutos y una descarga de red a una tarea que debe ser corta y predecible.
-# --with-deps trae las librerías de sistema que Chromium necesita en Debian slim.
+# libatomic1 va en el apt de arriba porque el instalador de Playwright arranca un binario de
+# Node que la necesita: sin ella el build muere con «libatomic.so.1: cannot open shared object».
+# --with-deps trae el resto de librerías de sistema que Chromium necesita en Debian slim.
 # La ruta va en ENV **antes** de instalar, para que el navegador quede donde el contenedor lo
 # busca (el usuario pdc no puede leer /root) y con permisos de lectura para ese usuario.
 ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
