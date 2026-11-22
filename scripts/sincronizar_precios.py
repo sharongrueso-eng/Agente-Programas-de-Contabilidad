@@ -114,6 +114,8 @@ def planes_de(filas: list[dict]) -> list[dict]:
         coincide = PRECIO.search(precio)
         if coincide:
             mensual = _numero(coincide.group("mensual"))
+            if not mensual or int(re.sub(r"\D", "", mensual) or 0) == 0:
+                continue  # «0 año» es un plan sin costo, no una tarifa que se compare
             anual = _numero(coincide.group("anual") or "")
             planes.append(
                 {
@@ -149,6 +151,8 @@ def planes_de(filas: list[dict]) -> list[dict]:
         anual_solo = SOLO_ANUAL.search(precio) or ANUAL_CORTO.search(precio.strip())
         if anual_solo:
             anual = _numero(anual_solo.group("anual"))
+            if not anual or int(re.sub(r"\D", "", anual) or 0) == 0:
+                continue
             planes.append(
                 {
                     "name": f"{nombre} (anual)",

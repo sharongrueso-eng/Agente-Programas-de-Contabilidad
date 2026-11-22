@@ -266,6 +266,18 @@ def _graves(
             }
         )
 
+    # 6b. Un precio cero no es una tarifa: si el texto lo publica como tal, se corrige a «sin costo».
+    for cero in re.finditer(r"(?<![\d.,])0(?![\d.,])\s?(?:COP|MXN|CRC|DOP)\b", visible, re.I):
+        salida.append(
+            {
+                "codigo": "precio_cero",
+                "pasa": False,
+                "detalle": f"la pieza publica un precio de cero: «{visible[max(0, cero.start()-40):cero.end()+20].strip()}»",
+                "grave": True,
+            }
+        )
+        break
+
     # 7. Una ficha provisional no sostiene una cifra. El portal marca así las que salieron de un
     #    artículo propio y no de la landing del proveedor (CONTPAQi en México, entre otras).
     sin_miles = re.sub(r"(?<=\d)[,.\s](?=\d{3}\b)", "", visible)

@@ -1,70 +1,43 @@
 {
- "brand": "Aspel",
- "country": "MX",
- "product": "Aspel (COI, SAE) — hoy Siigo México",
- "plans": [
-  {
-   "name": "Siigo Fiscal Pyme (con COI)",
-   "price": "154.13",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "promoción -50 %"
+  "brand": "Aspel",
+  "country": "MX",
+  "product": "Aspel (COI, SAE) — hoy Siigo México",
+  "plans": [],
+  "source_url": "https://www.siigo.com/mx/precios-siigo-aspel/",
+  "captured_at": "2026-11-12",
+  "evidence_level": "documentacion_oficial",
+  "extraction": {
+    "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
+    "posts": [
+      "https://programascontabilidad.com/comparativas-de-software/contabilidad/pos-sin-integracion-contable-en-mexico/",
+      "https://programascontabilidad.com/comparativas-de-software/alegra-vs-eleventa-mexico/",
+      "https://programascontabilidad.com/comparativas-de-software/alegra-contpaqi/"
+    ],
+    "precios_observados": [
+      "$149,25",
+      "$299",
+      "$0"
+    ]
   },
-  {
-   "name": "Siigo Fiscal Empresarial",
-   "price": "212.46",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "promoción -50 %"
-  },
-  {
-   "name": "Siigo Fiscal Corporativo",
-   "price": "370.79",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "promoción -50 %"
-  }
- ],
- "source_url": "https://www.siigo.com/mx/precios-siigo-aspel/",
- "captured_at": "2026-11-12",
- "evidence_level": "documentacion_oficial",
- "extraction": {
-  "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
-  "posts": [
-   "https://programascontabilidad.com/comparativas-de-software/contabilidad/pos-sin-integracion-contable-en-mexico/",
-   "https://programascontabilidad.com/comparativas-de-software/alegra-vs-eleventa-mexico/",
-   "https://programascontabilidad.com/comparativas-de-software/alegra-contpaqi/"
+  "pricing_note": "Aspel se vende dentro de los planes Siigo en México; el vigía no confirmó tarifas propias, así que no se citan precios.",
+  "notes": "aspel.com.mx/precios redirige a la página de precios de Siigo México.",
+  "historial": [
+    {
+      "fecha": "2026-11-11",
+      "cambio": "creada desde artículos del blog"
+    }
   ],
-  "precios_observados": [
-   "$149,25",
-   "$299",
-   "$0"
-  ]
- },
- "pricing_note": "Los precios aparecen en artículos del blog, no en la landing del proveedor: hay que confirmarlos en su sitio antes de publicar una comparativa con tarifas.",
- "notes": "aspel.com.mx/precios redirige a la página de precios de Siigo México.",
- "historial": [
-  {
-   "fecha": "2026-11-11",
-   "cambio": "creada desde artículos del blog"
-  }
- ],
- "features": [
-  "Contabilidad COI",
-  "Facturación CFDI 4.0",
-  "Nómina",
-  "Sincronización con COI"
- ],
- "advantages": [
-  "Aspel se integra en la oferta de Siigo México con precios publicados"
- ],
- "known_limits": [
-  "El precio de Aspel como producto suelto no se publica: se vende con Siigo Fiscal"
- ]
+  "features": [
+    "Contabilidad COI",
+    "Facturación CFDI 4.0",
+    "Nómina",
+    "Sincronización con COI"
+  ],
+  "advantages": [
+    "Aspel se integra en la oferta de Siigo México con precios publicados"
+  ],
+  "known_limits": [
+    "El precio de Aspel como producto suelto no se publica: se vende con Siigo Fiscal"
+  ],
+  "precios_sin_confirmar": "Aspel se vende dentro de los planes Siigo en México; el vigía no confirmó tarifas propias, así que no se citan precios."
 }
