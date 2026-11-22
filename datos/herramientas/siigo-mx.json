@@ -1,77 +1,78 @@
 {
- "brand": "Siigo",
- "country": "MX",
- "product": "Siigo Fiscal (facturación CFDI)",
- "source_url": "https://www.siigo.com/mx/precios-siigo-aspel/",
- "captured_at": "2026-11-12",
- "evidence_level": "documentacion_oficial",
- "plans": [
-  {
-   "name": "Siigo Fiscal PYME",
-   "price": "154.13",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "promoción -50 %; antes 308.25"
-  },
-  {
-   "name": "Siigo Fiscal PYME",
-   "price": "1.849.50",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true,
-   "note": "promoción -50 %"
-  },
-  {
-   "name": "Siigo Fiscal Empresarial",
-   "price": "212.46",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "promoción -50 %; antes 424.92"
-  },
-  {
-   "name": "Siigo Fiscal Empresarial",
-   "price": "2.549.50",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true,
-   "note": "promoción -50 %"
-  },
-  {
-   "name": "Siigo Fiscal Corporativo",
-   "price": "370.79",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "promoción -50 %; antes 741.58"
-  },
-  {
-   "name": "Siigo Fiscal Corporativo",
-   "price": "4.449.50",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true,
-   "note": "promoción -50 %"
-  }
- ],
- "features": [
-  "Facturación electrónica CFDI 4.0",
-  "Contabilidad (COI)",
-  "Nómina",
-  "Cancelación de CFDI"
- ],
- "advantages": [
-  "Publica precio por tamaño de empresa y por periodicidad"
- ],
- "known_limits": [
-  "Los precios listados son promocionales: la tarifa de lista es el doble"
- ],
- "notes": "Leído el 12-nov-2026. Citar la condición promocional al usar la cifra."
+  "brand": "Siigo",
+  "country": "MX",
+  "product": "Siigo Fiscal (facturación CFDI)",
+  "source_url": "https://www.siigo.com/mx/precios-siigo-aspel/",
+  "captured_at": "",
+  "evidence_level": "documentacion_oficial",
+  "plans": [
+    {
+      "name": "Siigo Fiscal PYME",
+      "price": "154.13",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "promoción -50 %; antes 308.25"
+    },
+    {
+      "name": "Siigo Fiscal PYME",
+      "price": "1.849.50",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "promoción -50 %"
+    },
+    {
+      "name": "Siigo Fiscal Empresarial",
+      "price": "212.46",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "promoción -50 %; antes 424.92"
+    },
+    {
+      "name": "Siigo Fiscal Empresarial",
+      "price": "2.549.50",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "promoción -50 %"
+    },
+    {
+      "name": "Siigo Fiscal Corporativo",
+      "price": "370.79",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "promoción -50 %; antes 741.58"
+    },
+    {
+      "name": "Siigo Fiscal Corporativo",
+      "price": "4.449.50",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "promoción -50 %"
+    }
+  ],
+  "features": [
+    "Facturación electrónica CFDI 4.0",
+    "Contabilidad (COI)",
+    "Nómina",
+    "Cancelación de CFDI"
+  ],
+  "advantages": [
+    "Publica precio por tamaño de empresa y por periodicidad"
+  ],
+  "known_limits": [
+    "Los precios listados son promocionales: la tarifa de lista es el doble"
+  ],
+  "notes": "Leído el 12-nov-2026. Citar la condición promocional al usar la cifra.",
+  "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica"
 }

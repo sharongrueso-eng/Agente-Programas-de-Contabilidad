@@ -76,8 +76,10 @@ def test_no_se_avisa_dos_veces_el_mismo_dia(tmp_path):
 def test_al_dia_siguiente_si_se_avisa(tmp_path):
     estado = str(tmp_path / "avisos.json")
     mismos = resultados("lectura_dudosa")
-    avisos.avisar("col", "2026-11-18", mismos, transporte=ok_transporte, estado_path=estado)
-    otro = avisos.avisar("col", "2026-11-19", mismos, transporte=ok_transporte, estado_path=estado)
+    # url explícita: estas pruebas no pueden depender de que la máquina tenga webhook (en CI no lo hay)
+    url = "https://chat.example/x"
+    avisos.avisar("col", "2026-11-18", mismos, transporte=ok_transporte, url=url, estado_path=estado)
+    otro = avisos.avisar("col", "2026-11-19", mismos, transporte=ok_transporte, url=url, estado_path=estado)
     assert otro["enviado"] is True
 
 

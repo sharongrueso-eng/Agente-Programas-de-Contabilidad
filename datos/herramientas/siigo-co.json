@@ -277,7 +277,7 @@
     }
   ],
   "source_url": "https://www.siigo.com/precios-siigo/",
-  "captured_at": "2026-11-13",
+  "captured_at": "",
   "evidence_level": "documentacion_oficial",
   "extraction": "modelo+verificacion_literal",
   "features": [
@@ -316,5 +316,6 @@
       "planes": 19,
       "cambios": []
     }
-  ]
+  ],
+  "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica"
 }

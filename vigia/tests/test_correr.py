@@ -70,6 +70,8 @@ def test_candado_impide_dos_corridas_del_mismo_pais(monkeypatch):
 
 def test_corrida_en_ensayo_avisa_y_no_toca_nada(monkeypatch):
     monkeypatch.setenv("VIGIA_MODO_COL", "ensayo")
+    # Sin URL la corrida no avisa, y esta prueba no puede depender del entorno de la máquina.
+    monkeypatch.setenv("PDC_CHAT_WEBHOOK_URL", "https://chat.example/x")
     enviados = []
 
     def transporte(url, texto):

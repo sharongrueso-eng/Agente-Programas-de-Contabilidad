@@ -68,11 +68,13 @@ jobs:
       # vieja: aquí se confirma que el paquete y Chromium están dentro de verdad.
       - name: comprobar el vigía dentro de la imagen
         run: |
-          docker run --rm pdc-agent:ci python -c "
+          # La imagen arranca con ENTRYPOINT sleep infinity (Coolify la mantiene viva), así que
+          # el intérprete hay que pedirlo explícitamente.
+          docker run --rm --entrypoint python pdc-agent:ci -c "
           import vigia, vigia.correr, playwright, bs4, lxml, os
           print('vigia', vigia.__file__)
+          print('lector', vigia.correr.lector.__file__)
           print('browsers', sorted(os.listdir('/ms-playwright')))
           assert 'vigia/__init__.py' in vigia.__file__
-          print('lector', vigia.correr.lector.__file__)
           assert any(b.startswith('chromium') for b in os.listdir('/ms-playwright'))
           "

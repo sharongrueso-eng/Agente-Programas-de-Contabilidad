@@ -1,60 +1,66 @@
 {
- "brand": "Contalink",
- "country": "MX",
- "product": "Contalink (contabilidad para despachos)",
- "plans": [
-  {
-   "name": "Start",
-   "price": "590",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "Pro",
-   "price": "790",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "10 RFC incluidos"
-  },
-  {
-   "name": "Flex",
-   "price": "990",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "por cada contador"
-  }
- ],
- "source_url": "https://www.contalink.com/precios",
- "captured_at": "2026-11-12",
- "evidence_level": "documentacion_oficial",
- "extraction": "modelo+verificacion_literal",
- "features": [
-  "Contabilidad",
-  "Descarga automática del SAT",
-  "Acceso para clientes",
-  "RFC múltiples"
- ],
- "descartado": [],
- "notes": "Leído el 12-nov-2026.",
- "historial": [
-  {
-   "fecha": "2026-11-06",
-   "planes": 3,
-   "cambios": [
-    "primera lectura"
-   ]
-  }
- ],
- "advantages": [
-  "Publica el costo por RFC adicional (50 + IVA al mes)"
- ],
- "known_limits": [
-  "El precio depende del número de RFC y de contadores"
- ]
+  "brand": "Contalink",
+  "country": "MX",
+  "product": "Contalink (contabilidad para despachos)",
+  "plans": [
+    {
+      "name": "Contalink Start (mensual)",
+      "price": "590",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "Contalink Pro (mensual)",
+      "price": "790",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    },
+    {
+      "name": "Contalink Flex (mensual)",
+      "price": "990",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": ""
+    }
+  ],
+  "source_url": "https://www.contalink.com/precios",
+  "captured_at": "2026-11-19",
+  "evidence_level": "documentacion_oficial",
+  "extraction": "modelo+verificacion_literal",
+  "features": [
+    "Contabilidad",
+    "Descarga automática del SAT",
+    "Acceso para clientes",
+    "RFC múltiples"
+  ],
+  "descartado": [],
+  "notes": "Leído el 12-nov-2026.",
+  "historial": [
+    {
+      "fecha": "2026-11-06",
+      "planes": 3,
+      "cambios": [
+        "primera lectura"
+      ]
+    },
+    {
+      "fecha": "2026-11-22",
+      "cambio": "precios sincronizados desde el directorio del vigía (3 planes)"
+    }
+  ],
+  "advantages": [
+    "Publica el costo por RFC adicional (50 + IVA al mes)"
+  ],
+  "known_limits": [
+    "El precio depende del número de RFC y de contadores"
+  ],
+  "precios_origen": "directorio del vigía"
 }

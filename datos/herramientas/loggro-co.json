@@ -1,203 +1,204 @@
 {
- "brand": "Loggro",
- "country": "CO",
- "product": "Loggro Pymes (administrativo, POS, facturación, nómina)",
- "source_url": "https://loggro.com/pymes/planes/",
- "captured_at": "2026-11-12",
- "evidence_level": "documentacion_oficial",
- "plans": [
-  {
-   "name": "Pymes Básico",
-   "price": "108.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "Pymes Básico",
-   "price": "1.307.880",
-   "currency": "COP",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true
-  },
-  {
-   "name": "Pymes Estándar",
-   "price": "133.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "Pymes Estándar",
-   "price": "1.607.880",
-   "currency": "COP",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true
-  },
-  {
-   "name": "Pymes Premium",
-   "price": "279.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "Pymes Premium",
-   "price": "3.359.880",
-   "currency": "COP",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true
-  },
-  {
-   "name": "POS Tienda",
-   "price": "54.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "POS Avanzado",
-   "price": "96.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "POS PLUS",
-   "price": "292.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "Restobar Básico",
-   "price": "120.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "Restobar Estándar",
-   "price": "175.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "Restobar Premium",
-   "price": "219.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "Nómina Lite",
-   "price": "",
-   "currency": "COP",
-   "period": "año",
-   "billing": "anual",
-   "publicado": false,
-   "note": "solo transmisión, precio no leído en la página"
-  },
-  {
-   "name": "Nómina Estándar",
-   "price": "72.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "Contabilidad (complemento)",
-   "price": "49.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true
-  },
-  {
-   "name": "Usuario adicional",
-   "price": "18.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "complemento publicado en la página de planes"
-  },
-  {
-   "name": "Caja adicional",
-   "price": "18.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "complemento publicado en la página de planes"
-  },
-  {
-   "name": "Establecimiento adicional",
-   "price": "54.990",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "complemento publicado en la página de planes"
-  },
-  {
-   "name": "Soporte/implantación por hora",
-   "price": "115.000",
-   "currency": "COP",
-   "period": "hora",
-   "billing": "unico",
-   "publicado": true,
-   "note": "complemento publicado en la página de planes"
-  },
-  {
-   "name": "Soporte Premium",
-   "price": "218.000",
-   "currency": "COP",
-   "period": "mes",
-   "billing": "mensual",
-   "publicado": true,
-   "note": "complemento publicado en la página de planes"
-  },
-  {
-   "name": "Bolsa de 50 documentos electrónicos",
-   "price": "92.400",
-   "currency": "COP",
-   "period": "unico",
-   "billing": "unico",
-   "publicado": true,
-   "note": "complemento publicado en la página de planes"
-  }
- ],
- "features": [
-  "Facturación electrónica DIAN",
-  "POS",
-  "Contabilidad",
-  "Nómina electrónica",
-  "Restobar con comandas y zonas",
-  "Integración con Rappi",
-  "API"
- ],
- "advantages": [
-  "Planes separados por módulo: se paga solo lo que se usa",
-  "Complementos publicados con precio (usuario 18.990, caja 18.990)"
- ],
- "known_limits": [
-  "Muchas tarifas son complementos: el total depende de cajas y usuarios",
-  "El plan de nómina más barato cubre solo transmisión"
- ],
- "notes": "Precios de lista sin IVA salvo donde la página indica lo contrario. Leídos el 12-nov-2026."
+  "brand": "Loggro",
+  "country": "CO",
+  "product": "Loggro Pymes (administrativo, POS, facturación, nómina)",
+  "source_url": "https://loggro.com/pymes/planes/",
+  "captured_at": "",
+  "evidence_level": "documentacion_oficial",
+  "plans": [
+    {
+      "name": "Pymes Básico",
+      "price": "108.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true
+    },
+    {
+      "name": "Pymes Básico",
+      "price": "1.307.880",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    },
+    {
+      "name": "Pymes Estándar",
+      "price": "133.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true
+    },
+    {
+      "name": "Pymes Estándar",
+      "price": "1.607.880",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    },
+    {
+      "name": "Pymes Premium",
+      "price": "279.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true
+    },
+    {
+      "name": "Pymes Premium",
+      "price": "3.359.880",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    },
+    {
+      "name": "POS Tienda",
+      "price": "54.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true
+    },
+    {
+      "name": "POS Avanzado",
+      "price": "96.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true
+    },
+    {
+      "name": "POS PLUS",
+      "price": "292.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true
+    },
+    {
+      "name": "Restobar Básico",
+      "price": "120.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true
+    },
+    {
+      "name": "Restobar Estándar",
+      "price": "175.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true
+    },
+    {
+      "name": "Restobar Premium",
+      "price": "219.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true
+    },
+    {
+      "name": "Nómina Lite",
+      "price": "",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": false,
+      "note": "solo transmisión, precio no leído en la página"
+    },
+    {
+      "name": "Nómina Estándar",
+      "price": "72.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true
+    },
+    {
+      "name": "Contabilidad (complemento)",
+      "price": "49.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true
+    },
+    {
+      "name": "Usuario adicional",
+      "price": "18.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "complemento publicado en la página de planes"
+    },
+    {
+      "name": "Caja adicional",
+      "price": "18.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "complemento publicado en la página de planes"
+    },
+    {
+      "name": "Establecimiento adicional",
+      "price": "54.990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "complemento publicado en la página de planes"
+    },
+    {
+      "name": "Soporte/implantación por hora",
+      "price": "115.000",
+      "currency": "COP",
+      "period": "hora",
+      "billing": "unico",
+      "publicado": true,
+      "note": "complemento publicado en la página de planes"
+    },
+    {
+      "name": "Soporte Premium",
+      "price": "218.000",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "complemento publicado en la página de planes"
+    },
+    {
+      "name": "Bolsa de 50 documentos electrónicos",
+      "price": "92.400",
+      "currency": "COP",
+      "period": "unico",
+      "billing": "unico",
+      "publicado": true,
+      "note": "complemento publicado en la página de planes"
+    }
+  ],
+  "features": [
+    "Facturación electrónica DIAN",
+    "POS",
+    "Contabilidad",
+    "Nómina electrónica",
+    "Restobar con comandas y zonas",
+    "Integración con Rappi",
+    "API"
+  ],
+  "advantages": [
+    "Planes separados por módulo: se paga solo lo que se usa",
+    "Complementos publicados con precio (usuario 18.990, caja 18.990)"
+  ],
+  "known_limits": [
+    "Muchas tarifas son complementos: el total depende de cajas y usuarios",
+    "El plan de nómina más barato cubre solo transmisión"
+  ],
+  "notes": "Precios de lista sin IVA salvo donde la página indica lo contrario. Leídos el 12-nov-2026.",
+  "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica"
 }
