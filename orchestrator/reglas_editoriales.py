@@ -57,7 +57,7 @@ CAMPANAS = {"CO": "col", "MX": "mex", "CR": "cri", "DO": "dom", "PE": "per", "ES
 # La moneda de cada mercado. Una pieza que habla en la de otro país se copió de otro mercado.
 MONEDAS_DEL_PORTAL = {"CO": "COP", "MX": "MXN", "CR": "CRC", "DO": "DOP"}
 # Días que un precio puede tener antes de que el vigía lo refresque.
-MAX_DIAS_PRECIO = 45
+MAX_DIAS_PRECIO = 30
 
 
 def campana(pais: str) -> str:
@@ -70,6 +70,24 @@ def campana(pais: str) -> str:
 MAX_ENLACES_ALEGRA = 1
 
 INTENCIONES_CON_ELENCO = {"compare", "price", "best", "learn"}
+
+
+def _marca_mas_cercana(texto: str, fichas: Sequence[Mapping[str, Any]]) -> str:
+    """La última marca del registro que aparece en el texto, si alguna aparece.
+
+    Sirve para atribuir una cifra: «hasta 2.999 al mes» es de Alegra si el párrafo viene hablando
+    de Alegra, aunque otro proveedor publique 2.999 al año.
+    """
+    mejor, posicion = "", -1
+    for ficha in fichas:
+        formas = {_plano(str(ficha.get("brand", ""))), canonica(str(ficha.get("brand", "")))}
+        for forma in formas:
+            if not forma:
+                continue
+            encontrado = texto.rfind(forma)
+            if encontrado > posicion:
+                mejor, posicion = str(ficha.get("brand", "")), encontrado
+    return mejor
 
 
 def _plano(texto: str) -> str:
@@ -160,12 +178,21 @@ def _graves(
             for variante in variantes:
                 # (?<!\d) para que «999» no case dentro de «2999»: dos planes distintos.
                 patron = r"(?<!\d)" + re.escape(variante) + r"[^\d]{0,60}?(?:al mes|por mes|\bmensual\b)"
-                if re.search(patron, texto):
+                for coincidencia in re.finditer(patron, texto):
+                    # Si el párrafo viene hablando de otra marca, la cifra es de esa marca: dos
+                    # proveedores pueden publicar el mismo número con periodos distintos.
+                    contexto = texto[max(0, coincidencia.start() - 160): coincidencia.start()]
+                    duena = _marca_mas_cercana(contexto, fichas)
+                    if duena and canonica(duena) != canonica(str(ficha.get("brand", ""))):
+                        continue
                     hallado.append(
                         f"«{variante}» es {plan.get('name')} ({plan.get('period') or plan.get('billing')}) "
                         "y la pieza lo publica al mes"
                     )
                     break
+                else:
+                    continue
+                break
 
     if hallado:
         detalle = hallado[0] + (f" (+{len(hallado) - 1} más)" if len(hallado) > 1 else "")

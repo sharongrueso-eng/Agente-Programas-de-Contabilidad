@@ -55,7 +55,9 @@ YEAR = re.compile(r"\b(20\d{2})\b")
 class ValidationRules:
     # Sharon: el cuerpo lleva un solo enlace a Alegra, el CTA con UTM; la cita va en Fuentes.
     min_alegra_links: int = 1
-    min_internal_links: int = 5
+    # Se cuentan URLs distintas: la regla editorial pide de 2 a 4 internas por pieza, y contar
+    # hrefs repetidos exigía cinco que ningún texto con enlaces únicos podía reunir.
+    min_internal_links: int = 3
     min_sources: int = 2
     site_domain: str = "programascontabilidad.com"
     meta_min: int = 100
@@ -603,7 +605,7 @@ def validate(
                 )
             )
 
-        internal = [url for url in hrefs if _is_internal(url, rules)]
+        internal = {url for url in hrefs if _is_internal(url, rules)}
         controls.append(
             _control(
                 "internal_links",

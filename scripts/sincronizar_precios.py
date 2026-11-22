@@ -53,14 +53,17 @@ def _numero(texto: str) -> str:
     return f"{int(limpio):,}".replace(",", ".")
 
 
-def leer_directorio(ruta: Path = DIRECTORIO) -> dict[tuple[str, str], list[dict]]:
-    """(país, marca) → filas confirmadas del vigía. Lo pendiente no se publica."""
+def leer_directorio(
+    ruta: Path = DIRECTORIO, estados: set[str] | None = None
+) -> dict[tuple[str, str], list[dict]]:
+    """(país, marca) → filas del vigía. Por defecto solo las confirmadas: lo pendiente no se publica."""
+    aceptados = estados or {"confirmado"}
     salida: dict[tuple[str, str], list[dict]] = {}
     if not ruta.exists():
         return salida
     with ruta.open(encoding="utf-8", newline="") as archivo:
         for fila in csv.DictReader(archivo):
-            if (fila.get("estado") or "").strip() != "confirmado":
+            if (fila.get("estado") or "").strip() not in aceptados:
                 continue
             pais = (fila.get("pais") or "").strip().upper()
             marca = (fila.get("marca") or "").strip()
@@ -141,12 +144,33 @@ def planes_de(filas: list[dict]) -> list[dict]:
 def aplicar(pais: str, *, escribir: bool = False, ruta: Path = DIRECTORIO) -> dict:
     """Reescribe los planes de las fichas del país. Devuelve el informe del cambio."""
     directorio = leer_directorio(ruta)
+    # Lo que el vigía vio pero no pudo confirmar: si una marca solo tiene filas pendientes, el
+    # precio de la ficha ya no está sostenido y se invalida en lugar de quedarse como si fuera de hoy.
+    pendientes = leer_directorio(ruta, estados={"pendiente_confirmar", "pendiente", "sin_confirmar"})
     informe: dict[str, dict] = {}
     for archivo in sorted(FICHAS.glob(f"*-{pais.lower()}.json")):
         ficha = json.loads(archivo.read_text(encoding="utf-8"))
         marca = str(ficha.get("brand", "")).strip()
         filas = directorio.get((pais.upper(), marca)) or []
         if not filas:
+            sin_confirmar = pendientes.get((pais.upper(), marca)) or []
+            if sin_confirmar and escribir:
+                ficha["captured_at"] = ""
+                ficha["precios_sin_confirmar"] = (
+                    "el vigía no pudo confirmar el precio en su última pasada: no se publica"
+                )
+                archivo.write_text(
+                    json.dumps(ficha, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+                )
+                informe[archivo.name] = {
+                    "marca": marca,
+                    "planes_antes": len(ficha.get("plans") or []),
+                    "planes_despues": len(ficha.get("plans") or []),
+                    "cambios": [],
+                    "sin_confirmar": True,
+                    "fuente": sin_confirmar[0].get("fuente", ""),
+                    "fecha": sin_confirmar[0].get("fecha", ""),
+                }
             continue
         nuevos = planes_de(filas)
         if not nuevos:

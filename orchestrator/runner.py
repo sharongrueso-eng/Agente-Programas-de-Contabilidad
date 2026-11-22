@@ -253,6 +253,7 @@ def run(
             wp=deps.wp,
             skill=deps.skill,
             legal=deps.legal,
+            fichas=getattr(deps, "fichas", ()),
             evidence_dir=str(state.dir),
         )
         steps.append({"step": "production", "status": result["status"]})

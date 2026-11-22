@@ -124,7 +124,66 @@ def _normas() -> str:
     return NORMAS.strip()
 
 
-def build_messages(brief: Brief, skill: str, legal: str) -> list[dict[str, str]]:
+def cifras_autorizadas(fichas: Any = ()) -> str:
+    """Las cifras que el redactor puede citar, tal como las dejó el vigía.
+
+    Sin este bloque el modelo escribe precios de memoria o los copia del HTML viejo: es el hueco
+    por el que salió «2,999 al mes» de un plan que se cobra al año.
+    """
+    fichas = list(fichas or ())
+    if not fichas:
+        return (
+            "## Cifras autorizadas\n\n"
+            "El registro no trae precios verificados de este mercado: la pieza no escribe ninguna "
+            "cifra de precio. Si el lector la necesita, se dice que cada proveedor publica sus "
+            "tarifas en su página y se enlaza la fuente."
+        )
+    lineas = [
+        "## Cifras autorizadas (registro del vigía de precios)",
+        "",
+        "Solo puedes citar las cifras de esta lista, con su periodo tal como aparece. Si un plan o un "
+        "proveedor no está aquí, escribe que no publica el precio y nada más: no estimes, no "
+        "conviertas, no redondees y no completes series.",
+        "",
+    ]
+    for ficha in fichas:
+        marca = ficha.get("brand") or "?"
+        fuente = ficha.get("source_url") or ""
+        capturado = str(ficha.get("captured_at") or "").strip()
+        nota = ficha.get("notes") or ""
+        if nota and ("provisional" in str(nota).lower() or "no para citar" in str(nota).lower()):
+            lineas.append(f"### {marca} — ficha provisional: no cites sus precios")
+            lineas.append("")
+            continue
+        cabecera = f"### {marca}"
+        if capturado:
+            cabecera += f" — leído el {capturado[:10]}"
+        if fuente:
+            cabecera += f" — {fuente}"
+        lineas.append(cabecera)
+        planes = list(ficha.get("plans") or ())[:12]
+        if not planes:
+            lineas.append("- sin planes publicados")
+        for plan in planes:
+            nombre = plan.get("name") or "plan"
+            precio = plan.get("price") or ""
+            moneda = plan.get("currency") or ""
+            periodo = plan.get("period") or ""
+            cobro = plan.get("billing") or ""
+            detalle = plan.get("note") or ""
+            renglon = f"- {nombre}: {precio} {moneda}".rstrip()
+            if periodo:
+                renglon += f" / {periodo}"
+            if cobro:
+                renglon += f" ({cobro})"
+            if detalle:
+                renglon += f" · {detalle}"
+            lineas.append(renglon)
+        lineas.append("")
+    return "\n".join(lineas)
+
+
+def build_messages(brief: Brief, skill: str, legal: str, fichas: Any = ()) -> list[dict[str, str]]:
     """Assemble the system and user messages for the producer call."""
     if brief.opportunity is None:
         raise ValueError("un brief sin oportunidad no se puede producir")
@@ -186,6 +245,8 @@ El orden nace de las tareas del lector, no de repetir la keyword:
 ## Contexto legal del mercado
 
 {legal_section(legal, brief.country)}
+
+{cifras_autorizadas(fichas)}
 
 ## Contrato de salida
 
@@ -275,6 +336,7 @@ def produce(
     wp: WordPressClient,
     skill: str,
     legal: str,
+    fichas: Any = (),
     evidence_dir: str = "",
     author_id: int = AUTHOR_ID,
     max_prompt_chars: int = MAX_PROMPT_CHARS,
@@ -291,7 +353,7 @@ def produce(
     needs_body = requires_body(brief.opportunity.action)
 
     try:
-        messages = build_messages(brief, skill, legal)
+        messages = build_messages(brief, skill, legal, fichas)
         prompt_size = check_prompt_budget(messages, max_prompt_chars)
     except PromptBudgetExceeded as error:
         return _result(

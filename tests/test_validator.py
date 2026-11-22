@@ -163,9 +163,14 @@ class LinkTests(unittest.TestCase):
 
         self.assertEqual(status_of(verdict, "alegra_links"), "CORREGIR")
 
-    def test_five_internal_links_are_required(self) -> None:
-        verdict = validate(draft(html=html_body(internal_links=4)), brief(), ValidationRules())
+    def test_three_internal_links_are_enough(self) -> None:
+        # La regla editorial pide de 2 a 4 URLs internas distintas por pieza: contar hrefs
+        # repetidos exigía cinco que un texto con enlaces únicos no podía reunir.
+        verdict = validate(draft(html=html_body(internal_links=3)), brief(), ValidationRules())
+        self.assertEqual(status_of(verdict, "internal_links"), "PASS")
 
+    def test_two_internal_links_are_corrected(self) -> None:
+        verdict = validate(draft(html=html_body(internal_links=2)), brief(), ValidationRules())
         self.assertEqual(status_of(verdict, "internal_links"), "CORREGIR")
 
     def test_two_external_sources_are_required(self) -> None:
