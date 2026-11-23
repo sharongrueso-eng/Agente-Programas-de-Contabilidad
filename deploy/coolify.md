@@ -53,7 +53,7 @@ GSC_SERVICE_ACCOUNT_JSON=<contenido del JSON, en una línea>
 De comportamiento:
 
 ```
-PDC_MODO=borrador          # borrador mientras se prueba; publicar cuando se autorice
+PDC_MODO=publicar          # actualización diaria en vivo; se vuelve atrás con la revisión de WordPress
 PDC_PAUSA=0                # 1 detiene todo sin tocar el calendario
 PDC_PAISES=CO,MX,CR,DO     # los cuatro mercados del portal; un quinto se ignora
 PDC_VENTANA_INICIO=06:00
@@ -104,7 +104,9 @@ Para dos corridas diarias, duplicar la tarea con `10 7 * * 1-5`.
 - **Mercados:** solo CO, MX, CR, DO. Un artículo de Perú, Chile o España se descarta en la
   auditoría: reescribirlo con normativa local destruye lo que posiciona en su país.
 - **Pausar:** `PDC_PAUSA=1` y redesplegar. No hace falta tocar el cron.
-- **Volver a publicar de verdad:** `PDC_MODO=publicar`.
+- **Modo por defecto desde el 22-nov-2026:** `publicar`. La corrida diaria escribe en vivo y deja
+  la versión anterior en el historial de revisiones de WordPress. `PDC_MODO=borrador` sigue
+  existiendo para pruebas manuales.
 - **Revertir un snippet:** `python scripts/corrida_completa.py --revertir <post_id>`; usa el
   respaldo guardado en la corrida que lo cambió.
 - **Respaldo del estado:** copiar `/data` a diario; es lo único que no se puede reconstruir.

@@ -459,6 +459,27 @@ def calendario(
         pais = PAISES[indice % len(PAISES)]
         cola = colas.get(pais) or []
         if not cola:
+            # Sharon: un día hábil no se queda vacío. Si el mercado del día no tiene señal, entra
+            # la mejor oportunidad del resto del portal, en orden de GSC, sin cambiar su mercado.
+            elegida: dict[str, Any] | None = None
+            origen = ""
+            for otro in PAISES:
+                if otro == pais or not colas.get(otro):
+                    continue
+                candidata = max(colas[otro], key=lambda c: (c.get("puntaje") or 0, str(c.get("objetivo") or "")))
+                if elegida is None or (candidata.get("puntaje") or 0) > (elegida.get("puntaje") or 0):
+                    elegida, origen = candidata, otro
+            if elegida is not None:
+                colas[origen] = [c for c in colas[origen] if c is not elegida]
+                plan.append(
+                    {
+                        "fecha": dia.isoformat(),
+                        **elegida,
+                        "motivo": f"{elegida.get('motivo') or 'mejor oportunidad del portal'} "
+                        f"(de {origen}; {pais} sin señal)",
+                    }
+                )
+                continue
             plan.append(
                 {
                     "fecha": dia.isoformat(),
@@ -466,7 +487,7 @@ def calendario(
                     "accion": "sin_slot",
                     "objetivo": "",
                     "keyword": "",
-                    "motivo": "sin oportunidades con señal vigente",
+                    "motivo": "sin oportunidades con señal vigente en ningún mercado",
                 }
             )
             continue

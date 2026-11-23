@@ -6,7 +6,7 @@ tarea programada de Coolify, que llama a este script.
 
 Variables de entorno que espera (todas desde el panel de Coolify, ninguna en el repositorio):
 
-    PDC_MODO=borrador|publicar      borrador mientras se prueba; publicar cuando se autorice
+    PDC_MODO=publicar|borrador      por defecto publicar: actualización diaria en vivo
     PDC_PAUSA=1                     pausa global: no hace nada y lo dice
     PDC_PAISES=CO,MX,CR,DO          mercados a rotar (solo esos cuatro existen en el portal)
     PDC_VENTANA_INICIO=06:00        hora local de Bogotá
@@ -18,6 +18,7 @@ Variables de entorno que espera (todas desde el panel de Coolify, ninguna en el 
 
 from __future__ import annotations
 
+import json
 import os
 import re
 import signal
@@ -246,7 +247,25 @@ def main() -> int:
         return 0
 
     pais = mercado_del_dia()
-    modo = os.environ.get("PDC_MODO", "borrador").strip().lower()
+    # El slot del día manda: el calendario ya trae un objetivo para cada día hábil, aunque el
+    # mercado que rotaba no tuviera señal. Sin esto, la corrida cambiaba de mercado y el plan
+    # quedaba desalineado con lo que de verdad se ejecuta.
+    objetivo_del_dia = ""
+    try:
+        plan = json.loads((Path(os.environ.get("PDC_STATE_DIR", "state")) / "calendario.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        plan = []
+    hoy = date.today().isoformat()
+    for slot in plan if isinstance(plan, list) else []:
+        if str(slot.get("fecha")) == hoy and (slot.get("objetivo") or "").strip():
+            if (slot.get("pais") or "").strip().upper() in PAISES:
+                pais = str(slot["pais"]).strip().upper()
+            objetivo_del_dia = str(slot["objetivo"]).strip()
+            print(f"calendario: {slot.get('accion')} sobre {objetivo_del_dia[-50:]} ({pais})")
+            break
+    # Sharon (22-nov): la actualización va en vivo todos los días hábiles y se vuelve atrás con
+    # la revisión de WordPress. El borrador dejó de ser el modo por defecto.
+    modo = os.environ.get("PDC_MODO", "publicar").strip().lower()
     argumentos = [
         sys.executable,
         str(RAIZ / "scripts" / "corrida_completa.py"),
@@ -258,10 +277,17 @@ def main() -> int:
         "--gsc",
         # Prioridad de negocio: primero se mejora lo que ya posiciona (reencauche) y solo cuando
         # no hay nada que mejorar se escribe una pieza nueva. La elección sale del diagnóstico.
-        "--auto",
     ]
+    if objetivo_del_dia:
+        # El slot del calendario ya dice qué pieza toca: se trabaja esa y solo como reencauche.
+        argumentos.extend(["--url", objetivo_del_dia, "--solo-reencauche"])
+    else:
+        argumentos.append("--auto")
     if modo != "publicar":
         argumentos.append("--borrador")
+    else:
+        # Autoriza escribir sobre un artículo ya publicado conservando su URL.
+        argumentos.append("--en-vivo")
 
     # El modo se imprime como palabra y no como el valor de la variable: Coolify redacta en el
     # registro cualquier cadena que coincida con una variable de entorno, y con el valor crudo
