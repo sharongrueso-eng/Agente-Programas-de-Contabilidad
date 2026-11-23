@@ -22,6 +22,30 @@ sys.path.insert(0, PAQUETE)
 
 VIGIAS = [("col", "CO", "Colombia"), ("mex", "MX", "México"),
           ("dom", "DO", "República Dominicana"), ("cri", "CR", "Costa Rica")]
+# Una marca se escribe de varias formas en las páginas y en los posts («Contpaqi», «CONTPAQi»,
+# «Aspel», «siigo»). El directorio guarda siempre la misma forma para que dos filas no parezcan
+# dos competidores distintos.
+def _clave_marca(nombre: str) -> str:
+    import re as _re
+    import unicodedata as _ud
+    t = _ud.normalize("NFKD", str(nombre or "")).encode("ascii", "ignore").decode().lower()
+    return _re.sub(r"[^a-z0-9]", "", t)
+
+
+MARCAS_CANONICAS = {
+    "contpaqi": "CONTPAQi", "contpaqy": "CONTPAQi", "compac": "CONTPAQi",
+    "aspel": "Siigo", "aspelcoi": "Siigo", "aspelsae": "Siigo",
+    "siigo": "Siigo", "alegra": "Alegra", "loggro": "Loggro", "vendty": "Vendty",
+    "worldoffice": "World Office", "facturama": "Facturama", "miskuentas": "Miskuentas",
+    "citrus": "Citrus", "gti": "GTI", "facturaprofesional": "Factura Profesional",
+}
+
+
+def marca_canonica(nombre: str) -> str:
+    """«Contpaqi», «CONTPAQi» y «contpaqi» devuelven la misma marca, con su forma oficial."""
+    return MARCAS_CANONICAS.get(_clave_marca(nombre), str(nombre or "").strip())
+
+
 ESTADO_ICONO = {"confirmado": "✅", "pendiente_confirmar": "⚠️ campaña",
                 "pendiente_lectura": "🔎 por confirmar", "no_publica": "— no publica"}
 
@@ -66,11 +90,27 @@ def cargar() -> dict:
         filas = []
         for p in planes:
             filas.append({
-                "marca": p["marca"], "producto": p.get("producto") or "—",
+                "marca": marca_canonica(p["marca"]),
+                "producto": p.get("producto") or "—",
                 "plan": p.get("plan") or "—", "precio": _pesos(p), "moneda": p.get("moneda"),
+                # Precio según la periodicidad de cobro: mensual es lo que se paga cada mes;
+                # anual es el total del año cuando se paga por adelantado.
+                "precio_mensual": p.get("mensual"),
+                # anual nominal = lo que costaría el año pagando mes a mes; anual facturado =
+                # lo que la página cobra por adelantado (que suele traer descuento).
+                "precio_anual_nominal": (round(float(p["mensual"]) * 12, 2)
+                                         if p.get("mensual") is not None else None),
+                "precio_anual": (p.get("anual_facturado") if p.get("anual_facturado") is not None
+                                 else (round(float(p["mensual"]) * 12, 2)
+                                       if p.get("mensual") is not None else None)),
+                "precio_mes_con_pago_anual": p.get("anual_equivalente_mes"),
+                "precio_promocional_mes": p.get("precio_promocional_mes"),
+                "descuento_pct": p.get("descuento_pct") or p.get("descuento_anual_pct"),
+                "descripcion": p.get("descripcion") or "",
                 "periodo": p.get("periodo") or "—", "fuente": p.get("fuente"),
                 "estado": p.get("estado") or "confirmado", "nota": p.get("nota") or "",
                 "fecha_consulta": p.get("fecha_consulta"),
+                "fecha_revision": p.get("fecha_revision") or p.get("fecha_consulta"),
             })
         marcas_con_precio = {f["marca"] for f in filas}
         absorbidas = []
@@ -105,12 +145,16 @@ def a_markdown(d: dict) -> str:
     for p in d["paises"]:
         lineas += [f"## {p['nombre']} ({p['pais']}) — {p['n_planes']} planes", ""]
         if p["planes"]:
-            lineas += ["| Marca | Producto | Plan | Precio | Moneda | Fuente | Estado |",
-                       "|---|---|---|---|---|---|---|"]
+            lineas += ["| Marca | Producto | Plan | Mensual | Anual | Moneda | Qué incluye | "
+                       "Fuente | Revisado | Estado |",
+                       "|---|---|---|---|---|---|---|---|---|---|"]
             for f in sorted(p["planes"], key=lambda x: (x["marca"], x["producto"], x["plan"])):
                 estado = ESTADO_ICONO.get(f["estado"], f["estado"])
-                lineas.append(f"| {f['marca']} | {f['producto']} | {f['plan']} | {f['precio']} | "
-                              f"{f['moneda']} | {f['fuente']} | {estado} |")
+                mensual = _num(f["precio_mensual"]) if f.get("precio_mensual") is not None else "—"
+                anual = _num(f["precio_anual"]) if f.get("precio_anual") is not None else "—"
+                lineas.append(f"| {f['marca']} | {f['producto']} | {f['plan']} | {mensual} | {anual} | "
+                              f"{f['moneda']} | {f.get('descripcion') or '—'} | {f['fuente']} | "
+                              f"{f.get('fecha_revision') or '—'} | {estado} |")
             lineas.append("")
         for a in p.get("absorbidas") or []:
             lineas += [f"**{a['marca']}** ya no es una fuente propia: redirige a **{a['ahora']}** "
@@ -140,11 +184,16 @@ def main(argv=None) -> int:
             json.dump(d, f, ensure_ascii=False, indent=1)
         with open(os.path.join(RAIZ, "directorio-precios.csv"), "w", encoding="utf-8", newline="") as f:
             w = csv.writer(f)
-            w.writerow(["pais", "marca", "producto", "plan", "precio", "moneda", "fuente", "estado", "fecha"])
+            w.writerow(["pais", "marca", "producto", "plan", "precio_mensual", "precio_anual",
+                        "precio_anual_nominal", "moneda", "descripcion", "fuente",
+                        "fecha_revision", "estado"])
             for p in d["paises"]:
                 for x in p["planes"]:
-                    w.writerow([p["pais"], x["marca"], x["producto"], x["plan"], x["precio"],
-                                x["moneda"], x["fuente"], x["estado"], x["fecha_consulta"]])
+                    w.writerow([p["pais"], x["marca"], x["producto"], x["plan"],
+                                x.get("precio_mensual"), x.get("precio_anual"),
+                                x.get("precio_anual_nominal"), x["moneda"],
+                                x.get("descripcion") or "", x["fuente"],
+                                x.get("fecha_revision") or "", x["estado"]])
         with open(os.path.join(RAIZ, "docs", "DIRECTORIO-PRECIOS.md"), "w", encoding="utf-8") as f:
             f.write(a_markdown(d))
         print("\nescrito: directorio-precios.json, directorio-precios.csv y docs/DIRECTORIO-PRECIOS.md")

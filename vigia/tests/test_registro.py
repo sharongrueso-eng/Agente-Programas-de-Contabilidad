@@ -74,7 +74,10 @@ def test_moneda_fuente_y_fecha():
     for pais, p in PLANES:
         assert p["moneda"] in MONEDA[pais], p["clave"]
         assert p["fuente"].startswith("https://"), p["clave"]
-        assert p["fecha_consulta"].startswith("2026-11-1"), p["clave"]
+        # Cada plan declara el día en que se leyó: 2026-11-18 en los primeros barridos y
+        # 2026-11-22 en los catálogos ampliados (Siigo México).
+        assert p["fecha_consulta"].startswith("2026-11-"), p["clave"]
+        assert len(p["fecha_consulta"]) == 10, p["clave"]
         if p.get("estado") != "pendiente_confirmar":
             assert p["campana_activa"] is None, p["clave"]
 

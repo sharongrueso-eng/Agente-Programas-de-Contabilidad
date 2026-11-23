@@ -52,3 +52,32 @@ def test_markdown_cita_las_urls():
     assert md.startswith("# Directorio de precios de PdC")
     assert "https://www.alegra.com/colombia/precios/" in md
     assert "CONTPAQi" in md and "Citrus" in md
+
+
+def test_precio_mensual_y_anual_por_periodicidad():
+    """Cada fila trae lo que se paga al mes y lo que cuesta el año, no un texto ambiguo."""
+    d = directorio.cargar()
+    mx = next(p for p in d["paises"] if p["pais"] == "MX")
+    lite = next(f for f in mx["planes"] if f["plan"] == "POS Lite" and f["marca"] == "Alegra")
+    assert lite["precio_mensual"] == 199
+    assert lite["precio_anual_nominal"] == 2388       # 199 × 12, lo que cuesta el año mes a mes
+    assert lite["precio_anual"] == 1791               # lo que cobra la página con pago anual
+    assert lite["moneda"] == "MXN"
+
+
+def test_cada_fila_tiene_periodicidad_y_fecha_de_revision():
+    d = directorio.cargar()
+    for p in d["paises"]:
+        for f in p["planes"]:
+            assert f["precio_mensual"] is not None or f["precio_anual"] is not None, f["clave"] if "clave" in f else f["plan"]
+            assert f["fecha_revision"], (p["pais"], f["marca"], f["plan"])
+
+
+def test_la_marca_se_escribe_siempre_igual():
+    """«Contpaqi» y «CONTPAQi» son la misma marca: no pueden salir como dos competidores."""
+    for forma in ("CONTPAQi", "Contpaqi", "contpaqi", "CONTPAQ I", "contpaq i"):
+        assert directorio.marca_canonica(forma) == "CONTPAQi", forma
+    assert directorio.marca_canonica("Aspel") == "Siigo"
+    d = directorio.cargar()
+    mx = next(p for p in d["paises"] if p["pais"] == "MX")
+    assert len([m for m in mx["marcas"] if m.lower().startswith("contpaq")]) == 1
