@@ -5,165 +5,170 @@
   "plans": [
     {
       "name": "CONTPAQi Contabilidad Nube Inicial (anual)",
-      "price": "4690",
+      "price": "4,690",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "1 RFC, 1 usuario, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA."
+      "monthly_equivalent": "391",
+      "note": "Total facturado al año; equivale a 391 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Contabilidad Nube Equipos (anual)",
-      "price": "6290",
+      "price": "6,290",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Multiempresa, 2 usuarios, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA."
+      "monthly_equivalent": "524",
+      "note": "Total facturado al año; equivale a 524 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Contabilidad Nube Empresarial (anual)",
-      "price": "11790",
+      "price": "11,790",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Multiempresa, 5 usuarios, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA."
+      "monthly_equivalent": "982",
+      "note": "Total facturado al año; equivale a 982 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Contabilidad Nube Corporativo (anual)",
-      "price": "20490",
+      "price": "20,490",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Multiempresa, 10 usuarios, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA."
+      "monthly_equivalent": "1.708",
+      "note": "Total facturado al año; equivale a 1.708 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Contabilidad Nube: usuario adicional (anual)",
-      "price": "1880",
+      "price": "1,880",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Por usuario adicional al año. La página no indica si los precios incluyen IVA."
+      "monthly_equivalent": "157",
+      "note": "Total facturado al año; equivale a 157 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Contabilidad Escritorio Mono-RFC (anual)",
-      "price": "4590",
+      "price": "4,590",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Licencia nueva con 1 usuario; 1 RFC. La página no indica si los precios incluyen IVA."
+      "monthly_equivalent": "382",
+      "note": "Total facturado al año; equivale a 382 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Contabilidad Escritorio Multi-RFC (anual)",
-      "price": "6190",
+      "price": "6,190",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Licencia nueva con 1 usuario; múltiples RFC. La página no indica si los precios incluyen IVA."
+      "monthly_equivalent": "516",
+      "note": "Total facturado al año; equivale a 516 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Contabilidad Escritorio: usuario adicional (anual)",
-      "price": "1690",
+      "price": "1,690",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Por usuario adicional al año. La página no indica si los precios incluyen IVA."
-    },
-    {
-      "name": "CONTPAQi Anticipa (análisis fiscal de CFDI) Esencial (anual)",
-      "price": "0",
-      "currency": "MXN",
-      "period": "año",
-      "billing": "anual",
-      "publicado": true,
-      "note": "Edición sin costo (no es una prueba): 1 RFC, 2 usuarios, 1,500 CFDI en total. No es un sistema contable. La página no indica si los precios incluyen IVA."
+      "monthly_equivalent": "141",
+      "note": "Total facturado al año; equivale a 141 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Anticipa (análisis fiscal de CFDI) Crecimiento (anual)",
-      "price": "2990",
+      "price": "2,990",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "RFC ilimitados en ediciones de pago \"por lanzamiento\", 2 usuarios, 24,000 CFDI al año. No es un sistema contable. La página no indica si los precios incluyen IVA."
+      "monthly_equivalent": "249",
+      "note": "Total facturado al año; equivale a 249 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Anticipa (análisis fiscal de CFDI) Profesional (anual)",
-      "price": "4590",
+      "price": "4,590",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "RFC ilimitados, 5 usuarios, 90,000 CFDI al año. No es un sistema contable. La página no indica si los precios incluyen IVA."
+      "monthly_equivalent": "382",
+      "note": "Total facturado al año; equivale a 382 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Anticipa (análisis fiscal de CFDI) Empresarial (anual)",
-      "price": "8490",
+      "price": "8,490",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "RFC ilimitados, 10 usuarios, 240,000 CFDI al año. No es un sistema contable. La página no indica si los precios incluyen IVA."
+      "monthly_equivalent": "708",
+      "note": "Total facturado al año; equivale a 708 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Escritorio Virtual (hospedaje en la nube) Max (mensual)",
-      "price": "1990",
+      "price": "1,990",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "4 núcleos, 8 GB de RAM, 100 GB, 1 usuario base, 720 horas. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IV"
+      "note": ""
     },
     {
       "name": "CONTPAQi Escritorio Virtual (hospedaje en la nube) Max (anual)",
-      "price": "22990",
+      "price": "22,990",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "4 núcleos, 8 GB de RAM, 100 GB, 1 usuario base, 720 horas. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IV"
+      "monthly_equivalent": "1.916",
+      "note": "Total facturado al año; equivale a 1.916 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Escritorio Virtual (hospedaje en la nube) Ejecutivo (mensual)",
-      "price": "4190",
+      "price": "4,190",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "8 núcleos, 16 GB de RAM, 360 GB, 2 usuarios base. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IVA (16 %) "
+      "note": ""
     },
     {
       "name": "CONTPAQi Escritorio Virtual (hospedaje en la nube) Ejecutivo (anual)",
-      "price": "45590",
+      "price": "45,590",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "8 núcleos, 16 GB de RAM, 360 GB, 2 usuarios base. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IVA (16 %) "
+      "monthly_equivalent": "3.799",
+      "note": "Total facturado al año; equivale a 3.799 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "CONTPAQi Escritorio Virtual (hospedaje en la nube) Empresarial Plus (mensual)",
-      "price": "6590",
+      "price": "6,590",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "8 núcleos, 32 GB de RAM, 360 GB, 2 usuarios base. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IVA (16 %) "
+      "note": ""
     },
     {
       "name": "CONTPAQi Escritorio Virtual (hospedaje en la nube) Empresarial Plus (anual)",
-      "price": "75590",
+      "price": "75,590",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "8 núcleos, 32 GB de RAM, 360 GB, 2 usuarios base. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IVA (16 %) "
+      "monthly_equivalent": "6.299",
+      "note": "Total facturado al año; equivale a 6.299 MXN/mes, que no es la tarifa mensual"
     }
   ],
   "source_url": "https://www.contpaqi.com/escritorio-virtual",
@@ -189,8 +194,12 @@
     {
       "fecha": "2026-11-22",
       "cambio": "precios sincronizados desde el directorio del vigía (60 planes)"
+    },
+    {
+      "fecha": "2026-11-23",
+      "cambio": "precios sincronizados desde el directorio del vigía (17 planes)"
     }
   ],
-  "precios_origen": "vigia/paises/mex/precios.json (fuente única)",
+  "precios_origen": "directorio del vigía",
   "nota_base_iva": "Precios No indica; el anual es el que cobra la página, no el mensual por 12."
 }

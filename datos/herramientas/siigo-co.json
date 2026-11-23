@@ -4,301 +4,304 @@
   "product": "Siigo",
   "plans": [
     {
-      "name": "Siigo Facturación electrónica Gratis (5 documentos al año) (anual)",
-      "price": "0",
-      "currency": "COP",
-      "period": "año",
-      "billing": "anual",
-      "publicado": true,
-      "note": "Incluye: 5 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario. No incluye: Siigo App; Cotizaciones/CRM; Cartera seguimiento de cobranza."
-    },
-    {
       "name": "Siigo Facturación electrónica 24 documentos al año (anual)",
-      "price": "119900",
+      "price": "119.900",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: 24 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App. No incluye: Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/cue"
+      "monthly_equivalent": "9.992",
+      "note": "Total facturado al año; equivale a 9.992 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Facturación electrónica 60 documentos al año (anual)",
-      "price": "199900",
+      "price": "199.900",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "El número de documentos sale del nombre del plan; la página no lista sus funciones. Aparece en los datos de la página: falta confirmar que el selector lo muestre."
+      "monthly_equivalent": "16.658",
+      "note": "Total facturado al año; equivale a 16.658 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Facturación electrónica 120 documentos al año (anual)",
-      "price": "254915",
+      "price": "254.915",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: 120 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App. No incluye: Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/cu"
+      "monthly_equivalent": "21.243",
+      "note": "Total facturado al año; equivale a 21.243 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Facturación electrónica FE PRO (500 documentos al año) (anual)",
-      "price": "684810",
+      "price": "684.810",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: 500 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App; Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/cuentas por pa"
+      "monthly_equivalent": "57.068",
+      "note": "Total facturado al año; equivale a 57.068 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Facturación electrónica 1500 documentos al año (anual)",
-      "price": "1.10781e+06",
+      "price": "1.107.810",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: 1500 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App. No incluye: Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/c"
+      "monthly_equivalent": "92.318",
+      "note": "Total facturado al año; equivale a 92.318 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Nube (software administrativo) Profesional Independiente (anual)",
-      "price": "1.75192e+06",
+      "price": "1.751.920",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: 1 Usuario / Documentos electrónicos ilimitados; Cobra con Siigo Pay; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsApp; Contabilidad; Cotizaciones/CRM; Siigo App; Gastos"
+      "monthly_equivalent": "145.993",
+      "note": "Total facturado al año; equivale a 145.993 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Nube (software administrativo) Emprendedor (anual)",
-      "price": "2.29592e+06",
+      "price": "2.295.920",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: 3 Usuarios / Documentos electrónicos ilimitados; Cobra con Siigo Pay; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsApp; Contabilidad; Cotizaciones/CRM; Siigo App; Gasto"
+      "monthly_equivalent": "191.327",
+      "note": "Total facturado al año; equivale a 191.327 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Nube (software administrativo) Premium (anual)",
-      "price": "2.49442e+06",
+      "price": "2.494.425",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: 5 Usuarios / Documentos electrónicos ilimitados; Cobra con Siigo Pay; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsApp; Contabilidad; Cotizaciones/CRM; Siigo App; Gasto"
-    },
-    {
-      "name": "Siigo Contador Siigo Contador (1 empresa) (anual)",
-      "price": "0",
-      "currency": "COP",
-      "period": "año",
-      "billing": "anual",
-      "publicado": true,
-      "note": "Incluye: 1 Empresa; Contabilidad; Impuestos; Estados financieros; Portal contador."
+      "monthly_equivalent": "207.869",
+      "note": "Total facturado al año; equivale a 207.869 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Contador Siigo Contador ilimitado (anual)",
-      "price": "535900",
+      "price": "535.900",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Empresas ilimitadas; Contabilidad; Impuestos; Estados financieros; Portal contador. El pago es anual; el descuento aplica para cliente nuevo (según la página)."
+      "monthly_equivalent": "44.658",
+      "note": "Total facturado al año; equivale a 44.658 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo POS POS Esencial (anual)",
-      "price": "345000",
+      "price": "345.000",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: 240 Facturas electrónicas anuales desde POS; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario; Reportes Generales; Usuarios cajeros; 1 Usuario administrador S"
+      "monthly_equivalent": "28.750",
+      "note": "Total facturado al año; equivale a 28.750 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo POS POS Inicio (anual)",
-      "price": "527310",
+      "price": "527.310",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario; Reportes Generales; Usuarios cajeros; 1 Usuario administrador Si"
+      "monthly_equivalent": "43.942",
+      "note": "Total facturado al año; equivale a 43.942 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo POS POS Avanzado (anual)",
-      "price": "764915",
+      "price": "764.915",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario intermedio; Reportes Generales; Usuarios cajeros; 1 Usuario admin"
+      "monthly_equivalent": "63.743",
+      "note": "Total facturado al año; equivale a 63.743 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo POS Gastrobar GastroBar PRO (anual)",
-      "price": "1.04993e+06",
+      "price": "1.049.930",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Gestión Dinámica de Mesas y Meseros; Comandas y órdenes de servicio; Documentos electrónicos / Cumplimiento normativo; Inventario, Stocks y Costeo; Combos, recetas y comandas; Gestión de prop"
+      "monthly_equivalent": "87.494",
+      "note": "Total facturado al año; equivale a 87.494 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Nómina electrónica NE Lite 24 (hasta 2 empleados) (anual)",
-      "price": "119900",
+      "price": "119.900",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Hasta 2 empleados; Hasta 24 documentos anuales; Cumple al 100% los requisitos de la DIAN; Certificado digital; Reportes en tablero digital [dashboard]; Material de capacitación; Envío de comp"
+      "monthly_equivalent": "9.992",
+      "note": "Total facturado al año; equivale a 9.992 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Nómina electrónica NE Lite 120 (3 a 10 empleados) (anual)",
-      "price": "239920",
+      "price": "239.920",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Entre 3 a 10 empleados; Hasta 120 documentos anuales; Cumple al 100% los requisitos de la DIAN; Certificado digital; Reportes en tablero digital [dashboard]; Material de capacitación; Envío d"
+      "monthly_equivalent": "19.993",
+      "note": "Total facturado al año; equivale a 19.993 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Nómina electrónica NE Lite 300 (11 a 25 empleados) (anual)",
-      "price": "449925",
+      "price": "449.925",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Entre 11 a 25 empleados; Hasta 300 documentos anuales; Cumple al 100% los requisitos de la DIAN; Certificado digital; Reportes en tablero digital [dashboard]; Material de capacitación; Envío "
+      "monthly_equivalent": "37.494",
+      "note": "Total facturado al año; equivale a 37.494 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Nómina electrónica Nómina Nube Plus (anual)",
-      "price": "749925",
+      "price": "749.925",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Empleados ilimitados; Cumple al 100% los requisitos de la DIAN; Generación de archivos planos a bancos; Liquidación automática de nómina y contratos; Contabilización; Certificado digital; Rep"
+      "monthly_equivalent": "62.494",
+      "note": "Total facturado al año; equivale a 62.494 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo Nómina electrónica Nómina Nube Pro (anual)",
-      "price": "1.40242e+06",
+      "price": "1.402.425",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Empleados ilimitados; Cumple al 100% los requisitos de la DIAN; Generación de archivos planos a bancos; Liquidación automática de nómina, contratos y cesantías; Contabilización y seguridad so"
+      "monthly_equivalent": "116.869",
+      "note": "Total facturado al año; equivale a 116.869 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (combos) Factura + FE WhatsApp 24 (anual)",
-      "price": "138600",
+      "price": "138.600",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: 1 Usuario; 24 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; Facturación por voz con IA*; Siigo App. No incluye: Cotizaciones/CRM:; Cartera segui"
+      "monthly_equivalent": "11.550",
+      "note": "Total facturado al año; equivale a 11.550 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (combos) Factura + FE WhatsApp 120 (anual)",
-      "price": "244416",
+      "price": "244.416",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: 120 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; Facturación por voz con IA*; 1 Usuario; 1 Línea celular; Siigo App. No incluye: Cotizaciones/C"
+      "monthly_equivalent": "20.368",
+      "note": "Total facturado al año; equivale a 20.368 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (combos) Facturación electrónica 24 + Nómina electrónica 24 (anual)",
-      "price": "191840",
+      "price": "191.840",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Nómina hasta para 2 empleados; 24 Documentos electrónicos anuales; Liquidación manual de contratos y de cesantías; Automatización de pagos y comprobantes; Certificado digital* y cumplimiento "
+      "monthly_equivalent": "15.987",
+      "note": "Total facturado al año; equivale a 15.987 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (combos) Factura 120 + Nómina electrónica 120 (anual)",
-      "price": "419860",
+      "price": "419.860",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Nómina hasta para 10 empleados; 120 Documentos electrónicos anuales; Liquidación manual de contratos y de cesantías; Automatización de pagos y comprobantes; Certificado digital* y cumplimient"
+      "monthly_equivalent": "34.988",
+      "note": "Total facturado al año; equivale a 34.988 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (combos) Nube Profesional Independiente + NE 120 (anual)",
-      "price": "1.99184e+06",
+      "price": "1.991.840",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Hasta 10 empleados / 1 usuario administrador; Documentos electrónicos ilimitados; Automatización de pagos y comprobantes; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsA"
+      "monthly_equivalent": "165.987",
+      "note": "Total facturado al año; equivale a 165.987 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (combos) POS Avanzado + Nube Emprendedor (anual)",
-      "price": "2.82735e+06",
+      "price": "2.827.350",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario, Costeo y control de stocks; Contabilidad; Usuarios cajeros; 3 Us"
+      "monthly_equivalent": "235.612",
+      "note": "Total facturado al año; equivale a 235.612 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (combos) POS Avanzado + Nube Premium (anual)",
-      "price": "2.95806e+06",
+      "price": "2.958.060",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario, Costeo y control de stocks; Contabilidad con centros de costo y "
+      "monthly_equivalent": "246.505",
+      "note": "Total facturado al año; equivale a 246.505 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (combos) POS GastroBar PRO + Nube Premium (anual)",
-      "price": "2.89548e+06",
+      "price": "2.895.480",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Gestión Dinámica de Mesas y Meseros; Comandas y órdenes de servicio; Documentos electrónicos / Cumplimiento normativo; Gestión Premium de Inventarios y Stocks; Combos, recetas y comandas; Ges"
+      "monthly_equivalent": "241.290",
+      "note": "Total facturado al año; equivale a 241.290 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (adicionales) FE WhatsApp 24 (anual)",
-      "price": "19470",
+      "price": "19.470",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Automatiza recordatorios de cobro con IA; Envía comprobantes al instante con IA; Seguimiento de facturas enviadas. No incluye: Compatible con la DIAN. Facturar por WhatsApp con IA Aparece en "
+      "monthly_equivalent": "1.622",
+      "note": "Total facturado al año; equivale a 1.622 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (adicionales) FE WhatsApp 120 (anual)",
-      "price": "19470",
+      "price": "19.470",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Automatiza recordatorios de cobro con IA; Envía comprobantes al instante con IA; Seguimiento de facturas enviadas; Compatible con la DIAN. Facturar por WhatsApp con IA Aparece en los datos in"
+      "monthly_equivalent": "1.622",
+      "note": "Total facturado al año; equivale a 1.622 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (adicionales) FE WhatsApp en Siigo Nube (anual)",
-      "price": "309900",
+      "price": "309.900",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Automatiza recordatorios de cobro con IA; Envía comprobantes al instante con IA; Seguimiento de facturas enviadas; Compatible con la DIAN. Facturar por WhatsApp con IA Aparece en los datos in"
+      "monthly_equivalent": "25.825",
+      "note": "Total facturado al año; equivale a 25.825 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Siigo (adicionales) App A la orden (anual)",
-      "price": "322800",
+      "price": "322.800",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye: Verifica las pre-cuentas sin re-ingresarla; Toma comandas desde el celular o tablet; Envía las comandas a cocina o barra en automático. Los meseros pueden tomar pedidos directamente desde un "
-    },
-    {
-      "name": "Siigo (adicionales) Integración Rappi (anual)",
-      "price": "0",
-      "currency": "COP",
-      "period": "año",
-      "billing": "anual",
-      "publicado": true,
-      "note": "La página lo lista con precio 0 y sin descripción."
+      "monthly_equivalent": "26.900",
+      "note": "Total facturado al año; equivale a 26.900 COP/mes, que no es la tarifa mensual"
     }
   ],
   "source_url": "https://www.siigo.com/precios-siigo/",
@@ -340,9 +343,12 @@
       "fecha": "2026-11-06",
       "planes": 19,
       "cambios": []
+    },
+    {
+      "fecha": "2026-11-23",
+      "cambio": "precios sincronizados desde el directorio del vigía (30 planes)"
     }
   ],
-  "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica",
-  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
+  "precios_origen": "directorio del vigía",
   "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12."
 }

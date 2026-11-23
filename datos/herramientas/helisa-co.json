@@ -6,34 +6,70 @@
   "plans": [
     {
       "name": "Helisa Cloud Cloud Plus (mensual)",
-      "price": "396900",
+      "price": "396.900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Hasta 100 empresas, 3 usuarios, 60.000 validaciones de facturación electrónica; incluye nómina, nómina electrónica, importaciones, activos fijos, presupuesto e inventarios."
+      "note": ""
+    },
+    {
+      "name": "Helisa Cloud Cloud Plus (anual)",
+      "price": "4.762.800",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "396.900",
+      "note": "Total facturado al año; equivale a 396.900 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Helisa Cloud Cloud Estándar (mensual)",
-      "price": "249480",
+      "price": "249.480",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Hasta 100 empresas, 2 usuarios, 6.000 validaciones de facturación electrónica."
+      "note": ""
+    },
+    {
+      "name": "Helisa Cloud Cloud Estándar (anual)",
+      "price": "2.993.760",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "249.480",
+      "note": "Total facturado al año; equivale a 249.480 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Helisa Cloud Cloud Básico (mensual)",
-      "price": "192780",
+      "price": "192.780",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "1 empresa, 2 usuarios, 1.200 validaciones de facturación electrónica."
+      "note": ""
+    },
+    {
+      "name": "Helisa Cloud Cloud Básico (anual)",
+      "price": "2.313.360",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "192.780",
+      "note": "Total facturado al año; equivale a 192.780 COP/mes, que no es la tarifa mensual"
     }
   ],
   "source_url": "https://helisa.com/",
   "captured_at": "2026-11-22",
-  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
-  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12."
+  "precios_origen": "directorio del vigía",
+  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12.",
+  "historial": [
+    {
+      "fecha": "2026-11-23",
+      "cambio": "precios sincronizados desde el directorio del vigía (6 planes)"
+    }
+  ]
 }

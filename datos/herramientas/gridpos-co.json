@@ -6,169 +6,222 @@
   "plans": [
     {
       "name": "GridPOS (POS) Esencial (mensual)",
-      "price": "19900",
+      "price": "19.900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "1 usuario, 1 caja, 1 bodega, ventas hasta $10.000.000 al mes, POS DIAN limitado."
+      "note": ""
     },
     {
       "name": "GridPOS (POS) Esencial (anual)",
-      "price": "202980",
+      "price": "202.980",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "1 usuario, 1 caja, 1 bodega, ventas hasta $10.000.000 al mes, POS DIAN limitado."
+      "monthly_equivalent": "16.915",
+      "note": "Total facturado al año; equivale a 16.915 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "GridPOS (POS) Profesional (mensual)",
-      "price": "50000",
+      "price": "50.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "2 usuarios, 1 caja, 1 bodega, ventas hasta $50.000.000 al mes, POS DIAN limitado. Marcado \"Más popular\"."
+      "note": ""
     },
     {
       "name": "GridPOS (POS) Profesional (anual)",
-      "price": "510000",
+      "price": "510.000",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "2 usuarios, 1 caja, 1 bodega, ventas hasta $50.000.000 al mes, POS DIAN limitado. Marcado \"Más popular\"."
+      "monthly_equivalent": "42.500",
+      "note": "Total facturado al año; equivale a 42.500 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "GridPOS (POS) Premium (mensual)",
-      "price": "70000",
+      "price": "70.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "6 usuarios, 2 cajas, 2 bodegas, ventas ilimitadas, POS DIAN ilimitado."
+      "note": ""
     },
     {
       "name": "GridPOS (POS) Premium (anual)",
-      "price": "714000",
+      "price": "714.000",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "6 usuarios, 2 cajas, 2 bodegas, ventas ilimitadas, POS DIAN ilimitado."
+      "monthly_equivalent": "59.500",
+      "note": "Total facturado al año; equivale a 59.500 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "GridPOS (POS) Avanzado (mensual)",
-      "price": "100000",
+      "price": "100.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "10 usuarios, 3 cajas, 2 bodegas, ventas ilimitadas, POS DIAN ilimitado."
+      "note": ""
     },
     {
       "name": "GridPOS (POS) Avanzado (anual)",
-      "price": "1.02e+06",
+      "price": "1.020.000",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "10 usuarios, 3 cajas, 2 bodegas, ventas ilimitadas, POS DIAN ilimitado."
+      "monthly_equivalent": "85.000",
+      "note": "Total facturado al año; equivale a 85.000 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "GridPOS (Solo contabilidad) Empresa (mensual)",
-      "price": "50000",
+      "price": "50.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "1 empresa, 3 usuarios contables, PUC, comprobantes, cartera, compras, conciliación, cierre y exógena en Excel, CSV o XML. Factura electrónica y nómina van aparte."
+      "note": ""
     },
     {
       "name": "GridPOS (Solo contabilidad) Empresa (anual)",
-      "price": "510000",
+      "price": "510.000",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "1 empresa, 3 usuarios contables, PUC, comprobantes, cartera, compras, conciliación, cierre y exógena en Excel, CSV o XML. Factura electrónica y nómina van aparte."
+      "monthly_equivalent": "42.500",
+      "note": "Total facturado al año; equivale a 42.500 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "GridPOS (Solo contabilidad) Contador (mensual)",
-      "price": "100000",
+      "price": "100.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "4 empresas, 3 usuarios contables. Marcado \"Recomendado\". Factura electrónica y nómina van aparte."
+      "note": ""
     },
     {
       "name": "GridPOS (Solo contabilidad) Contador (anual)",
-      "price": "1.02e+06",
+      "price": "1.020.000",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "4 empresas, 3 usuarios contables. Marcado \"Recomendado\". Factura electrónica y nómina van aparte."
+      "monthly_equivalent": "85.000",
+      "note": "Total facturado al año; equivale a 85.000 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "GridPOS (Solo contabilidad) Despacho (mensual)",
-      "price": "150000",
+      "price": "150.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "7 empresas, 3 usuarios contables. Factura electrónica y nómina van aparte."
+      "note": ""
     },
     {
       "name": "GridPOS (Solo contabilidad) Despacho (anual)",
-      "price": "1.53e+06",
+      "price": "1.530.000",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "7 empresas, 3 usuarios contables. Factura electrónica y nómina van aparte."
+      "monthly_equivalent": "127.500",
+      "note": "Total facturado al año; equivale a 127.500 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "GridPOS (adicionales) Contabilidad Pro (adicional en planes POS) (mensual)",
-      "price": "25000",
+      "price": "25.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Se suma a cada plan POS, por mes."
+      "note": ""
+    },
+    {
+      "name": "GridPOS (adicionales) Contabilidad Pro (adicional en planes POS) (anual)",
+      "price": "300.000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "25.000",
+      "note": "Total facturado al año; equivale a 25.000 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "GridPOS (adicionales) Integración Rappi (adicional en planes POS) (mensual)",
-      "price": "12000",
+      "price": "12.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Se suma a cada plan POS, por mes."
+      "note": ""
+    },
+    {
+      "name": "GridPOS (adicionales) Integración Rappi (adicional en planes POS) (anual)",
+      "price": "144.000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "12.000",
+      "note": "Total facturado al año; equivale a 12.000 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "GridPOS (adicionales) Empresa adicional (Solo contabilidad) (mensual)",
-      "price": "20000",
+      "price": "20.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "La página dice \"El mismo descuento del periodo\"."
+      "note": ""
+    },
+    {
+      "name": "GridPOS (adicionales) Empresa adicional (Solo contabilidad) (anual)",
+      "price": "240.000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "20.000",
+      "note": "Total facturado al año; equivale a 20.000 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "GridPOS (adicionales) Usuario adicional (Solo contabilidad) (mensual)",
-      "price": "12000",
+      "price": "12.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "La página dice \"El mismo descuento del periodo\"."
+      "note": ""
+    },
+    {
+      "name": "GridPOS (adicionales) Usuario adicional (Solo contabilidad) (anual)",
+      "price": "144.000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "12.000",
+      "note": "Total facturado al año; equivale a 12.000 COP/mes, que no es la tarifa mensual"
     }
   ],
   "source_url": "https://gridpos.co/",
   "captured_at": "2026-11-22",
-  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
-  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12."
+  "precios_origen": "directorio del vigía",
+  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12.",
+  "historial": [
+    {
+      "fecha": "2026-11-23",
+      "cambio": "precios sincronizados desde el directorio del vigía (22 planes)"
+    }
+  ]
 }

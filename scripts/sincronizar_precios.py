@@ -95,7 +95,75 @@ def _por_marca(directorio: dict[tuple[str, str], list[dict]]) -> dict[tuple[str,
     return salida
 
 
-def planes_de(filas: list[dict]) -> list[dict]:
+def _cifra(valor: object) -> float | None:
+    """«354.0», «3514.05» y «1.10781e+06» son la misma cosa: un número."""
+    texto = str(valor if valor is not None else "").strip().replace(",", "")
+    if not texto:
+        return None
+    try:
+        numero = float(texto)
+    except ValueError:
+        return None
+    return numero or None
+
+
+def _formato(valor: float, pais: str = "CO") -> str:
+    """La cifra como se lee en el país: 3514.05 → «3.514,05» en CO/CR/DO y «3,514.05» en MX.
+
+    Los centavos no se tiran: la página publica 3.514,05 y publicar 3.514 es otra cifra.
+    """
+    decimales = 2 if abs(valor - round(valor)) > 0.004 else 0
+    texto = f"{valor:,.{decimales}f}"
+    if pais.upper() == "MX":
+        return texto  # coma de miles, punto decimal: ya es el formato de Python
+    return texto.replace(",", "@").replace(".", ",").replace("@", ".")
+
+
+def _planes_de_columnas(fila: dict, nombre: str, moneda: str, pais: str = "CO") -> list[dict]:
+    """El directorio exportado trae `precio_mensual` y `precio_anual` en columnas propias.
+
+    Aquí el mensual es el mensual y el anual es el TOTAL del año con periodo «año»; su equivalente
+    mensual va aparte. Antes solo se entendía la columna de texto `precio`, así que este formato
+    producía cero planes y la sincronización se quedaba muda.
+    """
+    mensual = _cifra(fila.get("precio_mensual"))
+    anual = _cifra(fila.get("precio_anual"))
+    planes: list[dict] = []
+    if mensual:
+        planes.append(
+            {
+                "name": f"{nombre} (mensual)",
+                "price": _formato(mensual, pais),
+                "currency": moneda,
+                "period": "mes",
+                "billing": "mensual",
+                "publicado": True,
+                "note": "",
+            }
+        )
+    if anual:
+        equivalente = round(anual / 12)
+        incoherente = bool(mensual) and anual > mensual * 12
+        planes.append(
+            {
+                "name": f"{nombre} (anual)",
+                "price": _formato(anual, pais),
+                "currency": moneda,
+                "period": "año",
+                "billing": "anual",
+                "publicado": True,
+                "monthly_equivalent": _numero(str(equivalente)),
+                "note": (
+                    f"Total facturado al año; equivale a {_numero(str(equivalente))} {moneda}/mes, "
+                    "que no es la tarifa mensual"
+                    + (" — OJO: el anual supera 12 meses del mensual" if incoherente else "")
+                ),
+            }
+        )
+    return planes
+
+
+def planes_de(filas: list[dict], pais: str = "CO") -> list[dict]:
     """Las filas del vigía convertidas al formato de plan de la ficha."""
     planes: list[dict] = []
     vistos: set[tuple[str, str]] = set()
@@ -104,10 +172,20 @@ def planes_de(filas: list[dict]) -> list[dict]:
         plan = (fila.get("plan") or "").strip()
         moneda = (fila.get("moneda") or "").strip().upper()
         precio = (fila.get("precio") or "").strip()
-        if not precio:
-            continue
+
         nombre = " ".join(p for p in (producto, plan) if p)
         if (nombre.lower(), moneda) in vistos:
+            continue
+
+        # Dos formatos en el mismo directorio: la columna de texto `precio` y las columnas
+        # numéricas del export. Se aceptan los dos; antes solo el primero, y el export no entraba.
+        if not precio and (fila.get("precio_mensual") or fila.get("precio_anual")):
+            desde_columnas = _planes_de_columnas(fila, nombre, moneda, pais)
+            if desde_columnas:
+                vistos.add((nombre.lower(), moneda))
+                planes.extend(desde_columnas)
+            continue
+        if not precio:
             continue
         vistos.add((nombre.lower(), moneda))
 
@@ -133,19 +211,31 @@ def planes_de(filas: list[dict]) -> list[dict]:
                 }
             )
             if anual:
-                # El equivalente mensual del pago anual: el facturado se dice en la nota, sin fecha.
-                equivalente = round(int(anual.replace(".", "")) / 12)
-                planes.append(
-                    {
-                        "name": f"{nombre} (anual)",
-                        "price": _numero(str(equivalente)),
-                        "currency": moneda,
-                        "period": "mes",
-                        "billing": "anual",
-                        "publicado": True,
-                        "note": f"Equivale a {anual} {moneda} facturados al año",
-                    }
-                )
+                # La ficha guarda el TOTAL del año con periodo «año». Antes guardaba el equivalente
+                # mensual como si fuera una tarifa mensual, y de ahí salían citas como «292,84 al
+                # mes» cuando la página cobra 354 al mes y 3.514,05 al año. El equivalente va en su
+                # propio campo y en la nota, nunca en `price`.
+                total = int(re.sub(r"\D", "", anual) or 0)
+                if total:
+                    equivalente = round(total / 12)
+                    mensual_int = int(re.sub(r"\D", "", mensual) or 0)
+                    incoherente = bool(mensual_int) and total > mensual_int * 12
+                    planes.append(
+                        {
+                            "name": f"{nombre} (anual)",
+                            "price": _numero(str(total)),
+                            "currency": moneda,
+                            "period": "año",
+                            "billing": "anual",
+                            "publicado": True,
+                            "monthly_equivalent": _numero(str(equivalente)),
+                            "note": (
+                                f"Total facturado al año; equivale a {_numero(str(equivalente))} "
+                                f"{moneda}/mes, que no es la tarifa mensual"
+                                + (" — OJO: el anual supera 12 meses del mensual" if incoherente else "")
+                            ),
+                        }
+                    )
             continue
 
         anual_solo = SOLO_ANUAL.search(precio) or ANUAL_CORTO.search(precio.strip())
@@ -202,7 +292,7 @@ def aplicar(pais: str, *, escribir: bool = False, ruta: Path = DIRECTORIO) -> di
                     "fecha": sin_confirmar[0].get("fecha", ""),
                 }
             continue
-        nuevos = planes_de(filas)
+        nuevos = planes_de(filas, pais)
         if not nuevos:
             continue
         antes = {(p.get("name"), p.get("billing")): p.get("price") for p in ficha.get("plans") or []}

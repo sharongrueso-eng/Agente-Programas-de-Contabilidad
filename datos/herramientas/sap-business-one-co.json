@@ -11,7 +11,17 @@
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Dato del post 31 (Alegra vs. SAP), que dice \"información actualizada a mayo de 2025\" y convierte euros a pesos con 1 EUR = 4.300 COP. Suscripción en la nube con contrato mínimo de 3 años; no incluye i"
+      "note": ""
+    },
+    {
+      "name": "SAP Business One (nube) Starter (por usuario) (anual)",
+      "price": "456",
+      "currency": "EUR",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "38",
+      "note": "Total facturado al año; equivale a 38 EUR/mes, que no es la tarifa mensual"
     },
     {
       "name": "SAP Business One (nube) Limited (por usuario) (mensual)",
@@ -20,7 +30,17 @@
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Dato del post 31 (Alegra vs. SAP), que dice \"información actualizada a mayo de 2025\" y convierte euros a pesos con 1 EUR = 4.300 COP. Suscripción en la nube con contrato mínimo de 3 años; no incluye i"
+      "note": ""
+    },
+    {
+      "name": "SAP Business One (nube) Limited (por usuario) (anual)",
+      "price": "564",
+      "currency": "EUR",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "47",
+      "note": "Total facturado al año; equivale a 47 EUR/mes, que no es la tarifa mensual"
     },
     {
       "name": "SAP Business One (nube) Professional (por usuario) (mensual)",
@@ -29,11 +49,27 @@
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Dato del post 31 (Alegra vs. SAP), que dice \"información actualizada a mayo de 2025\" y convierte euros a pesos con 1 EUR = 4.300 COP. Suscripción en la nube con contrato mínimo de 3 años; no incluye i"
+      "note": ""
+    },
+    {
+      "name": "SAP Business One (nube) Professional (por usuario) (anual)",
+      "price": "1.092",
+      "currency": "EUR",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "91",
+      "note": "Total facturado al año; equivale a 91 EUR/mes, que no es la tarifa mensual"
     }
   ],
   "source_url": "https://programascontabilidad.com/comparativas-de-software/sistema-de-gestion-sap/",
   "captured_at": "2026-11-22",
-  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
-  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12."
+  "precios_origen": "directorio del vigía",
+  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12.",
+  "historial": [
+    {
+      "fecha": "2026-11-23",
+      "cambio": "precios sincronizados desde el directorio del vigía (6 planes)"
+    }
+  ]
 }

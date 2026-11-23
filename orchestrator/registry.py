@@ -149,7 +149,10 @@ def fichas_text(fichas: Iterable[dict[str, Any]]) -> str:
             cobro = str(plan.get("billing", "")).strip()
             sufijo = f" / {period}" + (f" ({cobro})" if cobro else "")
             estado = "" if price else " (no publica precio)"
-            lines.append(f"  {plan.get('name', 'plan')}: {price} {currency}{sufijo}{estado}")
+            # El equivalente mensual del plan anual se ofrece aparte: nunca como tarifa mensual.
+            equivalente = str(plan.get("monthly_equivalent") or "").strip()
+            matiz = f" (equivale a {equivalente} {currency}/mes)" if equivalente else ""
+            lines.append(f"  {plan.get('name', 'plan')}: {price} {currency}{sufijo}{estado}{matiz}")
         for clave_extra, etiqueta in (
             ("features", "funciones que publica"),
             ("electronic_invoicing", "facturación electrónica"),

@@ -6,34 +6,52 @@
   "plans": [
     {
       "name": "Vendty POS Emprendedor (mensual)",
-      "price": "155000",
+      "price": "155.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "\"Pago mensual recurrente\". 1 punto de venta, 5 usuarios, 1 caja. Facturación electrónica y POS electrónico ilimitados."
+      "note": ""
+    },
+    {
+      "name": "Vendty POS Emprendedor (anual)",
+      "price": "1.860.000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "155.000",
+      "note": "Total facturado al año; equivale a 155.000 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Vendty POS Profesional (anual)",
-      "price": "1.02e+06",
+      "price": "1.020.000",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "\"Un pago anual recurrente\". 1 punto de venta, 10 usuarios, 2 cajas; suma tienda virtual con pagos online y módulo de domicilios. Plan más popular. La página muestra \"$85.000 / Mes\" (equivalente)."
+      "monthly_equivalent": "85.000",
+      "note": "Total facturado al año; equivale a 85.000 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Vendty POS Empresarial (anual)",
-      "price": "1.68e+06",
+      "price": "1.680.000",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "\"Un pago anual recurrente\". 2 puntos de venta, 15 usuarios, 2 cajas; almacenes integrados. La página muestra \"$140.000 / Mes\" (equivalente)."
+      "monthly_equivalent": "140.000",
+      "note": "Total facturado al año; equivale a 140.000 COP/mes, que no es la tarifa mensual"
     }
   ],
   "source_url": "https://www.vendty.com/precios",
   "captured_at": "2026-11-22",
-  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
-  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12."
+  "precios_origen": "directorio del vigía",
+  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12.",
+  "historial": [
+    {
+      "fecha": "2026-11-23",
+      "cambio": "precios sincronizados desde el directorio del vigía (4 planes)"
+    }
+  ]
 }

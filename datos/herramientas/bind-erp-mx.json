@@ -8,30 +8,33 @@
   "plans": [
     {
       "name": "Bind ERP Complementos Conecta Bind (anual)",
-      "price": "2799",
+      "price": "2,799",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes."
+      "monthly_equivalent": "233",
+      "note": "Total facturado al año; equivale a 233 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Bind ERP Complementos Descarga ilimitada del SAT (anual)",
-      "price": "2399",
+      "price": "2,399",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes."
+      "monthly_equivalent": "200",
+      "note": "Total facturado al año; equivale a 200 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Bind ERP Complementos Cobranza automatizada (anual)",
-      "price": "6669",
+      "price": "6,669",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes."
+      "monthly_equivalent": "556",
+      "note": "Total facturado al año; equivale a 556 MXN/mes, que no es la tarifa mensual"
     }
   ],
   "features": [
@@ -50,6 +53,12 @@
     "La tabla mezcla planes y complementos: el total depende de cuántos se contraten"
   ],
   "notes": "Precios sin IVA. Leído el 12-nov-2026. Las cifras de la tabla deben confirmarse por plan.",
-  "precios_origen": "vigia/paises/mex/precios.json (fuente única)",
-  "nota_base_iva": "Precios Más IVA; el anual es el que cobra la página, no el mensual por 12."
+  "precios_origen": "directorio del vigía",
+  "nota_base_iva": "Precios Más IVA; el anual es el que cobra la página, no el mensual por 12.",
+  "historial": [
+    {
+      "fecha": "2026-11-23",
+      "cambio": "precios sincronizados desde el directorio del vigía (3 planes)"
+    }
+  ]
 }

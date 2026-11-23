@@ -10,7 +10,8 @@
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual."
+      "monthly_equivalent": "5",
+      "note": "Total facturado al año; equivale a 5 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Facturación (folios) 25 folios (anual)",
@@ -19,7 +20,8 @@
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual."
+      "monthly_equivalent": "9",
+      "note": "Total facturado al año; equivale a 9 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Facturación (folios) 40 folios (anual)",
@@ -28,25 +30,28 @@
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual."
+      "monthly_equivalent": "14",
+      "note": "Total facturado al año; equivale a 14 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Facturación (folios) Folios ilimitados (anual)",
-      "price": "1650",
+      "price": "1,650",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Paquete de folios con vigencia anual."
+      "monthly_equivalent": "138",
+      "note": "Total facturado al año; equivale a 138 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Facturación masiva Módulo de facturación masiva (anual)",
-      "price": "1650",
+      "price": "1,650",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Para emitir de forma masiva hay que comprar además folios de facturación masiva."
+      "monthly_equivalent": "138",
+      "note": "Total facturado al año; equivale a 138 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Nómina (folios) 10 folios (anual)",
@@ -55,7 +60,8 @@
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual."
+      "monthly_equivalent": "5",
+      "note": "Total facturado al año; equivale a 5 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Nómina (folios) 25 folios (anual)",
@@ -64,7 +70,8 @@
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual."
+      "monthly_equivalent": "9",
+      "note": "Total facturado al año; equivale a 9 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Nómina (folios) 40 folios (anual)",
@@ -73,16 +80,18 @@
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual."
+      "monthly_equivalent": "14",
+      "note": "Total facturado al año; equivale a 14 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Nómina (folios) Folios ilimitados (anual)",
-      "price": "1650",
+      "price": "1,650",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual."
+      "monthly_equivalent": "138",
+      "note": "Total facturado al año; equivale a 138 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Cotizaciones 20 cotizaciones (anual)",
@@ -91,7 +100,8 @@
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual."
+      "monthly_equivalent": "4",
+      "note": "Total facturado al año; equivale a 4 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Cotizaciones 50 cotizaciones (anual)",
@@ -100,7 +110,8 @@
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual."
+      "monthly_equivalent": "8",
+      "note": "Total facturado al año; equivale a 8 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Cotizaciones 80 cotizaciones (anual)",
@@ -109,7 +120,8 @@
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual."
+      "monthly_equivalent": "12",
+      "note": "Total facturado al año; equivale a 12 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Cotizaciones Cotizaciones ilimitadas (plan anual) (anual)",
@@ -118,7 +130,8 @@
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Los folios de cotización sirven solo para este servicio."
+      "monthly_equivalent": "62",
+      "note": "Total facturado al año; equivale a 62 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama Cotizaciones Módulo de cotizaciones masivas (anual)",
@@ -127,16 +140,18 @@
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Requiere folios exclusivos de cotizaciones."
+      "monthly_equivalent": "42",
+      "note": "Total facturado al año; equivale a 42 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama API Módulo API (anual)",
-      "price": "1650",
+      "price": "1,650",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Incluye API Web y API Multiemisor. Para emitir por API hay que comprar folios de API."
+      "monthly_equivalent": "138",
+      "note": "Total facturado al año; equivale a 138 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Facturama en Shopify Autofacturación de clientes (mensual)",
@@ -145,7 +160,17 @@
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Único precio de la página en dólares. Cobro mensual una vez contratado."
+      "note": ""
+    },
+    {
+      "name": "Facturama en Shopify Autofacturación de clientes (anual)",
+      "price": "156",
+      "currency": "USD",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "13",
+      "note": "Total facturado al año; equivale a 13 USD/mes, que no es la tarifa mensual"
     }
   ],
   "source_url": "https://facturama.mx/planes-facturacion",
@@ -169,6 +194,10 @@
     {
       "fecha": "2026-11-22",
       "cambio": "precios sincronizados desde el directorio del vigía (4 planes)"
+    },
+    {
+      "fecha": "2026-11-23",
+      "cambio": "precios sincronizados desde el directorio del vigía (17 planes)"
     }
   ],
   "features": [
@@ -184,6 +213,6 @@
   "known_limits": [
     "El plan de folios ilimitados es el único que no obliga a contar facturas"
   ],
-  "precios_origen": "vigia/paises/mex/precios.json (fuente única)",
+  "precios_origen": "directorio del vigía",
   "nota_base_iva": "Precios IVA incluido; el anual es el que cobra la página, no el mensual por 12."
 }

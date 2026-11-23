@@ -10,16 +10,17 @@
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Hasta 5 RFC, 1 usuario contador. No admite RFC ni usuarios adicionales. 1 usuario gratis para cada cliente. Todos los planes incluyen contabilidad e impuestos, facturación con timbres ilimitados, nómi"
+      "note": ""
     },
     {
       "name": "Contalink Start (anual)",
-      "price": "5900",
+      "price": "5,900",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Hasta 5 RFC, 1 usuario contador. No admite RFC ni usuarios adicionales. 1 usuario gratis para cada cliente. Todos los planes incluyen contabilidad e impuestos, facturación con timbres ilimitados, nómi"
+      "monthly_equivalent": "492",
+      "note": "Total facturado al año; equivale a 492 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Contalink Pro (mensual)",
@@ -28,16 +29,17 @@
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "10 RFC incluidos, 1 usuario contador. RFC adicional $50 + IVA al mes; usuario adicional $290 + IVA al mes. 1 usuario gratis para cada cliente. Todos los planes incluyen contabilidad e impuestos, factu"
+      "note": ""
     },
     {
       "name": "Contalink Pro (anual)",
-      "price": "7900",
+      "price": "7,900",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "10 RFC incluidos, 1 usuario contador. RFC adicional $50 + IVA al mes; usuario adicional $290 + IVA al mes. 1 usuario gratis para cada cliente. Todos los planes incluyen contabilidad e impuestos, factu"
+      "monthly_equivalent": "658",
+      "note": "Total facturado al año; equivale a 658 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Contalink Flex (mensual)",
@@ -46,16 +48,17 @@
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "100 RFC por cada usuario contador. Usuario adicional $990 + IVA al mes (suma 100 RFC). Acceso para clientes opcional. Todos los planes incluyen contabilidad e impuestos, facturación con timbres ilimit"
+      "note": ""
     },
     {
       "name": "Contalink Flex (anual)",
-      "price": "9900",
+      "price": "9,900",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "100 RFC por cada usuario contador. Usuario adicional $990 + IVA al mes (suma 100 RFC). Acceso para clientes opcional. Todos los planes incluyen contabilidad e impuestos, facturación con timbres ilimit"
+      "monthly_equivalent": "825",
+      "note": "Total facturado al año; equivale a 825 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Contalink Pro: RFC adicional (mensual)",
@@ -64,7 +67,17 @@
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Por RFC adicional al mes."
+      "note": ""
+    },
+    {
+      "name": "Contalink Pro: RFC adicional (anual)",
+      "price": "600",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "50",
+      "note": "Total facturado al año; equivale a 50 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Contalink Pro: usuario contador adicional (mensual)",
@@ -73,7 +86,17 @@
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Por usuario adicional al mes."
+      "note": ""
+    },
+    {
+      "name": "Contalink Pro: usuario contador adicional (anual)",
+      "price": "3,480",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "290",
+      "note": "Total facturado al año; equivale a 290 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Contalink Flex: usuario contador adicional (mensual)",
@@ -82,7 +105,17 @@
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Por usuario adicional al mes ($9,900 + IVA al año); suma 100 RFC. Sin descuentos por volumen."
+      "note": ""
+    },
+    {
+      "name": "Contalink Flex: usuario contador adicional (anual)",
+      "price": "11,880",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "990",
+      "note": "Total facturado al año; equivale a 990 MXN/mes, que no es la tarifa mensual"
     },
     {
       "name": "Contalink Flex: acceso Contalink Plus para un cliente (mensual)",
@@ -91,7 +124,17 @@
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Por acceso al mes; no aumenta la capacidad de RFC. En Start y Pro viene incluido (1 por RFC)."
+      "note": ""
+    },
+    {
+      "name": "Contalink Flex: acceso Contalink Plus para un cliente (anual)",
+      "price": "1,200",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "100",
+      "note": "Total facturado al año; equivale a 100 MXN/mes, que no es la tarifa mensual"
     }
   ],
   "source_url": "https://www.contalink.com/precios",
@@ -121,6 +164,10 @@
     {
       "fecha": "2026-11-22",
       "cambio": "precios sincronizados desde el directorio del vigía (3 planes)"
+    },
+    {
+      "fecha": "2026-11-23",
+      "cambio": "precios sincronizados desde el directorio del vigía (14 planes)"
     }
   ],
   "advantages": [
@@ -129,6 +176,6 @@
   "known_limits": [
     "El precio depende del número de RFC y de contadores"
   ],
-  "precios_origen": "vigia/paises/mex/precios.json (fuente única)",
+  "precios_origen": "directorio del vigía",
   "nota_base_iva": "Precios Más IVA; el anual es el que cobra la página, no el mensual por 12."
 }

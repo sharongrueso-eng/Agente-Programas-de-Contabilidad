@@ -6,34 +6,70 @@
   "plans": [
     {
       "name": "Cuenti Emprendedor (mensual)",
-      "price": "37000",
+      "price": "37.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "1 usuario, contactos ilimitados, productos ilimitados sin inventario, informes. Este precio no incluye la facturación electrónica (según la página). Ventas ilimitadas. Prueba gratis de 7 días."
+      "note": ""
+    },
+    {
+      "name": "Cuenti Emprendedor (anual)",
+      "price": "444.000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "37.000",
+      "note": "Total facturado al año; equivale a 37.000 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Cuenti Pyme (mensual)",
-      "price": "77000",
+      "price": "77.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "3 usuarios, contactos ilimitados, 2.500 productos de inventario, plan separe, pedidos, remisiones, lotes. Este precio no incluye la facturación electrónica (según la página). Ventas ilimitadas. Prueba"
+      "note": ""
+    },
+    {
+      "name": "Cuenti Pyme (anual)",
+      "price": "924.000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "77.000",
+      "note": "Total facturado al año; equivale a 77.000 COP/mes, que no es la tarifa mensual"
     },
     {
       "name": "Cuenti Pro (mensual)",
-      "price": "112000",
+      "price": "112.000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "5 usuarios, productos ilimitados en inventario, módulo bar/restaurante, logística, producción. Este precio no incluye la facturación electrónica (según la página). Ventas ilimitadas. Prueba gratis de "
+      "note": ""
+    },
+    {
+      "name": "Cuenti Pro (anual)",
+      "price": "1.344.000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "monthly_equivalent": "112.000",
+      "note": "Total facturado al año; equivale a 112.000 COP/mes, que no es la tarifa mensual"
     }
   ],
   "source_url": "https://cuenti.com/",
   "captured_at": "2026-11-22",
-  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
-  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12."
+  "precios_origen": "directorio del vigía",
+  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12.",
+  "historial": [
+    {
+      "fecha": "2026-11-23",
+      "cambio": "precios sincronizados desde el directorio del vigía (6 planes)"
+    }
+  ]
 }
