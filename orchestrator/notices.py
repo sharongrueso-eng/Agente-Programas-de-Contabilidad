@@ -118,6 +118,8 @@ def aviso_de_pieza(
     keyword: str = "",
     schema: str = "BlogPosting",
     motivo: str = "",
+    formato: str = "",
+    url_publica: str = "",
     advertencias: tuple[str, ...] = (),
 ) -> str:
     """El aviso que se quiere leer: qué se tocó, por qué y dónde se revisa.
@@ -125,15 +127,23 @@ def aviso_de_pieza(
     Se compone aquí y no lo redacta el modelo, para que las cifras sean las de GSC y el formato
     sea el mismo en todas las corridas.
     """
+    # El tipo (reseña, comparativa, top) va en la cabecera: Sharon revisa distinto cada formato.
+    tipo = (formato or "").strip()
     if nuevo:
-        cabecera = f"{SEMAFORO[estado]} {BANDERA.get(pais, pais)} {pais} · Artículo nuevo publicado"
+        cabecera = (
+            f"{SEMAFORO[estado]} {BANDERA.get(pais, pais)} {pais} · "
+            f"{tipo or 'Artículo'} nuevo publicado"
+        )
         linea_estado = "Estado: PUBLICADO — contenido nuevo, URL nueva"
         cierre = (
             f"✅ Artículo nuevo en el blog. Es la primera pieza sobre {keyword or 'el tema'} "
             f"en este mercado, así que no sustituye a nada."
         )
     else:
-        cabecera = f"{SEMAFORO[estado]} {BANDERA.get(pais, pais)} {pais} · Artículo actualizado en vivo"
+        cabecera = (
+            f"{SEMAFORO[estado]} {BANDERA.get(pais, pais)} {pais} · "
+            f"{tipo or 'Artículo'} actualizado en vivo"
+        )
         linea_estado = "Estado: PUBLICADO — el contenido nuevo ya está en la URL de siempre"
         cierre = (
             f"✅ Actualización aplicada al artículo vivo, sin URL nueva. El slug {slug} se "
@@ -169,6 +179,7 @@ def aviso_de_pieza(
         "",
         cierre,
         "",
+        f"Ver publicado: {url_publica}" if url_publica else "",
         f"Editar: {url_edicion}",
     ]
     if advertencias:

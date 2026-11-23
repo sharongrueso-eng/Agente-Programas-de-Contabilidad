@@ -1498,6 +1498,8 @@ def main() -> int:
             titulo_seo=borrador.get("title", ""),
             meta=borrador.get("meta_description", ""),
             keyword=getattr(elegida, "focus_keyword", ""),
+            formato=brief.format.capitalize(),
+            url_publica=str(resultado.get("output_url") or resultado.get("link") or ""),
             motivo="",
         )
         print()
