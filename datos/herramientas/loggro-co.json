@@ -3,183 +3,449 @@
   "country": "CO",
   "product": "Loggro Pymes (administrativo, POS, facturación, nómina)",
   "source_url": "https://loggro.com/pymes/planes/",
-  "captured_at": "2026-11-12",
+  "captured_at": "2026-11-22",
   "evidence_level": "documentacion_oficial",
   "plans": [
     {
-      "name": "Pymes Básico",
-      "price": "108.990",
+      "name": "Loggro POS POS Tienda (mensual)",
+      "price": "54990",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
-      "publicado": true
+      "publicado": true,
+      "note": "Hasta 350 facturas electrónicas al mes (ilimitada con costo adicional), 1 usuario, 1 caja, inventarios ilimitados, app móvil."
     },
     {
-      "name": "Pymes Básico",
-      "price": "1.307.880",
+      "name": "Loggro POS POS Tienda (anual)",
+      "price": "659880",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "Hasta 350 facturas electrónicas al mes (ilimitada con costo adicional), 1 usuario, 1 caja, inventarios ilimitados, app móvil."
     },
     {
-      "name": "Pymes Estándar",
-      "price": "133.990",
+      "name": "Loggro POS POS Avanzado (mensual)",
+      "price": "96990",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
-      "publicado": true
+      "publicado": true,
+      "note": "Hasta 2.000 facturas electrónicas al mes (ilimitada con costo adicional), 2 usuarios, 1 caja, facturación por WhatsApp, informe de rentabilidad."
     },
     {
-      "name": "Pymes Estándar",
-      "price": "1.607.880",
+      "name": "Loggro POS POS Avanzado (anual)",
+      "price": "1.16388e+06",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "Hasta 2.000 facturas electrónicas al mes (ilimitada con costo adicional), 2 usuarios, 1 caja, facturación por WhatsApp, informe de rentabilidad."
     },
     {
-      "name": "Pymes Premium",
-      "price": "279.990",
+      "name": "Loggro POS POS PLUS (mensual)",
+      "price": "292990",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
-      "publicado": true
+      "publicado": true,
+      "note": "200 facturas electrónicas al mes (ilimitada con pagos anuales), 5 usuarios, 5 cajas, módulo financiero y contabilidad integral."
     },
     {
-      "name": "Pymes Premium",
-      "price": "3.359.880",
+      "name": "Loggro POS POS PLUS (anual)",
+      "price": "3.51588e+06",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "200 facturas electrónicas al mes (ilimitada con pagos anuales), 5 usuarios, 5 cajas, módulo financiero y contabilidad integral."
     },
     {
-      "name": "POS Tienda",
-      "price": "54.990",
+      "name": "Loggro Restobar Restobar Básico (mensual)",
+      "price": "120990",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
-      "publicado": true
+      "publicado": true,
+      "note": "1 caja, 3 usuarios, 15 mesas, 30 facturas electrónicas incluidas (ilimitada con costo adicional), 1 zona de comandas."
     },
     {
-      "name": "POS Avanzado",
-      "price": "96.990",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "POS PLUS",
-      "price": "292.990",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Restobar Básico",
-      "price": "120.990",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Restobar Estándar",
-      "price": "175.990",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Restobar Premium",
-      "price": "219.990",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Nómina Lite",
-      "price": "",
+      "name": "Loggro Restobar Restobar Básico (anual)",
+      "price": "1.45188e+06",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": false,
-      "note": "solo transmisión, precio no leído en la página"
+      "publicado": true,
+      "note": "1 caja, 3 usuarios, 15 mesas, 30 facturas electrónicas incluidas (ilimitada con costo adicional), 1 zona de comandas."
     },
     {
-      "name": "Nómina Estándar",
-      "price": "72.990",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Contabilidad (complemento)",
-      "price": "49.990",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Usuario adicional",
-      "price": "18.990",
+      "name": "Loggro Restobar Restobar Estándar (mensual)",
+      "price": "175990",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "complemento publicado en la página de planes"
+      "note": "2 cajas, 6 usuarios, 30 mesas, 30 facturas electrónicas incluidas (ilimitada con costo adicional), 3 zonas de comandas."
     },
     {
-      "name": "Caja adicional",
-      "price": "18.990",
+      "name": "Loggro Restobar Restobar Estándar (anual)",
+      "price": "2.11188e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "2 cajas, 6 usuarios, 30 mesas, 30 facturas electrónicas incluidas (ilimitada con costo adicional), 3 zonas de comandas."
+    },
+    {
+      "name": "Loggro Restobar Restobar Premium (mensual)",
+      "price": "219990",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "complemento publicado en la página de planes"
+      "note": "5 cajas, usuarios ilimitados, 200 mesas, 30 facturas electrónicas incluidas (ilimitada con costo adicional), zonas de comandas ilimitadas, menú digital y carta por QR."
     },
     {
-      "name": "Establecimiento adicional",
-      "price": "54.990",
+      "name": "Loggro Restobar Restobar Premium (anual)",
+      "price": "2.63988e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "5 cajas, usuarios ilimitados, 200 mesas, 30 facturas electrónicas incluidas (ilimitada con costo adicional), zonas de comandas ilimitadas, menú digital y carta por QR."
+    },
+    {
+      "name": "Loggro Facturación electrónica FE Estándar (mensual)",
+      "price": "61990",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "complemento publicado en la página de planes"
+      "note": "500 documentos electrónicos al mes, 1 usuario, 1 establecimiento, soporte básico por correo y chat."
     },
     {
-      "name": "Soporte/implantación por hora",
-      "price": "115.000",
+      "name": "Loggro Facturación electrónica FE Estándar (anual)",
+      "price": "743880",
       "currency": "COP",
-      "period": "hora",
-      "billing": "unico",
+      "period": "año",
+      "billing": "anual",
       "publicado": true,
-      "note": "complemento publicado en la página de planes"
+      "note": "500 documentos electrónicos al mes, 1 usuario, 1 establecimiento, soporte básico por correo y chat."
     },
     {
-      "name": "Soporte Premium",
-      "price": "218.000",
+      "name": "Loggro Facturación electrónica FE Premium (mensual)",
+      "price": "96990",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "complemento publicado en la página de planes"
+      "note": "1.500 documentos electrónicos al mes, 2 usuarios, 2 establecimientos, soporte completo."
     },
     {
-      "name": "Bolsa de 50 documentos electrónicos",
-      "price": "92.400",
+      "name": "Loggro Facturación electrónica FE Premium (anual)",
+      "price": "1.16388e+06",
       "currency": "COP",
-      "period": "unico",
-      "billing": "unico",
+      "period": "año",
+      "billing": "anual",
       "publicado": true,
-      "note": "complemento publicado en la página de planes"
+      "note": "1.500 documentos electrónicos al mes, 2 usuarios, 2 establecimientos, soporte completo."
+    },
+    {
+      "name": "Loggro Facturación electrónica FE Básico (anual)",
+      "price": "260990",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "250 documentos electrónicos al año, 1 usuario, 1 establecimiento. La página dice \"Sólo permite pago anual\"."
+    },
+    {
+      "name": "Loggro Pymes (administrativo y contable) Pymes Básico (mensual)",
+      "price": "108990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "30 documentos electrónicos al mes, 1 usuario, 1 establecimiento; contabilidad como complemento. Es el plan que cita el post 2773."
+    },
+    {
+      "name": "Loggro Pymes (administrativo y contable) Pymes Básico (anual)",
+      "price": "1.30788e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "30 documentos electrónicos al mes, 1 usuario, 1 establecimiento; contabilidad como complemento. Es el plan que cita el post 2773."
+    },
+    {
+      "name": "Loggro Pymes (administrativo y contable) Pymes Estándar (mensual)",
+      "price": "133990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "100 documentos electrónicos al mes, 3 usuarios, 2 establecimientos; contabilidad y POS como complementos."
+    },
+    {
+      "name": "Loggro Pymes (administrativo y contable) Pymes Estándar (anual)",
+      "price": "1.60788e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "100 documentos electrónicos al mes, 3 usuarios, 2 establecimientos; contabilidad y POS como complementos."
+    },
+    {
+      "name": "Loggro Pymes (administrativo y contable) Pymes Premium (mensual)",
+      "price": "279990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "200 documentos electrónicos al mes (ilimitada solo con pago anual), 5 usuarios, 3 establecimientos, contabilidad incluida y POS incluido para 3 establecimientos."
+    },
+    {
+      "name": "Loggro Pymes (administrativo y contable) Pymes Premium (anual)",
+      "price": "3.35988e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "200 documentos electrónicos al mes (ilimitada solo con pago anual), 5 usuarios, 3 establecimientos, contabilidad incluida y POS incluido para 3 establecimientos."
+    },
+    {
+      "name": "Loggro Nómina Nómina Estándar (mensual)",
+      "price": "72990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Incluye 2 empleados y 2 usuarios; liquidación integral y transmisión electrónica."
+    },
+    {
+      "name": "Loggro Nómina Nómina Estándar (anual)",
+      "price": "875880",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Incluye 2 empleados y 2 usuarios; liquidación integral y transmisión electrónica."
+    },
+    {
+      "name": "Loggro Nómina Nómina PLUS 100+ (mensual)",
+      "price": "98990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Incluye 3 empleados y 3 usuarios; soporte completo con atención telefónica."
+    },
+    {
+      "name": "Loggro Nómina Nómina PLUS 100+ (anual)",
+      "price": "1.18788e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Incluye 3 empleados y 3 usuarios; soporte completo con atención telefónica."
+    },
+    {
+      "name": "Loggro Nómina Nómina Lite (anual)",
+      "price": "224990",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Solo transmisión de nómina electrónica a la DIAN; incluye 1 empleado y 1 usuario. La página dice \"Sólo permite pago anual\"."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Contabilidad (complemento de Pymes Básico) (mensual)",
+      "price": "49990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Se suma a Pymes Básico."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Contabilidad (complemento de Pymes Estándar) (mensual)",
+      "price": "68990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Se suma a Pymes Estándar."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) POS por caja (complemento de Pymes Estándar) (mensual)",
+      "price": "60990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por caja al mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Documentos electrónicos ilimitados (complemento) (mensual)",
+      "price": "45990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "La página dice \"Desde $45.990/mes, según tu facturación mensual\"."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Usuario adicional (mensual)",
+      "price": "18990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por usuario al mes, en planes de Pymes, POS y Restobar."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Establecimiento adicional (POS Tienda) (mensual)",
+      "price": "54990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por establecimiento al mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Establecimiento adicional (POS Avanzado, PLUS y Pymes) (mensual)",
+      "price": "96990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por establecimiento al mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Caja adicional (POS y Pymes) (mensual)",
+      "price": "18990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por caja al mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Caja adicional (Restobar) (mensual)",
+      "price": "43990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por caja al mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Zona de comanda adicional (Restobar) (mensual)",
+      "price": "18990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por zona al mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Mesa adicional (Restobar) (mensual)",
+      "price": "8990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por mesa al mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Integración con Rappi (mensual)",
+      "price": "20990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por mes. En Restobar la página también muestra $681.990 por 5 horas de integración."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) API (mensual)",
+      "price": "36990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Certificado digital de Loggro (anual)",
+      "price": "120990",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Uso del certificado de Loggro, por año. El certificado viene incluido solo en pagos a un año (según la página)."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Certificado digital propio (uso) (anual)",
+      "price": "271990",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Uso de un certificado digital propio, por año."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Soporte Premium (mensual)",
+      "price": "218000",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "La página lo publica como \"$218.000 + IVA\"."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Nómina: empleado adicional en Lite (mensual)",
+      "price": "799",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por empleado al mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Nómina: empleado adicional en Estándar (de 1 a 15 empleados) (mensual)",
+      "price": "6990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por empleado al mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Nómina: empleado adicional en Estándar (de 16 empleados en adelante) (mensual)",
+      "price": "2990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por empleado al mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Nómina: empleado adicional en PLUS (de 1 a 15 empleados) (mensual)",
+      "price": "7990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por empleado al mes."
+    },
+    {
+      "name": "Loggro (complementos y adicionales) Nómina: empleado adicional en PLUS (de 16 empleados en adelante) (mensual)",
+      "price": "4990",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Por empleado al mes."
     }
   ],
   "features": [
@@ -200,5 +466,7 @@
     "El plan de nómina más barato cubre solo transmisión"
   ],
   "notes": "Precios de lista sin IVA salvo donde la página indica lo contrario. Leídos el 12-nov-2026.",
-  "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica"
+  "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica",
+  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
+  "nota_base_iva": "Base: No genera IVA. El anual es el precio publicado, no el mensual por 12."
 }

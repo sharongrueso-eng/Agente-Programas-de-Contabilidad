@@ -1,0 +1,2476 @@
+{
+ "pais": "CO",
+ "fuente": "vigia-precios-col-pdc.md",
+ "revisado": "2026-11-22",
+ "planes": [
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Facturación",
+   "plan": "Emprendedor",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 17900.0,
+   "precio_anual": 161100.0,
+   "equivalente_mensual_anual": 13425.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $10.000.000 de ingresos al mes, 1 usuario. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-001",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Facturación",
+   "plan": "Pyme",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 49900.0,
+   "precio_anual": 449100.0,
+   "equivalente_mensual_anual": 37425.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $40.000.000 de ingresos al mes, 2 usuarios. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-003",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Facturación",
+   "plan": "Pro",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 99900.0,
+   "precio_anual": 899100.0,
+   "equivalente_mensual_anual": 74925.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $180.000.000 de ingresos al mes, 3 usuarios. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-005",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Facturación",
+   "plan": "Plus",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 179900.0,
+   "precio_anual": 1619100.0,
+   "equivalente_mensual_anual": 134925.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $500.000.000 de ingresos al mes, 5 usuarios. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-007",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Contabilidad",
+   "plan": "Emprendedor",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 74900.0,
+   "precio_anual": 674100.0,
+   "equivalente_mensual_anual": 56175.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $10.000.000 de ingresos al mes, 1 usuario, 1 bodega. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e inventario por bodega.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-009",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Contabilidad",
+   "plan": "Pyme",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 163900.0,
+   "precio_anual": 1475100.0,
+   "equivalente_mensual_anual": 122925.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $40.000.000 de ingresos al mes, 2 usuarios, 2 bodegas. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e inventario por bodega.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-011",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Contabilidad",
+   "plan": "Pro",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 250900.0,
+   "precio_anual": 2258100.0,
+   "equivalente_mensual_anual": 188175.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $180.000.000 de ingresos al mes, 3 usuarios, 10 bodegas. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e inventario por bodega.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-013",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Contabilidad",
+   "plan": "Plus",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 319900.0,
+   "precio_anual": 2879100.0,
+   "equivalente_mensual_anual": 239925.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $500.000.000 de ingresos al mes, 8 usuarios, 100 bodegas. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e inventario por bodega.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-015",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra POS",
+   "plan": "Emprendedor",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 25900.0,
+   "precio_anual": 233100.0,
+   "equivalente_mensual_anual": 19425.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $10.000.000 de ingresos al mes, 1 usuario, 1 bodega. Facturas ilimitadas. 1 usuario gratis para el contador.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-017",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra POS",
+   "plan": "Pyme",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 79900.0,
+   "precio_anual": 719100.0,
+   "equivalente_mensual_anual": 59925.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $40.000.000 de ingresos al mes, 2 usuarios, 2 bodegas. Facturas ilimitadas. 1 usuario gratis para el contador.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-019",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra POS",
+   "plan": "Pro",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 139900.0,
+   "precio_anual": 1259100.0,
+   "equivalente_mensual_anual": 104925.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $180.000.000 de ingresos al mes, 3 usuarios, 10 bodegas. Facturas ilimitadas. 1 usuario gratis para el contador.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-021",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra POS",
+   "plan": "Plus",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 199900.0,
+   "precio_anual": 1799100.0,
+   "equivalente_mensual_anual": 149925.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "Hasta $500.000.000 de ingresos al mes, 8 usuarios, 100 bodegas. Facturas ilimitadas. 1 usuario gratis para el contador.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-023",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Nómina",
+   "plan": "Emprendedor",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 29900.0,
+   "precio_anual": 269100.0,
+   "equivalente_mensual_anual": 22425.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "De 1 a 10 empleados, emisión electrónica y notas de ajuste ilimitadas. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica tarifas de pago; lo gratis es la prueba de 15 días.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-025",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Nómina",
+   "plan": "Pyme",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 69000.0,
+   "precio_anual": 621000.0,
+   "equivalente_mensual_anual": 51750.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "De 11 a 20 empleados, suma colillas de pago, cálculo de nómina inteligente y reportes. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica tarifas de pago; lo gratis es la prueba de 15 días.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-027",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Nómina",
+   "plan": "Pro",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 139000.0,
+   "precio_anual": 1251000.0,
+   "equivalente_mensual_anual": 104250.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "De 21 a 45 empleados, mismas funciones que Pyme. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica tarifas de pago; lo gratis es la prueba de 15 días.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-029",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Nómina",
+   "plan": "Plus",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 259000.0,
+   "precio_anual": 2331000.0,
+   "equivalente_mensual_anual": 194250.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "Primer año con pago anual para usuarios nuevos; la renovación anual tiene 10 % de descuento (según la página).",
+   "descripcion": "De 46 a 90 empleados, mismas funciones que Pyme. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica tarifas de pago; lo gratis es la prueba de 15 días.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-031",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra (todos los planes)",
+   "plan": "Certificado digital",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 0.0,
+   "equivalente_mensual_anual": 0.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "Incluido en todos los planes; la página lo muestra en $0 frente a $150.000 al año.",
+   "descripcion": "Se registra como descuento de 100 % para que el precio vigente sea $0.",
+   "fuente": "https://www.alegra.com/colombia/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-ALE-033",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Facturación electrónica",
+   "plan": "Gratis (5 documentos al año)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 0.0,
+   "equivalente_mensual_anual": 0.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Incluye: 5 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario. No incluye: Siigo App; Cotizaciones/CRM; Cartera seguimiento de cobranza.",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-001",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Facturación electrónica",
+   "plan": "24 documentos al año",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 119900.0,
+   "equivalente_mensual_anual": 9991.67,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Incluye: 24 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App. No incluye: Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/cuentas por pagar. El pago es anual; el descuento aplica para cliente nuevo (según la página).",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-002",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Facturación electrónica",
+   "plan": "60 documentos al año",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 199900.0,
+   "equivalente_mensual_anual": 16658.33,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "El número de documentos sale del nombre del plan; la página no lista sus funciones. Aparece en los datos de la página: falta confirmar que el selector lo muestre.",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-003",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Facturación electrónica",
+   "plan": "120 documentos al año",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 254915.0,
+   "equivalente_mensual_anual": 21242.92,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-15 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: 120 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App. No incluye: Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/cuentas por pagar. El pago es anual; el descuento aplica para cliente nuevo (según la página).",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-004",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Facturación electrónica",
+   "plan": "FE PRO (500 documentos al año)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 684810.0,
+   "equivalente_mensual_anual": 57067.5,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-10 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: 500 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App; Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/cuentas por pagar. El pago es anual; el descuento aplica para cliente nuevo (según la página).",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-005",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Facturación electrónica",
+   "plan": "1500 documentos al año",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 1107810.0,
+   "equivalente_mensual_anual": 92317.5,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-10 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: 1500 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App. No incluye: Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/cuentas por pagar. El pago es anual; el descuento aplica para cliente nuevo (según la página).",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-006",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Nube (software administrativo)",
+   "plan": "Profesional Independiente",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 1751920.0,
+   "equivalente_mensual_anual": 145993.33,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-20 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: 1 Usuario / Documentos electrónicos ilimitados; Cobra con Siigo Pay; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsApp; Contabilidad; Cotizaciones/CRM; Siigo App; Gastos/cuentas por pagar. No incluye: Inventarios/Compras y costeo; Centro de costos/Bodega. El pago es an",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-007",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Nube (software administrativo)",
+   "plan": "Emprendedor",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 2295920.0,
+   "equivalente_mensual_anual": 191326.67,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-20 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: 3 Usuarios / Documentos electrónicos ilimitados; Cobra con Siigo Pay; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsApp; Contabilidad; Cotizaciones/CRM; Siigo App; Gastos/cuentas por pagar; Inventarios/Compras y costeo. No incluye: Centro de costos/Bodega. El pago es a",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-008",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Nube (software administrativo)",
+   "plan": "Premium",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 2494425.0,
+   "equivalente_mensual_anual": 207868.75,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-25 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: 5 Usuarios / Documentos electrónicos ilimitados; Cobra con Siigo Pay; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsApp; Contabilidad; Cotizaciones/CRM; Siigo App; Gastos/cuentas por pagar; Inventarios/Compras y costeo; Centro de costos/Bodega. El pago es anual; el des",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-009",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Contador",
+   "plan": "Siigo Contador (1 empresa)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 0.0,
+   "equivalente_mensual_anual": 0.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Incluye: 1 Empresa; Contabilidad; Impuestos; Estados financieros; Portal contador.",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-010",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Contador",
+   "plan": "Siigo Contador ilimitado",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 535900.0,
+   "equivalente_mensual_anual": 44658.33,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Incluye: Empresas ilimitadas; Contabilidad; Impuestos; Estados financieros; Portal contador. El pago es anual; el descuento aplica para cliente nuevo (según la página).",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-011",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo POS",
+   "plan": "POS Esencial",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 345000.0,
+   "equivalente_mensual_anual": 28750.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Incluye: 240 Facturas electrónicas anuales desde POS; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario; Reportes Generales; Usuarios cajeros; 1 Usuario administrador Siigo Nube; Máquina POS Software / Configuración de POS; Almacenamiento. No incluye: Reportes Avanzad",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-012",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo POS",
+   "plan": "POS Inicio",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 527310.0,
+   "equivalente_mensual_anual": 43942.5,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-10 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario; Reportes Generales; Usuarios cajeros; 1 Usuario administrador Siigo Nube; Máquina POS Software / Configuración de POS; Almacenamiento. No incluye: Reportes intermed",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-013",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo POS",
+   "plan": "POS Avanzado",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 764915.0,
+   "equivalente_mensual_anual": 63742.92,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-15 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario intermedio; Reportes Generales; Usuarios cajeros; 1 Usuario administrador Siigo Nube; Máquina POS Software / Configuración de POS; Almacenamiento; Reportes intermedi",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-014",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo POS Gastrobar",
+   "plan": "GastroBar PRO",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 1049930.0,
+   "equivalente_mensual_anual": 87494.17,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-30 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Gestión Dinámica de Mesas y Meseros; Comandas y órdenes de servicio; Documentos electrónicos / Cumplimiento normativo; Inventario, Stocks y Costeo; Combos, recetas y comandas; Gestión de propinas; Usuarios cajeros; 1 Usuario administrador Siigo Nube; Caja POS Software; Precuentas; Turnos pe",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-015",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Nómina electrónica",
+   "plan": "NE Lite 24 (hasta 2 empleados)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 119900.0,
+   "equivalente_mensual_anual": 9991.67,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Incluye: Hasta 2 empleados; Hasta 24 documentos anuales; Cumple al 100% los requisitos de la DIAN; Certificado digital; Reportes en tablero digital [dashboard]; Material de capacitación; Envío de comprobantes a empleados; Generación de archivos planos a bancos; Liquidación manual de contratos; Liqui",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-016",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Nómina electrónica",
+   "plan": "NE Lite 120 (3 a 10 empleados)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 239920.0,
+   "equivalente_mensual_anual": 19993.33,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-20 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Entre 3 a 10 empleados; Hasta 120 documentos anuales; Cumple al 100% los requisitos de la DIAN; Certificado digital; Reportes en tablero digital [dashboard]; Material de capacitación; Envío de comprobantes a empleados; Generación de archivos planos a bancos; Liquidación manual de contratos;",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-017",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Nómina electrónica",
+   "plan": "NE Lite 300 (11 a 25 empleados)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 449925.0,
+   "equivalente_mensual_anual": 37493.75,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-25 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Entre 11 a 25 empleados; Hasta 300 documentos anuales; Cumple al 100% los requisitos de la DIAN; Certificado digital; Reportes en tablero digital [dashboard]; Material de capacitación; Envío de comprobantes a empleados; Generación de archivos planos a bancos; Liquidación manual de contratos",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-018",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Nómina electrónica",
+   "plan": "Nómina Nube Plus",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 749925.0,
+   "equivalente_mensual_anual": 62493.75,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-25 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Empleados ilimitados; Cumple al 100% los requisitos de la DIAN; Generación de archivos planos a bancos; Liquidación automática de nómina y contratos; Contabilización; Certificado digital; Reportes en tablero digital [dashboard]; Material de capacitación; Envío de comprobantes a empleados; L",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-019",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo Nómina electrónica",
+   "plan": "Nómina Nube Pro",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 1402425.0,
+   "equivalente_mensual_anual": 116868.75,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-25 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Empleados ilimitados; Cumple al 100% los requisitos de la DIAN; Generación de archivos planos a bancos; Liquidación automática de nómina, contratos y cesantías; Contabilización y seguridad social (PILA); Certificado digital; Reportes en tablero digital [dashboard]; Material de capacitación;",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-020",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (combos)",
+   "plan": "Factura + FE WhatsApp 24",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 138600.0,
+   "equivalente_mensual_anual": 11550.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-25 % de campaña, del 2026-11-05 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: 1 Usuario; 24 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; Facturación por voz con IA*; Siigo App. No incluye: Cotizaciones/CRM:; Cartera seguimiento de cobranza; Gastos/cuentas por pagar. El pago es anual; el descuento aplica para cliente nue",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-021",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (combos)",
+   "plan": "Factura + FE WhatsApp 120",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 244416.0,
+   "equivalente_mensual_anual": 20368.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-33 % de campaña, del 2026-11-05 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: 120 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; Facturación por voz con IA*; 1 Usuario; 1 Línea celular; Siigo App. No incluye: Cotizaciones/CRM. El pago es anual; el descuento aplica para cliente nuevo (según la página).",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-022",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (combos)",
+   "plan": "Facturación electrónica 24 + Nómina electrónica 24",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 191840.0,
+   "equivalente_mensual_anual": 15986.67,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-20 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Nómina hasta para 2 empleados; 24 Documentos electrónicos anuales; Liquidación manual de contratos y de cesantías; Automatización de pagos y comprobantes; Certificado digital* y cumplimiento con la DIAN; Cobra con Siigo Pay; 1 Usuario administrador; Reportes en tablero digital [dashboard]; ",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-023",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (combos)",
+   "plan": "Factura 120 + Nómina electrónica 120",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 419860.0,
+   "equivalente_mensual_anual": 34988.33,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-30 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Nómina hasta para 10 empleados; 120 Documentos electrónicos anuales; Liquidación manual de contratos y de cesantías; Automatización de pagos y comprobantes; Certificado digital* y cumplimiento con la DIAN; Material de capacitación; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp;",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-024",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (combos)",
+   "plan": "Nube Profesional Independiente + NE 120",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 1991840.0,
+   "equivalente_mensual_anual": 165986.67,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-20 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Hasta 10 empleados / 1 usuario administrador; Documentos electrónicos ilimitados; Automatización de pagos y comprobantes; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsApp; Certificado digital* y cumplimiento con la DIAN; Cotizaciones/CRM; Contabilidad; Gastos/cuentas ",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-025",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (combos)",
+   "plan": "POS Avanzado + Nube Emprendedor",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 2827350.0,
+   "equivalente_mensual_anual": 235612.5,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-25 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario, Costeo y control de stocks; Contabilidad; Usuarios cajeros; 3 Usuarios administradores Siigo Nube; Máquina POS Software / Configuración de POS; Almacenamiento; Repo",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-026",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (combos)",
+   "plan": "POS Avanzado + Nube Premium",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 2958060.0,
+   "equivalente_mensual_anual": 246505.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-30 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario, Costeo y control de stocks; Contabilidad con centros de costo y bodegas ilimitadas; Usuarios cajeros; 5 Usuarios administradores Siigo Nube; Máquina POS Software / ",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-027",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (combos)",
+   "plan": "POS GastroBar PRO + Nube Premium",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 2895480.0,
+   "equivalente_mensual_anual": 241290.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-40 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Gestión Dinámica de Mesas y Meseros; Comandas y órdenes de servicio; Documentos electrónicos / Cumplimiento normativo; Gestión Premium de Inventarios y Stocks; Combos, recetas y comandas; Gestión de propinas; Usuario cajeros; 5 Usuarios administrador Siigo Nube; Caja POS Software; Precuenta",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-028",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (adicionales)",
+   "plan": "FE WhatsApp 24",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 19470.0,
+   "equivalente_mensual_anual": 1622.5,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-70 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Automatiza recordatorios de cobro con IA; Envía comprobantes al instante con IA; Seguimiento de facturas enviadas. No incluye: Compatible con la DIAN. Facturar por WhatsApp con IA Aparece en los datos internos de la página y no en el texto visible: falta confirmar que el sitio lo muestre.",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-029",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (adicionales)",
+   "plan": "FE WhatsApp 120",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 19470.0,
+   "equivalente_mensual_anual": 1622.5,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-70 % de campaña, del 2026-11-17 al 2026-11-30 (hora de Bogotá). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Incluye: Automatiza recordatorios de cobro con IA; Envía comprobantes al instante con IA; Seguimiento de facturas enviadas; Compatible con la DIAN. Facturar por WhatsApp con IA Aparece en los datos internos de la página y no en el texto visible: falta confirmar que el sitio lo muestre.",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-030",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (adicionales)",
+   "plan": "FE WhatsApp en Siigo Nube",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 309900.0,
+   "equivalente_mensual_anual": 25825.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Incluye: Automatiza recordatorios de cobro con IA; Envía comprobantes al instante con IA; Seguimiento de facturas enviadas; Compatible con la DIAN. Facturar por WhatsApp con IA Aparece en los datos internos de la página y no en el texto visible: falta confirmar que el sitio lo muestre.",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-031",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (adicionales)",
+   "plan": "App A la orden",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 322800.0,
+   "equivalente_mensual_anual": 26900.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Incluye: Verifica las pre-cuentas sin re-ingresarla; Toma comandas desde el celular o tablet; Envía las comandas a cocina o barra en automático. Los meseros pueden tomar pedidos directamente desde un celular, enviándolo al POS y a cocina en segundos, por un costo adicional en tu factura*. Aparece en",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-032",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Siigo",
+   "producto": "Siigo (adicionales)",
+   "plan": "Integración Rappi",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 0.0,
+   "equivalente_mensual_anual": 0.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "La página lo lista con precio 0 y sin descripción.",
+   "fuente": "https://www.siigo.com/precios-siigo/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-SIG-033",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro POS",
+   "plan": "POS Tienda",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 54990.0,
+   "precio_anual": 659880.0,
+   "equivalente_mensual_anual": 54990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Hasta 350 facturas electrónicas al mes (ilimitada con costo adicional), 1 usuario, 1 caja, inventarios ilimitados, app móvil.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-001",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro POS",
+   "plan": "POS Avanzado",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 96990.0,
+   "precio_anual": 1163880.0,
+   "equivalente_mensual_anual": 96990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Hasta 2.000 facturas electrónicas al mes (ilimitada con costo adicional), 2 usuarios, 1 caja, facturación por WhatsApp, informe de rentabilidad.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-003",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro POS",
+   "plan": "POS PLUS",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 292990.0,
+   "precio_anual": 3515880.0,
+   "equivalente_mensual_anual": 292990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "200 facturas electrónicas al mes (ilimitada con pagos anuales), 5 usuarios, 5 cajas, módulo financiero y contabilidad integral.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-005",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Restobar",
+   "plan": "Restobar Básico",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 120990.0,
+   "precio_anual": 1451880.0,
+   "equivalente_mensual_anual": 120990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "1 caja, 3 usuarios, 15 mesas, 30 facturas electrónicas incluidas (ilimitada con costo adicional), 1 zona de comandas.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-007",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Restobar",
+   "plan": "Restobar Estándar",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 175990.0,
+   "precio_anual": 2111880.0,
+   "equivalente_mensual_anual": 175990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "2 cajas, 6 usuarios, 30 mesas, 30 facturas electrónicas incluidas (ilimitada con costo adicional), 3 zonas de comandas.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-009",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Restobar",
+   "plan": "Restobar Premium",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 219990.0,
+   "precio_anual": 2639880.0,
+   "equivalente_mensual_anual": 219990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "5 cajas, usuarios ilimitados, 200 mesas, 30 facturas electrónicas incluidas (ilimitada con costo adicional), zonas de comandas ilimitadas, menú digital y carta por QR.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-011",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Facturación electrónica",
+   "plan": "FE Estándar",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 61990.0,
+   "precio_anual": 743880.0,
+   "equivalente_mensual_anual": 61990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "500 documentos electrónicos al mes, 1 usuario, 1 establecimiento, soporte básico por correo y chat.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-013",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Facturación electrónica",
+   "plan": "FE Premium",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 96990.0,
+   "precio_anual": 1163880.0,
+   "equivalente_mensual_anual": 96990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "1.500 documentos electrónicos al mes, 2 usuarios, 2 establecimientos, soporte completo.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-015",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Facturación electrónica",
+   "plan": "FE Básico",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": null,
+   "precio_anual": 260990.0,
+   "equivalente_mensual_anual": 21749.17,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "250 documentos electrónicos al año, 1 usuario, 1 establecimiento. La página dice \"Sólo permite pago anual\".",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-027",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Pymes (administrativo y contable)",
+   "plan": "Pymes Básico",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 108990.0,
+   "precio_anual": 1307880.0,
+   "equivalente_mensual_anual": 108990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "30 documentos electrónicos al mes, 1 usuario, 1 establecimiento; contabilidad como complemento. Es el plan que cita el post 2773.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-017",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Pymes (administrativo y contable)",
+   "plan": "Pymes Estándar",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 133990.0,
+   "precio_anual": 1607880.0,
+   "equivalente_mensual_anual": 133990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "100 documentos electrónicos al mes, 3 usuarios, 2 establecimientos; contabilidad y POS como complementos.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-019",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Pymes (administrativo y contable)",
+   "plan": "Pymes Premium",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 279990.0,
+   "precio_anual": 3359880.0,
+   "equivalente_mensual_anual": 279990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "200 documentos electrónicos al mes (ilimitada solo con pago anual), 5 usuarios, 3 establecimientos, contabilidad incluida y POS incluido para 3 establecimientos.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-021",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Nómina",
+   "plan": "Nómina Estándar",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 72990.0,
+   "precio_anual": 875880.0,
+   "equivalente_mensual_anual": 72990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Incluye 2 empleados y 2 usuarios; liquidación integral y transmisión electrónica.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-023",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Nómina",
+   "plan": "Nómina PLUS 100+",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": 98990.0,
+   "precio_anual": 1187880.0,
+   "equivalente_mensual_anual": 98990.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Incluye 3 empleados y 3 usuarios; soporte completo con atención telefónica.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-025",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro Nómina",
+   "plan": "Nómina Lite",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": null,
+   "precio_anual": 224990.0,
+   "equivalente_mensual_anual": 18749.17,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Solo transmisión de nómina electrónica a la DIAN; incluye 1 empleado y 1 usuario. La página dice \"Sólo permite pago anual\".",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-028",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Contabilidad (complemento de Pymes Básico)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 49990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Se suma a Pymes Básico.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-029"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Contabilidad (complemento de Pymes Estándar)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 68990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Se suma a Pymes Estándar.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-030"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "POS por caja (complemento de Pymes Estándar)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 60990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por caja al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-031"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Documentos electrónicos ilimitados (complemento)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 45990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "La página dice \"Desde $45.990/mes, según tu facturación mensual\".",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-032"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Usuario adicional",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 18990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por usuario al mes, en planes de Pymes, POS y Restobar.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-033"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Establecimiento adicional (POS Tienda)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 54990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por establecimiento al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-034"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Establecimiento adicional (POS Avanzado, PLUS y Pymes)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 96990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por establecimiento al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-035"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Caja adicional (POS y Pymes)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 18990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por caja al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-036"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Caja adicional (Restobar)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 43990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por caja al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-037"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Zona de comanda adicional (Restobar)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 18990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por zona al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-038"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Mesa adicional (Restobar)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 8990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por mesa al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-039"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Integración con Rappi",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 20990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por mes. En Restobar la página también muestra $681.990 por 5 horas de integración.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-040"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "API",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 36990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-041"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Certificado digital de Loggro",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 120990.0,
+   "equivalente_mensual_anual": 10082.5,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Uso del certificado de Loggro, por año. El certificado viene incluido solo en pagos a un año (según la página).",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-042",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Certificado digital propio (uso)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 271990.0,
+   "equivalente_mensual_anual": 22665.83,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Uso de un certificado digital propio, por año.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-043",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Soporte Premium",
+   "moneda": "COP",
+   "base_iva": "Más IVA",
+   "precio_mensual": 218000.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "La página lo publica como \"$218.000 + IVA\".",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-044"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Soporte o implantación personalizada por hora",
+   "moneda": "COP",
+   "base_iva": "Más IVA",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "por hora"
+   ],
+   "condicion": "",
+   "descripcion": "La página lo publica como \"$115.000 + IVA\".",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-045"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Bolsa de documentos electrónicos (50 facturas)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "pago único"
+   ],
+   "condicion": "",
+   "descripcion": "La página dice \"Desde $92.400 x 50 facturas\".",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-046"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Equipos para puntos de venta",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "pago único"
+   ],
+   "condicion": "",
+   "descripcion": "La página dice \"Desde $290.000\".",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-047"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Nómina: empleado adicional en Lite",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 799.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por empleado al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-048"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Nómina: empleado adicional en Estándar (de 1 a 15 empleados)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 6990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por empleado al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-049"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Nómina: empleado adicional en Estándar (de 16 empleados en adelante)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 2990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por empleado al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-050"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Nómina: empleado adicional en PLUS (de 1 a 15 empleados)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 7990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por empleado al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-051"
+  },
+  {
+   "marca": "Loggro",
+   "producto": "Loggro (complementos y adicionales)",
+   "plan": "Nómina: empleado adicional en PLUS (de 16 empleados en adelante)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 4990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por empleado al mes.",
+   "fuente": "https://loggro.com/pymes/planes/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-LOG-052"
+  },
+  {
+   "marca": "World Office",
+   "producto": "WOCloud",
+   "plan": "Cloud POS",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": null,
+   "precio_anual": 680000.0,
+   "equivalente_mensual_anual": 56666.67,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "Descuento de 32 % que la página muestra junto al precio \"Antes\"; no publica fecha de vigencia. Planes de pago anual.",
+   "descripcion": "3 usuarios, 2 sucursales, 1 GB, facturación electrónica ilimitada, POS con ventas offline, inventarios, compras y terceros. Sin contabilidad. La página dice \"Los planes no generan IVA\".",
+   "fuente": "https://www.worldoffice.com.co/planes-cloud.html",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-WO-001",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "World Office",
+   "producto": "WOCloud",
+   "plan": "Pyme Plus",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": null,
+   "precio_anual": 2040000.0,
+   "equivalente_mensual_anual": 170000.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "Descuento de 32 % que la página muestra junto al precio \"Antes\"; no publica fecha de vigencia. Planes de pago anual.",
+   "descripcion": "5 usuarios, 3 sucursales, 3 GB. Suma contabilidad, impuestos, cartera, cuentas por pagar, activos fijos, bancos con conciliación manual y app móvil. La página dice \"Los planes no generan IVA\".",
+   "fuente": "https://www.worldoffice.com.co/planes-cloud.html",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-WO-002",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "World Office",
+   "producto": "WOCloud",
+   "plan": "Enterprise",
+   "moneda": "COP",
+   "base_iva": "No genera IVA",
+   "precio_mensual": null,
+   "precio_anual": 2193000.0,
+   "equivalente_mensual_anual": 182750.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "Black Days: 14 meses pagando 12, hasta el 2026-11-27, solo clientes nuevos. Descuento de 32 % que la página muestra junto al precio \"Antes\"; no publica fecha de vigencia. Planes de pago anual.",
+   "descripcion": "10 usuarios, 5 sucursales, 5 GB. Suma nómina sin límite de empleados y nómina electrónica ilimitada, IA incluida, conciliación bancaria automática y API (hasta 100 documentos al mes). La página dice \"Los planes no generan IVA\".",
+   "fuente": "https://www.worldoffice.com.co/planes-cloud.html",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-WO-003",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Vendty",
+   "producto": "Vendty POS",
+   "plan": "Emprendedor",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 155000.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "Prueba gratis de 7 días, sin tarjeta.",
+   "descripcion": "\"Pago mensual recurrente\". 1 punto de venta, 5 usuarios, 1 caja. Facturación electrónica y POS electrónico ilimitados.",
+   "fuente": "https://www.vendty.com/precios",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-VEN-001"
+  },
+  {
+   "marca": "Vendty",
+   "producto": "Vendty POS",
+   "plan": "Profesional",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 1020000.0,
+   "equivalente_mensual_anual": 85000.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "Prueba gratis de 7 días, sin tarjeta.",
+   "descripcion": "\"Un pago anual recurrente\". 1 punto de venta, 10 usuarios, 2 cajas; suma tienda virtual con pagos online y módulo de domicilios. Plan más popular. La página muestra \"$85.000 / Mes\" (equivalente).",
+   "fuente": "https://www.vendty.com/precios",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-VEN-002",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Vendty",
+   "producto": "Vendty POS",
+   "plan": "Empresarial",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 1680000.0,
+   "equivalente_mensual_anual": 140000.0,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "Prueba gratis de 7 días, sin tarjeta.",
+   "descripcion": "\"Un pago anual recurrente\". 2 puntos de venta, 15 usuarios, 2 cajas; almacenes integrados. La página muestra \"$140.000 / Mes\" (equivalente).",
+   "fuente": "https://www.vendty.com/precios",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-VEN-003",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "Vendty",
+   "producto": "Vendty POS",
+   "plan": "Escritorio",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "por cotización"
+   ],
+   "condicion": "",
+   "descripcion": "No publica precio (botón \"Agendar Demo\"). 15 usuarios, 1 caja, 60 mesas, implementación presencial de 4 horas.",
+   "fuente": "https://www.vendty.com/precios",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-VEN-004"
+  },
+  {
+   "marca": "Cuenti",
+   "producto": "Cuenti",
+   "plan": "Emprendedor",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 37000.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual (cifra por mes)",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "1 usuario, contactos ilimitados, productos ilimitados sin inventario, informes. Este precio no incluye la facturación electrónica (según la página). Ventas ilimitadas. Prueba gratis de 7 días.",
+   "fuente": "https://cuenti.com/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-CUE-001"
+  },
+  {
+   "marca": "Cuenti",
+   "producto": "Cuenti",
+   "plan": "Pyme",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 77000.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual (cifra por mes)",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "3 usuarios, contactos ilimitados, 2.500 productos de inventario, plan separe, pedidos, remisiones, lotes. Este precio no incluye la facturación electrónica (según la página). Ventas ilimitadas. Prueba gratis de 7 días.",
+   "fuente": "https://cuenti.com/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-CUE-003"
+  },
+  {
+   "marca": "Cuenti",
+   "producto": "Cuenti",
+   "plan": "Pro",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 112000.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual (cifra por mes)",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "5 usuarios, productos ilimitados en inventario, módulo bar/restaurante, logística, producción. Este precio no incluye la facturación electrónica (según la página). Ventas ilimitadas. Prueba gratis de 7 días.",
+   "fuente": "https://cuenti.com/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-CUE-005"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (POS)",
+   "plan": "Esencial",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 19900.0,
+   "precio_anual": 202980.0,
+   "equivalente_mensual_anual": 16915.0,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral",
+    "trimestral"
+   ],
+   "condicion": "Descuento por pago anual publicado en la página (15 %); la página lo marca con asterisco.",
+   "descripcion": "1 usuario, 1 caja, 1 bodega, ventas hasta $10.000.000 al mes, POS DIAN limitado.",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-001",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (POS)",
+   "plan": "Profesional",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 50000.0,
+   "precio_anual": 510000.0,
+   "equivalente_mensual_anual": 42500.0,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral",
+    "trimestral"
+   ],
+   "condicion": "Descuento por pago anual publicado en la página (15 %); la página lo marca con asterisco.",
+   "descripcion": "2 usuarios, 1 caja, 1 bodega, ventas hasta $50.000.000 al mes, POS DIAN limitado. Marcado \"Más popular\".",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-005",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (POS)",
+   "plan": "Premium",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 70000.0,
+   "precio_anual": 714000.0,
+   "equivalente_mensual_anual": 59500.0,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral",
+    "trimestral"
+   ],
+   "condicion": "Descuento por pago anual publicado en la página (15 %); la página lo marca con asterisco.",
+   "descripcion": "6 usuarios, 2 cajas, 2 bodegas, ventas ilimitadas, POS DIAN ilimitado.",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-009",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (POS)",
+   "plan": "Avanzado",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 100000.0,
+   "precio_anual": 1020000.0,
+   "equivalente_mensual_anual": 85000.0,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral",
+    "trimestral"
+   ],
+   "condicion": "Descuento por pago anual publicado en la página (15 %); la página lo marca con asterisco.",
+   "descripcion": "10 usuarios, 3 cajas, 2 bodegas, ventas ilimitadas, POS DIAN ilimitado.",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-013",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (Solo contabilidad)",
+   "plan": "Empresa",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 50000.0,
+   "precio_anual": 510000.0,
+   "equivalente_mensual_anual": 42500.0,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral",
+    "trimestral"
+   ],
+   "condicion": "Descuento por pago anual publicado en la página (15 %); la página lo marca con asterisco.",
+   "descripcion": "1 empresa, 3 usuarios contables, PUC, comprobantes, cartera, compras, conciliación, cierre y exógena en Excel, CSV o XML. Factura electrónica y nómina van aparte.",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-017",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (Solo contabilidad)",
+   "plan": "Contador",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 100000.0,
+   "precio_anual": 1020000.0,
+   "equivalente_mensual_anual": 85000.0,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral",
+    "trimestral"
+   ],
+   "condicion": "Descuento por pago anual publicado en la página (15 %); la página lo marca con asterisco.",
+   "descripcion": "4 empresas, 3 usuarios contables. Marcado \"Recomendado\". Factura electrónica y nómina van aparte.",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-021",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (Solo contabilidad)",
+   "plan": "Despacho",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 150000.0,
+   "precio_anual": 1530000.0,
+   "equivalente_mensual_anual": 127500.0,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral",
+    "trimestral"
+   ],
+   "condicion": "Descuento por pago anual publicado en la página (15 %); la página lo marca con asterisco.",
+   "descripcion": "7 empresas, 3 usuarios contables. Factura electrónica y nómina van aparte.",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-025",
+   "cobro_anual": "anual"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (adicionales)",
+   "plan": "Contabilidad Pro (adicional en planes POS)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 25000.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Se suma a cada plan POS, por mes.",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-029"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (adicionales)",
+   "plan": "Integración Rappi (adicional en planes POS)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 12000.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Se suma a cada plan POS, por mes.",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-030"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (adicionales)",
+   "plan": "Empresa adicional (Solo contabilidad)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 20000.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "La página dice \"El mismo descuento del periodo\".",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-031"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (adicionales)",
+   "plan": "Usuario adicional (Solo contabilidad)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 12000.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "La página dice \"El mismo descuento del periodo\".",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-032"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (adicionales)",
+   "plan": "Certificado digital por 1 año",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "1 año"
+   ],
+   "condicion": "",
+   "descripcion": "Cada empresa necesita su certificado digital; incluye 100 documentos y, si se acaban, se compra otro paquete. Factura electrónica, nómina y RADIAN se compran aparte.",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-033"
+  },
+  {
+   "marca": "GridPOS",
+   "producto": "GridPOS (adicionales)",
+   "plan": "Certificado digital por 2 años",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "2 años"
+   ],
+   "condicion": "",
+   "descripcion": "Cada empresa necesita su certificado digital; incluye 100 documentos.",
+   "fuente": "https://gridpos.co/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-GRI-034"
+  },
+  {
+   "marca": "Helisa",
+   "producto": "Helisa Cloud",
+   "plan": "Cloud Plus",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 396900.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Hasta 100 empresas, 3 usuarios, 60.000 validaciones de facturación electrónica; incluye nómina, nómina electrónica, importaciones, activos fijos, presupuesto e inventarios.",
+   "fuente": "https://helisa.com/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-HEL-001"
+  },
+  {
+   "marca": "Helisa",
+   "producto": "Helisa Cloud",
+   "plan": "Cloud Estándar",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 249480.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Hasta 100 empresas, 2 usuarios, 6.000 validaciones de facturación electrónica.",
+   "fuente": "https://helisa.com/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-HEL-002"
+  },
+  {
+   "marca": "Helisa",
+   "producto": "Helisa Cloud",
+   "plan": "Cloud Básico",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": 192780.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "1 empresa, 2 usuarios, 1.200 validaciones de facturación electrónica.",
+   "fuente": "https://helisa.com/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-HEL-003"
+  },
+  {
+   "marca": "Helisa",
+   "producto": "Helisa Cloud",
+   "plan": "Cloud Nómina (desde)",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "no indica"
+   ],
+   "condicion": "",
+   "descripcion": "La página lo muestra como \"Desde $260.820\" sin indicar la periodicidad.",
+   "fuente": "https://helisa.com/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-HEL-004"
+  },
+  {
+   "marca": "Helisa",
+   "producto": "Helisa Cloud",
+   "plan": "Cloud Propiedad Horizontal / Colegios",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "no indica"
+   ],
+   "condicion": "",
+   "descripcion": "La página lo muestra sin indicar la periodicidad.",
+   "fuente": "https://helisa.com/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-HEL-005"
+  },
+  {
+   "marca": "Helisa",
+   "producto": "Helisa Cloud",
+   "plan": "Servicio Helisa Hosting",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "no indica"
+   ],
+   "condicion": "",
+   "descripcion": "La página lo muestra sin indicar la periodicidad.",
+   "fuente": "https://helisa.com/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-HEL-006"
+  },
+  {
+   "marca": "Helisa",
+   "producto": "Helisa Cloud",
+   "plan": "Cloud Contador",
+   "moneda": "COP",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "no publica"
+   ],
+   "condicion": "",
+   "descripcion": "Aparece en el menú de productos sin precio.",
+   "fuente": "https://helisa.com/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "COL-HEL-007"
+  },
+  {
+   "marca": "Zeus",
+   "producto": "Zeus ERP POS",
+   "plan": "Plan de entrada (desde)",
+   "moneda": "USD",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "no indica"
+   ],
+   "condicion": "Hermes anotó \"Desde 59 USD (~270.000 COP)\".",
+   "descripcion": "Dato del post 3199 (comparativa de POS). zeus.com.co y zeusinfo.com no respondieron hoy, así que no se pudo contrastar con la página oficial.",
+   "fuente": "https://programascontabilidad.com/comparativas-de-software/mejor-sistema-pos-en-colombia/",
+   "revisado": "2026-11-14",
+   "estado": "verificado",
+   "id": "COL-ZEU-001"
+  },
+  {
+   "marca": "SAP Business One",
+   "producto": "SAP Business One (nube)",
+   "plan": "Starter (por usuario)",
+   "moneda": "EUR",
+   "base_iva": "No indica",
+   "precio_mensual": 38.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "Hermes anotó \"~163.400 COP por usuario al mes (38 EUR), máximo 5 usuarios, ideal para pequeñas empresas\".",
+   "descripcion": "Dato del post 31 (Alegra vs. SAP), que dice \"información actualizada a mayo de 2025\" y convierte euros a pesos con 1 EUR = 4.300 COP. Suscripción en la nube con contrato mínimo de 3 años; no incluye implementación. No se consultó hoy una fuente oficial de SAP.",
+   "fuente": "https://programascontabilidad.com/comparativas-de-software/sistema-de-gestion-sap/",
+   "revisado": "2026-11-14",
+   "estado": "verificado",
+   "id": "COL-SAP-001"
+  },
+  {
+   "marca": "SAP Business One",
+   "producto": "SAP Business One (nube)",
+   "plan": "Limited (por usuario)",
+   "moneda": "EUR",
+   "base_iva": "No indica",
+   "precio_mensual": 47.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "Hermes anotó \"~202.100 COP por usuario al mes (47 EUR), acceso restringido a algunas funciones\".",
+   "descripcion": "Dato del post 31 (Alegra vs. SAP), que dice \"información actualizada a mayo de 2025\" y convierte euros a pesos con 1 EUR = 4.300 COP. Suscripción en la nube con contrato mínimo de 3 años; no incluye implementación. No se consultó hoy una fuente oficial de SAP.",
+   "fuente": "https://programascontabilidad.com/comparativas-de-software/sistema-de-gestion-sap/",
+   "revisado": "2026-11-14",
+   "estado": "verificado",
+   "id": "COL-SAP-002"
+  },
+  {
+   "marca": "SAP Business One",
+   "producto": "SAP Business One (nube)",
+   "plan": "Professional (por usuario)",
+   "moneda": "EUR",
+   "base_iva": "No indica",
+   "precio_mensual": 91.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "Hermes anotó \"~391.300 COP por usuario al mes (91 EUR), acceso completo\".",
+   "descripcion": "Dato del post 31 (Alegra vs. SAP), que dice \"información actualizada a mayo de 2025\" y convierte euros a pesos con 1 EUR = 4.300 COP. Suscripción en la nube con contrato mínimo de 3 años; no incluye implementación. No se consultó hoy una fuente oficial de SAP.",
+   "fuente": "https://programascontabilidad.com/comparativas-de-software/sistema-de-gestion-sap/",
+   "revisado": "2026-11-14",
+   "estado": "verificado",
+   "id": "COL-SAP-003"
+  }
+ ]
+}

@@ -4,280 +4,305 @@
   "product": "Siigo",
   "plans": [
     {
-      "name": "Facturación electrónica GRATIS",
-      "price": "",
+      "name": "Siigo Facturación electrónica Gratis (5 documentos al año) (anual)",
+      "price": "0",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": false
+      "publicado": true,
+      "note": "Incluye: 5 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario. No incluye: Siigo App; Cotizaciones/CRM; Cartera seguimiento de cobranza."
     },
     {
-      "name": "Facturación electrónica 24",
-      "price": "9.992",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Facturación electrónica 24",
-      "price": "119.900",
+      "name": "Siigo Facturación electrónica 24 documentos al año (anual)",
+      "price": "119900",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "Incluye: 24 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App. No incluye: Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/cue"
     },
     {
-      "name": "Facturación electrónica WhatsApp 24",
-      "price": "11.550",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Facturación electrónica WhatsApp 24",
-      "price": "138.600",
+      "name": "Siigo Facturación electrónica 60 documentos al año (anual)",
+      "price": "199900",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "El número de documentos sale del nombre del plan; la página no lista sus funciones. Aparece en los datos de la página: falta confirmar que el selector lo muestre."
     },
     {
-      "name": "Facturación electrónica 120",
-      "price": "18.744",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Facturación electrónica 120",
-      "price": "224.925",
+      "name": "Siigo Facturación electrónica 120 documentos al año (anual)",
+      "price": "254915",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "Incluye: 120 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App. No incluye: Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/cu"
     },
     {
-      "name": "Facturación electrónica WhatsApp 120",
-      "price": "20.368",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Facturación electrónica WhatsApp 120",
-      "price": "244.416",
+      "name": "Siigo Facturación electrónica FE PRO (500 documentos al año) (anual)",
+      "price": "684810",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "Incluye: 500 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App; Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/cuentas por pa"
     },
     {
-      "name": "Facturación electrónica 1500",
-      "price": "76.931",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Facturación electrónica 1500",
-      "price": "923.175",
+      "name": "Siigo Facturación electrónica 1500 documentos al año (anual)",
+      "price": "1.10781e+06",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "Incluye: 1500 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; 1 Usuario; Siigo App. No incluye: Cotizaciones/CRM; Cartera seguimiento de cobranza; Gastos/c"
     },
     {
-      "name": "Facturación electrónica PRO",
-      "price": "47.556",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Facturación electrónica PRO",
-      "price": "570.675",
+      "name": "Siigo Nube (software administrativo) Profesional Independiente (anual)",
+      "price": "1.75192e+06",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "Incluye: 1 Usuario / Documentos electrónicos ilimitados; Cobra con Siigo Pay; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsApp; Contabilidad; Cotizaciones/CRM; Siigo App; Gastos"
     },
     {
-      "name": "Facturación electrónica 24 + Nómina Electrónica 24",
-      "price": "15.987",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Facturación electrónica 24 + Nómina Electrónica 24",
-      "price": "191.840",
+      "name": "Siigo Nube (software administrativo) Emprendedor (anual)",
+      "price": "2.29592e+06",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "Incluye: 3 Usuarios / Documentos electrónicos ilimitados; Cobra con Siigo Pay; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsApp; Contabilidad; Cotizaciones/CRM; Siigo App; Gasto"
     },
     {
-      "name": "Facturación electrónica 120 + Nómina Electrónica 120",
-      "price": "34.988",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Facturación electrónica 120 + Nómina Electrónica 120",
-      "price": "419.860",
+      "name": "Siigo Nube (software administrativo) Premium (anual)",
+      "price": "2.49442e+06",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "Incluye: 5 Usuarios / Documentos electrónicos ilimitados; Cobra con Siigo Pay; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsApp; Contabilidad; Cotizaciones/CRM; Siigo App; Gasto"
     },
     {
-      "name": "Sistema POS Esencial",
-      "price": "28.750",
-      "currency": "COP",
-      "period": "mes",
-      "billing": "mensual",
-      "publicado": true
-    },
-    {
-      "name": "Sistema POS Esencial",
-      "price": "345.000",
+      "name": "Siigo Contador Siigo Contador (1 empresa) (anual)",
+      "price": "0",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "publicado": true
+      "publicado": true,
+      "note": "Incluye: 1 Empresa; Contabilidad; Impuestos; Estados financieros; Portal contador."
     },
     {
-      "name": "Sistema POS Inicio",
-      "price": "527.310",
+      "name": "Siigo Contador Siigo Contador ilimitado (anual)",
+      "price": "535900",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Empresas ilimitadas; Contabilidad; Impuestos; Estados financieros; Portal contador. El pago es anual; el descuento aplica para cliente nuevo (según la página)."
     },
     {
-      "name": "Sistema POS Avanzado",
-      "price": "764.915",
+      "name": "Siigo POS POS Esencial (anual)",
+      "price": "345000",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: 240 Facturas electrónicas anuales desde POS; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario; Reportes Generales; Usuarios cajeros; 1 Usuario administrador S"
     },
     {
-      "name": "Sistema POS Avanzado + Emprendedor",
-      "price": "2.827.350",
+      "name": "Siigo POS POS Inicio (anual)",
+      "price": "527310",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario; Reportes Generales; Usuarios cajeros; 1 Usuario administrador Si"
     },
     {
-      "name": "Sistema POS Avanzado + Premium",
-      "price": "2.958.060",
+      "name": "Siigo POS POS Avanzado (anual)",
+      "price": "764915",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario intermedio; Reportes Generales; Usuarios cajeros; 1 Usuario admin"
     },
     {
-      "name": "Sistema POS GastroBar PRO",
-      "price": "1.049.930",
+      "name": "Siigo POS Gastrobar GastroBar PRO (anual)",
+      "price": "1.04993e+06",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Gestión Dinámica de Mesas y Meseros; Comandas y órdenes de servicio; Documentos electrónicos / Cumplimiento normativo; Inventario, Stocks y Costeo; Combos, recetas y comandas; Gestión de prop"
     },
     {
-      "name": "Sistema POS GastroBar PRO + Premium",
-      "price": "2.895.480",
+      "name": "Siigo Nómina electrónica NE Lite 24 (hasta 2 empleados) (anual)",
+      "price": "119900",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Hasta 2 empleados; Hasta 24 documentos anuales; Cumple al 100% los requisitos de la DIAN; Certificado digital; Reportes en tablero digital [dashboard]; Material de capacitación; Envío de comp"
     },
     {
-      "name": "Nómina Electrónica Lite 120",
-      "price": "239.920",
+      "name": "Siigo Nómina electrónica NE Lite 120 (3 a 10 empleados) (anual)",
+      "price": "239920",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Entre 3 a 10 empleados; Hasta 120 documentos anuales; Cumple al 100% los requisitos de la DIAN; Certificado digital; Reportes en tablero digital [dashboard]; Material de capacitación; Envío d"
     },
     {
-      "name": "Nómina Electrónica Lite 300",
-      "price": "449.925",
+      "name": "Siigo Nómina electrónica NE Lite 300 (11 a 25 empleados) (anual)",
+      "price": "449925",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Entre 11 a 25 empleados; Hasta 300 documentos anuales; Cumple al 100% los requisitos de la DIAN; Certificado digital; Reportes en tablero digital [dashboard]; Material de capacitación; Envío "
     },
     {
-      "name": "Nómina PLUS",
-      "price": "749.925",
+      "name": "Siigo Nómina electrónica Nómina Nube Plus (anual)",
+      "price": "749925",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Empleados ilimitados; Cumple al 100% los requisitos de la DIAN; Generación de archivos planos a bancos; Liquidación automática de nómina y contratos; Contabilización; Certificado digital; Rep"
     },
     {
-      "name": "Nómina PRO",
-      "price": "1.402.425",
+      "name": "Siigo Nómina electrónica Nómina Nube Pro (anual)",
+      "price": "1.40242e+06",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Empleados ilimitados; Cumple al 100% los requisitos de la DIAN; Generación de archivos planos a bancos; Liquidación automática de nómina, contratos y cesantías; Contabilización y seguridad so"
     },
     {
-      "name": "Profesional independiente (Siigo Nube)",
-      "price": "1.751.920",
+      "name": "Siigo (combos) Factura + FE WhatsApp 24 (anual)",
+      "price": "138600",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: 1 Usuario; 24 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; Facturación por voz con IA*; Siigo App. No incluye: Cotizaciones/CRM:; Cartera segui"
     },
     {
-      "name": "Emprendedor (Siigo Nube)",
-      "price": "2.295.920",
+      "name": "Siigo (combos) Factura + FE WhatsApp 120 (anual)",
+      "price": "244416",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: 120 Documentos electrónicos anuales; Cobra con Siigo Pay; Notificación de cobranza por WhatsApp; Facturación por voz con IA*; 1 Usuario; 1 Línea celular; Siigo App. No incluye: Cotizaciones/C"
     },
     {
-      "name": "Premium (Siigo Nube)",
-      "price": "2.494.425",
+      "name": "Siigo (combos) Facturación electrónica 24 + Nómina electrónica 24 (anual)",
+      "price": "191840",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Nómina hasta para 2 empleados; 24 Documentos electrónicos anuales; Liquidación manual de contratos y de cesantías; Automatización de pagos y comprobantes; Certificado digital* y cumplimiento "
     },
     {
-      "name": "Nube independiente + Nómina Electrónica 120",
-      "price": "2.489.800",
+      "name": "Siigo (combos) Factura 120 + Nómina electrónica 120 (anual)",
+      "price": "419860",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Nómina hasta para 10 empleados; 120 Documentos electrónicos anuales; Liquidación manual de contratos y de cesantías; Automatización de pagos y comprobantes; Certificado digital* y cumplimient"
     },
     {
-      "name": "Siigo contador ilimitado",
-      "price": "535.900",
+      "name": "Siigo (combos) Nube Profesional Independiente + NE 120 (anual)",
+      "price": "1.99184e+06",
       "currency": "COP",
       "period": "año",
       "billing": "anual",
-      "note": "Publicado en la tabla de planes; el pago es anual y el descuento aplica a clientes nuevos"
+      "publicado": true,
+      "note": "Incluye: Hasta 10 empleados / 1 usuario administrador; Documentos electrónicos ilimitados; Automatización de pagos y comprobantes; Cartera seguimiento de cobranza / Notificación de cobranza por WhatsA"
+    },
+    {
+      "name": "Siigo (combos) POS Avanzado + Nube Emprendedor (anual)",
+      "price": "2.82735e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario, Costeo y control de stocks; Contabilidad; Usuarios cajeros; 3 Us"
+    },
+    {
+      "name": "Siigo (combos) POS Avanzado + Nube Premium (anual)",
+      "price": "2.95806e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Incluye: Facturas electrónicas desde POS ilimitadas; Documentos electrónicos / Cumplimiento normativo; Precuentas y Turnos; Inventario, Costeo y control de stocks; Contabilidad con centros de costo y "
+    },
+    {
+      "name": "Siigo (combos) POS GastroBar PRO + Nube Premium (anual)",
+      "price": "2.89548e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Incluye: Gestión Dinámica de Mesas y Meseros; Comandas y órdenes de servicio; Documentos electrónicos / Cumplimiento normativo; Gestión Premium de Inventarios y Stocks; Combos, recetas y comandas; Ges"
+    },
+    {
+      "name": "Siigo (adicionales) FE WhatsApp 24 (anual)",
+      "price": "19470",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Incluye: Automatiza recordatorios de cobro con IA; Envía comprobantes al instante con IA; Seguimiento de facturas enviadas. No incluye: Compatible con la DIAN. Facturar por WhatsApp con IA Aparece en "
+    },
+    {
+      "name": "Siigo (adicionales) FE WhatsApp 120 (anual)",
+      "price": "19470",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Incluye: Automatiza recordatorios de cobro con IA; Envía comprobantes al instante con IA; Seguimiento de facturas enviadas; Compatible con la DIAN. Facturar por WhatsApp con IA Aparece en los datos in"
+    },
+    {
+      "name": "Siigo (adicionales) FE WhatsApp en Siigo Nube (anual)",
+      "price": "309900",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Incluye: Automatiza recordatorios de cobro con IA; Envía comprobantes al instante con IA; Seguimiento de facturas enviadas; Compatible con la DIAN. Facturar por WhatsApp con IA Aparece en los datos in"
+    },
+    {
+      "name": "Siigo (adicionales) App A la orden (anual)",
+      "price": "322800",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Incluye: Verifica las pre-cuentas sin re-ingresarla; Toma comandas desde el celular o tablet; Envía las comandas a cocina o barra en automático. Los meseros pueden tomar pedidos directamente desde un "
+    },
+    {
+      "name": "Siigo (adicionales) Integración Rappi (anual)",
+      "price": "0",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "La página lo lista con precio 0 y sin descripción."
     }
   ],
   "source_url": "https://www.siigo.com/precios-siigo/",
-  "captured_at": "2026-11-13",
+  "captured_at": "2026-11-22",
   "evidence_level": "documentacion_oficial",
   "extraction": "modelo+verificacion_literal",
   "features": [
@@ -317,5 +342,7 @@
       "cambios": []
     }
   ],
-  "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica"
+  "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica",
+  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
+  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12."
 }

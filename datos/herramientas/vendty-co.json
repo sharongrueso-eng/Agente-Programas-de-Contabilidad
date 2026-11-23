@@ -1,0 +1,39 @@
+{
+  "brand": "Vendty",
+  "country": "CO",
+  "product": "Vendty POS",
+  "evidence_level": "documentacion_oficial",
+  "plans": [
+    {
+      "name": "Vendty POS Emprendedor (mensual)",
+      "price": "155000",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "\"Pago mensual recurrente\". 1 punto de venta, 5 usuarios, 1 caja. Facturación electrónica y POS electrónico ilimitados."
+    },
+    {
+      "name": "Vendty POS Profesional (anual)",
+      "price": "1.02e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "\"Un pago anual recurrente\". 1 punto de venta, 10 usuarios, 2 cajas; suma tienda virtual con pagos online y módulo de domicilios. Plan más popular. La página muestra \"$85.000 / Mes\" (equivalente)."
+    },
+    {
+      "name": "Vendty POS Empresarial (anual)",
+      "price": "1.68e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "\"Un pago anual recurrente\". 2 puntos de venta, 15 usuarios, 2 cajas; almacenes integrados. La página muestra \"$140.000 / Mes\" (equivalente)."
+    }
+  ],
+  "source_url": "https://www.vendty.com/precios",
+  "captured_at": "2026-11-22",
+  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
+  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12."
+}

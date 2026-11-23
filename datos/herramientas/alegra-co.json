@@ -4,296 +4,305 @@
   "product": "Alegra (facturación electrónica, contabilidad y POS)",
   "plans": [
     {
-      "name": "Facturación electrónica Emprendedor (mensual)",
-      "price": "17.900",
+      "name": "Alegra Facturación Emprendedor (mensual)",
+      "price": "17900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Solo facturación, sin módulo contable. Precio de lista"
+      "note": "Hasta $10.000.000 de ingresos al mes, 1 usuario. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis."
     },
     {
-      "name": "Facturación electrónica Emprendedor (anual)",
-      "price": "13.425",
+      "name": "Alegra Facturación Emprendedor (anual)",
+      "price": "161100",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 161.100 COP facturados al año"
+      "note": "Hasta $10.000.000 de ingresos al mes, 1 usuario. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis."
     },
     {
-      "name": "Facturación electrónica Pyme (mensual)",
-      "price": "49.900",
+      "name": "Alegra Facturación Pyme (mensual)",
+      "price": "49900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Solo facturación, sin módulo contable. Precio de lista"
+      "note": "Hasta $40.000.000 de ingresos al mes, 2 usuarios. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis."
     },
     {
-      "name": "Facturación electrónica Pyme (anual)",
-      "price": "37.425",
+      "name": "Alegra Facturación Pyme (anual)",
+      "price": "449100",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 449.100 COP facturados al año"
+      "note": "Hasta $40.000.000 de ingresos al mes, 2 usuarios. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis."
     },
     {
-      "name": "Facturación electrónica Pro (mensual)",
-      "price": "99.900",
+      "name": "Alegra Facturación Pro (mensual)",
+      "price": "99900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Solo facturación, sin módulo contable. Precio de lista"
+      "note": "Hasta $180.000.000 de ingresos al mes, 3 usuarios. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis."
     },
     {
-      "name": "Facturación electrónica Pro (anual)",
-      "price": "74.925",
+      "name": "Alegra Facturación Pro (anual)",
+      "price": "899100",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 899.100 COP facturados al año"
+      "note": "Hasta $180.000.000 de ingresos al mes, 3 usuarios. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis."
     },
     {
-      "name": "Facturación electrónica Plus (mensual)",
-      "price": "179.900",
+      "name": "Alegra Facturación Plus (mensual)",
+      "price": "179900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Solo facturación, sin módulo contable. Precio de lista"
+      "note": "Hasta $500.000.000 de ingresos al mes, 5 usuarios. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis."
     },
     {
-      "name": "Facturación electrónica Plus (anual)",
-      "price": "134.925",
+      "name": "Alegra Facturación Plus (anual)",
+      "price": "1.6191e+06",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 1.619.100 COP facturados al año"
+      "note": "Hasta $500.000.000 de ingresos al mes, 5 usuarios. No incluye módulo contable. 1 usuario gratis para el contador y soporte 24/7 gratis."
     },
     {
-      "name": "Contabilidad Emprendedor (mensual)",
-      "price": "74.900",
+      "name": "Alegra Contabilidad Emprendedor (mensual)",
+      "price": "74900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Hasta $10.000.000 de ingresos al mes, 1 usuario, 1 bodega. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e inventario"
     },
     {
-      "name": "Contabilidad Emprendedor (anual)",
-      "price": "56.175",
+      "name": "Alegra Contabilidad Emprendedor (anual)",
+      "price": "674100",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 674.100 COP facturados al año"
+      "note": "Hasta $10.000.000 de ingresos al mes, 1 usuario, 1 bodega. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e inventario"
     },
     {
-      "name": "Contabilidad Pyme (mensual)",
-      "price": "163.900",
+      "name": "Alegra Contabilidad Pyme (mensual)",
+      "price": "163900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Hasta $40.000.000 de ingresos al mes, 2 usuarios, 2 bodegas. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e inventar"
     },
     {
-      "name": "Contabilidad Pyme (anual)",
-      "price": "122.925",
+      "name": "Alegra Contabilidad Pyme (anual)",
+      "price": "1.4751e+06",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 1.475.100 COP facturados al año"
+      "note": "Hasta $40.000.000 de ingresos al mes, 2 usuarios, 2 bodegas. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e inventar"
     },
     {
-      "name": "Contabilidad Pro (mensual)",
-      "price": "250.900",
+      "name": "Alegra Contabilidad Pro (mensual)",
+      "price": "250900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Hasta $180.000.000 de ingresos al mes, 3 usuarios, 10 bodegas. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e invent"
     },
     {
-      "name": "Contabilidad Pro (anual)",
-      "price": "188.175",
+      "name": "Alegra Contabilidad Pro (anual)",
+      "price": "2.2581e+06",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 2.258.100 COP facturados al año"
+      "note": "Hasta $180.000.000 de ingresos al mes, 3 usuarios, 10 bodegas. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e invent"
     },
     {
-      "name": "Contabilidad Plus (mensual)",
-      "price": "319.900",
+      "name": "Alegra Contabilidad Plus (mensual)",
+      "price": "319900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Hasta $500.000.000 de ingresos al mes, 8 usuarios, 100 bodegas. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e inven"
     },
     {
-      "name": "Contabilidad Plus (anual)",
-      "price": "239.925",
+      "name": "Alegra Contabilidad Plus (anual)",
+      "price": "2.8791e+06",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 2.879.100 COP facturados al año"
+      "note": "Hasta $500.000.000 de ingresos al mes, 8 usuarios, 100 bodegas. Incluye todo Alegra Facturación más módulo contable, reportes fiscales (Formulario 350, exógena), gastos y bancos, integraciones e inven"
     },
     {
-      "name": "POS Emprendedor (mensual)",
-      "price": "25.900",
+      "name": "Alegra POS Emprendedor (mensual)",
+      "price": "25900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Hasta $10.000.000 de ingresos al mes, 1 usuario, 1 bodega. Facturas ilimitadas. 1 usuario gratis para el contador."
     },
     {
-      "name": "POS Emprendedor (anual)",
-      "price": "19.425",
+      "name": "Alegra POS Emprendedor (anual)",
+      "price": "233100",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 233.100 COP facturados al año"
+      "note": "Hasta $10.000.000 de ingresos al mes, 1 usuario, 1 bodega. Facturas ilimitadas. 1 usuario gratis para el contador."
     },
     {
-      "name": "POS Pyme (mensual)",
-      "price": "79.900",
+      "name": "Alegra POS Pyme (mensual)",
+      "price": "79900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Hasta $40.000.000 de ingresos al mes, 2 usuarios, 2 bodegas. Facturas ilimitadas. 1 usuario gratis para el contador."
     },
     {
-      "name": "POS Pyme (anual)",
-      "price": "59.925",
+      "name": "Alegra POS Pyme (anual)",
+      "price": "719100",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 719.100 COP facturados al año"
+      "note": "Hasta $40.000.000 de ingresos al mes, 2 usuarios, 2 bodegas. Facturas ilimitadas. 1 usuario gratis para el contador."
     },
     {
-      "name": "POS Pro (mensual)",
-      "price": "139.900",
+      "name": "Alegra POS Pro (mensual)",
+      "price": "139900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Hasta $180.000.000 de ingresos al mes, 3 usuarios, 10 bodegas. Facturas ilimitadas. 1 usuario gratis para el contador."
     },
     {
-      "name": "POS Pro (anual)",
-      "price": "104.925",
+      "name": "Alegra POS Pro (anual)",
+      "price": "1.2591e+06",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 1.259.100 COP facturados al año"
+      "note": "Hasta $180.000.000 de ingresos al mes, 3 usuarios, 10 bodegas. Facturas ilimitadas. 1 usuario gratis para el contador."
     },
     {
-      "name": "POS Plus (mensual)",
-      "price": "199.900",
+      "name": "Alegra POS Plus (mensual)",
+      "price": "199900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Hasta $500.000.000 de ingresos al mes, 8 usuarios, 100 bodegas. Facturas ilimitadas. 1 usuario gratis para el contador."
     },
     {
-      "name": "POS Plus (anual)",
-      "price": "149.925",
+      "name": "Alegra POS Plus (anual)",
+      "price": "1.7991e+06",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 1.799.100 COP facturados al año"
+      "note": "Hasta $500.000.000 de ingresos al mes, 8 usuarios, 100 bodegas. Facturas ilimitadas. 1 usuario gratis para el contador."
     },
     {
-      "name": "Nómina electrónica Emprendedor (mensual)",
-      "price": "29.900",
+      "name": "Alegra Nómina Emprendedor (mensual)",
+      "price": "29900",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "De 1 a 10 empleados, emisión electrónica y notas de ajuste ilimitadas. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica tarifas de pago; l"
     },
     {
-      "name": "Nómina electrónica Emprendedor (anual)",
-      "price": "22.425",
+      "name": "Alegra Nómina Emprendedor (anual)",
+      "price": "269100",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 269.100 COP facturados al año"
+      "note": "De 1 a 10 empleados, emisión electrónica y notas de ajuste ilimitadas. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica tarifas de pago; l"
     },
     {
-      "name": "Nómina electrónica Pyme (mensual)",
-      "price": "69.000",
+      "name": "Alegra Nómina Pyme (mensual)",
+      "price": "69000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "De 11 a 20 empleados, suma colillas de pago, cálculo de nómina inteligente y reportes. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica ta"
     },
     {
-      "name": "Nómina electrónica Pyme (anual)",
-      "price": "51.750",
+      "name": "Alegra Nómina Pyme (anual)",
+      "price": "621000",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 621.000 COP facturados al año"
+      "note": "De 11 a 20 empleados, suma colillas de pago, cálculo de nómina inteligente y reportes. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica ta"
     },
     {
-      "name": "Nómina electrónica Pro (mensual)",
-      "price": "139.000",
+      "name": "Alegra Nómina Pro (mensual)",
+      "price": "139000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "De 21 a 45 empleados, mismas funciones que Pyme. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica tarifas de pago; lo gratis es la prueba "
     },
     {
-      "name": "Nómina electrónica Pro (anual)",
-      "price": "104.250",
+      "name": "Alegra Nómina Pro (anual)",
+      "price": "1.251e+06",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 1.251.000 COP facturados al año"
+      "note": "De 21 a 45 empleados, mismas funciones que Pyme. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica tarifas de pago; lo gratis es la prueba "
     },
     {
-      "name": "Nómina electrónica Plus (mensual)",
-      "price": "259.000",
+      "name": "Alegra Nómina Plus (mensual)",
+      "price": "259000",
       "currency": "COP",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "De 46 a 90 empleados, mismas funciones que Pyme. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica tarifas de pago; lo gratis es la prueba "
     },
     {
-      "name": "Nómina electrónica Plus (anual)",
-      "price": "194.250",
+      "name": "Alegra Nómina Plus (anual)",
+      "price": "2.331e+06",
       "currency": "COP",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 2.331.000 COP facturados al año"
+      "note": "De 46 a 90 empleados, mismas funciones que Pyme. Se elige por número de empleados. La página de nómina usa \"gratis\" en el título y en los botones, pero publica tarifas de pago; lo gratis es la prueba "
+    },
+    {
+      "name": "Alegra (todos los planes) Certificado digital (anual)",
+      "price": "0",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Se registra como descuento de 100 % para que el precio vigente sea $0."
     }
   ],
   "source_url": "https://www.alegra.com/colombia/precios/",
-  "captured_at": "2026-11-18",
+  "captured_at": "2026-11-22",
   "evidence_level": "documentacion_oficial",
   "electronic_invoicing": "Facturación electrónica con la DIAN incluida en los planes",
   "features": [
@@ -312,7 +321,7 @@
   ],
   "known_limits": [],
   "notes": "La página de precios separa tres líneas y repite los nombres Emprendedor/Pyme en cada una: 17.900 COP/mes es facturación electrónica SIN módulo contable, no contabilidad. Contabilidad Emprendedor son 74.900 COP/mes y POS Emprendedor 25.900 COP/mes. Registrado el 13-nov-2026 leyendo el HTML de la página. Los planes para contadores y empresas no muestran precio público: no se registran hasta verlos.",
-  "precios_origen": "directorio del vigía",
+  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
   "historial": [
     {
       "fecha": "2026-11-19",
@@ -330,5 +339,6 @@
       "fecha": "2026-11-22",
       "cambio": "precios sincronizados desde el directorio del vigía (32 planes)"
     }
-  ]
+  ],
+  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12."
 }

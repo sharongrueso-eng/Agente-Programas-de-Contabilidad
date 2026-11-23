@@ -1,0 +1,39 @@
+{
+  "brand": "Helisa",
+  "country": "CO",
+  "product": "Helisa Cloud",
+  "evidence_level": "documentacion_oficial",
+  "plans": [
+    {
+      "name": "Helisa Cloud Cloud Plus (mensual)",
+      "price": "396900",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Hasta 100 empresas, 3 usuarios, 60.000 validaciones de facturación electrónica; incluye nómina, nómina electrónica, importaciones, activos fijos, presupuesto e inventarios."
+    },
+    {
+      "name": "Helisa Cloud Cloud Estándar (mensual)",
+      "price": "249480",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Hasta 100 empresas, 2 usuarios, 6.000 validaciones de facturación electrónica."
+    },
+    {
+      "name": "Helisa Cloud Cloud Básico (mensual)",
+      "price": "192780",
+      "currency": "COP",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "1 empresa, 2 usuarios, 1.200 validaciones de facturación electrónica."
+    }
+  ],
+  "source_url": "https://helisa.com/",
+  "captured_at": "2026-11-22",
+  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
+  "nota_base_iva": "Base: No indica. El anual es el precio publicado, no el mensual por 12."
+}

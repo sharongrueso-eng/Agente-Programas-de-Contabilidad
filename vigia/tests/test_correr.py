@@ -84,7 +84,11 @@ def test_corrida_en_ensayo_avisa_y_no_toca_nada(monkeypatch):
                            transporte=transporte, guardar=False)
     assert salida["modo"] == "ensayo"
     assert salida["resultados"][0]["resultado"] == "sin_cambios"
-    assert salida["resultados"][0]["n_sin_cambios"] == 16
+    # El número depende del registro del día: se comprueba que cuadre con el archivo.
+    import json as _json, os as _os
+    _reg = _json.load(open(_os.path.join(correr.RAIZ, "paises", "col", "registro-precios.json"), encoding="utf-8"))
+    _alegra = [p for p in _reg["planes"] if p["marca"] == "Alegra"]
+    assert salida["resultados"][0]["n_sin_cambios"] == len(_alegra)
     assert enviados and "[COL]" in enviados[0]
     assert "no se tocó WordPress" in enviados[0]
 

@@ -1,0 +1,39 @@
+{
+  "brand": "World Office",
+  "country": "CO",
+  "product": "WOCloud",
+  "evidence_level": "documentacion_oficial",
+  "plans": [
+    {
+      "name": "WOCloud Cloud POS (anual)",
+      "price": "680000",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "3 usuarios, 2 sucursales, 1 GB, facturación electrónica ilimitada, POS con ventas offline, inventarios, compras y terceros. Sin contabilidad. La página dice \"Los planes no generan IVA\"."
+    },
+    {
+      "name": "WOCloud Pyme Plus (anual)",
+      "price": "2.04e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "5 usuarios, 3 sucursales, 3 GB. Suma contabilidad, impuestos, cartera, cuentas por pagar, activos fijos, bancos con conciliación manual y app móvil. La página dice \"Los planes no generan IVA\"."
+    },
+    {
+      "name": "WOCloud Enterprise (anual)",
+      "price": "2.193e+06",
+      "currency": "COP",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "10 usuarios, 5 sucursales, 5 GB. Suma nómina sin límite de empleados y nómina electrónica ilimitada, IA incluida, conciliación bancaria automática y API (hasta 100 documentos al mes). La página dice \""
+    }
+  ],
+  "source_url": "https://www.worldoffice.com.co/planes-cloud.html",
+  "captured_at": "2026-11-22",
+  "precios_origen": "vigia/paises/col/precios.json (fuente única)",
+  "nota_base_iva": "Base: No genera IVA. El anual es el precio publicado, no el mensual por 12."
+}

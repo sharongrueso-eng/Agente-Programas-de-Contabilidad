@@ -18,7 +18,7 @@ DESCUENTO_ANUAL = {
     "dom": {"*": 0.10},
 }
 # Un país puede tener fuentes en más de una moneda (GTI cobra en colones en Costa Rica).
-MONEDA = {"col": {"COP"}, "mex": {"MXN", "USD"}, "dom": {"USD", "DOP"}, "cri": {"USD", "CRC"}}
+MONEDA = {"col": {"COP", "EUR"}, "mex": {"MXN", "USD"}, "dom": {"USD", "DOP"}, "cri": {"USD", "CRC"}}
 
 
 def _planes():
@@ -87,8 +87,8 @@ def test_moneda_fuente_y_fecha():
 
 @pytest.mark.parametrize("pais,plan", PLANES, ids=[f"{pais}-{p['clave']}" for pais, p in PLANES])
 def test_facturado_es_doce_veces_el_mensual_anual(pais, plan):
-    if plan.get("anual_facturado") is None or plan.get("anual_equivalente_mes") is None:
-        pytest.skip("el plan no publica precio anual")
+    if not plan.get("anual_facturado") or not plan.get("anual_equivalente_mes"):
+        pytest.skip("el plan no publica precio anual, es gratis o es pago único")
     # El equivalente mensual del anual es el que publica la página: en las marcas que cobran con
     # IVA incluido viene sin IVA, así que no siempre es anual ÷ 12. Se comprueba el orden de
     # magnitud, no una fórmula que la página no usa.
@@ -116,6 +116,8 @@ def test_orden_de_magnitud(pais, plan):
         if plan.get("mensual") is not None:
             assert plan["mensual"] > 0, plan["clave"]
         return
+    if plan.get("mensual") is None:
+        pytest.skip("pago único, por documento o gratis: no hay mensualidad que comparar")
     minimo, maximo = (10_000, 5_000_000) if pais == "col" else (5, 20_000)
     assert minimo <= plan["mensual"] <= maximo, plan["clave"]
 
