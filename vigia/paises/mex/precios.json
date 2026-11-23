@@ -12,6 +12,8 @@
    "precio_mensual": 249.0,
    "precio_anual": 2241.0,
    "equivalente_mensual_anual": 186.75,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -32,6 +34,8 @@
    "precio_mensual": 449.0,
    "precio_anual": 4041.0,
    "equivalente_mensual_anual": 336.75,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -52,6 +56,8 @@
    "precio_mensual": 699.0,
    "precio_anual": 6291.0,
    "equivalente_mensual_anual": 524.25,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -72,6 +78,8 @@
    "precio_mensual": 199.0,
    "precio_anual": 1791.0,
    "equivalente_mensual_anual": 149.25,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -92,6 +100,8 @@
    "precio_mensual": 399.0,
    "precio_anual": 3591.0,
    "equivalente_mensual_anual": 299.25,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -112,6 +122,8 @@
    "precio_mensual": 599.0,
    "precio_anual": 5391.0,
    "equivalente_mensual_anual": 449.25,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -132,6 +144,8 @@
    "precio_mensual": 1299.0,
    "precio_anual": 11691.0,
    "equivalente_mensual_anual": 974.25,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -152,6 +166,8 @@
    "precio_mensual": 1999.0,
    "precio_anual": 17991.0,
    "equivalente_mensual_anual": 1499.25,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -172,6 +188,8 @@
    "precio_mensual": 2999.0,
    "precio_anual": 26991.0,
    "equivalente_mensual_anual": 2249.25,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -192,6 +210,8 @@
    "precio_mensual": 490.0,
    "precio_anual": 5292.0,
    "equivalente_mensual_anual": 441.0,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -212,6 +232,8 @@
    "precio_mensual": 990.0,
    "precio_anual": 10692.0,
    "equivalente_mensual_anual": 891.0,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -232,6 +254,8 @@
    "precio_mensual": 1990.0,
    "precio_anual": 21492.0,
    "equivalente_mensual_anual": 1791.0,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -252,6 +276,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 200.0,
+   "precio_trimestral": null,
    "cobro": [
     "no indica"
    ],
@@ -271,6 +297,8 @@
    "precio_mensual": null,
    "precio_anual": 55.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -290,6 +318,8 @@
    "precio_mensual": null,
    "precio_anual": 110.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -309,6 +339,8 @@
    "precio_mensual": null,
    "precio_anual": 165.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -328,6 +360,8 @@
    "precio_mensual": null,
    "precio_anual": 1650.0,
    "equivalente_mensual_anual": 118.53,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -347,6 +381,8 @@
    "precio_mensual": null,
    "precio_anual": 1650.0,
    "equivalente_mensual_anual": 118.53,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -366,6 +402,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 0.5,
+   "precio_trimestral": null,
    "cobro": [
     "por folio"
    ],
@@ -385,6 +423,8 @@
    "precio_mensual": null,
    "precio_anual": 55.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -404,6 +444,8 @@
    "precio_mensual": null,
    "precio_anual": 110.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -423,6 +465,8 @@
    "precio_mensual": null,
    "precio_anual": 165.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -442,6 +486,8 @@
    "precio_mensual": null,
    "precio_anual": 1650.0,
    "equivalente_mensual_anual": 118.53,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -461,6 +507,8 @@
    "precio_mensual": null,
    "precio_anual": 50.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -480,6 +528,8 @@
    "precio_mensual": null,
    "precio_anual": 100.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -499,6 +549,8 @@
    "precio_mensual": null,
    "precio_anual": 150.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -518,6 +570,8 @@
    "precio_mensual": null,
    "precio_anual": 750.0,
    "equivalente_mensual_anual": 53.88,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -537,6 +591,8 @@
    "precio_mensual": null,
    "precio_anual": 500.0,
    "equivalente_mensual_anual": 35.92,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -556,6 +612,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 600.0,
+   "precio_trimestral": null,
    "cobro": [
     "pago único"
    ],
@@ -575,6 +633,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 1400.0,
+   "precio_trimestral": null,
    "cobro": [
     "pago único"
    ],
@@ -594,6 +654,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 700.0,
+   "precio_trimestral": null,
    "cobro": [
     "pago único"
    ],
@@ -613,6 +675,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 1400.0,
+   "precio_trimestral": null,
    "cobro": [
     "pago único"
    ],
@@ -632,6 +696,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 1400.0,
+   "precio_trimestral": null,
    "cobro": [
     "pago único"
    ],
@@ -651,6 +717,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 700.0,
+   "precio_trimestral": null,
    "cobro": [
     "pago único"
    ],
@@ -670,6 +738,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 700.0,
+   "precio_trimestral": null,
    "cobro": [
     "pago único"
    ],
@@ -689,6 +759,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 700.0,
+   "precio_trimestral": null,
    "cobro": [
     "pago único"
    ],
@@ -708,6 +780,8 @@
    "precio_mensual": null,
    "precio_anual": 1650.0,
    "equivalente_mensual_anual": 118.53,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -727,6 +801,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 0.5,
+   "precio_trimestral": null,
    "cobro": [
     "por folio"
    ],
@@ -746,6 +822,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 0.45,
+   "precio_trimestral": null,
    "cobro": [
     "por folio"
    ],
@@ -765,6 +843,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 0.4,
+   "precio_trimestral": null,
    "cobro": [
     "por folio"
    ],
@@ -784,6 +864,8 @@
    "precio_mensual": 13.0,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "mensual"
    ],
@@ -803,6 +885,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "personalizada"
    ],
@@ -822,6 +906,8 @@
    "precio_mensual": 354.0,
    "precio_anual": 3514.05,
    "equivalente_mensual_anual": 292.84,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -832,6 +918,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 1757.5,
    "id": "MEX-SIG-001"
   },
   {
@@ -843,6 +930,8 @@
    "precio_mensual": 489.0,
    "precio_anual": 4589.1,
    "equivalente_mensual_anual": 382.43,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -853,6 +942,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 2295.0,
    "id": "MEX-SIG-004"
   },
   {
@@ -864,6 +954,8 @@
    "precio_mensual": 853.0,
    "precio_anual": 7564.15,
    "equivalente_mensual_anual": 630.35,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -874,6 +966,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 3782.5,
    "id": "MEX-SIG-007"
   },
   {
@@ -885,6 +978,8 @@
    "precio_mensual": 1294.0,
    "precio_anual": 10799.2,
    "equivalente_mensual_anual": 899.93,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -895,6 +990,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 5400.0,
    "id": "MEX-SIG-010"
   },
   {
@@ -906,6 +1002,8 @@
    "precio_mensual": null,
    "precio_anual": 499.0,
    "equivalente_mensual_anual": 41.58,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -925,6 +1023,8 @@
    "precio_mensual": 559.0,
    "precio_anual": 4372.5,
    "equivalente_mensual_anual": 364.38,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -935,6 +1035,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 2332.0,
    "id": "MEX-SIG-013"
   },
   {
@@ -946,6 +1047,8 @@
    "precio_mensual": 1108.0,
    "precio_anual": 9826.0,
    "equivalente_mensual_anual": 818.83,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -956,6 +1059,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 5202.0,
    "id": "MEX-SIG-016"
   },
   {
@@ -967,6 +1071,8 @@
    "precio_mensual": 679.0,
    "precio_anual": 5310.0,
    "equivalente_mensual_anual": 442.5,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -977,6 +1083,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 2832.0,
    "id": "MEX-SIG-019"
   },
   {
@@ -988,6 +1095,8 @@
    "precio_mensual": 862.0,
    "precio_anual": 8549.05,
    "equivalente_mensual_anual": 712.42,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -998,6 +1107,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 4275.0,
    "id": "MEX-SIG-022"
   },
   {
@@ -1009,6 +1119,8 @@
    "precio_mensual": 299.0,
    "precio_anual": 1872.0,
    "equivalente_mensual_anual": 156.0,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -1019,6 +1131,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 1092.0,
    "id": "MEX-SIG-025"
   },
   {
@@ -1030,6 +1143,8 @@
    "precio_mensual": 580.0,
    "precio_anual": 5757.0,
    "equivalente_mensual_anual": 479.75,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -1040,6 +1155,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 2878.5,
    "id": "MEX-SIG-028"
   },
   {
@@ -1051,6 +1167,8 @@
    "precio_mensual": 250.0,
    "precio_anual": 2222.75,
    "equivalente_mensual_anual": 185.23,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -1061,6 +1179,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 1111.8,
    "id": "MEX-SIG-031"
   },
   {
@@ -1072,6 +1191,8 @@
    "precio_mensual": 650.0,
    "precio_anual": 6780.0,
    "equivalente_mensual_anual": 565.0,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -1082,6 +1203,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 3390.0,
    "id": "MEX-SIG-034"
   },
   {
@@ -1093,6 +1215,8 @@
    "precio_mensual": 213.0,
    "precio_anual": 2109.0,
    "equivalente_mensual_anual": 175.75,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -1103,6 +1227,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 1054.5,
    "id": "MEX-SIG-037"
   },
   {
@@ -1114,6 +1239,8 @@
    "precio_mensual": 633.0,
    "precio_anual": 5610.0,
    "equivalente_mensual_anual": 467.5,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -1124,6 +1251,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 2970.0,
    "id": "MEX-SIG-040"
   },
   {
@@ -1135,6 +1263,8 @@
    "precio_mensual": 160.0,
    "precio_anual": 1418.65,
    "equivalente_mensual_anual": 118.22,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -1145,6 +1275,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 709.75,
    "id": "MEX-SIG-043"
   },
   {
@@ -1156,6 +1287,8 @@
    "precio_mensual": 383.0,
    "precio_anual": 2999.25,
    "equivalente_mensual_anual": 249.94,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -1166,6 +1299,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 1499.25,
    "id": "MEX-SIG-046"
   },
   {
@@ -1177,6 +1311,8 @@
    "precio_mensual": 918.0,
    "precio_anual": 7184.25,
    "equivalente_mensual_anual": 598.69,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual",
@@ -1187,6 +1323,7 @@
    "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
    "revisado": "2026-11-22",
    "estado": "verificado",
+   "precio_semestral": 3592.5,
    "id": "MEX-SIG-049"
   },
   {
@@ -1198,6 +1335,8 @@
    "precio_mensual": null,
    "precio_anual": 290.0,
    "equivalente_mensual_anual": 24.17,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1217,6 +1356,8 @@
    "precio_mensual": null,
    "precio_anual": 580.0,
    "equivalente_mensual_anual": 48.33,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1236,6 +1377,8 @@
    "precio_mensual": null,
    "precio_anual": 990.0,
    "equivalente_mensual_anual": 82.5,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1255,6 +1398,8 @@
    "precio_mensual": null,
    "precio_anual": 1485.0,
    "equivalente_mensual_anual": 123.75,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1274,6 +1419,8 @@
    "precio_mensual": 590.0,
    "precio_anual": 5900.0,
    "equivalente_mensual_anual": 491.67,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1294,6 +1441,8 @@
    "precio_mensual": 790.0,
    "precio_anual": 7900.0,
    "equivalente_mensual_anual": 658.33,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1314,6 +1463,8 @@
    "precio_mensual": 990.0,
    "precio_anual": 9900.0,
    "equivalente_mensual_anual": 825.0,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1334,6 +1485,8 @@
    "precio_mensual": 50.0,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "mensual"
    ],
@@ -1353,6 +1506,8 @@
    "precio_mensual": 290.0,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "mensual"
    ],
@@ -1372,6 +1527,8 @@
    "precio_mensual": 990.0,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "mensual"
    ],
@@ -1391,6 +1548,8 @@
    "precio_mensual": 100.0,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "mensual"
    ],
@@ -1410,6 +1569,8 @@
    "precio_mensual": 600.0,
    "precio_anual": 6000.0,
    "equivalente_mensual_anual": 431.03,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1430,6 +1591,8 @@
    "precio_mensual": 600.0,
    "precio_anual": 6000.0,
    "equivalente_mensual_anual": 431.03,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1450,6 +1613,8 @@
    "precio_mensual": 800.0,
    "precio_anual": 8000.0,
    "equivalente_mensual_anual": 574.71,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1470,6 +1635,8 @@
    "precio_mensual": 1000.0,
    "precio_anual": 10000.0,
    "equivalente_mensual_anual": 718.39,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1490,6 +1657,8 @@
    "precio_mensual": 3000.0,
    "precio_anual": 30000.0,
    "equivalente_mensual_anual": 2155.17,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1510,6 +1679,8 @@
    "precio_mensual": 6000.0,
    "precio_anual": 60000.0,
    "equivalente_mensual_anual": 4310.34,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1530,6 +1701,8 @@
    "precio_mensual": null,
    "precio_anual": 4690.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1549,6 +1722,8 @@
    "precio_mensual": null,
    "precio_anual": 6290.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1568,6 +1743,8 @@
    "precio_mensual": null,
    "precio_anual": 11790.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1587,6 +1764,8 @@
    "precio_mensual": null,
    "precio_anual": 20490.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1606,6 +1785,8 @@
    "precio_mensual": null,
    "precio_anual": 1880.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1625,6 +1806,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 0.0,
+   "precio_trimestral": null,
    "cobro": [
     "prueba"
    ],
@@ -1644,6 +1827,8 @@
    "precio_mensual": null,
    "precio_anual": 4590.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1663,6 +1848,8 @@
    "precio_mensual": null,
    "precio_anual": 6190.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1682,6 +1869,8 @@
    "precio_mensual": null,
    "precio_anual": 1690.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1701,6 +1890,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": 0.0,
+   "precio_trimestral": null,
    "cobro": [
     "prueba"
    ],
@@ -1720,6 +1911,8 @@
    "precio_mensual": null,
    "precio_anual": 0.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1739,6 +1932,8 @@
    "precio_mensual": null,
    "precio_anual": 2990.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1758,6 +1953,8 @@
    "precio_mensual": null,
    "precio_anual": 4590.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1777,6 +1974,8 @@
    "precio_mensual": null,
    "precio_anual": 8490.0,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1796,6 +1995,8 @@
    "precio_mensual": 1990.0,
    "precio_anual": 22990.0,
    "equivalente_mensual_anual": 1915.83,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1816,6 +2017,8 @@
    "precio_mensual": 4190.0,
    "precio_anual": 45590.0,
    "equivalente_mensual_anual": 3799.17,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1836,6 +2039,8 @@
    "precio_mensual": 6590.0,
    "precio_anual": 75590.0,
    "equivalente_mensual_anual": 6299.17,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual",
     "mensual"
@@ -1856,6 +2061,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "por cotización"
    ],
@@ -1875,6 +2082,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "por cotización"
    ],
@@ -1894,6 +2103,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "por cotización"
    ],
@@ -1913,6 +2124,8 @@
    "precio_mensual": null,
    "precio_anual": 2799.0,
    "equivalente_mensual_anual": 233.25,
+   "precio_unico": null,
+   "precio_trimestral": 799.0,
    "cobro": [
     "anual",
     "trimestral"
@@ -1933,6 +2146,8 @@
    "precio_mensual": null,
    "precio_anual": 2399.0,
    "equivalente_mensual_anual": 199.92,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "anual"
    ],
@@ -1952,6 +2167,8 @@
    "precio_mensual": null,
    "precio_anual": 6669.0,
    "equivalente_mensual_anual": 555.75,
+   "precio_unico": null,
+   "precio_trimestral": 1699.0,
    "cobro": [
     "anual",
     "trimestral"
@@ -1972,6 +2189,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "mensual"
    ],
@@ -1991,6 +2210,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "mensual"
    ],
@@ -2010,6 +2231,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "mensual"
    ],
@@ -2029,6 +2252,8 @@
    "precio_mensual": null,
    "precio_anual": null,
    "equivalente_mensual_anual": null,
+   "precio_unico": null,
+   "precio_trimestral": null,
    "cobro": [
     "mensual"
    ],

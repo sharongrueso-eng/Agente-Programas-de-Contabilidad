@@ -1,0 +1,24 @@
+{
+  "brand": "QuickBooks",
+  "country": "MX",
+  "product": "QuickBooks Online",
+  "source_url": "https://quickbooks.intuit.com/mx/",
+  "captured_at": "2026-11-22",
+  "evidence_level": "landing oficial",
+  "pricing_note": "QuickBooks México redirige a la versión global, que cobra en dólares y no publica precios en pesos mexicanos ni menciona CFDI ante el SAT. No se cita una tarifa en MXN.",
+  "notes": "Sin planes citables en MXN: la página de México lleva a la tienda global en USD.",
+  "features": [
+    "Facturación y control de gastos en la nube",
+    "Inventario básico y reportes financieros",
+    "Acceso por navegador y app móvil"
+  ],
+  "advantages": [
+    "Reconocimiento de marca internacional y ecosistema de integraciones",
+    "Curva de aprendizaje corta para quien ya usa productos Intuit"
+  ],
+  "known_limits": [
+    "No publica precios en pesos mexicanos: la versión de México remite a la tienda global en dólares",
+    "No declara cumplimiento de CFDI 4.0 ante el SAT en su página de México"
+  ],
+  "plans": []
+}
