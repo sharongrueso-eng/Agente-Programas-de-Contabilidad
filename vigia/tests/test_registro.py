@@ -78,7 +78,8 @@ def test_moneda_fuente_y_fecha():
         # 2026-11-22 en los catálogos ampliados (Siigo México).
         assert p["fecha_consulta"].startswith("2026-11-"), p["clave"]
         assert len(p["fecha_consulta"]) == 10, p["clave"]
-        if p.get("estado") != "pendiente_confirmar":
+        # Un plan en campaña o pendiente de relectura sí puede declarar campaña activa.
+        if p.get("estado") not in ("pendiente_confirmar", "pendiente_lectura"):
             assert p["campana_activa"] is None, p["clave"]
 
 

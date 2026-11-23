@@ -1918,10 +1918,10 @@
    "moneda": "MXN",
    "impuesto": "sin IVA (lo indica la página)",
    "periodo": "mensual o anual",
-   "mensual": 308.25,
+   "mensual": 354.0,
    "anual_facturado": 3514.05,
    "anual_equivalente_mes": 292.84,
-   "precio_lista_mes": 308.25,
+   "precio_lista_mes": 354.0,
    "precio_promocional_mes": 292.84,
    "descuento_pct": 5,
    "formulas": {
@@ -1935,7 +1935,7 @@
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −5 % sobre el precio de lista",
    "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "nota": "Mensual = pestaña «Mensual» de la página (cobro mes a mes). Anual = total de la pestaña «Anual». El «Antes /mes» del anual es el equivalente mensual de pagar el año."
   },
   {
    "clave": "siigo|fiscal|MX|siigo-fiscal-empresarial",
@@ -1946,10 +1946,10 @@
    "moneda": "MXN",
    "impuesto": "sin IVA (lo indica la página)",
    "periodo": "mensual o anual",
-   "mensual": 424.92,
+   "mensual": 489.0,
    "anual_facturado": 4589.1,
    "anual_equivalente_mes": 382.43,
-   "precio_lista_mes": 424.92,
+   "precio_lista_mes": 489.0,
    "precio_promocional_mes": 382.43,
    "descuento_pct": 10,
    "formulas": {
@@ -1963,7 +1963,7 @@
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −10 % sobre el precio de lista",
    "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "nota": "Mensual = pestaña «Mensual» de la página (cobro mes a mes). Anual = total de la pestaña «Anual». El «Antes /mes» del anual es el equivalente mensual de pagar el año."
   },
   {
    "clave": "siigo|fiscal|MX|siigo-fiscal-corporativo",
@@ -1974,10 +1974,10 @@
    "moneda": "MXN",
    "impuesto": "sin IVA (lo indica la página)",
    "periodo": "mensual o anual",
-   "mensual": 741.58,
+   "mensual": 853.0,
    "anual_facturado": 7564.15,
    "anual_equivalente_mes": 630.35,
-   "precio_lista_mes": 741.58,
+   "precio_lista_mes": 853.0,
    "precio_promocional_mes": 630.35,
    "descuento_pct": 15,
    "formulas": {
@@ -1991,7 +1991,7 @@
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −15 % sobre el precio de lista",
    "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "nota": "Mensual = pestaña «Mensual» de la página (cobro mes a mes). Anual = total de la pestaña «Anual». El «Antes /mes» del anual es el equivalente mensual de pagar el año."
   },
   {
    "clave": "siigo|fiscal|MX|siigo-fiscal-despachos",
@@ -2002,10 +2002,10 @@
    "moneda": "MXN",
    "impuesto": "sin IVA (lo indica la página)",
    "periodo": "mensual o anual",
-   "mensual": 1124.92,
+   "mensual": 1294.0,
    "anual_facturado": 10799.2,
    "anual_equivalente_mes": 899.93,
-   "precio_lista_mes": 1124.92,
+   "precio_lista_mes": 1294.0,
    "precio_promocional_mes": 899.93,
    "descuento_pct": 20,
    "formulas": {
@@ -2019,7 +2019,7 @@
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −20 % sobre el precio de lista",
    "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "nota": "Mensual = pestaña «Mensual» de la página (cobro mes a mes). Anual = total de la pestaña «Anual». El «Antes /mes» del anual es el equivalente mensual de pagar el año."
   },
   {
    "clave": "siigo|facturaci-n-nube|MX|siigo-facturaci-n-nube-24",
@@ -2046,8 +2046,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": null,
-   "estado": "confirmado",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|facturaci-n-nube|MX|siigo-facturaci-n-nube-60",
@@ -2074,8 +2074,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": null,
-   "estado": "confirmado",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|facturaci-n-nube|MX|siigo-facturaci-n-nube-120",
@@ -2102,8 +2102,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": null,
-   "estado": "confirmado",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|facturaci-n-nube|MX|siigo-facturaci-n-nube-1200",
@@ -2130,8 +2130,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −10 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|facturaci-n-nube|MX|siigo-facturaci-n-nube-cfdis-ilimitados",
@@ -2158,8 +2158,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −15 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|facture|MX|siigo-aspel-facture",
@@ -2186,8 +2186,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −15 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|adm|MX|siigo-aspel-adm-20-50-o-100-timbres",
@@ -2214,8 +2214,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": null,
-   "estado": "confirmado",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|adm-b-sica|MX|siigo-aspel-adm-b-sica",
@@ -2242,8 +2242,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −5 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|adm-premium|MX|siigo-aspel-adm-premium",
@@ -2270,8 +2270,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −15 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|sae|MX|siigo-aspel-sae",
@@ -2298,8 +2298,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −15 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|nube-gesti-n-inicio|MX|siigo-nube-gesti-n-inicio",
@@ -2326,8 +2326,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −25 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|nube-gesti-n-premium|MX|siigo-nube-gesti-n-premium",
@@ -2354,8 +2354,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −25 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|coi|MX|siigo-aspel-coi",
@@ -2382,8 +2382,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −25 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|noi|MX|siigo-noi",
@@ -2410,8 +2410,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −25 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|noi-asistente|MX|siigo-noi-asistente",
@@ -2438,8 +2438,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −25 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|caja|MX|siigo-aspel-caja",
@@ -2466,8 +2466,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −40 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|banco|MX|siigo-aspel-banco",
@@ -2494,8 +2494,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −5 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   },
   {
    "clave": "siigo|prod|MX|siigo-aspel-prod",
@@ -2522,8 +2522,8 @@
    "fecha_revision": "2026-11-22",
    "evidencia": "paises/mex/lecturas/2026-11-22/siigo-mx-precios.html",
    "campana_activa": "Ecomm Mes: −5 % sobre el precio de lista",
-   "estado": "pendiente_confirmar",
-   "nota": "Precio de lista con cobro mensual y precio anual publicado. El descuento es de campaña y no se toma como línea base del vigía."
+   "estado": "pendiente_lectura",
+   "nota": "Precio mensual tomado por error del «Antes /mes» de la pestaña Anual. Hay que leerlo en la pestaña «Mensual» antes de usarlo."
   }
  ],
  "marcas": [
