@@ -264,6 +264,29 @@ def utm(html: str, pais: str = "CO") -> str:
     return re.sub(r'href="(https://www\.alegra\.com[^"]*)"', poner, html)
 
 
+def tablas_con_fondo(html: str, color: str = "#cce4f7") -> str:
+    """Toda tabla lleva el fondo del portal. Antes se ponía a mano en cada pieza y se olvidaba.
+
+    La clase `has-background` es la que el tema respeta; el color va también en el atributo
+    `style` para que se vea igual aunque el editor reescriba las clases.
+    """
+
+    def arreglar(etiqueta: str) -> str:
+        if "has-background" in etiqueta:
+            return etiqueta
+        clases = re.search(r'class="([^"]*)"', etiqueta)
+        if clases:
+            nueva = (clases.group(1) + " has-background has-fixed-layout").strip()
+            etiqueta = etiqueta.replace(clases.group(0), f'class="{nueva}"', 1)
+        else:
+            etiqueta = etiqueta.replace("<table", '<table class="has-background has-fixed-layout"', 1)
+        if "style=" not in etiqueta:
+            etiqueta = etiqueta[:-1] + f' style="background-color:{color}">'
+        return etiqueta
+
+    return re.sub(r"<table[^>]*>", lambda m: arreglar(m.group(0)), html)
+
+
 def presentar(
     html: str,
     *,
@@ -308,5 +331,6 @@ def presentar(
     from . import youtube
 
     html, _video = youtube.anadir(html, pais, keyword=keyword, marcas=sorted(marcas(html, pais)))
+    html = tablas_con_fondo(html)
     html = normalizar_listas(html)
     return html

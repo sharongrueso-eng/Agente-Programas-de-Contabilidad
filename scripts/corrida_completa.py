@@ -609,7 +609,19 @@ def main() -> int:
         del_diagnostico = {o.url: o for o in diag.oportunidades}
         propias = [del_diagnostico.get(o.url, o) for o in propias]
 
-        con_cuerpo = [o for o in propias if requires_body(o.action)]
+        # Regla B50 (Sharon, 23-nov-2026): el snippet es el síntoma, no el trabajo. Una
+        # oportunidad de `refresh_snippet` se trabaja igual con cuerpo —H2/H3 que falten, un
+        # checklist, tabla, lo que la pieza pida— y el título y la meta se arreglan de paso.
+        # Antes estas quedaban fuera de `con_cuerpo` y dos tercios de la cola no se tocaban nunca.
+        con_cuerpo = [
+            o for o in propias if requires_body(o.action) or (o.action or "").startswith("refresh")
+        ]
+        solo_snippet = [o for o in con_cuerpo if not requires_body(o.action)]
+        if solo_snippet:
+            print(
+                f"snippet : {len(solo_snippet)} oportunidad(es) de título y meta; se trabajan igual "
+                "con contenido completo, no solo el snippet"
+            )
 
         # Descanso de 30 días: una URL trabajada no se vuelve a tocar hasta que pase el mes. El
         # registro existía y solo lo usaba el comando `plan`; sin esto, la misma URL reaparecía

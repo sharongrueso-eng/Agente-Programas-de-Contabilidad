@@ -183,8 +183,10 @@ def aviso_de_pieza(
         f"Editar: {url_edicion}",
     ]
     if advertencias:
+        # La misma advertencia puede llegar cinco veces (una por control); se dice una vez.
+        unicas = list(dict.fromkeys(aviso[:200] for aviso in advertencias))
         lineas += ["", "Advertencias (no impiden publicar):"]
-        lineas += [f"· {aviso[:120]}" for aviso in advertencias[:5]]
+        lineas += [f"· {aviso}" for aviso in unicas[:5]]
 
     if titulo_seo or meta:
         lineas += [
