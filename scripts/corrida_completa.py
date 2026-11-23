@@ -889,7 +889,10 @@ def main() -> int:
         vivas = _marcas(locals().get("html_vivo") or "", brief.country)
         vivas.discard("alegra")
         cupo = PRESUPUESTOS[brief.format].elenco_max
-        if len(vivas) > cupo:
+        # Alegra no cuenta en el cupo, pero sí ocupa un sitio en la pieza: con dos competidores
+        # en la viva y cupo de dos, «reseña» se queda corta y el reencauche pierde una marca.
+        # Es lo que bloqueó dos veces la salida de QuickBooks México (perdía Odoo).
+        if len(vivas) > max(1, cupo - 1):
             antes = brief.format
             brief = _replace(brief, format="comparativa")
             print(
