@@ -63,116 +63,91 @@ Directorio de precios de PdC. Cada fila sale del registro del vigía; la URL es 
 | World Office | World Office Escritorio | Propiedad Horizontal | — | 2000000 | COP | — | https://worldoffice.com.co/planesEscritorio.html | 2026-11-19 | ⚠️ campaña |
 | World Office | World Office Escritorio | Pyme | — | 3400000 | COP | — | https://worldoffice.com.co/planesEscritorio.html | 2026-11-19 | ⚠️ campaña |
 
-## México (MX) — 106 planes
+## México (MX) — 81 planes
 
 | Marca | Producto | Plan | Mensual | Anual | Moneda | Qué incluye | Fuente | Revisado | Estado |
 |---|---|---|---|---|---|---|---|---|---|
-| Alegra | ERP | ERP Inicial | 1299 | 11691 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| Alegra | ERP | ERP Plus | 2999 | 26991 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| Alegra | ERP | ERP Pro | 1999 | 17991 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| Alegra | Facturación electrónica | Inicial | 249 | 2241 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| Alegra | Facturación electrónica | Plus | 699 | 6291 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| Alegra | Facturación electrónica | Pro | 449 | 4041 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| Alegra | POS | POS Lite | 199 | 1791 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| Alegra | POS | POS Pro | 399 | 3591 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| Alegra | POS | POS Restobar | 599 | 5391 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| Alegra | Soy Contador | Despacho | 990 | 10692 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| Alegra | Soy Contador | Firma | 1990 | 21492 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| Alegra | Soy Contador | Inicial | 490 | 5292 | MXN | — | https://www.alegra.com/mexico/precios/ | 2026-11-18 | ✅ |
-| CONTPAQi | CONTPAQi Anticipa | Crecimiento | — | 2990 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Anticipa | Empresarial | — | 8490 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Anticipa | Esencial | — | 0 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Anticipa | Profesional | — | 4590 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Bancos | Licencia nueva (multi-RFC) | — | 4890 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Bancos | Renovación (multi-RFC) | — | 4490 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi CFDI Facturación en línea+ | Licencia nueva (multi-RFC) | — | 1790 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Comercial Premium | Licencia nueva (multi-RFC) | — | 10490 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Comercial Premium | Renovación (multi-RFC) | — | 9790 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Comercial Pro | Licencia nueva (multi-RFC) | — | 11290 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Comercial Pro | Renovación (multi-RFC) | — | 9890 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Comercial Start | Licencia nueva (multi-RFC) | — | 3990 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Comercial Start | Renovación (multi-RFC) | — | 3890 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Contabilidad | Licencia nueva (multi-RFC) | — | 6190 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Contabilidad | Renovación (multi-RFC) | — | 5690 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Contabilidad Nube | Corporativo | — | 20490 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Contabilidad Nube | Empresarial | — | 11790 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Contabilidad Nube | Equipos | — | 6290 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Contabilidad Nube | Inicial | — | 4690 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Escritorio Virtual | Corporativo | 17096 | 189369 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Escritorio Virtual | Duo | 1990 | 21390 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Escritorio Virtual | Ejecutivo | 4190 | 45590 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Escritorio Virtual | Empresarial | 6590 | 75590 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Escritorio Virtual | Empresarial Plus | 7248 | 80285 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Escritorio Virtual | Max | 1990 | 22990 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Escritorio Virtual | Plus | 2890 | 31590 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Escritorio Virtual | Xplus | 5790 | 65890 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Evalúa | Corporativo | — | 23190 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Evalúa | Empresarial | — | 9490 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Evalúa | Equipos | — | 5990 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Evalúa | Inicial | — | 2190 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Nóminas | Licencia nueva (multi-RFC) | — | 7690 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Nóminas | Renovación (multi-RFC) | — | 7390 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Nóminas Nube | Corporativo | — | 8690 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Nóminas Nube | Empresarial | — | 6490 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Nóminas Nube | Equipos | — | 4890 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Nóminas Nube | Inicial | — | 3290 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 1 TB | — | 88790 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 10 GB | — | 3090 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 100 GB | — | 15490 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 2 GB | — | 1790 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 2 TB | — | 142990 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 200 GB | — | 21590 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 5 GB | — | 2590 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 50 GB | — | 10990 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 500 GB | — | 49190 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 70 GB | — | 11790 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 700 GB | — | 74290 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi Respaldos | 800 GB | — | 81390 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi XML en línea | Licencia nueva (multi-RFC) | — | 1790 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | CONTPAQi XML en línea | Renovación (multi-RFC) | — | 1690 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| CONTPAQi | Conecta tu nube | Individual | — | 1990 | MXN | — | https://www.contpaqi.com/listadeprecios | 2026-11-19 | ✅ |
-| Contalink | Contalink | Flex | 990 | 11880 | MXN | — | https://www.contalink.com/precios | 2026-11-19 | ✅ |
-| Contalink | Contalink | Pro | 790 | 9480 | MXN | — | https://www.contalink.com/precios | 2026-11-19 | ✅ |
-| Contalink | Contalink | Start | 590 | 7080 | MXN | — | https://www.contalink.com/precios | 2026-11-19 | ✅ |
-| Factura.com | Factura.com | Emprendedor | — | 490 | MXN | — | https://factura.com/planes-anuales | 2026-11-19 | ✅ |
-| Factura.com | Factura.com | Empresarial | — | 1890 | MXN | — | https://factura.com/planes-anuales | 2026-11-19 | ✅ |
-| Factura.com | Factura.com | Pyme | — | 990 | MXN | — | https://factura.com/planes-anuales | 2026-11-19 | ✅ |
-| Facturama | Paquetes de folios | 10 Folios | — | 55 | MXN | — | https://facturama.mx/planes-facturacion | 2026-11-18 | ✅ |
-| Facturama | Paquetes de folios | 25 Folios | — | 110 | MXN | — | https://facturama.mx/planes-facturacion | 2026-11-18 | ✅ |
-| Facturama | Paquetes de folios | 40 Folios | — | 165 | MXN | — | https://facturama.mx/planes-facturacion | 2026-11-18 | ✅ |
-| Facturama | Paquetes de folios | Folios Ilimitados | — | 1650 | MXN | — | https://facturama.mx/planes-facturacion | 2026-11-18 | ✅ |
-| Loyverse | Loyverse POS | De pago, por tienda | 9 | 108 | USD | — | https://loyverse.com/es/pricing | 2026-11-19 | 🔎 por confirmar |
-| Miskuentas | Contabilidad | Básico | 1000 | 10000 | MXN | — | https://www.miskuentas.com/contabilidad/ | 2026-11-18 | ⚠️ campaña |
-| Miskuentas | Contabilidad | Emprendedor | 800 | 8000 | MXN | — | https://www.miskuentas.com/contabilidad/ | 2026-11-18 | ⚠️ campaña |
-| Miskuentas | Contabilidad | Empresarial | 600 | 6000 | MXN | — | https://www.miskuentas.com/contabilidad/ | 2026-11-18 | ⚠️ campaña |
-| Miskuentas | Contabilidad | Intermedio | 3000 | 30000 | MXN | — | https://www.miskuentas.com/contabilidad/ | 2026-11-18 | ⚠️ campaña |
-| Miskuentas | Contabilidad | Maestro | 6000 | 60000 | MXN | — | https://www.miskuentas.com/contabilidad/ | 2026-11-18 | ⚠️ campaña |
-| Miskuentas | Contabilidad | Negocio | 600 | 6000 | MXN | — | https://www.miskuentas.com/contabilidad/ | 2026-11-18 | ⚠️ campaña |
-| Poster | Poster POS | Business | 837 | 10044 | MXN | — | https://joinposter.mx/pricing | 2026-11-19 | ✅ |
-| Poster | Poster POS | Mini | 495 | 5940 | MXN | — | https://joinposter.mx/pricing | 2026-11-19 | ✅ |
-| Poster | Poster POS | Pro | 1179 | 14148 | MXN | — | https://joinposter.mx/pricing | 2026-11-19 | ✅ |
-| Siigo | ADM | Siigo Aspel ADM 20, 50 o 100 timbres | 30.83 | 370 | MXN | 1 usuario Tendrás un usuario para acceder al sistema Paquetes de timbrado (20, 50, 100) Ti — Catálogos de clientes/productos o servicios Lleva un efectivo control de tus clientes obte | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | ADM Básica | Siigo Aspel ADM Básica | 185 | 2109 | MXN | 1 usuario Tendrás un usuario para acceder al sistema — Timbrado ilimitado Timbra sin límite todos aquellos CFDIs que emite Siigo Aspel ADM ¡todo  | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | ADM Premium | Siigo Aspel ADM Premium | 550 | 5610 | MXN | Hasta 3 usuarios Accede de manera simultánea desde cualquier lugar y comparte hasta con 3 — Timbrado ilimitado Timbra sin límite todos aquellos CFDI´s que emite Siigo Aspel ADM ¡todo | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | BANCO | Siigo Aspel BANCO | 505 | 5757 | MXN | Hasta 99 empresas Manejo de movimientos bancarios Control efectivo de cheques Programación — Mensual Semestral Anual Mayor ahorro Siigo Aspel PROD Antes $749.92 / mes -5% $712.42 / me | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | CAJA | Siigo Aspel CAJA | 260 | 1872 | MXN | 1 Empresa - 99 Tiendas Ideal para gestionar una empresa con hasta 99 tiendas y optimizar c — Administración de tiendas y cajas Logra un control preciso de tus tiendas y cajas, asegura | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | COI | Siigo Aspel COI | 485.83 | 4372.5 | MXN | Hasta 999 empresas Lleva el control entero de tu contabilidad, teniendo la opción de ingre — Administración de cuentas Define y gestiona tus cuentas contables con facilidad | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | FACTURE | Siigo Aspel FACTURE | 217.92 | 2222.75 | MXN | CFDIs 4.0 ilimitados Timbra sin límite los CFDIs que emitas con Siigo Aspel FACTURE. 1 usu | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | Facturación Nube | Siigo Facturación Nube 120 | 82.5 | 990 | MXN | 120 CFDIs 4.0 por año Cantidad de facturas electrónicas, traslados, recepción de pagos, fa — RFCs ilimitados Cantidad de empresas para las que se pueden emitir CFDIs | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | Facturación Nube | Siigo Facturación Nube 1200 | 137.5 | 1485 | MXN | 1200 CFDIs 4.0 por año Cantidad de facturas electrónicas, traslados, recepción de pagos, f — RFCs ilimitados Cantidad de empresas para las que se pueden emitir CFDIs | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | Facturación Nube | Siigo Facturación Nube 24 | 24.17 | 290 | MXN | 24 CFDIs 4.0 por año Cantidad de facturas electrónicas, traslados, recepción de pagos, fac — RFCs ilimitados Cantidad de empresas para las que se pueden emitir CFDIs | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | Facturación Nube | Siigo Facturación Nube 60 | 48.33 | 580 | MXN | 60 CFDIs 4.0 por año Cantidad de facturas electrónicas, traslados, recepción de pagos, fac — RFCs ilimitados Cantidad de empresas para las que se pueden emitir CFDIs | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | Facturación Nube | Siigo Facturación Nube CFDIs Ilimitados | 139.08 | 1418.65 | MXN | CFDIs 4.0 Ilimitados por año Cantidad de facturas electrónicas, traslados, recepción de pa | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | Fiscal | Siigo Fiscal Corporativo | 853 | 7564.15 | MXN | 10 RFCs Realiza la auditoria de hasta 10 empresa (10 RFC). 3 usuarios Da acceso a 3 usuari — Conciliación con los visores de ingresos y nómina del SAT Visualiza la información que tie | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ⚠️ campaña |
-| Siigo | Fiscal | Siigo Fiscal Despachos | 1294 | 10799.2 | MXN | RFCs ilimitados Realiza la auditoria de múltiples empresa (RFC ilimitados). 5 usuarios Da — Conciliación con los visores de ingresos y nómina del SAT Visualiza la información que tie | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ⚠️ campaña |
-| Siigo | Fiscal | Siigo Fiscal Empresarial | 489 | 4589.1 | MXN | 3 RFCs Realiza la auditoria de hasta 3 empresas (3 RFC). 1 usuario Da acceso a 1 usuario p — Conciliación con los visores de ingresos y nómina del SAT Visualiza la información que tie | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ⚠️ campaña |
-| Siigo | Fiscal | Siigo Fiscal PYME | 354 | 3514.05 | MXN | Realiza la auditoria de una empresa (1 RFC). 1 usuario Da acceso a 1 usuario para realizar — Conciliación con los visores de ingresos y nómina del SAT Visualiza la información que tie | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ⚠️ campaña |
-| Siigo | NOI | Siigo NOI | 590 | 5310 | MXN | Hasta 99 empresas Gestiona la nómina de hasta 99 empresas — Usuarios ilimitados Puedes adquirir usuarios adicionales para operar simultáneamente | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | NOI Asistente | Siigo NOI Asistente | 154.17 | 1387.5 | MXN | Desde 1 colaborador Con NOI Asistente no importa la cantidad de trabajadores que tengas te — Módulo de autorizaciones Siigo Aspel NOI Asistente te ofrece un práctico manejo de autoriz | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | Nube Gestión Inicio | Siigo Nube Gestión Inicio | 333.25 | 2999.25 | MXN | 2 usuarios Accede de manera simultánea desde cualquier lugar y comparte con los usuarios e — Timbrado ilimitado Timbra sin límite todos aquellos CFDI´s que emite Siigo Nube ¡todo esto | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | Nube Gestión Premium | Siigo Nube Gestión Premium | 798.25 | 7184.25 | MXN | 3 usuarios Accede de manera simultánea desde cualquier lugar y comparte con los usuarios e — Almacenes ilimitados ¿Tienes más de una bodega y no encuentras un software en la nube que  | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | PROD | Siigo Aspel PROD | 749.92 | 8549.05 | MXN | Hasta 99 empresas (registradas en SAE) Manejo de insumos Control de productos terminados S — Timbres Desde $345.00 Precios sin IVA ¡Comprar ahora! Comprobantes Fiscales Digitales por  | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
-| Siigo | SAE | Siigo Aspel SAE | 963.33 | 9826 | MXN | Hasta 99 empresas Con Siigo Aspel SAE no solo podrás disfrutar los beneficios en una sola — Maneja sucursales Domina todas tus sucursales desde un solo lugar | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | 🔎 por confirmar |
+| Alegra | Alegra ERP | ERP Inicial | 1299 | 11691 | MXN | 3 usuarios, 1 almacén, contabilidad completa, centro de costos, inventario valorizado y conciliación bancaria. No incluye multibodega. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Alegra | Alegra ERP | ERP Plus | 2999 | 26991 | MXN | 10 usuarios, 10 almacenes, máxima capacidad de integraciones. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Alegra | Alegra ERP | ERP Pro | 1999 | 17991 | MXN | 5 usuarios, 5 almacenes, multibodega y más conexiones bancarias. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Alegra | Alegra Facturación | Inicial | 249 | 2241 | MXN | Para independientes. 1 usuario, facturas ilimitadas. No incluye módulo contable. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Alegra | Alegra Facturación | Plus | 699 | 6291 | MXN | 3 usuarios. Suma control de inventario con costo, listas de precios, cotizaciones y remisiones ilimitadas. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Alegra | Alegra Facturación | Pro | 449 | 4041 | MXN | 2 usuarios, facturas ilimitadas. Suma multimoneda, vendedores y reporte Resico y anual. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Alegra | Alegra POS | POS Lite | 199 | 1791 | MXN | 1 sucursal, 1 usuario, vendedores ilimitados, facturación CFDI ilimitada, existencias básicas. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Alegra | Alegra POS | POS Pro | 399 | 3591 | MXN | Todo lo de POS Lite más multisucursal, compras, listas de precios, remisiones y autofacturación por QR. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Alegra | Alegra POS | POS Restobar | 599 | 5391 | MXN | Todo lo de POS Pro más mesas y comandas, conexión con la cocina, turnos y propinas. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Alegra | Alegra Soy Contador | Despacho | 990 | 10692 | MXN | Hasta 30 RFC activos, 5 usuarios de equipo. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Alegra | Alegra Soy Contador | Firma | 1990 | 21492 | MXN | Hasta 75 RFC activos, 10 usuarios de equipo, soporte prioritario y gerente de cuenta dedicado. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Alegra | Alegra Soy Contador | Inicial | 490 | 5292 | MXN | Hasta 10 RFC activos, 3 usuarios de equipo. Incluye timbrado de nómina. | https://www.alegra.com/mexico/precios/ | 2026-11-22 | ✅ |
+| Bind ERP | Bind ERP Complementos | Cobranza automatizada | — | 6669 | MXN | Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes. | https://www.bind.com.mx/precios | 2026-11-18 (Hermes) | ✅ |
+| Bind ERP | Bind ERP Complementos | Conecta Bind | — | 2799 | MXN | Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes. | https://www.bind.com.mx/precios | 2026-11-18 (Hermes) | ✅ |
+| Bind ERP | Bind ERP Complementos | Descarga ilimitada del SAT | — | 2399 | MXN | Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes. | https://www.bind.com.mx/precios | 2026-11-18 (Hermes) | ✅ |
+| CONTPAQi | CONTPAQi Anticipa (análisis fiscal de CFDI) | Crecimiento | — | 2990 | MXN | RFC ilimitados en ediciones de pago "por lanzamiento", 2 usuarios, 24,000 CFDI al año. No es un sistema contable. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Anticipa (análisis fiscal de CFDI) | Empresarial | — | 8490 | MXN | RFC ilimitados, 10 usuarios, 240,000 CFDI al año. No es un sistema contable. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Anticipa (análisis fiscal de CFDI) | Esencial | — | 0 | MXN | Edición sin costo (no es una prueba): 1 RFC, 2 usuarios, 1,500 CFDI en total. No es un sistema contable. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Anticipa (análisis fiscal de CFDI) | Profesional | — | 4590 | MXN | RFC ilimitados, 5 usuarios, 90,000 CFDI al año. No es un sistema contable. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad | Escritorio Mono-RFC | — | 4590 | MXN | Licencia nueva con 1 usuario; 1 RFC. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad | Escritorio Multi-RFC | — | 6190 | MXN | Licencia nueva con 1 usuario; múltiples RFC. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad | Escritorio: usuario adicional | — | 1690 | MXN | Por usuario adicional al año. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad | Nube Corporativo | — | 20490 | MXN | Multiempresa, 10 usuarios, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad | Nube Empresarial | — | 11790 | MXN | Multiempresa, 5 usuarios, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad | Nube Equipos | — | 6290 | MXN | Multiempresa, 2 usuarios, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad | Nube Inicial | — | 4690 | MXN | 1 RFC, 1 usuario, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Contabilidad | Nube: usuario adicional | — | 1880 | MXN | Por usuario adicional al año. La página no indica si los precios incluyen IVA. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Escritorio Virtual (hospedaje en la nube) | Ejecutivo | 4190 | 45590 | MXN | 8 núcleos, 16 GB de RAM, 360 GB, 2 usuarios base. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IVA (16 %) al subtotal. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Escritorio Virtual (hospedaje en la nube) | Empresarial Plus | 6590 | 75590 | MXN | 8 núcleos, 32 GB de RAM, 360 GB, 2 usuarios base. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IVA (16 %) al subtotal. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| CONTPAQi | CONTPAQi Escritorio Virtual (hospedaje en la nube) | Max | 1990 | 22990 | MXN | 4 núcleos, 8 GB de RAM, 100 GB, 1 usuario base, 720 horas. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IVA (16 %) al subtotal. | https://www.contpaqi.com/escritorio-virtual | 2026-11-22 | ✅ |
+| Contalink | Contalink | Flex | 990 | 9900 | MXN | 100 RFC por cada usuario contador. Usuario adicional $990 + IVA al mes (suma 100 RFC). Acceso para clientes opcional. Todos los planes incluyen contabilidad e impuestos, facturación con timbres ilimitados, nómina, bancos y app móvil. | https://www.contalink.com/precios | 2026-11-22 | ✅ |
+| Contalink | Contalink | Flex: acceso Contalink Plus para un cliente | 100 | 1200 | MXN | Por acceso al mes; no aumenta la capacidad de RFC. En Start y Pro viene incluido (1 por RFC). | https://www.contalink.com/precios | 2026-11-22 | ✅ |
+| Contalink | Contalink | Flex: usuario contador adicional | 990 | 11880 | MXN | Por usuario adicional al mes ($9,900 + IVA al año); suma 100 RFC. Sin descuentos por volumen. | https://www.contalink.com/precios | 2026-11-22 | ✅ |
+| Contalink | Contalink | Pro | 790 | 7900 | MXN | 10 RFC incluidos, 1 usuario contador. RFC adicional $50 + IVA al mes; usuario adicional $290 + IVA al mes. 1 usuario gratis para cada cliente. Todos los planes incluyen contabilidad e impuestos, facturación con timbres ilimitados, nómina, bancos y app móvil. | https://www.contalink.com/precios | 2026-11-22 | ✅ |
+| Contalink | Contalink | Pro: RFC adicional | 50 | 600 | MXN | Por RFC adicional al mes. | https://www.contalink.com/precios | 2026-11-22 | ✅ |
+| Contalink | Contalink | Pro: usuario contador adicional | 290 | 3480 | MXN | Por usuario adicional al mes. | https://www.contalink.com/precios | 2026-11-22 | ✅ |
+| Contalink | Contalink | Start | 590 | 5900 | MXN | Hasta 5 RFC, 1 usuario contador. No admite RFC ni usuarios adicionales. 1 usuario gratis para cada cliente. Todos los planes incluyen contabilidad e impuestos, facturación con timbres ilimitados, nómina, bancos y app móvil. | https://www.contalink.com/precios | 2026-11-22 | ✅ |
+| Facturama | Facturama API | Módulo API | — | 1650 | MXN | Incluye API Web y API Multiemisor. Para emitir por API hay que comprar folios de API. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Cotizaciones | 20 cotizaciones | — | 50 | MXN | Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Cotizaciones | 50 cotizaciones | — | 100 | MXN | Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Cotizaciones | 80 cotizaciones | — | 150 | MXN | Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Cotizaciones | Cotizaciones ilimitadas (plan anual) | — | 750 | MXN | Los folios de cotización sirven solo para este servicio. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Cotizaciones | Módulo de cotizaciones masivas | — | 500 | MXN | Requiere folios exclusivos de cotizaciones. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Facturación (folios) | 10 folios | — | 55 | MXN | Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Facturación (folios) | 25 folios | — | 110 | MXN | Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Facturación (folios) | 40 folios | — | 165 | MXN | Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Facturación (folios) | Folios ilimitados | — | 1650 | MXN | Paquete de folios con vigencia anual. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Facturación masiva | Módulo de facturación masiva | — | 1650 | MXN | Para emitir de forma masiva hay que comprar además folios de facturación masiva. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Nómina (folios) | 10 folios | — | 55 | MXN | Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Nómina (folios) | 25 folios | — | 110 | MXN | Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Nómina (folios) | 40 folios | — | 165 | MXN | Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama Nómina (folios) | Folios ilimitados | — | 1650 | MXN | Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Facturama | Facturama en Shopify | Autofacturación de clientes | 13 | 156 | USD | Único precio de la página en dólares. Cobro mensual una vez contratado. | https://facturama.mx/planes-facturacion | 2026-11-22 | ✅ |
+| Miskuentas | misKuentas Contabilidad | Básico | 1000 | 10000 | MXN | 10 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT. | https://www.miskuentas.com/contabilidad/ | 2026-11-22 | ✅ |
+| Miskuentas | misKuentas Contabilidad | Emprendedor | 800 | 8000 | MXN | 5 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT. | https://www.miskuentas.com/contabilidad/ | 2026-11-22 | ✅ |
+| Miskuentas | misKuentas Contabilidad | Empresarial (persona moral) | 600 | 6000 | MXN | 1 RFC. Incluye facturación ilimitada. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT. | https://www.miskuentas.com/contabilidad/ | 2026-11-22 | ✅ |
+| Miskuentas | misKuentas Contabilidad | Intermedio | 3000 | 30000 | MXN | 50 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT. | https://www.miskuentas.com/contabilidad/ | 2026-11-22 | ✅ |
+| Miskuentas | misKuentas Contabilidad | Maestro | 6000 | 60000 | MXN | 150 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT. | https://www.miskuentas.com/contabilidad/ | 2026-11-22 | ✅ |
+| Miskuentas | misKuentas Contabilidad | Negocio (persona física) | 600 | 6000 | MXN | 1 RFC. Incluye facturación ilimitada. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT. | https://www.miskuentas.com/contabilidad/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Aspel ADM | Básica | 213 | 2109 | MXN | 1 usuario, timbrado ilimitado, CFDI 4.0, cotizaciones, app ADM. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Aspel ADM | Premium | 633 | 5610 | MXN | Hasta 3 usuarios; suma control de existencias, cuentas por cobrar y pagar, recibos de nómina electrónicos y app ADM Tienda. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Aspel BANCO (tesorería) | BANCO | 580 | 5757 | MXN | Hasta 99 empresas; cheques, conciliación de movimientos y pronóstico de dinero. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Aspel CAJA (punto de venta) | CAJA | 299 | 1872 | MXN | 1 empresa y hasta 99 tiendas; facturación electrónica CFDI 4.0 ilimitada. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Aspel COI (contabilidad) | COI | 559 | 4372.5 | MXN | Contabilidad electrónica ilimitada, hasta 999 empresas, sistema de escritorio. El "antes" que muestra la página en semestral y anual ($485.83 al mes) es el equivalente mensual de la lista, no el precio mensual ($559). | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Aspel FACTURE (facturación, escritorio) | 2 a 99 empresas | 650 | 6780 | MXN | Versión de FACTURE para 2 a 99 empresas. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Aspel FACTURE (facturación, escritorio) | FACTURE | 250 | 2222.75 | MXN | CFDI 4.0 ilimitados, 1 usuario, 1 RFC, instalado en computadora. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Aspel PROD (manufactura) | PROD | 862 | 8549.05 | MXN | Hasta 99 empresas registradas en SAE; insumos, materia prima y producto terminado. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Aspel SAE (administración) | SAE | 1108 | 9826 | MXN | Hasta 99 empresas, timbrado ilimitado, inventarios, cuentas por cobrar y pagar, sucursales, addendas. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Facturación Nube | 1,200 CFDI al año | — | 1485 | MXN | El número sale del nombre del plan en la página. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Facturación Nube | 120 CFDI al año | — | 990 | MXN | El número sale del nombre del plan en la página; 1 usuario. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Facturación Nube | 24 CFDI al año | — | 290 | MXN | 24 CFDI 4.0 por año, 1 usuario, RFC ilimitados, en la nube. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Facturación Nube | 60 CFDI al año | — | 580 | MXN | El número sale del nombre del plan en la página; 1 usuario. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Fiscal | Corporativo | 853 | 7564.15 | MXN | 10 RFC, 3 usuarios. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Fiscal | Descargas | — | 499 | MXN | Plan único anual: sincroniza los CFDI con los visores del SAT y se gestionan de forma manual. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Fiscal | Despachos | 1294 | 10799.2 | MXN | RFC ilimitados, 5 usuarios. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Fiscal | Empresarial | 489 | 4589.1 | MXN | 3 RFC, 1 usuario. Mismas funciones que PYME. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Fiscal | PYME | 354 | 3514.05 | MXN | 1 RFC, 1 usuario. Sincroniza los CFDI con el SAT, concilia con los visores, genera la DIOT. No es un sistema contable; se integra con COI. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo NOI (nómina) | NOI | 679 | 5310 | MXN | Sistema de nómina; calcula y administra la nómina de varios periodos. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Nube Facturación | CFDI ilimitados | 160 | 1418.65 | MXN | 2 usuarios, 1 RFC, CFDI 4.0 ilimitados, en la nube. La página lo lista dos veces con el mismo precio (también como "CFDIs Ilimitados"). | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Nube Gestión | Inicio | 383 | 2999.25 | MXN | 2 usuarios, 1 almacén, timbrado ilimitado, integración con COI. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
+| Siigo | Siigo Nube Gestión | Premium | 918 | 7184.25 | MXN | 3 usuarios, almacenes ilimitados, timbrado ilimitado. | https://www.siigo.com/mx/precios-siigo-aspel/ | 2026-11-22 | ✅ |
 
 **Aspel** ya no es una fuente propia: redirige a **Siigo** (https://www.siigo.com/mx/). Sus precios están en la fila Siigo.
 

@@ -1,0 +1,2043 @@
+{
+ "pais": "MX",
+ "fuente": "vigia-precios-mex-pdc.md",
+ "revisado": "2026-11-22",
+ "planes": [
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Facturación",
+   "plan": "Inicial",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 249.0,
+   "precio_anual": 2241.0,
+   "equivalente_mensual_anual": 186.75,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Para independientes. 1 usuario, facturas ilimitadas. No incluye módulo contable.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-001"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Facturación",
+   "plan": "Pro",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 449.0,
+   "precio_anual": 4041.0,
+   "equivalente_mensual_anual": 336.75,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "2 usuarios, facturas ilimitadas. Suma multimoneda, vendedores y reporte Resico y anual.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-003"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Facturación",
+   "plan": "Plus",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 699.0,
+   "precio_anual": 6291.0,
+   "equivalente_mensual_anual": 524.25,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "3 usuarios. Suma control de inventario con costo, listas de precios, cotizaciones y remisiones ilimitadas.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-005"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra POS",
+   "plan": "POS Lite",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 199.0,
+   "precio_anual": 1791.0,
+   "equivalente_mensual_anual": 149.25,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "1 sucursal, 1 usuario, vendedores ilimitados, facturación CFDI ilimitada, existencias básicas.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-007"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra POS",
+   "plan": "POS Pro",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 399.0,
+   "precio_anual": 3591.0,
+   "equivalente_mensual_anual": 299.25,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Todo lo de POS Lite más multisucursal, compras, listas de precios, remisiones y autofacturación por QR.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-009"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra POS",
+   "plan": "POS Restobar",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 599.0,
+   "precio_anual": 5391.0,
+   "equivalente_mensual_anual": 449.25,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Todo lo de POS Pro más mesas y comandas, conexión con la cocina, turnos y propinas.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-011"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra ERP",
+   "plan": "ERP Inicial",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 1299.0,
+   "precio_anual": 11691.0,
+   "equivalente_mensual_anual": 974.25,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "3 usuarios, 1 almacén, contabilidad completa, centro de costos, inventario valorizado y conciliación bancaria. No incluye multibodega.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-013"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra ERP",
+   "plan": "ERP Pro",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 1999.0,
+   "precio_anual": 17991.0,
+   "equivalente_mensual_anual": 1499.25,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "5 usuarios, 5 almacenes, multibodega y más conexiones bancarias.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-015"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra ERP",
+   "plan": "ERP Plus",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 2999.0,
+   "precio_anual": 26991.0,
+   "equivalente_mensual_anual": 2249.25,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "10 usuarios, 10 almacenes, máxima capacidad de integraciones.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-017"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Soy Contador",
+   "plan": "Inicial",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 490.0,
+   "precio_anual": 5292.0,
+   "equivalente_mensual_anual": 441.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Hasta 10 RFC activos, 3 usuarios de equipo. Incluye timbrado de nómina.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-019"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Soy Contador",
+   "plan": "Despacho",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 990.0,
+   "precio_anual": 10692.0,
+   "equivalente_mensual_anual": 891.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Hasta 30 RFC activos, 5 usuarios de equipo.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-021"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Soy Contador",
+   "plan": "Firma",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 1990.0,
+   "precio_anual": 21492.0,
+   "equivalente_mensual_anual": 1791.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Hasta 75 RFC activos, 10 usuarios de equipo, soporte prioritario y gerente de cuenta dedicado.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-023"
+  },
+  {
+   "marca": "Alegra",
+   "producto": "Alegra Soy Contador",
+   "plan": "Usuario de equipo adicional",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "no indica"
+   ],
+   "condicion": "",
+   "descripcion": "La página dice \"agrega los que quieras por $200 c/u\" sin indicar la periodicidad.",
+   "fuente": "https://www.alegra.com/mexico/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-ALE-025"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Facturación (folios)",
+   "plan": "10 folios",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 55.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-001"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Facturación (folios)",
+   "plan": "25 folios",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 110.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-002"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Facturación (folios)",
+   "plan": "40 folios",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 165.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-003"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Facturación (folios)",
+   "plan": "Folios ilimitados",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 1650.0,
+   "equivalente_mensual_anual": 118.53,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Paquete de folios con vigencia anual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-004"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Facturación masiva",
+   "plan": "Módulo de facturación masiva",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 1650.0,
+   "equivalente_mensual_anual": 118.53,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Para emitir de forma masiva hay que comprar además folios de facturación masiva.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-005"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Facturación masiva",
+   "plan": "Folio adicional (precio por folio)",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "por folio"
+   ],
+   "condicion": "",
+   "descripcion": "Precio preferencial por folio; vigencia de un año.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-006"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Nómina (folios)",
+   "plan": "10 folios",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 55.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-007"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Nómina (folios)",
+   "plan": "25 folios",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 110.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-008"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Nómina (folios)",
+   "plan": "40 folios",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 165.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-009"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Nómina (folios)",
+   "plan": "Folios ilimitados",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 1650.0,
+   "equivalente_mensual_anual": 118.53,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-010"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Cotizaciones",
+   "plan": "20 cotizaciones",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 50.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-011"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Cotizaciones",
+   "plan": "50 cotizaciones",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 100.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-012"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Cotizaciones",
+   "plan": "80 cotizaciones",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 150.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-013"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Cotizaciones",
+   "plan": "Cotizaciones ilimitadas (plan anual)",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 750.0,
+   "equivalente_mensual_anual": 53.88,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Los folios de cotización sirven solo para este servicio.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-014"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Cotizaciones",
+   "plan": "Módulo de cotizaciones masivas",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 500.0,
+   "equivalente_mensual_anual": 35.92,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Requiere folios exclusivos de cotizaciones.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-015"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Addendas",
+   "plan": "Costo por addenda",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "pago único"
+   ],
+   "condicion": "",
+   "descripcion": "Uso ilimitado y vigencia ilimitada. Los folios de facturas para addenda se compran aparte.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-016"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Complementos de CFDI",
+   "plan": "Carta Porte",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "pago único"
+   ],
+   "condicion": "",
+   "descripcion": "Vigencia ilimitada, sin cuotas periódicas.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-017"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Complementos de CFDI",
+   "plan": "INE",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "pago único"
+   ],
+   "condicion": "",
+   "descripcion": "Vigencia ilimitada, sin cuotas periódicas.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-018"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Complementos de CFDI",
+   "plan": "Comercio Exterior",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "pago único"
+   ],
+   "condicion": "",
+   "descripcion": "Vigencia ilimitada, sin cuotas periódicas.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-019"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Complementos de CFDI",
+   "plan": "Detallista",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "pago único"
+   ],
+   "condicion": "",
+   "descripcion": "Vigencia ilimitada, sin cuotas periódicas.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-020"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Complementos de CFDI",
+   "plan": "Notarios públicos",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "pago único"
+   ],
+   "condicion": "",
+   "descripcion": "Vigencia ilimitada, sin cuotas periódicas.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-021"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Complementos de CFDI",
+   "plan": "Cuenta de terceros",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "pago único"
+   ],
+   "condicion": "",
+   "descripcion": "Vigencia ilimitada, sin cuotas periódicas.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-022"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Complementos de CFDI",
+   "plan": "Leyendas Fiscales",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "pago único"
+   ],
+   "condicion": "",
+   "descripcion": "Vigencia ilimitada, sin cuotas periódicas.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-023"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama API",
+   "plan": "Módulo API",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": 1650.0,
+   "equivalente_mensual_anual": 118.53,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Incluye API Web y API Multiemisor. Para emitir por API hay que comprar folios de API.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-024"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama API",
+   "plan": "Folios API de 1 a 10,000 (precio por folio)",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "por folio"
+   ],
+   "condicion": "",
+   "descripcion": "Prepago; los folios de API solo sirven para este servicio; vigencia anual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-025"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama API",
+   "plan": "Folios API de 10,001 a 50,000 (precio por folio)",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "por folio"
+   ],
+   "condicion": "",
+   "descripcion": "Prepago; los folios de API solo sirven para este servicio; vigencia anual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-026"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama API",
+   "plan": "Folios API de más de 50,000 (precio por folio)",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "por folio"
+   ],
+   "condicion": "",
+   "descripcion": "Prepago; los folios de API solo sirven para este servicio; vigencia anual.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-027"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama en Shopify",
+   "plan": "Autofacturación de clientes",
+   "moneda": "USD",
+   "base_iva": "IVA incluido",
+   "precio_mensual": 13.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Único precio de la página en dólares. Cobro mensual una vez contratado.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-028"
+  },
+  {
+   "marca": "Facturama",
+   "producto": "Facturama Contabilidad",
+   "plan": "Servicio de contabilidad",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "personalizada"
+   ],
+   "condicion": "",
+   "descripcion": "No publica precio. Incluye cálculo de impuestos, declaraciones, DIOT y estados financieros, con asesoría de un contador.",
+   "fuente": "https://facturama.mx/planes-facturacion",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-FCT-029"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Fiscal",
+   "plan": "PYME",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 354.0,
+   "precio_anual": 3514.05,
+   "equivalente_mensual_anual": 292.84,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-5 % del 2026-10-01 al 2026-11-30 (campaña J0001). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "1 RFC, 1 usuario. Sincroniza los CFDI con el SAT, concilia con los visores, genera la DIOT. No es un sistema contable; se integra con COI.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-001"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Fiscal",
+   "plan": "Empresarial",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 489.0,
+   "precio_anual": 4589.1,
+   "equivalente_mensual_anual": 382.43,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-10 % del 2026-10-01 al 2026-11-30 (campaña E0016). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "3 RFC, 1 usuario. Mismas funciones que PYME.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-004"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Fiscal",
+   "plan": "Corporativo",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 853.0,
+   "precio_anual": 7564.15,
+   "equivalente_mensual_anual": 630.35,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-15 % del 2026-10-01 al 2026-11-30 (campaña E0045). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "10 RFC, 3 usuarios.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-007"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Fiscal",
+   "plan": "Despachos",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 1294.0,
+   "precio_anual": 10799.2,
+   "equivalente_mensual_anual": 899.93,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-20 % del 2026-10-01 al 2026-11-30 (campaña E0024). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "RFC ilimitados, 5 usuarios.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-010"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Fiscal",
+   "plan": "Descargas",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": null,
+   "precio_anual": 499.0,
+   "equivalente_mensual_anual": 41.58,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Plan único anual: sincroniza los CFDI con los visores del SAT y se gestionan de forma manual.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-052"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Aspel COI (contabilidad)",
+   "plan": "COI",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 559.0,
+   "precio_anual": 4372.5,
+   "equivalente_mensual_anual": 364.38,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-25 % del 2026-11-02 al 2026-11-30 (campaña AB095). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Contabilidad electrónica ilimitada, hasta 999 empresas, sistema de escritorio. El \"antes\" que muestra la página en semestral y anual ($485.83 al mes) es el equivalente mensual de la lista, no el precio mensual ($559).",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-013"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Aspel SAE (administración)",
+   "plan": "SAE",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 1108.0,
+   "precio_anual": 9826.0,
+   "equivalente_mensual_anual": 818.83,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-15 % del 2026-11-02 al 2026-11-30 (campaña AB053). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Hasta 99 empresas, timbrado ilimitado, inventarios, cuentas por cobrar y pagar, sucursales, addendas.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-016"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo NOI (nómina)",
+   "plan": "NOI",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 679.0,
+   "precio_anual": 5310.0,
+   "equivalente_mensual_anual": 442.5,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-25 % del 2026-11-02 al 2026-11-30 (campaña AB096). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Sistema de nómina; calcula y administra la nómina de varios periodos.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-019"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Aspel PROD (manufactura)",
+   "plan": "PROD",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 862.0,
+   "precio_anual": 8549.05,
+   "equivalente_mensual_anual": 712.42,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-5 % del 2026-10-02 al 2026-11-30 (campaña AB017). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Hasta 99 empresas registradas en SAE; insumos, materia prima y producto terminado.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-022"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Aspel CAJA (punto de venta)",
+   "plan": "CAJA",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 299.0,
+   "precio_anual": 1872.0,
+   "equivalente_mensual_anual": 156.0,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-40 % del 2026-11-02 al 2026-11-30 (campaña AB183). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "1 empresa y hasta 99 tiendas; facturación electrónica CFDI 4.0 ilimitada.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-025"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Aspel BANCO (tesorería)",
+   "plan": "BANCO",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 580.0,
+   "precio_anual": 5757.0,
+   "equivalente_mensual_anual": 479.75,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-5 % del 2026-10-02 al 2026-11-30 (campaña AB350). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Hasta 99 empresas; cheques, conciliación de movimientos y pronóstico de dinero.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-028"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Aspel FACTURE (facturación, escritorio)",
+   "plan": "FACTURE",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 250.0,
+   "precio_anual": 2222.75,
+   "equivalente_mensual_anual": 185.23,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-15 % del 2026-11-02 al 2026-11-30 (campaña AB058). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "CFDI 4.0 ilimitados, 1 usuario, 1 RFC, instalado en computadora.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-031"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Aspel FACTURE (facturación, escritorio)",
+   "plan": "2 a 99 empresas",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 650.0,
+   "precio_anual": 6780.0,
+   "equivalente_mensual_anual": 565.0,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "",
+   "descripcion": "Versión de FACTURE para 2 a 99 empresas.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-034"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Aspel ADM",
+   "plan": "Básica",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 213.0,
+   "precio_anual": 2109.0,
+   "equivalente_mensual_anual": 175.75,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-5 % del 2026-10-01 al 2026-11-30 (campaña AB354). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "1 usuario, timbrado ilimitado, CFDI 4.0, cotizaciones, app ADM.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-037"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Aspel ADM",
+   "plan": "Premium",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 633.0,
+   "precio_anual": 5610.0,
+   "equivalente_mensual_anual": 467.5,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-15 % del 2026-11-02 al 2026-11-30 (campaña AB061). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "Hasta 3 usuarios; suma control de existencias, cuentas por cobrar y pagar, recibos de nómina electrónicos y app ADM Tienda.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-040"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Nube Facturación",
+   "plan": "CFDI ilimitados",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 160.0,
+   "precio_anual": 1418.65,
+   "equivalente_mensual_anual": 118.22,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-15 % del 2026-11-02 al 2026-11-30 (campaña AB065). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "2 usuarios, 1 RFC, CFDI 4.0 ilimitados, en la nube. La página lo lista dos veces con el mismo precio (también como \"CFDIs Ilimitados\").",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-043"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Nube Gestión",
+   "plan": "Inicio",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 383.0,
+   "precio_anual": 2999.25,
+   "equivalente_mensual_anual": 249.94,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-25 % del 2026-10-01 al 2026-11-30 (campaña AB103). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "2 usuarios, 1 almacén, timbrado ilimitado, integración con COI.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-046"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Nube Gestión",
+   "plan": "Premium",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 918.0,
+   "precio_anual": 7184.25,
+   "equivalente_mensual_anual": 598.69,
+   "cobro": [
+    "anual",
+    "mensual",
+    "semestral"
+   ],
+   "condicion": "-25 % del 2026-10-01 al 2026-11-30 (campaña AB105). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "3 usuarios, almacenes ilimitados, timbrado ilimitado.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-049"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Facturación Nube",
+   "plan": "24 CFDI al año",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": null,
+   "precio_anual": 290.0,
+   "equivalente_mensual_anual": 24.17,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "24 CFDI 4.0 por año, 1 usuario, RFC ilimitados, en la nube.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-053"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Facturación Nube",
+   "plan": "60 CFDI al año",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": null,
+   "precio_anual": 580.0,
+   "equivalente_mensual_anual": 48.33,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "El número sale del nombre del plan en la página; 1 usuario.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-054"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Facturación Nube",
+   "plan": "120 CFDI al año",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": null,
+   "precio_anual": 990.0,
+   "equivalente_mensual_anual": 82.5,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "El número sale del nombre del plan en la página; 1 usuario.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-055"
+  },
+  {
+   "marca": "Siigo Aspel",
+   "producto": "Siigo Facturación Nube",
+   "plan": "1,200 CFDI al año",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": null,
+   "precio_anual": 1485.0,
+   "equivalente_mensual_anual": 123.75,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "-10 % del 2026-11-10 al 2026-11-30 (campaña AB372). Promoción de campaña; no es cambio de precio de lista.",
+   "descripcion": "El número sale del nombre del plan en la página.",
+   "fuente": "https://www.siigo.com/mx/precios-siigo-aspel/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-SIG-056"
+  },
+  {
+   "marca": "Contalink",
+   "producto": "Contalink",
+   "plan": "Start",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 590.0,
+   "precio_anual": 5900.0,
+   "equivalente_mensual_anual": 491.67,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Hasta 5 RFC, 1 usuario contador. No admite RFC ni usuarios adicionales. 1 usuario gratis para cada cliente. Todos los planes incluyen contabilidad e impuestos, facturación con timbres ilimitados, nómina, bancos y app móvil.",
+   "fuente": "https://www.contalink.com/precios",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CTL-001"
+  },
+  {
+   "marca": "Contalink",
+   "producto": "Contalink",
+   "plan": "Pro",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 790.0,
+   "precio_anual": 7900.0,
+   "equivalente_mensual_anual": 658.33,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "10 RFC incluidos, 1 usuario contador. RFC adicional $50 + IVA al mes; usuario adicional $290 + IVA al mes. 1 usuario gratis para cada cliente. Todos los planes incluyen contabilidad e impuestos, facturación con timbres ilimitados, nómina, bancos y app móvil.",
+   "fuente": "https://www.contalink.com/precios",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CTL-003"
+  },
+  {
+   "marca": "Contalink",
+   "producto": "Contalink",
+   "plan": "Flex",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 990.0,
+   "precio_anual": 9900.0,
+   "equivalente_mensual_anual": 825.0,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "100 RFC por cada usuario contador. Usuario adicional $990 + IVA al mes (suma 100 RFC). Acceso para clientes opcional. Todos los planes incluyen contabilidad e impuestos, facturación con timbres ilimitados, nómina, bancos y app móvil.",
+   "fuente": "https://www.contalink.com/precios",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CTL-005"
+  },
+  {
+   "marca": "Contalink",
+   "producto": "Contalink",
+   "plan": "Pro: RFC adicional",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 50.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por RFC adicional al mes.",
+   "fuente": "https://www.contalink.com/precios",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CTL-007"
+  },
+  {
+   "marca": "Contalink",
+   "producto": "Contalink",
+   "plan": "Pro: usuario contador adicional",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 290.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por usuario adicional al mes.",
+   "fuente": "https://www.contalink.com/precios",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CTL-008"
+  },
+  {
+   "marca": "Contalink",
+   "producto": "Contalink",
+   "plan": "Flex: usuario contador adicional",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 990.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por usuario adicional al mes ($9,900 + IVA al año); suma 100 RFC. Sin descuentos por volumen.",
+   "fuente": "https://www.contalink.com/precios",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CTL-009"
+  },
+  {
+   "marca": "Contalink",
+   "producto": "Contalink",
+   "plan": "Flex: acceso Contalink Plus para un cliente",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 100.0,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "Por acceso al mes; no aumenta la capacidad de RFC. En Start y Pro viene incluido (1 por RFC).",
+   "fuente": "https://www.contalink.com/precios",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CTL-010"
+  },
+  {
+   "marca": "misKuentas",
+   "producto": "misKuentas Contabilidad",
+   "plan": "Empresarial (persona moral)",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": 600.0,
+   "precio_anual": 6000.0,
+   "equivalente_mensual_anual": 431.03,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "1 RFC. Incluye facturación ilimitada. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT.",
+   "fuente": "https://www.miskuentas.com/contabilidad/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-MKU-001"
+  },
+  {
+   "marca": "misKuentas",
+   "producto": "misKuentas Contabilidad",
+   "plan": "Negocio (persona física)",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": 600.0,
+   "precio_anual": 6000.0,
+   "equivalente_mensual_anual": 431.03,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "1 RFC. Incluye facturación ilimitada. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT.",
+   "fuente": "https://www.miskuentas.com/contabilidad/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-MKU-003"
+  },
+  {
+   "marca": "misKuentas",
+   "producto": "misKuentas Contabilidad",
+   "plan": "Emprendedor",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": 800.0,
+   "precio_anual": 8000.0,
+   "equivalente_mensual_anual": 574.71,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "5 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT.",
+   "fuente": "https://www.miskuentas.com/contabilidad/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-MKU-005"
+  },
+  {
+   "marca": "misKuentas",
+   "producto": "misKuentas Contabilidad",
+   "plan": "Básico",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": 1000.0,
+   "precio_anual": 10000.0,
+   "equivalente_mensual_anual": 718.39,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "10 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT.",
+   "fuente": "https://www.miskuentas.com/contabilidad/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-MKU-007"
+  },
+  {
+   "marca": "misKuentas",
+   "producto": "misKuentas Contabilidad",
+   "plan": "Intermedio",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": 3000.0,
+   "precio_anual": 30000.0,
+   "equivalente_mensual_anual": 2155.17,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "50 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT.",
+   "fuente": "https://www.miskuentas.com/contabilidad/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-MKU-009"
+  },
+  {
+   "marca": "misKuentas",
+   "producto": "misKuentas Contabilidad",
+   "plan": "Maestro",
+   "moneda": "MXN",
+   "base_iva": "IVA incluido",
+   "precio_mensual": 6000.0,
+   "precio_anual": 60000.0,
+   "equivalente_mensual_anual": 4310.34,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "150 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT.",
+   "fuente": "https://www.miskuentas.com/contabilidad/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-MKU-011"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Contabilidad",
+   "plan": "Nube Inicial",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 4690.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "1 RFC, 1 usuario, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-001"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Contabilidad",
+   "plan": "Nube Equipos",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 6290.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Multiempresa, 2 usuarios, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-002"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Contabilidad",
+   "plan": "Nube Empresarial",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 11790.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Multiempresa, 5 usuarios, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-003"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Contabilidad",
+   "plan": "Nube Corporativo",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 20490.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Multiempresa, 10 usuarios, documentos ilimitados. Licencia anual. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-004"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Contabilidad",
+   "plan": "Nube: usuario adicional",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 1880.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Por usuario adicional al año. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-005"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Contabilidad",
+   "plan": "Nube: prueba gratuita",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "prueba"
+   ],
+   "condicion": "",
+   "descripcion": "1,000 documentos, 1 RFC, 1 usuario.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-006"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Contabilidad",
+   "plan": "Escritorio Mono-RFC",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 4590.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Licencia nueva con 1 usuario; 1 RFC. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-007"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Contabilidad",
+   "plan": "Escritorio Multi-RFC",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 6190.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Licencia nueva con 1 usuario; múltiples RFC. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-008"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Contabilidad",
+   "plan": "Escritorio: usuario adicional",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 1690.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Por usuario adicional al año. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-009"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Contabilidad",
+   "plan": "Escritorio: prueba gratuita",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "prueba"
+   ],
+   "condicion": "",
+   "descripcion": "1 RFC.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-010"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Anticipa (análisis fiscal de CFDI)",
+   "plan": "Esencial",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 0.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Edición sin costo (no es una prueba): 1 RFC, 2 usuarios, 1,500 CFDI en total. No es un sistema contable. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-011"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Anticipa (análisis fiscal de CFDI)",
+   "plan": "Crecimiento",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 2990.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "RFC ilimitados en ediciones de pago \"por lanzamiento\", 2 usuarios, 24,000 CFDI al año. No es un sistema contable. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-012"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Anticipa (análisis fiscal de CFDI)",
+   "plan": "Profesional",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 4590.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "RFC ilimitados, 5 usuarios, 90,000 CFDI al año. No es un sistema contable. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-013"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Anticipa (análisis fiscal de CFDI)",
+   "plan": "Empresarial",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": 8490.0,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "RFC ilimitados, 10 usuarios, 240,000 CFDI al año. No es un sistema contable. La página no indica si los precios incluyen IVA.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-014"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Escritorio Virtual (hospedaje en la nube)",
+   "plan": "Max",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 1990.0,
+   "precio_anual": 22990.0,
+   "equivalente_mensual_anual": 1915.83,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "4 núcleos, 8 GB de RAM, 100 GB, 1 usuario base, 720 horas. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IVA (16 %) al subtotal.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-015"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Escritorio Virtual (hospedaje en la nube)",
+   "plan": "Ejecutivo",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 4190.0,
+   "precio_anual": 45590.0,
+   "equivalente_mensual_anual": 3799.17,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "8 núcleos, 16 GB de RAM, 360 GB, 2 usuarios base. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IVA (16 %) al subtotal.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-017"
+  },
+  {
+   "marca": "CONTPAQi",
+   "producto": "CONTPAQi Escritorio Virtual (hospedaje en la nube)",
+   "plan": "Empresarial Plus",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": 6590.0,
+   "precio_anual": 75590.0,
+   "equivalente_mensual_anual": 6299.17,
+   "cobro": [
+    "anual",
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "8 núcleos, 32 GB de RAM, 360 GB, 2 usuarios base. Servicio de escritorio en la nube para operar productos CONTPAQi; no es un software contable. IVA inferido: el cotizador de la página suma IVA (16 %) al subtotal.",
+   "fuente": "https://www.contpaqi.com/escritorio-virtual",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-CPQ-019"
+  },
+  {
+   "marca": "Bind ERP",
+   "producto": "Bind ERP",
+   "plan": "Profesional",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "por cotización"
+   ],
+   "condicion": "",
+   "descripcion": "Según Hermes: 4 usuarios, hasta 124 ventas al mes, 5,000 productos. Una fuente de terceros (Capterra) lista 1,000 ventas al mes: hay que confirmar en la página oficial. Terceros (Capterra, GetApp) listan Profesional en $1,390 al mes y Total en $1,890; no se pueden usar como fuente.",
+   "fuente": "https://www.bind.com.mx/precios",
+   "revisado": "2026-11-18 (Hermes)",
+   "estado": "verificado",
+   "id": "MEX-BND-001"
+  },
+  {
+   "marca": "Bind ERP",
+   "producto": "Bind ERP",
+   "plan": "Total",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "por cotización"
+   ],
+   "condicion": "",
+   "descripcion": "Según Hermes: sin precio publicado, se cotiza en una demo. Terceros (Capterra, GetApp) listan Profesional en $1,390 al mes y Total en $1,890; no se pueden usar como fuente.",
+   "fuente": "https://www.bind.com.mx/precios",
+   "revisado": "2026-11-18 (Hermes)",
+   "estado": "verificado",
+   "id": "MEX-BND-002"
+  },
+  {
+   "marca": "Bind ERP",
+   "producto": "Bind ERP",
+   "plan": "Platino",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "por cotización"
+   ],
+   "condicion": "",
+   "descripcion": "Según Hermes: sin precio publicado, se cotiza en una demo. Terceros (Capterra, GetApp) listan Profesional en $1,390 al mes y Total en $1,890; no se pueden usar como fuente.",
+   "fuente": "https://www.bind.com.mx/precios",
+   "revisado": "2026-11-18 (Hermes)",
+   "estado": "verificado",
+   "id": "MEX-BND-003"
+  },
+  {
+   "marca": "Bind ERP",
+   "producto": "Bind ERP Complementos",
+   "plan": "Conecta Bind",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": null,
+   "precio_anual": 2799.0,
+   "equivalente_mensual_anual": 233.25,
+   "cobro": [
+    "anual",
+    "trimestral"
+   ],
+   "condicion": "",
+   "descripcion": "Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes.",
+   "fuente": "https://www.bind.com.mx/precios",
+   "revisado": "2026-11-18 (Hermes)",
+   "estado": "verificado",
+   "id": "MEX-BND-004"
+  },
+  {
+   "marca": "Bind ERP",
+   "producto": "Bind ERP Complementos",
+   "plan": "Descarga ilimitada del SAT",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": null,
+   "precio_anual": 2399.0,
+   "equivalente_mensual_anual": 199.92,
+   "cobro": [
+    "anual"
+   ],
+   "condicion": "",
+   "descripcion": "Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes.",
+   "fuente": "https://www.bind.com.mx/precios",
+   "revisado": "2026-11-18 (Hermes)",
+   "estado": "verificado",
+   "id": "MEX-BND-006"
+  },
+  {
+   "marca": "Bind ERP",
+   "producto": "Bind ERP Complementos",
+   "plan": "Cobranza automatizada",
+   "moneda": "MXN",
+   "base_iva": "Más IVA",
+   "precio_mensual": null,
+   "precio_anual": 6669.0,
+   "equivalente_mensual_anual": 555.75,
+   "cobro": [
+    "anual",
+    "trimestral"
+   ],
+   "condicion": "",
+   "descripcion": "Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes.",
+   "fuente": "https://www.bind.com.mx/precios",
+   "revisado": "2026-11-18 (Hermes)",
+   "estado": "verificado",
+   "id": "MEX-BND-007"
+  },
+  {
+   "marca": "QuickBooks Online",
+   "producto": "QuickBooks Online",
+   "plan": "Simple Start",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "La página muestra el plan con 1 usuario(s) incluidos y \"/mes\", pero no muestra precio ni moneda; México no tiene versión propia en el selector de países. Sin precio verificable en pesos.",
+   "fuente": "https://quickbooks.intuit.com/mx/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-QBO-001"
+  },
+  {
+   "marca": "QuickBooks Online",
+   "producto": "QuickBooks Online",
+   "plan": "Essentials",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "La página muestra el plan con 3 usuario(s) incluidos y \"/mes\", pero no muestra precio ni moneda; México no tiene versión propia en el selector de países. Sin precio verificable en pesos.",
+   "fuente": "https://quickbooks.intuit.com/mx/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-QBO-002"
+  },
+  {
+   "marca": "QuickBooks Online",
+   "producto": "QuickBooks Online",
+   "plan": "Plus",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "La página muestra el plan con 5 usuario(s) incluidos y \"/mes\", pero no muestra precio ni moneda; México no tiene versión propia en el selector de países. Sin precio verificable en pesos.",
+   "fuente": "https://quickbooks.intuit.com/mx/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-QBO-003"
+  },
+  {
+   "marca": "QuickBooks Online",
+   "producto": "QuickBooks Online",
+   "plan": "Advanced",
+   "moneda": "MXN",
+   "base_iva": "No indica",
+   "precio_mensual": null,
+   "precio_anual": null,
+   "equivalente_mensual_anual": null,
+   "cobro": [
+    "mensual"
+   ],
+   "condicion": "",
+   "descripcion": "La página muestra el plan con 25 usuario(s) incluidos y \"/mes\", pero no muestra precio ni moneda; México no tiene versión propia en el selector de países. Sin precio verificable en pesos.",
+   "fuente": "https://quickbooks.intuit.com/mx/precios/",
+   "revisado": "2026-11-22",
+   "estado": "verificado",
+   "id": "MEX-QBO-004"
+  }
+ ]
+}

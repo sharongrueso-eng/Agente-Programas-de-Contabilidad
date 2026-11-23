@@ -4,224 +4,224 @@
   "product": "Alegra México: Facturación electrónica CFDI, POS, ERP y Soy Contador",
   "plans": [
     {
-      "name": "Facturación electrónica Inicial (mensual)",
+      "name": "Alegra Facturación Inicial (mensual)",
       "price": "249",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Solo facturación, sin módulo contable. Precio de lista"
+      "note": "Para independientes. 1 usuario, facturas ilimitadas. No incluye módulo contable."
     },
     {
-      "name": "Facturación electrónica Inicial (anual)",
-      "price": "187",
+      "name": "Alegra Facturación Inicial (anual)",
+      "price": "2241",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 2.241 MXN facturados al año"
+      "note": "Para independientes. 1 usuario, facturas ilimitadas. No incluye módulo contable."
     },
     {
-      "name": "Facturación electrónica Pro (mensual)",
+      "name": "Alegra Facturación Pro (mensual)",
       "price": "449",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Solo facturación, sin módulo contable. Precio de lista"
+      "note": "2 usuarios, facturas ilimitadas. Suma multimoneda, vendedores y reporte Resico y anual."
     },
     {
-      "name": "Facturación electrónica Pro (anual)",
-      "price": "337",
+      "name": "Alegra Facturación Pro (anual)",
+      "price": "4041",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 4.041 MXN facturados al año"
+      "note": "2 usuarios, facturas ilimitadas. Suma multimoneda, vendedores y reporte Resico y anual."
     },
     {
-      "name": "Facturación electrónica Plus (mensual)",
+      "name": "Alegra Facturación Plus (mensual)",
       "price": "699",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "Solo facturación, sin módulo contable. Precio de lista"
+      "note": "3 usuarios. Suma control de inventario con costo, listas de precios, cotizaciones y remisiones ilimitadas."
     },
     {
-      "name": "Facturación electrónica Plus (anual)",
-      "price": "524",
+      "name": "Alegra Facturación Plus (anual)",
+      "price": "6291",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 6.291 MXN facturados al año"
+      "note": "3 usuarios. Suma control de inventario con costo, listas de precios, cotizaciones y remisiones ilimitadas."
     },
     {
-      "name": "POS POS Lite (mensual)",
+      "name": "Alegra POS POS Lite (mensual)",
       "price": "199",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "1 sucursal, 1 usuario, vendedores ilimitados, facturación CFDI ilimitada, existencias básicas."
     },
     {
-      "name": "POS POS Lite (anual)",
-      "price": "149",
+      "name": "Alegra POS POS Lite (anual)",
+      "price": "1791",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 1.791 MXN facturados al año"
+      "note": "1 sucursal, 1 usuario, vendedores ilimitados, facturación CFDI ilimitada, existencias básicas."
     },
     {
-      "name": "POS POS Pro (mensual)",
+      "name": "Alegra POS POS Pro (mensual)",
       "price": "399",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Todo lo de POS Lite más multisucursal, compras, listas de precios, remisiones y autofacturación por QR."
     },
     {
-      "name": "POS POS Pro (anual)",
-      "price": "299",
+      "name": "Alegra POS POS Pro (anual)",
+      "price": "3591",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 3.591 MXN facturados al año"
+      "note": "Todo lo de POS Lite más multisucursal, compras, listas de precios, remisiones y autofacturación por QR."
     },
     {
-      "name": "POS POS Restobar (mensual)",
+      "name": "Alegra POS POS Restobar (mensual)",
       "price": "599",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Todo lo de POS Pro más mesas y comandas, conexión con la cocina, turnos y propinas."
     },
     {
-      "name": "POS POS Restobar (anual)",
-      "price": "449",
+      "name": "Alegra POS POS Restobar (anual)",
+      "price": "5391",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 5.391 MXN facturados al año"
+      "note": "Todo lo de POS Pro más mesas y comandas, conexión con la cocina, turnos y propinas."
     },
     {
-      "name": "ERP ERP Inicial (mensual)",
-      "price": "1.299",
+      "name": "Alegra ERP ERP Inicial (mensual)",
+      "price": "1299",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "3 usuarios, 1 almacén, contabilidad completa, centro de costos, inventario valorizado y conciliación bancaria. No incluye multibodega."
     },
     {
-      "name": "ERP ERP Inicial (anual)",
-      "price": "974",
+      "name": "Alegra ERP ERP Inicial (anual)",
+      "price": "11691",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 11.691 MXN facturados al año"
+      "note": "3 usuarios, 1 almacén, contabilidad completa, centro de costos, inventario valorizado y conciliación bancaria. No incluye multibodega."
     },
     {
-      "name": "ERP ERP Pro (mensual)",
-      "price": "1.999",
+      "name": "Alegra ERP ERP Pro (mensual)",
+      "price": "1999",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "5 usuarios, 5 almacenes, multibodega y más conexiones bancarias."
     },
     {
-      "name": "ERP ERP Pro (anual)",
-      "price": "1.499",
+      "name": "Alegra ERP ERP Pro (anual)",
+      "price": "17991",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 17.991 MXN facturados al año"
+      "note": "5 usuarios, 5 almacenes, multibodega y más conexiones bancarias."
     },
     {
-      "name": "ERP ERP Plus (mensual)",
-      "price": "2.999",
+      "name": "Alegra ERP ERP Plus (mensual)",
+      "price": "2999",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "10 usuarios, 10 almacenes, máxima capacidad de integraciones."
     },
     {
-      "name": "ERP ERP Plus (anual)",
-      "price": "2.249",
+      "name": "Alegra ERP ERP Plus (anual)",
+      "price": "26991",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 26.991 MXN facturados al año"
+      "note": "10 usuarios, 10 almacenes, máxima capacidad de integraciones."
     },
     {
-      "name": "Soy Contador Inicial (mensual)",
+      "name": "Alegra Soy Contador Inicial (mensual)",
       "price": "490",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Hasta 10 RFC activos, 3 usuarios de equipo. Incluye timbrado de nómina."
     },
     {
-      "name": "Soy Contador Inicial (anual)",
-      "price": "441",
+      "name": "Alegra Soy Contador Inicial (anual)",
+      "price": "5292",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 5.292 MXN facturados al año"
+      "note": "Hasta 10 RFC activos, 3 usuarios de equipo. Incluye timbrado de nómina."
     },
     {
-      "name": "Soy Contador Despacho (mensual)",
+      "name": "Alegra Soy Contador Despacho (mensual)",
       "price": "990",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Hasta 30 RFC activos, 5 usuarios de equipo."
     },
     {
-      "name": "Soy Contador Despacho (anual)",
-      "price": "891",
+      "name": "Alegra Soy Contador Despacho (anual)",
+      "price": "10692",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 10.692 MXN facturados al año"
+      "note": "Hasta 30 RFC activos, 5 usuarios de equipo."
     },
     {
-      "name": "Soy Contador Firma (mensual)",
-      "price": "1.990",
+      "name": "Alegra Soy Contador Firma (mensual)",
+      "price": "1990",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": ""
+      "note": "Hasta 75 RFC activos, 10 usuarios de equipo, soporte prioritario y gerente de cuenta dedicado."
     },
     {
-      "name": "Soy Contador Firma (anual)",
-      "price": "1.791",
+      "name": "Alegra Soy Contador Firma (anual)",
+      "price": "21492",
       "currency": "MXN",
-      "period": "mes",
+      "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Equivale a 21.492 MXN facturados al año"
+      "note": "Hasta 75 RFC activos, 10 usuarios de equipo, soporte prioritario y gerente de cuenta dedicado."
     }
   ],
   "source_url": "https://www.alegra.com/mexico/precios/",
-  "captured_at": "2026-11-18",
+  "captured_at": "2026-11-22",
   "evidence_level": "documentacion_oficial",
   "electronic_invoicing": "Facturación electrónica CFDI con el SAT incluida en todos los planes; descarga masiva y buzón CFDI",
   "features": [
@@ -258,5 +258,6 @@
       "cambio": "precios sincronizados desde el directorio del vigía (24 planes)"
     }
   ],
-  "precios_origen": "directorio del vigía"
+  "precios_origen": "vigia/paises/mex/precios.json (fuente única)",
+  "nota_base_iva": "Precios Más IVA; el anual es el que cobra la página, no el mensual por 12."
 }

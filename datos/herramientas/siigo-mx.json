@@ -3,9 +3,361 @@
   "country": "MX",
   "product": "Siigo Fiscal (facturación CFDI)",
   "source_url": "https://www.siigo.com/mx/precios-siigo-aspel/",
-  "captured_at": "2026-11-12",
+  "captured_at": "2026-11-22",
   "evidence_level": "documentacion_oficial",
-  "plans": [],
+  "plans": [
+    {
+      "name": "Siigo Fiscal PYME (mensual)",
+      "price": "354",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "1 RFC, 1 usuario. Sincroniza los CFDI con el SAT, concilia con los visores, genera la DIOT. No es un sistema contable; se integra con COI."
+    },
+    {
+      "name": "Siigo Fiscal PYME (anual)",
+      "price": "3514.05",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "1 RFC, 1 usuario. Sincroniza los CFDI con el SAT, concilia con los visores, genera la DIOT. No es un sistema contable; se integra con COI."
+    },
+    {
+      "name": "Siigo Fiscal Empresarial (mensual)",
+      "price": "489",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "3 RFC, 1 usuario. Mismas funciones que PYME."
+    },
+    {
+      "name": "Siigo Fiscal Empresarial (anual)",
+      "price": "4589.1",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "3 RFC, 1 usuario. Mismas funciones que PYME."
+    },
+    {
+      "name": "Siigo Fiscal Corporativo (mensual)",
+      "price": "853",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "10 RFC, 3 usuarios."
+    },
+    {
+      "name": "Siigo Fiscal Corporativo (anual)",
+      "price": "7564.15",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "10 RFC, 3 usuarios."
+    },
+    {
+      "name": "Siigo Fiscal Despachos (mensual)",
+      "price": "1294",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "RFC ilimitados, 5 usuarios."
+    },
+    {
+      "name": "Siigo Fiscal Despachos (anual)",
+      "price": "10799.2",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "RFC ilimitados, 5 usuarios."
+    },
+    {
+      "name": "Siigo Fiscal Descargas (anual)",
+      "price": "499",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Plan único anual: sincroniza los CFDI con los visores del SAT y se gestionan de forma manual."
+    },
+    {
+      "name": "Siigo Aspel COI (contabilidad) COI (mensual)",
+      "price": "559",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Contabilidad electrónica ilimitada, hasta 999 empresas, sistema de escritorio. El \"antes\" que muestra la página en semestral y anual ($485.83 al mes) es el equivalente mensual de la lista, no el preci"
+    },
+    {
+      "name": "Siigo Aspel COI (contabilidad) COI (anual)",
+      "price": "4372.5",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Contabilidad electrónica ilimitada, hasta 999 empresas, sistema de escritorio. El \"antes\" que muestra la página en semestral y anual ($485.83 al mes) es el equivalente mensual de la lista, no el preci"
+    },
+    {
+      "name": "Siigo Aspel SAE (administración) SAE (mensual)",
+      "price": "1108",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Hasta 99 empresas, timbrado ilimitado, inventarios, cuentas por cobrar y pagar, sucursales, addendas."
+    },
+    {
+      "name": "Siigo Aspel SAE (administración) SAE (anual)",
+      "price": "9826",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Hasta 99 empresas, timbrado ilimitado, inventarios, cuentas por cobrar y pagar, sucursales, addendas."
+    },
+    {
+      "name": "Siigo NOI (nómina) NOI (mensual)",
+      "price": "679",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Sistema de nómina; calcula y administra la nómina de varios periodos."
+    },
+    {
+      "name": "Siigo NOI (nómina) NOI (anual)",
+      "price": "5310",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Sistema de nómina; calcula y administra la nómina de varios periodos."
+    },
+    {
+      "name": "Siigo Aspel PROD (manufactura) PROD (mensual)",
+      "price": "862",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Hasta 99 empresas registradas en SAE; insumos, materia prima y producto terminado."
+    },
+    {
+      "name": "Siigo Aspel PROD (manufactura) PROD (anual)",
+      "price": "8549.05",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Hasta 99 empresas registradas en SAE; insumos, materia prima y producto terminado."
+    },
+    {
+      "name": "Siigo Aspel CAJA (punto de venta) CAJA (mensual)",
+      "price": "299",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "1 empresa y hasta 99 tiendas; facturación electrónica CFDI 4.0 ilimitada."
+    },
+    {
+      "name": "Siigo Aspel CAJA (punto de venta) CAJA (anual)",
+      "price": "1872",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "1 empresa y hasta 99 tiendas; facturación electrónica CFDI 4.0 ilimitada."
+    },
+    {
+      "name": "Siigo Aspel BANCO (tesorería) BANCO (mensual)",
+      "price": "580",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Hasta 99 empresas; cheques, conciliación de movimientos y pronóstico de dinero."
+    },
+    {
+      "name": "Siigo Aspel BANCO (tesorería) BANCO (anual)",
+      "price": "5757",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Hasta 99 empresas; cheques, conciliación de movimientos y pronóstico de dinero."
+    },
+    {
+      "name": "Siigo Aspel FACTURE (facturación, escritorio) FACTURE (mensual)",
+      "price": "250",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "CFDI 4.0 ilimitados, 1 usuario, 1 RFC, instalado en computadora."
+    },
+    {
+      "name": "Siigo Aspel FACTURE (facturación, escritorio) FACTURE (anual)",
+      "price": "2222.75",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "CFDI 4.0 ilimitados, 1 usuario, 1 RFC, instalado en computadora."
+    },
+    {
+      "name": "Siigo Aspel FACTURE (facturación, escritorio) 2 a 99 empresas (mensual)",
+      "price": "650",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Versión de FACTURE para 2 a 99 empresas."
+    },
+    {
+      "name": "Siigo Aspel FACTURE (facturación, escritorio) 2 a 99 empresas (anual)",
+      "price": "6780",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Versión de FACTURE para 2 a 99 empresas."
+    },
+    {
+      "name": "Siigo Aspel ADM Básica (mensual)",
+      "price": "213",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "1 usuario, timbrado ilimitado, CFDI 4.0, cotizaciones, app ADM."
+    },
+    {
+      "name": "Siigo Aspel ADM Básica (anual)",
+      "price": "2109",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "1 usuario, timbrado ilimitado, CFDI 4.0, cotizaciones, app ADM."
+    },
+    {
+      "name": "Siigo Aspel ADM Premium (mensual)",
+      "price": "633",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Hasta 3 usuarios; suma control de existencias, cuentas por cobrar y pagar, recibos de nómina electrónicos y app ADM Tienda."
+    },
+    {
+      "name": "Siigo Aspel ADM Premium (anual)",
+      "price": "5610",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Hasta 3 usuarios; suma control de existencias, cuentas por cobrar y pagar, recibos de nómina electrónicos y app ADM Tienda."
+    },
+    {
+      "name": "Siigo Nube Facturación CFDI ilimitados (mensual)",
+      "price": "160",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "2 usuarios, 1 RFC, CFDI 4.0 ilimitados, en la nube. La página lo lista dos veces con el mismo precio (también como \"CFDIs Ilimitados\")."
+    },
+    {
+      "name": "Siigo Nube Facturación CFDI ilimitados (anual)",
+      "price": "1418.65",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "2 usuarios, 1 RFC, CFDI 4.0 ilimitados, en la nube. La página lo lista dos veces con el mismo precio (también como \"CFDIs Ilimitados\")."
+    },
+    {
+      "name": "Siigo Nube Gestión Inicio (mensual)",
+      "price": "383",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "2 usuarios, 1 almacén, timbrado ilimitado, integración con COI."
+    },
+    {
+      "name": "Siigo Nube Gestión Inicio (anual)",
+      "price": "2999.25",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "2 usuarios, 1 almacén, timbrado ilimitado, integración con COI."
+    },
+    {
+      "name": "Siigo Nube Gestión Premium (mensual)",
+      "price": "918",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "3 usuarios, almacenes ilimitados, timbrado ilimitado."
+    },
+    {
+      "name": "Siigo Nube Gestión Premium (anual)",
+      "price": "7184.25",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "3 usuarios, almacenes ilimitados, timbrado ilimitado."
+    },
+    {
+      "name": "Siigo Facturación Nube 24 CFDI al año (anual)",
+      "price": "290",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "24 CFDI 4.0 por año, 1 usuario, RFC ilimitados, en la nube."
+    },
+    {
+      "name": "Siigo Facturación Nube 60 CFDI al año (anual)",
+      "price": "580",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "El número sale del nombre del plan en la página; 1 usuario."
+    },
+    {
+      "name": "Siigo Facturación Nube 120 CFDI al año (anual)",
+      "price": "990",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "El número sale del nombre del plan en la página; 1 usuario."
+    },
+    {
+      "name": "Siigo Facturación Nube 1,200 CFDI al año (anual)",
+      "price": "1485",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "El número sale del nombre del plan en la página."
+    }
+  ],
   "features": [
     "Facturación electrónica CFDI 4.0",
     "Contabilidad (COI)",
@@ -20,5 +372,7 @@
   ],
   "notes": "Leído el 12-nov-2026. Citar la condición promocional al usar la cifra.",
   "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica",
-  "pricing_note": "El vigía no ha confirmado las tarifas de Siigo en México: la pieza no cita sus precios y remite a su página."
+  "pricing_note": "El vigía no ha confirmado las tarifas de Siigo en México: la pieza no cita sus precios y remite a su página.",
+  "precios_origen": "vigia/paises/mex/precios.json (fuente única)",
+  "nota_base_iva": "Precios Más IVA; el anual es el que cobra la página, no el mensual por 12."
 }

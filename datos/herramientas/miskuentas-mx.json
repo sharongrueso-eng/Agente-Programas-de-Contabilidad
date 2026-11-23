@@ -2,45 +2,117 @@
   "brand": "misKuentas",
   "country": "MX",
   "product": "misKuentas (facturación electrónica CFDI)",
-  "source_url": "https://www.miskuentas.com/facturacion",
-  "captured_at": "2026-11-12",
+  "source_url": "https://www.miskuentas.com/contabilidad/",
+  "captured_at": "2026-11-22",
   "evidence_level": "documentacion_oficial",
   "plans": [
     {
-      "name": "Plan 500 timbres (anual)",
-      "price": "1.200",
-      "currency": "MXN",
-      "period": "año",
-      "billing": "anual",
-      "publicado": true,
-      "note": "IVA incluido"
-    },
-    {
-      "name": "Plan 1.000 timbres (anual)",
-      "price": "2.000",
-      "currency": "MXN",
-      "period": "año",
-      "billing": "anual",
-      "publicado": true,
-      "note": "IVA incluido"
-    },
-    {
-      "name": "Timbrado ilimitado (mensual)",
-      "price": "350",
+      "name": "misKuentas Contabilidad Empresarial (persona moral) (mensual)",
+      "price": "600",
       "currency": "MXN",
       "period": "mes",
       "billing": "mensual",
       "publicado": true,
-      "note": "IVA incluido"
+      "note": "1 RFC. Incluye facturación ilimitada. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
     },
     {
-      "name": "Timbrado ilimitado (anual)",
-      "price": "2.100",
+      "name": "misKuentas Contabilidad Empresarial (persona moral) (anual)",
+      "price": "6000",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "IVA incluido; precio anterior 3.500, descuento del 40 %"
+      "note": "1 RFC. Incluye facturación ilimitada. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
+    },
+    {
+      "name": "misKuentas Contabilidad Negocio (persona física) (mensual)",
+      "price": "600",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "1 RFC. Incluye facturación ilimitada. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
+    },
+    {
+      "name": "misKuentas Contabilidad Negocio (persona física) (anual)",
+      "price": "6000",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "1 RFC. Incluye facturación ilimitada. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
+    },
+    {
+      "name": "misKuentas Contabilidad Emprendedor (mensual)",
+      "price": "800",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "5 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
+    },
+    {
+      "name": "misKuentas Contabilidad Emprendedor (anual)",
+      "price": "8000",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "5 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
+    },
+    {
+      "name": "misKuentas Contabilidad Básico (mensual)",
+      "price": "1000",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "10 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
+    },
+    {
+      "name": "misKuentas Contabilidad Básico (anual)",
+      "price": "10000",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "10 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
+    },
+    {
+      "name": "misKuentas Contabilidad Intermedio (mensual)",
+      "price": "3000",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "50 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
+    },
+    {
+      "name": "misKuentas Contabilidad Intermedio (anual)",
+      "price": "30000",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "50 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
+    },
+    {
+      "name": "misKuentas Contabilidad Maestro (mensual)",
+      "price": "6000",
+      "currency": "MXN",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "150 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
+    },
+    {
+      "name": "misKuentas Contabilidad Maestro (anual)",
+      "price": "60000",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "150 RFC, persona física o moral. Incluye contabilidad, nómina, impuestos, reportes, descarga masiva de CFDI y apoyo para la DIOT."
     }
   ],
   "features": [
@@ -59,5 +131,7 @@
     "El precio anual con descuento puede cambiar sin aviso"
   ],
   "notes": "No se encontraron precios de contabilidad ni de POS en la página de facturación.",
-  "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica"
+  "precios_sin_confirmar": "el vigía no pudo confirmar el precio en su última pasada: no se publica",
+  "precios_origen": "vigia/paises/mex/precios.json (fuente única)",
+  "nota_base_iva": "Precios IVA incluido; el anual es el que cobra la página, no el mensual por 12."
 }

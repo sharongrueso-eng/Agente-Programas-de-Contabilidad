@@ -4,44 +4,152 @@
   "product": "Facturama (facturación electrónica CFDI)",
   "plans": [
     {
-      "name": "Paquetes de folios Folios Ilimitados (anual)",
-      "price": "1.650",
-      "currency": "MXN",
-      "period": "año",
-      "billing": "anual",
-      "publicado": true,
-      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
-    },
-    {
-      "name": "Paquetes de folios 40 Folios (anual)",
-      "price": "165",
-      "currency": "MXN",
-      "period": "año",
-      "billing": "anual",
-      "publicado": true,
-      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
-    },
-    {
-      "name": "Paquetes de folios 25 Folios (anual)",
-      "price": "110",
-      "currency": "MXN",
-      "period": "año",
-      "billing": "anual",
-      "publicado": true,
-      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
-    },
-    {
-      "name": "Paquetes de folios 10 Folios (anual)",
+      "name": "Facturama Facturación (folios) 10 folios (anual)",
       "price": "55",
       "currency": "MXN",
       "period": "año",
       "billing": "anual",
       "publicado": true,
-      "note": "Precio anual publicado; no se anuncia un equivalente mensual"
+      "note": "Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual."
+    },
+    {
+      "name": "Facturama Facturación (folios) 25 folios (anual)",
+      "price": "110",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual."
+    },
+    {
+      "name": "Facturama Facturación (folios) 40 folios (anual)",
+      "price": "165",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Paquete de folios con vigencia anual. Es un paquete prepagado, no una suscripción: no tiene equivalente mensual."
+    },
+    {
+      "name": "Facturama Facturación (folios) Folios ilimitados (anual)",
+      "price": "1650",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Paquete de folios con vigencia anual."
+    },
+    {
+      "name": "Facturama Facturación masiva Módulo de facturación masiva (anual)",
+      "price": "1650",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Para emitir de forma masiva hay que comprar además folios de facturación masiva."
+    },
+    {
+      "name": "Facturama Nómina (folios) 10 folios (anual)",
+      "price": "55",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual."
+    },
+    {
+      "name": "Facturama Nómina (folios) 25 folios (anual)",
+      "price": "110",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual."
+    },
+    {
+      "name": "Facturama Nómina (folios) 40 folios (anual)",
+      "price": "165",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual. Paquete prepagado: no tiene equivalente mensual."
+    },
+    {
+      "name": "Facturama Nómina (folios) Folios ilimitados (anual)",
+      "price": "1650",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Folios de nómina para emitir CFDI de sueldos y salarios; vigencia anual."
+    },
+    {
+      "name": "Facturama Cotizaciones 20 cotizaciones (anual)",
+      "price": "50",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual."
+    },
+    {
+      "name": "Facturama Cotizaciones 50 cotizaciones (anual)",
+      "price": "100",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual."
+    },
+    {
+      "name": "Facturama Cotizaciones 80 cotizaciones (anual)",
+      "price": "150",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Los folios de cotización sirven solo para este servicio. Paquete prepagado: no tiene equivalente mensual."
+    },
+    {
+      "name": "Facturama Cotizaciones Cotizaciones ilimitadas (plan anual) (anual)",
+      "price": "750",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Los folios de cotización sirven solo para este servicio."
+    },
+    {
+      "name": "Facturama Cotizaciones Módulo de cotizaciones masivas (anual)",
+      "price": "500",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Requiere folios exclusivos de cotizaciones."
+    },
+    {
+      "name": "Facturama API Módulo API (anual)",
+      "price": "1650",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Incluye API Web y API Multiemisor. Para emitir por API hay que comprar folios de API."
+    },
+    {
+      "name": "Facturama en Shopify Autofacturación de clientes (mensual)",
+      "price": "13",
+      "currency": "USD",
+      "period": "mes",
+      "billing": "mensual",
+      "publicado": true,
+      "note": "Único precio de la página en dólares. Cobro mensual una vez contratado."
     }
   ],
   "source_url": "https://facturama.mx/planes-facturacion",
-  "captured_at": "2026-11-18",
+  "captured_at": "2026-11-22",
   "evidence_level": "documentacion_oficial",
   "extraction": {
     "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
@@ -76,5 +184,6 @@
   "known_limits": [
     "El plan de folios ilimitados es el único que no obliga a contar facturas"
   ],
-  "precios_origen": "directorio del vigía"
+  "precios_origen": "vigia/paises/mex/precios.json (fuente única)",
+  "nota_base_iva": "Precios IVA incluido; el anual es el que cobra la página, no el mensual por 12."
 }

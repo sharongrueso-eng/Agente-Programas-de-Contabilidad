@@ -1,44 +1,55 @@
 {
- "brand": "Bind ERP",
- "country": "MX",
- "product": "Bind ERP",
- "source_url": "https://www.bind.com.mx/precios",
- "captured_at": "2026-11-12",
- "evidence_level": "documentacion_oficial",
- "plans": [
-  {
-   "name": "Conecta Bind",
-   "price": "2.799",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "anual",
-   "publicado": true,
-   "note": "contratación anual o trimestral"
-  },
-  {
-   "name": "Complemento Cobranza Automatizada",
-   "price": "6.669",
-   "currency": "MXN",
-   "period": "mes",
-   "billing": "anual",
-   "publicado": true,
-   "note": "precios sin IVA"
-  }
- ],
- "features": [
-  "ERP",
-  "Ventas",
-  "Compras",
-  "Inventarios y bodega",
-  "Cuentas por cobrar",
-  "Cobranza automatizada",
-  "Facturación electrónica CFDI"
- ],
- "advantages": [
-  "Publica el costo de cada complemento por separado"
- ],
- "known_limits": [
-  "La tabla mezcla planes y complementos: el total depende de cuántos se contraten"
- ],
- "notes": "Precios sin IVA. Leído el 12-nov-2026. Las cifras de la tabla deben confirmarse por plan."
+  "brand": "Bind ERP",
+  "country": "MX",
+  "product": "Bind ERP",
+  "source_url": "https://www.bind.com.mx/precios",
+  "captured_at": "2026-11-22",
+  "evidence_level": "documentacion_oficial",
+  "plans": [
+    {
+      "name": "Bind ERP Complementos Conecta Bind (anual)",
+      "price": "2799",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes."
+    },
+    {
+      "name": "Bind ERP Complementos Descarga ilimitada del SAT (anual)",
+      "price": "2399",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes."
+    },
+    {
+      "name": "Bind ERP Complementos Cobranza automatizada (anual)",
+      "price": "6669",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true,
+      "note": "Dato de Hermes del 18-nov-2026. La página oficial pide verificación antirrobot y no se pudo leer hoy. Precio sin IVA según Hermes."
+    }
+  ],
+  "features": [
+    "ERP",
+    "Ventas",
+    "Compras",
+    "Inventarios y bodega",
+    "Cuentas por cobrar",
+    "Cobranza automatizada",
+    "Facturación electrónica CFDI"
+  ],
+  "advantages": [
+    "Publica el costo de cada complemento por separado"
+  ],
+  "known_limits": [
+    "La tabla mezcla planes y complementos: el total depende de cuántos se contraten"
+  ],
+  "notes": "Precios sin IVA. Leído el 12-nov-2026. Las cifras de la tabla deben confirmarse por plan.",
+  "precios_origen": "vigia/paises/mex/precios.json (fuente única)",
+  "nota_base_iva": "Precios Más IVA; el anual es el que cobra la página, no el mensual por 12."
 }

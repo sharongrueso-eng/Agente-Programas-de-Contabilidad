@@ -39,5 +39,6 @@
   "known_limits": [
     "El precio de Aspel como producto suelto no se publica: se vende con Siigo Fiscal"
   ],
-  "precios_sin_confirmar": "Aspel se vende dentro de los planes Siigo en México; el vigía no confirmó tarifas propias, así que no se citan precios."
+  "precios_sin_confirmar": "Aspel se vende dentro de los planes Siigo en México; el vigía no confirmó tarifas propias, así que no se citan precios.",
+  "precios_origen": "sin verificar — la marca no está en la fuente única de México"
 }

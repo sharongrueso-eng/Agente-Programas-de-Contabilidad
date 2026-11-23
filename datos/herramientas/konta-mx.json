@@ -1,59 +1,60 @@
 {
- "brand": "Konta",
- "country": "MX",
- "product": "Konta (contabilidad electrónica en la nube)",
- "plans": [
-  {
-   "name": "Una empresa (un RFC)",
-   "price": "999",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true
-  },
-  {
-   "name": "Multi empresa (RFC ilimitados)",
-   "price": "2.999",
-   "currency": "MXN",
-   "period": "año",
-   "billing": "anual",
-   "publicado": true
-  }
- ],
- "source_url": "https://www.konta.mx/precios-anuales-de-contabilidad-electronica-en-la-nube/",
- "captured_at": "2026-11-12",
- "evidence_level": "documentacion_oficial",
- "extraction": {
-  "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
-  "posts": [
-   "https://programascontabilidad.com/analisis-de-herramientas/facturama-precios-funciones-mexico/",
-   "https://programascontabilidad.com/comparativas-de-software/contabilidad/pos-sin-integracion-contable-en-mexico/",
-   "https://programascontabilidad.com/comparativas-de-software/alegra-vs-odoo-mexico/",
-   "https://programascontabilidad.com/analisis-de-herramientas/contadigital-solucion-contabilidad/",
-   "https://programascontabilidad.com/comparativas-de-software/alegra-vs-eleventa-mexico/",
-   "https://programascontabilidad.com/comparativas-de-software/alegra-contpaqi/",
-   "https://programascontabilidad.com/comparativas-de-software/facturacion-en-mexico-alegra-facturama/",
-   "https://programascontabilidad.com/comparativas-de-software/alegra-vs-miskuentas-comparativa-real-para-contadores-y-pymes-en-mexico-2026/"
+  "brand": "Konta",
+  "country": "MX",
+  "product": "Konta (contabilidad electrónica en la nube)",
+  "plans": [
+    {
+      "name": "Una empresa (un RFC)",
+      "price": "999",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    },
+    {
+      "name": "Multi empresa (RFC ilimitados)",
+      "price": "2.999",
+      "currency": "MXN",
+      "period": "año",
+      "billing": "anual",
+      "publicado": true
+    }
   ],
-  "precios_observados": []
- },
- "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
- "notes": "Leído el 12-nov-2026.",
- "historial": [
-  {
-   "fecha": "2026-11-11",
-   "cambio": "creada desde artículos del blog"
-  }
- ],
- "features": [
-  "Contabilidad electrónica",
-  "Facturación CFDI",
-  "Multi RFC"
- ],
- "advantages": [
-  "Precio anual plano por número de RFC, no por volumen de facturas"
- ],
- "known_limits": [
-  "Solo publica dos planes anuales"
- ]
+  "source_url": "https://www.konta.mx/precios-anuales-de-contabilidad-electronica-en-la-nube/",
+  "captured_at": "2026-11-12",
+  "evidence_level": "documentacion_oficial",
+  "extraction": {
+    "metodo": "lectura de posts del blog y búsqueda de cifras junto a la marca",
+    "posts": [
+      "https://programascontabilidad.com/analisis-de-herramientas/facturama-precios-funciones-mexico/",
+      "https://programascontabilidad.com/comparativas-de-software/contabilidad/pos-sin-integracion-contable-en-mexico/",
+      "https://programascontabilidad.com/comparativas-de-software/alegra-vs-odoo-mexico/",
+      "https://programascontabilidad.com/analisis-de-herramientas/contadigital-solucion-contabilidad/",
+      "https://programascontabilidad.com/comparativas-de-software/alegra-vs-eleventa-mexico/",
+      "https://programascontabilidad.com/comparativas-de-software/alegra-contpaqi/",
+      "https://programascontabilidad.com/comparativas-de-software/facturacion-en-mexico-alegra-facturama/",
+      "https://programascontabilidad.com/comparativas-de-software/alegra-vs-miskuentas-comparativa-real-para-contadores-y-pymes-en-mexico-2026/"
+    ],
+    "precios_observados": []
+  },
+  "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
+  "notes": "Leído el 12-nov-2026.",
+  "historial": [
+    {
+      "fecha": "2026-11-11",
+      "cambio": "creada desde artículos del blog"
+    }
+  ],
+  "features": [
+    "Contabilidad electrónica",
+    "Facturación CFDI",
+    "Multi RFC"
+  ],
+  "advantages": [
+    "Precio anual plano por número de RFC, no por volumen de facturas"
+  ],
+  "known_limits": [
+    "Solo publica dos planes anuales"
+  ],
+  "precios_origen": "sin verificar — la marca no está en la fuente única de México"
 }
