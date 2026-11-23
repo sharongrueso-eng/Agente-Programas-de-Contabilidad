@@ -1,0 +1,98 @@
+{
+  "canal": "Programas de Contabilidad",
+  "url": "https://www.youtube.com/@ProgramasdeContabilidad",
+  "actualizado": "2026-11-22",
+  "nota": "Catálogo de los videos publicados. `temas` se compara contra la keyword y el título de la pieza; `paises` limita el video a su mercado y `*` lo deja disponible para todos. No se incluyen «alegra» ni «comparativa» como tema: están en casi todo el canal y emparejarían cualquier pieza.",
+  "videos": [
+    {
+      "id": "BJx_kRrfn6c",
+      "titulo": "Facturación electrónica DGII 2026: los 5 mejores ERP en República Dominicana",
+      "url": "https://www.youtube.com/watch?v=BJx_kRrfn6c",
+      "paises": ["DO"],
+      "temas": ["facturacion electronica", "dgii", "erp"],
+      "marcas": ["alegra"],
+      "duracion": "4:23",
+      "publicado": "2026-09"
+    },
+    {
+      "id": "H38ZnvGyaJc",
+      "titulo": "Facturele vs GTI vs Alegra: la comparativa definitiva Costa Rica 2026",
+      "url": "https://www.youtube.com/watch?v=H38ZnvGyaJc",
+      "paises": ["CR"],
+      "temas": ["facturacion electronica", "facturele", "gti"],
+      "marcas": ["facturele", "gti", "alegra"],
+      "duracion": "6:13",
+      "publicado": "2026-08"
+    },
+    {
+      "id": "usOK_AuzS_Y",
+      "titulo": "Contalink vs Alegra 2026: cuál conviene para contadores en México",
+      "url": "https://www.youtube.com/watch?v=usOK_AuzS_Y",
+      "paises": ["MX"],
+      "temas": ["contalink", "contadores", "despachos"],
+      "marcas": ["contalink", "alegra"],
+      "duracion": "2:05",
+      "publicado": "2026-07"
+    },
+    {
+      "id": "oL-q9UTzvbg",
+      "titulo": "Siigo vs Alegra: ¿Quieres ahorrar dinero o ahorrar tiempo? (2026)",
+      "url": "https://www.youtube.com/watch?v=oL-q9UTzvbg",
+      "paises": ["CO"],
+      "temas": ["siigo"],
+      "marcas": ["siigo", "alegra"],
+      "duracion": "3:49",
+      "publicado": "2026-06"
+    },
+    {
+      "id": "EP6DYLplqxU",
+      "titulo": "4 pasos para MIGRAR de EXCEL a un software contable sin perder datos",
+      "url": "https://www.youtube.com/watch?v=EP6DYLplqxU",
+      "paises": ["*"],
+      "temas": ["excel", "migracion", "migrar", "migrar de excel"],
+      "marcas": [],
+      "duracion": "4:12",
+      "publicado": "2026-05"
+    },
+    {
+      "id": "co0G2LJwmdQ",
+      "titulo": "Loggro vs Alegra vs Siigo: Cuál cumple mejor DIAN 2026",
+      "url": "https://www.youtube.com/watch?v=co0G2LJwmdQ",
+      "paises": ["CO"],
+      "temas": ["dian", "facturacion electronica", "loggro", "siigo"],
+      "marcas": ["loggro", "alegra", "siigo"],
+      "duracion": "4:38",
+      "publicado": "2026-04"
+    },
+    {
+      "id": "PUW-MkOYJCc",
+      "titulo": "e-CF DGII 2026: Software Obligatorio RD ¿Cuál Necesitas Antes de la Multa?",
+      "url": "https://www.youtube.com/watch?v=PUW-MkOYJCc",
+      "paises": ["DO"],
+      "temas": ["ecf", "dgii", "facturacion electronica", "comprobante electronico"],
+      "marcas": [],
+      "duracion": "4:29",
+      "publicado": "2026-03"
+    },
+    {
+      "id": "kE5JoWpJ13Q",
+      "titulo": "CFDI 4.0 México 2026: Contpaqi vs Alegra vs QuickBooks vs Odoo — Comparativa Software Contable",
+      "url": "https://www.youtube.com/watch?v=kE5JoWpJ13Q",
+      "paises": ["MX"],
+      "temas": ["cfdi", "facturacion electronica", "contpaqi", "quickbooks", "odoo", "sat"],
+      "marcas": ["contpaqi", "alegra", "quickbooks", "odoo"],
+      "duracion": "3:34",
+      "publicado": "2026-03"
+    },
+    {
+      "id": "XqjfRVjL6nc",
+      "titulo": "Comparativa: Mejor Software Facturación Electrónica Costa Rica 2026 (Alegra vs GTI vs Softland)",
+      "url": "https://www.youtube.com/watch?v=XqjfRVjL6nc",
+      "paises": ["CR"],
+      "temas": ["facturacion electronica", "gti", "softland"],
+      "marcas": ["alegra", "gti", "softland"],
+      "duracion": "3:42",
+      "publicado": "2026-03"
+    }
+  ]
+}

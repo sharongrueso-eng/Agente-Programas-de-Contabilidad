@@ -269,9 +269,10 @@ def presentar(
     *,
     pais: str,
     url_cta: str = "",
+    keyword: str = "",
 ) -> str:
     """Aplica la presentación completa a una pieza recién escrita."""
-    from .reglas_editoriales import MAX_ENLACES_ALEGRA, corregir as corregir_forma
+    from .reglas_editoriales import MAX_ENLACES_ALEGRA, corregir as corregir_forma, marcas
 
     # Forma primero: el <h1> que duplica el título, las secciones repetidas y los enlaces a la
     # versión de Alegra de otro país (una pieza de México enlazaba a /colombia/precios).
@@ -303,5 +304,9 @@ def presentar(
         # Una firma sin la foto no es la del portal: se cambia por la canónica, una sola vez.
         html = re.sub(r'<div class="pc-firma".*?</div>\s*</div>', "", html, flags=re.S)
         html += firma()
+    # El video del canal entra solo si el tema coincide y es del mismo mercado (regla B49).
+    from . import youtube
+
+    html, _video = youtube.anadir(html, pais, keyword=keyword, marcas=sorted(marcas(html, pais)))
     html = normalizar_listas(html)
     return html

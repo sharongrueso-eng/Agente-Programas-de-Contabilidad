@@ -177,7 +177,9 @@ class RealFichaTests(unittest.TestCase):
 
         self.assertGreaterEqual(len(fichas), 1)
         texto = fichas_text(fichas)
-        self.assertIn("17.900 COP", texto)
+        # La cifra cambia cuando el vigía refresca el directorio: se comprueba el formato, no el
+        # número, que es justo lo que el lector ve (separador de miles, nunca 1.6191e+06).
+        self.assertRegex(texto, r"\d{1,3}(?:\.\d{3})+ COP")
 
     def test_a_published_price_is_accepted_by_the_validator(self) -> None:
         from pathlib import Path

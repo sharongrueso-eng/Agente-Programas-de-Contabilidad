@@ -1269,7 +1269,12 @@ def main() -> int:
         from orchestrator.presentacion import presentar
 
         salida.draft = _reemplazar(
-            salida.draft, html=presentar(salida.draft.html, pais=brief.country)
+            salida.draft,
+            html=presentar(
+                salida.draft.html,
+                pais=brief.country,
+                keyword=(brief.opportunity.focus_keyword if brief.opportunity else ""),
+            ),
         )
         if brief.opportunity.action != "create" and brief.opportunity.url:
             try:

@@ -29,7 +29,9 @@ class CargaTests(unittest.TestCase):
         registro = cargar_registro("CO", FICHAS, today=date(2026, 11, 6))
 
         self.assertTrue(registro.utilizable)
-        self.assertIn("49.900 COP", registro.texto)
+        # La cifra cambia cuando el vigía refresca el directorio: se comprueba el formato, no el
+        # número, que es justo lo que el lector ve (separador de miles, nunca 1.6191e+06).
+        self.assertRegex(registro.texto, r"\d{1,3}(?:\.\d{3})+ COP")
         self.assertEqual(registro.vencidas, [])
 
     def test_un_mercado_sin_fichas_no_es_utilizable(self) -> None:

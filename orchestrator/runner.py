@@ -269,7 +269,11 @@ def run(
         draft_data = dict(result.get("draft") or {})
         # La pieza se presenta aquí: tarjetas, tabla de criterios, panel de perfiles y firma.
         if presentar_pieza:
-            draft_data["html"] = presentar(draft_data.get("html", ""), pais=brief.country)
+            draft_data["html"] = presentar(
+                draft_data.get("html", ""),
+                pais=brief.country,
+                keyword=(brief.opportunity.focus_keyword if brief.opportunity else ""),
+            )
         state.save("borrador.json", draft_data)
         draft = Draft(**draft_data)
         state.checkpoint("production")

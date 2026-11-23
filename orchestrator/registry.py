@@ -116,13 +116,34 @@ def unregistered_amounts(text: str, registry_text: str) -> set[str]:
     return money_amounts(text) - money_amounts(registry_text)
 
 
+def _precio_para_texto(valor: object) -> str:
+    """La cifra tal como se lee en la página: con separador de miles y sin 1.6191e+06.
+
+    El vigía escribe los precios como texto («1619100») y el registro puede recibirlos como
+    número; en ambos casos el lector tiene que ver «1.619.100».
+    """
+    texto = str(valor if valor is not None else "").strip()
+    if not texto:
+        return ""
+    if isinstance(valor, bool):
+        return texto
+    if isinstance(valor, (int, float)) or re.fullmatch(r"\d+(?:\.\d+)?(?:[eE][+-]?\d+)?", texto):
+        try:
+            numero = float(valor)
+        except (TypeError, ValueError):
+            return texto
+        if numero.is_integer():
+            return f"{int(numero):,}".replace(",", ".")
+    return texto
+
+
 def fichas_text(fichas: Iterable[dict[str, Any]]) -> str:
     """Todo lo citable de las fichas, en un solo texto para el juez y el validador."""
     lines: list[str] = []
     for ficha in fichas:
         lines.append(f"{ficha['brand']} · {ficha['country']} · {ficha['product']}")
         for plan in ficha.get("plans", []):
-            price = str(plan.get("price", "")).strip()
+            price = _precio_para_texto(plan.get("price", ""))
             currency = str(plan.get("currency", "")).strip()
             period = str(plan.get("period", "")).strip()
             cobro = str(plan.get("billing", "")).strip()
