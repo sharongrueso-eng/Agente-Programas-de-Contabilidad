@@ -50,10 +50,14 @@ def con_firma(html: str) -> tuple[str, bool]:
 
 
 def cliente() -> WordPressClient:
-    entorno = _env()
-    return WordPressClient(
-        entorno["PDC_PROD_URL"], entorno["PDC_PROD_TOKEN"], username=entorno["PDC_PROD_USER"]
-    )
+    """Entorno primero (contenedor), archivo después (local)."""
+    url = os.environ.get("PDC_PROD_URL", "").strip()
+    token = os.environ.get("PDC_PROD_TOKEN", "").strip()
+    usuario = os.environ.get("PDC_PROD_USER", "").strip()
+    if not (url and token):
+        entorno = _env()
+        url, token, usuario = entorno["PDC_PROD_URL"], entorno["PDC_PROD_TOKEN"], entorno["PDC_PROD_USER"]
+    return WordPressClient(url, token, username=usuario)
 
 
 def _post(wp: WordPressClient, pid: int) -> dict:

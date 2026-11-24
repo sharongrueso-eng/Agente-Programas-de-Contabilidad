@@ -44,10 +44,18 @@ def _env(ruta: str) -> dict[str, str]:
 
 
 def cliente() -> WordPressClient:
-    entorno = _env("~/.pdc/wp-prod.env")
-    return WordPressClient(
-        entorno["PDC_PROD_URL"], entorno["PDC_PROD_TOKEN"], username=entorno["PDC_PROD_USER"]
-    )
+    """Las credenciales vienen del entorno en el contenedor; del archivo, en local.
+
+    En Coolify no existe `~/.pdc/wp-prod.env`: las tres variables llegan como variables de
+    entorno. Sin esta rama el calendario se caía justo después de traer GSC.
+    """
+    url = os.environ.get("PDC_PROD_URL", "").strip()
+    token = os.environ.get("PDC_PROD_TOKEN", "").strip()
+    usuario = os.environ.get("PDC_PROD_USER", "").strip()
+    if not (url and token):
+        entorno = _env("~/.pdc/wp-prod.env")
+        url, token, usuario = entorno["PDC_PROD_URL"], entorno["PDC_PROD_TOKEN"], entorno["PDC_PROD_USER"]
+    return WordPressClient(url, token, username=usuario)
 
 
 def _post_de_url(wp: WordPressClient, url: str) -> dict | None:
