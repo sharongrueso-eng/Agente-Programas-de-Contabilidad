@@ -92,13 +92,43 @@ def precio_numero(valor: object) -> float:
         return 0.0
 
 
+MONEDA_DEL_MERCADO = {"CO": "COP", "MX": "MXN", "CR": "CRC", "DO": "DOP"}
+
+
 def _plan_publicado(ficha: dict) -> str:
+    """El plan de entrada que se muestra en el rótulo de la marca.
+
+    Dos filtros que antes no existían y que producían rótulos falsos: el plan tiene que estar en la
+    moneda del país (un complemento de Facturama en Shopify, 13 USD/mes, encabezaba su ficha en una
+    pieza mexicana) y la comparación de precio se hace por mes, no por el número pelado (55 al año
+    no es «más caro» que 13 al mes).
+    """
+    esperada = MONEDA_DEL_MERCADO.get(str(ficha.get("country") or "").upper(), "")
     precios = [p for p in (ficha.get("plans") or []) if p.get("publicado", True)]
-    mensuales = [p for p in precios if str(p.get("billing", "")).lower() == "mensual"] or precios
-    if not mensuales:
+    if esperada:
+        precios = [
+            p for p in precios if str(p.get("currency") or "").upper() in ("", esperada)
+        ]
+    if not precios:
         return "Precio no publicado"
-    elegido = min(mensuales, key=lambda p: precio_numero(p.get("price")))
-    if not elegido.get("price"):
+
+    # El rótulo es el plan de entrada del producto que la pieza compara, no el complemento más
+    # barato: «cotizaciones» (50 al año) o el canal Shopify no representan la facturación.
+    accesorios = ("cotizacion", "cotización", "shopify", "autofactur", "adicional", "complemento",
+                  "modulo", "módulo", "nomina", "nómina", "timbre extra")
+    principales = [
+        p for p in precios if not any(a in str(p.get("name") or "").lower() for a in accesorios)
+    ]
+    precios = principales or precios
+
+    def por_mes(plan: dict) -> float:
+        valor = precio_numero(plan.get("price"))
+        if str(plan.get("period", "mes")).lower().startswith("a"):
+            valor = valor / 12
+        return valor
+
+    elegido = min(precios, key=por_mes)
+    if not elegido.get("price") or not por_mes(elegido):
         return "Precio no publicado"
     return (
         f"{elegido['name']} · {elegido['price']} {elegido.get('currency', 'COP')}"
