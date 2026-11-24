@@ -257,7 +257,11 @@ def main() -> int:
         plan = []
     hoy = date.today().isoformat()
     for slot in plan if isinstance(plan, list) else []:
-        if str(slot.get("fecha")) == hoy and (slot.get("objetivo") or "").strip():
+        # El calendario puede venir con «dia» (el que genera `rehacer_calendario.py`) o con
+        # «fecha» (el formato anterior). Con una sola clave, el slot de hoy se perdía y la
+        # corrida volvía a la rotación por mercado.
+        cuando = str(slot.get("dia") or slot.get("fecha") or "")
+        if cuando == hoy and (slot.get("objetivo") or "").strip():
             if (slot.get("pais") or "").strip().upper() in PAISES:
                 pais = str(slot["pais"]).strip().upper()
             objetivo_del_dia = str(slot["objetivo"]).strip()
@@ -279,9 +283,26 @@ def main() -> int:
         # no hay nada que mejorar se escribe una pieza nueva. La elección sale del diagnóstico.
     ]
     if objetivo_del_dia:
-        # El slot del calendario ya dice qué pieza toca: se trabaja esa y solo como reencauche.
-        argumentos.extend(["--url", objetivo_del_dia, "--solo-reencauche"])
-    else:
+        # El slot del calendario dice qué pieza toca, pero el calendario envejece: si esa URL ya se
+        # trabajó (o alguien la editó a mano), forzarla hace fallar la corrida entera con «no está
+        # entre las oportunidades». En ese caso se suelta el objetivo y el pipeline elige la
+        # siguiente de la cola, que ya trae el descanso aplicado.
+        try:
+            diario = json.loads(
+                (Path(os.environ.get("PDC_STATE_DIR", "state")) / "reencauches.json").read_text(encoding="utf-8")
+            )
+        except (OSError, ValueError):
+            diario = {}
+        trabajadas = {str(u).rstrip("/") for u in (diario or {})}
+        if objetivo_del_dia.rstrip("/") in trabajadas:
+            print(
+                "calendario: la pieza del día está en descanso; se toma la siguiente de la cola"
+            )
+            objetivo_del_dia = ""
+        else:
+            # Se trabaja esa y solo como reencauche.
+            argumentos.extend(["--url", objetivo_del_dia, "--solo-reencauche"])
+    if not objetivo_del_dia:
         argumentos.append("--auto")
     if modo != "publicar":
         argumentos.append("--borrador")
