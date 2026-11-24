@@ -184,7 +184,7 @@
     ],
     "precios_observados": []
   },
-  "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
+  "pricing_note": "Facturama publica su tarifa por folios, cobrada por año: 10 folios 55 MXN, 25 folios 110 MXN, 40 folios 165 MXN y folios ilimitados 1.650 MXN al año. No publica un precio mensual; la comparación se hace con el equivalente mensual del plan anual.",
   "notes": "Precios anuales en MXN con IVA no especificado en la página. Leído el 12-nov-2026.",
   "historial": [
     {
@@ -211,7 +211,8 @@
     "Vende por folios: el costo escala con el volumen real"
   ],
   "known_limits": [
-    "El plan de folios ilimitados es el único que no obliga a contar facturas"
+    "El plan de folios ilimitados es el único que no obliga a contar facturas",
+    "No publica precio mensual: la tarifa se cobra por año y por número de folios"
   ],
   "precios_origen": "directorio del vigía",
   "nota_base_iva": "Precios IVA incluido; el anual es el que cobra la página, no el mensual por 12."
