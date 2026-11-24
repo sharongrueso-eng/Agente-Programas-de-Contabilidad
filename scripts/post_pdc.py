@@ -37,6 +37,18 @@ def _env(ruta: str = "~/.pdc/wp-prod.env") -> dict[str, str]:
     return datos
 
 
+def con_firma(html: str) -> tuple[str, bool]:
+    """Devuelve (html, repuesta). La firma del autor no se negocia: si falta, se añade.
+
+    Se pierde justo cuando alguien reescribe la pieza a mano, que es cuando menos se revisa.
+    """
+    from orchestrator.presentacion import AVATAR_DE_LEANDRO, firma
+
+    if AVATAR_DE_LEANDRO in html:
+        return html, False
+    return html.rstrip() + "\n\n" + firma() + "\n", True
+
+
 def cliente() -> WordPressClient:
     entorno = _env()
     return WordPressClient(
@@ -102,6 +114,10 @@ def cmd_guardar(args: argparse.Namespace) -> int:
     sello = datetime.now().strftime("%Y%m%d-%H%M%S")
     respaldo = carpeta / f"post-{args.post}-{sello}.html"
     respaldo.write_text((actual.get("content") or {}).get("raw") or "", encoding="utf-8")
+
+    nuevo, repuesta = con_firma(nuevo)
+    if repuesta:
+        print("firma: el HTML venía sin la del autor; se repuso antes de guardar", file=sys.stderr)
 
     wp.update_post(args.post, {"content": nuevo})
     despues = _post(wp, args.post)

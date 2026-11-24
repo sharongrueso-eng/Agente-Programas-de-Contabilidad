@@ -22,6 +22,8 @@ Costa Rica y República Dominicana.
 9. **Ningún enlace roto.** Se comprueban antes de guardar.
 10. **Sin `<h1>` en el contenido** (el título lo pone WordPress), sin secciones repetidas, sin
     frases cortadas.
+11. **La firma del autor va siempre**, con el avatar de Leandro, en cualquier formato y extensión.
+    `scripts/post_pdc.py guardar` la repone si el HTML llegó sin ella.
 
 ## La pieza, en orden
 
