@@ -37,7 +37,7 @@
     ],
     "precios_observados": []
   },
-  "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
+  "pricing_note": "Konta publica dos planes anuales en pesos: una empresa (un RFC) 999 MXN al año y multiempresa (RFC ilimitados) 2,999 MXN al año. No publica precio mensual: la comparación se hace con el equivalente mensual del plan anual.",
   "notes": "Leído el 12-nov-2026.",
   "historial": [
     {
@@ -54,7 +54,8 @@
     "Precio anual plano por número de RFC, no por volumen de facturas"
   ],
   "known_limits": [
-    "Solo publica dos planes anuales"
+    "Solo publica dos planes anuales",
+    "No publica precio mensual: la tarifa publicada es anual"
   ],
   "precios_origen": "sin verificar — la marca no está en la fuente única de México"
 }

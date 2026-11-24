@@ -184,7 +184,7 @@
     ],
     "precios_observados": []
   },
-  "pricing_note": "El blog menciona esta herramienta pero no publica sus precios. No hay tarifa que citar hasta revisar su landing.",
+  "pricing_note": "CONTPAQi publica sus planes de Contabilidad en pesos y por año: Nube Inicial 4,690 MXN, Equipos 6,290 MXN, Empresarial 11,790 MXN y Corporativo 20,490 MXN; el usuario adicional cuesta 1,880 MXN al año. No publica precio mensual: la comparación se hace con el equivalente mensual del plan anual.",
   "notes": "Precios leídos de la lista oficial de CONTPAQi por el vigía y confirmados en el directorio.",
   "historial": [
     {
@@ -201,5 +201,8 @@
     }
   ],
   "precios_origen": "directorio del vigía",
-  "nota_base_iva": "Precios No indica; el anual es el que cobra la página, no el mensual por 12."
+  "nota_base_iva": "Precios No indica; el anual es el que cobra la página, no el mensual por 12.",
+  "known_limits": [
+    "No publica precio mensual: la tarifa publicada es anual"
+  ]
 }
