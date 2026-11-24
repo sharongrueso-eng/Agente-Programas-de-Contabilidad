@@ -24,7 +24,27 @@ from .linea_visual import (
     normalizar_listas,
 )
 
-UTM_PRINCIPAL = "?utm_source=programascontabilidad&utm_medium=blog&utm_campaign=comparativa"
+# Convención del portal (Sharon): la fuente es el blog, el medio es referral y el término lleva la
+# consulta. Antes se escribía `utm_source=programascontabilidad&utm_medium=blog`, que rompe el
+# informe de campañas y deja el CTA sin `utm_term`.
+UTM_PRINCIPAL = (
+    "?utm_source=blog_programascontabilidad&utm_medium=referral&utm_campaign=comparativa"
+)
+
+
+def _consulta_utm(pais: str, keyword: str = "") -> str:
+    """La cadena de campaña, sin el `?`: la usan el CTA y los enlaces del cuerpo."""
+    from urllib.parse import quote_plus
+
+    from .reglas_editoriales import campana as _campana
+
+    consulta = (
+        "utm_source=blog_programascontabilidad&utm_medium=referral"
+        f"&utm_campaign={_campana(pais)}_articulo_tmd_content"
+    )
+    if keyword:
+        consulta += f"&utm_term={quote_plus(keyword)}"
+    return consulta
 CRITERIOS = (
     ("Facturación electrónica", ("facturación electrónica", "facturacion electronica")),
     ("Punto de venta (POS)", ("pos", "punto de venta")),
@@ -247,21 +267,20 @@ def viñetas(html: str) -> str:
     )
 
 
-def utm(html: str, pais: str = "CO") -> str:
+def utm(html: str, pais: str = "CO", keyword: str = "") -> str:
     """La UTM de la pieza lleva la campaña de su país: `col_`, `mex_`, `cri_`, `dom_`."""
     from .reglas_editoriales import campana as _campana
 
+    consulta = _consulta_utm(pais, keyword)
+
     def poner(m: re.Match[str]) -> str:
         url = m.group(1).replace("&amp;", "&")
-        if "utm_source=" in url:
-            return 'href="' + url + '"'
-        consulta = (
-            "?utm_source=programascontabilidad&utm_medium=blog"
-            f"&utm_campaign={_campana(pais)}_articulo_tmd_content"
-        )
-        return 'href="' + url + ("&" if "?" in url else "?") + consulta[1:] + '"'
+        # Una UTM vieja se reemplaza: la convención es una sola y se aplica a lo que ya venía escrito.
+        limpio = re.sub(r"([?&])utm_[^&\"]*", "", url)
+        limpio = limpio.rstrip("?&")
+        return 'href="' + limpio + ("&" if "?" in limpio else "?") + consulta + '"'
 
-    return re.sub(r'href="(https://www\.alegra\.com[^"]*)"', poner, html)
+    return re.sub(r'href="(https://(?:www\.)?alegra\.com[^"]*)"', poner, html)
 
 
 def tablas_con_fondo(html: str, color: str = "#cce4f7") -> str:
@@ -305,20 +324,17 @@ def presentar(
     if datos:
         html = _envolver_marcas(html, datos)
     html = _panel_veredicto(html)
-    html = utm(html, pais)
+    html = utm(html, pais, keyword)
     if "pc-cta" not in html:
         from .reglas_editoriales import MAX_ENLACES_ALEGRA, recortar_alegra, ruta_principal
 
         # El CTA final es el único enlace a Alegra del cuerpo: lo que quede antes se desenlaza.
         html = recortar_alegra(html, MAX_ENLACES_ALEGRA - 1)
         destino = url_cta or f"https://www.alegra.com{ruta_principal(pais)}precios/"
-        if "utm_source=" not in destino:
-            from .reglas_editoriales import campana as _campana
-
-            destino += (
-                "?utm_source=programascontabilidad&utm_medium=blog"
-                f"&utm_campaign={_campana(pais)}_articulo_tmd_content"
-            )
+        # Misma convención que el resto de enlaces: fuente blog_programascontabilidad, medio
+        # referral y la consulta en `utm_term`. Una sola forma en todo el portal.
+        destino = re.sub(r"([?&])utm_[^&\"]*", "", destino).rstrip("?&")
+        destino += ("&" if "?" in destino else "?") + _consulta_utm(pais, keyword)
         indice = html.find("<h2", html.find("Veredicto"))
         html = (html[:indice] + cta(destino) + html[indice:]) if indice != -1 else html + cta(destino)
     if "pc-firma" not in html and AVATAR_DE_LEANDRO not in html:

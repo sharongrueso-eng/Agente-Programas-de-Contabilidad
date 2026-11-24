@@ -32,7 +32,7 @@ PLANTILLA = """<!-- wp:heading -->
 <!-- /wp:paragraph -->
 
 <!-- wp:embed {{"url":"{url}","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"}} -->
-<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<figure class="wp-block-embed aligncenter is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
 {url}
 </div></figure>
 <!-- /wp:embed -->"""
@@ -100,9 +100,11 @@ def bloque(video: dict, *, pais: str = "") -> str:
     duracion = str(video.get("duracion") or "").strip()
     marcas = ", ".join(m for m in (video.get("marcas") or []) if _normalizar(m) != "alegra")
     if marcas:
+        # Las marcas se escriben como se llaman: el nombre propio no va en minúscula.
+        bonitas = ", ".join(m.strip().title() if m.islower() else m.strip() for m in marcas.split(","))
         entradilla = (
             f"Si prefiere ver la comparación en pantalla, este video del canal recorre "
-            f"{marcas} y el mismo tema que trata esta guía."
+            f"{bonitas} y el mismo tema que trata esta guía."
         )
     else:
         entradilla = "Este video del canal desarrolla el mismo tema que trata esta guía, en pocos minutos."

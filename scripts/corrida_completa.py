@@ -901,10 +901,27 @@ def main() -> int:
         vivas = _marcas(locals().get("html_vivo") or "", brief.country)
         vivas.discard("alegra")
         cupo = PRESUPUESTOS[brief.format].elenco_max
-        # Alegra no cuenta en el cupo, pero sí ocupa un sitio en la pieza: con dos competidores
-        # en la viva y cupo de dos, «reseña» se queda corta y el reencauche pierde una marca.
-        # Es lo que bloqueó dos veces la salida de QuickBooks México (perdía Odoo).
-        if len(vivas) > max(1, cupo - 1):
+
+        # Regla B52: el elenco lo anuncia el título (y la consulta), no las menciones sueltas.
+        # El 69 de Colombia nombra QuickBooks y Sage de pasada, y eso abrió el elenco a cinco
+        # fichas (Cuenti, GridPOS, Helisa) en una pieza que el título cierra con Alegra y Siigo.
+        vivo = locals().get("html_vivo") or ""
+        encontrado = re.search(r"<h1[^>]*>(.*?)</h1>", vivo, re.S | re.I) or re.search(
+            r"<title[^>]*>(.*?)</title>", vivo, re.S | re.I
+        )
+        titulo_vivo = re.sub(r"<[^>]+>", " ", encontrado.group(1)) if encontrado else ""
+        anunciadas = _marcas(
+            f"{titulo_vivo} {brief.opportunity.focus_keyword or ''}", brief.country
+        )
+        anunciadas.discard("alegra")
+        globals()["_TOPE_DEL_TITULO"] = (len(anunciadas) + 1) if anunciadas else None
+        if anunciadas:
+            if len(anunciadas) + 1 < cupo:
+                print(
+                    f"elenco  : {len(anunciadas) + 1} marcas — las anuncia el título "
+                    f"({', '.join(sorted(anunciadas))}); no se abre por menciones sueltas"
+                )
+        elif len(vivas) > max(1, cupo - 1):
             antes = brief.format
             brief = _replace(brief, format="comparativa")
             print(
@@ -924,7 +941,10 @@ def main() -> int:
         keyword=brief.opportunity.focus_keyword or "",
         url=brief.opportunity.url or "",
         html_vivo=locals().get("html_vivo") or "",
-        maximo=_presupuesto_formato(brief.format).elenco_max,
+        maximo=min(
+            _presupuesto_formato(brief.format).elenco_max,
+            globals().get("_TOPE_DEL_TITULO") or _presupuesto_formato(brief.format).elenco_max,
+        ),
     ) or list(registro.fichas)
     fecha_datos = fecha_de_consulta(fichas_pieza)
     print(
