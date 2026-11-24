@@ -23,10 +23,15 @@ TEMPLATES: dict[str, str] = {
         "No se publicó nada. La evidencia queda en {carpeta}"
     ),
     "borrador_listo": (
-        "📝 Borrador listo · {pais} · {formato}\n"
+        "📝 {formato} en BORRADOR · {pais}\n"
+        "\n"
+        "{titulo}\n"
         "Keyword: {keyword}\n"
         "Post ID: {post_id}\n"
-        "Firma: autor del portal · pendiente de revisión antes de publicar"
+        "Ver: {url}\n"
+        "Editar: {edit}\n"
+        "\n"
+        "Estado: BORRADOR — no está publicado. Falta revisión y publicar."
     ),
     "slot_publicado": (
         "✅ Slot {slot} · {pais} · {formato} · PUBLICADA\n"

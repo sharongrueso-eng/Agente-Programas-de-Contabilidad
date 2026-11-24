@@ -1548,12 +1548,21 @@ def main() -> int:
 
         webhook = _webhook(args)
         if webhook:
+            post_id = str(resultado.get("post_id", "") or "")
+            publica = str(resultado.get("output_url") or "")
             texto = render(
                 "borrador_listo",
                 pais=brief.country,
                 formato=brief.format.capitalize(),
+                titulo=borrador.get("title", "") or brief.opportunity.focus_keyword,
                 keyword=brief.opportunity.focus_keyword,
-                post_id=str(resultado.get("post_id", "")),
+                post_id=post_id,
+                url=publica or (f"https://programascontabilidad.com/?p={post_id}" if post_id else "—"),
+                edit=(
+                    f"https://programascontabilidad.com/wp-admin/post.php?post={post_id}&action=edit"
+                    if post_id
+                    else "—"
+                ),
             )
             codigo = send(webhook, texto)
             print()
