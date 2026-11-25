@@ -140,10 +140,27 @@ def cubierta(seccion_titulo: str, temas_nueva: set[str], umbral: float = 0.6) ->
     return len(propias & temas_nueva) / len(propias) >= umbral
 
 
+# Secciones que la política editorial manda quitar o renombrar: exigir su conservación bloquea
+# justo lo que la regla pide hacer. «Fuentes y fecha de actualización» se convierte en «Fuentes».
+_SECCIONES_QUE_NO_SE_CONSERVAN = ("fuente", "fecha", "actualización", "actualizacion")
+
+
 def secciones_perdidas(nueva: str, viva: str) -> list[Seccion]:
-    """Las secciones de la viva cuyo tema no aparece en la versión nueva."""
+    """Las secciones de la viva cuyo tema no aparece en la versión nueva.
+
+    Las de fuentes y fechas quedan fuera del control: `corregir` quita la fecha de consulta y
+    renombra la sección, así que el reencauche perdía «Fuentes y fecha de actualización» y se
+    bloqueaba a sí mismo por hacer lo correcto.
+    """
     temas_nueva = _tema(_texto(nueva))
-    return [s for s in secciones(viva) if not cubierta(s.titulo, temas_nueva)]
+    perdidas = []
+    for seccion in secciones(viva):
+        titulo = (seccion.titulo or "").lower()
+        if any(palabra in titulo for palabra in _SECCIONES_QUE_NO_SE_CONSERVAN):
+            continue
+        if not cubierta(seccion.titulo, temas_nueva):
+            perdidas.append(seccion)
+    return perdidas
 
 
 # Enlaces que pone la plantilla, no el texto: la ficha del autor, archivos de categoría, medios.
