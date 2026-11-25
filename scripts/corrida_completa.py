@@ -246,6 +246,38 @@ def _modelo_de_intencion():
     )
 
 
+def _dias_desde_edicion(url: str) -> int | None:
+    """Días desde la última modificación real del artículo en WordPress.
+
+    El descanso de 30 días vivía solo en `state/reencauches.json`. Ese archivo no viaja: el
+    contenedor tiene su propio volumen y la corrida local el suyo, así que una pieza trabajada
+    ayer volvió a salir como objetivo del día (el 69, el 24 de noviembre). La fecha del post es
+    la fuente que no se pierde, y se consulta antes de elegir.
+    """
+    from datetime import date, datetime
+
+    from orchestrator.adapters import WordPressClient
+
+    if not url:
+        return None
+    wp = WordPressClient(
+        os.environ.get("PDC_PROD_URL", ""),
+        os.environ.get("PDC_PROD_TOKEN", ""),
+        username=os.environ.get("PDC_PROD_USER", ""),
+    )
+    try:
+        hallado = wp.find_by_url(url)
+        if not hallado or not hallado.get("id"):
+            return None
+        datos = wp._write("GET", f"/wp-json/wp/v2/posts/{hallado['id']}?context=edit", {})
+        marca = str(datos.get("modified") or "")
+        if not marca:
+            return None
+        return (date.today() - datetime.fromisoformat(marca).date()).days
+    except Exception:  # noqa: BLE001 - sin dato se cae al registro local
+        return None
+
+
 def _html_vivo(url: str) -> str:
     """Contenido actual de una URL publicada, para comparar la versión nueva contra ella."""
     from orchestrator.adapters import WordPressClient
@@ -636,6 +668,23 @@ def main() -> int:
             print(f"sin descanso: no se pudo leer el registro de reencauches ({error})")
             return 2
         con_cuerpo, descansando = diagnostico_mod.en_descanso(con_cuerpo, diario)
+
+        # Segunda red, y la que de verdad manda: la fecha del artículo en WordPress. Si se editó
+        # hace menos de los días de descanso, no se toca, aunque el registro local diga otra cosa.
+        recientes = []
+        for oportunidad in list(con_cuerpo):
+            dias = _dias_desde_edicion(oportunidad.url)
+            if dias is not None and dias < diario.min_days:
+                recientes.append((oportunidad, dias))
+        if recientes:
+            con_cuerpo = [o for o in con_cuerpo if o not in [r[0] for r in recientes]]
+            detalle = ", ".join(
+                f"{o.url.rstrip('/').split('/')[-1][:34]} ({d} día(s))" for o, d in recientes[:3]
+            )
+            print(
+                f"descanso: {len(recientes)} URL(s) editada(s) en WordPress hace menos de "
+                f"{diario.min_days} días → {detalle}"
+            )
         if descansando:
             proximas = ", ".join(
                 f"{o.url.rstrip('/').split('/')[-1][:34]} ({(diario.last_refresh(o.url) or date.today()).isoformat()})"
