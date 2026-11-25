@@ -530,6 +530,17 @@ def _voz(html: str, pais: str, fichas: Sequence[Mapping[str, Any]]) -> list[dict
     salida: list[dict] = []
     texto = _visible(html)
 
+    # 0. Vocabulario interno: «vigía» no va en el texto público, ni en Fuentes ni en una nota.
+    if re.search(r"\bvig[ií]a\b", texto, re.I):
+        salida.append(
+            {
+                "codigo": "termino_interno",
+                "pasa": False,
+                "detalle": "el texto público usa «vigía», que es vocabulario interno del portal",
+                "grave": True,
+            }
+        )
+
     # 1. Sin fechas de consulta: el vigía mantiene los precios al día y la fecha envejece el post.
     fechas = FECHA_DE_CONSULTA.findall(html or "") + FECHA_DE_HOY.findall(html or "")
     if fechas or re.search(r"(?i)<h2[^>]*>[^<]*fecha\s+de\s+consulta", html or ""):
@@ -725,6 +736,27 @@ def corregir(html: str, *, pais: str) -> tuple[str, list[str]]:
         sin_fechas = re.sub(r"\s+</(p|li|div)>", r"</\1>", sin_fechas)
         html = sin_fechas
         tocados.append(f"fecha de consulta retirada ({cuantas_fechas + cuantas_hoy})")
+
+    # «Vigía» es vocabulario interno: el lector no sabe qué es. Se reescribe la frase hecha y, si
+    # queda suelta, se quita. El 25-nov el redactor publicó «los valores los mantiene al día el
+    # vigía de precios del portal» en Fuentes y nadie lo bloqueó.
+    frases = [
+        (r"(?i)los valores los mantiene al d[ií]a el vig[ií]a de precios del portal\.?",
+         "las tarifas son las que publica cada proveedor en su p\u00e1gina."),
+        (r"(?i)el vig[ií]a de precios", "la p\u00e1gina de precios de cada proveedor"),
+        (r"(?i)el vig[ií]a", "la fuente oficial"),
+        (r"(?i)vig[ií]a", "fuente oficial"),
+    ]
+    for patron, reemplazo in frases:
+        html, cuantos_vigia = re.subn(patron, reemplazo, html or "")
+        if cuantos_vigia:
+            # La frase entra a mitad de párrafo: se pone en mayúscula si viene tras un punto.
+            html = re.sub(
+                r"([.!?]\s+)([a-záéíóúñ])",
+                lambda m: m.group(1) + m.group(2).upper(),
+                html,
+            )
+            tocados.append(f"«vigía» fuera del texto ({cuantos_vigia})")
 
     # «Fuentes y fecha de consulta» pasa a «Fuentes»: sin fecha no hay nada más que anunciar.
     html, secciones = re.subn(
