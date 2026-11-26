@@ -282,38 +282,17 @@ def main() -> int:
         # Prioridad de negocio: primero se mejora lo que ya posiciona (reencauche) y solo cuando
         # no hay nada que mejorar se escribe una pieza nueva. La elección sale del diagnóstico.
     ]
+    # El calendario propone, la cadena decide. Forzar la URL del slot hacía morir la corrida
+    # entera cuando esa pieza ya no estaba entre las oportunidades del día —por descanso, por una
+    # edición a mano o porque GSC cambió—: el 24, el 25 y el 26 de noviembre falló así. La cadena
+    # ya elige por prioridad de negocio con el descanso aplicado (registro y fecha del artículo),
+    # así que aquí solo se informa de lo que proponía el plan.
     if objetivo_del_dia:
-        # El slot del calendario dice qué pieza toca, pero el calendario envejece: si esa URL ya se
-        # trabajó (o alguien la editó a mano), forzarla hace fallar la corrida entera con «no está
-        # entre las oportunidades». En ese caso se suelta el objetivo y el pipeline elige la
-        # siguiente de la cola, que ya trae el descanso aplicado.
-        try:
-            diario = json.loads(
-                (Path(os.environ.get("PDC_STATE_DIR", "state")) / "reencauches.json").read_text(encoding="utf-8")
-            )
-        except (OSError, ValueError):
-            diario = {}
-        trabajadas = {str(u).rstrip("/") for u in (diario or {})}
-        # La fecha del artículo manda: si se editó hace menos de los días de descanso, no se
-        # fuerza. Antes solo se miraba el registro local, el artículo fresco se forzaba igual y la
-        # cadena lo descartaba después: la corrida del 26-nov murió con «no está entre las
-        # oportunidades» por esa incoherencia.
-        from orchestrator.frescura import dias_desde_edicion
-
-        dias = dias_desde_edicion(objetivo_del_dia)
-        if dias is not None and dias < 30:
-            print(f"calendario: «{objetivo_del_dia.rstrip('/').split('/')[-1]}» se editó hace {dias} día(s); no se fuerza")
-            objetivo_del_dia = ""
-        elif objetivo_del_dia.rstrip("/") in trabajadas:
-            print(
-                "calendario: la pieza del día está en descanso; se toma la siguiente de la cola"
-            )
-            objetivo_del_dia = ""
-        else:
-            # Se trabaja esa y solo como reencauche.
-            argumentos.extend(["--url", objetivo_del_dia, "--solo-reencauche"])
-    if not objetivo_del_dia:
-        argumentos.append("--auto")
+        print(
+            f"calendario: proponía {objetivo_del_dia.rstrip('/').split('/')[-1][:44]}; "
+            "la cadena elige con el descanso aplicado"
+        )
+    argumentos.extend(["--auto", "--solo-reencauche"])
     if modo != "publicar":
         argumentos.append("--borrador")
     else:
