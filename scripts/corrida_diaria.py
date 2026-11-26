@@ -294,7 +294,17 @@ def main() -> int:
         except (OSError, ValueError):
             diario = {}
         trabajadas = {str(u).rstrip("/") for u in (diario or {})}
-        if objetivo_del_dia.rstrip("/") in trabajadas:
+        # La fecha del artículo manda: si se editó hace menos de los días de descanso, no se
+        # fuerza. Antes solo se miraba el registro local, el artículo fresco se forzaba igual y la
+        # cadena lo descartaba después: la corrida del 26-nov murió con «no está entre las
+        # oportunidades» por esa incoherencia.
+        from orchestrator.frescura import dias_desde_edicion
+
+        dias = dias_desde_edicion(objetivo_del_dia)
+        if dias is not None and dias < 30:
+            print(f"calendario: «{objetivo_del_dia.rstrip('/').split('/')[-1]}» se editó hace {dias} día(s); no se fuerza")
+            objetivo_del_dia = ""
+        elif objetivo_del_dia.rstrip("/") in trabajadas:
             print(
                 "calendario: la pieza del día está en descanso; se toma la siguiente de la cola"
             )

@@ -247,6 +247,13 @@ def _modelo_de_intencion():
 
 
 def _dias_desde_edicion(url: str) -> int | None:
+    """Envuelve `orchestrator.frescura`: la misma regla para la corrida diaria y la cadena."""
+    from orchestrator.frescura import dias_desde_edicion
+
+    return dias_desde_edicion(url)
+
+
+def _dias_desde_edicion_legado(url: str) -> int | None:
     """Días desde la última modificación real del artículo en WordPress.
 
     El descanso de 30 días vivía solo en `state/reencauches.json`. Ese archivo no viaja: el
