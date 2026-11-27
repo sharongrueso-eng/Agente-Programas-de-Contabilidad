@@ -685,8 +685,9 @@ def main() -> int:
         # grandes, 15 para las pequeñas, para que el inventario no se agote.
         from orchestrator.frescura import estado_de_edicion
 
+        restantes = list(con_cuerpo)
         con_cuerpo, descansando = [], []
-        for oportunidad in list(con_cuerpo):
+        for oportunidad in restantes:
             ultima = diario.last_refresh(oportunidad.url) if diario is not None else None
             if not ultima:
                 con_cuerpo.append(oportunidad)
