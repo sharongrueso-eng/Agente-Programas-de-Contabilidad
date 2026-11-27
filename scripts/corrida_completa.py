@@ -510,6 +510,11 @@ def main() -> int:
         help="solo oportunidades de artículo nuevo; omite los reencauches de URLs vivas",
     )
     parser.add_argument(
+        "--crear-sin-demanda",
+        action="store_true",
+        help="permite crear una pieza nueva sin señal de GSC (por defecto no se hace)",
+    )
+    parser.add_argument(
         "--solo-reencauche",
         action="store_true",
         help="solo reencauches de URLs vivas; si no hay ninguno, no crea artículo nuevo",
@@ -750,6 +755,14 @@ def main() -> int:
                 f"{elegidas[0].url.rstrip('/').split('/')[-1]} ({len(reencauches)} en cola)"
             )
         if not elegidas and not args.solo_nuevos:
+            # Sharon (26-nov): si no hay reencauche viable, no se inventa tema. Una pieza nueva
+            # necesita demanda comprobada en GSC; lo que propone el archivo del blog no es demanda.
+            if not args.crear_sin_demanda:
+                print(
+                    "sin reencauche viable: no se crea pieza nueva. El artículo nuevo también "
+                    "tiene que salir de una consulta con demanda en GSC (--crear-sin-demanda para forzar)"
+                )
+                return 2
             # El auditor solo propone refrescos: nunca emite `create`. Los temas nuevos salen del
             # registro cruzado con el archivo del blog, y la fecha elige cuál toca hoy.
             try:
