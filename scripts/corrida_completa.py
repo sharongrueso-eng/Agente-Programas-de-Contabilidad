@@ -700,18 +700,10 @@ def main() -> int:
                 descansando.append((oportunidad, plazo, (date.today() - ultima).days))
         if descansando:
             detalle = ", ".join(
-                f"{o.url.rstrip('/').split('/')[-1][:30]} ({d}/{p} días)" for o, p, d in descansando[:3]
+                f"{o.url.rstrip('/').split('/')[-1][:30]} ({d}/{p} días)"
+                for o, p, d in descansando[:3]
             )
             print(f"descanso: {len(descansando)} pieza(s) reencauchada(s) aún en plazo → {detalle}")
-        if descansando:
-            proximas = ", ".join(
-                f"{o.url.rstrip('/').split('/')[-1][:34]} ({(diario.last_refresh(o.url) or date.today()).isoformat()})"
-                for o in descansando[:3]
-            )
-            print(
-                f"descanso: {len(descansando)} URL(s) trabajadas en los últimos "
-                f"{diario.min_days} días → {proximas}"
-            )
         # Prioridad de negocio: primero se mejora lo que ya posiciona (reencauche), y solo cuando
         # no hay nada que mejorar se escribe una pieza nueva.
         reencauches = [o for o in con_cuerpo if (o.action or "").startswith("refresh")]
