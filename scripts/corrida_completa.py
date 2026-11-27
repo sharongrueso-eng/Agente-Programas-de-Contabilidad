@@ -674,24 +674,29 @@ def main() -> int:
         except StateError as error:
             print(f"sin descanso: no se pudo leer el registro de reencauches ({error})")
             return 2
-        con_cuerpo, descansando = diagnostico_mod.en_descanso(con_cuerpo, diario)
+        # Descanso escalonado y por historial (Sharon, 26-nov): solo cuentan como reencauchadas las
+        # piezas que están en el registro del agente. Una edición manual, un retoque mínimo o una
+        # revisión de WordPress no gastan el turno. El plazo depende del tamaño: 30 días para las
+        # grandes, 15 para las pequeñas, para que el inventario no se agote.
+        from orchestrator.frescura import estado_de_edicion
 
-        # Segunda red, y la que de verdad manda: la fecha del artículo en WordPress. Si se editó
-        # hace menos de los días de descanso, no se toca, aunque el registro local diga otra cosa.
-        recientes = []
+        con_cuerpo, descansando = [], []
         for oportunidad in list(con_cuerpo):
-            dias = _dias_desde_edicion(oportunidad.url)
-            if dias is not None and dias < diario.min_days:
-                recientes.append((oportunidad, dias))
-        if recientes:
-            con_cuerpo = [o for o in con_cuerpo if o not in [r[0] for r in recientes]]
+            ultima = diario.last_refresh(oportunidad.url) if diario is not None else None
+            if not ultima:
+                con_cuerpo.append(oportunidad)
+                continue
+            _dias, largo = estado_de_edicion(oportunidad.url)
+            plazo = 30 if largo >= 15000 else 15
+            if (date.today() - ultima).days >= plazo:
+                con_cuerpo.append(oportunidad)
+            else:
+                descansando.append((oportunidad, plazo, (date.today() - ultima).days))
+        if descansando:
             detalle = ", ".join(
-                f"{o.url.rstrip('/').split('/')[-1][:34]} ({d} día(s))" for o, d in recientes[:3]
+                f"{o.url.rstrip('/').split('/')[-1][:30]} ({d}/{p} días)" for o, p, d in descansando[:3]
             )
-            print(
-                f"descanso: {len(recientes)} URL(s) editada(s) en WordPress hace menos de "
-                f"{diario.min_days} días → {detalle}"
-            )
+            print(f"descanso: {len(descansando)} pieza(s) reencauchada(s) aún en plazo → {detalle}")
         if descansando:
             proximas = ", ".join(
                 f"{o.url.rstrip('/').split('/')[-1][:34]} ({(diario.last_refresh(o.url) or date.today()).isoformat()})"

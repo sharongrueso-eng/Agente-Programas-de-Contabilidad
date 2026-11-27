@@ -273,12 +273,20 @@ def comparar(
         }
     )
 
+    # El mínimo no puede ser un 85 % fijo: en una página de 44.000 caracteres obliga a rellenar
+    # 37.400 y el redactor escribe 33.000 útiles. Sharon (26-nov): acortar con criterio no es
+    # empeorar. Por encima de 40.000 el listón baja a 72 %; entre 25.000 y 40.000, a 80 %.
+    exigido = minimo
+    if largo_viva > 40000:
+        exigido = min(minimo, 0.72)
+    elif largo_viva > 25000:
+        exigido = min(minimo, 0.80)
     controls.append(
         {
             "codigo": "comparacion_longitud",
-            "pasa": largo_nueva >= largo_viva * minimo,
+            "pasa": largo_nueva >= largo_viva * exigido,
             "detalle": f"{largo_nueva} caracteres frente a {largo_viva} de la viva "
-            f"(mínimo {int(largo_viva * minimo)})",
+            f"(mínimo {int(largo_viva * exigido)}, {int(exigido * 100)} % para su tamaño)",
         }
     )
 
